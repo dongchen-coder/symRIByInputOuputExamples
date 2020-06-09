@@ -194,7 +194,12 @@ vector<BaseType*> grow(vector<string> intOps,
 /******************************************
     Eliminate equvalent programs
 */
+map<void*, int> intResultRecord;
 int executeIntProgram(BaseType* p, map<string, int> inputOutput) {
+    if (intResultRecord.find(p) != intResultRecord.end()) {
+        return intResultRecord[p];
+    }
+    
     int pValue;
     if (dynamic_cast<Num*>(p)) {
         Num* num = dynamic_cast<Num*>(p);
@@ -216,10 +221,17 @@ int executeIntProgram(BaseType* p, map<string, int> inputOutput) {
         Ite* ite = dynamic_cast<Ite*>(p);
         pValue = ite->interpret(inputOutput);
     }
+    
+    intResultRecord[p] = pValue;
     return pValue;
 }
 
+map<void*, bool> boolResultRecord;
 bool executeBoolProgram(BaseType* p, map<string, int> inputOutput) {
+    if (boolResultRecord.find(p) != boolResultRecord.end()) {
+        return boolResultRecord[p];
+    }
+    
     bool pValue;
     if (dynamic_cast<F*>(p)) {
         F* f = dynamic_cast<F*>(p);
@@ -237,6 +249,8 @@ bool executeBoolProgram(BaseType* p, map<string, int> inputOutput) {
         Lt* lt = dynamic_cast<Lt*>(p);
         pValue = lt->interpret(inputOutput);
     }
+    
+    boolResultRecord[p] = pValue;
     return pValue;
 }
 
@@ -313,6 +327,7 @@ bool isCorrect(BaseType* p, vector<map<string, int> > inputOutputs) {
  Bottom Up Search main function
 */
 string bottomUp(future<string>& futureObj,
+                promise<string>& exitSignal,
                 int depthBound,
                 vector<string> intOps,
                 vector<string> boolOps,
@@ -332,7 +347,15 @@ string bottomUp(future<string>& futureObj,
         pList.push_back(baseNum);
     }
     
-    while(futureObj.wait_for(chrono::milliseconds(1)) == std::future_status::timeout) {
+    //cout << "Check Correct" << endl;
+    for (int i = 0; i < pList.size(); i++) {
+        if (isCorrect(pList[i], inputOutputs)) {
+            cout << "SynProg: " << dumpProgram(pList[i]) << endl;
+            return dumpProgram(pList[i]);
+        }
+    }
+    
+    while(futureObj.wait_for(chrono::milliseconds(0)) == std::future_status::timeout) {
         cout << "Grow" << endl;
         pList = grow(intOps, boolOps, pList, depthBound);
         //dumpPlist(pList);
@@ -343,13 +366,16 @@ string bottomUp(future<string>& futureObj,
         //dumpPlist(pList);
         cout << pList.size() << endl;
         
-        //cout << "Check Correct" << endl;
+        cout << "Check Correct" << endl;
         for (int i = 0; i < pList.size(); i++) {
             if (isCorrect(pList[i], inputOutputs)) {
-                cout << dumpProgram(pList[i]);
+                cout << "SynProg: " << dumpProgram(pList[i]) << endl;
+                exitSignal.set_value("dumpProgram(pList[i])");
                 return dumpProgram(pList[i]);
             }
         }
+        
+        cout << "Finished one iteration" << endl;
     }
     
     return "NYI";

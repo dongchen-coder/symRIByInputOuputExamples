@@ -48,7 +48,9 @@ void langConfiguration(int* depthBound,
      */
     if (!inputOutputs.empty()) {
         for (map<string, int>::iterator it = inputOutputs[0].begin(), eit = inputOutputs[0].end(); it != eit; ++it) {
-            vars->push_back(it->first);
+            if (it->first != "_out") {
+                vars->push_back(it->first);
+            }
         }
     }
     /*
@@ -103,9 +105,27 @@ bool readInputOutput(string fileName, vector<map<string, int> >* inputOutputs) {
                 }
             }
         }
+        if (isdigit(value[0])) {
+            inputOutput[var] = stoi(value);
+        } else if (value == "X") {
+            inputOutput[var] = -1;
+        } else {
+            cout << "value need to be int" << endl;
+            return false;
+        }
         inputOutputs->push_back(inputOutput);
     }
     
+    cout << "Input output examples:" << endl;
+    for (vector<map<string, int> >::iterator it = inputOutputs->begin(), eit = inputOutputs->end(); it != eit; ++it) {
+        cout << "    ";
+        for (map<string, int>::iterator it_m = (*it).begin(), eit_m = (*it).end(); it_m != eit_m; ++it_m) {
+            if (it_m->first != "_out") {
+                cout << it_m->first << " " << it_m->second << " ";
+            }
+        }
+        cout << "   _out " << (*it)["_out"] << endl;
+    }
     return true;
 }
 
@@ -115,6 +135,7 @@ int main(int argc, char* argv[]) {
         cout << "Error: command line only need inputoutput file name" << endl;
         return 0;
     }
+    
     /*
      read input output files
      */
@@ -137,56 +158,12 @@ int main(int argc, char* argv[]) {
     
     promise<string> exitSignal;
     future<string> futureObj = exitSignal.get_future();
-    thread th(&bottomUp, ref(futureObj), depthBound, intOps, boolOps, vars, constants, inputOutputs);
-    this_thread::sleep_for(chrono::milliseconds(10000));
-    exitSignal.set_value("");
+    thread th(&bottomUp, ref(futureObj), ref(exitSignal),depthBound, intOps, boolOps, vars, constants, inputOutputs);
+    this_thread::sleep_for(chrono::seconds(3));
+    exitSignal.set_value("NYI");
     th.join();
+    
     cout << "SynProg: " << futureObj.get() << endl;
     
     return 0;
-    
-    /*
-    int depthBound = 4;
-    vector<string> intOps;
-    vector<string> boolOps;
-    vector<string> vars;
-    vector<string> constants;
-    vector<map<string, int> > inputOutputs;
-    
-    intOps.push_back("VAR");
-    intOps.push_back("NUM");
-    intOps.push_back("PLUS");
-    intOps.push_back("TIMES");
-    intOps.push_back("ITE");
-    
-    boolOps.push_back("F");
-    boolOps.push_back("AND");
-    boolOps.push_back("NOT");
-    boolOps.push_back("LT");
-    
-    vars.push_back("x");
-    vars.push_back("y");
-    constants.push_back("3");
-    constants.push_back("4");
-    
-    map<string, int> inputOutput;
-    inputOutput["x"] = 3;
-    inputOutput["y"] = 4;
-    inputOutput["_out"] = 7;
-    inputOutputs.push_back(inputOutput);
-    inputOutput["x"] = 5;
-    inputOutput["y"] = 8;
-    inputOutput["_out"] = 13;
-    inputOutputs.push_back(inputOutput);
-    
-    promise<string> exitSignal;
-    future<string> futureObj = exitSignal.get_future();
-    thread th(&bottomUp, ref(futureObj), depthBound, intOps, boolOps, vars, constants, inputOutputs);
-    this_thread::sleep_for(chrono::milliseconds(10));
-    exitSignal.set_value("");
-    th.join();
-    cout << futureObj.get() << endl;
-    
-    return 0;
-     */
 }
