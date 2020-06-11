@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <iomanip>
 using namespace std;
 
 void processSingleRiFile(string name, int isize, int jsize);

@@ -134,7 +134,9 @@ vector<BaseType*> grow(vector<string> intOps,
                        vector<string> boolOps,
                        vector<BaseType*> pList,
                        int depthBound) {
+    
     vector<BaseType*> newPList;
+    
     for (int i = 0; i < intOps.size(); i++) {
         string op = intOps[i];
         if (op == "PLUS" || op == "TIMES") {
@@ -188,7 +190,9 @@ vector<BaseType*> grow(vector<string> intOps,
             }
         }
     }
-    return newPList;
+    
+    pList.insert(pList.end(), newPList.begin(), newPList.end());
+    return pList;
 }
 
 /******************************************
@@ -295,13 +299,24 @@ vector<BaseType*> elimEquvalents(vector<BaseType*> pList, vector<map<string, int
             if (checkTwoProgramsEqual(pi, pj, inputOutputs)) {
                 eqFlag[j] = true;
                 eqPList.push_back(pj);
+                
+                /* remove pj's record */
+                boolResultRecord.erase(pj);
+                intResultRecord.erase(pj);
             }
         }
+        boolResultRecord.erase(pi);
+        intResultRecord.erase(pi);
         
-        srand((unsigned)time(NULL));
-        programToKeep.push_back(eqPList[rand() % eqPList.size()]);
+        /* random choose program to keep */
+        //srand((unsigned)time(NULL));
+        //programToKeep.push_back(eqPList[rand() % eqPList.size()]);
+        /* always keep the first program, which is short in depth */
+        programToKeep.push_back(eqPList[0]);
     }
     
+    boolResultRecord.clear();
+    intResultRecord.clear();
     return programToKeep;
 }
 
@@ -359,12 +374,12 @@ string bottomUp(future<string>& futureObj,
         cout << "Grow" << endl;
         pList = grow(intOps, boolOps, pList, depthBound);
         //dumpPlist(pList);
-        cout << pList.size() << endl;
+        cout << "PList size: " << pList.size() << endl << endl;
         
         cout << "Elim" << endl;
         pList = elimEquvalents(pList, inputOutputs);
         //dumpPlist(pList);
-        cout << pList.size() << endl;
+        cout << "PList size: " << pList.size() << endl << endl;
         
         cout << "Check Correct" << endl;
         for (int i = 0; i < pList.size(); i++) {
@@ -374,8 +389,7 @@ string bottomUp(future<string>& futureObj,
                 return dumpProgram(pList[i]);
             }
         }
-        
-        cout << "Finished one iteration" << endl;
+        cout << "------------------------Finished one iteration------------------------" << endl;
     }
     
     return "NYI";
