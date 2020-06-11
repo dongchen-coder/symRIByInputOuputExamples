@@ -18,7 +18,7 @@ void langConfiguration(int* depthBound,
                        vector<string>* constants,
                        vector<map<string, int> > inputOutputs) {
     
-    *depthBound = 3;
+    *depthBound = 4;
     /*
      specify the language u use
      */
