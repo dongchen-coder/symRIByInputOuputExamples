@@ -8,7 +8,7 @@ CFLAGS=-I.
 DEPS = extractInputOutputForSingleRI #bottomUpSearch extractInputOutputForSingleRI langDef symRiSynthesiser
 
 symRiSynthesiser.o:
-	$(CC) -std=c++11 -pthread -c $(SRC_DIR)/symRiSynthesiser.cpp -o $(OBJ_DIR)/symRiSynthesiser.o
+	$(CC) -std=c++11 -c $(SRC_DIR)/symRiSynthesiser.cpp -o $(OBJ_DIR)/symRiSynthesiser.o
 
 langDef.o:
 	$(CC) -std=c++11 -c $(LIB_DIR)/langDef.cpp -o $(OBJ_DIR)/langDef.o
@@ -24,4 +24,4 @@ inputOutputGen.o:
 
 gen: extractInputOutputForSingleRI.o inputOutputGen.o symRiSynthesiser.o langDef.o bottomUpSearch.o
 	$(CC) -o $(BIN_DIR)/inputOutputGen $(OBJ_DIR)/extractInputOutputForSingleRI.o $(OBJ_DIR)/inputOutputGen.o
-	$(CC) -o $(BIN_DIR)/symRiSymthesiser $(OBJ_DIR)/symRiSynthesiser.o $(OBJ_DIR)/langDef.o $(OBJ_DIR)/bottomUpSearch.o
+	$(CC) -pthread -o $(BIN_DIR)/symRiSymthesiser $(OBJ_DIR)/symRiSynthesiser.o $(OBJ_DIR)/langDef.o $(OBJ_DIR)/bottomUpSearch.o
