@@ -159,7 +159,7 @@ int main(int argc, char* argv[]) {
     promise<string> exitSignal;
     future<string> futureObj = exitSignal.get_future();
     thread th(&bottomUp, ref(futureObj), ref(exitSignal),depthBound, intOps, boolOps, vars, constants, inputOutputs);
-    this_thread::sleep_for(chrono::seconds(3));
+    this_thread::sleep_for(chrono::seconds(3600));
     exitSignal.set_value("NYI");
     th.join();
     
