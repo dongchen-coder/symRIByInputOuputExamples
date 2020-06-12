@@ -26,7 +26,7 @@ void langConfiguration(int* depthBound,
     intOps->push_back("NUM");
     intOps->push_back("PLUS");
     //intOps.push_back("MINUS");
-    intOps->push_back("TIMES");
+    //intOps->push_back("TIMES");
     intOps->push_back("ITE");
     
     boolOps->push_back("F");
@@ -34,13 +34,13 @@ void langConfiguration(int* depthBound,
     boolOps->push_back("NOT");
     boolOps->push_back("LT");
     
-    constants->push_back("0");
-    constants->push_back("1");
-    constants->push_back("2");
-    constants->push_back("3");
-    constants->push_back("4");
+    //constants->push_back("0");
+    //constants->push_back("1");
+    //constants->push_back("2");
+    //constants->push_back("3");
+    //constants->push_back("4");
     constants->push_back("5");
-    constants->push_back("6");
+    //constants->push_back("6");
     constants->push_back("-1");
     
     /*

@@ -198,10 +198,11 @@ vector<BaseType*> grow(vector<string> intOps,
 /******************************************
     Eliminate equvalent programs
 */
-map<void*, int> intResultRecord;
-int executeIntProgram(BaseType* p, map<string, int> inputOutput) {
-    if (intResultRecord.find(p) != intResultRecord.end()) {
-        return intResultRecord[p];
+map<pair<BaseType*, int>, int> intResultRecord;
+int executeIntProgram(BaseType* p, map<string, int> inputOutput, int inputOutputId) {
+    
+    if (intResultRecord.find(make_pair(p, inputOutputId)) != intResultRecord.end()) {
+        return intResultRecord[make_pair(p, inputOutputId)];
     }
     
     int pValue;
@@ -226,14 +227,14 @@ int executeIntProgram(BaseType* p, map<string, int> inputOutput) {
         pValue = ite->interpret(inputOutput);
     }
     
-    intResultRecord[p] = pValue;
+    intResultRecord[make_pair(p, inputOutputId)] = pValue;
     return pValue;
 }
 
-map<void*, bool> boolResultRecord;
-bool executeBoolProgram(BaseType* p, map<string, int> inputOutput) {
-    if (boolResultRecord.find(p) != boolResultRecord.end()) {
-        return boolResultRecord[p];
+map<pair<BaseType*, int>, bool> boolResultRecord;
+bool executeBoolProgram(BaseType* p, map<string, int> inputOutput, int inputOutputId) {
+    if (boolResultRecord.find(make_pair(p, inputOutputId)) != boolResultRecord.end()) {
+        return boolResultRecord[make_pair(p, inputOutputId)];
     }
     
     bool pValue;
@@ -254,15 +255,29 @@ bool executeBoolProgram(BaseType* p, map<string, int> inputOutput) {
         pValue = lt->interpret(inputOutput);
     }
     
-    boolResultRecord[p] = pValue;
+    boolResultRecord[make_pair(p, inputOutputId)] = pValue;
     return pValue;
 }
 
 bool checkTwoProgramsEqual(BaseType* pi, BaseType* pj, vector<map<string, int> > inputOutputs) {
+    
     if (dynamic_cast<IntType*>(pi) != 0 && dynamic_cast<IntType*>(pj) != 0) {
         for (int i = 0; i < inputOutputs.size(); i++) {
-            int iValue = executeIntProgram(pi, inputOutputs[i]);
-            int jValue = executeIntProgram(pj, inputOutputs[i]);
+            int iValue = executeIntProgram(pi, inputOutputs[i], i);
+            int jValue = executeIntProgram(pj, inputOutputs[i], i);
+            /*
+            if (dumpProgram(pi) == "sizei" && dumpProgram(pj) == "sizej") {
+                
+                for (map<string, int>::iterator it_m = inputOutputs[i].begin(), eit_m = inputOutputs[i].end(); it_m != eit_m; ++it_m) {
+                    if (it_m->first != "_out") {
+                        cout << it_m->first << " " << it_m->second << " ";
+                    }
+                }
+                cout << "   _out " << inputOutputs[i]["_out"] << endl;
+                
+                cout << "check " << iValue << " " << jValue << endl;
+            }
+            */
             if (iValue != jValue) {
                 return false;
             }
@@ -270,8 +285,8 @@ bool checkTwoProgramsEqual(BaseType* pi, BaseType* pj, vector<map<string, int> >
     }
     else if (dynamic_cast<BoolType*>(pi) != 0 && dynamic_cast<BoolType*>(pj) != 0) {
         for (int i = 0; i < inputOutputs.size(); i++) {
-            bool iValue = executeBoolProgram(pi, inputOutputs[i]);
-            bool jValue = executeBoolProgram(pj, inputOutputs[i]);
+            bool iValue = executeBoolProgram(pi, inputOutputs[i], i);
+            bool jValue = executeBoolProgram(pj, inputOutputs[i], i);
             if (iValue != jValue) {
                 return false;
             }
@@ -292,27 +307,39 @@ vector<BaseType*> elimEquvalents(vector<BaseType*> pList, vector<map<string, int
         }
         BaseType* pi = pList[i];
         
+        //cout << "        Check equals for: " << dumpProgram(pi) << endl;
+        
         vector<BaseType*> eqPList;
         eqPList.push_back(pi);
+        
         for (int j = i+1; j < pList.size(); j++) {
             BaseType* pj = pList[j];
+            //if (dumpProgram(pi) == "sizei") {
+            //    cout << "    " << dumpProgram(pi) << " "  << pi << " " << dumpProgram(pj) << " " << pj << endl;
+            //}
             if (checkTwoProgramsEqual(pi, pj, inputOutputs)) {
                 eqFlag[j] = true;
                 eqPList.push_back(pj);
                 
                 /* remove pj's record */
-                boolResultRecord.erase(pj);
-                intResultRecord.erase(pj);
+                for (int inputOutputId = 0; inputOutputId < inputOutputs.size(); inputOutputId++) {
+                    boolResultRecord.erase(make_pair(pj, inputOutputId));
+                    intResultRecord.erase(make_pair(pj, inputOutputId));
+                }
             }
         }
-        boolResultRecord.erase(pi);
-        intResultRecord.erase(pi);
+        for (int inputOutputId = 0; inputOutputId < inputOutputs.size(); inputOutputId++) {
+            boolResultRecord.erase(make_pair(pi, inputOutputId));
+            intResultRecord.erase(make_pair(pi, inputOutputId));
+        }
         
         /* random choose program to keep */
         //srand((unsigned)time(NULL));
         //programToKeep.push_back(eqPList[rand() % eqPList.size()]);
         /* always keep the first program, which is short in depth */
         programToKeep.push_back(eqPList[0]);
+        
+        //dumpPlist(eqPList);
     }
     
     boolResultRecord.clear();
@@ -326,7 +353,7 @@ vector<BaseType*> elimEquvalents(vector<BaseType*> pList, vector<map<string, int
 bool isCorrect(BaseType* p, vector<map<string, int> > inputOutputs) {
     if (dynamic_cast<IntType*>(p) != 0) {
         for (int i = 0; i < inputOutputs.size(); i++) {
-            int pValue = executeIntProgram(p, inputOutputs[i]);
+            int pValue = executeIntProgram(p, inputOutputs[i], i);
             if (pValue != inputOutputs[i]["_out"]) {
                 return false;
             }
@@ -362,7 +389,9 @@ string bottomUp(future<string>& futureObj,
         pList.push_back(baseNum);
     }
     
-    //cout << "Check Correct" << endl;
+    cout << "------------------------Start search correct program------------------------" << endl;
+    cout << "Init PList size: " << pList.size() << endl;
+    cout << "Check Correct" << endl;
     for (int i = 0; i < pList.size(); i++) {
         if (isCorrect(pList[i], inputOutputs)) {
             cout << "SynProg: " << dumpProgram(pList[i]) << endl;
@@ -374,12 +403,12 @@ string bottomUp(future<string>& futureObj,
         cout << "Grow" << endl;
         pList = grow(intOps, boolOps, pList, depthBound);
         //dumpPlist(pList);
-        cout << "PList size: " << pList.size() << endl << endl;
+        cout << "    PList size: " << pList.size() << endl;
         
         cout << "Elim" << endl;
         pList = elimEquvalents(pList, inputOutputs);
         //dumpPlist(pList);
-        cout << "PList size: " << pList.size() << endl << endl;
+        cout << "    PList size: " << pList.size() << endl;
         
         cout << "Check Correct" << endl;
         for (int i = 0; i < pList.size(); i++) {
@@ -389,6 +418,10 @@ string bottomUp(future<string>& futureObj,
                 return dumpProgram(pList[i]);
             }
         }
+        
+        boolResultRecord.clear();
+        intResultRecord.clear();
+        
         cout << "------------------------Finished one iteration------------------------" << endl;
     }
     
