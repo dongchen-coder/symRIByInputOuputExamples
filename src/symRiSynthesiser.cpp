@@ -53,22 +53,6 @@ void langConfiguration(int* depthBound,
             }
         }
     }
-    /*
-     dump langeuage used
-     */
-    cout << "Dump language used:" << endl;
-    cout << "    intOps: ";
-    for (vector<string>::iterator it = intOps->begin(), eit = intOps->end(); it != eit; ++it) cout << *it << " ";
-    cout << endl;
-    cout << "    boolOps: ";
-    for (vector<string>::iterator it = boolOps->begin(), eit = boolOps->end(); it != eit; ++it) cout << *it << " ";
-    cout << endl;
-    cout << "    constants: ";
-    for (vector<string>::iterator it = constants->begin(), eit = constants->end(); it != eit; ++it) cout << *it << " ";
-    cout << endl;
-    cout << "    vars: ";
-    for (vector<string>::iterator it = vars->begin(), eit = vars->end(); it != eit; ++it) cout << *it << " ";
-    cout << endl;
     
     return;
 }
@@ -156,14 +140,32 @@ int main(int argc, char* argv[]) {
     vector<string> constants;
     langConfiguration(&depthBound, &intOps, &boolOps, &vars, &constants, inputOutputs);
     
+    /*
     promise<string> exitSignal;
     future<string> futureObj = exitSignal.get_future();
     thread th(&bottomUp, ref(futureObj), ref(exitSignal),depthBound, intOps, boolOps, vars, constants, inputOutputs);
     this_thread::sleep_for(chrono::seconds(3600));
     exitSignal.set_value("NYI");
     th.join();
+     */
     
-    cout << "SynProg: " << futureObj.get() << endl;
+    bottomUpSearch* bus = new bottomUpSearch(depthBound, intOps, boolOps, vars, constants, inputOutputs);
+    
+    bus->dumpLangDef();
+    
+    cout << "Current pList size " << bus->getPlistSize() << ", check correct" << endl;
+    while (bus->getCorrect() == "") {
+        cout << "Current pList size " << bus->getPlistSize() << ", grow" << endl;
+        //bus->dumpPlist();
+        bus->grow();
+        //bus->dumpPlist();
+        cout << "Current pList size " << bus->getPlistSize() << ", eliminate equvalents" << endl;
+        bus->elimEquvalents();
+        //bus->dumpPlist();
+        cout << "Current pList size " << bus->getPlistSize() << ", check correct" << endl;
+    }
+    
+    //cout << "SynProg: " << futureObj.get() << endl;
     
     return 0;
 }

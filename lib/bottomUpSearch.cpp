@@ -1,8 +1,36 @@
 #include "bottomUpSearch.hpp"
 /******************************************
+    Constructor
+ */
+bottomUpSearch::bottomUpSearch(int depthBound,
+                               vector<string> intOps,
+                               vector<string> boolOps,
+                               vector<string> vars,
+                               vector<string> constants,
+                               vector<map<string, int> > inputOutputs) {
+    this->depthBound = depthBound;
+    this->intOps = intOps;
+    this->boolOps = boolOps;
+    this->vars = vars;
+    this->constants = constants;
+    this->inputOutputs = inputOutputs;
+    
+    for (int i = 0; i < vars.size(); i++) {
+        Var* var = new Var(vars[i]);
+        BaseType* baseVar = dynamic_cast<BaseType*>(var);
+        this->pList.push_back(baseVar);
+    }
+    for (int i = 0; i < constants.size(); i++) {
+        Num* num = new Num(stoi(constants[i]));
+        BaseType* baseNum = dynamic_cast<BaseType*>(num);
+        this->pList.push_back(baseNum);
+    }
+}
+
+/******************************************
     Dump Program list
 */
-string dumpProgram(BaseType* p) {
+string bottomUpSearch::dumpProgram(BaseType* p) {
     if (dynamic_cast<Var*>(p) != 0) {
         Var* var = dynamic_cast<Var*>(p);
         return var->toString();
@@ -42,7 +70,7 @@ string dumpProgram(BaseType* p) {
     return "";
 }
 
-void dumpPlist(vector<BaseType*> pList) {
+void bottomUpSearch::dumpPlist() {
     cout << "[";
     for (int i = 0; i < pList.size(); i++) {
         cout << dumpProgram(pList[i]);
@@ -54,10 +82,30 @@ void dumpPlist(vector<BaseType*> pList) {
     return;
 }
 
+int bottomUpSearch::getPlistSize() {
+    return pList.size();
+}
+
+void bottomUpSearch::dumpLangDef() {
+    cout << "Dump language used:" << endl;
+    cout << "    intOps: ";
+    for (vector<string>::iterator it = intOps.begin(), eit = intOps.end(); it != eit; ++it) cout << *it << " ";
+    cout << endl;
+    cout << "    boolOps: ";
+    for (vector<string>::iterator it = boolOps.begin(), eit = boolOps.end(); it != eit; ++it) cout << *it << " ";
+    cout << endl;
+    cout << "    constants: ";
+    for (vector<string>::iterator it = constants.begin(), eit = constants.end(); it != eit; ++it) cout << *it << " ";
+    cout << endl;
+    cout << "    vars: ";
+    for (vector<string>::iterator it = vars.begin(), eit = vars.end(); it != eit; ++it) cout << *it << " ";
+    cout << endl;
+}
+
 /******************************************
     Grow program list
 */
-BaseType* growOneExpr(BaseType* i, BaseType* j, BaseType* k, string op, int depthBound) {
+BaseType* bottomUpSearch::growOneExpr(BaseType* i, BaseType* j, BaseType* k, string op, int depthBound) {
     if (op == "PLUS") {
         if (dynamic_cast<IntType*>(i) != 0 && dynamic_cast<IntType*>(j) != 0) {
             IntType* inti = dynamic_cast<IntType*>(i);
@@ -130,10 +178,7 @@ BaseType* growOneExpr(BaseType* i, BaseType* j, BaseType* k, string op, int dept
 }
 
 
-vector<BaseType*> grow(vector<string> intOps,
-                       vector<string> boolOps,
-                       vector<BaseType*> pList,
-                       int depthBound) {
+vector<BaseType*> bottomUpSearch::grow() {
     
     vector<BaseType*> newPList;
     
@@ -198,8 +243,7 @@ vector<BaseType*> grow(vector<string> intOps,
 /******************************************
     Eliminate equvalent programs
 */
-map<pair<BaseType*, int>, int> intResultRecord;
-int executeIntProgram(BaseType* p, map<string, int> inputOutput, int inputOutputId) {
+int bottomUpSearch::evaluateIntProgram(BaseType* p, int inputOutputId) {
     
     if (intResultRecord.find(make_pair(p, inputOutputId)) != intResultRecord.end()) {
         return intResultRecord[make_pair(p, inputOutputId)];
@@ -212,27 +256,26 @@ int executeIntProgram(BaseType* p, map<string, int> inputOutput, int inputOutput
     }
     if (dynamic_cast<Var*>(p)) {
         Var* var = dynamic_cast<Var*>(p);
-        pValue = var->interpret(inputOutput);
+        pValue = var->interpret(inputOutputs[inputOutputId]);
     }
     if (dynamic_cast<Plus*>(p)) {
         Plus* plus = dynamic_cast<Plus*>(p);
-        pValue = plus->interpret(inputOutput);
+        pValue = plus->interpret(inputOutputs[inputOutputId]);
     }
     if (dynamic_cast<Times*>(p)) {
         Times* times = dynamic_cast<Times*>(p);
-        pValue = times->interpret(inputOutput);
+        pValue = times->interpret(inputOutputs[inputOutputId]);
     }
     if (dynamic_cast<Ite*>(p)) {
         Ite* ite = dynamic_cast<Ite*>(p);
-        pValue = ite->interpret(inputOutput);
+        pValue = ite->interpret(inputOutputs[inputOutputId]);
     }
     
     intResultRecord[make_pair(p, inputOutputId)] = pValue;
     return pValue;
 }
 
-map<pair<BaseType*, int>, bool> boolResultRecord;
-bool executeBoolProgram(BaseType* p, map<string, int> inputOutput, int inputOutputId) {
+bool bottomUpSearch::evaluateBoolProgram(BaseType* p, int inputOutputId) {
     if (boolResultRecord.find(make_pair(p, inputOutputId)) != boolResultRecord.end()) {
         return boolResultRecord[make_pair(p, inputOutputId)];
     }
@@ -244,40 +287,28 @@ bool executeBoolProgram(BaseType* p, map<string, int> inputOutput, int inputOutp
     }
     if (dynamic_cast<Not*>(p)) {
         Not* n = dynamic_cast<Not*>(p);
-        pValue = n->interpret(inputOutput);
+        pValue = n->interpret(inputOutputs[inputOutputId]);
     }
     if (dynamic_cast<And*>(p)) {
         And* a = dynamic_cast<And*>(p);
-        pValue = a->interpret(inputOutput);
+        pValue = a->interpret(inputOutputs[inputOutputId]);
     }
     if (dynamic_cast<Lt*>(p)) {
         Lt* lt = dynamic_cast<Lt*>(p);
-        pValue = lt->interpret(inputOutput);
+        pValue = lt->interpret(inputOutputs[inputOutputId]);
     }
     
     boolResultRecord[make_pair(p, inputOutputId)] = pValue;
     return pValue;
 }
 
-bool checkTwoProgramsEqual(BaseType* pi, BaseType* pj, vector<map<string, int> > inputOutputs) {
+bool bottomUpSearch::checkTwoProgramsEqual(BaseType* pi, BaseType* pj) {
     
     if (dynamic_cast<IntType*>(pi) != 0 && dynamic_cast<IntType*>(pj) != 0) {
         for (int i = 0; i < inputOutputs.size(); i++) {
-            int iValue = executeIntProgram(pi, inputOutputs[i], i);
-            int jValue = executeIntProgram(pj, inputOutputs[i], i);
-            /*
-            if (dumpProgram(pi) == "sizei" && dumpProgram(pj) == "sizej") {
-                
-                for (map<string, int>::iterator it_m = inputOutputs[i].begin(), eit_m = inputOutputs[i].end(); it_m != eit_m; ++it_m) {
-                    if (it_m->first != "_out") {
-                        cout << it_m->first << " " << it_m->second << " ";
-                    }
-                }
-                cout << "   _out " << inputOutputs[i]["_out"] << endl;
-                
-                cout << "check " << iValue << " " << jValue << endl;
-            }
-            */
+            int iValue = evaluateIntProgram(pi, i);
+            int jValue = evaluateIntProgram(pj, i);
+            
             if (iValue != jValue) {
                 return false;
             }
@@ -285,8 +316,8 @@ bool checkTwoProgramsEqual(BaseType* pi, BaseType* pj, vector<map<string, int> >
     }
     else if (dynamic_cast<BoolType*>(pi) != 0 && dynamic_cast<BoolType*>(pj) != 0) {
         for (int i = 0; i < inputOutputs.size(); i++) {
-            bool iValue = executeBoolProgram(pi, inputOutputs[i], i);
-            bool jValue = executeBoolProgram(pj, inputOutputs[i], i);
+            bool iValue = evaluateBoolProgram(pi, i);
+            bool jValue = evaluateBoolProgram(pj, i);
             if (iValue != jValue) {
                 return false;
             }
@@ -297,7 +328,7 @@ bool checkTwoProgramsEqual(BaseType* pi, BaseType* pj, vector<map<string, int> >
     return true;
 }
 
-vector<BaseType*> elimEquvalents(vector<BaseType*> pList, vector<map<string, int> > inputOutputs) {
+vector<BaseType*> bottomUpSearch::elimEquvalents() {
     vector<BaseType*> programToKeep;
     vector<bool> eqFlag(pList.size() ,false);
     
@@ -314,10 +345,8 @@ vector<BaseType*> elimEquvalents(vector<BaseType*> pList, vector<map<string, int
         
         for (int j = i+1; j < pList.size(); j++) {
             BaseType* pj = pList[j];
-            //if (dumpProgram(pi) == "sizei") {
-            //    cout << "    " << dumpProgram(pi) << " "  << pi << " " << dumpProgram(pj) << " " << pj << endl;
-            //}
-            if (checkTwoProgramsEqual(pi, pj, inputOutputs)) {
+            
+            if (checkTwoProgramsEqual(pi, pj)) {
                 eqFlag[j] = true;
                 eqPList.push_back(pj);
                 
@@ -350,10 +379,10 @@ vector<BaseType*> elimEquvalents(vector<BaseType*> pList, vector<map<string, int
 /******************************************
     Check correct
  */
-bool isCorrect(BaseType* p, vector<map<string, int> > inputOutputs) {
+bool bottomUpSearch::isCorrect(BaseType* p) {
     if (dynamic_cast<IntType*>(p) != 0) {
         for (int i = 0; i < inputOutputs.size(); i++) {
-            int pValue = executeIntProgram(p, inputOutputs[i], i);
+            int pValue = evaluateIntProgram(p, i);
             if (pValue != inputOutputs[i]["_out"]) {
                 return false;
             }
@@ -365,9 +394,21 @@ bool isCorrect(BaseType* p, vector<map<string, int> > inputOutputs) {
     return true;
 }
 
+string bottomUpSearch::getCorrect() {
+    for (int i = 0; i < pList.size(); i++) {
+        if (isCorrect(pList[i])) {
+            cout << "SynProg: " << dumpProgram(pList[i]) << endl;
+            //exitSignal.set_value("dumpProgram(pList[i])");
+            return dumpProgram(pList[i]);
+        }
+    }
+    return "";
+}
+
 /******************************************
  Bottom Up Search main function
 */
+/*
 string bottomUp(future<string>& futureObj,
                 promise<string>& exitSignal,
                 int depthBound,
@@ -427,3 +468,4 @@ string bottomUp(future<string>& futureObj,
     
     return "NYI";
 }
+ */

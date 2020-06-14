@@ -502,7 +502,7 @@ Lt::Lt(IntType* left, IntType* right) {
     _left = left;
     _right = right;
 }
-    
+
 string Lt::toString() {
     string output = "(";
     
@@ -1009,12 +1009,4 @@ int Ite::depth() {
     
     return depth;
 }
-
-/*
-int main() {
-    Var var("x");
-    cout << var.toString() << endl;
-    return 0;
-}
- */
 
