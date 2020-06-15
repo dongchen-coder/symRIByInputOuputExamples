@@ -1,4 +1,5 @@
 #include "../lib/bottomUpSearch.hpp"
+#include "../lib/unification.hpp"
 #include <vector>
 #include <future>
 #include <chrono>
@@ -11,37 +12,65 @@ using namespace std;
 /*
 Language configuration
 */
-void langConfiguration(int* depthBound,
-                       vector<string>* intOps,
-                       vector<string>* boolOps,
-                       vector<string>* vars,
-                       vector<string>* constants,
+void langConfiguration(int* depthBoundPred,
+                       vector<string>* intOpsPred,
+                       vector<string>* boolOpsPred,
+                       vector<string>* varsPred,
+                       vector<string>* constantsPred,
+                       int* depthBoundTerm,
+                       vector<string>* intOpsTerm,
+                       vector<string>* boolOpsTerm,
+                       vector<string>* varsTerm,
+                       vector<string>* constantsTerm,
                        vector<map<string, int> > inputOutputs) {
     
-    *depthBound = 4;
+    *depthBoundPred = 4;
     /*
      specify the language u use
      */
-    intOps->push_back("VAR");
-    intOps->push_back("NUM");
-    intOps->push_back("PLUS");
-    //intOps.push_back("MINUS");
-    //intOps->push_back("TIMES");
-    intOps->push_back("ITE");
+    intOpsPred->push_back("VAR");
+    //intOpsPred->push_back("NUM");
+    intOpsPred->push_back("PLUS");
+    //intOpsPred->push_back("MINUS");
+    //intOpsPred->push_back("TIMES");
+    intOpsPred->push_back("ITE");
     
-    boolOps->push_back("F");
-    boolOps->push_back("AND");
-    boolOps->push_back("NOT");
-    boolOps->push_back("LT");
+    boolOpsPred->push_back("F");
+    boolOpsPred->push_back("AND");
+    boolOpsPred->push_back("NOT");
+    boolOpsPred->push_back("LT");
     
-    //constants->push_back("0");
-    //constants->push_back("1");
-    //constants->push_back("2");
-    //constants->push_back("3");
-    //constants->push_back("4");
-    constants->push_back("5");
-    //constants->push_back("6");
-    constants->push_back("-1");
+    constantsPred->push_back("0");
+    constantsPred->push_back("1");
+    //constantsPred->push_back("2");
+    //constantsPred->push_back("3");
+    //constantsPred->push_back("4");
+    //constantsPred->push_back("5");
+    //constantsPred->push_back("6");
+    //constantsPred->push_back("-1");
+    
+    *depthBoundTerm = 4;
+    
+    intOpsTerm->push_back("VAR");
+    intOpsTerm->push_back("NUM");
+    intOpsTerm->push_back("PLUS");
+    //intOpsTerm->push_back("MINUS");
+    //intOpsTerm->push_back("TIMES");
+    intOpsTerm->push_back("ITE");
+    
+    boolOpsTerm->push_back("F");
+    boolOpsTerm->push_back("AND");
+    boolOpsTerm->push_back("NOT");
+    boolOpsTerm->push_back("LT");
+    
+    //constantsTerm->push_back("0");
+    //constantsTerm->push_back("1");
+    //constantsTerm->push_back("2");
+    //constantsTerm->push_back("3");
+    //constantsTerm->push_back("4");
+    constantsTerm->push_back("5");
+    //constantsTerm->push_back("6");
+    constantsTerm->push_back("-1");
     
     /*
      varables are extracted from inputoutput examples
@@ -49,7 +78,8 @@ void langConfiguration(int* depthBound,
     if (!inputOutputs.empty()) {
         for (map<string, int>::iterator it = inputOutputs[0].begin(), eit = inputOutputs[0].end(); it != eit; ++it) {
             if (it->first != "_out") {
-                vars->push_back(it->first);
+                varsPred->push_back(it->first);
+                varsTerm->push_back(it->first);
             }
         }
     }
@@ -133,12 +163,20 @@ int main(int argc, char* argv[]) {
     /*
      language configuration
     */
-    int depthBound;
-    vector<string> intOps;
-    vector<string> boolOps;
-    vector<string> vars;
-    vector<string> constants;
-    langConfiguration(&depthBound, &intOps, &boolOps, &vars, &constants, inputOutputs);
+    int depthBoundPred;
+    vector<string> intOpsPred;
+    vector<string> boolOpsPred;
+    vector<string> varsPred;
+    vector<string> constantsPred;
+    int depthBoundTerm;
+    vector<string> intOpsTerm;
+    vector<string> boolOpsTerm;
+    vector<string> varsTerm;
+    vector<string> constantsTerm;
+    
+    langConfiguration(&depthBoundPred, &intOpsPred, &boolOpsPred, &varsPred, &constantsPred,
+                      &depthBoundTerm, &intOpsTerm, &boolOpsTerm, &varsTerm, &constantsTerm,
+                      inputOutputs);
     
     /*
     promise<string> exitSignal;
@@ -149,21 +187,12 @@ int main(int argc, char* argv[]) {
     th.join();
      */
     
-    bottomUpSearch* bus = new bottomUpSearch(depthBound, intOps, boolOps, vars, constants, inputOutputs);
-    
-    bus->dumpLangDef();
-    
-    cout << "Current pList size " << bus->getPlistSize() << ", check correct" << endl;
-    while (bus->getCorrect() == "") {
-        cout << "Current pList size " << bus->getPlistSize() << ", grow" << endl;
-        //bus->dumpPlist();
-        bus->grow();
-        //bus->dumpPlist();
-        cout << "Current pList size " << bus->getPlistSize() << ", eliminate equvalents" << endl;
-        bus->elimEquvalents();
-        //bus->dumpPlist();
-        cout << "Current pList size " << bus->getPlistSize() << ", check correct" << endl;
-    }
+    cout << "Start search with unification" << endl;
+    unification* uni = new unification(depthBoundPred, intOpsPred, boolOpsPred, varsPred, constantsPred,
+                                       depthBoundTerm, intOpsTerm, boolOpsTerm, varsTerm, constantsTerm,
+                                       inputOutputs);
+    uni->dumpLangDef();
+    uni->search();
     
     //cout << "SynProg: " << futureObj.get() << endl;
     

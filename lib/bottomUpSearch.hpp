@@ -17,6 +17,16 @@ public:
                    vector<string> constants,
                    vector<map<string, int> > inputOutputs);
     
+    /* search function */
+    string search();
+    
+    /* dump language used */
+    void dumpLangDef();
+    
+private:
+    /* dump one program */
+    string dumpProgram(BaseType* p);
+    
     /* Grow program list */
     vector<BaseType*> grow();
     
@@ -29,12 +39,6 @@ public:
     /* Dumping function */
     void dumpPlist();
     int getPlistSize();
-    
-    void dumpLangDef();
-    
-private:
-    /* dump one program */
-    string dumpProgram(BaseType* p);
     
     /* Construct one expression: op i j */
     BaseType* growOneExpr(BaseType* i, BaseType* j, BaseType* k, string op, int depthBound);

@@ -405,6 +405,23 @@ string bottomUpSearch::getCorrect() {
     return "";
 }
 
+string bottomUpSearch::search() {
+    
+    cout << "Init pList size " << getPlistSize() << ", check correct" << endl;
+    while (getCorrect() == "") {
+        cout << "Current pList size " << getPlistSize() << ", grow" << endl;
+        // dumpPlist();
+        grow();
+        // dumpPlist();
+        cout << "Current pList size " << getPlistSize() << ", eliminate equvalents" << endl;
+        elimEquvalents();
+        // dumpPlist();
+        cout << "Current pList size " << getPlistSize() << ", check correct" << endl;
+    }
+    
+    return "";
+}
+
 /******************************************
  Bottom Up Search main function
 */
