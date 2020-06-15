@@ -4,19 +4,24 @@
 #include "bottomUpSearch.hpp"
 #include <algorithm>
 #include <vector>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 using namespace std;
 
 struct inputOutputTreeNode {
     vector<map<string, int> > inputOutputs;
+    string searchedProg;
     inputOutputTreeNode *left;
     inputOutputTreeNode *right;
     inputOutputTreeNode() {
         inputOutputs = vector<map<string, int> >();
         left = NULL;
         right = NULL;
+        searchedProg = "";
     }
-    inputOutputTreeNode(vector<map<string, int> > ios) : inputOutputs(ios), left(nullptr), right(nullptr) {}
-    inputOutputTreeNode(vector<map<string, int> > ios, inputOutputTreeNode *left, inputOutputTreeNode *right) : inputOutputs(ios), left(left), right(right) {}
+    inputOutputTreeNode(vector<map<string, int> > ios) : inputOutputs(ios), left(nullptr), right(nullptr), searchedProg("") {}
+    inputOutputTreeNode(vector<map<string, int> > ios, inputOutputTreeNode *left, inputOutputTreeNode *right) : inputOutputs(ios), left(left), right(right), searchedProg("") {}
 };
 
 class unification {
@@ -33,14 +38,19 @@ public:
                 vector<string> constantsTerm,
                 vector<map<string, int> > inputOutputs);
     
-    string search();
+    string search(int timeBoundInSeconds);
     
     /* Dumping fucntions */
     void dumpLangDef();
+    void dumpInputOutputTree();
     
 private:
     /* Dumping fucntions */
-    void dumpInputOutputTree(inputOutputTreeNode* node, string space="");
+    void dumpInputOutputTreeNode(inputOutputTreeNode* node, string space="");
+    
+    /* Search node */
+    string searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNode* node);
+    string searchNode(int timeBoundInSeconds, inputOutputTreeNode* node);
     
     /* Split current tree node of inputoutput examples */
     bool splitInputOutputTreeNode(inputOutputTreeNode* node);

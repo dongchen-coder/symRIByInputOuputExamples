@@ -32,19 +32,77 @@ unification::unification(int depthBoundPred,
 /*
  search function
  */
-string unification::search() {
-    
-    //dumpInputOutputTree(inputOutputTree);
-    //splitInputOutputTreeNode(inputOutputTree);
-    //dumpInputOutputTree(inputOutputTree);
-    
-    bottomUpSearch* bus = new bottomUpSearch(depthBoundTerm, intOpsTerm, boolOpsTerm, varsTerm, constantsTerm, inputOutputTree->inputOutputs);
-    
-    while(true) {
-        bus->search();
+string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNode* node) {
+    if (node == NULL) {
+        return "";
     }
     
-    return "";
+    string searchedProg = "";
+    if (fork() == 0) {
+        unsigned secsLeft = timeBoundInSeconds;
+        alarm(secsLeft); // no handler (terminate proc)
+        
+        /* do the search */
+        if (node->left != NULL && node->right != NULL) {
+            bottomUpSearch* bus = new bottomUpSearch(depthBoundPred, intOpsPred, boolOpsPred, varsPred, constantsPred, node->inputOutputs);
+            searchedProg = bus->search();
+        } else {
+            bottomUpSearch* bus = new bottomUpSearch(depthBoundTerm, intOpsTerm, boolOpsTerm, varsTerm, constantsTerm, node->inputOutputs);
+            searchedProg = bus->search();
+        }
+        secsLeft = alarm(0);
+        // maybe write (MAX_SECONDS - secsLeft) to a file
+        exit(0);
+    } else {
+        int status;
+        wait(&status);
+        if (WIFSIGNALED(status)) {
+            // child was interrupted
+            if (WTERMSIG(status) == SIGALRM) {
+                // child interrupted by alarm signal
+                cout << "Time out for bottem up search" << endl;
+            }else{
+                // child interrupted by another signal
+                cout << "interrupted by another signal in bottem up search" << endl;
+            }
+        }else{
+            // child ran to completion
+            cout << "Complete, program found " << searchedProg << endl;
+        }
+    }
+    
+    return searchedProg;
+}
+
+string unification::searchNode(int timeBoundInSeconds, inputOutputTreeNode* node) {
+    if (node == NULL) {
+        return "";
+    }
+    string searchedProg = searchNodeOnePass(timeBoundInSeconds, node);
+    
+    /* search a solution for corrent node */
+    if (searchedProg == "") {
+        if (splitInputOutputTreeNode(node)) {
+            cout << "Split current node, succeed" << endl;
+            string cond = searchNodeOnePass(timeBoundInSeconds, node);
+            if (cond != "") {
+                string tcase = searchNode(timeBoundInSeconds, node->left);
+                string fcase = searchNode(timeBoundInSeconds, node->right);
+                searchedProg = "(if " + cond + " then " + tcase + " else " + fcase + ")";
+            }
+        } else {
+            cout << "Split current node, failed" << endl;
+            searchedProg = "";
+        }
+    }
+    
+    node->searchedProg = searchedProg;
+    
+    return searchedProg;
+}
+
+string unification::search(int timeBoundInSeconds) {
+    return searchNode(timeBoundInSeconds, inputOutputTree);
 }
 
 /*
@@ -120,7 +178,14 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node) {
     return true;
 }
 
-void unification::dumpInputOutputTree(inputOutputTreeNode* node, string space) {
+/*
+Dumping funcions
+*/
+void unification::dumpInputOutputTree() {
+    dumpInputOutputTreeNode(inputOutputTree, "");
+}
+
+void unification::dumpInputOutputTreeNode(inputOutputTreeNode* node, string space) {
     if (node != NULL) {
         for (vector<map<string, int> >::iterator it = node->inputOutputs.begin(), eit = node->inputOutputs.end(); it != eit; ++it) {
             cout << space;
@@ -131,8 +196,8 @@ void unification::dumpInputOutputTree(inputOutputTreeNode* node, string space) {
             }
             cout << "_out " << (*it)["_out"] << endl;
         }
-        dumpInputOutputTree(node->left, space + "L---");
-        dumpInputOutputTree(node->right, space + "R---");
+        cout << "Searched Program: " << node->searchedProg << endl;
+        dumpInputOutputTreeNode(node->left, space + "L---");
+        dumpInputOutputTreeNode(node->right, space + "R---");
     }
-    return;
 }

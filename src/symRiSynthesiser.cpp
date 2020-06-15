@@ -24,7 +24,7 @@ void langConfiguration(int* depthBoundPred,
                        vector<string>* constantsTerm,
                        vector<map<string, int> > inputOutputs) {
     
-    *depthBoundPred = 4;
+    *depthBoundPred = 6;
     /*
      specify the language u use
      */
@@ -33,15 +33,16 @@ void langConfiguration(int* depthBoundPred,
     intOpsPred->push_back("PLUS");
     //intOpsPred->push_back("MINUS");
     //intOpsPred->push_back("TIMES");
-    intOpsPred->push_back("ITE");
+    //intOpsPred->push_back("ITE");
     
     boolOpsPred->push_back("F");
     boolOpsPred->push_back("AND");
+    
     boolOpsPred->push_back("NOT");
     boolOpsPred->push_back("LT");
     
-    constantsPred->push_back("0");
-    constantsPred->push_back("1");
+    //constantsPred->push_back("0");
+    //constantsPred->push_back("1");
     //constantsPred->push_back("2");
     //constantsPred->push_back("3");
     //constantsPred->push_back("4");
@@ -178,22 +179,13 @@ int main(int argc, char* argv[]) {
                       &depthBoundTerm, &intOpsTerm, &boolOpsTerm, &varsTerm, &constantsTerm,
                       inputOutputs);
     
-    /*
-    promise<string> exitSignal;
-    future<string> futureObj = exitSignal.get_future();
-    thread th(&bottomUp, ref(futureObj), ref(exitSignal),depthBound, intOps, boolOps, vars, constants, inputOutputs);
-    this_thread::sleep_for(chrono::seconds(3600));
-    exitSignal.set_value("NYI");
-    th.join();
-     */
-    
     cout << "Start search with unification" << endl;
     unification* uni = new unification(depthBoundPred, intOpsPred, boolOpsPred, varsPred, constantsPred,
                                        depthBoundTerm, intOpsTerm, boolOpsTerm, varsTerm, constantsTerm,
                                        inputOutputs);
     uni->dumpLangDef();
-    uni->search();
-    
+    uni->search(10);
+    uni->dumpInputOutputTree();
     //cout << "SynProg: " << futureObj.get() << endl;
     
     return 0;
