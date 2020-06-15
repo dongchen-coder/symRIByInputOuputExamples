@@ -2,6 +2,7 @@
 #define UNIFICATION_H
 
 #include "bottomUpSearch.hpp"
+#include <algorithm>
 #include <vector>
 using namespace std;
 
