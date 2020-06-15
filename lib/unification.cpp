@@ -37,8 +37,13 @@ string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNod
         return "";
     }
     
+    int fd[2];
+    pipe(fd);
+    pid_t pid = fork();
+    
     string searchedProg = "";
-    if (fork() == 0) {
+    
+    if (pid == 0) {
         unsigned secsLeft = timeBoundInSeconds;
         alarm(secsLeft); // no handler (terminate proc)
         
@@ -52,10 +57,35 @@ string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNod
         }
         secsLeft = alarm(0);
         // maybe write (MAX_SECONDS - secsLeft) to a file
+        
+        /* write searched program to pipe, to parent process */
+        close(fd[0]);
+        write(fd[1], searchedProg.c_str(), searchedProg.size());
+        close(fd[1]);
+        
         exit(0);
     } else {
+    
         int status;
         wait(&status);
+        
+        /* read searched program in pipe, to child process */
+        close(fd[1]);
+        char readBuffer[1000] = {'\n'};
+        read(fd[0], readBuffer, sizeof(readBuffer));
+        close(fd[0]);
+        
+        int acturalSize = 0;
+        while(acturalSize < 1000) {
+            if (readBuffer[acturalSize] != '\n') {
+                acturalSize++;
+            } else {
+                break;
+            }
+        }
+        searchedProg.assign(readBuffer, acturalSize);
+        
+        /* check child process status */
         if (WIFSIGNALED(status)) {
             // child was interrupted
             if (WTERMSIG(status) == SIGALRM) {

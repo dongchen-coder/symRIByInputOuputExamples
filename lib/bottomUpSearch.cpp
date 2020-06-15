@@ -419,7 +419,7 @@ string bottomUpSearch::search() {
         cout << "Current pList size " << getPlistSize() << ", check correct" << endl;
     }
     
-    return "";
+    return getCorrect();
 }
 
 /******************************************
