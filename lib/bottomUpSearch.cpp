@@ -389,7 +389,12 @@ bool bottomUpSearch::isCorrect(BaseType* p) {
         }
     }
     if (dynamic_cast<BoolType*>(p) != 0) {
-        return false;
+        for (int i = 0; i < inputOutputs.size(); i++) {
+            int pValue = evaluateBoolProgram(p, i);
+            if (pValue != inputOutputs[i]["_out"]) {
+                return false;
+            }
+        }
     }
     return true;
 }

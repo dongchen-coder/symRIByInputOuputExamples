@@ -179,16 +179,23 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node) {
     
     sort(outputs.begin(), outputs.end());
     
-    /* split into half size first,  */
+    /* Find split size, split into half size first, try grow first half */
     size_t half_size = outputs.size() / 2;
-    
-    while (half_size > 1 && half_size < outputs.size() && outputs[half_size - 1] == outputs[half_size]) {
+    while (half_size >= 1 && half_size < outputs.size() && outputs[half_size - 1] == outputs[half_size]) {
         half_size++;
     }
+    /* if grow first half failed, try grow second half */
     if (half_size == 0 || half_size == outputs.size()) {
-        return false;
+        half_size = outputs.size() / 2;
+        while (half_size >= 1 && half_size < outputs.size() && outputs[half_size - 1] == outputs[half_size]) {
+            half_size--;
+        }
+        if (half_size == 0 || half_size == outputs.size()) {
+            return false;
+        }
     }
     
+    /* found split size, do the split */
     vector<map<string, int> > leftInputOutputs;
     vector<map<string, int> > rightInputOutputs;
     
