@@ -13,4 +13,7 @@ Current issues and TODOs:
 Questions:
 
 (1) Is there any specification that can be used to guide the search?
+
 (2) How to ensure progress?
+
+(3) Rules to remove equalivents? (1) Type guided: contant > var > expr (2) length guided: short > long (3) random? (4) reserve more than one? 

@@ -43,6 +43,7 @@ public:
     /* Dumping fucntions */
     void dumpLangDef();
     void dumpInputOutputTree();
+    void dumpSearchedProgram();
     
 private:
     /* Dumping fucntions */

@@ -132,7 +132,9 @@ string unification::searchNode(int timeBoundInSeconds, inputOutputTreeNode* node
 }
 
 string unification::search(int timeBoundInSeconds) {
+    cout << "--------------------------------------, search start" << endl;
     return searchNode(timeBoundInSeconds, inputOutputTree);
+    cout << "--------------------------------------" << endl;
 }
 
 /*
@@ -142,6 +144,7 @@ void unification::dumpLangDef() {
     cout << "Language used in Unification:" << endl;
     
     cout << "    Predicate language:" << endl;
+    cout << "        program depth bound: " << depthBoundPred << endl;
     cout << "        intOps: ";
     for (vector<string>::iterator it = intOpsPred.begin(), eit = intOpsPred.end(); it != eit; ++it) cout << *it << " ";
     cout << endl;
@@ -156,6 +159,7 @@ void unification::dumpLangDef() {
     cout << endl;
     
     cout << "    Term language:" << endl;
+    cout << "        program depth bound: " << depthBoundTerm << endl;
     cout << "        intOps: ";
     for (vector<string>::iterator it = intOpsTerm.begin(), eit = intOpsTerm.end(); it != eit; ++it) cout << *it << " ";
     cout << endl;
@@ -237,4 +241,18 @@ void unification::dumpInputOutputTreeNode(inputOutputTreeNode* node, string spac
         dumpInputOutputTreeNode(node->left, space + "L---");
         dumpInputOutputTreeNode(node->right, space + "R---");
     }
+}
+
+void unification::dumpSearchedProgram() {
+    cout << "--------------------------------------, dump search result start" << endl;
+    if (inputOutputTree != NULL) {
+        if (inputOutputTree->searchedProg != "") {
+            cout << "Searched Program (^0^) : " << inputOutputTree->searchedProg << endl;
+        } else {
+            cout << "Not yet founded, (T^T)" << endl;
+        }
+    } else {
+        cout << "Not yet founded, (T^T)" << endl;
+    }
+    cout << "--------------------------------------" << endl;
 }

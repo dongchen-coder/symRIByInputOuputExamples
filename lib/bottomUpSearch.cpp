@@ -389,11 +389,26 @@ bool bottomUpSearch::isCorrect(BaseType* p) {
         }
     }
     if (dynamic_cast<BoolType*>(p) != 0) {
+        /* all true or all false are both correct program */
+        bool allFalse = true;
+        bool allTrue = true;
         for (int i = 0; i < inputOutputs.size(); i++) {
-            int pValue = evaluateBoolProgram(p, i);
-            if (pValue != inputOutputs[i]["_out"]) {
+            if (!(inputOutputs[i]["_out"] == 0 || inputOutputs[i]["_out"] == 1)) {
                 return false;
             }
+            int pValue = evaluateBoolProgram(p, i);
+            if (pValue != inputOutputs[i]["_out"]) {
+                allTrue = false;
+            } else {
+                allFalse = false;
+            }
+            if (!allTrue && !allFalse) {
+                return false;
+            }
+        }
+        if (allFalse == true) {
+            BoolType* booli = dynamic_cast<BoolType*>(p);
+            p = new Not(booli);
         }
     }
     return true;
@@ -403,7 +418,6 @@ string bottomUpSearch::getCorrect() {
     for (int i = 0; i < pList.size(); i++) {
         if (isCorrect(pList[i])) {
             cout << "SynProg: " << dumpProgram(pList[i]) << endl;
-            //exitSignal.set_value("dumpProgram(pList[i])");
             return dumpProgram(pList[i]);
         }
     }
@@ -420,74 +434,9 @@ string bottomUpSearch::search() {
         // dumpPlist();
         cout << "Current pList size " << getPlistSize() << ", eliminate equvalents" << endl;
         elimEquvalents();
-        // dumpPlist();
+        //dumpPlist();
         cout << "Current pList size " << getPlistSize() << ", check correct" << endl;
     }
     
     return getCorrect();
 }
-
-/******************************************
- Bottom Up Search main function
-*/
-/*
-string bottomUp(future<string>& futureObj,
-                promise<string>& exitSignal,
-                int depthBound,
-                vector<string> intOps,
-                vector<string> boolOps,
-                vector<string> vars,
-                vector<string> constants,
-                vector<map<string, int> > inputOutputs) {
-
-    vector<BaseType*> pList;
-    for (int i = 0; i < vars.size(); i++) {
-        Var* var = new Var(vars[i]);
-        BaseType* baseVar = dynamic_cast<BaseType*>(var);
-        pList.push_back(baseVar);
-    }
-    for (int i = 0; i < constants.size(); i++) {
-        Num* num = new Num(stoi(constants[i]));
-        BaseType* baseNum = dynamic_cast<BaseType*>(num);
-        pList.push_back(baseNum);
-    }
-    
-    cout << "------------------------Start search correct program------------------------" << endl;
-    cout << "Init PList size: " << pList.size() << endl;
-    cout << "Check Correct" << endl;
-    for (int i = 0; i < pList.size(); i++) {
-        if (isCorrect(pList[i], inputOutputs)) {
-            cout << "SynProg: " << dumpProgram(pList[i]) << endl;
-            return dumpProgram(pList[i]);
-        }
-    }
-    
-    while(futureObj.wait_for(chrono::milliseconds(0)) == std::future_status::timeout) {
-        cout << "Grow" << endl;
-        pList = grow(intOps, boolOps, pList, depthBound);
-        //dumpPlist(pList);
-        cout << "    PList size: " << pList.size() << endl;
-        
-        cout << "Elim" << endl;
-        pList = elimEquvalents(pList, inputOutputs);
-        //dumpPlist(pList);
-        cout << "    PList size: " << pList.size() << endl;
-        
-        cout << "Check Correct" << endl;
-        for (int i = 0; i < pList.size(); i++) {
-            if (isCorrect(pList[i], inputOutputs)) {
-                cout << "SynProg: " << dumpProgram(pList[i]) << endl;
-                exitSignal.set_value("dumpProgram(pList[i])");
-                return dumpProgram(pList[i]);
-            }
-        }
-        
-        boolResultRecord.clear();
-        intResultRecord.clear();
-        
-        cout << "------------------------Finished one iteration------------------------" << endl;
-    }
-    
-    return "NYI";
-}
- */

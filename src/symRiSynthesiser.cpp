@@ -179,14 +179,13 @@ int main(int argc, char* argv[]) {
                       &depthBoundTerm, &intOpsTerm, &boolOpsTerm, &varsTerm, &constantsTerm,
                       inputOutputs);
     
-    cout << "Start search with unification" << endl;
     unification* uni = new unification(depthBoundPred, intOpsPred, boolOpsPred, varsPred, constantsPred,
                                        depthBoundTerm, intOpsTerm, boolOpsTerm, varsTerm, constantsTerm,
                                        inputOutputs);
     uni->dumpLangDef();
     uni->search(10);
     uni->dumpInputOutputTree();
-    //cout << "SynProg: " << futureObj.get() << endl;
+    uni->dumpSearchedProgram();
     
     return 0;
 }
