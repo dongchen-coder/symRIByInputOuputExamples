@@ -71,13 +71,13 @@ string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNod
         
         /* read searched program in pipe, to child process */
         close(fd[1]);
-        char readBuffer[1000] = {'\n'};
+        char readBuffer[1000] = {0};
         read(fd[0], readBuffer, sizeof(readBuffer));
         close(fd[0]);
         
         int acturalSize = 0;
         while(acturalSize < 1000) {
-            if (readBuffer[acturalSize] != '\n') {
+            if (readBuffer[acturalSize] != 0) {
                 acturalSize++;
             } else {
                 break;
