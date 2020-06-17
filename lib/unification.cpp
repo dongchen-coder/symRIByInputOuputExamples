@@ -108,6 +108,8 @@ string unification::searchNode(int timeBoundInSeconds, inputOutputTreeNode* node
     if (node == NULL) {
         return "";
     }
+    cout << endl << "Start search node " << node << endl;
+    
     string searchedProg = searchNodeOnePass(timeBoundInSeconds, node);
     
     /* search a solution for corrent node */
@@ -184,6 +186,9 @@ void unification::dumpLangDef() {
     cout << endl;
 }
 
+/*
+   Split inputoutput example to subsets
+*/
 bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node) {
     
     vector<int> outputs;
@@ -191,37 +196,94 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node) {
         outputs.push_back((*it)["_out"]);
     }
     
+    cout << "Current node size " << outputs.size() << " ";
+    
+    if (outputs.size() < 2) {
+        return false;
+    }
+    
     sort(outputs.begin(), outputs.end());
     
-    /* Find split size, split into half size first, try grow first half */
+    bool splitFlag = false;
+    bool allSameValue = false;
     size_t half_size = outputs.size() / 2;
-    while (half_size >= 1 && half_size < outputs.size() && outputs[half_size - 1] == outputs[half_size]) {
-        half_size++;
+    
+    //cout << "splitFlag " << splitFlag << " half_size " << half_size << endl;
+    /* Check if there is -1 in outputs. If there is,
+       (1) split -1 into a group and others in the other group
+       (2) if all -1, split half and half
+     */
+    if (outputs.front() == -1) {
+        if (outputs.back() == -1) {
+            half_size = outputs.size() / 2;
+            splitFlag = true;
+            allSameValue = true;
+        } else {
+            half_size = 0;
+            while(half_size < outputs.size() && outputs[half_size] == -1) {
+                half_size++;
+            }
+            splitFlag = true;
+        }
     }
+    
+    //cout << "splitFlag " << splitFlag << " half_size " << half_size << endl;
+    /* Find split size, split into half size first, try grow first half */
+    if (splitFlag == false) {
+        half_size = outputs.size() / 2;
+        while (half_size >= 1 && half_size < outputs.size() && outputs[half_size - 1] == outputs[half_size]) {
+            half_size++;
+        }
+        if (half_size != 0 && half_size != outputs.size()) {
+            splitFlag = true;
+        }
+    }
+    
+    //cout << "splitFlag " << splitFlag << " half_size " << half_size << endl;
     /* if grow first half failed, try grow second half */
-    if (half_size == 0 || half_size == outputs.size()) {
+    if (splitFlag == false) {
         half_size = outputs.size() / 2;
         while (half_size >= 1 && half_size < outputs.size() && outputs[half_size - 1] == outputs[half_size]) {
             half_size--;
         }
-        if (half_size == 0 || half_size == outputs.size()) {
-            return false;
+        if (half_size != 0 && half_size != outputs.size()) {
+            splitFlag = true;
         }
     }
     
+    //cout << "splitFlag " << splitFlag << " half_size " << half_size << endl;
+    /* all same value but not -1 */
+    if (splitFlag == false) {
+        half_size = outputs.size() / 2;
+        allSameValue = true;
+    }
+    
+    //cout << "splitFlag " << splitFlag << " half_size " << half_size << endl;
     /* found split size, do the split */
     vector<map<string, int> > leftInputOutputs;
     vector<map<string, int> > rightInputOutputs;
-    
-    for (vector<map<string, int> >::iterator it = node->inputOutputs.begin(), eit = node->inputOutputs.end(); it != eit; ++it) {
-        if ((*it)["_out"] <= outputs[half_size-1]) {
-            leftInputOutputs.push_back(*it);
-            (*it)["_out"] = true;
-        } else {
-            rightInputOutputs.push_back(*it);
-            (*it)["_out"] = false;
+    if (allSameValue == true) {
+        for (int i = 0; i < half_size; i++) {
+            leftInputOutputs.push_back(node->inputOutputs[i]);
+        }
+        for (int i = half_size; i < node->inputOutputs.size(); i++) {
+            rightInputOutputs.push_back(node->inputOutputs[i]);
+        }
+    } else {
+        for (vector<map<string, int> >::iterator it = node->inputOutputs.begin(), eit = node->inputOutputs.end(); it != eit; ++it) {
+            if ((*it)["_out"] <= outputs[half_size-1]) {
+                leftInputOutputs.push_back(*it);
+                (*it)["_out"] = true;
+                //cout << "Left " << (*it)["_out"] << endl;
+            } else {
+                rightInputOutputs.push_back(*it);
+                (*it)["_out"] = false;
+                //cout << "Right " << (*it)["_out"] << endl;
+            }
         }
     }
+    
+    cout << "Split to two: left size " << leftInputOutputs.size() << " right size " << rightInputOutputs.size() << endl;
     
     node->left = new inputOutputTreeNode(leftInputOutputs);
     node->right = new inputOutputTreeNode(rightInputOutputs);
@@ -233,7 +295,9 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node) {
 Dumping funcions
 */
 void unification::dumpInputOutputTree() {
+    cout << "--------------------------------------, dump tree after search" << endl;
     dumpInputOutputTreeNode(inputOutputTree, "");
+    cout << "--------------------------------------" << endl;
 }
 
 void unification::dumpInputOutputTreeNode(inputOutputTreeNode* node, string space) {

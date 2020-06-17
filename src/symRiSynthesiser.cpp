@@ -55,22 +55,22 @@ void langConfiguration(int* depthBoundPred,
     intOpsTerm->push_back("VAR");
     intOpsTerm->push_back("NUM");
     intOpsTerm->push_back("PLUS");
-    //intOpsTerm->push_back("MINUS");
-    //intOpsTerm->push_back("TIMES");
-    intOpsTerm->push_back("ITE");
+    intOpsTerm->push_back("MINUS");
+    intOpsTerm->push_back("TIMES");
+    //intOpsTerm->push_back("ITE");
     
-    boolOpsTerm->push_back("F");
-    boolOpsTerm->push_back("AND");
-    boolOpsTerm->push_back("NOT");
-    boolOpsTerm->push_back("LT");
+    //boolOpsTerm->push_back("F");
+    //boolOpsTerm->push_back("AND");
+    //boolOpsTerm->push_back("NOT");
+    //boolOpsTerm->push_back("LT");
     
     //constantsTerm->push_back("0");
-    //constantsTerm->push_back("1");
-    //constantsTerm->push_back("2");
-    //constantsTerm->push_back("3");
-    //constantsTerm->push_back("4");
+    constantsTerm->push_back("1");
+    constantsTerm->push_back("2");
+    constantsTerm->push_back("3");
+    constantsTerm->push_back("4");
     constantsTerm->push_back("5");
-    //constantsTerm->push_back("6");
+    constantsTerm->push_back("6");
     constantsTerm->push_back("-1");
     
     /*
