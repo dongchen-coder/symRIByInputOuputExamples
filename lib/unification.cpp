@@ -118,7 +118,17 @@ string unification::searchNode(int timeBoundInSeconds, inputOutputTreeNode* node
             if (cond != "") {
                 string tcase = searchNode(timeBoundInSeconds, node->left);
                 string fcase = searchNode(timeBoundInSeconds, node->right);
-                searchedProg = "(if " + cond + " then " + tcase + " else " + fcase + ")";
+                if (tcase == "" || fcase == "") {
+                    if (tcase == "") {
+                        cout << "Search tcase failed" << endl;
+                    }
+                    if (fcase == "") {
+                        cout << "Search fcase failed" << endl;
+                    }
+                    searchedProg = "";
+                } else {
+                    searchedProg = "(if " + cond + " then " + tcase + " else " + fcase + ")";
+                }
             }
         } else {
             cout << "Split current node, failed" << endl;
