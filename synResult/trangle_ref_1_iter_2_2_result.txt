@@ -8,18 +8,20 @@ Input output examples:
     i 2 j 2 sizei 32 sizej 8    _out 33
     i 2 j 2 sizei 32 sizej 16    _out 81
     i 2 j 2 sizei 32 sizej 32    _out 177
-Start search with unification
 Language used in Unification:
     Predicate language:
+        program depth bound: 6
         intOps: VAR PLUS 
         boolOps: F AND NOT LT 
         constants: 
         vars: i j sizei sizej 
     Term language:
+        program depth bound: 4
         intOps: VAR NUM PLUS ITE 
         boolOps: F AND NOT LT 
         constants: 5 -1 
         vars: i j sizei sizej 
+--------------------------------------, search start
 Init pList size 6, check correct
 Current pList size 6, grow
 Current pList size 79, eliminate equvalents
@@ -58,3 +60,6 @@ R---i 2 j 2 sizei 16 sizej 32 _out 65
 R---i 2 j 2 sizei 32 sizej 16 _out 81
 R---i 2 j 2 sizei 32 sizej 32 _out 177
 Searched Program: 
+--------------------------------------, dump search result start
+Not yet founded, (T^T)
+--------------------------------------

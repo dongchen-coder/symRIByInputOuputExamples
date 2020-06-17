@@ -8,18 +8,20 @@ Input output examples:
     i 21 j 29 sizei 32 sizej 8    _out -1
     i 21 j 29 sizei 32 sizej 16    _out -1
     i 21 j 29 sizei 32 sizej 32    _out 67
-Start search with unification
 Language used in Unification:
     Predicate language:
+        program depth bound: 6
         intOps: VAR PLUS 
         boolOps: F AND NOT LT 
         constants: 
         vars: i j sizei sizej 
     Term language:
+        program depth bound: 4
         intOps: VAR NUM PLUS ITE 
         boolOps: F AND NOT LT 
         constants: 5 -1 
         vars: i j sizei sizej 
+--------------------------------------, search start
 Init pList size 6, check correct
 Current pList size 6, grow
 Current pList size 79, eliminate equvalents
@@ -35,8 +37,21 @@ Current pList size 37, check correct
 Current pList size 37, grow
 Current pList size 1144, eliminate equvalents
 Current pList size 1144, check correct
-Current pList size 1144, grow
+SynProg: ((i < sizei) && (i < sizej))
+SynProg: ((i < sizei) && (i < sizej))
+Complete, program found ((i < sizei) && (i < sizej))
+Init pList size 6, check correct
+SynProg: -1
+SynProg: -1
+Complete, program found -1
+Init pList size 6, check correct
+Current pList size 6, grow
+Current pList size 79, eliminate equvalents
+Current pList size 79, check correct
+Current pList size 79, grow
+Current pList size 70282, eliminate equvalents
 Time out for bottem up search
+Split current node, failed
 i 21 j 29 sizei 8 sizej 8 _out 1
 i 21 j 29 sizei 8 sizej 16 _out 1
 i 21 j 29 sizei 8 sizej 32 _out 1
@@ -46,7 +61,7 @@ i 21 j 29 sizei 16 sizej 32 _out 1
 i 21 j 29 sizei 32 sizej 8 _out 1
 i 21 j 29 sizei 32 sizej 16 _out 1
 i 21 j 29 sizei 32 sizej 32 _out 0
-Searched Program: 
+Searched Program: (if ((i < sizei) && (i < sizej)) then -1 else )
 L---i 21 j 29 sizei 8 sizej 8 _out -1
 L---i 21 j 29 sizei 8 sizej 16 _out -1
 L---i 21 j 29 sizei 8 sizej 32 _out -1
@@ -55,6 +70,9 @@ L---i 21 j 29 sizei 16 sizej 16 _out -1
 L---i 21 j 29 sizei 16 sizej 32 _out -1
 L---i 21 j 29 sizei 32 sizej 8 _out -1
 L---i 21 j 29 sizei 32 sizej 16 _out -1
-Searched Program: 
+Searched Program: -1
 R---i 21 j 29 sizei 32 sizej 32 _out 67
 Searched Program: 
+--------------------------------------, dump search result start
+Searched Program (^0^) : (if ((i < sizei) && (i < sizej)) then -1 else )
+--------------------------------------
