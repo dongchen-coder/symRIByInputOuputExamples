@@ -67,6 +67,7 @@ Current pList size 79, grow
 Current pList size 70282, eliminate equvalents
 Time out for bottem up search
 Split current node, failed
+Search fcase failed
 Init pList size 6, check correct
 Current pList size 6, grow
 Current pList size 79, eliminate equvalents
@@ -84,6 +85,8 @@ Current pList size 1144, eliminate equvalents
 Current pList size 1144, check correct
 Current pList size 1144, grow
 Time out for bottem up search
+Search tcase failed
+Search fcase failed
 i 2 j 14 sizei 8 sizej 8 _out 1
 i 2 j 14 sizei 8 sizej 16 _out 1
 i 2 j 14 sizei 8 sizej 32 _out 1
@@ -93,13 +96,13 @@ i 2 j 14 sizei 16 sizej 32 _out 0
 i 2 j 14 sizei 32 sizej 8 _out 1
 i 2 j 14 sizei 32 sizej 16 _out 0
 i 2 j 14 sizei 32 sizej 32 _out 0
-Searched Program: (if ((j < sizei) && (j < sizej)) then (if (j < sizej) then -1 else ) else )
+Searched Program: 
 L---i 2 j 14 sizei 8 sizej 8 _out 1
 L---i 2 j 14 sizei 8 sizej 16 _out 0
 L---i 2 j 14 sizei 8 sizej 32 _out 0
 L---i 2 j 14 sizei 16 sizej 8 _out 1
 L---i 2 j 14 sizei 32 sizej 8 _out 1
-Searched Program: (if (j < sizej) then -1 else )
+Searched Program: 
 L---L---i 2 j 14 sizei 8 sizej 8 _out -1
 L---L---i 2 j 14 sizei 16 sizej 8 _out -1
 L---L---i 2 j 14 sizei 32 sizej 8 _out -1
@@ -119,5 +122,5 @@ Searched Program:
 R---R---i 2 j 14 sizei 32 sizej 32 _out 177
 Searched Program: 
 --------------------------------------, dump search result start
-Searched Program (^0^) : (if ((j < sizei) && (j < sizej)) then (if (j < sizej) then -1 else ) else )
+Not yet founded, (T^T)
 --------------------------------------

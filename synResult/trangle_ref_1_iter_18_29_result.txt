@@ -50,8 +50,10 @@ Current pList size 79, eliminate equvalents
 Current pList size 79, check correct
 Current pList size 79, grow
 Current pList size 70282, eliminate equvalents
-Time out for bottem up search
-Split current node, failed
+Current pList size 70282, check correct
+SynProg: ((i + j) + (j + 5))
+SynProg: ((i + j) + (j + 5))
+Complete, program found ((i + j) + (j + 5))
 i 18 j 29 sizei 8 sizej 8 _out 1
 i 18 j 29 sizei 8 sizej 16 _out 1
 i 18 j 29 sizei 8 sizej 32 _out 1
@@ -61,7 +63,7 @@ i 18 j 29 sizei 16 sizej 32 _out 1
 i 18 j 29 sizei 32 sizej 8 _out 1
 i 18 j 29 sizei 32 sizej 16 _out 1
 i 18 j 29 sizei 32 sizej 32 _out 0
-Searched Program: (if ((i < sizei) && (i < sizej)) then -1 else )
+Searched Program: (if ((i < sizei) && (i < sizej)) then -1 else ((i + j) + (j + 5)))
 L---i 18 j 29 sizei 8 sizej 8 _out -1
 L---i 18 j 29 sizei 8 sizej 16 _out -1
 L---i 18 j 29 sizei 8 sizej 32 _out -1
@@ -72,7 +74,7 @@ L---i 18 j 29 sizei 32 sizej 8 _out -1
 L---i 18 j 29 sizei 32 sizej 16 _out -1
 Searched Program: -1
 R---i 18 j 29 sizei 32 sizej 32 _out 81
-Searched Program: 
+Searched Program: ((i + j) + (j + 5))
 --------------------------------------, dump search result start
-Searched Program (^0^) : (if ((i < sizei) && (i < sizej)) then -1 else )
+Searched Program (^0^) : (if ((i < sizei) && (i < sizej)) then -1 else ((i + j) + (j + 5)))
 --------------------------------------
