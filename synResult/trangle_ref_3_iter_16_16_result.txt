@@ -1,0 +1,70 @@
+Input output examples:
+    i 16 j 16 sizei 8 sizej 8    _out -1
+    i 16 j 16 sizei 8 sizej 16    _out -1
+    i 16 j 16 sizei 8 sizej 32    _out -1
+    i 16 j 16 sizei 16 sizej 8    _out -1
+    i 16 j 16 sizei 16 sizej 16    _out 9
+    i 16 j 16 sizei 16 sizej 32    _out 97
+    i 16 j 16 sizei 32 sizej 8    _out -1
+    i 16 j 16 sizei 32 sizej 16    _out 9
+    i 16 j 16 sizei 32 sizej 32    _out 97
+Language used in Unification:
+    Predicate language:
+        program depth bound: 6
+        intOps: VAR PLUS 
+        boolOps: F AND NOT LT 
+        constants: 
+        vars: i j sizei sizej 
+    Term language:
+        program depth bound: 4
+        intOps: VAR NUM PLUS MINUS TIMES 
+        boolOps: 
+        constants: 1 2 3 4 5 6 -1 
+        vars: i j sizei sizej 
+--------------------------------------, search start
+
+Start search node 0x209e1d0
+Init pList size 11, check correct
+Current pList size 11, grow
+Current pList size 253, eliminate equvalents
+Current pList size 253, check correct
+Current pList size 253, grow
+Current pList size 128271, eliminate equvalents
+Time out for bottem up search
+Current node size 9 Split to two: left size 5 right size 4
+Split current node, succeed
+Init pList size 4, check correct
+Current pList size 4, grow
+Current pList size 37, eliminate equvalents
+Current pList size 37, check correct
+Current pList size 37, grow
+Current pList size 1144, eliminate equvalents
+Current pList size 1144, check correct
+Current pList size 1144, grow
+Time out for bottem up search
+--------------------------------------, dump tree after search
+i 16 j 16 sizei 8 sizej 8 _out 1
+i 16 j 16 sizei 8 sizej 16 _out 1
+i 16 j 16 sizei 8 sizej 32 _out 1
+i 16 j 16 sizei 16 sizej 8 _out 1
+i 16 j 16 sizei 16 sizej 16 _out 0
+i 16 j 16 sizei 16 sizej 32 _out 0
+i 16 j 16 sizei 32 sizej 8 _out 1
+i 16 j 16 sizei 32 sizej 16 _out 0
+i 16 j 16 sizei 32 sizej 32 _out 0
+Searched Program: 
+L---i 16 j 16 sizei 8 sizej 8 _out -1
+L---i 16 j 16 sizei 8 sizej 16 _out -1
+L---i 16 j 16 sizei 8 sizej 32 _out -1
+L---i 16 j 16 sizei 16 sizej 8 _out -1
+L---i 16 j 16 sizei 32 sizej 8 _out -1
+Searched Program: 
+R---i 16 j 16 sizei 16 sizej 16 _out 9
+R---i 16 j 16 sizei 16 sizej 32 _out 97
+R---i 16 j 16 sizei 32 sizej 16 _out 9
+R---i 16 j 16 sizei 32 sizej 32 _out 97
+Searched Program: 
+--------------------------------------
+--------------------------------------, dump search result start
+Not yet founded, (T^T)
+--------------------------------------

@@ -1,0 +1,124 @@
+Input output examples:
+    i 2 j 16 sizei 8 sizej 8    _out -1
+    i 2 j 16 sizei 8 sizej 16    _out 0
+    i 2 j 16 sizei 8 sizej 32    _out 126
+    i 2 j 16 sizei 16 sizej 8    _out -1
+    i 2 j 16 sizei 16 sizej 16    _out 0
+    i 2 j 16 sizei 16 sizej 32    _out 0
+    i 2 j 16 sizei 32 sizej 8    _out -1
+    i 2 j 16 sizei 32 sizej 16    _out 0
+    i 2 j 16 sizei 32 sizej 32    _out 0
+Language used in Unification:
+    Predicate language:
+        program depth bound: 6
+        intOps: VAR PLUS 
+        boolOps: F AND NOT LT 
+        constants: 
+        vars: i j sizei sizej 
+    Term language:
+        program depth bound: 4
+        intOps: VAR NUM PLUS MINUS TIMES 
+        boolOps: 
+        constants: 1 2 3 4 5 6 -1 
+        vars: i j sizei sizej 
+--------------------------------------, search start
+
+Start search node 0x1ec81d0
+Init pList size 11, check correct
+Current pList size 11, grow
+Current pList size 253, eliminate equvalents
+Current pList size 253, check correct
+Current pList size 253, grow
+Current pList size 128271, eliminate equvalents
+Time out for bottem up search
+Current node size 9 Split to two: left size 3 right size 6
+Split current node, succeed
+Init pList size 4, check correct
+Current pList size 4, grow
+Current pList size 37, eliminate equvalents
+Current pList size 37, check correct
+SynProg: (sizej < j)
+SynProg: (sizej < j)
+Complete, program found (sizej < j)
+
+Start search node 0x1ec80e0
+Init pList size 11, check correct
+SynProg: -1
+SynProg: -1
+Complete, program found -1
+
+Start search node 0x1ec9630
+Init pList size 11, check correct
+Current pList size 11, grow
+Current pList size 253, eliminate equvalents
+Current pList size 253, check correct
+Current pList size 253, grow
+Current pList size 128271, eliminate equvalents
+Time out for bottem up search
+Current node size 6 Split to two: left size 5 right size 1
+Split current node, succeed
+Init pList size 4, check correct
+Current pList size 4, grow
+Current pList size 37, eliminate equvalents
+Current pList size 37, check correct
+Current pList size 37, grow
+Current pList size 1144, eliminate equvalents
+Current pList size 1144, check correct
+SynProg: ((j < sizej) && (sizei < j))
+SynProg: ((j < sizej) && (sizei < j))
+Complete, program found ((j < sizej) && (sizei < j))
+
+Start search node 0x1ec4fc0
+Init pList size 11, check correct
+Current pList size 11, grow
+Current pList size 253, eliminate equvalents
+Current pList size 253, check correct
+SynProg: (1 + -1)
+SynProg: (1 + -1)
+Complete, program found (1 + -1)
+
+Start search node 0x1ec3b50
+Init pList size 11, check correct
+Current pList size 11, grow
+Current pList size 253, eliminate equvalents
+Current pList size 253, check correct
+Current pList size 253, grow
+Current pList size 128271, eliminate equvalents
+Time out for bottem up search
+Current node size 1 Split current node, failed
+Search fcase failed
+Search fcase failed
+--------------------------------------, dump tree after search
+i 2 j 16 sizei 8 sizej 8 _out 1
+i 2 j 16 sizei 8 sizej 16 _out 0
+i 2 j 16 sizei 8 sizej 32 _out 0
+i 2 j 16 sizei 16 sizej 8 _out 1
+i 2 j 16 sizei 16 sizej 16 _out 0
+i 2 j 16 sizei 16 sizej 32 _out 0
+i 2 j 16 sizei 32 sizej 8 _out 1
+i 2 j 16 sizei 32 sizej 16 _out 0
+i 2 j 16 sizei 32 sizej 32 _out 0
+Searched Program: 
+L---i 2 j 16 sizei 8 sizej 8 _out -1
+L---i 2 j 16 sizei 16 sizej 8 _out -1
+L---i 2 j 16 sizei 32 sizej 8 _out -1
+Searched Program: -1
+R---i 2 j 16 sizei 8 sizej 16 _out 1
+R---i 2 j 16 sizei 8 sizej 32 _out 0
+R---i 2 j 16 sizei 16 sizej 16 _out 1
+R---i 2 j 16 sizei 16 sizej 32 _out 1
+R---i 2 j 16 sizei 32 sizej 16 _out 1
+R---i 2 j 16 sizei 32 sizej 32 _out 1
+Searched Program: 
+R---L---i 2 j 16 sizei 8 sizej 16 _out 0
+R---L---i 2 j 16 sizei 16 sizej 16 _out 0
+R---L---i 2 j 16 sizei 16 sizej 32 _out 0
+R---L---i 2 j 16 sizei 32 sizej 16 _out 0
+R---L---i 2 j 16 sizei 32 sizej 32 _out 0
+Searched Program: (1 + -1)
+R---R---i 2 j 16 sizei 8 sizej 32 _out 126
+Searched Program: 
+--------------------------------------
+--------------------------------------, dump search result start
+Not yet founded, (T^T)
+--------------------------------------

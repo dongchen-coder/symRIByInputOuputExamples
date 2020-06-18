@@ -17,18 +17,21 @@ Language used in Unification:
         vars: i j sizei sizej 
     Term language:
         program depth bound: 4
-        intOps: VAR NUM PLUS ITE 
-        boolOps: F AND NOT LT 
-        constants: 5 -1 
+        intOps: VAR NUM PLUS MINUS TIMES 
+        boolOps: 
+        constants: 1 2 3 4 5 6 -1 
         vars: i j sizei sizej 
 --------------------------------------, search start
-Init pList size 6, check correct
-Current pList size 6, grow
-Current pList size 79, eliminate equvalents
-Current pList size 79, check correct
-Current pList size 79, grow
-Current pList size 70282, eliminate equvalents
+
+Start search node 0x14df1d0
+Init pList size 11, check correct
+Current pList size 11, grow
+Current pList size 253, eliminate equvalents
+Current pList size 253, check correct
+Current pList size 253, grow
+Current pList size 128271, eliminate equvalents
 Time out for bottem up search
+Current node size 9 Split to two: left size 8 right size 1
 Split current node, succeed
 Init pList size 4, check correct
 Current pList size 4, grow
@@ -40,20 +43,24 @@ Current pList size 1144, check correct
 SynProg: ((i < sizei) && (i < sizej))
 SynProg: ((i < sizei) && (i < sizej))
 Complete, program found ((i < sizei) && (i < sizej))
-Init pList size 6, check correct
+
+Start search node 0x14de870
+Init pList size 11, check correct
 SynProg: -1
 SynProg: -1
 Complete, program found -1
-Init pList size 6, check correct
-Current pList size 6, grow
-Current pList size 79, eliminate equvalents
-Current pList size 79, check correct
-Current pList size 79, grow
-Current pList size 70282, eliminate equvalents
-Current pList size 70282, check correct
-SynProg: ((i + j) + (j + 5))
-SynProg: ((i + j) + (j + 5))
-Complete, program found ((i + j) + (j + 5))
+
+Start search node 0x14dabf0
+Init pList size 11, check correct
+Current pList size 11, grow
+Current pList size 253, eliminate equvalents
+Current pList size 253, check correct
+Current pList size 253, grow
+Current pList size 128271, eliminate equvalents
+Time out for bottem up search
+Current node size 1 Split current node, failed
+Search fcase failed
+--------------------------------------, dump tree after search
 i 18 j 29 sizei 8 sizej 8 _out 1
 i 18 j 29 sizei 8 sizej 16 _out 1
 i 18 j 29 sizei 8 sizej 32 _out 1
@@ -63,7 +70,7 @@ i 18 j 29 sizei 16 sizej 32 _out 1
 i 18 j 29 sizei 32 sizej 8 _out 1
 i 18 j 29 sizei 32 sizej 16 _out 1
 i 18 j 29 sizei 32 sizej 32 _out 0
-Searched Program: (if ((i < sizei) && (i < sizej)) then -1 else ((i + j) + (j + 5)))
+Searched Program: 
 L---i 18 j 29 sizei 8 sizej 8 _out -1
 L---i 18 j 29 sizei 8 sizej 16 _out -1
 L---i 18 j 29 sizei 8 sizej 32 _out -1
@@ -74,7 +81,8 @@ L---i 18 j 29 sizei 32 sizej 8 _out -1
 L---i 18 j 29 sizei 32 sizej 16 _out -1
 Searched Program: -1
 R---i 18 j 29 sizei 32 sizej 32 _out 81
-Searched Program: ((i + j) + (j + 5))
+Searched Program: 
+--------------------------------------
 --------------------------------------, dump search result start
-Searched Program (^0^) : (if ((i < sizei) && (i < sizej)) then -1 else ((i + j) + (j + 5)))
+Not yet founded, (T^T)
 --------------------------------------

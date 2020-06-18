@@ -1,0 +1,86 @@
+Input output examples:
+    i 14 j 31 sizei 8 sizej 8    _out -1
+    i 14 j 31 sizei 8 sizej 16    _out -1
+    i 14 j 31 sizei 8 sizej 32    _out -1
+    i 14 j 31 sizei 16 sizej 8    _out -1
+    i 14 j 31 sizei 16 sizej 16    _out -1
+    i 14 j 31 sizei 16 sizej 32    _out 8
+    i 14 j 31 sizei 32 sizej 8    _out -1
+    i 14 j 31 sizei 32 sizej 16    _out -1
+    i 14 j 31 sizei 32 sizej 32    _out 8
+Language used in Unification:
+    Predicate language:
+        program depth bound: 6
+        intOps: VAR PLUS 
+        boolOps: F AND NOT LT 
+        constants: 
+        vars: i j sizei sizej 
+    Term language:
+        program depth bound: 4
+        intOps: VAR NUM PLUS MINUS TIMES 
+        boolOps: 
+        constants: 1 2 3 4 5 6 -1 
+        vars: i j sizei sizej 
+--------------------------------------, search start
+
+Start search node 0x23131d0
+Init pList size 11, check correct
+Current pList size 11, grow
+Current pList size 253, eliminate equvalents
+Current pList size 253, check correct
+Current pList size 253, grow
+Current pList size 128271, eliminate equvalents
+Time out for bottem up search
+Current node size 9 Split to two: left size 7 right size 2
+Split current node, succeed
+Init pList size 4, check correct
+Current pList size 4, grow
+Current pList size 37, eliminate equvalents
+Current pList size 37, check correct
+Current pList size 37, grow
+Current pList size 1144, eliminate equvalents
+Current pList size 1144, check correct
+SynProg: ((i < sizei) && (j < sizej))
+SynProg: ((i < sizei) && (j < sizej))
+Complete, program found ((i < sizei) && (j < sizej))
+
+Start search node 0x2310060
+Init pList size 11, check correct
+SynProg: -1
+SynProg: -1
+Complete, program found -1
+
+Start search node 0x2312a00
+Init pList size 11, check correct
+Current pList size 11, grow
+Current pList size 253, eliminate equvalents
+Current pList size 253, check correct
+SynProg: (2 + 6)
+SynProg: (2 + 6)
+Complete, program found (2 + 6)
+--------------------------------------, dump tree after search
+i 14 j 31 sizei 8 sizej 8 _out 1
+i 14 j 31 sizei 8 sizej 16 _out 1
+i 14 j 31 sizei 8 sizej 32 _out 1
+i 14 j 31 sizei 16 sizej 8 _out 1
+i 14 j 31 sizei 16 sizej 16 _out 1
+i 14 j 31 sizei 16 sizej 32 _out 0
+i 14 j 31 sizei 32 sizej 8 _out 1
+i 14 j 31 sizei 32 sizej 16 _out 1
+i 14 j 31 sizei 32 sizej 32 _out 0
+Searched Program: (if ((i < sizei) && (j < sizej)) then -1 else (2 + 6))
+L---i 14 j 31 sizei 8 sizej 8 _out -1
+L---i 14 j 31 sizei 8 sizej 16 _out -1
+L---i 14 j 31 sizei 8 sizej 32 _out -1
+L---i 14 j 31 sizei 16 sizej 8 _out -1
+L---i 14 j 31 sizei 16 sizej 16 _out -1
+L---i 14 j 31 sizei 32 sizej 8 _out -1
+L---i 14 j 31 sizei 32 sizej 16 _out -1
+Searched Program: -1
+R---i 14 j 31 sizei 16 sizej 32 _out 8
+R---i 14 j 31 sizei 32 sizej 32 _out 8
+Searched Program: (2 + 6)
+--------------------------------------
+--------------------------------------, dump search result start
+Searched Program (^0^) : (if ((i < sizei) && (j < sizej)) then -1 else (2 + 6))
+--------------------------------------

@@ -1,0 +1,45 @@
+Input output examples:
+    i 27 j 5 sizei 8 sizej 8    _out -1
+    i 27 j 5 sizei 8 sizej 16    _out -1
+    i 27 j 5 sizei 8 sizej 32    _out -1
+    i 27 j 5 sizei 16 sizej 8    _out -1
+    i 27 j 5 sizei 16 sizej 16    _out -1
+    i 27 j 5 sizei 16 sizej 32    _out -1
+    i 27 j 5 sizei 32 sizej 8    _out -1
+    i 27 j 5 sizei 32 sizej 16    _out -1
+    i 27 j 5 sizei 32 sizej 32    _out -1
+Language used in Unification:
+    Predicate language:
+        program depth bound: 6
+        intOps: VAR PLUS 
+        boolOps: F AND NOT LT 
+        constants: 
+        vars: i j sizei sizej 
+    Term language:
+        program depth bound: 4
+        intOps: VAR NUM PLUS MINUS TIMES 
+        boolOps: 
+        constants: 1 2 3 4 5 6 -1 
+        vars: i j sizei sizej 
+--------------------------------------, search start
+
+Start search node 0x23251d0
+Init pList size 11, check correct
+SynProg: -1
+SynProg: -1
+Complete, program found -1
+--------------------------------------, dump tree after search
+i 27 j 5 sizei 8 sizej 8 _out -1
+i 27 j 5 sizei 8 sizej 16 _out -1
+i 27 j 5 sizei 8 sizej 32 _out -1
+i 27 j 5 sizei 16 sizej 8 _out -1
+i 27 j 5 sizei 16 sizej 16 _out -1
+i 27 j 5 sizei 16 sizej 32 _out -1
+i 27 j 5 sizei 32 sizej 8 _out -1
+i 27 j 5 sizei 32 sizej 16 _out -1
+i 27 j 5 sizei 32 sizej 32 _out -1
+Searched Program: -1
+--------------------------------------
+--------------------------------------, dump search result start
+Searched Program (^0^) : -1
+--------------------------------------
