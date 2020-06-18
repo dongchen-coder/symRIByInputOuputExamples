@@ -85,6 +85,28 @@ public:
     int depth();
 };
 
+class Leftshift : public IntType {
+private:
+    IntType* _value;
+    IntType* _offset;
+public:
+    Leftshift(IntType* value, IntType* offset);
+    string toString();
+    int interpret(map<string, int> env);
+    int depth();
+};
+
+class Rightshift : public IntType {
+private:
+    IntType* _value;
+    IntType* _offset;
+public:
+    Rightshift(IntType* value, IntType* offset);
+    string toString();
+    int interpret(map<string, int> env);
+    int depth();
+};
+
 class Lt : public BoolType {
 private:
     IntType* _left;

@@ -50,7 +50,7 @@ void langConfiguration(int* depthBoundPred,
     //constantsPred->push_back("6");
     //constantsPred->push_back("-1");
     
-    *depthBoundTerm = 4;
+    *depthBoundTerm = 6;
     
     intOpsTerm->push_back("VAR");
     intOpsTerm->push_back("NUM");
@@ -183,7 +183,7 @@ int main(int argc, char* argv[]) {
                                        depthBoundTerm, intOpsTerm, boolOpsTerm, varsTerm, constantsTerm,
                                        inputOutputs);
     uni->dumpLangDef();
-    uni->search(10);
+    uni->search(20);
     uni->dumpInputOutputTree();
     uni->dumpSearchedProgram();
     

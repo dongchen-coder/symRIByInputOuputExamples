@@ -10,6 +10,8 @@ Current issues and TODOs:
 
 (3) ~~Need to add time bound for search() in bottom-up and unification search.~~
 
+(4) ~~extand corrent language definition to support left and right shift operation~~
+
 Questions:
 
 (1) Is there any specification that can be used to guide the search?
