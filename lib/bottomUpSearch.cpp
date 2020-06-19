@@ -70,6 +70,18 @@ string bottomUpSearch::dumpProgram(BaseType* p) {
     return "";
 }
 
+void bottomUpSearch::dumpPlist(vector<BaseType*> pList) {
+    cout << "[";
+    for (int i = 0; i < pList.size(); i++) {
+        cout << dumpProgram(pList[i]);
+        if (i + 1 < pList.size()) {
+            cout << ", ";
+        }
+    }
+    cout << "]" << endl;
+    return;
+}
+
 void bottomUpSearch::dumpPlist() {
     cout << "[";
     for (int i = 0; i < pList.size(); i++) {
@@ -184,7 +196,19 @@ vector<BaseType*> bottomUpSearch::grow() {
     
     for (int i = 0; i < intOps.size(); i++) {
         string op = intOps[i];
+        /* communitive op */
         if (op == "PLUS" || op == "TIMES") {
+            for (int j = 0; j < pList.size(); j++) {
+                for (int k = j; k < pList.size(); k++) {
+                    BaseType* newExpr = growOneExpr(pList[j], pList[k], NULL, op, depthBound);
+                    if (newExpr != NULL) {
+                        newPList.push_back(newExpr);
+                    }
+                }
+            }
+        }
+        /* non-communitie op */
+        if (op == "MINUS" || op == "LEFTSHIFT" || op == "RIGHTSHIFT") {
             for (int j = 0; j < pList.size(); j++) {
                 for (int k = 0; k < pList.size(); k++) {
                     BaseType* newExpr = growOneExpr(pList[j], pList[k], NULL, op, depthBound);
@@ -224,7 +248,17 @@ vector<BaseType*> bottomUpSearch::grow() {
                 }
             }
         }
-        if (op == "AND" || op == "LT") {
+        if (op == "AND") {
+            for (int j = 0; j < pList.size(); j++) {
+                for (int k = j+1; k < pList.size(); k++) {
+                    BaseType* newExpr = growOneExpr(pList[j], pList[k], NULL, op, depthBound);
+                    if (newExpr != NULL) {
+                        newPList.push_back(newExpr);
+                    }
+                }
+            }
+        }
+        if (op == "LT") {
             for (int j = 0; j < pList.size(); j++) {
                 for (int k = 0; k < pList.size(); k++) {
                     BaseType* newExpr = growOneExpr(pList[j], pList[k], NULL, op, depthBound);
@@ -309,6 +343,10 @@ bool bottomUpSearch::checkTwoProgramsEqual(BaseType* pi, BaseType* pj) {
             int iValue = evaluateIntProgram(pi, i);
             int jValue = evaluateIntProgram(pj, i);
             
+            //if (dumpProgram(pj) == "(i + 4)" || dumpProgram(pi) == "(i + 4)") {
+            //    cout << dumpProgram(pi) << " " << iValue << " " << dumpProgram(pj) << " " << jValue << endl;
+            //}
+            
             if (iValue != jValue) {
                 return false;
             }
@@ -369,10 +407,13 @@ vector<BaseType*> bottomUpSearch::elimEquvalents() {
         programToKeep.push_back(eqPList[0]);
         
         //dumpPlist(eqPList);
+        //cout << "Keep " << dumpProgram(eqPList[0]) << endl;
     }
     
     boolResultRecord.clear();
     intResultRecord.clear();
+    
+    pList = programToKeep;
     return programToKeep;
 }
 

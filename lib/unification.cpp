@@ -109,6 +109,7 @@ string unification::searchNode(int timeBoundInSeconds, inputOutputTreeNode* node
         return "";
     }
     cout << endl << "Start search node " << node << endl;
+    dumpInputOutputTreeNode(node, "");
     
     string searchedProg = searchNodeOnePass(timeBoundInSeconds, node);
     

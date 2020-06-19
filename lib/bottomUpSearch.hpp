@@ -38,6 +38,7 @@ private:
     
     /* Dumping function */
     void dumpPlist();
+    void dumpPlist(vector<BaseType*> pList);
     int getPlistSize();
     
     /* Construct one expression: op i j */

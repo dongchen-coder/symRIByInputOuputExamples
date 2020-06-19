@@ -12,6 +12,8 @@ Current issues and TODOs:
 
 (4) ~~extand corrent language definition to support left and right shift operation~~
 
+(5) ~~When grow, commutative expressions only generate once~~
+
 Questions:
 
 (1) Is there any specification that can be used to guide the search?
