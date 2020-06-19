@@ -21,3 +21,7 @@ Questions:
 (2) How to ensure progress?
 
 (3) Rules to remove equalivents? (1) Type guided: contant > var > expr (2) length guided: short > long (3) random? (4) reserve more than one? 
+
+(4) How to encode cacheline granularity into target program?
+
+(5) How to make the synthesized program more likely to be the correct one instead of overfitting (like expressions with only constants are likely to be overfitted)? 
