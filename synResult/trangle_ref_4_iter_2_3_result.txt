@@ -153,3 +153,43 @@ Current pList size 323, eliminate equvalents
 Current pList size 99, check correct
 Current pList size 99, grow
 Current pList size 9999, eliminate equvalents
+Time out for bottem up search
+Current node size 1 Split current node, failed
+Search fcase failed
+Search fcase failed
+Search fcase failed
+--------------------------------------, dump tree after search
+i 2 j 3 sizei 8 sizej 8 _out 1
+i 2 j 3 sizei 8 sizej 16 _out 0
+i 2 j 3 sizei 8 sizej 32 _out 0
+i 2 j 3 sizei 16 sizej 8 _out 1
+i 2 j 3 sizei 16 sizej 16 _out 1
+i 2 j 3 sizei 16 sizej 32 _out 0
+i 2 j 3 sizei 32 sizej 8 _out 1
+i 2 j 3 sizei 32 sizej 16 _out 1
+i 2 j 3 sizei 32 sizej 32 _out 1
+Searched Program: 
+L---i 2 j 3 sizei 8 sizej 8 _out 0
+L---i 2 j 3 sizei 16 sizej 8 _out 0
+L---i 2 j 3 sizei 16 sizej 16 _out 0
+L---i 2 j 3 sizei 32 sizej 8 _out 0
+L---i 2 j 3 sizei 32 sizej 16 _out 0
+L---i 2 j 3 sizei 32 sizej 32 _out 0
+Searched Program: (1 + -1)
+R---i 2 j 3 sizei 8 sizej 16 _out 1
+R---i 2 j 3 sizei 8 sizej 32 _out 0
+R---i 2 j 3 sizei 16 sizej 32 _out 0
+Searched Program: 
+R---L---i 2 j 3 sizei 8 sizej 16 _out 30
+Searched Program: (j * 10)
+R---R---i 2 j 3 sizei 8 sizej 32 _out 1
+R---R---i 2 j 3 sizei 16 sizej 32 _out 0
+Searched Program: 
+R---R---L---i 2 j 3 sizei 8 sizej 32 _out 62
+Searched Program: (i + (5 * 12))
+R---R---R---i 2 j 3 sizei 16 sizej 32 _out 78
+Searched Program: 
+--------------------------------------
+--------------------------------------, dump search result start
+Not yet founded, (T^T)
+--------------------------------------

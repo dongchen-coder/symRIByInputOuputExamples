@@ -16,42 +16,63 @@ Language used in Unification:
         constants: 
         vars: i j sizei sizej 
     Term language:
-        program depth bound: 4
-        intOps: VAR NUM PLUS MINUS TIMES 
+        program depth bound: 6
+        intOps: VAR NUM PLUS TIMES 
         boolOps: 
-        constants: 1 2 3 4 5 6 -1 
+        constants: 1 2 3 4 5 6 7 8 9 10 11 12 -1 
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0xa7e1d0
-Init pList size 11, check correct
-Current pList size 11, grow
-Current pList size 253, eliminate equvalents
-Current pList size 253, check correct
-Current pList size 253, grow
-Current pList size 128271, eliminate equvalents
+Start search node 0xccb4a0
+i 6 j 26 sizei 8 sizej 8 _out -1
+i 6 j 26 sizei 8 sizej 16 _out -1
+i 6 j 26 sizei 8 sizej 32 _out 0
+i 6 j 26 sizei 16 sizej 8 _out -1
+i 6 j 26 sizei 16 sizej 16 _out -1
+i 6 j 26 sizei 16 sizej 32 _out 0
+i 6 j 26 sizei 32 sizej 8 _out -1
+i 6 j 26 sizei 32 sizej 16 _out -1
+i 6 j 26 sizei 32 sizej 32 _out 0
+Searched Program: 
+Init pList size 17, check correct
+Current pList size 17, grow
+Current pList size 323, eliminate equvalents
+Current pList size 155, check correct
+Current pList size 155, grow
+Current pList size 24335, eliminate equvalents
 Time out for bottem up search
 Current node size 9 Split to two: left size 6 right size 3
 Split current node, succeed
 Init pList size 4, check correct
 Current pList size 4, grow
-Current pList size 37, eliminate equvalents
-Current pList size 37, check correct
+Current pList size 31, eliminate equvalents
+Current pList size 22, check correct
 SynProg: (j < sizej)
 SynProg: (j < sizej)
 Complete, program found (j < sizej)
 
-Start search node 0xa7daf0
-Init pList size 11, check correct
+Start search node 0xccadc0
+i 6 j 26 sizei 8 sizej 8 _out -1
+i 6 j 26 sizei 8 sizej 16 _out -1
+i 6 j 26 sizei 16 sizej 8 _out -1
+i 6 j 26 sizei 16 sizej 16 _out -1
+i 6 j 26 sizei 32 sizej 8 _out -1
+i 6 j 26 sizei 32 sizej 16 _out -1
+Searched Program: 
+Init pList size 17, check correct
 SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0xa7ddc0
-Init pList size 11, check correct
-Current pList size 11, grow
-Current pList size 253, eliminate equvalents
-Current pList size 253, check correct
+Start search node 0xccb090
+i 6 j 26 sizei 8 sizej 32 _out 0
+i 6 j 26 sizei 16 sizej 32 _out 0
+i 6 j 26 sizei 32 sizej 32 _out 0
+Searched Program: 
+Init pList size 17, check correct
+Current pList size 17, grow
+Current pList size 323, eliminate equvalents
+Current pList size 142, check correct
 SynProg: (1 + -1)
 SynProg: (1 + -1)
 Complete, program found (1 + -1)
