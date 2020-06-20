@@ -16,50 +16,69 @@ Language used in Unification:
         constants: 
         vars: i j sizei sizej 
     Term language:
-        program depth bound: 4
-        intOps: VAR NUM PLUS MINUS TIMES 
+        program depth bound: 6
+        intOps: VAR NUM PLUS TIMES 
         boolOps: 
-        constants: 1 2 3 4 5 6 -1 
+        constants: 1 2 3 4 5 6 7 8 9 10 11 12 -1 
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x14df1d0
-Init pList size 11, check correct
-Current pList size 11, grow
-Current pList size 253, eliminate equvalents
-Current pList size 253, check correct
-Current pList size 253, grow
-Current pList size 128271, eliminate equvalents
+Start search node 0x85a4a0
+i 18 j 29 sizei 8 sizej 8 _out -1
+i 18 j 29 sizei 8 sizej 16 _out -1
+i 18 j 29 sizei 8 sizej 32 _out -1
+i 18 j 29 sizei 16 sizej 8 _out -1
+i 18 j 29 sizei 16 sizej 16 _out -1
+i 18 j 29 sizei 16 sizej 32 _out -1
+i 18 j 29 sizei 32 sizej 8 _out -1
+i 18 j 29 sizei 32 sizej 16 _out -1
+i 18 j 29 sizei 32 sizej 32 _out 81
+Searched Program: 
+Init pList size 17, check correct
+Current pList size 17, grow
+Current pList size 323, eliminate equvalents
+Current pList size 170, check correct
+Current pList size 170, grow
+Current pList size 29240, eliminate equvalents
 Time out for bottem up search
 Current node size 9 Split to two: left size 8 right size 1
 Split current node, succeed
 Init pList size 4, check correct
 Current pList size 4, grow
-Current pList size 37, eliminate equvalents
-Current pList size 37, check correct
-Current pList size 37, grow
-Current pList size 1144, eliminate equvalents
-Current pList size 1144, check correct
+Current pList size 31, eliminate equvalents
+Current pList size 22, check correct
+Current pList size 22, grow
+Current pList size 360, eliminate equvalents
+Current pList size 107, check correct
 SynProg: ((i < sizei) && (i < sizej))
 SynProg: ((i < sizei) && (i < sizej))
 Complete, program found ((i < sizei) && (i < sizej))
 
-Start search node 0x14de870
-Init pList size 11, check correct
+Start search node 0x859b40
+i 18 j 29 sizei 8 sizej 8 _out -1
+i 18 j 29 sizei 8 sizej 16 _out -1
+i 18 j 29 sizei 8 sizej 32 _out -1
+i 18 j 29 sizei 16 sizej 8 _out -1
+i 18 j 29 sizei 16 sizej 16 _out -1
+i 18 j 29 sizei 16 sizej 32 _out -1
+i 18 j 29 sizei 32 sizej 8 _out -1
+i 18 j 29 sizei 32 sizej 16 _out -1
+Searched Program: 
+Init pList size 17, check correct
 SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x14dabf0
-Init pList size 11, check correct
-Current pList size 11, grow
-Current pList size 253, eliminate equvalents
-Current pList size 253, check correct
-Current pList size 253, grow
-Current pList size 128271, eliminate equvalents
-Time out for bottem up search
-Current node size 1 Split current node, failed
-Search fcase failed
+Start search node 0x855bf0
+i 18 j 29 sizei 32 sizej 32 _out 81
+Searched Program: 
+Init pList size 17, check correct
+Current pList size 17, grow
+Current pList size 323, eliminate equvalents
+Current pList size 121, check correct
+SynProg: (9 * 9)
+SynProg: (9 * 9)
+Complete, program found (9 * 9)
 --------------------------------------, dump tree after search
 i 18 j 29 sizei 8 sizej 8 _out 1
 i 18 j 29 sizei 8 sizej 16 _out 1
@@ -70,7 +89,7 @@ i 18 j 29 sizei 16 sizej 32 _out 1
 i 18 j 29 sizei 32 sizej 8 _out 1
 i 18 j 29 sizei 32 sizej 16 _out 1
 i 18 j 29 sizei 32 sizej 32 _out 0
-Searched Program: 
+Searched Program: (if ((i < sizei) && (i < sizej)) then -1 else (9 * 9))
 L---i 18 j 29 sizei 8 sizej 8 _out -1
 L---i 18 j 29 sizei 8 sizej 16 _out -1
 L---i 18 j 29 sizei 8 sizej 32 _out -1
@@ -81,8 +100,8 @@ L---i 18 j 29 sizei 32 sizej 8 _out -1
 L---i 18 j 29 sizei 32 sizej 16 _out -1
 Searched Program: -1
 R---i 18 j 29 sizei 32 sizej 32 _out 81
-Searched Program: 
+Searched Program: (9 * 9)
 --------------------------------------
 --------------------------------------, dump search result start
-Not yet founded, (T^T)
+Searched Program (^0^) : (if ((i < sizei) && (i < sizej)) then -1 else (9 * 9))
 --------------------------------------

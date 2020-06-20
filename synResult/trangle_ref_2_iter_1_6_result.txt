@@ -16,21 +16,28 @@ Language used in Unification:
         constants: 
         vars: i j sizei sizej 
     Term language:
-        program depth bound: 4
-        intOps: VAR NUM PLUS MINUS TIMES 
+        program depth bound: 6
+        intOps: VAR NUM PLUS TIMES 
         boolOps: 
-        constants: 1 2 3 4 5 6 -1 
+        constants: 1 2 3 4 5 6 7 8 9 10 11 12 -1 
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x132b1d0
-Init pList size 11, check correct
-Current pList size 11, grow
-Current pList size 253, eliminate equvalents
-Current pList size 253, check correct
-SynProg: (j + 2)
-SynProg: (j + 2)
-Complete, program found (j + 2)
+Start search node 0xa3c4a0
+i 1 j 6 sizei 8 sizej 8 _out 8
+i 1 j 6 sizei 8 sizej 16 _out 8
+i 1 j 6 sizei 8 sizej 32 _out 8
+i 1 j 6 sizei 16 sizej 8 _out 8
+i 1 j 6 sizei 16 sizej 16 _out 8
+i 1 j 6 sizei 16 sizej 32 _out 8
+i 1 j 6 sizei 32 sizej 8 _out 8
+i 1 j 6 sizei 32 sizej 16 _out 8
+i 1 j 6 sizei 32 sizej 32 _out 8
+Searched Program: 
+Init pList size 17, check correct
+SynProg: 8
+SynProg: 8
+Complete, program found 8
 --------------------------------------, dump tree after search
 i 1 j 6 sizei 8 sizej 8 _out 8
 i 1 j 6 sizei 8 sizej 16 _out 8
@@ -41,8 +48,8 @@ i 1 j 6 sizei 16 sizej 32 _out 8
 i 1 j 6 sizei 32 sizej 8 _out 8
 i 1 j 6 sizei 32 sizej 16 _out 8
 i 1 j 6 sizei 32 sizej 32 _out 8
-Searched Program: (j + 2)
+Searched Program: 8
 --------------------------------------
 --------------------------------------, dump search result start
-Searched Program (^0^) : (j + 2)
+Searched Program (^0^) : 8
 --------------------------------------
