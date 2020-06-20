@@ -89,3 +89,40 @@ Current pList size 70, grow
 Current pList size 4608, eliminate equvalents
 Current pList size 316, check correct
 Current pList size 316, grow
+Current pList size 121971, eliminate equvalents
+Time out for bottem up search
+Search fcase failed
+--------------------------------------, dump tree after search
+i 5 j 10 sizei 8 sizej 8 _out 1
+i 5 j 10 sizei 8 sizej 16 _out 0
+i 5 j 10 sizei 8 sizej 32 _out 0
+i 5 j 10 sizei 16 sizej 8 _out 1
+i 5 j 10 sizei 16 sizej 16 _out 0
+i 5 j 10 sizei 16 sizej 32 _out 0
+i 5 j 10 sizei 32 sizej 8 _out 1
+i 5 j 10 sizei 32 sizej 16 _out 0
+i 5 j 10 sizei 32 sizej 32 _out 0
+Searched Program: 
+L---i 5 j 10 sizei 8 sizej 8 _out -1
+L---i 5 j 10 sizei 16 sizej 8 _out -1
+L---i 5 j 10 sizei 32 sizej 8 _out -1
+Searched Program: -1
+R---i 5 j 10 sizei 8 sizej 16 _out 1
+R---i 5 j 10 sizei 8 sizej 32 _out 0
+R---i 5 j 10 sizei 16 sizej 16 _out 1
+R---i 5 j 10 sizei 16 sizej 32 _out 1
+R---i 5 j 10 sizei 32 sizej 16 _out 1
+R---i 5 j 10 sizei 32 sizej 32 _out 0
+Searched Program: 
+R---L---i 5 j 10 sizei 8 sizej 16 _out 67
+R---L---i 5 j 10 sizei 16 sizej 16 _out 67
+R---L---i 5 j 10 sizei 16 sizej 32 _out 60
+R---L---i 5 j 10 sizei 32 sizej 16 _out 67
+Searched Program: 
+R---R---i 5 j 10 sizei 8 sizej 32 _out 108
+R---R---i 5 j 10 sizei 32 sizej 32 _out 163
+Searched Program: 
+--------------------------------------
+--------------------------------------, dump search result start
+Not yet founded, (T^T)
+--------------------------------------
