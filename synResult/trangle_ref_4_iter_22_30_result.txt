@@ -16,45 +16,66 @@ Language used in Unification:
         constants: 
         vars: i j sizei sizej 
     Term language:
-        program depth bound: 4
-        intOps: VAR NUM PLUS MINUS TIMES 
+        program depth bound: 6
+        intOps: VAR NUM PLUS TIMES 
         boolOps: 
-        constants: 1 2 3 4 5 6 -1 
+        constants: 1 2 3 4 5 6 7 8 9 10 11 12 -1 
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x21cd1d0
-Init pList size 11, check correct
-Current pList size 11, grow
-Current pList size 253, eliminate equvalents
-Current pList size 253, check correct
-Current pList size 253, grow
-Current pList size 128271, eliminate equvalents
+Start search node 0xce24a0
+i 22 j 30 sizei 8 sizej 8 _out -1
+i 22 j 30 sizei 8 sizej 16 _out -1
+i 22 j 30 sizei 8 sizej 32 _out -1
+i 22 j 30 sizei 16 sizej 8 _out -1
+i 22 j 30 sizei 16 sizej 16 _out -1
+i 22 j 30 sizei 16 sizej 32 _out -1
+i 22 j 30 sizei 32 sizej 8 _out -1
+i 22 j 30 sizei 32 sizej 16 _out -1
+i 22 j 30 sizei 32 sizej 32 _out 0
+Searched Program: 
+Init pList size 17, check correct
+Current pList size 17, grow
+Current pList size 323, eliminate equvalents
+Current pList size 168, check correct
+Current pList size 168, grow
+Current pList size 28560, eliminate equvalents
 Time out for bottem up search
 Current node size 9 Split to two: left size 8 right size 1
 Split current node, succeed
 Init pList size 4, check correct
 Current pList size 4, grow
-Current pList size 37, eliminate equvalents
-Current pList size 37, check correct
-Current pList size 37, grow
-Current pList size 1144, eliminate equvalents
-Current pList size 1144, check correct
+Current pList size 31, eliminate equvalents
+Current pList size 22, check correct
+Current pList size 22, grow
+Current pList size 360, eliminate equvalents
+Current pList size 104, check correct
 SynProg: ((i < sizei) && (i < sizej))
 SynProg: ((i < sizei) && (i < sizej))
 Complete, program found ((i < sizei) && (i < sizej))
 
-Start search node 0x21cc870
-Init pList size 11, check correct
+Start search node 0xce1b40
+i 22 j 30 sizei 8 sizej 8 _out -1
+i 22 j 30 sizei 8 sizej 16 _out -1
+i 22 j 30 sizei 8 sizej 32 _out -1
+i 22 j 30 sizei 16 sizej 8 _out -1
+i 22 j 30 sizei 16 sizej 16 _out -1
+i 22 j 30 sizei 16 sizej 32 _out -1
+i 22 j 30 sizei 32 sizej 8 _out -1
+i 22 j 30 sizei 32 sizej 16 _out -1
+Searched Program: 
+Init pList size 17, check correct
 SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x21c8bf0
-Init pList size 11, check correct
-Current pList size 11, grow
-Current pList size 253, eliminate equvalents
-Current pList size 253, check correct
+Start search node 0xcddbf0
+i 22 j 30 sizei 32 sizej 32 _out 0
+Searched Program: 
+Init pList size 17, check correct
+Current pList size 17, grow
+Current pList size 323, eliminate equvalents
+Current pList size 119, check correct
 SynProg: (1 + -1)
 SynProg: (1 + -1)
 Complete, program found (1 + -1)

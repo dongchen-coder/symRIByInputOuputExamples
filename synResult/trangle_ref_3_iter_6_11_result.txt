@@ -75,3 +75,53 @@ Current pList size 323, eliminate equvalents
 Current pList size 132, check correct
 Current pList size 132, grow
 Current pList size 17688, eliminate equvalents
+Time out for bottem up search
+Current node size 6 Split to two: left size 4 right size 2
+Split current node, succeed
+Init pList size 4, check correct
+Current pList size 4, grow
+Current pList size 31, eliminate equvalents
+Current pList size 20, check correct
+Current pList size 20, grow
+Current pList size 343, eliminate equvalents
+Current pList size 85, check correct
+Current pList size 85, grow
+Current pList size 7398, eliminate equvalents
+Current pList size 527, check correct
+Current pList size 527, grow
+Time out for bottem up search
+Search fcase failed
+--------------------------------------, dump tree after search
+i 6 j 11 sizei 8 sizej 8 _out 1
+i 6 j 11 sizei 8 sizej 16 _out 0
+i 6 j 11 sizei 8 sizej 32 _out 0
+i 6 j 11 sizei 16 sizej 8 _out 1
+i 6 j 11 sizei 16 sizej 16 _out 0
+i 6 j 11 sizei 16 sizej 32 _out 0
+i 6 j 11 sizei 32 sizej 8 _out 1
+i 6 j 11 sizei 32 sizej 16 _out 0
+i 6 j 11 sizei 32 sizej 32 _out 0
+Searched Program: 
+L---i 6 j 11 sizei 8 sizej 8 _out -1
+L---i 6 j 11 sizei 16 sizej 8 _out -1
+L---i 6 j 11 sizei 32 sizej 8 _out -1
+Searched Program: -1
+R---i 6 j 11 sizei 8 sizej 16 _out 1
+R---i 6 j 11 sizei 8 sizej 32 _out 0
+R---i 6 j 11 sizei 16 sizej 16 _out 1
+R---i 6 j 11 sizei 16 sizej 32 _out 1
+R---i 6 j 11 sizei 32 sizej 16 _out 1
+R---i 6 j 11 sizei 32 sizej 32 _out 0
+Searched Program: 
+R---L---i 6 j 11 sizei 8 sizej 16 _out 61
+R---L---i 6 j 11 sizei 16 sizej 16 _out 61
+R---L---i 6 j 11 sizei 16 sizej 32 _out 54
+R---L---i 6 j 11 sizei 32 sizej 16 _out 61
+Searched Program: 
+R---R---i 6 j 11 sizei 8 sizej 32 _out 102
+R---R---i 6 j 11 sizei 32 sizej 32 _out 157
+Searched Program: 
+--------------------------------------
+--------------------------------------, dump search result start
+Not yet founded, (T^T)
+--------------------------------------
