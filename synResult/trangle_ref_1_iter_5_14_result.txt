@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x1ffd4a0
+Start search node 0xd174a0
 i 5 j 14 sizei 8 sizej 8 _out -1
 i 5 j 14 sizei 8 sizej 16 _out 51
 i 5 j 14 sizei 8 sizej 32 _out 51
@@ -51,7 +51,7 @@ SynProg: (j < sizej)
 SynProg: (j < sizej)
 Complete, program found (j < sizej)
 
-Start search node 0x1ffd3b0
+Start search node 0xd173b0
 i 5 j 14 sizei 8 sizej 8 _out -1
 i 5 j 14 sizei 16 sizej 8 _out -1
 i 5 j 14 sizei 32 sizej 8 _out -1
@@ -61,7 +61,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x1ffe900
+Start search node 0xd18900
 i 5 j 14 sizei 8 sizej 16 _out 51
 i 5 j 14 sizei 8 sizej 32 _out 51
 i 5 j 14 sizei 16 sizej 16 _out 63
@@ -86,7 +86,7 @@ SynProg: (sizei < sizej)
 SynProg: (sizei < sizej)
 Complete, program found (sizei < sizej)
 
-Start search node 0x1ff86a0
+Start search node 0xd126a0
 i 5 j 14 sizei 8 sizej 16 _out 51
 i 5 j 14 sizei 8 sizej 32 _out 51
 i 5 j 14 sizei 16 sizej 32 _out 60
@@ -108,7 +108,7 @@ SynProg: (j < sizei)
 SynProg: (j < sizei)
 Complete, program found (j < sizei)
 
-Start search node 0x1ffa060
+Start search node 0xd14060
 i 5 j 14 sizei 8 sizej 16 _out 51
 i 5 j 14 sizei 8 sizej 32 _out 51
 Searched Program: 
@@ -135,7 +135,7 @@ SynProg: ((i + i) + ((i + j) + (j + sizei)))
 SynProg: ((i + i) + ((i + j) + (j + sizei)))
 Complete, program found ((i + i) + ((i + j) + (j + sizei)))
 
-Start search node 0x1ff88d0
+Start search node 0xd128d0
 i 5 j 14 sizei 8 sizej 16 _out 51
 Searched Program: 
 Init pList size 17, check correct
@@ -149,7 +149,7 @@ SynProg: (sizej + (i * 7))
 SynProg: (sizej + (i * 7))
 Complete, program found (sizej + (i * 7))
 
-Start search node 0x1ffc8c0
+Start search node 0xd168c0
 i 5 j 14 sizei 8 sizej 32 _out 51
 Searched Program: 
 Init pList size 17, check correct
@@ -158,12 +158,11 @@ Current pList size 323, eliminate equvalents
 Current pList size 105, check correct
 Current pList size 105, grow
 Current pList size 11235, eliminate equvalents
-Current pList size 2231, check correct
-SynProg: (i + (j + sizej))
-SynProg: (i + (j + sizej))
-Complete, program found (i + (j + sizej))
+Time out for bottem up search
+Current node size 1 Split current node, failed
+Search fcase failed
 
-Start search node 0x1ff8b00
+Start search node 0xd12b00
 i 5 j 14 sizei 16 sizej 32 _out 60
 Searched Program: 
 Init pList size 17, check correct
@@ -173,8 +172,9 @@ Current pList size 108, check correct
 SynProg: (i * 12)
 SynProg: (i * 12)
 Complete, program found (i * 12)
+Search tcase failed
 
-Start search node 0x1ff8830
+Start search node 0xd12830
 i 5 j 14 sizei 16 sizej 16 _out 63
 i 5 j 14 sizei 32 sizej 16 _out 63
 i 5 j 14 sizei 32 sizej 32 _out 159
@@ -199,7 +199,7 @@ SynProg: (sizej < (i + j))
 SynProg: (sizej < (i + j))
 Complete, program found (sizej < (i + j))
 
-Start search node 0x1fffcb0
+Start search node 0xd199b0
 i 5 j 14 sizei 16 sizej 16 _out 63
 i 5 j 14 sizei 32 sizej 16 _out 63
 Searched Program: 
@@ -211,7 +211,7 @@ SynProg: (7 * 9)
 SynProg: (7 * 9)
 Complete, program found (7 * 9)
 
-Start search node 0x1fff9e0
+Start search node 0xd196e0
 i 5 j 14 sizei 32 sizej 32 _out 159
 Searched Program: 
 Init pList size 17, check correct
@@ -223,6 +223,7 @@ Current pList size 11235, eliminate equvalents
 Time out for bottem up search
 Current node size 1 Split current node, failed
 Search fcase failed
+Search tcase failed
 Search fcase failed
 Search fcase failed
 --------------------------------------, dump tree after search
@@ -250,14 +251,14 @@ Searched Program:
 R---L---i 5 j 14 sizei 8 sizej 16 _out 1
 R---L---i 5 j 14 sizei 8 sizej 32 _out 1
 R---L---i 5 j 14 sizei 16 sizej 32 _out 0
-Searched Program: (if (j < sizei) then (if ((i + i) + ((i + j) + (j + sizei))) then (sizej + (i * 7)) else (i + (j + sizej))) else (i * 12))
+Searched Program: 
 R---L---L---i 5 j 14 sizei 8 sizej 16 _out 51
 R---L---L---i 5 j 14 sizei 8 sizej 32 _out 51
-Searched Program: (if ((i + i) + ((i + j) + (j + sizei))) then (sizej + (i * 7)) else (i + (j + sizej)))
+Searched Program: 
 R---L---L---L---i 5 j 14 sizei 8 sizej 16 _out 51
 Searched Program: (sizej + (i * 7))
 R---L---L---R---i 5 j 14 sizei 8 sizej 32 _out 51
-Searched Program: (i + (j + sizej))
+Searched Program: 
 R---L---R---i 5 j 14 sizei 16 sizej 32 _out 60
 Searched Program: (i * 12)
 R---R---i 5 j 14 sizei 16 sizej 16 _out 1

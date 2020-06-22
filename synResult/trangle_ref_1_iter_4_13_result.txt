@@ -264,3 +264,62 @@ Current pList size 323, eliminate equvalents
 Current pList size 107, check correct
 Current pList size 107, grow
 Current pList size 11663, eliminate equvalents
+Time out for bottem up search
+Current node size 1 Split current node, failed
+Search tcase failed
+Search fcase failed
+Search tcase failed
+Search fcase failed
+Search fcase failed
+--------------------------------------, dump tree after search
+i 4 j 13 sizei 8 sizej 8 _out 1
+i 4 j 13 sizei 8 sizej 16 _out 0
+i 4 j 13 sizei 8 sizej 32 _out 0
+i 4 j 13 sizei 16 sizej 8 _out 1
+i 4 j 13 sizei 16 sizej 16 _out 0
+i 4 j 13 sizei 16 sizej 32 _out 0
+i 4 j 13 sizei 32 sizej 8 _out 1
+i 4 j 13 sizei 32 sizej 16 _out 0
+i 4 j 13 sizei 32 sizej 32 _out 0
+Searched Program: 
+L---i 4 j 13 sizei 8 sizej 8 _out -1
+L---i 4 j 13 sizei 16 sizej 8 _out -1
+L---i 4 j 13 sizei 32 sizej 8 _out -1
+Searched Program: -1
+R---i 4 j 13 sizei 8 sizej 16 _out 1
+R---i 4 j 13 sizei 8 sizej 32 _out 1
+R---i 4 j 13 sizei 16 sizej 16 _out 0
+R---i 4 j 13 sizei 16 sizej 32 _out 1
+R---i 4 j 13 sizei 32 sizej 16 _out 0
+R---i 4 j 13 sizei 32 sizej 32 _out 0
+Searched Program: 
+R---L---i 4 j 13 sizei 8 sizej 16 _out 1
+R---L---i 4 j 13 sizei 8 sizej 32 _out 1
+R---L---i 4 j 13 sizei 16 sizej 32 _out 0
+Searched Program: 
+R---L---L---i 4 j 13 sizei 8 sizej 16 _out 51
+R---L---L---i 4 j 13 sizei 8 sizej 32 _out 51
+Searched Program: 
+R---L---L---L---i 4 j 13 sizei 8 sizej 16 _out 51
+Searched Program: (sizej + (5 * 7))
+R---L---L---R---i 4 j 13 sizei 8 sizej 32 _out 51
+Searched Program: 
+R---L---R---i 4 j 13 sizei 16 sizej 32 _out 61
+Searched Program: 
+R---R---i 4 j 13 sizei 16 sizej 16 _out 1
+R---R---i 4 j 13 sizei 32 sizej 16 _out 1
+R---R---i 4 j 13 sizei 32 sizej 32 _out 0
+Searched Program: 
+R---R---L---i 4 j 13 sizei 16 sizej 16 _out 69
+R---R---L---i 4 j 13 sizei 32 sizej 16 _out 69
+Searched Program: 
+R---R---L---L---i 4 j 13 sizei 16 sizej 16 _out 69
+Searched Program: (i + (j * 5))
+R---R---L---R---i 4 j 13 sizei 32 sizej 16 _out 69
+Searched Program: 
+R---R---R---i 4 j 13 sizei 32 sizej 32 _out 165
+Searched Program: 
+--------------------------------------
+--------------------------------------, dump search result start
+Not yet founded, (T^T)
+--------------------------------------

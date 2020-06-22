@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x26124a0
+Start search node 0x10cf4a0
 i 6 j 21 sizei 8 sizej 8 _out -1
 i 6 j 21 sizei 8 sizej 16 _out -1
 i 6 j 21 sizei 8 sizej 32 _out 51
@@ -51,7 +51,7 @@ SynProg: (j < sizej)
 SynProg: (j < sizej)
 Complete, program found (j < sizej)
 
-Start search node 0x2611dc0
+Start search node 0x10cedc0
 i 6 j 21 sizei 8 sizej 8 _out -1
 i 6 j 21 sizei 8 sizej 16 _out -1
 i 6 j 21 sizei 16 sizej 8 _out -1
@@ -64,7 +64,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x2612090
+Start search node 0x10cf090
 i 6 j 21 sizei 8 sizej 32 _out 51
 i 6 j 21 sizei 16 sizej 32 _out 153
 i 6 j 21 sizei 32 sizej 32 _out 153
@@ -89,7 +89,7 @@ SynProg: (j < (i + sizei))
 SynProg: (j < (i + sizei))
 Complete, program found (j < (i + sizei))
 
-Start search node 0x260d790
+Start search node 0x10ca790
 i 6 j 21 sizei 8 sizej 32 _out 51
 Searched Program: 
 Init pList size 17, check correct
@@ -98,10 +98,12 @@ Current pList size 323, eliminate equvalents
 Current pList size 108, check correct
 Current pList size 108, grow
 Current pList size 11880, eliminate equvalents
-Time out for bottem up search
-Current node size 1 Split current node, failed
+Current pList size 2548, check correct
+SynProg: (i + (5 * 9))
+SynProg: (i + (5 * 9))
+Complete, program found (i + (5 * 9))
 
-Start search node 0x260f060
+Start search node 0x10cc060
 i 6 j 21 sizei 16 sizej 32 _out 153
 i 6 j 21 sizei 32 sizej 32 _out 153
 Searched Program: 
@@ -128,7 +130,7 @@ SynProg: (((i + j) + (j + j)) + ((j + j) + (j + j)))
 SynProg: (((i + j) + (j + j)) + ((j + j) + (j + j)))
 Complete, program found (((i + j) + (j + j)) + ((j + j) + (j + j)))
 
-Start search node 0x260db50
+Start search node 0x10cab50
 i 6 j 21 sizei 16 sizej 32 _out 153
 Searched Program: 
 Init pList size 17, check correct
@@ -140,7 +142,7 @@ Current pList size 12995, eliminate equvalents
 Time out for bottem up search
 Current node size 1 Split current node, failed
 
-Start search node 0x260da10
+Start search node 0x10caa10
 i 6 j 21 sizei 32 sizej 32 _out 153
 Searched Program: 
 Init pList size 17, check correct
@@ -153,7 +155,6 @@ Time out for bottem up search
 Current node size 1 Split current node, failed
 Search tcase failed
 Search fcase failed
-Search tcase failed
 Search fcase failed
 Search fcase failed
 --------------------------------------, dump tree after search
@@ -179,7 +180,7 @@ R---i 6 j 21 sizei 16 sizej 32 _out 0
 R---i 6 j 21 sizei 32 sizej 32 _out 0
 Searched Program: 
 R---L---i 6 j 21 sizei 8 sizej 32 _out 51
-Searched Program: 
+Searched Program: (i + (5 * 9))
 R---R---i 6 j 21 sizei 16 sizej 32 _out 153
 R---R---i 6 j 21 sizei 32 sizej 32 _out 153
 Searched Program: 

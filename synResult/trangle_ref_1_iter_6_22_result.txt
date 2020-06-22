@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x1cb44a0
+Start search node 0x16024a0
 i 6 j 22 sizei 8 sizej 8 _out -1
 i 6 j 22 sizei 8 sizej 16 _out -1
 i 6 j 22 sizei 8 sizej 32 _out 51
@@ -51,7 +51,7 @@ SynProg: (j < sizej)
 SynProg: (j < sizej)
 Complete, program found (j < sizej)
 
-Start search node 0x1cb3dc0
+Start search node 0x1601dc0
 i 6 j 22 sizei 8 sizej 8 _out -1
 i 6 j 22 sizei 8 sizej 16 _out -1
 i 6 j 22 sizei 16 sizej 8 _out -1
@@ -64,7 +64,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x1cb4090
+Start search node 0x1602090
 i 6 j 22 sizei 8 sizej 32 _out 51
 i 6 j 22 sizei 16 sizej 32 _out 153
 i 6 j 22 sizei 32 sizej 32 _out 153
@@ -89,7 +89,7 @@ SynProg: (j < (sizei + sizei))
 SynProg: (j < (sizei + sizei))
 Complete, program found (j < (sizei + sizei))
 
-Start search node 0x1caf790
+Start search node 0x15fd790
 i 6 j 22 sizei 8 sizej 32 _out 51
 Searched Program: 
 Init pList size 17, check correct
@@ -98,12 +98,10 @@ Current pList size 323, eliminate equvalents
 Current pList size 105, check correct
 Current pList size 105, grow
 Current pList size 11235, eliminate equvalents
-Current pList size 2333, check correct
-SynProg: (i + (5 * 9))
-SynProg: (i + (5 * 9))
-Complete, program found (i + (5 * 9))
+Time out for bottem up search
+Current node size 1 Split current node, failed
 
-Start search node 0x1cb1060
+Start search node 0x15ff060
 i 6 j 22 sizei 16 sizej 32 _out 153
 i 6 j 22 sizei 32 sizej 32 _out 153
 Searched Program: 
@@ -129,6 +127,7 @@ Current pList size 368, check correct
 Current pList size 368, grow
 Current pList size 199305, eliminate equvalents
 Time out for bottem up search
+Search tcase failed
 Search fcase failed
 Search fcase failed
 --------------------------------------, dump tree after search
@@ -154,7 +153,7 @@ R---i 6 j 22 sizei 16 sizej 32 _out 0
 R---i 6 j 22 sizei 32 sizej 32 _out 0
 Searched Program: 
 R---L---i 6 j 22 sizei 8 sizej 32 _out 51
-Searched Program: (i + (5 * 9))
+Searched Program: 
 R---R---i 6 j 22 sizei 16 sizej 32 _out 153
 R---R---i 6 j 22 sizei 32 sizej 32 _out 153
 Searched Program: 

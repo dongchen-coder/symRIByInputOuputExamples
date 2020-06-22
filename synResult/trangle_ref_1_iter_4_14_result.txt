@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0xa1c4a0
+Start search node 0xd8b4a0
 i 4 j 14 sizei 8 sizej 8 _out -1
 i 4 j 14 sizei 8 sizej 16 _out 51
 i 4 j 14 sizei 8 sizej 32 _out 51
@@ -51,7 +51,7 @@ SynProg: (j < sizej)
 SynProg: (j < sizej)
 Complete, program found (j < sizej)
 
-Start search node 0xa1c3b0
+Start search node 0xd8b3b0
 i 4 j 14 sizei 8 sizej 8 _out -1
 i 4 j 14 sizei 16 sizej 8 _out -1
 i 4 j 14 sizei 32 sizej 8 _out -1
@@ -61,7 +61,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0xa1d900
+Start search node 0xd8c900
 i 4 j 14 sizei 8 sizej 16 _out 51
 i 4 j 14 sizei 8 sizej 32 _out 51
 i 4 j 14 sizei 16 sizej 16 _out 69
@@ -86,7 +86,7 @@ SynProg: (sizei < sizej)
 SynProg: (sizei < sizej)
 Complete, program found (sizei < sizej)
 
-Start search node 0xa176a0
+Start search node 0xd866a0
 i 4 j 14 sizei 8 sizej 16 _out 51
 i 4 j 14 sizei 8 sizej 32 _out 51
 i 4 j 14 sizei 16 sizej 32 _out 66
@@ -108,7 +108,7 @@ SynProg: (j < sizei)
 SynProg: (j < sizei)
 Complete, program found (j < sizei)
 
-Start search node 0xa19060
+Start search node 0xd88060
 i 4 j 14 sizei 8 sizej 16 _out 51
 i 4 j 14 sizei 8 sizej 32 _out 51
 Searched Program: 
@@ -135,7 +135,7 @@ Current pList size 218, grow
 Current pList size 69030, eliminate equvalents
 Time out for bottem up search
 
-Start search node 0xa17b00
+Start search node 0xd86b00
 i 4 j 14 sizei 16 sizej 32 _out 66
 Searched Program: 
 Init pList size 17, check correct
@@ -147,7 +147,7 @@ SynProg: (6 * 11)
 Complete, program found (6 * 11)
 Search tcase failed
 
-Start search node 0xa17830
+Start search node 0xd86830
 i 4 j 14 sizei 16 sizej 16 _out 69
 i 4 j 14 sizei 32 sizej 16 _out 69
 i 4 j 14 sizei 32 sizej 32 _out 165
@@ -172,7 +172,7 @@ SynProg: (sizej < (i + j))
 SynProg: (sizej < (i + j))
 Complete, program found (sizej < (i + j))
 
-Start search node 0xa1e9b0
+Start search node 0xd8d9b0
 i 4 j 14 sizei 16 sizej 16 _out 69
 i 4 j 14 sizei 32 sizej 16 _out 69
 Searched Program: 
@@ -199,7 +199,7 @@ Current pList size 266, grow
 Current pList size 103374, eliminate equvalents
 Time out for bottem up search
 
-Start search node 0xa1e6e0
+Start search node 0xd8d6e0
 i 4 j 14 sizei 32 sizej 32 _out 165
 Searched Program: 
 Init pList size 17, check correct
