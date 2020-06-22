@@ -54,7 +54,10 @@ private:
     string searchNode(int timeBoundInSeconds, inputOutputTreeNode* node);
     
     /* Split current tree node of inputoutput examples */
-    bool splitInputOutputTreeNode(inputOutputTreeNode* node);
+    bool splitInputOutputTreeNode(inputOutputTreeNode* node, int splitMode);
+    
+    /* backtracing, merge the split node */
+    void backtracing(inputOutputTreeNode* node);
     
     /* Cluster the input-output examples to subsets for divde-and-conqure */
     inputOutputTreeNode* inputOutputTree;

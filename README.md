@@ -14,6 +14,8 @@ Current issues and TODOs:
 
 (5) ~~When grow, commutative expressions only generate once~~
 
+(6) Support backtracing when search fails
+
 Questions:
 
 (1) Is there any specification that can be used to guide the search?
