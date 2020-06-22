@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x24474a0
+Start search node 0x19f44a0
 i 20 j 22 sizei 8 sizej 8 _out -1
 i 20 j 22 sizei 8 sizej 16 _out -1
 i 20 j 22 sizei 8 sizej 32 _out -1
@@ -54,7 +54,7 @@ SynProg: ((i < sizei) && (i < sizej))
 SynProg: ((i < sizei) && (i < sizej))
 Complete, program found ((i < sizei) && (i < sizej))
 
-Start search node 0x2446b40
+Start search node 0x19f3b40
 i 20 j 22 sizei 8 sizej 8 _out -1
 i 20 j 22 sizei 8 sizej 16 _out -1
 i 20 j 22 sizei 8 sizej 32 _out -1
@@ -69,7 +69,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x2442bf0
+Start search node 0x19efbf0
 i 20 j 22 sizei 32 sizej 32 _out 69
 Searched Program: 
 Init pList size 17, check correct
@@ -78,9 +78,10 @@ Current pList size 323, eliminate equvalents
 Current pList size 114, check correct
 Current pList size 114, grow
 Current pList size 13224, eliminate equvalents
-Time out for bottem up search
-Current node size 1 Split current node, failed
-Search fcase failed
+Current pList size 2603, check correct
+SynProg: (i + (7 * 7))
+SynProg: (i + (7 * 7))
+Complete, program found (i + (7 * 7))
 --------------------------------------, dump tree after search
 i 20 j 22 sizei 8 sizej 8 _out 1
 i 20 j 22 sizei 8 sizej 16 _out 1
@@ -91,7 +92,7 @@ i 20 j 22 sizei 16 sizej 32 _out 1
 i 20 j 22 sizei 32 sizej 8 _out 1
 i 20 j 22 sizei 32 sizej 16 _out 1
 i 20 j 22 sizei 32 sizej 32 _out 0
-Searched Program: 
+Searched Program: (if ((i < sizei) && (i < sizej)) then -1 else (i + (7 * 7)))
 L---i 20 j 22 sizei 8 sizej 8 _out -1
 L---i 20 j 22 sizei 8 sizej 16 _out -1
 L---i 20 j 22 sizei 8 sizej 32 _out -1
@@ -102,8 +103,8 @@ L---i 20 j 22 sizei 32 sizej 8 _out -1
 L---i 20 j 22 sizei 32 sizej 16 _out -1
 Searched Program: -1
 R---i 20 j 22 sizei 32 sizej 32 _out 69
-Searched Program: 
+Searched Program: (i + (7 * 7))
 --------------------------------------
 --------------------------------------, dump search result start
-Not yet founded, (T^T)
+Searched Program (^0^) : (if ((i < sizei) && (i < sizej)) then -1 else (i + (7 * 7)))
 --------------------------------------

@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x1a074a0
+Start search node 0x16ab4a0
 i 12 j 14 sizei 8 sizej 8 _out -1
 i 12 j 14 sizei 8 sizej 16 _out -1
 i 12 j 14 sizei 8 sizej 32 _out -1
@@ -54,7 +54,7 @@ SynProg: ((i < sizei) && (i < sizej))
 SynProg: ((i < sizei) && (i < sizej))
 Complete, program found ((i < sizei) && (i < sizej))
 
-Start search node 0x1a06eb0
+Start search node 0x16aaeb0
 i 12 j 14 sizei 8 sizej 8 _out -1
 i 12 j 14 sizei 8 sizej 16 _out -1
 i 12 j 14 sizei 8 sizej 32 _out -1
@@ -66,7 +66,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x1a07270
+Start search node 0x16ab270
 i 12 j 14 sizei 16 sizej 16 _out 21
 i 12 j 14 sizei 16 sizej 32 _out 18
 i 12 j 14 sizei 32 sizej 16 _out 21
@@ -95,7 +95,7 @@ SynProg: ((! (sizei < sizej) ) && ((i + i) < sizej))
 SynProg: ((! (sizei < sizej) ) && ((i + i) < sizej))
 Complete, program found ((! (sizei < sizej) ) && ((i + i) < sizej))
 
-Start search node 0x1a02f60
+Start search node 0x16a6f60
 i 12 j 14 sizei 16 sizej 16 _out 21
 i 12 j 14 sizei 16 sizej 32 _out 18
 i 12 j 14 sizei 32 sizej 16 _out 21
@@ -117,7 +117,7 @@ SynProg: (sizei < sizej)
 SynProg: (sizei < sizej)
 Complete, program found (sizei < sizej)
 
-Start search node 0x1a07450
+Start search node 0x16ab450
 i 12 j 14 sizei 16 sizej 32 _out 18
 Searched Program: 
 Init pList size 17, check correct
@@ -128,7 +128,7 @@ SynProg: (i + 6)
 SynProg: (i + 6)
 Complete, program found (i + 6)
 
-Start search node 0x1a07360
+Start search node 0x16ab360
 i 12 j 14 sizei 16 sizej 16 _out 21
 i 12 j 14 sizei 32 sizej 16 _out 21
 Searched Program: 
@@ -140,7 +140,7 @@ SynProg: (i + 9)
 SynProg: (i + 9)
 Complete, program found (i + 9)
 
-Start search node 0x1a02ba0
+Start search node 0x16a6ba0
 i 12 j 14 sizei 32 sizej 32 _out 117
 Searched Program: 
 Init pList size 17, check correct
@@ -149,10 +149,10 @@ Current pList size 323, eliminate equvalents
 Current pList size 105, check correct
 Current pList size 105, grow
 Current pList size 11235, eliminate equvalents
-Time out for bottem up search
-Current node size 1 Split current node, failed
-Search fcase failed
-Search fcase failed
+Current pList size 2231, check correct
+SynProg: (5 + (j * 8))
+SynProg: (5 + (j * 8))
+Complete, program found (5 + (j * 8))
 --------------------------------------, dump tree after search
 i 12 j 14 sizei 8 sizej 8 _out 1
 i 12 j 14 sizei 8 sizej 16 _out 1
@@ -163,7 +163,7 @@ i 12 j 14 sizei 16 sizej 32 _out 0
 i 12 j 14 sizei 32 sizej 8 _out 1
 i 12 j 14 sizei 32 sizej 16 _out 0
 i 12 j 14 sizei 32 sizej 32 _out 0
-Searched Program: 
+Searched Program: (if ((i < sizei) && (i < sizej)) then -1 else (if ((! (sizei < sizej) ) && ((i + i) < sizej)) then (if (sizei < sizej) then (i + 6) else (i + 9)) else (5 + (j * 8))))
 L---i 12 j 14 sizei 8 sizej 8 _out -1
 L---i 12 j 14 sizei 8 sizej 16 _out -1
 L---i 12 j 14 sizei 8 sizej 32 _out -1
@@ -174,7 +174,7 @@ R---i 12 j 14 sizei 16 sizej 16 _out 1
 R---i 12 j 14 sizei 16 sizej 32 _out 1
 R---i 12 j 14 sizei 32 sizej 16 _out 1
 R---i 12 j 14 sizei 32 sizej 32 _out 0
-Searched Program: 
+Searched Program: (if ((! (sizei < sizej) ) && ((i + i) < sizej)) then (if (sizei < sizej) then (i + 6) else (i + 9)) else (5 + (j * 8)))
 R---L---i 12 j 14 sizei 16 sizej 16 _out 0
 R---L---i 12 j 14 sizei 16 sizej 32 _out 1
 R---L---i 12 j 14 sizei 32 sizej 16 _out 0
@@ -185,8 +185,8 @@ R---L---R---i 12 j 14 sizei 16 sizej 16 _out 21
 R---L---R---i 12 j 14 sizei 32 sizej 16 _out 21
 Searched Program: (i + 9)
 R---R---i 12 j 14 sizei 32 sizej 32 _out 117
-Searched Program: 
+Searched Program: (5 + (j * 8))
 --------------------------------------
 --------------------------------------, dump search result start
-Not yet founded, (T^T)
+Searched Program (^0^) : (if ((i < sizei) && (i < sizej)) then -1 else (if ((! (sizei < sizej) ) && ((i + i) < sizej)) then (if (sizei < sizej) then (i + 6) else (i + 9)) else (5 + (j * 8))))
 --------------------------------------

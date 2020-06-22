@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x16604a0
+Start search node 0x139d4a0
 i 2 j 7 sizei 8 sizej 8 _out 33
 i 2 j 7 sizei 8 sizej 16 _out 81
 i 2 j 7 sizei 8 sizej 32 _out 58
@@ -40,6 +40,8 @@ Current pList size 323, eliminate equvalents
 Current pList size 132, check correct
 Current pList size 132, grow
 Current pList size 17688, eliminate equvalents
+Current pList size 7864, check correct
+Current pList size 7864, grow
 Time out for bottem up search
 Current node size 9 Split to two: left size 4 right size 5
 Split current node, succeed

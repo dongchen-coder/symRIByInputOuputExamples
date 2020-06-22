@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0xe4c4a0
+Start search node 0x8a84a0
 i 1 j 15 sizei 8 sizej 8 _out -1
 i 1 j 15 sizei 8 sizej 16 _out 51
 i 1 j 15 sizei 8 sizej 32 _out 51
@@ -51,7 +51,7 @@ SynProg: (j < sizej)
 SynProg: (j < sizej)
 Complete, program found (j < sizej)
 
-Start search node 0xe4c3b0
+Start search node 0x8a83b0
 i 1 j 15 sizei 8 sizej 8 _out -1
 i 1 j 15 sizei 16 sizej 8 _out -1
 i 1 j 15 sizei 32 sizej 8 _out -1
@@ -61,7 +61,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0xe4d900
+Start search node 0x8a9900
 i 1 j 15 sizei 8 sizej 16 _out 51
 i 1 j 15 sizei 8 sizej 32 _out 51
 i 1 j 15 sizei 16 sizej 16 _out 0
@@ -86,7 +86,7 @@ SynProg: (j < sizei)
 SynProg: (j < sizei)
 Complete, program found (j < sizei)
 
-Start search node 0xe47420
+Start search node 0x8a3420
 i 1 j 15 sizei 16 sizej 16 _out 0
 i 1 j 15 sizei 16 sizej 32 _out 0
 i 1 j 15 sizei 32 sizej 16 _out 0
@@ -100,7 +100,7 @@ SynProg: (i + -1)
 SynProg: (i + -1)
 Complete, program found (i + -1)
 
-Start search node 0xe478d0
+Start search node 0x8a38d0
 i 1 j 15 sizei 8 sizej 16 _out 51
 i 1 j 15 sizei 8 sizej 32 _out 51
 Searched Program: 
@@ -110,24 +110,10 @@ Current pList size 323, eliminate equvalents
 Current pList size 114, check correct
 Current pList size 114, grow
 Current pList size 13224, eliminate equvalents
-Time out for bottem up search
-Current node size 2 Split to two: left size 1 right size 1
-Split current node, succeed
-Init pList size 4, check correct
-Current pList size 4, grow
-Current pList size 31, eliminate equvalents
-Current pList size 15, check correct
-Current pList size 15, grow
-Current pList size 279, eliminate equvalents
-Current pList size 58, check correct
-Current pList size 58, grow
-Current pList size 4470, eliminate equvalents
-Current pList size 286, check correct
-Current pList size 286, grow
-Current pList size 119724, eliminate equvalents
-Time out for bottem up search
-Search fcase failed
-Search fcase failed
+Current pList size 4479, check correct
+SynProg: (i + (5 * 10))
+SynProg: (i + (5 * 10))
+Complete, program found (i + (5 * 10))
 --------------------------------------, dump tree after search
 i 1 j 15 sizei 8 sizej 8 _out 1
 i 1 j 15 sizei 8 sizej 16 _out 0
@@ -138,7 +124,7 @@ i 1 j 15 sizei 16 sizej 32 _out 0
 i 1 j 15 sizei 32 sizej 8 _out 1
 i 1 j 15 sizei 32 sizej 16 _out 0
 i 1 j 15 sizei 32 sizej 32 _out 0
-Searched Program: 
+Searched Program: (if (j < sizej) then -1 else (if (j < sizei) then (i + -1) else (i + (5 * 10))))
 L---i 1 j 15 sizei 8 sizej 8 _out -1
 L---i 1 j 15 sizei 16 sizej 8 _out -1
 L---i 1 j 15 sizei 32 sizej 8 _out -1
@@ -149,7 +135,7 @@ R---i 1 j 15 sizei 16 sizej 16 _out 1
 R---i 1 j 15 sizei 16 sizej 32 _out 1
 R---i 1 j 15 sizei 32 sizej 16 _out 1
 R---i 1 j 15 sizei 32 sizej 32 _out 1
-Searched Program: 
+Searched Program: (if (j < sizei) then (i + -1) else (i + (5 * 10)))
 R---L---i 1 j 15 sizei 16 sizej 16 _out 0
 R---L---i 1 j 15 sizei 16 sizej 32 _out 0
 R---L---i 1 j 15 sizei 32 sizej 16 _out 0
@@ -157,12 +143,8 @@ R---L---i 1 j 15 sizei 32 sizej 32 _out 0
 Searched Program: (i + -1)
 R---R---i 1 j 15 sizei 8 sizej 16 _out 51
 R---R---i 1 j 15 sizei 8 sizej 32 _out 51
-Searched Program: 
-R---R---L---i 1 j 15 sizei 8 sizej 16 _out 51
-Searched Program: 
-R---R---R---i 1 j 15 sizei 8 sizej 32 _out 51
-Searched Program: 
+Searched Program: (i + (5 * 10))
 --------------------------------------
 --------------------------------------, dump search result start
-Not yet founded, (T^T)
+Searched Program (^0^) : (if (j < sizej) then -1 else (if (j < sizei) then (i + -1) else (i + (5 * 10))))
 --------------------------------------

@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x115d4a0
+Start search node 0x17ae4a0
 i 14 j 17 sizei 8 sizej 8 _out -1
 i 14 j 17 sizei 8 sizej 16 _out -1
 i 14 j 17 sizei 8 sizej 32 _out -1
@@ -54,7 +54,7 @@ SynProg: ((i < sizei) && (j < sizej))
 SynProg: ((i < sizei) && (j < sizej))
 Complete, program found ((i < sizei) && (j < sizej))
 
-Start search node 0x115c9b0
+Start search node 0x17ad9b0
 i 14 j 17 sizei 8 sizej 8 _out -1
 i 14 j 17 sizei 8 sizej 16 _out -1
 i 14 j 17 sizei 8 sizej 32 _out -1
@@ -68,7 +68,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x115ccd0
+Start search node 0x17adcd0
 i 14 j 17 sizei 16 sizej 32 _out 105
 i 14 j 17 sizei 32 sizej 32 _out 105
 Searched Program: 
@@ -95,7 +95,7 @@ SynProg: ((i + i) + ((i + i) + (j + sizej)))
 SynProg: ((i + i) + ((i + i) + (j + sizej)))
 Complete, program found ((i + i) + ((i + i) + (j + sizej)))
 
-Start search node 0x1158c90
+Start search node 0x17a9c90
 i 14 j 17 sizei 16 sizej 32 _out 105
 Searched Program: 
 Init pList size 17, check correct
@@ -104,10 +104,12 @@ Current pList size 323, eliminate equvalents
 Current pList size 124, check correct
 Current pList size 124, grow
 Current pList size 15624, eliminate equvalents
-Time out for bottem up search
-Current node size 1 Split current node, failed
+Current pList size 2909, check correct
+SynProg: (j + (8 * 11))
+SynProg: (j + (8 * 11))
+Complete, program found (j + (8 * 11))
 
-Start search node 0x1158ab0
+Start search node 0x17a9ab0
 i 14 j 17 sizei 32 sizej 32 _out 105
 Searched Program: 
 Init pList size 17, check correct
@@ -116,11 +118,10 @@ Current pList size 323, eliminate equvalents
 Current pList size 120, check correct
 Current pList size 120, grow
 Current pList size 14640, eliminate equvalents
-Time out for bottem up search
-Current node size 1 Split current node, failed
-Search tcase failed
-Search fcase failed
-Search fcase failed
+Current pList size 2852, check correct
+SynProg: (j + (8 * 11))
+SynProg: (j + (8 * 11))
+Complete, program found (j + (8 * 11))
 --------------------------------------, dump tree after search
 i 14 j 17 sizei 8 sizej 8 _out 1
 i 14 j 17 sizei 8 sizej 16 _out 1
@@ -131,7 +132,7 @@ i 14 j 17 sizei 16 sizej 32 _out 0
 i 14 j 17 sizei 32 sizej 8 _out 1
 i 14 j 17 sizei 32 sizej 16 _out 1
 i 14 j 17 sizei 32 sizej 32 _out 0
-Searched Program: 
+Searched Program: (if ((i < sizei) && (j < sizej)) then -1 else (if ((i + i) + ((i + i) + (j + sizej))) then (j + (8 * 11)) else (j + (8 * 11))))
 L---i 14 j 17 sizei 8 sizej 8 _out -1
 L---i 14 j 17 sizei 8 sizej 16 _out -1
 L---i 14 j 17 sizei 8 sizej 32 _out -1
@@ -142,12 +143,12 @@ L---i 14 j 17 sizei 32 sizej 16 _out -1
 Searched Program: -1
 R---i 14 j 17 sizei 16 sizej 32 _out 105
 R---i 14 j 17 sizei 32 sizej 32 _out 105
-Searched Program: 
+Searched Program: (if ((i + i) + ((i + i) + (j + sizej))) then (j + (8 * 11)) else (j + (8 * 11)))
 R---L---i 14 j 17 sizei 16 sizej 32 _out 105
-Searched Program: 
+Searched Program: (j + (8 * 11))
 R---R---i 14 j 17 sizei 32 sizej 32 _out 105
-Searched Program: 
+Searched Program: (j + (8 * 11))
 --------------------------------------
 --------------------------------------, dump search result start
-Not yet founded, (T^T)
+Searched Program (^0^) : (if ((i < sizei) && (j < sizej)) then -1 else (if ((i + i) + ((i + i) + (j + sizej))) then (j + (8 * 11)) else (j + (8 * 11))))
 --------------------------------------

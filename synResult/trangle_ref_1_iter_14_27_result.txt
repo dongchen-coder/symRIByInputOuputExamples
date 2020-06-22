@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x21a84a0
+Start search node 0x23644a0
 i 14 j 27 sizei 8 sizej 8 _out -1
 i 14 j 27 sizei 8 sizej 16 _out -1
 i 14 j 27 sizei 8 sizej 32 _out -1
@@ -54,7 +54,7 @@ SynProg: ((i < sizei) && (j < sizej))
 SynProg: ((i < sizei) && (j < sizej))
 Complete, program found ((i < sizei) && (j < sizej))
 
-Start search node 0x21a79b0
+Start search node 0x23639b0
 i 14 j 27 sizei 8 sizej 8 _out -1
 i 14 j 27 sizei 8 sizej 16 _out -1
 i 14 j 27 sizei 8 sizej 32 _out -1
@@ -68,7 +68,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x21a7cd0
+Start search node 0x2363cd0
 i 14 j 27 sizei 16 sizej 32 _out 105
 i 14 j 27 sizei 32 sizej 32 _out 105
 Searched Program: 
@@ -92,7 +92,7 @@ SynProg: ((i + j) + (sizej + sizej))
 SynProg: ((i + j) + (sizej + sizej))
 Complete, program found ((i + j) + (sizej + sizej))
 
-Start search node 0x21a3c90
+Start search node 0x235fc90
 i 14 j 27 sizei 16 sizej 32 _out 105
 Searched Program: 
 Init pList size 17, check correct
@@ -101,10 +101,12 @@ Current pList size 323, eliminate equvalents
 Current pList size 123, check correct
 Current pList size 123, grow
 Current pList size 15375, eliminate equvalents
-Time out for bottem up search
-Current node size 1 Split current node, failed
+Current pList size 3005, check correct
+SynProg: (5 + (10 * 10))
+SynProg: (5 + (10 * 10))
+Complete, program found (5 + (10 * 10))
 
-Start search node 0x21a3ab0
+Start search node 0x235fab0
 i 14 j 27 sizei 32 sizej 32 _out 105
 Searched Program: 
 Init pList size 17, check correct
@@ -113,11 +115,10 @@ Current pList size 323, eliminate equvalents
 Current pList size 119, check correct
 Current pList size 119, grow
 Current pList size 14399, eliminate equvalents
-Time out for bottem up search
-Current node size 1 Split current node, failed
-Search tcase failed
-Search fcase failed
-Search fcase failed
+Current pList size 2927, check correct
+SynProg: (5 + (10 * 10))
+SynProg: (5 + (10 * 10))
+Complete, program found (5 + (10 * 10))
 --------------------------------------, dump tree after search
 i 14 j 27 sizei 8 sizej 8 _out 1
 i 14 j 27 sizei 8 sizej 16 _out 1
@@ -128,7 +129,7 @@ i 14 j 27 sizei 16 sizej 32 _out 0
 i 14 j 27 sizei 32 sizej 8 _out 1
 i 14 j 27 sizei 32 sizej 16 _out 1
 i 14 j 27 sizei 32 sizej 32 _out 0
-Searched Program: 
+Searched Program: (if ((i < sizei) && (j < sizej)) then -1 else (if ((i + j) + (sizej + sizej)) then (5 + (10 * 10)) else (5 + (10 * 10))))
 L---i 14 j 27 sizei 8 sizej 8 _out -1
 L---i 14 j 27 sizei 8 sizej 16 _out -1
 L---i 14 j 27 sizei 8 sizej 32 _out -1
@@ -139,12 +140,12 @@ L---i 14 j 27 sizei 32 sizej 16 _out -1
 Searched Program: -1
 R---i 14 j 27 sizei 16 sizej 32 _out 105
 R---i 14 j 27 sizei 32 sizej 32 _out 105
-Searched Program: 
+Searched Program: (if ((i + j) + (sizej + sizej)) then (5 + (10 * 10)) else (5 + (10 * 10)))
 R---L---i 14 j 27 sizei 16 sizej 32 _out 105
-Searched Program: 
+Searched Program: (5 + (10 * 10))
 R---R---i 14 j 27 sizei 32 sizej 32 _out 105
-Searched Program: 
+Searched Program: (5 + (10 * 10))
 --------------------------------------
 --------------------------------------, dump search result start
-Not yet founded, (T^T)
+Searched Program (^0^) : (if ((i < sizei) && (j < sizej)) then -1 else (if ((i + j) + (sizej + sizej)) then (5 + (10 * 10)) else (5 + (10 * 10))))
 --------------------------------------
