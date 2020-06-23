@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x13dc4a0
+Start search node 0x8624a0
 i 8 j 10 sizei 8 sizej 8 _out -1
 i 8 j 10 sizei 8 sizej 16 _out 49
 i 8 j 10 sizei 8 sizej 32 _out 90
@@ -51,7 +51,7 @@ SynProg: (i < sizej)
 SynProg: (i < sizej)
 Complete, program found (i < sizej)
 
-Start search node 0x13dc3b0
+Start search node 0x8623b0
 i 8 j 10 sizei 8 sizej 8 _out -1
 i 8 j 10 sizei 16 sizej 8 _out -1
 i 8 j 10 sizei 32 sizej 8 _out -1
@@ -61,7 +61,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x13dd900
+Start search node 0x863900
 i 8 j 10 sizei 8 sizej 16 _out 49
 i 8 j 10 sizei 8 sizej 32 _out 90
 i 8 j 10 sizei 16 sizej 16 _out 49
@@ -89,7 +89,6 @@ Current pList size 85, grow
 Current pList size 7398, eliminate equvalents
 Current pList size 491, check correct
 Current pList size 491, grow
-Current pList size 317271, eliminate equvalents
 Time out for bottem up search
 Search fcase failed
 --------------------------------------, dump tree after search

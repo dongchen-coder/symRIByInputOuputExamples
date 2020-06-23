@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x1d794a0
+Start search node 0x12fd4a0
 i 2 j 26 sizei 8 sizej 8 _out -1
 i 2 j 26 sizei 8 sizej 16 _out -1
 i 2 j 26 sizei 8 sizej 32 _out 55
@@ -51,7 +51,7 @@ SynProg: (j < sizej)
 SynProg: (j < sizej)
 Complete, program found (j < sizej)
 
-Start search node 0x1d78dc0
+Start search node 0x12fcdc0
 i 2 j 26 sizei 8 sizej 8 _out -1
 i 2 j 26 sizei 8 sizej 16 _out -1
 i 2 j 26 sizei 16 sizej 8 _out -1
@@ -64,7 +64,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x1d79090
+Start search node 0x12fd090
 i 2 j 26 sizei 8 sizej 32 _out 55
 i 2 j 26 sizei 16 sizej 32 _out 103
 i 2 j 26 sizei 32 sizej 32 _out 181
@@ -89,7 +89,7 @@ SynProg: (j < (sizei + sizei))
 SynProg: (j < (sizei + sizei))
 Complete, program found (j < (sizei + sizei))
 
-Start search node 0x1d74790
+Start search node 0x12f8790
 i 2 j 26 sizei 8 sizej 32 _out 55
 Searched Program: 
 Init pList size 17, check correct
@@ -100,7 +100,7 @@ SynProg: (5 * 11)
 SynProg: (5 * 11)
 Complete, program found (5 * 11)
 
-Start search node 0x1d76060
+Start search node 0x12fa060
 i 2 j 26 sizei 16 sizej 32 _out 103
 i 2 j 26 sizei 32 sizej 32 _out 181
 Searched Program: 
@@ -121,7 +121,7 @@ SynProg: (j < sizei)
 SynProg: (j < sizei)
 Complete, program found (j < sizei)
 
-Start search node 0x1d74b50
+Start search node 0x12f8b50
 i 2 j 26 sizei 16 sizej 32 _out 103
 Searched Program: 
 Init pList size 17, check correct
@@ -130,10 +130,12 @@ Current pList size 323, eliminate equvalents
 Current pList size 116, check correct
 Current pList size 116, grow
 Current pList size 13688, eliminate equvalents
-Time out for bottem up search
-Current node size 1 Split current node, failed
+Current pList size 2760, check correct
+SynProg: (j + (7 * 11))
+SynProg: (j + (7 * 11))
+Complete, program found (j + (7 * 11))
 
-Start search node 0x1d74a10
+Start search node 0x12f8a10
 i 2 j 26 sizei 32 sizej 32 _out 181
 Searched Program: 
 Init pList size 17, check correct
@@ -142,12 +144,10 @@ Current pList size 323, eliminate equvalents
 Current pList size 111, check correct
 Current pList size 111, grow
 Current pList size 12543, eliminate equvalents
-Time out for bottem up search
-Current node size 1 Split current node, failed
-Search tcase failed
-Search fcase failed
-Search fcase failed
-Search fcase failed
+Current pList size 2657, check correct
+SynProg: (-1 + (j * 7))
+SynProg: (-1 + (j * 7))
+Complete, program found (-1 + (j * 7))
 --------------------------------------, dump tree after search
 i 2 j 26 sizei 8 sizej 8 _out 1
 i 2 j 26 sizei 8 sizej 16 _out 1
@@ -158,7 +158,7 @@ i 2 j 26 sizei 16 sizej 32 _out 0
 i 2 j 26 sizei 32 sizej 8 _out 1
 i 2 j 26 sizei 32 sizej 16 _out 1
 i 2 j 26 sizei 32 sizej 32 _out 0
-Searched Program: 
+Searched Program: (if (j < sizej) then -1 else (if (j < (sizei + sizei)) then (5 * 11) else (if (j < sizei) then (j + (7 * 11)) else (-1 + (j * 7)))))
 L---i 2 j 26 sizei 8 sizej 8 _out -1
 L---i 2 j 26 sizei 8 sizej 16 _out -1
 L---i 2 j 26 sizei 16 sizej 8 _out -1
@@ -169,17 +169,17 @@ Searched Program: -1
 R---i 2 j 26 sizei 8 sizej 32 _out 1
 R---i 2 j 26 sizei 16 sizej 32 _out 0
 R---i 2 j 26 sizei 32 sizej 32 _out 0
-Searched Program: 
+Searched Program: (if (j < (sizei + sizei)) then (5 * 11) else (if (j < sizei) then (j + (7 * 11)) else (-1 + (j * 7))))
 R---L---i 2 j 26 sizei 8 sizej 32 _out 55
 Searched Program: (5 * 11)
 R---R---i 2 j 26 sizei 16 sizej 32 _out 1
 R---R---i 2 j 26 sizei 32 sizej 32 _out 0
-Searched Program: 
+Searched Program: (if (j < sizei) then (j + (7 * 11)) else (-1 + (j * 7)))
 R---R---L---i 2 j 26 sizei 16 sizej 32 _out 103
-Searched Program: 
+Searched Program: (j + (7 * 11))
 R---R---R---i 2 j 26 sizei 32 sizej 32 _out 181
-Searched Program: 
+Searched Program: (-1 + (j * 7))
 --------------------------------------
 --------------------------------------, dump search result start
-Not yet founded, (T^T)
+Searched Program (^0^) : (if (j < sizej) then -1 else (if (j < (sizei + sizei)) then (5 * 11) else (if (j < sizei) then (j + (7 * 11)) else (-1 + (j * 7)))))
 --------------------------------------

@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0xb0e4a0
+Start search node 0x24cd4a0
 i 6 j 18 sizei 8 sizej 8 _out -1
 i 6 j 18 sizei 8 sizej 16 _out -1
 i 6 j 18 sizei 8 sizej 32 _out 55
@@ -51,7 +51,7 @@ SynProg: (j < sizej)
 SynProg: (j < sizej)
 Complete, program found (j < sizej)
 
-Start search node 0xb0ddc0
+Start search node 0x24ccdc0
 i 6 j 18 sizei 8 sizej 8 _out -1
 i 6 j 18 sizei 8 sizej 16 _out -1
 i 6 j 18 sizei 16 sizej 8 _out -1
@@ -64,7 +64,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0xb0e090
+Start search node 0x24cd090
 i 6 j 18 sizei 8 sizej 32 _out 55
 i 6 j 18 sizei 16 sizej 32 _out 157
 i 6 j 18 sizei 32 sizej 32 _out 157
@@ -89,7 +89,7 @@ SynProg: (j < (i + sizei))
 SynProg: (j < (i + sizei))
 Complete, program found (j < (i + sizei))
 
-Start search node 0xb09790
+Start search node 0x24c8790
 i 6 j 18 sizei 8 sizej 32 _out 55
 Searched Program: 
 Init pList size 17, check correct
@@ -100,7 +100,7 @@ SynProg: (5 * 11)
 SynProg: (5 * 11)
 Complete, program found (5 * 11)
 
-Start search node 0xb0b060
+Start search node 0x24ca060
 i 6 j 18 sizei 16 sizej 32 _out 157
 i 6 j 18 sizei 32 sizej 32 _out 157
 Searched Program: 

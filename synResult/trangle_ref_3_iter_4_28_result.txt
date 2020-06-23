@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x16ba4a0
+Start search node 0x1f2d4a0
 i 4 j 28 sizei 8 sizej 8 _out -1
 i 4 j 28 sizei 8 sizej 16 _out -1
 i 4 j 28 sizei 8 sizej 32 _out 55
@@ -51,7 +51,7 @@ SynProg: (j < sizej)
 SynProg: (j < sizej)
 Complete, program found (j < sizej)
 
-Start search node 0x16b9dc0
+Start search node 0x1f2cdc0
 i 4 j 28 sizei 8 sizej 8 _out -1
 i 4 j 28 sizei 8 sizej 16 _out -1
 i 4 j 28 sizei 16 sizej 8 _out -1
@@ -64,7 +64,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x16ba090
+Start search node 0x1f2d090
 i 4 j 28 sizei 8 sizej 32 _out 55
 i 4 j 28 sizei 16 sizej 32 _out 103
 i 4 j 28 sizei 32 sizej 32 _out 169
@@ -89,7 +89,7 @@ SynProg: (j < (sizei + sizei))
 SynProg: (j < (sizei + sizei))
 Complete, program found (j < (sizei + sizei))
 
-Start search node 0x16b5790
+Start search node 0x1f28790
 i 4 j 28 sizei 8 sizej 32 _out 55
 Searched Program: 
 Init pList size 17, check correct
@@ -100,7 +100,7 @@ SynProg: (5 * 11)
 SynProg: (5 * 11)
 Complete, program found (5 * 11)
 
-Start search node 0x16b7060
+Start search node 0x1f2a060
 i 4 j 28 sizei 16 sizej 32 _out 103
 i 4 j 28 sizei 32 sizej 32 _out 169
 Searched Program: 
@@ -121,7 +121,7 @@ SynProg: (j < sizei)
 SynProg: (j < sizei)
 Complete, program found (j < sizei)
 
-Start search node 0x16b5b50
+Start search node 0x1f28b50
 i 4 j 28 sizei 16 sizej 32 _out 103
 Searched Program: 
 Init pList size 17, check correct
@@ -133,7 +133,7 @@ Current pList size 12543, eliminate equvalents
 Time out for bottem up search
 Current node size 1 Split current node, failed
 
-Start search node 0x16b5a10
+Start search node 0x1f28a10
 i 4 j 28 sizei 32 sizej 32 _out 169
 Searched Program: 
 Init pList size 17, check correct
@@ -142,10 +142,11 @@ Current pList size 323, eliminate equvalents
 Current pList size 106, check correct
 Current pList size 106, grow
 Current pList size 11448, eliminate equvalents
-Time out for bottem up search
-Current node size 1 Split current node, failed
+Current pList size 2426, check correct
+SynProg: (1 + (j * 6))
+SynProg: (1 + (j * 6))
+Complete, program found (1 + (j * 6))
 Search tcase failed
-Search fcase failed
 Search fcase failed
 Search fcase failed
 --------------------------------------, dump tree after search
@@ -178,7 +179,7 @@ Searched Program:
 R---R---L---i 4 j 28 sizei 16 sizej 32 _out 103
 Searched Program: 
 R---R---R---i 4 j 28 sizei 32 sizej 32 _out 169
-Searched Program: 
+Searched Program: (1 + (j * 6))
 --------------------------------------
 --------------------------------------, dump search result start
 Not yet founded, (T^T)

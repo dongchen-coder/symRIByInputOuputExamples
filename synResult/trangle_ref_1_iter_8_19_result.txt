@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x16914a0
+Start search node 0x9eb4a0
 i 8 j 19 sizei 8 sizej 8 _out -1
 i 8 j 19 sizei 8 sizej 16 _out -1
 i 8 j 19 sizei 8 sizej 32 _out 51
@@ -51,7 +51,7 @@ SynProg: (j < sizej)
 SynProg: (j < sizej)
 Complete, program found (j < sizej)
 
-Start search node 0x1690dc0
+Start search node 0x9eadc0
 i 8 j 19 sizei 8 sizej 8 _out -1
 i 8 j 19 sizei 8 sizej 16 _out -1
 i 8 j 19 sizei 16 sizej 8 _out -1
@@ -64,7 +64,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x1691090
+Start search node 0x9eb090
 i 8 j 19 sizei 8 sizej 32 _out 51
 i 8 j 19 sizei 16 sizej 32 _out 141
 i 8 j 19 sizei 32 sizej 32 _out 141
@@ -86,7 +86,7 @@ SynProg: (i < sizei)
 SynProg: (i < sizei)
 Complete, program found (i < sizei)
 
-Start search node 0x168c790
+Start search node 0x9e6790
 i 8 j 19 sizei 8 sizej 32 _out 51
 Searched Program: 
 Init pList size 17, check correct
@@ -97,7 +97,7 @@ SynProg: (j + sizej)
 SynProg: (j + sizej)
 Complete, program found (j + sizej)
 
-Start search node 0x168e060
+Start search node 0x9e8060
 i 8 j 19 sizei 16 sizej 32 _out 141
 i 8 j 19 sizei 32 sizej 32 _out 141
 Searched Program: 
@@ -124,7 +124,7 @@ SynProg: (((i + j) + (j + j)) + ((j + j) + (j + j)))
 SynProg: (((i + j) + (j + j)) + ((j + j) + (j + j)))
 Complete, program found (((i + j) + (j + j)) + ((j + j) + (j + j)))
 
-Start search node 0x168cb50
+Start search node 0x9e6b50
 i 8 j 19 sizei 16 sizej 32 _out 141
 Searched Program: 
 Init pList size 17, check correct
@@ -136,7 +136,7 @@ Current pList size 13455, eliminate equvalents
 Time out for bottem up search
 Current node size 1 Split current node, failed
 
-Start search node 0x168ca10
+Start search node 0x9e6a10
 i 8 j 19 sizei 32 sizej 32 _out 141
 Searched Program: 
 Init pList size 17, check correct

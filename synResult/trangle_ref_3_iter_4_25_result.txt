@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x1f8c4a0
+Start search node 0x23fa4a0
 i 4 j 25 sizei 8 sizej 8 _out -1
 i 4 j 25 sizei 8 sizej 16 _out -1
 i 4 j 25 sizei 8 sizej 32 _out 55
@@ -51,7 +51,7 @@ SynProg: (j < sizej)
 SynProg: (j < sizej)
 Complete, program found (j < sizej)
 
-Start search node 0x1f8bdc0
+Start search node 0x23f9dc0
 i 4 j 25 sizei 8 sizej 8 _out -1
 i 4 j 25 sizei 8 sizej 16 _out -1
 i 4 j 25 sizei 16 sizej 8 _out -1
@@ -64,7 +64,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x1f8c090
+Start search node 0x23fa090
 i 4 j 25 sizei 8 sizej 32 _out 55
 i 4 j 25 sizei 16 sizej 32 _out 103
 i 4 j 25 sizei 32 sizej 32 _out 169
@@ -89,7 +89,7 @@ SynProg: (j < (sizei + sizei))
 SynProg: (j < (sizei + sizei))
 Complete, program found (j < (sizei + sizei))
 
-Start search node 0x1f87790
+Start search node 0x23f5790
 i 4 j 25 sizei 8 sizej 32 _out 55
 Searched Program: 
 Init pList size 17, check correct
@@ -100,7 +100,7 @@ SynProg: (5 * 11)
 SynProg: (5 * 11)
 Complete, program found (5 * 11)
 
-Start search node 0x1f89060
+Start search node 0x23f7060
 i 4 j 25 sizei 16 sizej 32 _out 103
 i 4 j 25 sizei 32 sizej 32 _out 169
 Searched Program: 
@@ -121,7 +121,7 @@ SynProg: (j < sizei)
 SynProg: (j < sizei)
 Complete, program found (j < sizei)
 
-Start search node 0x1f87b50
+Start search node 0x23f5b50
 i 4 j 25 sizei 16 sizej 32 _out 103
 Searched Program: 
 Init pList size 17, check correct
@@ -133,7 +133,7 @@ Current pList size 13224, eliminate equvalents
 Time out for bottem up search
 Current node size 1 Split current node, failed
 
-Start search node 0x1f87a10
+Start search node 0x23f5a10
 i 4 j 25 sizei 32 sizej 32 _out 169
 Searched Program: 
 Init pList size 17, check correct

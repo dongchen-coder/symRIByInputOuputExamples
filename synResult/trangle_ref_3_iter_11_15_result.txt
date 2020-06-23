@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x12034a0
+Start search node 0x17104a0
 i 11 j 15 sizei 8 sizej 8 _out -1
 i 11 j 15 sizei 8 sizej 16 _out -1
 i 11 j 15 sizei 8 sizej 32 _out -1
@@ -54,7 +54,7 @@ SynProg: ((i < sizei) && (i < sizej))
 SynProg: ((i < sizei) && (i < sizej))
 Complete, program found ((i < sizei) && (i < sizej))
 
-Start search node 0x1202eb0
+Start search node 0x170feb0
 i 11 j 15 sizei 8 sizej 8 _out -1
 i 11 j 15 sizei 8 sizej 16 _out -1
 i 11 j 15 sizei 8 sizej 32 _out -1
@@ -66,7 +66,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x1203270
+Start search node 0x1710270
 i 11 j 15 sizei 16 sizej 16 _out 31
 i 11 j 15 sizei 16 sizej 32 _out 127
 i 11 j 15 sizei 32 sizej 16 _out 31
@@ -92,7 +92,7 @@ SynProg: (sizej < (i + i))
 SynProg: (sizej < (i + i))
 Complete, program found (sizej < (i + i))
 
-Start search node 0x11fe330
+Start search node 0x170b330
 i 11 j 15 sizei 16 sizej 16 _out 31
 i 11 j 15 sizei 32 sizej 16 _out 31
 Searched Program: 
@@ -104,7 +104,7 @@ SynProg: (j + sizej)
 SynProg: (j + sizej)
 Complete, program found (j + sizej)
 
-Start search node 0x12028c0
+Start search node 0x170f8c0
 i 11 j 15 sizei 16 sizej 32 _out 127
 i 11 j 15 sizei 32 sizej 32 _out 127
 Searched Program: 
@@ -131,7 +131,7 @@ SynProg: ((i + (i + i)) + ((j + j) + (sizej + sizej)))
 SynProg: ((i + (i + i)) + ((j + j) + (sizej + sizej)))
 Complete, program found ((i + (i + i)) + ((j + j) + (sizej + sizej)))
 
-Start search node 0x12030e0
+Start search node 0x17100e0
 i 11 j 15 sizei 16 sizej 32 _out 127
 Searched Program: 
 Init pList size 17, check correct
@@ -143,7 +143,7 @@ Current pList size 12320, eliminate equvalents
 Time out for bottem up search
 Current node size 1 Split current node, failed
 
-Start search node 0x11fe4c0
+Start search node 0x170b4c0
 i 11 j 15 sizei 32 sizej 32 _out 127
 Searched Program: 
 Init pList size 17, check correct

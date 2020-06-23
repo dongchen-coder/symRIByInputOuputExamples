@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x1a5c4a0
+Start search node 0x21af4a0
 i 1 j 21 sizei 8 sizej 8 _out -1
 i 1 j 21 sizei 8 sizej 16 _out -1
 i 1 j 21 sizei 8 sizej 32 _out 55
@@ -51,7 +51,7 @@ SynProg: (j < sizej)
 SynProg: (j < sizej)
 Complete, program found (j < sizej)
 
-Start search node 0x1a5bdc0
+Start search node 0x21aedc0
 i 1 j 21 sizei 8 sizej 8 _out -1
 i 1 j 21 sizei 8 sizej 16 _out -1
 i 1 j 21 sizei 16 sizej 8 _out -1
@@ -64,7 +64,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x1a5c090
+Start search node 0x21af090
 i 1 j 21 sizei 8 sizej 32 _out 55
 i 1 j 21 sizei 16 sizej 32 _out 103
 i 1 j 21 sizei 32 sizej 32 _out 0
@@ -86,7 +86,7 @@ SynProg: (j < sizei)
 SynProg: (j < sizei)
 Complete, program found (j < sizei)
 
-Start search node 0x1a57790
+Start search node 0x21aa790
 i 1 j 21 sizei 32 sizej 32 _out 0
 Searched Program: 
 Init pList size 17, check correct
@@ -97,7 +97,7 @@ SynProg: (i + -1)
 SynProg: (i + -1)
 Complete, program found (i + -1)
 
-Start search node 0x1a59060
+Start search node 0x21ac060
 i 1 j 21 sizei 8 sizej 32 _out 55
 i 1 j 21 sizei 16 sizej 32 _out 103
 Searched Program: 
@@ -121,7 +121,7 @@ SynProg: (j < (sizei + sizei))
 SynProg: (j < (sizei + sizei))
 Complete, program found (j < (sizei + sizei))
 
-Start search node 0x1a59200
+Start search node 0x21ac200
 i 1 j 21 sizei 8 sizej 32 _out 55
 Searched Program: 
 Init pList size 17, check correct
@@ -132,7 +132,7 @@ SynProg: (5 * 11)
 SynProg: (5 * 11)
 Complete, program found (5 * 11)
 
-Start search node 0x1a594c0
+Start search node 0x21ac4c0
 i 1 j 21 sizei 16 sizej 32 _out 103
 Searched Program: 
 Init pList size 17, check correct
@@ -141,11 +141,10 @@ Current pList size 323, eliminate equvalents
 Current pList size 113, check correct
 Current pList size 113, grow
 Current pList size 12995, eliminate equvalents
-Time out for bottem up search
-Current node size 1 Split current node, failed
-Search fcase failed
-Search fcase failed
-Search fcase failed
+Current pList size 2654, check correct
+SynProg: (3 + (10 * 10))
+SynProg: (3 + (10 * 10))
+Complete, program found (3 + (10 * 10))
 --------------------------------------, dump tree after search
 i 1 j 21 sizei 8 sizej 8 _out 1
 i 1 j 21 sizei 8 sizej 16 _out 1
@@ -156,7 +155,7 @@ i 1 j 21 sizei 16 sizej 32 _out 0
 i 1 j 21 sizei 32 sizej 8 _out 1
 i 1 j 21 sizei 32 sizej 16 _out 1
 i 1 j 21 sizei 32 sizej 32 _out 0
-Searched Program: 
+Searched Program: (if (j < sizej) then -1 else (if (j < sizei) then (i + -1) else (if (j < (sizei + sizei)) then (5 * 11) else (3 + (10 * 10)))))
 L---i 1 j 21 sizei 8 sizej 8 _out -1
 L---i 1 j 21 sizei 8 sizej 16 _out -1
 L---i 1 j 21 sizei 16 sizej 8 _out -1
@@ -167,17 +166,17 @@ Searched Program: -1
 R---i 1 j 21 sizei 8 sizej 32 _out 0
 R---i 1 j 21 sizei 16 sizej 32 _out 0
 R---i 1 j 21 sizei 32 sizej 32 _out 1
-Searched Program: 
+Searched Program: (if (j < sizei) then (i + -1) else (if (j < (sizei + sizei)) then (5 * 11) else (3 + (10 * 10))))
 R---L---i 1 j 21 sizei 32 sizej 32 _out 0
 Searched Program: (i + -1)
 R---R---i 1 j 21 sizei 8 sizej 32 _out 1
 R---R---i 1 j 21 sizei 16 sizej 32 _out 0
-Searched Program: 
+Searched Program: (if (j < (sizei + sizei)) then (5 * 11) else (3 + (10 * 10)))
 R---R---L---i 1 j 21 sizei 8 sizej 32 _out 55
 Searched Program: (5 * 11)
 R---R---R---i 1 j 21 sizei 16 sizej 32 _out 103
-Searched Program: 
+Searched Program: (3 + (10 * 10))
 --------------------------------------
 --------------------------------------, dump search result start
-Not yet founded, (T^T)
+Searched Program (^0^) : (if (j < sizej) then -1 else (if (j < sizei) then (i + -1) else (if (j < (sizei + sizei)) then (5 * 11) else (3 + (10 * 10)))))
 --------------------------------------

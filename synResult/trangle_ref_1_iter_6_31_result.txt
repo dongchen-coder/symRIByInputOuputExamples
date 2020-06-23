@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x1b3a4a0
+Start search node 0x143b4a0
 i 6 j 31 sizei 8 sizej 8 _out -1
 i 6 j 31 sizei 8 sizej 16 _out -1
 i 6 j 31 sizei 8 sizej 32 _out 51
@@ -51,7 +51,7 @@ SynProg: (j < sizej)
 SynProg: (j < sizej)
 Complete, program found (j < sizej)
 
-Start search node 0x1b39dc0
+Start search node 0x143adc0
 i 6 j 31 sizei 8 sizej 8 _out -1
 i 6 j 31 sizei 8 sizej 16 _out -1
 i 6 j 31 sizei 16 sizej 8 _out -1
@@ -64,7 +64,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x1b3a090
+Start search node 0x143b090
 i 6 j 31 sizei 8 sizej 32 _out 51
 i 6 j 31 sizei 16 sizej 32 _out 99
 i 6 j 31 sizei 32 sizej 32 _out 153
@@ -89,7 +89,7 @@ SynProg: (j < (sizei + sizei))
 SynProg: (j < (sizei + sizei))
 Complete, program found (j < (sizei + sizei))
 
-Start search node 0x1b35790
+Start search node 0x1436790
 i 6 j 31 sizei 8 sizej 32 _out 51
 Searched Program: 
 Init pList size 17, check correct
@@ -98,12 +98,10 @@ Current pList size 323, eliminate equvalents
 Current pList size 108, check correct
 Current pList size 108, grow
 Current pList size 11880, eliminate equvalents
-Current pList size 2493, check correct
-SynProg: (i + (5 * 9))
-SynProg: (i + (5 * 9))
-Complete, program found (i + (5 * 9))
+Time out for bottem up search
+Current node size 1 Split current node, failed
 
-Start search node 0x1b37060
+Start search node 0x1438060
 i 6 j 31 sizei 16 sizej 32 _out 99
 i 6 j 31 sizei 32 sizej 32 _out 153
 Searched Program: 
@@ -124,7 +122,7 @@ SynProg: (j < sizei)
 SynProg: (j < sizei)
 Complete, program found (j < sizei)
 
-Start search node 0x1b35b50
+Start search node 0x1436b50
 i 6 j 31 sizei 16 sizej 32 _out 99
 Searched Program: 
 Init pList size 17, check correct
@@ -135,7 +133,7 @@ SynProg: (9 * 11)
 SynProg: (9 * 11)
 Complete, program found (9 * 11)
 
-Start search node 0x1b35a10
+Start search node 0x1436a10
 i 6 j 31 sizei 32 sizej 32 _out 153
 Searched Program: 
 Init pList size 17, check correct
@@ -147,6 +145,7 @@ Current pList size 11880, eliminate equvalents
 Time out for bottem up search
 Current node size 1 Split current node, failed
 Search fcase failed
+Search tcase failed
 Search fcase failed
 Search fcase failed
 --------------------------------------, dump tree after search
@@ -172,7 +171,7 @@ R---i 6 j 31 sizei 16 sizej 32 _out 0
 R---i 6 j 31 sizei 32 sizej 32 _out 0
 Searched Program: 
 R---L---i 6 j 31 sizei 8 sizej 32 _out 51
-Searched Program: (i + (5 * 9))
+Searched Program: 
 R---R---i 6 j 31 sizei 16 sizej 32 _out 1
 R---R---i 6 j 31 sizei 32 sizej 32 _out 0
 Searched Program: 

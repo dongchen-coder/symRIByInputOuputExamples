@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x11bb4a0
+Start search node 0x13b04a0
 i 6 j 16 sizei 8 sizej 8 _out -1
 i 6 j 16 sizei 8 sizej 16 _out 55
 i 6 j 16 sizei 8 sizej 32 _out 55
@@ -51,7 +51,7 @@ SynProg: (sizej < j)
 SynProg: (sizej < j)
 Complete, program found (sizej < j)
 
-Start search node 0x11bb3b0
+Start search node 0x13b03b0
 i 6 j 16 sizei 8 sizej 8 _out -1
 i 6 j 16 sizei 16 sizej 8 _out -1
 i 6 j 16 sizei 32 sizej 8 _out -1
@@ -61,7 +61,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x11bc900
+Start search node 0x13b1900
 i 6 j 16 sizei 8 sizej 16 _out 55
 i 6 j 16 sizei 8 sizej 32 _out 55
 i 6 j 16 sizei 16 sizej 16 _out 69
@@ -92,7 +92,7 @@ SynProg: ((j < sizej) && (! (sizei < j) ))
 SynProg: ((j < sizej) && (! (sizei < j) ))
 Complete, program found ((j < sizej) && (! (sizei < j) ))
 
-Start search node 0x11b6420
+Start search node 0x13ab420
 i 6 j 16 sizei 8 sizej 16 _out 55
 i 6 j 16 sizei 8 sizej 32 _out 55
 i 6 j 16 sizei 16 sizej 16 _out 69
@@ -115,7 +115,7 @@ SynProg: (sizei < j)
 SynProg: (sizei < j)
 Complete, program found (sizei < j)
 
-Start search node 0x11baf00
+Start search node 0x13aff00
 i 6 j 16 sizei 8 sizej 16 _out 55
 i 6 j 16 sizei 8 sizej 32 _out 55
 Searched Program: 
@@ -127,7 +127,7 @@ SynProg: (5 * 11)
 SynProg: (5 * 11)
 Complete, program found (5 * 11)
 
-Start search node 0x11b6ce0
+Start search node 0x13abce0
 i 6 j 16 sizei 16 sizej 16 _out 69
 i 6 j 16 sizei 32 sizej 16 _out 69
 Searched Program: 
@@ -155,7 +155,7 @@ Current pList size 40113, eliminate equvalents
 Time out for bottem up search
 Search fcase failed
 
-Start search node 0x11b68d0
+Start search node 0x13ab8d0
 i 6 j 16 sizei 16 sizej 32 _out 157
 i 6 j 16 sizei 32 sizej 32 _out 157
 Searched Program: 
