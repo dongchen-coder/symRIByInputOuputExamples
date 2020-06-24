@@ -1,6 +1,6 @@
 import os
 
-path = "./synResult/"
+path = "../synResult/"
 files = os.listdir(path)
 
 succeed = 0
@@ -24,8 +24,8 @@ for name in files:
 		if ("(T^T)" in line):
 			failed += 1
 			print name.replace("_result.txt", ""), line.replace("\n","")
-			os.system("./bin/symRiSymthesiser ./inputoutput/" + name.replace("_result.txt", "") + ".txt > ./synResult/" + name)
-			exit()
+			#os.system("./bin/symRiSymthesiser ./inputoutput/" + name.replace("_result.txt", "") + ".txt > ./synResult/" + name)
+			#exit()
 			if "NYI" in symbolicHist.keys():
 				symbolicHist["NYI"] += 1
 			else:
