@@ -14,7 +14,13 @@ Current issues and TODOs:
 
 (5) ~~When grow, commutative expressions only generate once~~
 
-(6) Support backtracing when search fails
+(6) ~~Support backtracing when search fails~~
+
+(7) add a database for inputoutputs to prog mapping
+
+(8) when search failed, unfold from single refernece to reference pair
+
+(9) Gen code from symbolic RI to get predicted results
 
 Questions:
 
@@ -24,6 +30,6 @@ Questions:
 
 (3) Rules to remove equalivents? (1) Type guided: contant > var > expr (2) length guided: short > long (3) random? (4) reserve more than one? 
 
-(4) How to encode cacheline granularity into target program?
+(4) How to encode cacheline granularity into target program? (1) learn from cacheline granuliarity input-outputs (2) find the symbolic relation from element granularity to cache line granularity conversion
 
 (5) How to make the synthesized program more likely to be the correct one instead of overfitting (like expressions with only constants are likely to be overfitted)? 

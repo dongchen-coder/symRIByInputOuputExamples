@@ -43,7 +43,7 @@ void langConfiguration(int* depthBoundPred,
     
     //constantsPred->push_back("0");
     //constantsPred->push_back("1");
-    //constantsPred->push_back("2");
+    constantsPred->push_back("2");
     //constantsPred->push_back("3");
     //constantsPred->push_back("4");
     //constantsPred->push_back("5");
