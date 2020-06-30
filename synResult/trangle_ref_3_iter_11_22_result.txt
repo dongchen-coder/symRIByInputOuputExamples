@@ -13,7 +13,7 @@ Language used in Unification:
         program depth bound: 6
         intOps: VAR PLUS 
         boolOps: F AND NOT LT 
-        constants: 
+        constants: 2 
         vars: i j sizei sizej 
     Term language:
         program depth bound: 6
@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x118c4a0
+Start search node 0x8664a0
 i 11 j 22 sizei 8 sizej 8 _out -1
 i 11 j 22 sizei 8 sizej 16 _out -1
 i 11 j 22 sizei 8 sizej 32 _out -1
@@ -41,20 +41,21 @@ Current pList size 148, check correct
 Current pList size 148, grow
 Current pList size 22200, eliminate equvalents
 Time out for bottem up search
-Current node size 9 Split to two: left size 7 right size 2
+Failed, try to split node: Current node size 9 Split to two: left size 7 right size 2
 Split current node, succeed
-Init pList size 4, check correct
-Current pList size 4, grow
-Current pList size 31, eliminate equvalents
-Current pList size 25, check correct
-Current pList size 25, grow
-Current pList size 364, eliminate equvalents
-Current pList size 106, check correct
+Start search condition, Init pList size 5, check correct
+Current pList size 5, grow
+Current pList size 46, eliminate equvalents
+Current pList size 31, check correct
+Current pList size 31, grow
+Current pList size 661, eliminate equvalents
+Current pList size 157, check correct
 SynProg: ((i < sizei) && (j < sizej))
 SynProg: ((i < sizei) && (j < sizej))
-Complete, program found ((i < sizei) && (j < sizej))
+Start search condition, Complete, program found ((i < sizei) && (j < sizej))
+succeed
 
-Start search node 0x118b9b0
+Start search node 0x8659b0
 i 11 j 22 sizei 8 sizej 8 _out -1
 i 11 j 22 sizei 8 sizej 16 _out -1
 i 11 j 22 sizei 8 sizej 32 _out -1
@@ -68,7 +69,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x118bcd0
+Start search node 0x865cd0
 i 11 j 22 sizei 16 sizej 32 _out 127
 i 11 j 22 sizei 32 sizej 32 _out 127
 Searched Program: 
@@ -79,47 +80,60 @@ Current pList size 136, check correct
 Current pList size 136, grow
 Current pList size 18768, eliminate equvalents
 Time out for bottem up search
-Current node size 2 Split to two: left size 1 right size 1
+Failed, try to split node: Current node size 2 Split to two: left size 1 right size 1
 Split current node, succeed
-Init pList size 4, check correct
-Current pList size 4, grow
-Current pList size 31, eliminate equvalents
-Current pList size 17, check correct
-Current pList size 17, grow
-Current pList size 288, eliminate equvalents
-Current pList size 58, check correct
-Current pList size 58, grow
-Current pList size 4470, eliminate equvalents
-Current pList size 288, check correct
-Current pList size 288, grow
-Current pList size 121425, eliminate equvalents
-Time out for bottem up search
+Start search condition, Init pList size 5, check correct
+Current pList size 5, grow
+Current pList size 46, eliminate equvalents
+Current pList size 23, check correct
+Current pList size 23, grow
+Current pList size 585, eliminate equvalents
+Current pList size 102, check correct
+Current pList size 102, grow
+Current pList size 14568, eliminate equvalents
+Current pList size 608, check correct
+Current pList size 608, grow
+Start search condition, Time out for bottem up search
+faild
+Current node size 2 Split to two: left size 2 right size 0
+Split current node, succeed
+Start search condition, Init pList size 5, check correct
+Current pList size 5, grow
+Current pList size 46, eliminate equvalents
+Current pList size 23, check correct
+Current pList size 23, grow
+Current pList size 585, eliminate equvalents
+Current pList size 102, check correct
+Current pList size 102, grow
+Current pList size 14568, eliminate equvalents
+Current pList size 608, check correct
+Current pList size 608, grow
+Start search condition, Time out for bottem up search
+faild
 Search fcase failed
+Current node size 9 Split to two: left size 7 right size 2
+Split current node, succeed
+Start search condition, Init pList size 5, check correct
+Current pList size 5, grow
+Current pList size 46, eliminate equvalents
+Current pList size 31, check correct
+Current pList size 31, grow
+Current pList size 661, eliminate equvalents
+Current pList size 157, check correct
+Current pList size 157, grow
+Current pList size 17865, eliminate equvalents
+Start search condition, Time out for bottem up search
+faild
 --------------------------------------, dump tree after search
-i 11 j 22 sizei 8 sizej 8 _out 1
-i 11 j 22 sizei 8 sizej 16 _out 1
-i 11 j 22 sizei 8 sizej 32 _out 1
-i 11 j 22 sizei 16 sizej 8 _out 1
-i 11 j 22 sizei 16 sizej 16 _out 1
-i 11 j 22 sizei 16 sizej 32 _out 0
-i 11 j 22 sizei 32 sizej 8 _out 1
-i 11 j 22 sizei 32 sizej 16 _out 1
-i 11 j 22 sizei 32 sizej 32 _out 0
-Searched Program: 
-L---i 11 j 22 sizei 8 sizej 8 _out -1
-L---i 11 j 22 sizei 8 sizej 16 _out -1
-L---i 11 j 22 sizei 8 sizej 32 _out -1
-L---i 11 j 22 sizei 16 sizej 8 _out -1
-L---i 11 j 22 sizei 16 sizej 16 _out -1
-L---i 11 j 22 sizei 32 sizej 8 _out -1
-L---i 11 j 22 sizei 32 sizej 16 _out -1
-Searched Program: -1
-R---i 11 j 22 sizei 16 sizej 32 _out 127
-R---i 11 j 22 sizei 32 sizej 32 _out 127
-Searched Program: 
-R---L---i 11 j 22 sizei 16 sizej 32 _out 127
-Searched Program: 
-R---R---i 11 j 22 sizei 32 sizej 32 _out 127
+i 11 j 22 sizei 8 sizej 8 _out -1
+i 11 j 22 sizei 8 sizej 16 _out -1
+i 11 j 22 sizei 8 sizej 32 _out -1
+i 11 j 22 sizei 16 sizej 8 _out -1
+i 11 j 22 sizei 16 sizej 16 _out -1
+i 11 j 22 sizei 32 sizej 8 _out -1
+i 11 j 22 sizei 32 sizej 16 _out -1
+i 11 j 22 sizei 16 sizej 32 _out 127
+i 11 j 22 sizei 32 sizej 32 _out 127
 Searched Program: 
 --------------------------------------
 --------------------------------------, dump search result start

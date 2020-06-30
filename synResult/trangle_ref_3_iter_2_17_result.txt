@@ -13,7 +13,7 @@ Language used in Unification:
         program depth bound: 6
         intOps: VAR PLUS 
         boolOps: F AND NOT LT 
-        constants: 
+        constants: 2 
         vars: i j sizei sizej 
     Term language:
         program depth bound: 6
@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x8484a0
+Start search node 0x1f5b4a0
 i 2 j 17 sizei 8 sizej 8 _out -1
 i 2 j 17 sizei 8 sizej 16 _out -1
 i 2 j 17 sizei 8 sizej 32 _out 55
@@ -41,17 +41,18 @@ Current pList size 151, check correct
 Current pList size 151, grow
 Current pList size 23103, eliminate equvalents
 Time out for bottem up search
-Current node size 9 Split to two: left size 6 right size 3
+Failed, try to split node: Current node size 9 Split to two: left size 6 right size 3
 Split current node, succeed
-Init pList size 4, check correct
-Current pList size 4, grow
-Current pList size 31, eliminate equvalents
+Start search condition, Init pList size 5, check correct
+Current pList size 5, grow
+Current pList size 46, eliminate equvalents
 Current pList size 22, check correct
 SynProg: (j < sizej)
 SynProg: (j < sizej)
-Complete, program found (j < sizej)
+Start search condition, Complete, program found (j < sizej)
+succeed
 
-Start search node 0x847dc0
+Start search node 0x1f5adc0
 i 2 j 17 sizei 8 sizej 8 _out -1
 i 2 j 17 sizei 8 sizej 16 _out -1
 i 2 j 17 sizei 16 sizej 8 _out -1
@@ -64,7 +65,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x848090
+Start search node 0x1f5b090
 i 2 j 17 sizei 8 sizej 32 _out 55
 i 2 j 17 sizei 16 sizej 32 _out 181
 i 2 j 17 sizei 32 sizej 32 _out 181
@@ -76,20 +77,21 @@ Current pList size 140, check correct
 Current pList size 140, grow
 Current pList size 19880, eliminate equvalents
 Time out for bottem up search
-Current node size 3 Split to two: left size 1 right size 2
+Failed, try to split node: Current node size 3 Split to two: left size 1 right size 2
 Split current node, succeed
-Init pList size 4, check correct
-Current pList size 4, grow
-Current pList size 31, eliminate equvalents
+Start search condition, Init pList size 5, check correct
+Current pList size 5, grow
+Current pList size 46, eliminate equvalents
 Current pList size 17, check correct
 Current pList size 17, grow
 Current pList size 288, eliminate equvalents
 Current pList size 60, check correct
 SynProg: (j < (i + sizei))
 SynProg: (j < (i + sizei))
-Complete, program found (j < (i + sizei))
+Start search condition, Complete, program found (j < (i + sizei))
+succeed
 
-Start search node 0x843790
+Start search node 0x1f56790
 i 2 j 17 sizei 8 sizej 32 _out 55
 Searched Program: 
 Init pList size 17, check correct
@@ -100,7 +102,7 @@ SynProg: (5 * 11)
 SynProg: (5 * 11)
 Complete, program found (5 * 11)
 
-Start search node 0x845060
+Start search node 0x1f58090
 i 2 j 17 sizei 16 sizej 32 _out 181
 i 2 j 17 sizei 32 sizej 32 _out 181
 Searched Program: 
@@ -111,11 +113,11 @@ Current pList size 140, check correct
 Current pList size 140, grow
 Current pList size 19880, eliminate equvalents
 Time out for bottem up search
-Current node size 2 Split to two: left size 1 right size 1
+Failed, try to split node: Current node size 2 Split to two: left size 1 right size 1
 Split current node, succeed
-Init pList size 4, check correct
-Current pList size 4, grow
-Current pList size 31, eliminate equvalents
+Start search condition, Init pList size 5, check correct
+Current pList size 5, grow
+Current pList size 46, eliminate equvalents
 Current pList size 17, check correct
 Current pList size 17, grow
 Current pList size 288, eliminate equvalents
@@ -125,9 +127,10 @@ Current pList size 4470, eliminate equvalents
 Current pList size 288, check correct
 SynProg: (((i + i) + (j + sizej)) + ((sizej + sizej) + (sizej + sizej)))
 SynProg: (((i + i) + (j + sizej)) + ((sizej + sizej) + (sizej + sizej)))
-Complete, program found (((i + i) + (j + sizej)) + ((sizej + sizej) + (sizej + sizej)))
+Start search condition, Complete, program found (((i + i) + (j + sizej)) + ((sizej + sizej) + (sizej + sizej)))
+succeed
 
-Start search node 0x843b50
+Start search node 0x1f56b50
 i 2 j 17 sizei 16 sizej 32 _out 181
 Searched Program: 
 Init pList size 17, check correct
@@ -137,55 +140,4 @@ Current pList size 114, check correct
 Current pList size 114, grow
 Current pList size 13224, eliminate equvalents
 Time out for bottem up search
-Current node size 1 Split current node, failed
-
-Start search node 0x843a10
-i 2 j 17 sizei 32 sizej 32 _out 181
-Searched Program: 
-Init pList size 17, check correct
-Current pList size 17, grow
-Current pList size 323, eliminate equvalents
-Current pList size 109, check correct
-Current pList size 109, grow
-Current pList size 12099, eliminate equvalents
-Time out for bottem up search
-Current node size 1 Split current node, failed
-Search tcase failed
-Search fcase failed
-Search fcase failed
-Search fcase failed
---------------------------------------, dump tree after search
-i 2 j 17 sizei 8 sizej 8 _out 1
-i 2 j 17 sizei 8 sizej 16 _out 1
-i 2 j 17 sizei 8 sizej 32 _out 0
-i 2 j 17 sizei 16 sizej 8 _out 1
-i 2 j 17 sizei 16 sizej 16 _out 1
-i 2 j 17 sizei 16 sizej 32 _out 0
-i 2 j 17 sizei 32 sizej 8 _out 1
-i 2 j 17 sizei 32 sizej 16 _out 1
-i 2 j 17 sizei 32 sizej 32 _out 0
-Searched Program: 
-L---i 2 j 17 sizei 8 sizej 8 _out -1
-L---i 2 j 17 sizei 8 sizej 16 _out -1
-L---i 2 j 17 sizei 16 sizej 8 _out -1
-L---i 2 j 17 sizei 16 sizej 16 _out -1
-L---i 2 j 17 sizei 32 sizej 8 _out -1
-L---i 2 j 17 sizei 32 sizej 16 _out -1
-Searched Program: -1
-R---i 2 j 17 sizei 8 sizej 32 _out 1
-R---i 2 j 17 sizei 16 sizej 32 _out 0
-R---i 2 j 17 sizei 32 sizej 32 _out 0
-Searched Program: 
-R---L---i 2 j 17 sizei 8 sizej 32 _out 55
-Searched Program: (5 * 11)
-R---R---i 2 j 17 sizei 16 sizej 32 _out 181
-R---R---i 2 j 17 sizei 32 sizej 32 _out 181
-Searched Program: 
-R---R---L---i 2 j 17 sizei 16 sizej 32 _out 181
-Searched Program: 
-R---R---R---i 2 j 17 sizei 32 sizej 32 _out 181
-Searched Program: 
---------------------------------------
---------------------------------------, dump search result start
-Not yet founded, (T^T)
---------------------------------------
+Failed, try to split node: Current node size 1 Split current node, failed

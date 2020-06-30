@@ -13,7 +13,7 @@ Language used in Unification:
         program depth bound: 6
         intOps: VAR PLUS 
         boolOps: F AND NOT LT 
-        constants: 
+        constants: 2 
         vars: i j sizei sizej 
     Term language:
         program depth bound: 6
@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x11d94a0
+Start search node 0x171b4a0
 i 24 j 24 sizei 8 sizej 8 _out -1
 i 24 j 24 sizei 8 sizej 16 _out -1
 i 24 j 24 sizei 8 sizej 32 _out -1
@@ -41,20 +41,21 @@ Current pList size 148, check correct
 Current pList size 148, grow
 Current pList size 22200, eliminate equvalents
 Time out for bottem up search
-Current node size 9 Split to two: left size 8 right size 1
+Failed, try to split node: Current node size 9 Split to two: left size 8 right size 1
 Split current node, succeed
-Init pList size 4, check correct
-Current pList size 4, grow
-Current pList size 31, eliminate equvalents
-Current pList size 16, check correct
-Current pList size 16, grow
-Current pList size 171, eliminate equvalents
-Current pList size 63, check correct
+Start search condition, Init pList size 5, check correct
+Current pList size 5, grow
+Current pList size 46, eliminate equvalents
+Current pList size 22, check correct
+Current pList size 22, grow
+Current pList size 360, eliminate equvalents
+Current pList size 99, check correct
 SynProg: ((i < sizei) && (i < sizej))
 SynProg: ((i < sizei) && (i < sizej))
-Complete, program found ((i < sizei) && (i < sizej))
+Start search condition, Complete, program found ((i < sizei) && (i < sizej))
+succeed
 
-Start search node 0x11d8b40
+Start search node 0x171ab40
 i 24 j 24 sizei 8 sizej 8 _out -1
 i 24 j 24 sizei 8 sizej 16 _out -1
 i 24 j 24 sizei 8 sizej 32 _out -1
@@ -69,7 +70,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x11d4bf0
+Start search node 0x1716bf0
 i 24 j 24 sizei 32 sizej 32 _out 58
 Searched Program: 
 Init pList size 17, check correct
@@ -79,31 +80,4 @@ Current pList size 103, check correct
 Current pList size 103, grow
 Current pList size 10815, eliminate equvalents
 Time out for bottem up search
-Current node size 1 Split current node, failed
-Search fcase failed
---------------------------------------, dump tree after search
-i 24 j 24 sizei 8 sizej 8 _out 1
-i 24 j 24 sizei 8 sizej 16 _out 1
-i 24 j 24 sizei 8 sizej 32 _out 1
-i 24 j 24 sizei 16 sizej 8 _out 1
-i 24 j 24 sizei 16 sizej 16 _out 1
-i 24 j 24 sizei 16 sizej 32 _out 1
-i 24 j 24 sizei 32 sizej 8 _out 1
-i 24 j 24 sizei 32 sizej 16 _out 1
-i 24 j 24 sizei 32 sizej 32 _out 0
-Searched Program: 
-L---i 24 j 24 sizei 8 sizej 8 _out -1
-L---i 24 j 24 sizei 8 sizej 16 _out -1
-L---i 24 j 24 sizei 8 sizej 32 _out -1
-L---i 24 j 24 sizei 16 sizej 8 _out -1
-L---i 24 j 24 sizei 16 sizej 16 _out -1
-L---i 24 j 24 sizei 16 sizej 32 _out -1
-L---i 24 j 24 sizei 32 sizej 8 _out -1
-L---i 24 j 24 sizei 32 sizej 16 _out -1
-Searched Program: -1
-R---i 24 j 24 sizei 32 sizej 32 _out 58
-Searched Program: 
---------------------------------------
---------------------------------------, dump search result start
-Not yet founded, (T^T)
---------------------------------------
+Failed, try to split node: Current node size 1 Split current node, failed
