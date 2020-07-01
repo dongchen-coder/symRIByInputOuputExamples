@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x25294a0
+Start search node 0xd704a0
 i 26 j 26 sizei 8 sizej 8 _out -1
 i 26 j 26 sizei 8 sizej 16 _out -1
 i 26 j 26 sizei 8 sizej 32 _out -1
@@ -55,7 +55,7 @@ SynProg: ((i < sizei) && (i < sizej))
 Start search condition, Complete, program found ((i < sizei) && (i < sizej))
 succeed
 
-Start search node 0x2528b40
+Start search node 0xd6fb40
 i 26 j 26 sizei 8 sizej 8 _out -1
 i 26 j 26 sizei 8 sizej 16 _out -1
 i 26 j 26 sizei 8 sizej 32 _out -1
@@ -70,7 +70,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x2524bf0
+Start search node 0xd6bbf0
 i 26 j 26 sizei 32 sizej 32 _out 46
 Searched Program: 
 Init pList size 17, check correct
@@ -79,5 +79,33 @@ Current pList size 323, eliminate equvalents
 Current pList size 111, check correct
 Current pList size 111, grow
 Current pList size 12543, eliminate equvalents
-Time out for bottem up search
-Failed, try to split node: Current node size 1 Split current node, failed
+Current pList size 2657, check correct
+SynProg: (i + (8 + 12))
+SynProg: (i + (8 + 12))
+Complete, program found (i + (8 + 12))
+--------------------------------------, dump tree after search
+i 26 j 26 sizei 8 sizej 8 _out 1
+i 26 j 26 sizei 8 sizej 16 _out 1
+i 26 j 26 sizei 8 sizej 32 _out 1
+i 26 j 26 sizei 16 sizej 8 _out 1
+i 26 j 26 sizei 16 sizej 16 _out 1
+i 26 j 26 sizei 16 sizej 32 _out 1
+i 26 j 26 sizei 32 sizej 8 _out 1
+i 26 j 26 sizei 32 sizej 16 _out 1
+i 26 j 26 sizei 32 sizej 32 _out 0
+Searched Program: (if ((i < sizei) && (i < sizej)) then -1 else (i + (8 + 12)))
+L---i 26 j 26 sizei 8 sizej 8 _out -1
+L---i 26 j 26 sizei 8 sizej 16 _out -1
+L---i 26 j 26 sizei 8 sizej 32 _out -1
+L---i 26 j 26 sizei 16 sizej 8 _out -1
+L---i 26 j 26 sizei 16 sizej 16 _out -1
+L---i 26 j 26 sizei 16 sizej 32 _out -1
+L---i 26 j 26 sizei 32 sizej 8 _out -1
+L---i 26 j 26 sizei 32 sizej 16 _out -1
+Searched Program: -1
+R---i 26 j 26 sizei 32 sizej 32 _out 46
+Searched Program: (i + (8 + 12))
+--------------------------------------
+--------------------------------------, dump search result start
+Searched Program (^0^) : (if ((i < sizei) && (i < sizej)) then -1 else (i + (8 + 12)))
+--------------------------------------

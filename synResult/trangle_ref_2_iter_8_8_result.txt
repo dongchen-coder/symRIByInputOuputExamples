@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x1d954a0
+Start search node 0x1ee04a0
 i 8 j 8 sizei 8 sizej 8 _out 10
 i 8 j 8 sizei 8 sizej 16 _out 7
 i 8 j 8 sizei 8 sizej 32 _out 35
@@ -40,6 +40,8 @@ Current pList size 323, eliminate equvalents
 Current pList size 132, check correct
 Current pList size 132, grow
 Current pList size 17688, eliminate equvalents
+Current pList size 7864, check correct
+Current pList size 7864, grow
 Time out for bottem up search
 Failed, try to split node: Current node size 9 Split to two: left size 4 right size 5
 Split current node, succeed
@@ -54,6 +56,7 @@ Current pList size 90, grow
 Current pList size 7314, eliminate equvalents
 Current pList size 478, check correct
 Current pList size 478, grow
+Current pList size 271840, eliminate equvalents
 Start search condition, Time out for bottem up search
 faild
 Current node size 9 Split to two: left size 3 right size 6
@@ -69,6 +72,7 @@ Current pList size 90, grow
 Current pList size 7314, eliminate equvalents
 Current pList size 478, check correct
 Current pList size 478, grow
+Current pList size 271840, eliminate equvalents
 Start search condition, Time out for bottem up search
 faild
 --------------------------------------, dump tree after search

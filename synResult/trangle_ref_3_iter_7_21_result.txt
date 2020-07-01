@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x9d04a0
+Start search node 0x1f224a0
 i 7 j 21 sizei 8 sizej 8 _out -1
 i 7 j 21 sizei 8 sizej 16 _out -1
 i 7 j 21 sizei 8 sizej 32 _out 55
@@ -52,7 +52,7 @@ SynProg: (j < sizej)
 Start search condition, Complete, program found (j < sizej)
 succeed
 
-Start search node 0x9cfdc0
+Start search node 0x1f21dc0
 i 7 j 21 sizei 8 sizej 8 _out -1
 i 7 j 21 sizei 8 sizej 16 _out -1
 i 7 j 21 sizei 16 sizej 8 _out -1
@@ -65,7 +65,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x9d0090
+Start search node 0x1f22090
 i 7 j 21 sizei 8 sizej 32 _out 55
 i 7 j 21 sizei 16 sizej 32 _out 151
 i 7 j 21 sizei 32 sizej 32 _out 151
@@ -91,7 +91,7 @@ SynProg: (j < (i + sizei))
 Start search condition, Complete, program found (j < (i + sizei))
 succeed
 
-Start search node 0x9cb790
+Start search node 0x1f1d790
 i 7 j 21 sizei 8 sizej 32 _out 55
 Searched Program: 
 Init pList size 17, check correct
@@ -102,7 +102,7 @@ SynProg: (5 * 11)
 SynProg: (5 * 11)
 Complete, program found (5 * 11)
 
-Start search node 0x9cd090
+Start search node 0x1f1f090
 i 7 j 21 sizei 16 sizej 32 _out 151
 i 7 j 21 sizei 32 sizej 32 _out 151
 Searched Program: 
@@ -165,6 +165,8 @@ Current pList size 675, eliminate equvalents
 Current pList size 155, check correct
 Current pList size 155, grow
 Current pList size 22123, eliminate equvalents
+Current pList size 1150, check correct
+Current pList size 1150, grow
 Start search condition, Time out for bottem up search
 faild
 --------------------------------------, dump tree after search

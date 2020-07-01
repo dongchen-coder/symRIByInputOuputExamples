@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x1ef84a0
+Start search node 0x7a04a0
 i 18 j 18 sizei 8 sizej 8 _out -1
 i 18 j 18 sizei 8 sizej 16 _out -1
 i 18 j 18 sizei 8 sizej 32 _out -1
@@ -55,7 +55,7 @@ SynProg: ((i < sizei) && (i < sizej))
 Start search condition, Complete, program found ((i < sizei) && (i < sizej))
 succeed
 
-Start search node 0x1ef7b40
+Start search node 0x79fb40
 i 18 j 18 sizei 8 sizej 8 _out -1
 i 18 j 18 sizei 8 sizej 16 _out -1
 i 18 j 18 sizei 8 sizej 32 _out -1
@@ -70,7 +70,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x1ef3bf0
+Start search node 0x79bbf0
 i 18 j 18 sizei 32 sizej 32 _out 94
 Searched Program: 
 Init pList size 17, check correct
@@ -79,5 +79,33 @@ Current pList size 323, eliminate equvalents
 Current pList size 104, check correct
 Current pList size 104, grow
 Current pList size 11024, eliminate equvalents
-Time out for bottem up search
-Failed, try to split node: Current node size 1 Split current node, failed
+Current pList size 2267, check correct
+SynProg: (4 + (i * 5))
+SynProg: (4 + (i * 5))
+Complete, program found (4 + (i * 5))
+--------------------------------------, dump tree after search
+i 18 j 18 sizei 8 sizej 8 _out 1
+i 18 j 18 sizei 8 sizej 16 _out 1
+i 18 j 18 sizei 8 sizej 32 _out 1
+i 18 j 18 sizei 16 sizej 8 _out 1
+i 18 j 18 sizei 16 sizej 16 _out 1
+i 18 j 18 sizei 16 sizej 32 _out 1
+i 18 j 18 sizei 32 sizej 8 _out 1
+i 18 j 18 sizei 32 sizej 16 _out 1
+i 18 j 18 sizei 32 sizej 32 _out 0
+Searched Program: (if ((i < sizei) && (i < sizej)) then -1 else (4 + (i * 5)))
+L---i 18 j 18 sizei 8 sizej 8 _out -1
+L---i 18 j 18 sizei 8 sizej 16 _out -1
+L---i 18 j 18 sizei 8 sizej 32 _out -1
+L---i 18 j 18 sizei 16 sizej 8 _out -1
+L---i 18 j 18 sizei 16 sizej 16 _out -1
+L---i 18 j 18 sizei 16 sizej 32 _out -1
+L---i 18 j 18 sizei 32 sizej 8 _out -1
+L---i 18 j 18 sizei 32 sizej 16 _out -1
+Searched Program: -1
+R---i 18 j 18 sizei 32 sizej 32 _out 94
+Searched Program: (4 + (i * 5))
+--------------------------------------
+--------------------------------------, dump search result start
+Searched Program (^0^) : (if ((i < sizei) && (i < sizej)) then -1 else (4 + (i * 5)))
+--------------------------------------

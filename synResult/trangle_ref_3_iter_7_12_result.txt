@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x140a4a0
+Start search node 0x25564a0
 i 7 j 12 sizei 8 sizej 8 _out -1
 i 7 j 12 sizei 8 sizej 16 _out 55
 i 7 j 12 sizei 8 sizej 32 _out 96
@@ -52,7 +52,7 @@ SynProg: (j < sizej)
 Start search condition, Complete, program found (j < sizej)
 succeed
 
-Start search node 0x140a3b0
+Start search node 0x25563b0
 i 7 j 12 sizei 8 sizej 8 _out -1
 i 7 j 12 sizei 16 sizej 8 _out -1
 i 7 j 12 sizei 32 sizej 8 _out -1
@@ -62,7 +62,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x140b900
+Start search node 0x2557900
 i 7 j 12 sizei 8 sizej 16 _out 55
 i 7 j 12 sizei 8 sizej 32 _out 96
 i 7 j 12 sizei 16 sizej 16 _out 55
@@ -88,6 +88,9 @@ Current pList size 598, eliminate equvalents
 Current pList size 121, check correct
 Current pList size 121, grow
 Current pList size 16551, eliminate equvalents
+Current pList size 839, check correct
+Current pList size 839, grow
+Current pList size 971496, eliminate equvalents
 Start search condition, Time out for bottem up search
 faild
 Current node size 6 Split to two: left size 3 right size 3

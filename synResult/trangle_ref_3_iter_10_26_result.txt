@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x1e1c4a0
+Start search node 0x18204a0
 i 10 j 26 sizei 8 sizej 8 _out -1
 i 10 j 26 sizei 8 sizej 16 _out -1
 i 10 j 26 sizei 8 sizej 32 _out -1
@@ -55,7 +55,7 @@ SynProg: ((i < sizei) && (j < sizej))
 Start search condition, Complete, program found ((i < sizei) && (j < sizej))
 succeed
 
-Start search node 0x1e1b9b0
+Start search node 0x181f9b0
 i 10 j 26 sizei 8 sizej 8 _out -1
 i 10 j 26 sizei 8 sizej 16 _out -1
 i 10 j 26 sizei 8 sizej 32 _out -1
@@ -69,7 +69,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x1e1bcd0
+Start search node 0x181fcd0
 i 10 j 26 sizei 16 sizej 32 _out 133
 i 10 j 26 sizei 32 sizej 32 _out 133
 Searched Program: 
@@ -79,63 +79,33 @@ Current pList size 323, eliminate equvalents
 Current pList size 142, check correct
 Current pList size 142, grow
 Current pList size 20448, eliminate equvalents
-Time out for bottem up search
-Failed, try to split node: Current node size 2 Split to two: left size 1 right size 1
-Split current node, succeed
-Start search condition, Init pList size 5, check correct
-Current pList size 5, grow
-Current pList size 46, eliminate equvalents
-Current pList size 24, check correct
-Current pList size 24, grow
-Current pList size 645, eliminate equvalents
-Current pList size 110, check correct
-Current pList size 110, grow
-Current pList size 17028, eliminate equvalents
-Current pList size 498, check correct
-Current pList size 498, grow
-Start search condition, Time out for bottem up search
-faild
-Current node size 2 Split to two: left size 2 right size 0
-Split current node, succeed
-Start search condition, Init pList size 5, check correct
-Current pList size 5, grow
-Current pList size 46, eliminate equvalents
-Current pList size 24, check correct
-Current pList size 24, grow
-Current pList size 645, eliminate equvalents
-Current pList size 110, check correct
-Current pList size 110, grow
-Current pList size 17028, eliminate equvalents
-Current pList size 498, check correct
-Current pList size 498, grow
-Start search condition, Time out for bottem up search
-faild
-Search fcase failed
-Current node size 9 Split to two: left size 7 right size 2
-Split current node, succeed
-Start search condition, Init pList size 5, check correct
-Current pList size 5, grow
-Current pList size 46, eliminate equvalents
-Current pList size 32, check correct
-Current pList size 32, grow
-Current pList size 721, eliminate equvalents
-Current pList size 168, check correct
-Current pList size 168, grow
-Current pList size 22695, eliminate equvalents
-Start search condition, Time out for bottem up search
-faild
+Current pList size 7247, check correct
+SynProg: (1 + (11 * 12))
+SynProg: (1 + (11 * 12))
+Complete, program found (1 + (11 * 12))
 --------------------------------------, dump tree after search
-i 10 j 26 sizei 8 sizej 8 _out -1
-i 10 j 26 sizei 8 sizej 16 _out -1
-i 10 j 26 sizei 8 sizej 32 _out -1
-i 10 j 26 sizei 16 sizej 8 _out -1
-i 10 j 26 sizei 16 sizej 16 _out -1
-i 10 j 26 sizei 32 sizej 8 _out -1
-i 10 j 26 sizei 32 sizej 16 _out -1
-i 10 j 26 sizei 16 sizej 32 _out 133
-i 10 j 26 sizei 32 sizej 32 _out 133
-Searched Program: 
+i 10 j 26 sizei 8 sizej 8 _out 1
+i 10 j 26 sizei 8 sizej 16 _out 1
+i 10 j 26 sizei 8 sizej 32 _out 1
+i 10 j 26 sizei 16 sizej 8 _out 1
+i 10 j 26 sizei 16 sizej 16 _out 1
+i 10 j 26 sizei 16 sizej 32 _out 0
+i 10 j 26 sizei 32 sizej 8 _out 1
+i 10 j 26 sizei 32 sizej 16 _out 1
+i 10 j 26 sizei 32 sizej 32 _out 0
+Searched Program: (if ((i < sizei) && (j < sizej)) then -1 else (1 + (11 * 12)))
+L---i 10 j 26 sizei 8 sizej 8 _out -1
+L---i 10 j 26 sizei 8 sizej 16 _out -1
+L---i 10 j 26 sizei 8 sizej 32 _out -1
+L---i 10 j 26 sizei 16 sizej 8 _out -1
+L---i 10 j 26 sizei 16 sizej 16 _out -1
+L---i 10 j 26 sizei 32 sizej 8 _out -1
+L---i 10 j 26 sizei 32 sizej 16 _out -1
+Searched Program: -1
+R---i 10 j 26 sizei 16 sizej 32 _out 133
+R---i 10 j 26 sizei 32 sizej 32 _out 133
+Searched Program: (1 + (11 * 12))
 --------------------------------------
 --------------------------------------, dump search result start
-Not yet founded, (T^T)
+Searched Program (^0^) : (if ((i < sizei) && (j < sizej)) then -1 else (1 + (11 * 12)))
 --------------------------------------

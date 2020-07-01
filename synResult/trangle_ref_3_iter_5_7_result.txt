@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x20864a0
+Start search node 0x21fb4a0
 i 5 j 7 sizei 8 sizej 8 _out 19
 i 5 j 7 sizei 8 sizej 16 _out 67
 i 5 j 7 sizei 8 sizej 32 _out 108
@@ -65,6 +65,9 @@ Current pList size 585, eliminate equvalents
 Current pList size 116, check correct
 Current pList size 116, grow
 Current pList size 16471, eliminate equvalents
+Current pList size 758, check correct
+Current pList size 758, grow
+Current pList size 766800, eliminate equvalents
 Start search condition, Time out for bottem up search
 faild
 --------------------------------------, dump tree after search
