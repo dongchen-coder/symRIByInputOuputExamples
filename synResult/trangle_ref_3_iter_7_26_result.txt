@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x86f4a0
+Start search node 0x23384a0
 i 7 j 26 sizei 8 sizej 8 _out -1
 i 7 j 26 sizei 8 sizej 16 _out -1
 i 7 j 26 sizei 8 sizej 32 _out 55
@@ -52,7 +52,7 @@ SynProg: (j < sizej)
 Start search condition, Complete, program found (j < sizej)
 succeed
 
-Start search node 0x86edc0
+Start search node 0x2337dc0
 i 7 j 26 sizei 8 sizej 8 _out -1
 i 7 j 26 sizei 8 sizej 16 _out -1
 i 7 j 26 sizei 16 sizej 8 _out -1
@@ -65,7 +65,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x86f090
+Start search node 0x2338090
 i 7 j 26 sizei 8 sizej 32 _out 55
 i 7 j 26 sizei 16 sizej 32 _out 103
 i 7 j 26 sizei 32 sizej 32 _out 151
@@ -91,7 +91,7 @@ SynProg: (j < (sizei + sizei))
 Start search condition, Complete, program found (j < (sizei + sizei))
 succeed
 
-Start search node 0x86a790
+Start search node 0x2333790
 i 7 j 26 sizei 8 sizej 32 _out 55
 Searched Program: 
 Init pList size 17, check correct
@@ -102,7 +102,7 @@ SynProg: (5 * 11)
 SynProg: (5 * 11)
 Complete, program found (5 * 11)
 
-Start search node 0x86c090
+Start search node 0x2335090
 i 7 j 26 sizei 16 sizej 32 _out 103
 i 7 j 26 sizei 32 sizej 32 _out 151
 Searched Program: 
@@ -124,7 +124,7 @@ SynProg: (j < sizei)
 Start search condition, Complete, program found (j < sizei)
 succeed
 
-Start search node 0x86ab50
+Start search node 0x2333b50
 i 7 j 26 sizei 16 sizej 32 _out 103
 Searched Program: 
 Init pList size 17, check correct

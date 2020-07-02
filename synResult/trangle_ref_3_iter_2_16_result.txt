@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x21a94a0
+Start search node 0xcb14a0
 i 2 j 16 sizei 8 sizej 8 _out -1
 i 2 j 16 sizei 8 sizej 16 _out 55
 i 2 j 16 sizei 8 sizej 32 _out 55
@@ -52,7 +52,7 @@ SynProg: (sizej < j)
 Start search condition, Complete, program found (sizej < j)
 succeed
 
-Start search node 0x21a93b0
+Start search node 0xcb13b0
 i 2 j 16 sizei 8 sizej 8 _out -1
 i 2 j 16 sizei 16 sizej 8 _out -1
 i 2 j 16 sizei 32 sizej 8 _out -1
@@ -62,7 +62,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0x21aa900
+Start search node 0xcb2900
 i 2 j 16 sizei 8 sizej 16 _out 55
 i 2 j 16 sizei 8 sizej 32 _out 55
 i 2 j 16 sizei 16 sizej 16 _out 93
@@ -94,7 +94,7 @@ SynProg: ((j < sizej) && (! (sizei < j) ))
 Start search condition, Complete, program found ((j < sizej) && (! (sizei < j) ))
 succeed
 
-Start search node 0x21a4420
+Start search node 0xcac420
 i 2 j 16 sizei 8 sizej 16 _out 55
 i 2 j 16 sizei 8 sizej 32 _out 55
 i 2 j 16 sizei 16 sizej 16 _out 93
@@ -118,7 +118,7 @@ SynProg: (sizei < j)
 Start search condition, Complete, program found (sizei < j)
 succeed
 
-Start search node 0x21a8f00
+Start search node 0xcb0f00
 i 2 j 16 sizei 8 sizej 16 _out 55
 i 2 j 16 sizei 8 sizej 32 _out 55
 Searched Program: 
@@ -130,7 +130,7 @@ SynProg: (5 * 11)
 SynProg: (5 * 11)
 Complete, program found (5 * 11)
 
-Start search node 0x21a4ce0
+Start search node 0xcacce0
 i 2 j 16 sizei 16 sizej 16 _out 93
 i 2 j 16 sizei 32 sizej 16 _out 93
 Searched Program: 
@@ -187,11 +187,10 @@ Current pList size 79, grow
 Current pList size 7311, eliminate equvalents
 Current pList size 506, check correct
 Current pList size 506, grow
-Current pList size 365418, eliminate equvalents
 Start search condition, Time out for bottem up search
 faild
 
-Start search node 0x21a48d0
+Start search node 0xcac8d0
 i 2 j 16 sizei 16 sizej 32 _out 181
 i 2 j 16 sizei 32 sizej 32 _out 181
 Searched Program: 

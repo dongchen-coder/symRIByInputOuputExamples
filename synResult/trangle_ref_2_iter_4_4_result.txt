@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x25bc4a0
+Start search node 0x118a4a0
 i 4 j 4 sizei 8 sizej 8 _out 34
 i 4 j 4 sizei 8 sizej 16 _out 18
 i 4 j 4 sizei 8 sizej 32 _out 59

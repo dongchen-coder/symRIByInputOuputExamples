@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0x1af14a0
+Start search node 0x25f84a0
 i 16 j 18 sizei 8 sizej 8 _out -1
 i 16 j 18 sizei 8 sizej 16 _out -1
 i 16 j 18 sizei 8 sizej 32 _out -1
@@ -52,70 +52,8 @@ Current pList size 636, eliminate equvalents
 Current pList size 144, check correct
 Current pList size 144, grow
 Current pList size 17241, eliminate equvalents
-Current pList size 927, check correct
-SynProg: ((i < sizej) && (! (sizei < i) ))
-SynProg: ((i < sizej) && (! (sizei < i) ))
-Start search condition, Complete, program found ((i < sizej) && (! (sizei < i) ))
-succeed
-
-Start search node 0x1af09b0
-i 16 j 18 sizei 8 sizej 8 _out -1
-i 16 j 18 sizei 8 sizej 16 _out -1
-i 16 j 18 sizei 8 sizej 32 _out -1
-i 16 j 18 sizei 16 sizej 8 _out -1
-i 16 j 18 sizei 16 sizej 16 _out -1
-i 16 j 18 sizei 32 sizej 8 _out -1
-i 16 j 18 sizei 32 sizej 16 _out -1
-Searched Program: 
-Init pList size 17, check correct
-SynProg: -1
-SynProg: -1
-Complete, program found -1
-
-Start search node 0x1af0cd0
-i 16 j 18 sizei 16 sizej 32 _out 97
-i 16 j 18 sizei 32 sizej 32 _out 97
-Searched Program: 
-Init pList size 17, check correct
-Current pList size 17, grow
-Current pList size 323, eliminate equvalents
-Current pList size 141, check correct
-Current pList size 141, grow
-Current pList size 20163, eliminate equvalents
-Time out for bottem up search
-Failed, try to split node: Current node size 2 Split to two: left size 1 right size 1
-Split current node, succeed
-Start search condition, Init pList size 5, check correct
-Current pList size 5, grow
-Current pList size 46, eliminate equvalents
-Current pList size 21, check correct
-Current pList size 21, grow
-Current pList size 474, eliminate equvalents
-Current pList size 78, check correct
-Current pList size 78, grow
-Current pList size 8340, eliminate equvalents
-Current pList size 399, check correct
-Current pList size 399, grow
-Current pList size 234645, eliminate equvalents
 Start search condition, Time out for bottem up search
 faild
-Current node size 2 Split to two: left size 2 right size 0
-Split current node, succeed
-Start search condition, Init pList size 5, check correct
-Current pList size 5, grow
-Current pList size 46, eliminate equvalents
-Current pList size 21, check correct
-Current pList size 21, grow
-Current pList size 474, eliminate equvalents
-Current pList size 78, check correct
-Current pList size 78, grow
-Current pList size 8340, eliminate equvalents
-Current pList size 399, check correct
-Current pList size 399, grow
-Current pList size 234645, eliminate equvalents
-Start search condition, Time out for bottem up search
-faild
-Search fcase failed
 Current node size 9 Split to two: left size 7 right size 2
 Split current node, succeed
 Start search condition, Init pList size 5, check correct

@@ -23,7 +23,7 @@ Language used in Unification:
         vars: i j sizei sizej 
 --------------------------------------, search start
 
-Start search node 0xa644a0
+Start search node 0x14a44a0
 i 13 j 28 sizei 8 sizej 8 _out -1
 i 13 j 28 sizei 8 sizej 16 _out -1
 i 13 j 28 sizei 8 sizej 32 _out -1
@@ -55,7 +55,7 @@ SynProg: ((i < sizei) && (j < sizej))
 Start search condition, Complete, program found ((i < sizei) && (j < sizej))
 succeed
 
-Start search node 0xa639b0
+Start search node 0x14a39b0
 i 13 j 28 sizei 8 sizej 8 _out -1
 i 13 j 28 sizei 8 sizej 16 _out -1
 i 13 j 28 sizei 8 sizej 32 _out -1
@@ -69,7 +69,7 @@ SynProg: -1
 SynProg: -1
 Complete, program found -1
 
-Start search node 0xa63cd0
+Start search node 0x14a3cd0
 i 13 j 28 sizei 16 sizej 32 _out 115
 i 13 j 28 sizei 32 sizej 32 _out 115
 Searched Program: 
@@ -97,7 +97,7 @@ SynProg: ((i + (sizej + sizej)) + ((sizej + 2) + (2 + 2)))
 Start search condition, Complete, program found ((i + (sizej + sizej)) + ((sizej + 2) + (2 + 2)))
 succeed
 
-Start search node 0xa5fc90
+Start search node 0x149fc90
 i 13 j 28 sizei 16 sizej 32 _out 115
 Searched Program: 
 Init pList size 17, check correct
@@ -106,5 +106,51 @@ Current pList size 323, eliminate equvalents
 Current pList size 125, check correct
 Current pList size 125, grow
 Current pList size 15875, eliminate equvalents
-Time out for bottem up search
-Failed, try to split node: Current node size 1 Split current node, failed
+Current pList size 3019, check correct
+SynProg: (sizei + (9 * 11))
+SynProg: (sizei + (9 * 11))
+Complete, program found (sizei + (9 * 11))
+
+Start search node 0x149fab0
+i 13 j 28 sizei 32 sizej 32 _out 115
+Searched Program: 
+Init pList size 17, check correct
+Current pList size 17, grow
+Current pList size 323, eliminate equvalents
+Current pList size 120, check correct
+Current pList size 120, grow
+Current pList size 14640, eliminate equvalents
+Current pList size 2913, check correct
+SynProg: (3 + (j * 4))
+SynProg: (3 + (j * 4))
+Complete, program found (3 + (j * 4))
+--------------------------------------, dump tree after search
+i 13 j 28 sizei 8 sizej 8 _out 1
+i 13 j 28 sizei 8 sizej 16 _out 1
+i 13 j 28 sizei 8 sizej 32 _out 1
+i 13 j 28 sizei 16 sizej 8 _out 1
+i 13 j 28 sizei 16 sizej 16 _out 1
+i 13 j 28 sizei 16 sizej 32 _out 0
+i 13 j 28 sizei 32 sizej 8 _out 1
+i 13 j 28 sizei 32 sizej 16 _out 1
+i 13 j 28 sizei 32 sizej 32 _out 0
+Searched Program: (if ((i < sizei) && (j < sizej)) then -1 else (if ((i + (sizej + sizej)) + ((sizej + 2) + (2 + 2))) then (sizei + (9 * 11)) else (3 + (j * 4))))
+L---i 13 j 28 sizei 8 sizej 8 _out -1
+L---i 13 j 28 sizei 8 sizej 16 _out -1
+L---i 13 j 28 sizei 8 sizej 32 _out -1
+L---i 13 j 28 sizei 16 sizej 8 _out -1
+L---i 13 j 28 sizei 16 sizej 16 _out -1
+L---i 13 j 28 sizei 32 sizej 8 _out -1
+L---i 13 j 28 sizei 32 sizej 16 _out -1
+Searched Program: -1
+R---i 13 j 28 sizei 16 sizej 32 _out 115
+R---i 13 j 28 sizei 32 sizej 32 _out 115
+Searched Program: (if ((i + (sizej + sizej)) + ((sizej + 2) + (2 + 2))) then (sizei + (9 * 11)) else (3 + (j * 4)))
+R---L---i 13 j 28 sizei 16 sizej 32 _out 115
+Searched Program: (sizei + (9 * 11))
+R---R---i 13 j 28 sizei 32 sizej 32 _out 115
+Searched Program: (3 + (j * 4))
+--------------------------------------
+--------------------------------------, dump search result start
+Searched Program (^0^) : (if ((i < sizei) && (j < sizej)) then -1 else (if ((i + (sizej + sizej)) + ((sizej + 2) + (2 + 2))) then (sizei + (9 * 11)) else (3 + (j * 4))))
+--------------------------------------
