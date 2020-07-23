@@ -44,9 +44,11 @@ gen: extractInputOutputForSingleRI.o inputOutputGen.o symRiSynthesiser.o langDef
 	$(CC) -pthread -O2 -o $(BIN_DIR)/symRiSymthesiser $(OBJ_DIR)/symRiSynthesiser.o $(OBJ_DIR)/langDef.o $(OBJ_DIR)/bottomUpSearch.o $(OBJ_DIR)/unification.o
 
 bench_gen:
+	mkdir $(BENCH_BIN_DIR)
 	$(foreach name, $(bench), $(CC) -O -o $(BENCH_BIN_DIR)/$(name) $(BENCH_DIR)/$(name).cpp ;)
 
 ris_raw_gen:
+	mkdir $(RIS_RAW_DIR)
 	$(foreach name, $(bench), rm -r $(RIS_RAW_DIR)/$(name) ;)
 	$(foreach name, $(bench), mkdir $(RIS_RAW_DIR)/$(name) ;)
 	$(foreach size, $(train_size), \
@@ -89,4 +91,7 @@ inputoutput_gen:
 	$(foreach name, $(bench), rm -r $(INPUTOUTPUT_DIR)/$(name) ;)
 	$(foreach name, $(bench), mkdir $(INPUTOUTPUT_DIR)/$(name) ;)
 	$(foreach name, $(bench_1para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 1 ;)
+	#$(foreach name, $(bench_2para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 2 ;)
+	#$(foreach name, $(bench_3para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 3 ;)
 	#$(foreach name, $(bench_4para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 4 ;)
+	#$(foreach name, $(bench_5para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 5 ;)
