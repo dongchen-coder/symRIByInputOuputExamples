@@ -1,9 +1,0 @@
-i 4 j 6 sizei 8 sizej 8 _out 0
-i 4 j 6 sizei 8 sizej 16 _out 18
-i 4 j 6 sizei 8 sizej 32 _out 50
-i 4 j 6 sizei 16 sizej 8 _out 0
-i 4 j 6 sizei 16 sizej 16 _out 0
-i 4 j 6 sizei 16 sizej 32 _out 66
-i 4 j 6 sizei 32 sizej 8 _out 0
-i 4 j 6 sizei 32 sizej 16 _out 0
-i 4 j 6 sizei 32 sizej 32 _out 0

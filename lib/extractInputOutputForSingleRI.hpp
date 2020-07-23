@@ -8,11 +8,17 @@
 #include <iomanip>
 using namespace std;
 
-void processSingleRiFile(string name, int isize, int jsize);
-void readAllRi(string name, vector<int> sizes);
+/* Split helper function */
+size_t split(const std::string &txt, std::vector<std::string> &strs, char ch);
 
-void dumpPerRefRi(vector<int> sizes);
+/* Read RI from files */
+void processSingleRiFile(string name, string fileSuffix, vector<uint64_t> symbolic_bounds);
+void readAllRi(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds);
 
-void genInputOutputExample(string name, vector<int> sizes);
+/* Dump RI */
+void dumpPerRefRi(vector<uint64_t> sizes);
+
+/* Generate inputoutput example */
+void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds);
 
 #endif
