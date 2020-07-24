@@ -63,7 +63,6 @@ void processSingleRiFile(string name, string fileSuffix, vector<uint64_t> symbol
             }
             (*(*all_ri[ref_id])[idx])[symbolic_bounds] = ri;
         }
-        ifs.close();
     }
 	ifs.close();
 	return;
