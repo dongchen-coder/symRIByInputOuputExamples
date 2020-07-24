@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-bool parser(int argc, char* argv[], vector<int>* sizes, string* name, int* loopDepth) {
+bool parser(int argc, char* argv[], vector<uint64_t>* sizes, string* name, int* numOfLoopBounds) {
     for (int i = 1; i < argc; i++) {
         string argvi(argv[i]);
         if (argvi == "-NAME") {
@@ -25,11 +25,11 @@ bool parser(int argc, char* argv[], vector<int>* sizes, string* name, int* loopD
                 argvi = argv[i];
             }
             i--;
-        } else if (argvi == "-LOOPDEPTH") {
+        } else if (argvi == "-NUMOFLOOPBOUNDS") {
             i++;
             argvi = argv[i];
             if (i < argc || isdigit(argvi[0])) {
-                *loopDepth = stoi(argvi);
+                *numOfLoopBounds = stoi(argvi);
             } else {
                 return false;
             }
@@ -41,17 +41,28 @@ bool parser(int argc, char* argv[], vector<int>* sizes, string* name, int* loopD
 }
 
 int main(int argc, char* argv[]) {
-    vector<int> sizes;
+    vector<uint64_t> sizes;
     string name;
-    int loopDepth;
-    if(!parser(argc, argv, &sizes, &name, &loopDepth)) {
+    int numOfSymbolicLoopBounds;
+    if(!parser(argc, argv, &sizes, &name, &numOfSymbolicLoopBounds)) {
         cout << "Error in parsing command line" << endl;
         return 0;
+    } else {
+        cout << "finished reading arguments" << endl;
+        cout << "name: " << name << endl;
+        cout << "sizes: ";
+        for (int i = 0; i < sizes.size(); i++) cout << sizes[i] << " ";
+        cout << endl;
+        cout << "num of symbolic loop bounds: " << numOfSymbolicLoopBounds << endl;
     }
     
-    readAllRi(name, sizes);
+    /* read all ri into a map */
+    readAllRi(name, sizes, numOfSymbolicLoopBounds);
+    
     dumpPerRefRi(sizes);
-    genInputOutputExample(name, sizes);
+    
+    /* construct inputoutput examples for each iteration */
+    genInputOutputExample(name, sizes, numOfSymbolicLoopBounds);
     
     return 0;
 }
