@@ -186,9 +186,9 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                 }
                 
                 if ((*idx_it->second).find(symbolic_bounds) != (*idx_it->second).end()) {
-                    ofs << (*idx_it->second)[symbolic_bounds] << endl;
+                    ofs << "_out " << (*idx_it->second)[symbolic_bounds] << endl;
                 } else {
-                    ofs << 0 << endl;
+                    ofs << "_out " << 0 << endl;
                 }
                 
             }

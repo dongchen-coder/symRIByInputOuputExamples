@@ -2,21 +2,26 @@ import os
 import re
 import matplotlib.pyplot as plt
 
-# ref->i->j->symRI
+# ref->[idx0, idx1, idx2, ...]->symRI
 symbolicHist = {}
 
-def recordSymRI(conf, dslCode):
-	conf = conf.replace("trangle_ref_","")
+def recordSymRI(bench, conf, dslCode):
+	conf = conf.replace(bench + "_ref_","")
 	conf = conf.split("_iter_")
 	ref_id = int(conf[0])
-	i = int(conf[1].split("_")[0])
-	j = int(conf[1].split("_")[1])
+
+	idxs_str = conf[1].split("_")
+	idxs = []
+	
+	for idx in idxs_str:
+		idxs.append(int(idx))
+
+	idxs = tuple(idxs)
 
 	if (ref_id not in symbolicHist.keys()):
 		symbolicHist[ref_id] = {}
-	if (i not in symbolicHist[ref_id].keys()):
-		symbolicHist[ref_id][i] = {}
-	symbolicHist[ref_id][i][j] = dslCode
+	
+	symbolicHist[ref_id][idxs] = dslCode
 	return
 
 def removeUnbalancedParenthesis(code):
@@ -104,10 +109,10 @@ def evaluateIfStatement(dslCode):
 		#print "eval false", value
 		return evaluateIfStatement(value)
 
-def evaluateSingleCode(i, j, sizei, sizej, dslCode):
+def evaluateSingleCode(scaled_idx, symBoundForPred, dslCode):
 
 	#print dslCode
-	
+	'''
 	dslCode = dslCode.replace("sizei ", str(sizei)+" ")
 	dslCode = dslCode.replace("sizej ", str(sizej)+" ")
 	dslCode = dslCode.replace("i ", str(i)+" ")
@@ -119,6 +124,15 @@ def evaluateSingleCode(i, j, sizei, sizej, dslCode):
 	dslCode = dslCode.replace("!", "not")
 	dslCode = dslCode.replace("&&", "and")
 	dslCodeList = re.split('if | then | else ', dslCode)
+	'''
+	for i in range(len(symBoundForPred)):
+		dslCode = dslCode.replace("B" + str(i), str(symBoundForPred[i]))
+	for i in range(len(scaled_idx)):
+		dslCode = dslCode.replace("I" + str(i), str(scaled_idx[i]))
+	dslCode = dslCode.replace("!", "not")
+	dslCode = dslCode.replace("&&", "and")
+	dslCodeList = re.split('if | then | else ', dslCode)
+
 	#if (len(dslCodeList) > 4): 
 	#	print dslCode
 	#	print dslCodeList
@@ -156,21 +170,50 @@ def evaluateSingleCode(i, j, sizei, sizej, dslCode):
 
 	return evaluateIfStatement(dslCode)
 
-def evaluate(sizei, sizej):
+def scaleIndexByCodeStructure(idx):
+	
+	scaled_idx = []
+	for i in idx:
+		scaled_idx.append(i * 2)
+
+	return scaled_idx
+
+def evaluate(symBoundForPred):
+
+	# should reverse the procedure
+
 	histogram = {}
+	'''
+	numOfSymBound = len(symBoundForPred)
+
+	totalNumberOfIdx = 1
+	for bound in symBoundForPred:
+		totalNumberOfIdx *= int(bound)
+
+	symBoundForPredRev = symBoundForPred
+	symBoundForPredRev.reverse()
+	
+	idxs = []
+	
+	print "totalNumberOfIdx", totalNumberOfIdx
+	for i in range(totalNumberOfIdx):
+		idx = [] 
+		for bound in symBoundForPredRev:
+			idx.append(i % bound)
+			i = i / bound
+		idx.reverse()
+		idxs.append(tuple(idx))
+	
+	print "idxs", idxs
+	'''
 	for ref in symbolicHist.keys():
-		for i in range(32):
-			if (i not in symbolicHist[ref].keys()):
-				continue
-			for j in range(32):
-				if (j not in symbolicHist[ref][i].keys()):
-					continue
-				#print i, j, sizei, sizej, symbolicHist[ref][i][j]
-				ri = int(evaluateSingleCode(i*(sizei/32), j*(sizej/32), sizei, sizej, symbolicHist[ref][i][j]))
-				if (ri in histogram.keys()):
-					histogram[ri] += 1
-				else:
-					histogram[ri] = 1
+		for idx in symbolicHist[ref].keys():
+			scaled_idx = scaleIndexByCodeStructure(idx)	
+			ri = int(evaluateSingleCode(scaled_idx, symBoundForPred, symbolicHist[ref][idx]))
+			if (ri in histogram.keys()):
+				histogram[ri] += 1
+			else:
+				histogram[ri] = 1
 	return histogram
 		
 def readTraceFile(sizei, sizej):
@@ -208,32 +251,52 @@ def plotHistoToCompare(histogram_64_64_predicted, histogram_64_64_trace):
 	plt.show()
 	return
 
-path = "../synResult/"
-files = os.listdir(path)
+def checkSingleBench(bench, path, numOfSymBounds):
+	
+	files = os.listdir(path)
+	
+	succeed = 0
+	total = 0
 
-succeed = 0
-total = 0
+	for name in files:
+		f = open(path+name, 'r')
+		total += 1
+		for line in f:
+			if ("(^0^)" in line):
+				succeed += 1
+				conf = name.replace("_result.txt", "")
+				line.replace("\n","")
+				prog = line[ line.find(':')+2 : len(line)].replace("\n","")
+				
+				recordSymRI(bench, conf, prog)
+			#if ("(T^T)" in line):
+			#	print name.replace("_result.txt", ""), line.replace("\n","")
+		f.close()
 
-for name in files:
-	f = open(path+name, 'r')
-	total += 1
-	for line in f:
-		if ("(^0^)" in line):
-			succeed += 1
-			conf = name.replace("_result.txt", "")
-			line.replace("\n","")
-			prog = line[ line.find(':')+2 : len(line)].replace("\n","")
-			recordSymRI(conf, prog)
-		#if ("(T^T)" in line):
-		#	print name.replace("_result.txt", ""), line.replace("\n","")
-	f.close()
+	#print symbolicHist
+	print "total", total, "succeed", succeed, float(succeed)/total, "failed", total-succeed, float(total-succeed)/total
 
-print "total", total, "succeed", succeed, float(succeed)/total, "failed", total-succeed, float(total-succeed)/total
+	symBoundValueForPred = [64] * numOfSymBounds
+	print "start to predict the RI distribution for", symBoundValueForPred
 
-histogram_64_64_predicted = evaluate(64, 64)
-print histogram_64_64_predicted
+	histogram_64_64_predicted = evaluate(symBoundValueForPred)
+	print histogram_64_64_predicted
 
-histogram_64_64_trace = readTraceFile(64, 64)
-print histogram_64_64_trace
+	'''
+	histogram_64_64_trace = readTraceFile(64, 64)
+	print histogram_64_64_trace
 
-plotHistoToCompare(histogram_64_64_predicted, histogram_64_64_trace)
+	plotHistoToCompare(histogram_64_64_predicted, histogram_64_64_trace)
+	'''
+
+	return
+
+if __name__ == "__main__":
+
+	path = "../synResult/"
+	benches = os.listdir(path)
+
+	numOfSymBounds = {"cholesky" : 1, "durbin" : 1, "floyd_warshall" : 1, "gemver" : 1, "gesummv" : 1, "lu" : 1, "ludcmp" : 1, "mvt" : 1, "nussinov" : 1, "stencil" : 1, "trisolv" : 1, "trangle" : 2, "adi" : 2, "atax" : 2, "bicg" : 2, "convolution_2d" : 2, "correlation" : 2, "covariance" : 2, "deriche" : 2, "gramschmidt" : 2, "heat_3d" : 2, "jacobi_1d" : 2, "jacobi_2d" : 2, "seidel_2d" : 2, "symm" : 2, "syr2d" : 2, "syrk" : 2, "trmm" : 2, "convolution_3d" : 3, "doitgen" : 3, "fdtd_2d" : 3, "gemm" : 3, "2mm" : 4, "3mm" : 5}
+
+	for bench in benches:
+		checkSingleBench(bench, path+bench+"/", numOfSymBounds[bench])
