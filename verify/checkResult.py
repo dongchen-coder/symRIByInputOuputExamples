@@ -112,19 +112,7 @@ def evaluateIfStatement(dslCode):
 def evaluateSingleCode(scaled_idx, symBoundForPred, dslCode):
 
 	#print dslCode
-	'''
-	dslCode = dslCode.replace("sizei ", str(sizei)+" ")
-	dslCode = dslCode.replace("sizej ", str(sizej)+" ")
-	dslCode = dslCode.replace("i ", str(i)+" ")
-	dslCode = dslCode.replace("j ", str(j)+" ")
-	dslCode = dslCode.replace("sizei)", str(sizei)+")")
-	dslCode = dslCode.replace("sizej)", str(sizej)+")")
-	dslCode = dslCode.replace("i)", str(i)+")")
-	dslCode = dslCode.replace("j)", str(j)+")")
-	dslCode = dslCode.replace("!", "not")
-	dslCode = dslCode.replace("&&", "and")
-	dslCodeList = re.split('if | then | else ', dslCode)
-	'''
+	dslCode = dslCode.replace("\n", "")
 	for i in range(len(symBoundForPred)):
 		dslCode = dslCode.replace("B" + str(i), str(symBoundForPred[i]))
 	for i in range(len(scaled_idx)):
@@ -136,6 +124,7 @@ def evaluateSingleCode(scaled_idx, symBoundForPred, dslCode):
 	#if (len(dslCodeList) > 4): 
 	#	print dslCode
 	#	print dslCodeList
+	
 	dslCodeList = [removeUnbalancedParenthesis(x) for x in dslCodeList]
 	dslCodeListValue = []
 
@@ -216,12 +205,18 @@ def evaluate(symBoundForPred):
 				histogram[ri] = 1
 	return histogram
 		
-def readTraceFile(sizei, sizej):
+def readTraceFile(name, symBoundValueForPred):
 	histogram = {}
-	f = open("./histoToMatch/trangle_" + str(sizei) + "_" + str(sizej) + ".txt", 'r')
+
+	fName = "./histoToMatch/" + name + "/" + name;
+	for bound in symBoundValueForPred:
+		fName += "_" + str(bound)
+	fName += ".txt"
+
+	f = open(fName, 'r')
 	for line in f:
 		lineList = line.split()
-		ri = int(lineList[4])
+		ri = int(lineList[-1])
 		if (ri in histogram.keys()):
 			histogram[ri] += 1
 		else:
@@ -248,55 +243,52 @@ def plotHistoToCompare(histogram_64_64_predicted, histogram_64_64_trace):
 	
 	plt.ylabel("Percentage")
 	plt.xlabel("Reuse intervals")
+	plt.xscale('log')
 	plt.show()
 	return
 
 def checkSingleBench(bench, path, numOfSymBounds):
 	
-	files = os.listdir(path)
-	
+	f = open(path, "r")	
+
 	succeed = 0
 	total = 0
+	
+	for line in f:
+		conf = line[0 : line.find(' Prog:')]
+		conf = conf.replace("_result.txt", "")	
+		prog = line[line.find(' Prog:') + 7: len(line)]	
+		recordSymRI(bench, conf, prog)
 
-	for name in files:
-		f = open(path+name, 'r')
-		total += 1
-		for line in f:
-			if ("(^0^)" in line):
-				succeed += 1
-				conf = name.replace("_result.txt", "")
-				line.replace("\n","")
-				prog = line[ line.find(':')+2 : len(line)].replace("\n","")
-				
-				recordSymRI(bench, conf, prog)
-			#if ("(T^T)" in line):
-			#	print name.replace("_result.txt", ""), line.replace("\n","")
-		f.close()
+	f.close()
 
 	#print symbolicHist
-	print "total", total, "succeed", succeed, float(succeed)/total, "failed", total-succeed, float(total-succeed)/total
+	if (total != 0):
+		print "total", total, "succeed", succeed, float(succeed)/total, "failed", total-succeed, float(total-succeed)/total
+	else:
+		print "No Symbolic RI"
 
 	symBoundValueForPred = [64] * numOfSymBounds
 	print "start to predict the RI distribution for", symBoundValueForPred
 
-	histogram_64_64_predicted = evaluate(symBoundValueForPred)
-	print histogram_64_64_predicted
+	histogram_predicted = evaluate(symBoundValueForPred)
+	print histogram_predicted
 
-	'''
-	histogram_64_64_trace = readTraceFile(64, 64)
-	print histogram_64_64_trace
-
-	plotHistoToCompare(histogram_64_64_predicted, histogram_64_64_trace)
-	'''
+	histogram_trace = readTraceFile(bench, symBoundValueForPred)
+	print histogram_trace
+	
+	plotHistoToCompare(histogram_predicted, histogram_trace)
 
 	return
 
 if __name__ == "__main__":
 
-	path = "../synResult/"
+	path = "../synResult/all/"
 	benches = os.listdir(path)
 
 	numOfSymBounds = {"cholesky" : 1, "durbin" : 1, "floyd_warshall" : 1, "gemver" : 1, "gesummv" : 1, "lu" : 1, "ludcmp" : 1, "mvt" : 1, "nussinov" : 1, "stencil" : 1, "trisolv" : 1, "trangle" : 2, "adi" : 2, "atax" : 2, "bicg" : 2, "convolution_2d" : 2, "correlation" : 2, "covariance" : 2, "deriche" : 2, "gramschmidt" : 2, "heat_3d" : 2, "jacobi_1d" : 2, "jacobi_2d" : 2, "seidel_2d" : 2, "symm" : 2, "syr2d" : 2, "syrk" : 2, "trmm" : 2, "convolution_3d" : 3, "doitgen" : 3, "fdtd_2d" : 3, "gemm" : 3, "2mm" : 4, "3mm" : 5}
 
 	for bench in benches:
-		checkSingleBench(bench, path+bench+"/", numOfSymBounds[bench])
+		name = bench.replace(".txt", "")
+		if (name == "cholesky"):
+			checkSingleBench(name, path+bench, numOfSymBounds[name])

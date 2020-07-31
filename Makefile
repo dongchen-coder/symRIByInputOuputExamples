@@ -9,6 +9,8 @@ BENCH_BIN_DIR=./bin/bench_bin
 RIS_RAW_DIR=./inputoutput/raw_ris_per_size
 INPUTOUTPUT_DIR=./inputoutput/ris_per_iter_ref
 
+RIS_MATCH_DIR=./verify/histoToMatch
+
 bench=stencil 2mm 3mm adi atax bicg cholesky correlation covariance deriche doitgen durbin fdtd_2d floyd_warshall gemm gemver gesummv gramschmidt heat_3d jacobi_1d jacobi_2d lu ludcmp mvt nussinov seidel_2d symm syr2d syrk trisolv trmm convolution_2d convolution_3d trangle
 
 bench_1para=cholesky durbin floyd_warshall gemver gesummv lu ludcmp mvt nussinov stencil trisolv
@@ -18,6 +20,8 @@ bench_4para=2mm
 bench_5para=3mm
 
 train_size=4 8 16 32
+
+verify_size=64
 
 CC=g++
 
@@ -95,3 +99,10 @@ inputoutput_gen:
 	#$(foreach name, $(bench_3para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 3 ;)
 	#$(foreach name, $(bench_4para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 4 ;)
 	#$(foreach name, $(bench_5para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 5 ;)
+
+histogramToMatch_gen:
+	$(foreach name, $(bench), rm -r $(RIS_MATCH_DIR)/$(name) ;)
+	$(foreach name, $(bench), mkdir $(RIS_MATCH_DIR)/$(name) ;)
+	$(foreach size, $(verify_size), \
+        $(foreach name, $(bench_1para), $(BENCH_BIN_DIR)/$(name) $(size) > $(RIS_MATCH_DIR)/$(name)/$(name)_$(size).txt ;) \
+    )
