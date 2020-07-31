@@ -61,12 +61,6 @@ int main(int argc, char const *argv[])
     double* A = (double*)malloc( (NI*NJ) * sizeof(double));
     double* C = (double*)malloc( (NI*NI) * sizeof(double));
 
-    for (int i = 0; i < NI * NJ; ++i)
-    {
-        A[i] = i / 10;
-        C[i] = 1.0;
-    }
-
     double alpha = 0.0;
     double beta = 1.5;
 
