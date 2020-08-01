@@ -169,32 +169,8 @@ def scaleIndexByCodeStructure(idx):
 
 def evaluate(symBoundForPred):
 
-	# should reverse the procedure
-
 	histogram = {}
-	'''
-	numOfSymBound = len(symBoundForPred)
-
-	totalNumberOfIdx = 1
-	for bound in symBoundForPred:
-		totalNumberOfIdx *= int(bound)
-
-	symBoundForPredRev = symBoundForPred
-	symBoundForPredRev.reverse()
 	
-	idxs = []
-	
-	print "totalNumberOfIdx", totalNumberOfIdx
-	for i in range(totalNumberOfIdx):
-		idx = [] 
-		for bound in symBoundForPredRev:
-			idx.append(i % bound)
-			i = i / bound
-		idx.reverse()
-		idxs.append(tuple(idx))
-	
-	print "idxs", idxs
-	'''
 	for ref in symbolicHist.keys():
 		for idx in symbolicHist[ref].keys():
 			scaled_idx = scaleIndexByCodeStructure(idx)	
@@ -224,30 +200,34 @@ def readTraceFile(name, symBoundValueForPred):
 	f.close()
 	return histogram
 
-def plotHistoToCompare(histogram_64_64_predicted, histogram_64_64_trace):
-	sortedRi = sorted(histogram_64_64_predicted.keys())
+def plotHistoToCompare(histogram_predicted, histogram_trace, bench, conf):
+	sortedRi = sorted(histogram_predicted.keys())
 	if (-1 in sortedRi): sortedRi.remove(-1)
 	if (0 in sortedRi): sortedRi.remove(0)
 	cnt = 0
 	for x in sortedRi:
-		cnt += histogram_64_64_predicted[x]
-	plt.bar(sortedRi, [float(histogram_64_64_predicted[x]) / cnt for x in sortedRi], color = 'b', width = 0.4)
+		cnt += histogram_predicted[x]
+	plt.bar(sortedRi, [float(histogram_predicted[x]) / cnt for x in sortedRi], color = 'b', width = 0.4, label = "SymbolicRI")
 
-	sortedRi = sorted(histogram_64_64_trace.keys())
+	sortedRi = sorted(histogram_trace.keys())
 	if (-1 in sortedRi): sortedRi.remove(-1)
 	if (0 in sortedRi): sortedRi.remove(0)
 	cnt = 0
 	for x in sortedRi:
-		cnt += histogram_64_64_trace[x]
-	plt.bar([x+0.5 for x in sortedRi], [float(histogram_64_64_trace[x]) / cnt for x in sortedRi], color = 'r', width = 0.4)
+		cnt += histogram_trace[x]
+	plt.bar([x+0.5 for x in sortedRi], [float(histogram_trace[x]) / cnt for x in sortedRi], color = 'r', width = 0.4, label = "Trace")
 	
 	plt.ylabel("Percentage")
 	plt.xlabel("Reuse intervals")
 	plt.xscale('log')
-	plt.show()
+	plt.yscale('log')
+	plt.legend()
+	plt.title(bench + conf)
+	plt.savefig("./visualCompare/" + bench + conf + ".pdf")
+	plt.clf()
 	return
 
-def checkSingleBench(bench, path, numOfSymBounds):
+def checkSingleBench(bench, path, numOfSymBounds, symBoundValueForPred):
 	
 	f = open(path, "r")	
 
@@ -259,25 +239,48 @@ def checkSingleBench(bench, path, numOfSymBounds):
 		conf = conf.replace("_result.txt", "")	
 		prog = line[line.find(' Prog:') + 7: len(line)]	
 		recordSymRI(bench, conf, prog)
-
+	
 	f.close()
 
-	#print symbolicHist
 	if (total != 0):
 		print "total", total, "succeed", succeed, float(succeed)/total, "failed", total-succeed, float(total-succeed)/total
 	else:
 		print "No Symbolic RI"
 
-	symBoundValueForPred = [64] * numOfSymBounds
-	print "start to predict the RI distribution for", symBoundValueForPred
+	confs = []
 
-	histogram_predicted = evaluate(symBoundValueForPred)
-	print histogram_predicted
+	if (numOfSymBounds <= 1):
+		for conf in symBoundValueForPred:
+			confs.append("_" + str(conf))
+	else:
+		for conf in symBoundValueForPred:
+			confs.append("_" + str(conf))
+		for i in range(numOfSymBounds - 1):
+			confs_new = []
+			for conf in confs:
+				for bound in symBoundValueForPred:
+					confs_new.append(conf + "_" + str(bound))
 
-	histogram_trace = readTraceFile(bench, symBoundValueForPred)
-	print histogram_trace
-	
-	plotHistoToCompare(histogram_predicted, histogram_trace)
+	print confs	
+
+	for conf in confs:
+		print "start to predict the RI distribution for ", conf
+
+		boundValueForPredStr = conf.split("_")
+		boundValueForPred = []
+		for boundValue in boundValueForPredStr:
+			if (boundValue != ""):
+				boundValueForPred.append(int(boundValue))
+
+		print boundValueForPred
+		
+		histogram_predicted = evaluate(boundValueForPred)
+		print histogram_predicted
+
+		histogram_trace = readTraceFile(bench, boundValueForPred)
+		print histogram_trace
+		
+		plotHistoToCompare(histogram_predicted, histogram_trace, bench, conf)
 
 	return
 
@@ -288,7 +291,9 @@ if __name__ == "__main__":
 
 	numOfSymBounds = {"cholesky" : 1, "durbin" : 1, "floyd_warshall" : 1, "gemver" : 1, "gesummv" : 1, "lu" : 1, "ludcmp" : 1, "mvt" : 1, "nussinov" : 1, "stencil" : 1, "trisolv" : 1, "trangle" : 2, "adi" : 2, "atax" : 2, "bicg" : 2, "convolution_2d" : 2, "correlation" : 2, "covariance" : 2, "deriche" : 2, "gramschmidt" : 2, "heat_3d" : 2, "jacobi_1d" : 2, "jacobi_2d" : 2, "seidel_2d" : 2, "symm" : 2, "syr2d" : 2, "syrk" : 2, "trmm" : 2, "convolution_3d" : 3, "doitgen" : 3, "fdtd_2d" : 3, "gemm" : 3, "2mm" : 4, "3mm" : 5}
 
+	symBoundValueForPred = [64, 128, 256]  
+
 	for bench in benches:
 		name = bench.replace(".txt", "")
 		if (name == "cholesky"):
-			checkSingleBench(name, path+bench, numOfSymBounds[name])
+			checkSingleBench(name, path+bench, numOfSymBounds[name], symBoundValueForPred)

@@ -21,7 +21,7 @@ bench_5para=3mm
 
 train_size=4 8 16 32
 
-verify_size=64
+verify_size=64 128 256
 
 CC=g++
 
