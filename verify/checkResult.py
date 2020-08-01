@@ -295,5 +295,5 @@ if __name__ == "__main__":
 
 	for bench in benches:
 		name = bench.replace(".txt", "")
-		if (name == "cholesky"):
+		if (name == "floyd_warshall" or name == "gemver" or name == "gesummv"):
 			checkSingleBench(name, path+bench, numOfSymBounds[name], symBoundValueForPred)
