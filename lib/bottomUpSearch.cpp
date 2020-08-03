@@ -458,7 +458,9 @@ bool bottomUpSearch::isCorrect(BaseType* p) {
 string bottomUpSearch::getCorrect() {
     for (int i = 0; i < pList.size(); i++) {
         if (isCorrect(pList[i])) {
+#ifdef DEBUG
             cout << "SynProg: " << dumpProgram(pList[i]) << endl;
+#endif
             return dumpProgram(pList[i]);
         }
     }
@@ -466,17 +468,24 @@ string bottomUpSearch::getCorrect() {
 }
 
 string bottomUpSearch::search() {
-    
+#ifdef DEBUG
     cout << "Init pList size " << getPlistSize() << ", check correct" << endl;
+#endif
     while (getCorrect() == "") {
+#ifdef DEBUG
         cout << "Current pList size " << getPlistSize() << ", grow" << endl;
         // dumpPlist();
+#endif
         grow();
+#ifdef DEBUG
         // dumpPlist();
         cout << "Current pList size " << getPlistSize() << ", eliminate equvalents" << endl;
+#endif
         elimEquvalents();
+#ifdef DEBUG
         //dumpPlist();
         cout << "Current pList size " << getPlistSize() << ", check correct" << endl;
+#endif
     }
     
     return getCorrect();

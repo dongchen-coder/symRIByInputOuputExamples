@@ -136,7 +136,7 @@ bool readInputOutput(string fileName, vector<map<string, int> >* inputOutputs) {
         }
         inputOutputs->push_back(inputOutput);
     }
-    
+/*
     cout << "Input output examples:" << endl;
     for (vector<map<string, int> >::iterator it = inputOutputs->begin(), eit = inputOutputs->end(); it != eit; ++it) {
         cout << "    ";
@@ -147,8 +147,10 @@ bool readInputOutput(string fileName, vector<map<string, int> >* inputOutputs) {
         }
         cout << "   _out " << (*it)["_out"] << endl;
     }
+*/
     return true;
 }
+
 
 int main(int argc, char* argv[]) {
     
@@ -188,9 +190,9 @@ int main(int argc, char* argv[]) {
     unification* uni = new unification(depthBoundPred, intOpsPred, boolOpsPred, varsPred, constantsPred,
                                        depthBoundTerm, intOpsTerm, boolOpsTerm, varsTerm, constantsTerm,
                                        inputOutputs);
-    uni->dumpLangDef();
+    //uni->dumpLangDef();
     uni->search(20);
-    uni->dumpInputOutputTree();
+    //uni->dumpInputOutputTree();
     uni->dumpSearchedProgram();
     
     return 0;

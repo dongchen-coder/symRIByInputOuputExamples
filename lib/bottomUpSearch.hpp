@@ -6,6 +6,9 @@
 #include <chrono>
 #include <thread>
 #include <vector>
+
+//#define DEBUG
+
 using namespace std;
 
 class bottomUpSearch {

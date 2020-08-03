@@ -89,15 +89,21 @@ string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNod
         if (WIFSIGNALED(status)) {
             // child was interrupted
             if (WTERMSIG(status) == SIGALRM) {
+#ifdef DEBUG
                 // child interrupted by alarm signal
                 cout << "Time out for bottem up search" << endl;
+#endif
             }else{
+#ifdef DEBUG
                 // child interrupted by another signal
                 cout << "interrupted by another signal in bottem up search" << endl;
+#endif
             }
         }else{
+#ifdef DEBUG
             // child ran to completion
             cout << "Complete, program found " << searchedProg << endl;
+#endif
         }
     }
     
@@ -108,39 +114,56 @@ string unification::searchNode(int timeBoundInSeconds, inputOutputTreeNode* node
     if (node == NULL) {
         return "";
     }
+#ifdef DEBUG
     cout << endl << "Start search node " << node << endl;
+#endif
+ 
+#ifdef DEBUG
     dumpInputOutputTreeNode(node, "");
+#endif
     
     string searchedProg = searchNodeOnePass(timeBoundInSeconds, node);
     
     /* search a solution for corrent node */
     if (searchedProg == "") {
+#ifdef DEBUG
         cout << "Failed, try to split node: ";
+#endif
         for (int mode = 0; mode < 2; mode++) {
             if (splitInputOutputTreeNode(node, mode)) {
+#ifdef DEBUG
                 cout << "Split current node, succeed" << endl;
                 cout << "Start search condition, ";
+#endif
                 string cond = searchNodeOnePass(timeBoundInSeconds, node);
                 if (cond != "") {
+#ifdef DEBUG
                     cout << "succeed" << endl;
+#endif
                     string tcase = searchNode(timeBoundInSeconds, node->left);
                     string fcase = searchNode(timeBoundInSeconds, node->right);
                     if (tcase == "" || fcase == "") {
+#ifdef DEBUG
                         if (tcase == "") {
                             cout << "Search tcase failed" << endl;
                         }
                         if (fcase == "") {
                             cout << "Search fcase failed" << endl;
                         }
+#endif
                         searchedProg = "";
                     } else {
                         searchedProg = "(if " + cond + " then " + tcase + " else " + fcase + ")";
                     }
                 } else {
+#ifdef DEBUG
                     cout << "faild" << endl;
+#endif
                 }
             } else {
+#ifdef DEBUG
                 cout << "Split current node, failed" << endl;
+#endif
                 searchedProg = "";
             }
             if (searchedProg != "") {
@@ -157,9 +180,13 @@ string unification::searchNode(int timeBoundInSeconds, inputOutputTreeNode* node
 }
 
 string unification::search(int timeBoundInSeconds) {
+#ifdef DEBUG
     cout << "--------------------------------------, search start" << endl;
+#endif
     return searchNode(timeBoundInSeconds, inputOutputTree);
+#ifdef DEBUG
     cout << "--------------------------------------" << endl;
+#endif
 }
 
 /*
@@ -211,7 +238,9 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitM
         outputs.push_back((*it)["_out"]);
     }
     
+#ifdef DEBUG
     cout << "Current node size " << outputs.size() << " ";
+#endif
     
     if (outputs.size() < 2) {
         return false;
@@ -299,9 +328,9 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitM
                 }
             }
         }
-    
+#ifdef DEBUG
         cout << "Split to two: left size " << leftInputOutputs.size() << " right size " << rightInputOutputs.size() << endl;
-    
+#endif
         node->left = new inputOutputTreeNode(leftInputOutputs);
         node->right = new inputOutputTreeNode(rightInputOutputs);
         return true;
@@ -334,7 +363,9 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitM
                     rightInputOutputs.push_back(*it);
                 }
             }
+#ifdef DEBUG
             cout << "Split to two: left size " << leftInputOutputs.size() << " right size " << rightInputOutputs.size() << endl;
+#endif
         } else {
             for (vector<map<string, int> >::iterator it = node->inputOutputs.begin(), eit = node->inputOutputs.end(); it != eit; ++it) {
                 if ((*it)["_out"] == mostFreqOut) {
@@ -343,7 +374,9 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitM
                     rightInputOutputs.push_back(*it);
                 }
             }
+#ifdef DEBUG
             cout << "Split to two: left size " << leftInputOutputs.size() << " right size " << rightInputOutputs.size() << endl;
+#endif
         }
         node->left = new inputOutputTreeNode(leftInputOutputs);
         node->right = new inputOutputTreeNode(rightInputOutputs);
@@ -391,6 +424,7 @@ void unification::dumpInputOutputTreeNode(inputOutputTreeNode* node, string spac
             }
             cout << "_out " << (*it)["_out"] << endl;
         }
+        
         cout << "Searched Program: " << node->searchedProg << endl;
         dumpInputOutputTreeNode(node->left, space + "L---");
         dumpInputOutputTreeNode(node->right, space + "R---");
@@ -398,7 +432,9 @@ void unification::dumpInputOutputTreeNode(inputOutputTreeNode* node, string spac
 }
 
 void unification::dumpSearchedProgram() {
+#ifdef DEBUG
     cout << "--------------------------------------, dump search result start" << endl;
+#endif
     if (inputOutputTree != NULL) {
         if (inputOutputTree->searchedProg != "") {
             cout << "Searched Program (^0^) : " << inputOutputTree->searchedProg << endl;
@@ -408,5 +444,7 @@ void unification::dumpSearchedProgram() {
     } else {
         cout << "Not yet founded, (T^T)" << endl;
     }
+#ifdef DEBUG
     cout << "--------------------------------------" << endl;
+#endif
 }
