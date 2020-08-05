@@ -1,7 +1,7 @@
 #include "extractInputOutputForSingleRI.hpp"
 
-// ref_id -> iter vector -> sizes vector -> ri;
-map<uint64_t, map<vector<uint64_t>, map<vector<uint64_t>, uint64_t>* >* > all_ri;
+// ref_src_id -> ref_snk_id -> iter vector -> sizes vector -> ri;
+map<uint64_t, map<uint64_t, map<vector<uint64_t>, map<vector<uint64_t>, uint64_t>* >* >* > all_ri;
 
 size_t split(const std::string &txt, std::vector<std::string> &strs, char ch)
 {
@@ -34,7 +34,8 @@ void processSingleRiFile(string name, string fileSuffix, vector<uint64_t> symbol
         cout << "./inputoutput/raw_ris_per_size/"+ name + "/" + fileName << " failed " << endl;
     }
     
-    uint64_t ref_id;
+    uint64_t ref_src_id;
+    uint64_t ref_snk_id;
     uint64_t addr;
     vector<uint64_t> idx;
     uint64_t ri;
@@ -47,21 +48,26 @@ void processSingleRiFile(string name, string fileSuffix, vector<uint64_t> symbol
                 cout << "Error in dumping RI" << endl;
                 break;
             }
-            ref_id = stoi(lineList[0]);
-            addr = stoi(lineList[1]);
+            ref_src_id = stoi(lineList[0]);
+            ref_snk_id = stoi(lineList[1]);
+            
+            addr = stoi(lineList[2]);
             idx.clear();
-            for (int i = 2; i < lineListLen-1; i++) {
+            for (int i = 3; i < lineListLen-1; i++) {
                 idx.push_back(stoi(lineList[i]));
             }
             ri = stoi(lineList[lineListLen-1]);
             
-            if (all_ri.find(ref_id) == all_ri.end()) {
-                all_ri[ref_id] = new map<vector<uint64_t>, map<vector<uint64_t>, uint64_t>* >;
+            if (all_ri.find(ref_src_id) == all_ri.end()) {
+                all_ri[ref_src_id] = new map< uint64_t, map<vector<uint64_t>, map<vector<uint64_t>, uint64_t>* >* >;
             }
-            if (all_ri[ref_id]->find(idx) == all_ri[ref_id]->end()) {
-                (*all_ri[ref_id])[idx] = new map<vector<uint64_t>, uint64_t>;
+            if (all_ri[ref_src_id]->find(ref_snk_id) == all_ri[ref_src_id]->end()) {
+                (*all_ri[ref_src_id])[ref_snk_id] = new map<vector<uint64_t>, map<vector<uint64_t>, uint64_t>* >;
             }
-            (*(*all_ri[ref_id])[idx])[symbolic_bounds] = ri;
+            if ((*all_ri[ref_src_id])[ref_snk_id]->find(idx) == (*all_ri[ref_src_id])[ref_snk_id]->end()) {
+                (*(*all_ri[ref_src_id])[ref_snk_id])[idx] = new map<vector<uint64_t>, uint64_t>;
+            }
+            (*(*(*all_ri[ref_src_id])[ref_snk_id])[idx])[symbolic_bounds] = ri;
         }
     }
 	ifs.close();
@@ -142,59 +148,69 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
         }
 	}
     
-    for (map<uint64_t, map<vector<uint64_t>, map<vector<uint64_t>, uint64_t>* >* >::iterator ref_it = all_ri.begin(), ref_eit = all_ri.end(); ref_it != ref_eit; ++ref_it) {
+    for (auto ref_src_it = all_ri.begin(), ref_src_eit = all_ri.end(); ref_src_it != ref_src_eit; ++ref_src_it) {
+        ofstream ofs_perIterRefsrc;
         
-        for (map<vector<uint64_t>, map<vector<uint64_t>, uint64_t>* >::iterator idx_it = (ref_it->second)->begin(), idx_eit = (ref_it->second)->end(); idx_it != idx_eit; ++idx_it) {
+        for (auto ref_snk_it = (ref_src_it->second)->begin(), ref_snk_eit = (ref_src_it->second)->end(); ref_snk_it != ref_snk_eit; ++ref_snk_it) {
+            ofstream ofs_perIterRefsrcsnk;
             
-            /* create a file named by ref ID and iteration vector */
-            vector<uint64_t> idx = idx_it->first;
-            string idx_str = "";
-            for (int i = 0; i < idx.size(); i++) {
-                idx_str += "_" + to_string(idx[i]);
-            }
-            ofstream ofs;
-            ofs.open("./inputoutput/ris_per_iter_ref/" + name + "/" +name+"_ref_" + to_string(ref_it->first) + "_iter" + idx_str + ".txt", ofstream::out);
+            for (auto idx_it = (ref_snk_it->second)->begin(), idx_eit = (ref_snk_it->second)->end(); idx_it != idx_eit; ++idx_it) {
             
-            /* Check each sizes for symoblic bounds */
-            int numOfSizes = sizes.size();
-            int numOfCombinations;
-            if (numOfSizes == 0 || numOfSymbolicLoopBounds == 0) {
-                numOfCombinations = 0;
-            } else {
-                numOfCombinations = 1;
-            }
-            for (int i = 0; i < numOfSymbolicLoopBounds; i++) {
-                numOfCombinations *= numOfSizes;
-            }
-            
-            for (int i = 0; i < numOfCombinations; i++) {
-                vector<uint64_t> symbolic_bounds;
-                int symbolic_bounds_idx = i;
-                for (int j = 0; j < numOfSymbolicLoopBounds; j++) {
-                    symbolic_bounds.push_back(sizes[symbolic_bounds_idx % numOfSizes]);
-                    symbolic_bounds_idx /= numOfSizes;
+                vector<uint64_t> idx = idx_it->first;
+                string idx_str = "";
+                for (int i = 0; i < idx.size(); i++) {
+                    idx_str += "_" + to_string(idx[i]);
                 }
                 
-                /* iteration vector is one of the inputs */
-                for (int j = 0; j < idx.size(); j++) {
-                    ofs << "I" + to_string(j) << " " << to_string(idx[j]) << " ";
-                }
+                /* create a file named by ref src ID and iteration vector */
+                ofs_perIterRefsrc.open("./inputoutput/ris_per_iter_refsrc/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it->first) + "_iter" + idx_str + ".txt", ofstream::out);
+                /* create a file named by ref src/snk ID and iteration vector */
+                ofs_perIterRefsrcsnk.open("./inputoutput/ris_per_iter_refsrcsnk/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it->first) + "_refsnk_" + to_string(ref_snk_it->first) + "_iter" + idx_str + ".txt", ofstream::out);
                 
-                /* symbolic bounds is another input */
-                for (int j = 0; j < symbolic_bounds.size(); j++) {
-                    ofs << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
-                }
-                
-                if ((*idx_it->second).find(symbolic_bounds) != (*idx_it->second).end()) {
-                    ofs << "_out " << (*idx_it->second)[symbolic_bounds] << endl;
+                /* Check each sizes for symoblic bounds */
+                int numOfSizes = sizes.size();
+                int numOfCombinations;
+                if (numOfSizes == 0 || numOfSymbolicLoopBounds == 0) {
+                    numOfCombinations = 0;
                 } else {
-                    ofs << "_out " << 0 << endl;
+                    numOfCombinations = 1;
+                }
+                for (int i = 0; i < numOfSymbolicLoopBounds; i++) {
+                    numOfCombinations *= numOfSizes;
+                }
+            
+                for (int i = 0; i < numOfCombinations; i++) {
+                    vector<uint64_t> symbolic_bounds;
+                    int symbolic_bounds_idx = i;
+                    for (int j = 0; j < numOfSymbolicLoopBounds; j++) {
+                        symbolic_bounds.push_back(sizes[symbolic_bounds_idx % numOfSizes]);
+                        symbolic_bounds_idx /= numOfSizes;
+                    }
+                
+                    /* iteration vector is one of the inputs */
+                    for (int j = 0; j < idx.size(); j++) {
+                        ofs_perIterRefsrc << "I" + to_string(j) << " " << to_string(idx[j]) << " ";
+                        ofs_perIterRefsrcsnk << "I" + to_string(j) << " " << to_string(idx[j]) << " ";
+                    }
+                
+                    /* symbolic bounds is another input */
+                    for (int j = 0; j < symbolic_bounds.size(); j++) {
+                        ofs_perIterRefsrc << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
+                        ofs_perIterRefsrcsnk << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
+                    }
+                
+                    if ((*idx_it->second).find(symbolic_bounds) != (*idx_it->second).end()) {
+                        ofs_perIterRefsrc << "_out " << (*idx_it->second)[symbolic_bounds] << endl;
+                        ofs_perIterRefsrcsnk << "_out " << (*idx_it->second)[symbolic_bounds] << endl;
+                    } else {
+                        ofs_perIterRefsrc << "_out " << -1 << endl;
+                        ofs_perIterRefsrcsnk << "_out " << -1 << endl;
+                    }
                 }
                 
+                ofs_perIterRefsrcsnk.close();
+                ofs_perIterRefsrc.close();
             }
-            
-            ofs.close();
-            
         }
     }
     
