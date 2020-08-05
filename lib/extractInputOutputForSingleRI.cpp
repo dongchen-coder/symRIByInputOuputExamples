@@ -203,8 +203,8 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                         ofs_perIterRefsrc << "_out " << (*idx_it->second)[symbolic_bounds] << endl;
                         ofs_perIterRefsrcsnk << "_out " << (*idx_it->second)[symbolic_bounds] << endl;
                     } else {
-                        ofs_perIterRefsrc << "_out " << -1 << endl;
-                        ofs_perIterRefsrcsnk << "_out " << -1 << endl;
+                        ofs_perIterRefsrc << "_out " << 0 << endl;
+                        ofs_perIterRefsrcsnk << "_out " << 0 << endl;
                     }
                 }
                 
