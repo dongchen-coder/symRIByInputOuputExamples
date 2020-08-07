@@ -195,9 +195,9 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                     }
                     
                     /* create a file named by ref src ID and iteration vector */
-                    ofs_perIterRefsrc.open("./inputoutput/ris_per_iter_refsrc/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it->first) + "_itersrc" + idx_src_str + ".txt", ofstream::out);
+                    ofs_perIterRefsrc.open("./inputoutput/ris_per_iter_refsrc/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it->first) + "_itersrc" + idx_src_str + ".txt", ofstream::out | ofstream::app);
                     /* create a file named by ref src/snk ID and iteration vector */
-                    ofs_perIterRefsrcsnk.open("./inputoutput/ris_per_iter_refsrcsnk/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it->first) + "_refsnk_" + to_string(ref_snk_it->first) + ".txt", ofstream::out);
+                    ofs_perIterRefsrcsnk.open("./inputoutput/ris_per_iter_refsrcsnk/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it->first) + "_refsnk_" + to_string(ref_snk_it->first) + ".txt", ofstream::out | ofstream::app);
                     
                     /* Check each sizes for symoblic bounds */
                     int numOfSizes = sizes.size();
