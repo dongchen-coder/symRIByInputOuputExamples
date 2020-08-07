@@ -45,6 +45,7 @@ void processSingleRiFile(string name, string fileSuffix, vector<uint64_t> symbol
         vector<string> lineList;
         while(getline(ifs, line)) {
             int lineListLen = split(line, lineList, ',');
+            cout << line << endl;
             if (lineListLen < 4) {
                 cout << "Error in dumping RI" << endl;
                 break;
@@ -54,6 +55,8 @@ void processSingleRiFile(string name, string fileSuffix, vector<uint64_t> symbol
             int srcIDIterVLen = split(lineList[1], srcIDIterV, ' ');
             vector<string> snkIDIterV;
             int snkIDIterVLen = split(lineList[2], snkIDIterV, ' ');
+            
+            //cout << "srcIDIterVLen " << srcIDIterVLen << " snkIDIterVLen " << snkIDIterVLen;
             
             ref_src_id = stoi(srcIDIterV[0]);
             ref_snk_id = stoi(snkIDIterV[0]);
@@ -178,7 +181,7 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
             for (auto idx_src_it = (ref_snk_it->second)->begin(), idx_src_eit = (ref_snk_it->second)->end(); idx_src_it != idx_src_eit; ++idx_src_it) {
             
                 for (auto idx_snk_it = (idx_src_it->second)->begin(), idx_snk_eit = (idx_src_it->second)->end(); idx_snk_it != idx_snk_eit; ++idx_snk_it) {
-                
+                    
                     vector<uint64_t> idx_src = idx_src_it->first;
                     string idx_src_str = "";
                     for (int i = 0; i < idx_src.size(); i++) {
