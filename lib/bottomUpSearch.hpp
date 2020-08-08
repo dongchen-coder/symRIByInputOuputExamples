@@ -7,7 +7,7 @@
 #include <thread>
 #include <vector>
 
-//#define DEBUG
+#define DEBUG
 
 using namespace std;
 
