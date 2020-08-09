@@ -115,27 +115,62 @@ void bottomUpSearch::dumpLangDef() {
 }
 
 /******************************************
-    Grow program list
+    Specify and check  growing rules
 */
-BaseType* bottomUpSearch::growOneExpr(BaseType* i, BaseType* j, BaseType* k, string op, int depthBound) {
+bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, string op, int depthBound) {
     if (op == "PLUS") {
         if (dynamic_cast<IntType*>(i) != 0 && dynamic_cast<IntType*>(j) != 0) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
-            if (inti->depth() < depthBound && intj->depth() < depthBound) {
-                Plus* plus = new Plus(inti, intj);
-                return dynamic_cast<BaseType*>(plus);
+            if (inti->depth() >= depthBound || intj->depth() >= depthBound) {
+                return false;
             }
+        } else {
+            return false;
+        }
+    }
+    if (op == "MINUS") {
+        if (dynamic_cast<IntType*>(i) != 0 && dynamic_cast<IntType*>(j) != 0) {
+            IntType* inti = dynamic_cast<IntType*>(i);
+            IntType* intj = dynamic_cast<IntType*>(j);
+            if (inti->depth() >= depthBound || intj->depth() >= depthBound) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    if (op == "LEFTSHIFT") {
+        if (dynamic_cast<IntType*>(i) != 0 && dynamic_cast<IntType*>(j) != 0) {
+            IntType* inti = dynamic_cast<IntType*>(i);
+            IntType* intj = dynamic_cast<IntType*>(j);
+            if (inti->depth() >= depthBound || intj->depth() >= depthBound) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    if (op == "RIGHTSHIFT") {
+        if (dynamic_cast<IntType*>(i) != 0 && dynamic_cast<IntType*>(j) != 0) {
+            IntType* inti = dynamic_cast<IntType*>(i);
+            IntType* intj = dynamic_cast<IntType*>(j);
+            if (inti->depth() >= depthBound || intj->depth() >= depthBound) {
+                return false;
+            }
+        } else {
+            return false;
         }
     }
     if (op == "TIMES") {
         if (dynamic_cast<IntType*>(i) != 0 && dynamic_cast<IntType*>(j) != 0) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
-            if (inti->depth() < depthBound && intj->depth() < depthBound) {
-                Times* times = new Times(inti, intj);
-                return dynamic_cast<BaseType*>(times);
+            if (inti->depth() >= depthBound || intj->depth() >= depthBound) {
+                return false;
             }
+        } else {
+            return false;
         }
     }
     if (op == "ITE") {
@@ -143,10 +178,103 @@ BaseType* bottomUpSearch::growOneExpr(BaseType* i, BaseType* j, BaseType* k, str
             BoolType* booli = dynamic_cast<BoolType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
             IntType* intk = dynamic_cast<IntType*>(k);
-            if (booli->depth() < depthBound && intj->depth() < depthBound && intk->depth() < depthBound) {
-                Ite* ite = new Ite(booli, intj, intk);
-                return dynamic_cast<BaseType*>(ite);
+            if (booli->depth() >= depthBound || intj->depth() >= depthBound || intk->depth() >= depthBound) {
+                return false;
             }
+        } else {
+            return false;
+        }
+    }
+    
+    if (op == "NOT") {
+        if (dynamic_cast<BoolType*>(i) != 0) {
+            BoolType* booli = dynamic_cast<BoolType*>(i);
+            if (booli->depth() >= depthBound) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    
+    if (op == "AND") {
+        if (dynamic_cast<BoolType*>(i) != 0 && dynamic_cast<BoolType*>(j) != 0) {
+            BoolType* booli = dynamic_cast<BoolType*>(i);
+            BoolType* boolj = dynamic_cast<BoolType*>(j);
+            if (booli->depth() >= depthBound || boolj->depth() >= depthBound) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    
+    if (op == "LT") {
+        if (dynamic_cast<IntType*>(i) != 0 && dynamic_cast<IntType*>(j) != 0) {
+            IntType* inti = dynamic_cast<IntType*>(i);
+            IntType* intj = dynamic_cast<IntType*>(j);
+            if (inti->depth() >= depthBound || intj->depth() >= depthBound) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    return true;
+}
+
+/******************************************
+    Grow program list
+*/
+BaseType* bottomUpSearch::growOneExpr(BaseType* i, BaseType* j, BaseType* k, string op, int depthBound) {
+    if (op == "PLUS") {
+        if (isGrowRuleSatisfied(i, j, k, op, depthBound)) {
+            IntType* inti = dynamic_cast<IntType*>(i);
+            IntType* intj = dynamic_cast<IntType*>(j);
+            Plus* plus = new Plus(inti, intj);
+            return dynamic_cast<BaseType*>(plus);
+        }
+    }
+    if (op == "MINUS") {
+        if (isGrowRuleSatisfied(i, j, k, op, depthBound)) {
+            IntType* inti = dynamic_cast<IntType*>(i);
+            IntType* intj = dynamic_cast<IntType*>(j);
+            Minus* minus = new Minus(inti, intj);
+            return dynamic_cast<BaseType*>(minus);
+        }
+    }
+    if (op == "LEFTSHIFT") {
+        if (isGrowRuleSatisfied(i, j, k, op, depthBound)) {
+            IntType* inti = dynamic_cast<IntType*>(i);
+            IntType* intj = dynamic_cast<IntType*>(j);
+            Leftshift* leftshift = new Leftshift(inti, intj);
+            return dynamic_cast<BaseType*>(leftshift);
+        }
+    }
+    if (op == "RIGHTSHIFT") {
+        if (isGrowRuleSatisfied(i, j, k, op, depthBound)) {
+            IntType* inti = dynamic_cast<IntType*>(i);
+            IntType* intj = dynamic_cast<IntType*>(j);
+            Rightshift* rightshift = new Rightshift(inti, intj);
+            return dynamic_cast<BaseType*>(rightshift);
+        }
+    }
+    if (op == "TIMES") {
+        if (isGrowRuleSatisfied(i, j, k, op, depthBound)) {
+            IntType* inti = dynamic_cast<IntType*>(i);
+            IntType* intj = dynamic_cast<IntType*>(j);
+            Times* times = new Times(inti, intj);
+            return dynamic_cast<BaseType*>(times);
+        }
+    }
+    
+    if (op == "ITE") {
+        if (isGrowRuleSatisfied(i, j, k, op, depthBound)) {
+            BoolType* booli = dynamic_cast<BoolType*>(i);
+            IntType* intj = dynamic_cast<IntType*>(j);
+            IntType* intk = dynamic_cast<IntType*>(k);
+            Ite* ite = new Ite(booli, intj, intk);
+            return dynamic_cast<BaseType*>(ite);
         }
     }
     
@@ -166,24 +294,20 @@ BaseType* bottomUpSearch::growOneExpr(BaseType* i, BaseType* j, BaseType* k, str
     }
     
     if (op == "AND") {
-        if (dynamic_cast<BoolType*>(i) != 0 && dynamic_cast<BoolType*>(j) != 0) {
+        if (isGrowRuleSatisfied(i, j, k, op, depthBound)) {
             BoolType* booli = dynamic_cast<BoolType*>(i);
             BoolType* boolj = dynamic_cast<BoolType*>(j);
-            if (booli->depth() < depthBound && boolj->depth() < depthBound) {
-                And* a = new And(booli, boolj);
-                return dynamic_cast<BaseType*>(a);
-            }
+            And* a = new And(booli, boolj);
+            return dynamic_cast<BaseType*>(a);
         }
     }
     
     if (op == "LT") {
-        if (dynamic_cast<IntType*>(i) != 0 && dynamic_cast<IntType*>(j) != 0) {
+        if (isGrowRuleSatisfied(i, j, k, op, depthBound)) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
-            if (inti->depth() < depthBound && intj->depth() < depthBound) {
-                Lt* lt = new Lt(inti, intj);
-                return dynamic_cast<BaseType*>(lt);
-            }
+            Lt* lt = new Lt(inti, intj);
+            return dynamic_cast<BaseType*>(lt);
         }
     }
     return NULL;

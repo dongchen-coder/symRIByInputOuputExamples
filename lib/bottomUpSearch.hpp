@@ -44,6 +44,9 @@ private:
     void dumpPlist(vector<BaseType*> pList);
     int getPlistSize();
     
+    /* grow expression rules */
+    bool isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, string op, int depthBound);
+    
     /* Construct one expression: op i j */
     BaseType* growOneExpr(BaseType* i, BaseType* j, BaseType* k, string op, int depthBound);
     
