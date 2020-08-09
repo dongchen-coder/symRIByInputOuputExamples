@@ -7,13 +7,15 @@ bottomUpSearch::bottomUpSearch(int depthBound,
                                vector<string> boolOps,
                                vector<string> vars,
                                vector<string> constants,
-                               vector<map<string, int> > inputOutputs) {
+                               vector<map<string, int> > inputOutputs,
+                               string searchMode) {
     this->depthBound = depthBound;
     this->intOps = intOps;
     this->boolOps = boolOps;
     this->vars = vars;
     this->constants = constants;
     this->inputOutputs = inputOutputs;
+    this->searchMode = searchMode;
     
     for (int i = 0; i < vars.size(); i++) {
         Var* var = new Var(vars[i]);
@@ -118,6 +120,7 @@ void bottomUpSearch::dumpLangDef() {
     Specify and check  growing rules
 */
 bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, string op, int depthBound) {
+    /* basic rules */
     if (op == "PLUS") {
         if (dynamic_cast<IntType*>(i) != 0 && dynamic_cast<IntType*>(j) != 0) {
             IntType* inti = dynamic_cast<IntType*>(i);
@@ -129,7 +132,7 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
             return false;
         }
     }
-    if (op == "MINUS") {
+    else if (op == "MINUS") {
         if (dynamic_cast<IntType*>(i) != 0 && dynamic_cast<IntType*>(j) != 0) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
@@ -140,7 +143,7 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
             return false;
         }
     }
-    if (op == "LEFTSHIFT") {
+    else if (op == "LEFTSHIFT") {
         if (dynamic_cast<IntType*>(i) != 0 && dynamic_cast<IntType*>(j) != 0) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
@@ -151,7 +154,7 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
             return false;
         }
     }
-    if (op == "RIGHTSHIFT") {
+    else if (op == "RIGHTSHIFT") {
         if (dynamic_cast<IntType*>(i) != 0 && dynamic_cast<IntType*>(j) != 0) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
@@ -162,7 +165,7 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
             return false;
         }
     }
-    if (op == "TIMES") {
+    else if (op == "TIMES") {
         if (dynamic_cast<IntType*>(i) != 0 && dynamic_cast<IntType*>(j) != 0) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
@@ -173,7 +176,7 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
             return false;
         }
     }
-    if (op == "ITE") {
+    else if (op == "ITE") {
         if (dynamic_cast<BoolType*>(i) != 0 && dynamic_cast<IntType*>(j) != 0 && dynamic_cast<IntType*>(k) != 0) {
             BoolType* booli = dynamic_cast<BoolType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
@@ -185,8 +188,7 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
             return false;
         }
     }
-    
-    if (op == "NOT") {
+    else if (op == "NOT") {
         if (dynamic_cast<BoolType*>(i) != 0) {
             BoolType* booli = dynamic_cast<BoolType*>(i);
             if (booli->depth() >= depthBound) {
@@ -196,8 +198,7 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
             return false;
         }
     }
-    
-    if (op == "AND") {
+    else if (op == "AND") {
         if (dynamic_cast<BoolType*>(i) != 0 && dynamic_cast<BoolType*>(j) != 0) {
             BoolType* booli = dynamic_cast<BoolType*>(i);
             BoolType* boolj = dynamic_cast<BoolType*>(j);
@@ -208,8 +209,7 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
             return false;
         }
     }
-    
-    if (op == "LT") {
+    else if (op == "LT") {
         if (dynamic_cast<IntType*>(i) != 0 && dynamic_cast<IntType*>(j) != 0) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
@@ -220,6 +220,33 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
             return false;
         }
     }
+    
+    /* Search mode specified rules */
+    if (searchMode == "PerSrcIter") {
+       
+    }
+    else if (searchMode == "PerSrcSnk") {
+        if (op == "PLUS") {
+            if (dynamic_cast<Var*>(i) != 0 && dynamic_cast<Var*>(j) != 0) {
+                return false;
+            }
+        }
+        if (op == "MINUS") {
+            if (dynamic_cast<Var*>(i) != 0 && dynamic_cast<Var*>(j) != 0) {
+                Var* vari = dynamic_cast<Var*>(i);
+                Var* varj = dynamic_cast<Var*>(j);
+                if (varj->toString().substr(0, 4) != "Isnk" ||
+                    vari->toString().substr(0, 4) != "Isrc") {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    } else {
+        
+    }
+    
     return true;
 }
 

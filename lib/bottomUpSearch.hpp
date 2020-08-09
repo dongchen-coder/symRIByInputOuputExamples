@@ -7,7 +7,7 @@
 #include <thread>
 #include <vector>
 
-#define DEBUG
+//#define DEBUG
 
 using namespace std;
 
@@ -18,7 +18,8 @@ public:
                    vector<string> boolOps,
                    vector<string> vars,
                    vector<string> constants,
-                   vector<map<string, int> > inputOutputs);
+                   vector<map<string, int> > inputOutputs,
+                   string searchMode);
     
     /* search function */
     string search();
@@ -70,6 +71,9 @@ private:
     /* Input-output examples */
     vector<map<string, int> > inputOutputs;
     
+    /* Search mode */
+    string searchMode;
+
     /* Language defination */
     int depthBound;
     vector<string> intOps;

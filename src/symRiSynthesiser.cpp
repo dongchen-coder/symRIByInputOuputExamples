@@ -9,6 +9,8 @@
 #include <fstream>
 using namespace std;
 
+#define DEBUG
+
 bool parser(int argc, char* argv[],
             string* fileName,
             int* searchTimeInSeconds,
@@ -21,7 +23,8 @@ bool parser(int argc, char* argv[],
             vector<string>* intOpsTerm,
             vector<string>* boolOpsTerm,
             vector<string>* varsTerm,
-            vector<string>* constantsTerm) {
+            vector<string>* constantsTerm,
+            string* searchMode) {
     
     for (int i = 1; i < argc; i++) {
         
@@ -34,6 +37,16 @@ bool parser(int argc, char* argv[],
                 *fileName = argvi;
             } else {
                 cout << "-FILE: error in providing file name" << endl;
+                return false;
+            }
+        }
+        else if (argvi == "-MODE") {
+            i++;
+            if (i < argc) {
+                argvi = argv[i];
+                *searchMode = argvi;
+            } else {
+                cout << "-MODE: error in providing search mode" << endl;
                 return false;
             }
         }
@@ -395,6 +408,7 @@ int main(int argc, char* argv[]) {
     if (argc < 2) {
         cout << "Error: command line options:" << endl;
         cout << "      -FILE : specify path with the name of input-output-example file" << endl;
+        cout << "      -MODE : specify search mode (PerSrcIter, PerSrcSnk)" << endl;
         cout << "    Optional specification for predicate language" << endl;
         cout << "      -DEPTHBOUNDPRED : specify the depth of a predicate program" << endl;
         cout << "      -INTOPSPRED : specify the int ops for the predication language" << endl;
@@ -430,10 +444,13 @@ int main(int argc, char* argv[]) {
     
     int searchTimeInSeconds = 20;
     
+    string searchMode;
+    
     if ( parser(argc, argv,
                &fileName, &searchTimeInSeconds,
                &depthBoundPred, &intOpsPred, &boolOpsPred, &varsPred, &constantsPred,
-               &depthBoundTerm, &intOpsTerm, &boolOpsTerm, &varsTerm, &constantsTerm) == false ) {
+               &depthBoundTerm, &intOpsTerm, &boolOpsTerm, &varsTerm, &constantsTerm,
+               &searchMode) == false ) {
         cout << "Error in parsing command lines" << endl;
         return 0;
     }
@@ -448,6 +465,18 @@ int main(int argc, char* argv[]) {
     }
     
     /*
+     output search mode
+     */
+    if (searchMode == "PerSrcIter") {
+        cout << "Per source iteration specific rules applied" << endl;
+    }
+    else if (searchMode == "PerSrcSnk") {
+        cout << "Per source sink specific rules applid" << endl;
+    } else {
+        cout << "No mode specific rules specified" << endl;
+    }
+    
+    /*
      language configuration
     */
     langConfiguration(&depthBoundPred, &intOpsPred, &boolOpsPred, &varsPred, &constantsPred,
@@ -457,8 +486,12 @@ int main(int argc, char* argv[]) {
     unification* uni = new unification(depthBoundPred, intOpsPred, boolOpsPred, varsPred, constantsPred,
                                        depthBoundTerm, intOpsTerm, boolOpsTerm, varsTerm, constantsTerm,
                                        inputOutputs);
-    //uni->dumpLangDef();
-    uni->search(searchTimeInSeconds);
+#ifdef DEBUG
+    uni->dumpLangDef();
+#endif
+    
+    uni->search(searchTimeInSeconds, searchMode);
+    
     //uni->dumpInputOutputTree();
     uni->dumpSearchedProgram();
     

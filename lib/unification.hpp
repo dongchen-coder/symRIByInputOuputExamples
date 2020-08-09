@@ -41,7 +41,7 @@ public:
                 vector<string> constantsTerm,
                 vector<map<string, int> > inputOutputs);
     
-    string search(int timeBoundInSeconds);
+    string search(int timeBoundInSeconds, string searchMode);
     
     /* Dumping fucntions */
     void dumpLangDef();
@@ -53,8 +53,8 @@ private:
     void dumpInputOutputTreeNode(inputOutputTreeNode* node, string space="");
     
     /* Search node */
-    string searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNode* node);
-    string searchNode(int timeBoundInSeconds, inputOutputTreeNode* node);
+    string searchNodeOnePass(int timeBoundInSeconds, string searchMode, inputOutputTreeNode* node);
+    string searchNode(int timeBoundInSeconds, string searchMode, inputOutputTreeNode* node);
     
     /* Split current tree node of inputoutput examples */
     bool splitInputOutputTreeNode(inputOutputTreeNode* node, int splitMode);
