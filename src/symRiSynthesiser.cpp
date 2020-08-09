@@ -492,6 +492,7 @@ int main(int argc, char* argv[]) {
     
     uni->search(searchTimeInSeconds, searchMode);
     
+    
     //uni->dumpInputOutputTree();
     uni->dumpSearchedProgram();
     

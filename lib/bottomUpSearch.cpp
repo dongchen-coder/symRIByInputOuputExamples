@@ -239,7 +239,24 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
                     vari->toString().substr(0, 4) != "Isrc") {
                     return false;
                 }
-            } else {
+            }
+            else {
+                return false;
+            }
+        }
+        if (op == "TIMES") {
+            if (dynamic_cast<Var*>(i) != 0 && dynamic_cast<Var*>(j) != 0) {
+                Var* vari = dynamic_cast<Var*>(i);
+                Var* varj = dynamic_cast<Var*>(j);
+                if (varj->toString().substr(0, 1) != "B" ||
+                    vari->toString().substr(0, 1) != "B") {
+                    return false;
+                }
+            }
+            else if (dynamic_cast<Num*>(i) != 0 && dynamic_cast<Num*>(i) != 0) {
+                
+            }
+            else {
                 return false;
             }
         }

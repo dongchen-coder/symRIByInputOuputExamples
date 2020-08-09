@@ -21,6 +21,22 @@ int IntType::depth() {
         Plus* plus = dynamic_cast<Plus*>(this);
         depth = plus->depth();
     }
+    if (dynamic_cast<Minus*>(this) != 0) {
+        Minus* minus = dynamic_cast<Minus*>(this);
+        depth = minus->depth();
+    }
+    if (dynamic_cast<Times*>(this) != 0) {
+        Times* times = dynamic_cast<Times*>(this);
+        depth = times->depth();
+    }
+    if (dynamic_cast<Leftshift*>(this) != 0) {
+        Leftshift* leftshift = dynamic_cast<Leftshift*>(this);
+        depth = leftshift->depth();
+    }
+    if (dynamic_cast<Rightshift*>(this) != 0) {
+        Rightshift* rightshift = dynamic_cast<Rightshift*>(this);
+        depth = rightshift->depth();
+    }
     if (dynamic_cast<Times*>(this) != 0) {
         Times* times = dynamic_cast<Times*>(this);
         depth = times->depth();
@@ -30,6 +46,88 @@ int IntType::depth() {
         depth = ite->depth();
     }
     return depth;
+}
+
+int IntType::getNumOfOpsInProg(string opName) {
+    int numOfOpsInProg;
+    if (dynamic_cast<Num*>(this) != 0) {
+        Num* num = dynamic_cast<Num*>(this);
+        numOfOpsInProg = num->getNumOfOpsInProg(opName);
+    }
+    if (dynamic_cast<Var*>(this) != 0) {
+        Var* var = dynamic_cast<Var*>(this);
+        numOfOpsInProg = var->getNumOfOpsInProg(opName);
+    }
+    if (dynamic_cast<Plus*>(this) != 0) {
+        Plus* plus = dynamic_cast<Plus*>(this);
+        numOfOpsInProg = plus->getNumOfOpsInProg(opName);
+    }
+    if (dynamic_cast<Minus*>(this) != 0) {
+        Minus* minus = dynamic_cast<Minus*>(this);
+        numOfOpsInProg = minus->getNumOfOpsInProg(opName);
+    }
+    if (dynamic_cast<Times*>(this) != 0) {
+        Times* times = dynamic_cast<Times*>(this);
+        numOfOpsInProg = times->getNumOfOpsInProg(opName);
+    }
+    if (dynamic_cast<Leftshift*>(this) != 0) {
+        Leftshift* leftshift = dynamic_cast<Leftshift*>(this);
+        numOfOpsInProg = leftshift->getNumOfOpsInProg(opName);
+    }
+    if (dynamic_cast<Rightshift*>(this) != 0) {
+        Rightshift* rightshift = dynamic_cast<Rightshift*>(this);
+        numOfOpsInProg = rightshift->getNumOfOpsInProg(opName);
+    }
+    if (dynamic_cast<Times*>(this) != 0) {
+        Times* times = dynamic_cast<Times*>(this);
+        numOfOpsInProg = times->getNumOfOpsInProg(opName);
+    }
+    if (dynamic_cast<Ite*>(this) != 0) {
+        Ite* ite = dynamic_cast<Ite*>(this);
+        numOfOpsInProg = ite->getNumOfOpsInProg(opName);
+    }
+    return numOfOpsInProg;
+}
+
+int IntType::getNumOfSymbolsInProg(string symbolName) {
+    int numOfSymbolsInProg;
+    if (dynamic_cast<Num*>(this) != 0) {
+        Num* num = dynamic_cast<Num*>(this);
+        numOfSymbolsInProg = num->getNumOfSymbolsInProg(symbolName);
+    }
+    if (dynamic_cast<Var*>(this) != 0) {
+        Var* var = dynamic_cast<Var*>(this);
+        numOfSymbolsInProg = var->getNumOfSymbolsInProg(symbolName);
+    }
+    if (dynamic_cast<Plus*>(this) != 0) {
+        Plus* plus = dynamic_cast<Plus*>(this);
+        numOfSymbolsInProg = plus->getNumOfSymbolsInProg(symbolName);
+    }
+    if (dynamic_cast<Minus*>(this) != 0) {
+        Minus* minus = dynamic_cast<Minus*>(this);
+        numOfSymbolsInProg = minus->getNumOfSymbolsInProg(symbolName);
+    }
+    if (dynamic_cast<Times*>(this) != 0) {
+        Times* times = dynamic_cast<Times*>(this);
+        numOfSymbolsInProg = times->getNumOfSymbolsInProg(symbolName);
+    }
+    if (dynamic_cast<Leftshift*>(this) != 0) {
+        Leftshift* leftshift = dynamic_cast<Leftshift*>(this);
+        numOfSymbolsInProg = leftshift->getNumOfSymbolsInProg(symbolName);
+    }
+    if (dynamic_cast<Rightshift*>(this) != 0) {
+        Rightshift* rightshift = dynamic_cast<Rightshift*>(this);
+        numOfSymbolsInProg = rightshift->getNumOfSymbolsInProg(symbolName);
+    }
+    if (dynamic_cast<Times*>(this) != 0) {
+        Times* times = dynamic_cast<Times*>(this);
+        numOfSymbolsInProg = times->getNumOfSymbolsInProg(symbolName);
+    }
+    if (dynamic_cast<Ite*>(this) != 0) {
+        Ite* ite = dynamic_cast<Ite*>(this);
+        numOfSymbolsInProg = ite->getNumOfSymbolsInProg(symbolName);
+    }
+    return numOfSymbolsInProg;
 }
 
 BoolType::BoolType() {};
@@ -55,6 +153,48 @@ int BoolType::depth() {
     return depth;
 }
 
+int BoolType::getNumOfOpsInProg(string opName) {
+    int numOfOpsInProg;
+    if (dynamic_cast<F*>(this) != 0) {
+        F* f = dynamic_cast<F*>(this);
+        numOfOpsInProg = f->getNumOfOpsInProg(opName);
+    }
+    if (dynamic_cast<Not*>(this) != 0) {
+        Not* n = dynamic_cast<Not*>(this);
+        numOfOpsInProg = n->getNumOfOpsInProg(opName);
+    }
+    if (dynamic_cast<And*>(this) != 0) {
+        And* a = dynamic_cast<And*>(this);
+        numOfOpsInProg = a->getNumOfOpsInProg(opName);
+    }
+    if (dynamic_cast<Lt*>(this) != 0) {
+        Lt* lt = dynamic_cast<Lt*>(this);
+        numOfOpsInProg = lt->getNumOfOpsInProg(opName);
+    }
+    return numOfOpsInProg;
+}
+
+int BoolType::getNumOfSymbolsInProg(string symbolName) {
+    int numOfSymbolsInProg;
+    if (dynamic_cast<F*>(this) != 0) {
+        F* f = dynamic_cast<F*>(this);
+        numOfSymbolsInProg = f->getNumOfSymbolsInProg(symbolName);
+    }
+    if (dynamic_cast<Not*>(this) != 0) {
+        Not* n = dynamic_cast<Not*>(this);
+        numOfSymbolsInProg = n->getNumOfSymbolsInProg(symbolName);
+    }
+    if (dynamic_cast<And*>(this) != 0) {
+        And* a = dynamic_cast<And*>(this);
+        numOfSymbolsInProg = a->getNumOfSymbolsInProg(symbolName);
+    }
+    if (dynamic_cast<Lt*>(this) != 0) {
+        Lt* lt = dynamic_cast<Lt*>(this);
+        numOfSymbolsInProg = lt->getNumOfSymbolsInProg(symbolName);
+    }
+    return numOfSymbolsInProg;
+}
+
 /******************************************
 Constructs: False
 */
@@ -70,6 +210,17 @@ bool F::interpret() {
     
 int F::depth() {
     return 1;
+}
+
+int F::getNumOfOpsInProg(string opName) {
+    return 0;
+}
+
+int F::getNumOfSymbolsInProg(string symbolName) {
+    if (symbolName == "false") {
+        return 1;
+    }
+    return 0;
 }
 
 /******************************************
@@ -91,6 +242,17 @@ int Var::depth() {
     return 1;
 }
 
+int Var::getNumOfOpsInProg(string opName) {
+    return 0;
+}
+
+int Var::getNumOfSymbolsInProg(string symbolName) {
+    if (symbolName == _name) {
+        return 1;
+    }
+    return 0;
+}
+
 /******************************************
 Constructs: Num
 */
@@ -108,6 +270,17 @@ int Num::interpret() {
     
 int Num::depth() {
     return 1;
+}
+
+int Num::getNumOfOpsInProg(string opName) {
+    return 0;
+}
+
+int Num::getNumOfSymbolsInProg(string symbolName) {
+    if (symbolName == to_string(_num)) {
+        return 1;
+    }
+    return 0;
 }
 
 /******************************************
@@ -313,6 +486,17 @@ int Plus::depth() {
     return depth;
 }
 
+int Plus::getNumOfOpsInProg(string opName) {
+    if (opName == "PLUS") {
+        return _left->getNumOfOpsInProg(opName) + _left->getNumOfOpsInProg(opName) + 1;
+    }
+    return _left->getNumOfOpsInProg(opName) + _left->getNumOfOpsInProg(opName);
+}
+
+int Plus::getNumOfSymbolsInProg(string symbolName) {
+    return _left->getNumOfSymbolsInProg(symbolName) + _right->getNumOfSymbolsInProg(symbolName);
+}
+
 /******************************************
 Constructs: Minus
 */
@@ -511,6 +695,17 @@ int Minus::depth() {
         depth = max(depth, right->depth()) + 1;
     }
     return depth;
+}
+
+int Minus::getNumOfOpsInProg(string opName) {
+    if (opName == "MINUS") {
+        return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName) + 1;
+    }
+    return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName);
+}
+
+int Minus::getNumOfSymbolsInProg(string symbolName) {
+    return _left->getNumOfSymbolsInProg(symbolName) + _right->getNumOfSymbolsInProg(symbolName);
 }
 
 /******************************************
@@ -715,6 +910,17 @@ int Times::depth() {
     return depth;
 }
 
+int Times::getNumOfOpsInProg(string opName) {
+    if (opName == "TIMES") {
+        return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName) + 1;
+    }
+    return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName);
+}
+
+int Times::getNumOfSymbolsInProg(string symbolName) {
+    return _left->getNumOfSymbolsInProg(symbolName) + _left->getNumOfSymbolsInProg(symbolName);
+}
+
 /******************************************
 Constructs: Leftshift
 */
@@ -915,6 +1121,17 @@ int Leftshift::depth() {
         depth = max(depth, offset->depth()) + 1;
     }
     return depth;
+}
+
+int Leftshift::getNumOfOpsInProg(string opName) {
+    if (opName == "LEFTSHIFT") {
+        return _value->getNumOfOpsInProg(opName) + _offset->getNumOfOpsInProg(opName) + 1;
+    }
+    return _value->getNumOfOpsInProg(opName) + _offset->getNumOfOpsInProg(opName);
+}
+
+int Leftshift::getNumOfSymbolsInProg(string symbolName) {
+    return _value->getNumOfSymbolsInProg(symbolName) + _offset->getNumOfSymbolsInProg(symbolName);
 }
 
 /******************************************
@@ -1118,6 +1335,17 @@ int Rightshift::depth() {
     return depth;
 }
 
+int Rightshift::getNumOfOpsInProg(string opName) {
+    if (opName == "RIGHTSHIFT") {
+        return _value->getNumOfOpsInProg(opName) + _offset->getNumOfOpsInProg(opName) + 1;
+    }
+    return _value->getNumOfOpsInProg(opName) + _offset->getNumOfOpsInProg(opName);
+}
+
+int Rightshift::getNumOfSymbolsInProg(string symbolName) {
+    return _value->getNumOfSymbolsInProg(symbolName) + _offset->getNumOfSymbolsInProg(symbolName);
+}
+
 /******************************************
 Constructs: Lt
 */
@@ -1318,6 +1546,17 @@ int Lt::depth() {
     return depth;
 }
 
+int Lt::getNumOfOpsInProg(string opName) {
+    if (opName == "LT") {
+        return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName) + 1;
+    }
+    return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName);
+}
+
+int Lt::getNumOfSymbolsInProg(string symbolName) {
+    return _left->getNumOfSymbolsInProg(symbolName) + _right->getNumOfSymbolsInProg(symbolName);
+}
+
 /******************************************
 Constructs: And
 */
@@ -1446,6 +1685,17 @@ int And::depth() {
     return depth;
 }
 
+int And::getNumOfOpsInProg(string opName) {
+    if (opName == "AND") {
+        return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName) + 1;
+    }
+    return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName);
+}
+
+int And::getNumOfSymbolsInProg(string symbolName) {
+    return _left->getNumOfSymbolsInProg(symbolName) + _right->getNumOfSymbolsInProg(symbolName);
+}
+
 /******************************************
 Constructs: Not
 */
@@ -1516,6 +1766,17 @@ int Not::depth() {
         depth = left->depth();
     }
     return depth+1;
+}
+
+int Not::getNumOfOpsInProg(string opName) {
+    if (opName == "NOT") {
+        return _left->getNumOfOpsInProg(opName) + 1;
+    }
+    return _left->getNumOfOpsInProg(opName);
+}
+
+int Not::getNumOfSymbolsInProg(string symbolName) {
+    return _left->getNumOfSymbolsInProg(symbolName);
 }
 
 /******************************************
@@ -1777,3 +2038,13 @@ int Ite::depth() {
     return depth;
 }
 
+int Ite::getNumOfOpsInProg(string opName) {
+    if (opName == "ITE") {
+        return _cond->getNumOfOpsInProg(opName) + _tcase->getNumOfOpsInProg(opName) + _fcase->getNumOfOpsInProg(opName) + 1;
+    }
+    return _cond->getNumOfOpsInProg(opName) + _tcase->getNumOfOpsInProg(opName) + _fcase->getNumOfOpsInProg(opName);
+}
+
+int Ite::getNumOfSymbolsInProg(string symbolName) {
+    return _cond->getNumOfSymbolsInProg(symbolName) + _tcase->getNumOfSymbolsInProg(symbolName) + _fcase->getNumOfSymbolsInProg(symbolName);
+}

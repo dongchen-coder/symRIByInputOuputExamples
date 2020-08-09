@@ -14,6 +14,8 @@ class IntType : public BaseType {
 public:
     IntType();
     int depth();
+    int getNumOfOpsInProg(string opName);
+    int getNumOfSymbolsInProg(string symbolName);
     virtual ~IntType() {};
 };
 
@@ -21,6 +23,8 @@ class BoolType : public BaseType {
 public:
     BoolType();
     int depth();
+    int getNumOfOpsInProg(string opName);
+    int getNumOfSymbolsInProg(string symbolName);
     virtual ~BoolType() {};
 };
 
@@ -30,6 +34,8 @@ public:
     string toString();
     bool interpret();
     int depth();
+    int getNumOfOpsInProg(string opName);
+    int getNumOfSymbolsInProg(string symbolName);
 };
 
 class Var : public IntType {
@@ -40,6 +46,8 @@ public:
     string toString();
     int interpret(map<string, int> env);
     int depth();
+    int getNumOfOpsInProg(string opName);
+    int getNumOfSymbolsInProg(string symbolName);
 };
 
 class Num : public IntType {
@@ -50,6 +58,8 @@ public:
     string toString();
     int interpret();
     int depth();
+    int getNumOfOpsInProg(string opName);
+    int getNumOfSymbolsInProg(string symbolName);
 };
 
 class Plus : public IntType {
@@ -61,6 +71,8 @@ public:
     string toString();
     int interpret(map<string, int> env);
     int depth();
+    int getNumOfOpsInProg(string opName);
+    int getNumOfSymbolsInProg(string symbolName);
 };
 
 class Minus : public IntType {
@@ -72,6 +84,8 @@ public:
     string toString();
     int interpret(map<string, int> env);
     int depth();
+    int getNumOfOpsInProg(string opName);
+    int getNumOfSymbolsInProg(string symbolName);
 };
 
 class Times : public IntType {
@@ -83,6 +97,8 @@ public:
     string toString();
     int interpret(map<string, int> env);
     int depth();
+    int getNumOfOpsInProg(string opName);
+    int getNumOfSymbolsInProg(string symbolName);
 };
 
 class Leftshift : public IntType {
@@ -94,6 +110,8 @@ public:
     string toString();
     int interpret(map<string, int> env);
     int depth();
+    int getNumOfOpsInProg(string opName);
+    int getNumOfSymbolsInProg(string symbolName);
 };
 
 class Rightshift : public IntType {
@@ -105,6 +123,8 @@ public:
     string toString();
     int interpret(map<string, int> env);
     int depth();
+    int getNumOfOpsInProg(string opName);
+    int getNumOfSymbolsInProg(string symbolName);
 };
 
 class Lt : public BoolType {
@@ -116,6 +136,8 @@ public:
     string toString();
     bool interpret(map<string, int> env);
     int depth();
+    int getNumOfOpsInProg(string opName);
+    int getNumOfSymbolsInProg(string symbolName);
 };
 
 class And : public BoolType {
@@ -127,6 +149,8 @@ public:
     string toString();
     bool interpret(map<string, int> env);
     int depth();
+    int getNumOfOpsInProg(string opName);
+    int getNumOfSymbolsInProg(string symbolName);
 };
 
 class Not : public BoolType {
@@ -137,6 +161,8 @@ public:
     string toString();
     bool interpret(map<string, int> env);
     int depth();
+    int getNumOfOpsInProg(string opName);
+    int getNumOfSymbolsInProg(string symbolName);
 };
 
 class Ite : public IntType {
@@ -149,6 +175,8 @@ public:
     string toString();
     int interpret(map<string, int> env);
     int depth();
+    int getNumOfOpsInProg(string opName);
+    int getNumOfSymbolsInProg(string symbolName);
 };
 
 #endif
