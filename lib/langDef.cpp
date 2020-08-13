@@ -7,6 +7,47 @@ BaseType::BaseType() {};
 
 IntType::IntType() {};
 
+string IntType::toString() {
+    string output;
+    if (dynamic_cast<Num*>(this) != 0) {
+        Num* num = dynamic_cast<Num*>(this);
+        output = num->toString();
+    }
+    if (dynamic_cast<Var*>(this) != 0) {
+        Var* var = dynamic_cast<Var*>(this);
+        output = var->toString();
+    }
+    if (dynamic_cast<Plus*>(this) != 0) {
+        Plus* plus = dynamic_cast<Plus*>(this);
+        output = plus->toString();
+    }
+    if (dynamic_cast<Minus*>(this) != 0) {
+        Minus* minus = dynamic_cast<Minus*>(this);
+        output = minus->toString();
+    }
+    if (dynamic_cast<Times*>(this) != 0) {
+        Times* times = dynamic_cast<Times*>(this);
+        output = times->toString();
+    }
+    if (dynamic_cast<Leftshift*>(this) != 0) {
+        Leftshift* leftshift = dynamic_cast<Leftshift*>(this);
+        output = leftshift->toString();
+    }
+    if (dynamic_cast<Rightshift*>(this) != 0) {
+        Rightshift* rightshift = dynamic_cast<Rightshift*>(this);
+        output = rightshift->toString();
+    }
+    if (dynamic_cast<Times*>(this) != 0) {
+        Times* times = dynamic_cast<Times*>(this);
+        output = times->toString();
+    }
+    if (dynamic_cast<Ite*>(this) != 0) {
+        Ite* ite = dynamic_cast<Ite*>(this);
+        output = ite->toString();
+    }
+    return output;
+}
+
 int IntType::depth() {
     int depth;
     if (dynamic_cast<Num*>(this) != 0) {
@@ -131,6 +172,27 @@ int IntType::getNumOfSymbolsInProg(string symbolName) {
 }
 
 BoolType::BoolType() {};
+
+string BoolType::toString() {
+    string output;
+    if (dynamic_cast<F*>(this) != 0) {
+        F* f = dynamic_cast<F*>(this);
+        output = f->toString();
+    }
+    if (dynamic_cast<Not*>(this) != 0) {
+        Not* n = dynamic_cast<Not*>(this);
+        output = n->toString();
+    }
+    if (dynamic_cast<And*>(this) != 0) {
+        And* a = dynamic_cast<And*>(this);
+        output = a->toString();
+    }
+    if (dynamic_cast<Lt*>(this) != 0) {
+        Lt* lt = dynamic_cast<Lt*>(this);
+        output = lt->toString();
+    }
+    return output;
+}
 
 int BoolType::depth() {
     int depth;

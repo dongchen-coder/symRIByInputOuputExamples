@@ -13,6 +13,7 @@ public:
 class IntType : public BaseType {
 public:
     IntType();
+    string toString();
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
@@ -22,6 +23,7 @@ public:
 class BoolType : public BaseType {
 public:
     BoolType();
+    string toString();
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);

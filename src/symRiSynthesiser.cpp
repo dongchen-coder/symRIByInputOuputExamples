@@ -9,11 +9,12 @@
 #include <fstream>
 using namespace std;
 
-#define DEBUG
+//#define DEBUG
 
 bool parser(int argc, char* argv[],
             string* fileName,
-            int* searchTimeInSeconds,
+            int* searchTimeForTermsInSeconds,
+            int* searchTimeForPredsInSeconds,
             int* depthBoundPred,
             vector<string>* intOpsPred,
             vector<string>* boolOpsPred,
@@ -222,21 +223,35 @@ bool parser(int argc, char* argv[],
                 return false;
             }
         }
-        else if (argvi == "-SEARCHTIMEINSECONDS") {
+        else if (argvi == "-SEARCHTIMEFORTERMSINSECONDS") {
             i++;
             if (i < argc) {
                 argvi = argv[i];
                 if (isdigit(argvi[0])) {
-                    *searchTimeInSeconds = stoi(argv[i]);
+                    *searchTimeForTermsInSeconds = stoi(argv[i]);
                 } else {
-                    
                     return false;
                 }
             } else {
-                cout << "-SEARCHTIMEINSECONDS: error in specifying the search time" << endl;
+                cout << "-SEARCHTIMEFORTERMSINSECONDS: error in specifying the search time" << endl;
                 return false;
             }
-        } else {
+        }
+        else if (argvi == "-SEARCHTIMEFORPREDSINSECONDS") {
+            i++;
+            if (i < argc) {
+                argvi = argv[i];
+                if (isdigit(argvi[0])) {
+                    *searchTimeForPredsInSeconds = stoi(argv[i]);
+                } else {
+                    return false;
+                }
+            } else {
+                cout << "-SEARCHTIMEFORPREDSINSECONDS: error in specifying the search time" << endl;
+                return false;
+            }
+        }
+        else {
             cout << "error in providing command line arguments" << endl;
             return false;
         }
@@ -422,8 +437,8 @@ int main(int argc, char* argv[]) {
         cout << "      -VARSTERM : specify the variables allowed in the term language" << endl;
         cout << "      -CONSTANTSTERM : specify the constants allowed in the term language" << endl;
         cout << "    Optional to specify the search time (default to 20 seconds)"<< endl;
-        cout << "      -SEARCHTIMEINSECONDS : specify the search time in seconds" << endl;
-        
+        cout << "      -SEARCHTIMEFORTERMSSINSECONDS : specify the search time for terms in seconds" << endl;
+        cout << "      -SEARCHTIMEFORPREDSINSECONDS : specify the search time for preds in seconds" << endl;
         return 0;
     }
     
@@ -442,12 +457,13 @@ int main(int argc, char* argv[]) {
     vector<string> varsTerm;
     vector<string> constantsTerm;
     
-    int searchTimeInSeconds = 20;
+    int searchTimeForTermsInSeconds = 20;
+    int searchTimeForPredsInSeconds = 20;
     
     string searchMode;
     
     if ( parser(argc, argv,
-               &fileName, &searchTimeInSeconds,
+               &fileName, &searchTimeForTermsInSeconds, &searchTimeForPredsInSeconds,
                &depthBoundPred, &intOpsPred, &boolOpsPred, &varsPred, &constantsPred,
                &depthBoundTerm, &intOpsTerm, &boolOpsTerm, &varsTerm, &constantsTerm,
                &searchMode) == false ) {
@@ -467,14 +483,18 @@ int main(int argc, char* argv[]) {
     /*
      output search mode
      */
+    
+#ifdef DEBUG
     if (searchMode == "PerSrcIter") {
         cout << "Per source iteration specific rules applied" << endl;
     }
     else if (searchMode == "PerSrcSnk") {
         cout << "Per source sink specific rules applid" << endl;
-    } else {
+    }
+    else {
         cout << "No mode specific rules specified" << endl;
     }
+#endif
     
     /*
      language configuration
@@ -489,9 +509,8 @@ int main(int argc, char* argv[]) {
 #ifdef DEBUG
     uni->dumpLangDef();
 #endif
-    
-    uni->search(searchTimeInSeconds, searchMode);
-    
+
+    uni->search(searchTimeForTermsInSeconds, searchTimeForPredsInSeconds, searchMode);
     
     //uni->dumpInputOutputTree();
     uni->dumpSearchedProgram();

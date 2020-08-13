@@ -8,7 +8,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-#define DEBUG
+//#define DEBUG
 
 using namespace std;
 
@@ -41,7 +41,7 @@ public:
                 vector<string> constantsTerm,
                 vector<map<string, int> > inputOutputs);
     
-    string search(int timeBoundInSeconds, string searchMode);
+    string search(int searchTimeForTermsInSeconds, int searchTimeForPredsInSeconds, string searchMode);
     
     /* Dumping fucntions */
     void dumpLangDef();
@@ -54,7 +54,7 @@ private:
     
     /* Search node */
     string searchNodeOnePass(int timeBoundInSeconds, string searchMode, inputOutputTreeNode* node);
-    string searchNode(int timeBoundInSeconds, string searchMode, inputOutputTreeNode* node);
+    string searchNode(int searchTimeForTermsInSeconds, int searchTimeForPredsInSeconds, string searchMode, inputOutputTreeNode* node);
     
     /* Split current tree node of inputoutput examples */
     bool splitInputOutputTreeNode(inputOutputTreeNode* node, int splitMode);
