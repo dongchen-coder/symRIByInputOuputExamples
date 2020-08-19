@@ -7,6 +7,10 @@ using namespace std;
 class BaseType {
 public:
     BaseType();
+    string toString();
+    int depth();
+    int getNumOfOpsInProg(string opName);
+    int getNumOfSymbolsInProg(string symbolName);
     virtual ~BaseType() {};
 };
 

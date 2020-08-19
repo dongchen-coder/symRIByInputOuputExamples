@@ -5,6 +5,58 @@
  */
 BaseType::BaseType() {};
 
+string BaseType::toString() {
+    if (dynamic_cast<IntType*>(this)) {
+        IntType* intType = dynamic_cast<IntType*>(this);
+        return intType->toString();
+    }
+    else if (dynamic_cast<BoolType*>(this)) {
+        BoolType* boolType = dynamic_cast<BoolType*>(this);
+        return boolType->toString();
+    }
+    return "";
+}
+
+int BaseType::depth() {
+    if (dynamic_cast<IntType*>(this)) {
+        IntType* intType = dynamic_cast<IntType*>(this);
+        return intType->depth();
+    }
+    else if (dynamic_cast<BoolType*>(this)) {
+        BoolType* boolType = dynamic_cast<BoolType*>(this);
+        return boolType->depth();
+    }
+    return 0;
+}
+
+int BaseType::getNumOfOpsInProg(string opName) {
+    if (dynamic_cast<IntType*>(this)) {
+        IntType* intType = dynamic_cast<IntType*>(this);
+        return intType->getNumOfOpsInProg(opName);
+    }
+    else if (dynamic_cast<BoolType*>(this)) {
+        BoolType* boolType = dynamic_cast<BoolType*>(this);
+        return boolType->getNumOfOpsInProg(opName);
+    }
+    return 0;
+}
+
+int BaseType::getNumOfSymbolsInProg(string symbolName) {
+    if (dynamic_cast<IntType*>(this)) {
+        IntType* intType = dynamic_cast<IntType*>(this);
+        return intType->getNumOfSymbolsInProg(symbolName);
+    }
+    else if (dynamic_cast<BoolType*>(this)) {
+        BoolType* boolType = dynamic_cast<BoolType*>(this);
+        return boolType->getNumOfSymbolsInProg(symbolName);
+    }
+    return 0;
+}
+
+/*
+ Int and Bool type
+ */
+
 IntType::IntType() {};
 
 string IntType::toString() {

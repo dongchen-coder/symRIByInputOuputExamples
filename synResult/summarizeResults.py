@@ -13,12 +13,14 @@ def summerizeForBench(bench):
 		name = f
 		if ("_src_" not in name):
 			continue
+		if ("min" in name or "max" in name):
+			continue
 
 		f = open("./"+bench+"/"+f, 'r')
 		for line in f:
 			if ("(^0^)" in line):
 				prog = line.replace("Searched Program (^0^) :", "Prog:")
-				outputFile.write(name + " "+ prog)
+				outputFile.write(name + " " + prog)
 		f.close()
 	outputFile.close()
 
@@ -27,12 +29,31 @@ def summerizeForBench(bench):
 		name = f
 		if ("_srcsnk_" not in name):
 			continue
+		if ("min" in name or "max" in name):
+			continue
 
 		f = open("./"+bench+"/"+f, 'r')
 		for line in f:
 			if ("(^0^)" in line):
 				prog = line.replace("Searched Program (^0^) :", "Prog:")
-				outputFile.write(name + " "+ prog)
+				outputFile.write(name + " " + prog)
+		f.close()
+	outputFile.close()
+
+	outputFile = open("./all/" + bench + "_Iminmax.txt", "w")
+	for f in files:
+		name = f
+		if ("min" not in name and "max" not in name):
+			continue
+		
+		f = open("./"+bench+"/"+f, 'r')
+		for line in f:
+			if ("(^0^)" in line):
+				prog = line.replace("Searched Program (^0^) :", "Prog:")
+				conf_raw = name.replace("_result.txt", "")
+				conf_raw = conf_raw.replace(bench+"_", "")
+
+				outputFile.write(conf_raw + " " + prog)
 		f.close()
 	outputFile.close()
 

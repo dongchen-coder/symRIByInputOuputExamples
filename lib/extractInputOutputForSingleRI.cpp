@@ -170,14 +170,23 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
         }
 	}
     
-    // ref_src_id -> ref_snk_id -> src iter vector -> snk iter vector -> sizes vector -> ri;
     
+    // ref_src_id -> ref_snk_id -> src iter vector -> snk iter vector -> sizes vector -> ri;
     for (auto ref_src_it = all_ri.begin(), ref_src_eit = all_ri.end(); ref_src_it != ref_src_eit; ++ref_src_it) {
         ofstream ofs_perIterRefsrc;
+        
+        map<vector<uint64_t>, vector<uint64_t> > ref_src_min_idx;
+        map<vector<uint64_t>, vector<uint64_t> > ref_src_max_idx;
         
         for (auto ref_snk_it = (ref_src_it->second)->begin(), ref_snk_eit = (ref_src_it->second)->end(); ref_snk_it != ref_snk_eit; ++ref_snk_it) {
             ofstream ofs_perIterRefsrcsnk;
             
+            /* sizes -> min */
+            map<vector<uint64_t>, vector<uint64_t> > ref_srcsnk_srcmin_idx;
+            map<vector<uint64_t>, vector<uint64_t> > ref_srcsnk_srcmax_idx;
+            map<vector<uint64_t>, vector<uint64_t> > ref_srcsnk_snkmin_idx;
+            map<vector<uint64_t>, vector<uint64_t> > ref_srcsnk_snkmax_idx;
+
             for (auto idx_src_it = (ref_snk_it->second)->begin(), idx_src_eit = (ref_snk_it->second)->end(); idx_src_it != idx_src_eit; ++idx_src_it) {
             
                 for (auto idx_snk_it = (idx_src_it->second)->begin(), idx_snk_eit = (idx_src_it->second)->end(); idx_snk_it != idx_snk_eit; ++idx_snk_it) {
@@ -194,6 +203,55 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                         idx_snk_str += "_" + to_string(idx_snk[i]);
                     }
                     
+                    for (auto cur_sizes_it = (idx_snk_it->second)->begin(), cur_sizes_eit = (idx_snk_it->second)->end(); cur_sizes_it != cur_sizes_eit; ++cur_sizes_it) {
+                        
+                        vector<uint64_t> cur_sizes = cur_sizes_it->first;
+                        
+                        if (ref_srcsnk_srcmin_idx.find(cur_sizes) == ref_srcsnk_srcmin_idx.end()) {
+                            ref_srcsnk_srcmin_idx[cur_sizes] = idx_src;
+                        } else {
+                            for (int i = 0; i < ref_srcsnk_srcmin_idx[cur_sizes].size(); i++) {
+                                ref_srcsnk_srcmin_idx[cur_sizes][i] = min(ref_srcsnk_srcmin_idx[cur_sizes][i], idx_src[i]);
+                            }
+                        }
+                        if (ref_srcsnk_srcmax_idx.find(cur_sizes) == ref_srcsnk_srcmax_idx.end()) {
+                            ref_srcsnk_srcmax_idx[cur_sizes] = idx_src;
+                        } else {
+                            for (int i = 0; i < ref_srcsnk_srcmax_idx[cur_sizes].size(); i++) {
+                                ref_srcsnk_srcmax_idx[cur_sizes][i] = max(ref_srcsnk_srcmax_idx[cur_sizes][i], idx_src[i]);
+                            }
+                        }
+                        if (ref_srcsnk_snkmin_idx.find(cur_sizes) == ref_srcsnk_snkmin_idx.end()) {
+                            ref_srcsnk_snkmin_idx[cur_sizes] = idx_snk;
+                        } else {
+                            for (int i = 0; i < ref_srcsnk_snkmin_idx[cur_sizes].size(); i++) {
+                                ref_srcsnk_snkmin_idx[cur_sizes][i] = min(ref_srcsnk_snkmin_idx[cur_sizes][i], idx_snk[i]);
+                            }
+                        }
+                        if (ref_srcsnk_snkmax_idx.find(cur_sizes) == ref_srcsnk_snkmax_idx.end()) {
+                            ref_srcsnk_snkmax_idx[cur_sizes] = idx_snk;
+                        } else {
+                            for (int i = 0; i < ref_srcsnk_snkmax_idx[cur_sizes].size(); i++) {
+                                ref_srcsnk_snkmax_idx[cur_sizes][i] = max(ref_srcsnk_snkmax_idx[cur_sizes][i], idx_snk[i]);
+                            }
+                        }
+                        
+                        if (ref_src_min_idx.find(cur_sizes) == ref_src_min_idx.end()) {
+                            ref_src_min_idx[cur_sizes] = idx_src;
+                        } else {
+                            for (int i = 0; i < ref_src_min_idx[cur_sizes].size(); i++) {
+                                ref_src_min_idx[cur_sizes][i] = min(ref_src_min_idx[cur_sizes][i], idx_src[i]);
+                            }
+                        }
+                        if (ref_src_max_idx.find(cur_sizes) == ref_src_max_idx.end()) {
+                            ref_src_max_idx[cur_sizes] = idx_src;
+                        } else {
+                            for (int i = 0; i < ref_src_max_idx[cur_sizes].size(); i++) {
+                                ref_src_max_idx[cur_sizes][i] = max(ref_src_max_idx[cur_sizes][i], idx_src[i]);
+                            }
+                        }
+                    }
+                     
                     /* create a file named by ref src ID and iteration vector */
                     ofs_perIterRefsrc.open("./inputoutput/ris_per_iter_refsrc/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it->first) + "_itersrc" + idx_src_str + ".txt", ofstream::out | ofstream::app);
                     /* create a file named by ref src/snk ID and iteration vector */
@@ -210,7 +268,8 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                     for (int i = 0; i < numOfSymbolicLoopBounds; i++) {
                         numOfCombinations *= numOfSizes;
                     }
-            
+                    
+                    
                     for (int i = 0; i < numOfCombinations; i++) {
                         vector<uint64_t> symbolic_bounds;
                         int symbolic_bounds_idx = i;
@@ -249,7 +308,110 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                     ofs_perIterRefsrc.close();
                 }
             }
+            
+            ofstream ofs_Srcsnk_src_IVMin;
+            ofstream ofs_Srcsnk_src_IVMax;
+            ofstream ofs_Srcsnk_snk_IVMin;
+            ofstream ofs_Srcsnk_snk_IVMax;
+            
+            for (auto sizesToImin : ref_srcsnk_srcmin_idx) {
+                vector<uint64_t> cur_sizes = sizesToImin.first;
+                vector<uint64_t> cur_Imin = sizesToImin.second;
+                for (int i = 0; i < cur_Imin.size(); i++) {
+                    ofs_Srcsnk_src_IVMin.open("./inputoutput/IMinMax/" + name + "/" +name+ "_refsrc_" + to_string(ref_src_it->first) + "_refsnk_" + to_string(ref_snk_it->first) + "_I" + to_string(i) + "_src_min.txt", ofstream::out | ofstream::app);
+                    
+                    string cur_sizes_str = "";
+                    for (int j = 0; j < cur_sizes.size(); j++) {
+                        cur_sizes_str += "B" + to_string(j) + " " + to_string(cur_sizes[j]) + " ";
+                    }
+                    
+                    ofs_Srcsnk_src_IVMin << cur_sizes_str + "_out " + to_string(cur_Imin[i]) << endl;
+                    ofs_Srcsnk_src_IVMin.close();
+                }
+            }
+            for (auto sizesToImax : ref_srcsnk_srcmax_idx) {
+                vector<uint64_t> cur_sizes = sizesToImax.first;
+                vector<uint64_t> cur_Imax = sizesToImax.second;
+                for (int i = 0; i < cur_Imax.size(); i++) {
+                    ofs_Srcsnk_src_IVMax.open("./inputoutput/IMinMax/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it->first) + "_refsnk_" + to_string(ref_snk_it->first) + "_I" + to_string(i) + "_src_max.txt", ofstream::out | ofstream::app);
+                    
+                    string cur_sizes_str = "";
+                    for (int j = 0; j < cur_sizes.size(); j++) {
+                        cur_sizes_str += "B" + to_string(j) + " " + to_string(cur_sizes[j]) + " ";
+                    }
+                    
+                    ofs_Srcsnk_src_IVMax << cur_sizes_str + "_out " + to_string(cur_Imax[i]) << endl;
+                    ofs_Srcsnk_src_IVMax.close();
+                }
+            }
+            
+            for (auto sizesToImin : ref_srcsnk_snkmin_idx) {
+                vector<uint64_t> cur_sizes = sizesToImin.first;
+                vector<uint64_t> cur_Imin = sizesToImin.second;
+                for (int i = 0; i < cur_Imin.size(); i++) {
+                    ofs_Srcsnk_snk_IVMin.open("./inputoutput/IMinMax/" + name + "/" +name + "_refsrc_" + to_string(ref_src_it->first) + "_refsnk_" + to_string(ref_snk_it->first) + "_I" + to_string(i) + "_snk_min.txt", ofstream::out | ofstream::app);
+                    
+                    string cur_sizes_str = "";
+                    for (int j = 0; j < cur_sizes.size(); j++) {
+                        cur_sizes_str += "B" + to_string(j) + " " + to_string(cur_sizes[j]) + " ";
+                    }
+                    
+                    ofs_Srcsnk_snk_IVMin << cur_sizes_str + "_out " + to_string(cur_Imin[i]) << endl;
+                    ofs_Srcsnk_snk_IVMin.close();
+                }
+            }
+            for (auto sizesToImax : ref_srcsnk_snkmax_idx) {
+                vector<uint64_t> cur_sizes = sizesToImax.first;
+                vector<uint64_t> cur_Imax = sizesToImax.second;
+                for (int i = 0; i < cur_Imax.size(); i++) {
+                    ofs_Srcsnk_snk_IVMax.open("./inputoutput/IMinMax/" + name + "/" +name + "_refsrc_" + to_string(ref_src_it->first) + "_refsnk_" + to_string(ref_snk_it->first) + "_I" + to_string(i) + "_snk_max.txt", ofstream::out | ofstream::app);
+                    
+                    string cur_sizes_str = "";
+                    for (int j = 0; j < cur_sizes.size(); j++) {
+                        cur_sizes_str += "B" + to_string(j) + " " + to_string(cur_sizes[j]) + " ";
+                    }
+                    
+                    ofs_Srcsnk_snk_IVMax << cur_sizes_str + "_out " + to_string(cur_Imax[i]) << endl;
+                    ofs_Srcsnk_snk_IVMax.close();
+                }
+            }
+            
         }
+        
+        ofstream ofs_perRefsrcIVMin;
+        ofstream ofs_perRefsrcIVMax;
+        
+        for (auto sizesToImin : ref_src_min_idx) {
+            vector<uint64_t> cur_sizes = sizesToImin.first;
+            vector<uint64_t> cur_Imin = sizesToImin.second;
+            for (int i = 0; i < cur_Imin.size(); i++) {
+                ofs_perRefsrcIVMin.open("./inputoutput/IMinMax/" + name + "/" +name+ "_refsrc_" + to_string(ref_src_it->first) + "_I" + to_string(i) + "_src_min.txt", ofstream::out | ofstream::app);
+                
+                string cur_sizes_str = "";
+                for (int j = 0; j < cur_sizes.size(); j++) {
+                    cur_sizes_str += "B" + to_string(j) + " " + to_string(cur_sizes[j]) + " ";
+                }
+                
+                ofs_perRefsrcIVMin << cur_sizes_str + "_out " + to_string(cur_Imin[i]) << endl;
+                ofs_perRefsrcIVMin.close();
+            }
+        }
+        for (auto sizesToImax : ref_src_max_idx) {
+            vector<uint64_t> cur_sizes = sizesToImax.first;
+            vector<uint64_t> cur_Imax = sizesToImax.second;
+            for (int i = 0; i < cur_Imax.size(); i++) {
+                ofs_perRefsrcIVMax.open("./inputoutput/IMinMax/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it->first) + "_I" + to_string(i) + "_src_max.txt", ofstream::out | ofstream::app);
+                
+                string cur_sizes_str = "";
+                for (int j = 0; j < cur_sizes.size(); j++) {
+                    cur_sizes_str += "B" + to_string(j) + " " + to_string(cur_sizes[j]) + " ";
+                }
+                
+                ofs_perRefsrcIVMax << cur_sizes_str + "_out " + to_string(cur_Imax[i]) << endl;
+                ofs_perRefsrcIVMax.close();
+            }
+        }
+        
     }
     
 	return;
