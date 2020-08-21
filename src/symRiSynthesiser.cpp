@@ -1,5 +1,6 @@
 #include "../lib/bottomUpSearch.hpp"
 #include "../lib/unification.hpp"
+#include "../lib/sampler.hpp"
 #include <vector>
 #include <future>
 #include <chrono>
@@ -479,6 +480,10 @@ int main(int argc, char* argv[]) {
         cout << "Error reading files" << endl;
         return 0;
     }
+    
+    /* sample inputouput Files */
+    //sampler s(0.1);
+    //inputOutputs = s.randomSampling(inputOutputs);
     
     /*
      output search mode

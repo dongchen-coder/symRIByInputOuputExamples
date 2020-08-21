@@ -23,6 +23,123 @@ size_t split(const std::string &txt, std::vector<std::string> &strs, char ch)
     return strs.size();
 }
 
+void filterSrcIter() {
+    /* Need fitering rules */
+    /*
+    for (const auto ref_src_id_it : all_ri) {
+        uint64_t ref_src_id = *(ref_src_id_it.first);
+        for (const auto ref_snk_id_it : *(ref_src_id_it.second)) {
+            uint64_t ref_snk_id = *(ref_src_id_it.first;
+            for (const auto src_iter_it : *(ref_snk_id_it.second)) {
+                vector<uint64_t> src_iter = *(src_iter_it.first);
+                for (const auto snk_iter_it : *(src_iter_it.second)) {
+                    vector<uint64_t> snk_iter = *(snk_iter_it.first);
+                    uint64_t ri = *(snk_iter_it.second);
+                }
+            }
+        }
+    }
+     */
+}
+
+vector<vector<uint64_t> > getAllNeighborIdxs(vector<uint64_t> idx) {
+    vector<vector<uint64_t> > neighborIdxs;
+    for (const auto i : idx) {
+        if (neighborIdxs.empty()) {
+            neighborIdxs.push_back({i});
+            neighborIdxs.push_back({i-1});
+            neighborIdxs.push_back({i+1});
+        } else {
+            vector<vector<uint64_t> > neighborIdxs_new;
+            for (auto j : neighborIdxs) {
+                vector<uint64_t> cur_j = j;
+                cur_j.push_back(i);
+                neighborIdxs_new.push_back(cur_j);
+                cur_j = j;
+                cur_j.push_back(i-1);
+                neighborIdxs_new.push_back(cur_j);
+                cur_j = j;
+                cur_j.push_back(i+
+                                1);
+                neighborIdxs_new.push_back(cur_j);
+            }
+            neighborIdxs = neighborIdxs_new;
+        }
+    }
+    
+    if (find(neighborIdxs.begin(), neighborIdxs.end(), idx) != neighborIdxs.end()) {
+        neighborIdxs.erase(find(neighborIdxs.begin(), neighborIdxs.end(), idx));
+    }
+    
+    return neighborIdxs;
+}
+
+vector<vector<uint64_t> > samplingBorderInner(vector< vector<uint64_t> > idxs, double samplingRate) {
+    if (samplingRate == 1.0) {
+        return idxs;
+    }
+    if (idxs.empty()) {
+        return idxs;
+    }
+    cout << "all src idxs size " << idxs.size() << endl;
+    vector<vector<uint64_t> > borderIdxs;
+    vector<vector<uint64_t> > innerIdxs;
+    for (const auto idx : idxs) {
+        vector<vector<uint64_t> > neighborIdxs = getAllNeighborIdxs(idx);
+        
+        bool innerFlag = true;
+        for (const auto neighborIdx : neighborIdxs) {
+            if (find(idxs.begin(), idxs.end(), neighborIdx) == idxs.end()) {
+                borderIdxs.push_back(idx);
+                innerFlag = false;
+                break;
+            }
+        }
+        if (innerFlag) {
+            innerIdxs.push_back(idx);
+        }
+    }
+    cout << "border size " << borderIdxs.size() << " inner size " << innerIdxs.size() << endl;
+    
+    int numOfLoops = idxs.front().size();
+    
+    uint64_t numOfBorderSamples = borderIdxs.size() * samplingRate;
+    uint64_t numOfInnerSamples = innerIdxs.size() * samplingRate;
+    for (int i = 1; i < numOfLoops; i++) {
+        numOfInnerSamples = numOfInnerSamples * samplingRate;
+    }
+    
+    cout << "border size " << numOfBorderSamples << " inner size " << numOfInnerSamples << endl;
+    
+    set<int> borderSamples;
+    set<int> innerSamples;
+    
+    for (int i = 0; i < numOfBorderSamples; i++) {
+        int offset = rand() % borderIdxs.size();
+        while (borderSamples.find(offset) != borderSamples.end()) {
+            offset = rand() % borderIdxs.size();
+        }
+        borderSamples.insert(offset);
+    }
+    for (int i = 0; i < numOfInnerSamples; i++) {
+        int offset = rand() % innerIdxs.size();
+        while (innerSamples.find(offset) != innerSamples.end()) {
+            offset = rand() % innerIdxs.size();
+        }
+        innerSamples.insert(offset);
+    }
+    
+    vector< vector<uint64_t> > sampled_idxs;
+    for (auto i : borderSamples) {
+        sampled_idxs.push_back(borderIdxs[i]);
+    }
+    for (auto i : innerSamples) {
+        sampled_idxs.push_back(innerIdxs[i]);
+    }
+    
+    return sampled_idxs;
+}
+
 void processSingleRiFile(string name, string fileSuffix, vector<uint64_t> symbolic_bounds) {
 
     string fileName = name + fileSuffix;
@@ -88,8 +205,7 @@ void processSingleRiFile(string name, string fileSuffix, vector<uint64_t> symbol
                 (*(*(*all_ri[ref_src_id])[ref_snk_id])[idx_src])[idx_snk] = new map<vector<uint64_t>, uint64_t>;
             }
             
-            (*
-             (*(*(*all_ri[ref_src_id])[ref_snk_id])[idx_src])[idx_snk])[symbolic_bounds] = ri;
+            (*(*(*(*all_ri[ref_src_id])[ref_snk_id])[idx_src])[idx_snk])[symbolic_bounds] = ri;
         }
     }
 	ifs.close();
@@ -153,8 +269,7 @@ void dumpPerRefRi(vector<uint64_t> sizes) {
     return;
 }
 
-
-void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds) {
+void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate) {
     
 	if (sizes.size() <= 0) {
 		return;
@@ -186,9 +301,21 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
             map<vector<uint64_t>, vector<uint64_t> > ref_srcsnk_srcmax_idx;
             map<vector<uint64_t>, vector<uint64_t> > ref_srcsnk_snkmin_idx;
             map<vector<uint64_t>, vector<uint64_t> > ref_srcsnk_snkmax_idx;
-
-            for (auto idx_src_it = (ref_snk_it->second)->begin(), idx_src_eit = (ref_snk_it->second)->end(); idx_src_it != idx_src_eit; ++idx_src_it) {
             
+            /* sample src idxs */
+            vector<vector<uint64_t> > all_src_idxs;
+            for (const auto idx_src_it : *(ref_snk_it->second)) {
+                all_src_idxs.push_back(idx_src_it.first);
+            }
+            
+            vector<vector<uint64_t> > sampled_idxs = samplingBorderInner(all_src_idxs, samplingRate);
+            
+            for (auto idx_src_it = (ref_snk_it->second)->begin(), idx_src_eit = (ref_snk_it->second)->end(); idx_src_it != idx_src_eit; ++idx_src_it) {
+                
+                if (find(sampled_idxs.begin(), sampled_idxs.end(), idx_src_it->first) == sampled_idxs.end()) {
+                    continue;
+                }
+                
                 for (auto idx_snk_it = (idx_src_it->second)->begin(), idx_snk_eit = (idx_src_it->second)->end(); idx_snk_it != idx_snk_eit; ++idx_snk_it) {
                     
                     vector<uint64_t> idx_src = idx_src_it->first;
