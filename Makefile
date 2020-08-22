@@ -13,7 +13,7 @@ RIS_MATCH_DIR=./verify/histoToMatch
 
 bench=stencil 2mm 3mm adi atax bicg cholesky correlation covariance deriche doitgen durbin fdtd_2d floyd_warshall gemm gemver gesummv gramschmidt heat_3d jacobi_1d jacobi_2d lu ludcmp mvt nussinov seidel_2d symm syr2d syrk trisolv trmm convolution_2d convolution_3d trangle
 
-bench_1para=stencil #cholesky durbin floyd_warshall gemver gesummv lu ludcmp mvt nussinov stencil trisolv
+bench_1para=stencil cholesky durbin floyd_warshall gemver gesummv lu ludcmp mvt nussinov stencil trisolv
 bench_2para=trangle adi atax bicg convolution_2d correlation covariance deriche gramschmidt heat_3d jacobi_1d jacobi_2d seidel_2d symm syr2d syrk trmm
 bench_3para=convolution_3d doitgen fdtd_2d gemm  
 bench_4para=2mm
@@ -63,38 +63,38 @@ ris_raw_gen:
 	$(foreach size, $(train_size), \
 		$(foreach name, $(bench_1para), $(BENCH_BIN_DIR)/$(name) $(size) > $(RIS_RAW_DIR)/$(name)/$(name)_$(size).txt ;) \
 	)
-	#$(foreach size1, $(train_size), \
-	#	$(foreach size2, $(train_size), \
-	#		$(foreach name, $(bench_2para), $(BENCH_BIN_DIR)/$(name) $(size1) $(size2) > $(RIS_RAW_DIR)/$(name)/$(name)_$(size1)_$(size2).txt ;) \
-	#	) \
-	#)
-	#$(foreach size1, $(train_size), \
-	#	$(foreach size2, $(train_size), \
-	#		$(foreach size3, $(train_size), \
-	#			$(foreach name, $(bench_3para), $(BENCH_BIN_DIR)/$(name) $(size1) $(size2) $(size3) > $(RIS_RAW_DIR)/$(name)/$(name)_$(size1)_$(size2)_$(size3).txt ;) \
-	#		) \
-	#	) \
-	#)
-	#$(foreach size1, $(train_size), \
-	#	$(foreach size2, $(train_size), \
-	#		$(foreach size3, $(train_size), \
-	#			$(foreach size4, $(train_size), \
-	#				$(foreach name, $(bench_4para), $(BENCH_BIN_DIR)/$(name) $(size1) $(size2) $(size3) $(size4) > $(RIS_RAW_DIR)/$(name)/$(name)_$(size1)_$(size2)_$(size3)_$(size4).txt ;) \
-	#			) \
-	#		) \
-	#	) \
-	#)
-	#$(foreach size1, $(train_size), \
-	#	$(foreach size2, $(train_size), \
-	#		$(foreach size3, $(train_size), \
-	#			$(foreach size4, $(train_size), \
-	#				$(foreach size5, $(train_size), \
-	#					$(foreach name, $(bench_5para), $(BENCH_BIN_DIR)/$(name) $(size1) $(size2) $(size3) $(size4) $(size5) > $(RIS_RAW_DIR)/$(name)/$(name)_$(size1)_$(size2)_$(size3)_$(size4)_$(size5).txt ;) \
-	#				) \
-	#			) \
-	#		) \
-	#	) \
-	#)
+	$(foreach size1, $(train_size), \
+		$(foreach size2, $(train_size), \
+			$(foreach name, $(bench_2para), $(BENCH_BIN_DIR)/$(name) $(size1) $(size2) > $(RIS_RAW_DIR)/$(name)/$(name)_$(size1)_$(size2).txt ;) \
+		) \
+	)
+	$(foreach size1, $(train_size), \
+		$(foreach size2, $(train_size), \
+			$(foreach size3, $(train_size), \
+				$(foreach name, $(bench_3para), $(BENCH_BIN_DIR)/$(name) $(size1) $(size2) $(size3) > $(RIS_RAW_DIR)/$(name)/$(name)_$(size1)_$(size2)_$(size3).txt ;) \
+			) \
+		) \
+	)
+	$(foreach size1, $(train_size), \
+		$(foreach size2, $(train_size), \
+			$(foreach size3, $(train_size), \
+				$(foreach size4, $(train_size), \
+					$(foreach name, $(bench_4para), $(BENCH_BIN_DIR)/$(name) $(size1) $(size2) $(size3) $(size4) > $(RIS_RAW_DIR)/$(name)/$(name)_$(size1)_$(size2)_$(size3)_$(size4).txt ;) \
+				) \
+			) \
+		) \
+	)
+	$(foreach size1, $(train_size), \
+		$(foreach size2, $(train_size), \
+			$(foreach size3, $(train_size), \
+				$(foreach size4, $(train_size), \
+					$(foreach size5, $(train_size), \
+						$(foreach name, $(bench_5para), $(BENCH_BIN_DIR)/$(name) $(size1) $(size2) $(size3) $(size4) $(size5) > $(RIS_RAW_DIR)/$(name)/$(name)_$(size1)_$(size2)_$(size3)_$(size4)_$(size5).txt ;) \
+					) \
+				) \
+			) \
+		) \
+	)
 
 inputoutput_gen:
 	$(foreach name, $(bench), \
