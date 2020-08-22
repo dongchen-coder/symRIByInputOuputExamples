@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include <set>
+#include <algorithm>
 #include <vector>
 using namespace std;
 

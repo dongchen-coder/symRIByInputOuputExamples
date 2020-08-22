@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <algorithm>
 #include <set>
 #include <iomanip>
 using namespace std;
