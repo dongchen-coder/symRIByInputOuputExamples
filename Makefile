@@ -23,6 +23,8 @@ train_size=4 8 16 32
 
 verify_size=64 128 256
 
+SRATE?=0.2
+
 CC=g++
 
 symRiSynthesiser.o:
@@ -101,11 +103,11 @@ inputoutput_gen:
 	$(foreach name, $(bench), \
 		$(foreach dir, $(INPUTOUTPUT_DIRS), mkdir -p $(dir)/$(name) ;) \
 	)
-	$(foreach name, $(bench_1para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 1 -SAMPLINGRATE 0.4 ;)
-	#$(foreach name, $(bench_2para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 2 ;)
-	#$(foreach name, $(bench_3para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 3 ;)
-	#$(foreach name, $(bench_4para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 4 ;)
-	#$(foreach name, $(bench_5para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 5 ;)
+	$(foreach name, $(bench_1para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 1 -SAMPLINGRATE ${SRATE};)
+	$(foreach name, $(bench_2para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 2 -SAMPLINGRATE ${SRATE};)
+	$(foreach name, $(bench_3para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 3 -SAMPLINGRATE ${SRATE};)
+	$(foreach name, $(bench_4para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 4 -SAMPLINGRATE ${SRATE};)
+	$(foreach name, $(bench_5para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 5 -SAMPLINGRATE ${SRATE};)
 
 histogramToMatch_gen:
 	$(foreach name, $(bench), rm -r $(RIS_MATCH_DIR)/$(name) ;)
