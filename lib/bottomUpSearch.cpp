@@ -743,7 +743,7 @@ string bottomUpSearch::search() {
 #ifdef DEBUG
     cout << "Init pList size " << getPlistSize() << ", check correct" << endl;
 #endif
-    dumpPlist();
+    //dumpPlist();
     while (getCorrect() == "") {
 #ifdef DEBUG
         cout << "Current pList size " << getPlistSize() << ", grow" << endl;
@@ -755,7 +755,7 @@ string bottomUpSearch::search() {
         cout << "Current pList size " << getPlistSize() << ", eliminate equvalents" << endl;
 #endif
         elimEquvalents();
-        dumpPlist();
+        //dumpPlist();
 #ifdef DEBUG
         cout << "Current pList size " << getPlistSize() << ", check correct" << endl;
 #endif
