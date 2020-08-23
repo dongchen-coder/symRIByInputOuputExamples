@@ -59,8 +59,7 @@ vector<vector<uint64_t> > getAllNeighborIdxs(vector<uint64_t> idx) {
                 cur_j.push_back(i-1);
                 neighborIdxs_new.push_back(cur_j);
                 cur_j = j;
-                cur_j.push_back(i+
-                                1);
+                cur_j.push_back(i+1);
                 neighborIdxs_new.push_back(cur_j);
             }
             neighborIdxs = neighborIdxs_new;
@@ -74,7 +73,7 @@ vector<vector<uint64_t> > getAllNeighborIdxs(vector<uint64_t> idx) {
     return neighborIdxs;
 }
 
-vector<vector<uint64_t> > samplingBorderInner(vector< vector<uint64_t> > idxs, double samplingRate) {
+vector<vector<uint64_t> > samplingBorderInner(vector<vector<uint64_t> > idxs, double samplingRate) {
     if (samplingRate == 1.0) {
         return idxs;
     }
@@ -85,8 +84,8 @@ vector<vector<uint64_t> > samplingBorderInner(vector< vector<uint64_t> > idxs, d
     vector<vector<uint64_t> > borderIdxs;
     vector<vector<uint64_t> > innerIdxs;
     for (const auto idx : idxs) {
-        vector<vector<uint64_t> > neighborIdxs = getAllNeighborIdxs(idx);
         
+        vector<vector<uint64_t> > neighborIdxs = getAllNeighborIdxs(idx);
         bool innerFlag = true;
         for (const auto neighborIdx : neighborIdxs) {
             if (find(idxs.begin(), idxs.end(), neighborIdx) == idxs.end()) {
@@ -95,6 +94,7 @@ vector<vector<uint64_t> > samplingBorderInner(vector< vector<uint64_t> > idxs, d
                 break;
             }
         }
+        
         if (innerFlag) {
             innerIdxs.push_back(idx);
         }
@@ -135,6 +135,40 @@ vector<vector<uint64_t> > samplingBorderInner(vector< vector<uint64_t> > idxs, d
     }
     for (auto i : innerSamples) {
         sampled_idxs.push_back(innerIdxs[i]);
+    }
+    
+    return sampled_idxs;
+}
+
+vector<vector<uint64_t> > samplingRandom(vector< vector<uint64_t> > idxs, double samplingRate) {
+    if (samplingRate == 1.0) {
+        return idxs;
+    }
+    if (idxs.empty()) {
+        return idxs;
+    }
+    
+    int numOfLoops = idxs.front().size();
+    uint64_t numOfSamples = idxs.size() * samplingRate;
+    for (int i = 1; i < numOfLoops; i++) {
+        numOfSamples = numOfSamples * samplingRate;
+    }
+    
+    set<int> samples;
+    for (int i = 0; i < numOfSamples; i++) {
+        int offset = rand() % idxs.size();
+        while (samples.find(offset) != samples.end()) {
+            offset = rand() % idxs.size();
+        }
+        samples.insert(offset);
+        if (samples.size() == idxs.size()) {
+            break;
+        }
+    }
+    
+    vector< vector<uint64_t> > sampled_idxs;
+    for (auto i : samples) {
+        sampled_idxs.push_back(idxs[i]);
     }
     
     return sampled_idxs;
@@ -308,7 +342,8 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                 all_src_idxs.push_back(idx_src_it.first);
             }
             
-            vector<vector<uint64_t> > sampled_idxs = samplingBorderInner(all_src_idxs, samplingRate);
+            //vector<vector<uint64_t> > sampled_idxs = samplingBorderInner(all_src_idxs, samplingRate);
+            vector<vector<uint64_t> > sampled_idxs = samplingRandom(all_src_idxs, samplingRate);
             
             for (auto idx_src_it = (ref_snk_it->second)->begin(), idx_src_eit = (ref_snk_it->second)->end(); idx_src_it != idx_src_eit; ++idx_src_it) {
                 
