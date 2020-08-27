@@ -2,6 +2,7 @@
 #define UNIFICATION_H
 
 #include "bottomUpSearch.hpp"
+#include "typeDef.hpp"
 #include <algorithm>
 #include <vector>
 #include <unistd.h>
@@ -13,18 +14,18 @@
 using namespace std;
 
 struct inputOutputTreeNode {
-    vector<map<string, int> > inputOutputs;
+    inputOutputs_t inputOutputs;
     string searchedProg;
     inputOutputTreeNode *left;
     inputOutputTreeNode *right;
     inputOutputTreeNode() {
-        inputOutputs = vector<map<string, int> >();
+        inputOutputs = inputOutputs_t ();
         left = NULL;
         right = NULL;
         searchedProg = "";
     }
-    inputOutputTreeNode(vector<map<string, int> > ios) : inputOutputs(ios), left(nullptr), right(nullptr), searchedProg("") {}
-    inputOutputTreeNode(vector<map<string, int> > ios, inputOutputTreeNode *left, inputOutputTreeNode *right) : inputOutputs(ios), left(left), right(right), searchedProg("") {}
+    inputOutputTreeNode(inputOutputs_t ios) : inputOutputs(ios), left(nullptr), right(nullptr), searchedProg("") {}
+    inputOutputTreeNode(inputOutputs_t ios, inputOutputTreeNode *left, inputOutputTreeNode *right) : inputOutputs(ios), left(left), right(right), searchedProg("") {}
 };
 
 class unification {
@@ -39,7 +40,7 @@ public:
                 vector<string> boolOpsTerm,
                 vector<string> varsTerm,
                 vector<string> constantsTerm,
-                vector<map<string, int> > inputOutputs);
+                inputOutputs_t inputOutputs);
     
     string search(int searchTimeForTermsInSeconds, int searchTimeForPredsInSeconds, string searchMode);
     

@@ -2,14 +2,15 @@
 #define BOTTOMUPSEARCH_H
 
 #include "langDef.hpp"
+#include "typeDef.hpp"
 #include <future>
 #include <chrono>
 #include <thread>
 #include <vector>
 
-//#define DEBUG
-
 using namespace std;
+
+//#define DEBUG
 
 class bottomUpSearch {
 public:
@@ -18,7 +19,7 @@ public:
                    vector<string> boolOps,
                    vector<string> vars,
                    vector<string> constants,
-                   vector<map<string, int> > inputOutputs,
+                   inputOutputs_t inputOutputs,
                    string searchMode);
     
     /* search function */
@@ -32,10 +33,10 @@ private:
     string dumpProgram(BaseType* p);
     
     /* Grow program list */
-    vector<BaseType*> grow();
+    void grow();
     
     /* Eliminate equalivlent programs */
-    vector<BaseType*> elimEquvalents();
+    void elimEquvalents();
     
     /* Check whether there is a correct program in program list */
     string getCorrect();
@@ -55,12 +56,13 @@ private:
     map<pair<BaseType*, int>, int> intResultRecord;
     map<pair<BaseType*, int>, int> boolResultRecord;
     
+    
     /* Evaluate program */
-    int evaluateIntProgram(BaseType* p, int inputOutputId);
-    bool evaluateBoolProgram(BaseType* p, int inputOutputId);
+    inline int evaluateIntProgram(BaseType* p, int inputOutputId);
+    inline bool evaluateBoolProgram(BaseType* p, int inputOutputId);
     
     /* Check whether program pi and pj are equal (based on input output examples) */
-    bool checkTwoProgramsEqual(BaseType* pi, BaseType* pj);
+    inline bool checkTwoProgramsEqual(BaseType* pi, BaseType* pj);
     
     /* Check program p is correct or not */
     bool isCorrect(BaseType* p);
@@ -69,7 +71,7 @@ private:
     vector<BaseType*> pList;
     
     /* Input-output examples */
-    vector<map<string, int> > inputOutputs;
+    inputOutputs_t inputOutputs;
     
     /* Search mode */
     string searchMode;

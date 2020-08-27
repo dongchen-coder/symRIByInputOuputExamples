@@ -348,7 +348,7 @@ string Var::toString() {
     return _name;
 }
     
-int Var::interpret(map<string, int> env) {
+int Var::interpret(inputOutput_t env) {
     return env[_name];
 }
     
@@ -472,7 +472,7 @@ string Plus::toString() {
     return output;
 }
     
-int Plus::interpret(map<string, int> env) {
+int Plus::interpret(inputOutput_t env) {
     int output;
     
     if (dynamic_cast<Var*>(_left) != 0) {
@@ -685,7 +685,7 @@ string Minus::toString() {
     return output;
 }
 
-int Minus::interpret(map<string, int> env) {
+int Minus::interpret(inputOutput_t env) {
     int output;
     
     if (dynamic_cast<Var*>(_left) != 0) {
@@ -896,7 +896,7 @@ string Times::toString() {
     return output;
 }
     
-int Times::interpret(map<string, int> env) {
+int Times::interpret(inputOutput_t env) {
     int output;
     
     if (dynamic_cast<Var*>(_left) != 0) {
@@ -1110,7 +1110,7 @@ string Leftshift::toString() {
     return output;
 }
     
-int Leftshift::interpret(map<string, int> env) {
+int Leftshift::interpret(inputOutput_t env) {
     int output;
     
     if (dynamic_cast<Var*>(_value) != 0) {
@@ -1322,7 +1322,7 @@ string Rightshift::toString() {
     return output;
 }
     
-int Rightshift::interpret(map<string, int> env) {
+int Rightshift::interpret(inputOutput_t env) {
     int output;
     
     if (dynamic_cast<Var*>(_value) != 0) {
@@ -1534,7 +1534,7 @@ string Lt::toString() {
     return output;
 }
     
-bool Lt::interpret(map<string, int> env) {
+bool Lt::interpret(inputOutput_t env) {
     int leftValue;
     if (dynamic_cast<Var*>(_left) != 0) {
         Var* left = dynamic_cast<Var*>(_left);
@@ -1721,7 +1721,7 @@ string And::toString() {
     return output;
 }
     
-bool And::interpret(map<string, int> env) {
+bool And::interpret(inputOutput_t env) {
     bool output;
     
     if (dynamic_cast<F*>(_left) != 0) {
@@ -1840,7 +1840,7 @@ string Not::toString() {
     return output;
 }
     
-bool Not::interpret(map<string, int> env) {
+bool Not::interpret(inputOutput_t env) {
     bool leftValue;
     if (dynamic_cast<F*>(_left) != 0) {
         F* left = dynamic_cast<F*>(_left);
@@ -1988,7 +1988,7 @@ string Ite::toString() {
     return output;
 }
     
-int Ite::interpret(map<string, int> env) {
+int Ite::interpret(inputOutput_t env) {
     bool condValue;
     int tcaseValue;
     int fcaseValue;
