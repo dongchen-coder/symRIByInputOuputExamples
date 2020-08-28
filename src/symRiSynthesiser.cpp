@@ -1,6 +1,7 @@
 #include "../lib/bottomUpSearch.hpp"
 #include "../lib/unification.hpp"
 #include "../lib/sampler.hpp"
+#include "../lib/typeDef.hpp"
 #include <vector>
 #include <future>
 #include <chrono>
@@ -274,7 +275,7 @@ void langConfiguration(int* depthBoundPred,
                        vector<string>* boolOpsTerm,
                        vector<string>* varsTerm,
                        vector<string>* constantsTerm,
-                       vector<map<string, int> > inputOutputs) {
+                       inputOutputs_t inputOutputs) {
     
     if (*depthBoundPred == -1) {
         *depthBoundPred = 6;
@@ -350,10 +351,10 @@ void langConfiguration(int* depthBoundPred,
      varables are extracted from inputoutput examples
      */
     if (!inputOutputs.empty()) {
-        for (map<string, int>::iterator it = inputOutputs[0].begin(), eit = inputOutputs[0].end(); it != eit; ++it) {
-            if (it->first != "_out") {
-                varsPred->push_back(it->first);
-                varsTerm->push_back(it->first);
+        for (auto varValue : inputOutputs[0]) {
+            if (varValue.first != "_out") {
+                varsPred->push_back(varValue.first);
+                varsTerm->push_back(varValue.first);
             }
         }
     }
@@ -361,7 +362,7 @@ void langConfiguration(int* depthBoundPred,
     return;
 }
 
-bool readInputOutput(string fileName, vector<map<string, int> >* inputOutputs) {
+bool readInputOutput(string fileName, inputOutputs_t* inputOutputs) {
     ifstream ifs;
     ifs.open(fileName, ifstream::in);
     string line;
@@ -370,7 +371,7 @@ bool readInputOutput(string fileName, vector<map<string, int> >* inputOutputs) {
         string var = "";
         string value = "";
         int spaceCnt = 0;
-        map<string, int> inputOutput;
+        inputOutput_t inputOutput;
         for (int i = 0; i < line.size(); i++) {
             if (line[i] == ' ') {
                 if (spaceCnt % 2 == 0) {
@@ -475,7 +476,7 @@ int main(int argc, char* argv[]) {
     /*
      read input output files
      */
-    vector<map<string, int> > inputOutputs;
+    inputOutputs_t inputOutputs;
     if (!readInputOutput(fileName, &inputOutputs)) {
         cout << "Error reading files" << endl;
         return 0;

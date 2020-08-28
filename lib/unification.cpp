@@ -12,7 +12,7 @@ unification::unification(int depthBoundPred,
                          vector<string> boolOpsTerm,
                          vector<string> varsTerm,
                          vector<string> constantsTerm,
-                         vector<map<string, int> > inputOutputs) {
+                         inputOutputs_t inputOutputs) {
     
     this->depthBoundPred = depthBoundPred;
     this->intOpsPred = intOpsPred;
@@ -198,31 +198,31 @@ void unification::dumpLangDef() {
     cout << "    Predicate language:" << endl;
     cout << "        program depth bound: " << depthBoundPred << endl;
     cout << "        intOps: ";
-    for (vector<string>::iterator it = intOpsPred.begin(), eit = intOpsPred.end(); it != eit; ++it) cout << *it << " ";
+    for (const auto op : intOpsPred) cout << op << " ";
     cout << endl;
     cout << "        boolOps: ";
-    for (vector<string>::iterator it = boolOpsPred.begin(), eit = boolOpsPred.end(); it != eit; ++it) cout << *it << " ";
+    for (const auto op : boolOpsPred) cout << op << " ";
     cout << endl;
     cout << "        constants: ";
-    for (vector<string>::iterator it = constantsPred.begin(), eit = constantsPred.end(); it != eit; ++it) cout << *it << " ";
+    for (const auto c : constantsPred) cout << c << " ";
     cout << endl;
     cout << "        vars: ";
-    for (vector<string>::iterator it = varsPred.begin(), eit = varsPred.end(); it != eit; ++it) cout << *it << " ";
+    for (const auto v : varsPred) cout << v << " ";
     cout << endl;
     
     cout << "    Term language:" << endl;
     cout << "        program depth bound: " << depthBoundTerm << endl;
     cout << "        intOps: ";
-    for (vector<string>::iterator it = intOpsTerm.begin(), eit = intOpsTerm.end(); it != eit; ++it) cout << *it << " ";
+    for (const auto op : intOpsTerm) cout << op << " ";
     cout << endl;
     cout << "        boolOps: ";
-    for (vector<string>::iterator it = boolOpsTerm.begin(), eit = boolOpsTerm.end(); it != eit; ++it) cout << *it << " ";
+    for (const auto op : boolOpsTerm) cout << op << " ";
     cout << endl;
     cout << "        constants: ";
-    for (vector<string>::iterator it = constantsTerm.begin(), eit = constantsTerm.end(); it != eit; ++it) cout << *it << " ";
+    for (const auto c : constantsTerm) cout << c << " ";
     cout << endl;
     cout << "        vars: ";
-    for (vector<string>::iterator it = varsTerm.begin(), eit = varsTerm.end(); it != eit; ++it) cout << *it << " ";
+    for (const auto v : varsTerm) cout << v << " ";
     cout << endl;
 }
 
@@ -234,8 +234,8 @@ void unification::dumpLangDef() {
 bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitMode) {
     
     vector<int> outputs;
-    for (vector<map<string, int> >::iterator it = node->inputOutputs.begin(), eit = node->inputOutputs.end(); it != eit; ++it) {
-        outputs.push_back((*it)["_out"]);
+    for (auto ioe : node->inputOutputs) {
+        outputs.push_back(ioe["_out"]);
     }
     
 #ifdef DEBUG
@@ -306,8 +306,8 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitM
     
         //cout << "splitFlag " << splitFlag << " half_size " << half_size << endl;
         /* found split size, do the split */
-        vector<map<string, int> > leftInputOutputs;
-        vector<map<string, int> > rightInputOutputs;
+        inputOutputs_t leftInputOutputs;
+        inputOutputs_t rightInputOutputs;
         if (allSameValue == true) {
             for (int i = 0; i < half_size; i++) {
                 leftInputOutputs.push_back(node->inputOutputs[i]);
@@ -316,28 +316,26 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitM
                 rightInputOutputs.push_back(node->inputOutputs[i]);
             }
         } else {
-            for (vector<map<string, int> >::iterator it = node->inputOutputs.begin(), eit = node->inputOutputs.end(); it != eit; ++it) {
-                if ((*it)["_out"] <= outputs[half_size-1]) {
-                    leftInputOutputs.push_back(*it);
-                    (*it)["_out"] = true;
-                    //cout << "Left " << (*it)["_out"] << endl;
+            for (auto &ioe : node->inputOutputs) {
+                if (ioe["_out"] <= outputs[half_size-1]) {
+                    leftInputOutputs.push_back(ioe);
+                    ioe["_out"] = true;
                 } else {
-                    rightInputOutputs.push_back(*it);
-                    (*it)["_out"] = false;
-                    //cout << "Right " << (*it)["_out"] << endl;
+                    rightInputOutputs.push_back(ioe);
+                    ioe["_out"] = false;
                 }
             }
         }
 #ifdef DEBUG
         cout << "Split to two: left size " << leftInputOutputs.size() << " right size " << rightInputOutputs.size() << endl;
         cout << "LeftOut: [";
-        for (vector<map<string, int> >::iterator it = leftInputOutputs.begin(), eit = leftInputOutputs.end(); it != eit; ++it) {
-            cout << (*it)["_out"] << " ";
+        for (auto ioe : leftInputOutputs) {
+            cout << ioe["_out"] << " ";
         }
         cout << "]" << endl;
         cout << "RightOut: [";
-        for (vector<map<string, int> >::iterator it = rightInputOutputs.begin(), eit = rightInputOutputs.end(); it != eit; ++it) {
-            cout << (*it)["_out"] << " ";
+        for (auto ioe : rightInputOutputs) {
+            cout << ioe["_out"] << " ";
         }
         cout << "]" << endl;
 #endif
@@ -352,36 +350,37 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitM
         int mostFreqOut = -1;
         int currCnt = 0;
         int prevOut = -7; // some number will never appear in the output
-        for (vector<int>::iterator it = outputs.begin(), eit = outputs.end(); it != eit; ++it) {
-            if (*it != prevOut) {
+        for (auto out : outputs) {
+            if (out != prevOut) {
                 currCnt = 0;
             }
             currCnt++;
             if (currCnt > maxCnt) {
                 maxCnt = currCnt;
-                mostFreqOut = *it;
+                mostFreqOut = out;
             }
-            prevOut = *it;
+            prevOut = out;
         }
+        
         /* do the split */
-        vector<map<string, int> > leftInputOutputs;
-        vector<map<string, int> > rightInputOutputs;
+        inputOutputs_t leftInputOutputs;
+        inputOutputs_t rightInputOutputs;
         if (maxCnt == 1) {
             leftInputOutputs.push_back(node->inputOutputs.front());
-            for (vector<map<string, int> >::iterator it = node->inputOutputs.begin(), eit = node->inputOutputs.end(); it != eit; ++it) {
-                if (*it != node->inputOutputs.front()) {
-                    rightInputOutputs.push_back(*it);
+            for (auto ioe : node->inputOutputs) {
+                if (ioe != node->inputOutputs.front()) {
+                    rightInputOutputs.push_back(ioe);
                 }
             }
 #ifdef DEBUG
             cout << "Split to two: left size " << leftInputOutputs.size() << " right size " << rightInputOutputs.size() << endl;
 #endif
         } else {
-            for (vector<map<string, int> >::iterator it = node->inputOutputs.begin(), eit = node->inputOutputs.end(); it != eit; ++it) {
-                if ((*it)["_out"] == mostFreqOut) {
-                    leftInputOutputs.push_back(*it);
+            for (auto ioe : node->inputOutputs) {
+                if (ioe["_out"] == mostFreqOut) {
+                    leftInputOutputs.push_back(ioe);
                 } else {
-                    rightInputOutputs.push_back(*it);
+                    rightInputOutputs.push_back(ioe);
                 }
             }
 #ifdef DEBUG
@@ -402,12 +401,16 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitM
  */
 void unification::backtracing(inputOutputTreeNode* node) {
     node->inputOutputs.clear();
-    for (vector<map<string, int> >::iterator it = node->left->inputOutputs.begin(), eit = node->left->inputOutputs.end(); it != eit; ++it) {
-        node->inputOutputs.push_back(*it);
+    
+    for (auto ioe : node->left->inputOutputs) {
+        node->inputOutputs.push_back(ioe);
     }
-    for (vector<map<string, int> >::iterator it = node->right->inputOutputs.begin(), eit = node->right->inputOutputs.end(); it != eit; ++it) {
-        node->inputOutputs.push_back(*it);
+    for (auto ioe : node->right->inputOutputs) {
+        node->inputOutputs.push_back(ioe);
     }
+    
+    node->left->inputOutputs.clear();
+    node->right->inputOutputs.clear();
     delete(node->left);
     delete(node->right);
     node->left = NULL;
@@ -425,15 +428,14 @@ void unification::dumpInputOutputTree() {
 
 void unification::dumpInputOutputTreeNode(inputOutputTreeNode* node, string space) {
     if (node != NULL) {
-        
-        for (vector<map<string, int> >::iterator it = node->inputOutputs.begin(), eit = node->inputOutputs.end(); it != eit; ++it) {
+        for (auto ioe : node->inputOutputs) {
             cout << space;
-            for (map<string, int>::iterator vit = (*it).begin(), evit = (*it).end(); vit != evit; ++vit) {
-                if (vit->first != "_out") {
-                    cout << vit->first << " " << vit->second << " ";
+            for (auto varValue : ioe) {
+                if (varValue.first != "_out") {
+                    cout << varValue.first << " " << varValue.second << " ";
                 }
             }
-            cout << "_out " << (*it)["_out"] << endl;
+            cout << "_out " << ioe["_out"] << endl;
         }
         
         cout << "Searched Program: " << node->searchedProg << endl;

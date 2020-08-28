@@ -2,6 +2,7 @@
 #define LANGDEF_H
 #include <iostream>
 #include <map>
+#include "typeDef.hpp"
 using namespace std;
 
 class BaseType {
@@ -42,6 +43,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    //~F() {};
 };
 
 class Var : public IntType {
@@ -50,10 +52,11 @@ private:
 public:
     Var(string name);
     string toString();
-    int interpret(map<string, int> env);
+    int interpret(inputOutput_t env);
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    //~Var() {};
 };
 
 class Num : public IntType {
@@ -66,6 +69,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    //~Num() {};
 };
 
 class Plus : public IntType {
@@ -75,10 +79,11 @@ private:
 public:
     Plus(IntType* left, IntType* right);
     string toString();
-    int interpret(map<string, int> env);
+    int interpret(inputOutput_t env);
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    //~Plus() {delete _left; delete _right;};
 };
 
 class Minus : public IntType {
@@ -88,10 +93,11 @@ private:
 public:
     Minus(IntType* left, IntType* right);
     string toString();
-    int interpret(map<string, int> env);
+    int interpret(inputOutput_t env);
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    //~Minus() {delete _left; delete right;};
 };
 
 class Times : public IntType {
@@ -101,10 +107,11 @@ private:
 public:
     Times(IntType* left, IntType* right);
     string toString();
-    int interpret(map<string, int> env);
+    int interpret(inputOutput_t env);
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    //~Times() {delete _left; delete _right;};
 };
 
 class Leftshift : public IntType {
@@ -114,10 +121,11 @@ private:
 public:
     Leftshift(IntType* value, IntType* offset);
     string toString();
-    int interpret(map<string, int> env);
+    int interpret(inputOutput_t env);
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    //~Leftshift() {delete _value; delete _offset;};
 };
 
 class Rightshift : public IntType {
@@ -127,10 +135,11 @@ private:
 public:
     Rightshift(IntType* value, IntType* offset);
     string toString();
-    int interpret(map<string, int> env);
+    int interpret(inputOutput_t env);
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    //~Rightshift() {delete _value; delete _offset;};
 };
 
 class Lt : public BoolType {
@@ -140,10 +149,11 @@ private:
 public:
     Lt(IntType* left, IntType* right);
     string toString();
-    bool interpret(map<string, int> env);
+    bool interpret(inputOutput_t env);
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    //~Lt() {delete _left; delete _right;};
 };
 
 class And : public BoolType {
@@ -153,10 +163,11 @@ private:
 public:
     And(BoolType* left, BoolType* right);
     string toString();
-    bool interpret(map<string, int> env);
+    bool interpret(inputOutput_t env);
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    //~And() {delete _left; delete _right;};
 };
 
 class Not : public BoolType {
@@ -165,10 +176,11 @@ private:
 public:
     Not(BoolType* left);
     string toString();
-    bool interpret(map<string, int> env);
+    bool interpret(inputOutput_t env);
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    //~Not() {delete _left;};
 };
 
 class Ite : public IntType {
@@ -179,10 +191,11 @@ private:
 public:
     Ite(BoolType* cond, IntType* tcase, IntType* fcase);
     string toString();
-    int interpret(map<string, int> env);
+    int interpret(inputOutput_t env);
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    //~Ite() {delete _cond; delete _tcase; delete _fcase;};
 };
 
 #endif
