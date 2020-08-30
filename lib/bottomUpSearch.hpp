@@ -56,7 +56,6 @@ private:
     map<pair<BaseType*, int>, int> intResultRecord;
     map<pair<BaseType*, int>, int> boolResultRecord;
     
-    
     /* Evaluate program */
     inline int evaluateIntProgram(BaseType* p, int inputOutputId);
     inline bool evaluateBoolProgram(BaseType* p, int inputOutputId);

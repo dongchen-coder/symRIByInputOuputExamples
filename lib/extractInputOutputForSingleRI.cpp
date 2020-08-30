@@ -327,6 +327,7 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
         map<vector<uint64_t>, vector<uint64_t> > ref_src_min_idx;
         map<vector<uint64_t>, vector<uint64_t> > ref_src_max_idx;
         
+        // ref_snk_id -> src iter vector -> snk iter vector -> sizes vector -> ri;
         for (auto ref_snk_it = (ref_src_it->second)->begin(), ref_snk_eit = (ref_src_it->second)->end(); ref_snk_it != ref_snk_eit; ++ref_snk_it) {
             ofstream ofs_perIterRefsrcsnk;
             
@@ -345,6 +346,7 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
             //vector<vector<uint64_t> > sampled_idxs = samplingBorderInner(all_src_idxs, samplingRate);
             vector<vector<uint64_t> > sampled_idxs = samplingRandom(all_src_idxs, samplingRate);
             
+            // src iter vector -> snk iter vector -> sizes vector -> ri;
             for (auto idx_src_it = (ref_snk_it->second)->begin(), idx_src_eit = (ref_snk_it->second)->end(); idx_src_it != idx_src_eit; ++idx_src_it) {
                 
                 if (find(sampled_idxs.begin(), sampled_idxs.end(), idx_src_it->first) == sampled_idxs.end()) {
@@ -412,6 +414,7 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                                 ref_src_max_idx[cur_sizes][i] = max(ref_src_max_idx[cur_sizes][i], idx_src[i]);
                             }
                         }
+                        
                     }
                      
                     /* create a file named by ref src ID and iteration vector */

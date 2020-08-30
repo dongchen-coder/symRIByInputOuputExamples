@@ -21,40 +21,41 @@ bench_5para=3mm
 
 train_size=4 8 16 32
 
-verify_size=64 128 256
+verify_size=32 64 128
 
 SRATE?=0.2
 
 CC=g++
+CCFLAG= -std=c++11 -O2
 
 symRiSynthesiser.o:
-	$(CC) -std=c++11 -O2 -c $(SRC_DIR)/symRiSynthesiser.cpp -o $(OBJ_DIR)/symRiSynthesiser.o
+	$(CC) ${CCFLAG} -c $(SRC_DIR)/symRiSynthesiser.cpp -o $(OBJ_DIR)/symRiSynthesiser.o
 
 langDef.o:
-	$(CC) -std=c++11 -O2 -c $(LIB_DIR)/langDef.cpp -o $(OBJ_DIR)/langDef.o
+	$(CC) ${CCFLAG} -c $(LIB_DIR)/langDef.cpp -o $(OBJ_DIR)/langDef.o
 
 bottomUpSearch.o:
-	$(CC) -std=c++11 -O2 -c $(LIB_DIR)/bottomUpSearch.cpp -o $(OBJ_DIR)/bottomUpSearch.o
+	$(CC) ${CCFLAG} -c $(LIB_DIR)/bottomUpSearch.cpp -o $(OBJ_DIR)/bottomUpSearch.o
 
 unification.o:
-	$(CC) -std=c++11 -O2 -c $(LIB_DIR)/unification.cpp -o $(OBJ_DIR)/unification.o
+	$(CC) ${CCFLAG} -c $(LIB_DIR)/unification.cpp -o $(OBJ_DIR)/unification.o
 
 sampler.o:
-	$(CC) -std=c++11 -O2 -c $(LIB_DIR)/sampler.cpp -o $(OBJ_DIR)/sampler.o
+	$(CC) ${CCFLAG} -c $(LIB_DIR)/sampler.cpp -o $(OBJ_DIR)/sampler.o
 
 extractInputOutputForSingleRI.o:
-	$(CC) -std=c++11 -O2 -c $(LIB_DIR)/extractInputOutputForSingleRI.cpp -o $(OBJ_DIR)/extractInputOutputForSingleRI.o
+	$(CC) ${CCFLAG} -c $(LIB_DIR)/extractInputOutputForSingleRI.cpp -o $(OBJ_DIR)/extractInputOutputForSingleRI.o
 
 inputOutputGen.o:
-	$(CC) -std=c++11 -O2 -c $(SRC_DIR)/inputOutputGen.cpp -o $(OBJ_DIR)/inputOutputGen.o
+	$(CC) ${CCFLAG} -c $(SRC_DIR)/inputOutputGen.cpp -o $(OBJ_DIR)/inputOutputGen.o
 
 gen: extractInputOutputForSingleRI.o inputOutputGen.o symRiSynthesiser.o langDef.o bottomUpSearch.o unification.o sampler.o
-	$(CC) -O2 -o $(BIN_DIR)/inputOutputGen $(OBJ_DIR)/extractInputOutputForSingleRI.o $(OBJ_DIR)/inputOutputGen.o
-	$(CC) -pthread -O2 -o $(BIN_DIR)/symRiSymthesiser $(OBJ_DIR)/symRiSynthesiser.o $(OBJ_DIR)/langDef.o $(OBJ_DIR)/bottomUpSearch.o $(OBJ_DIR)/unification.o $(OBJ_DIR)/sampler.o
+	$(CC) ${CCFLAG} -o $(BIN_DIR)/inputOutputGen $(OBJ_DIR)/extractInputOutputForSingleRI.o $(OBJ_DIR)/inputOutputGen.o
+	$(CC) ${CCFLAG} -pthread -o $(BIN_DIR)/symRiSymthesiser $(OBJ_DIR)/symRiSynthesiser.o $(OBJ_DIR)/langDef.o $(OBJ_DIR)/bottomUpSearch.o $(OBJ_DIR)/unification.o $(OBJ_DIR)/sampler.o
 
 bench_gen:
 	mkdir -p $(BENCH_BIN_DIR)
-	$(foreach name, $(bench), $(CC) -O -o $(BENCH_BIN_DIR)/$(name) $(BENCH_DIR)/$(name).cpp ;)
+	$(foreach name, $(bench), $(CC) -std=c++11 -O -o $(BENCH_BIN_DIR)/$(name) $(BENCH_DIR)/$(name).cpp ;)
 
 ris_raw_gen:
 	mkdir -p $(RIS_RAW_DIR)
@@ -110,8 +111,40 @@ inputoutput_gen:
 	$(foreach name, $(bench_5para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 5 -SAMPLINGRATE ${SRATE};)
 
 histogramToMatch_gen:
-	$(foreach name, $(bench), rm -r $(RIS_MATCH_DIR)/$(name) ;)
-	$(foreach name, $(bench), mkdir $(RIS_MATCH_DIR)/$(name) ;)
+	$(foreach name, $(bench), rm -r -f $(RIS_MATCH_DIR)/$(name) ; )
+	$(foreach name, $(bench), mkdir -p $(RIS_MATCH_DIR)/$(name) ; )
 	$(foreach size, $(verify_size), \
-        $(foreach name, $(bench_1para), $(BENCH_BIN_DIR)/$(name) $(size) > $(RIS_MATCH_DIR)/$(name)/$(name)_$(size).txt ;) \
-    )
+		$(foreach name, $(bench_1para), $(BENCH_BIN_DIR)/$(name) $(size) > $(RIS_MATCH_DIR)/$(name)/$(name)_$(size).txt ;) \
+	)
+	$(foreach size1, $(verify_size), \
+		$(foreach size2, $(verify_size), \
+			$(foreach name, $(bench_2para), $(BENCH_BIN_DIR)/$(name) $(size1) $(size2) > $(RIS_MATCH_DIR)/$(name)/$(name)_$(size1)_$(size2).txt ;) \
+		) \
+	)
+	$(foreach size1, $(verify_size), \
+		$(foreach size2, $(verify_size), \
+			$(foreach size3, $(verify_size), \
+				$(foreach name, $(bench_3para), $(BENCH_BIN_DIR)/$(name) $(size1) $(size2) $(size3) > $(RIS_MATCH_DIR)/$(name)/$(name)_$(size1)_$(size2)_$(size3).txt ;) \
+			) \
+		) \
+	)
+	$(foreach size1, $(verify_size), \
+		$(foreach size2, $(verify_size), \
+			$(foreach size3, $(verify_size), \
+				$(foreach size4, $(verify_size), \
+					$(foreach name, $(bench_4para), $(BENCH_BIN_DIR)/$(name) $(size1) $(size2) $(size3) $(size4) > $(RIS_MATCH_DIR)/$(name)/$(name)_$(size1)_$(size2)_$(size3)_$(size4).txt ;) \
+				) \
+			) \
+		) \
+	)
+	$(foreach size1, $(verify_size), \
+		$(foreach size2, $(verify_size), \
+			$(foreach size3, $(verify_size), \
+				$(foreach size4, $(verify_size), \
+					$(foreach size5, $(verify_size), \
+						$(foreach name, $(bench_5para), $(BENCH_BIN_DIR)/$(name) $(size1) $(size2) $(size3) $(size4) $(size5) > $(RIS_MATCH_DIR)/$(name)/$(name)_$(size1)_$(size2)_$(size3)_$(size4)_$(size5).txt ;) \
+					) \
+				) \
+			) \
+		) \
+	)
