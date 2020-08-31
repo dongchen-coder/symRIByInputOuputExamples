@@ -1,0 +1,20 @@
+refsrc_1_I0_src_min_IBound Prog: 1
+refsrc_1_I1_src_min_IBound Prog: 1
+refsrc_3_I1_src_min_IBound Prog: (B0 + 4)
+refsrc_3_I0_src_max_IBound Prog: (if ((2 + 2) < B0) then (if ((B0 + B0) < B1) then 1 else 3) else (if (B1 < ((B0 + 1) + ((2 + 2) + (2 + 2)))) then 5 else (if ((B0 + B0) < B1) then 7 else (1 + 12))))
+refsrc_5_I0_src_max_IBound Prog: (if ((2 + 2) < B0) then (if ((B0 + B0) < B1) then 1 else 3) else (if (B1 < ((B0 + 1) + ((2 + 2) + (2 + 2)))) then 5 else (if ((B0 + B0) < B1) then 7 else (1 + 12))))
+refsrc_0_I0_src_min_IBound Prog: 1
+refsrc_0_I1_src_min_IBound Prog: 1
+refsrc_1_I1_src_max_IBound Prog: (if (((2 + 2) + (2 + 2)) < B1) then (if ((2 + 2) < B1) then 3 else (if (B0 < B1) then 7 else B1)) else (if ((((2 + 2) + (2 + 2)) + ((2 + 2) + (2 + 2))) < B1) then (if (B0 < B1) then (B1 + -1) else B1) else (if (B0 < B1) then (B1 + -1) else B1)))
+refsrc_0_I1_src_max_IBound Prog: B1
+refsrc_3_I1_src_max_IBound Prog: B1
+refsrc_4_I0_src_min_IBound Prog: 1
+refsrc_4_I1_src_min_IBound Prog: 1
+refsrc_5_I1_src_max_IBound Prog: B1
+refsrc_4_I1_src_max_IBound Prog: B1
+refsrc_5_I0_src_min_IBound Prog: 1
+refsrc_5_I1_src_min_IBound Prog: (B0 + 4)
+refsrc_2_I0_src_min_IBound Prog: 1
+refsrc_2_I1_src_min_IBound Prog: (if (B0 < B1) then 1 else 3)
+refsrc_2_I1_src_max_IBound Prog: B1
+refsrc_3_I0_src_min_IBound Prog: 1
