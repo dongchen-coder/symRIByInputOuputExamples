@@ -63,5 +63,7 @@ int main(int argc, char* argv[]) {
 
 	symm_trace(A, B, C, alpha, beta);
 
+    dumpRIHistogram();
+    
 	return 0;
 }

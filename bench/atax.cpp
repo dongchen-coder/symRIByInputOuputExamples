@@ -83,5 +83,7 @@ int main(int argc, char* argv[]) {
 
     atax_cpu_trace(A, x, y, tmp, NX, NY);
 
+    dumpRIHistogram();
+    
     return 0;
 }

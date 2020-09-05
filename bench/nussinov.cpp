@@ -112,5 +112,7 @@ int main(int argc, char* argv[]) {
 
 	nussinov_trace(table, seq);
 
+    dumpRIHistogram();
+    
 	return 0;
 }

@@ -135,5 +135,7 @@ int main(int argc, char* argv[]) {
 
     mm3_cpu_trace(a, b, c, d, e, f, g);
     
+    dumpRIHistogram();
+    
     return 0;
 }

@@ -71,5 +71,7 @@ int main(int argc, char* argv[]) {
 
     gemm_trace(alpha, beta, A, B, C);
 
+    dumpRIHistogram();
+    
     return 0;
 }

@@ -60,6 +60,8 @@ int main(int argc, char* argv[]) {
 	
 	cholesky_trace(A);
 
+    dumpRIHistogram();
+    
 	return 0;
 }
 

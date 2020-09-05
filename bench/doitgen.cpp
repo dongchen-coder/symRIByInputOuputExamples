@@ -62,6 +62,8 @@ int main(int argc, char* argv[]) {
 	
 	doitgen_trace(sum, A, C4);
 
+    dumpRIHistogram();
+    
 	return 0;
 }
 

@@ -80,5 +80,7 @@ int main(int argc, char* argv[]) {
 
 	heat_3d_trace(B, A);
 
+    dumpRIHistogram();
+    
 	return 0;
 }

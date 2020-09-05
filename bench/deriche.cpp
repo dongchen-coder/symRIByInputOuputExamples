@@ -151,5 +151,7 @@ int main(int argc, char* argv[]) {
 
 	deriche_trace(y1, imgIn, y2, imgOut, alpha);
 
+    dumpRIHistogram();
+    
 	return 0;
 }

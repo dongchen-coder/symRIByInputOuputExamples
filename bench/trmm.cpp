@@ -51,5 +51,7 @@ int main(int argc, char* argv[]) {
 
 	trmm_trace(A, B, alpha);
  
+    dumpRIHistogram();
+    
     return 0;
 }

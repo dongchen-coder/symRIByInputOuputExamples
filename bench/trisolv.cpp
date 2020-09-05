@@ -55,6 +55,8 @@ int main(int argc, char* argv[]) {
 
 	trisolv_trace(x, b, L);
 
+    dumpRIHistogram();
+    
     return 0;
 }
 

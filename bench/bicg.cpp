@@ -84,5 +84,7 @@ int main(int argc, char* argv[]) {
 
     bicg_cpu_trace(A, r, s, p ,q, NX, NY);
 
+    dumpRIHistogram();
+    
     return 0;
 }

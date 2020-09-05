@@ -57,5 +57,7 @@ int main(int argc, char* argv[]) {
 
 	lu_trace(A);
 
+    dumpRIHistogram();
+    
     return 0;
 }

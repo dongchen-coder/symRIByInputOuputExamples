@@ -78,5 +78,7 @@ int main(int argc, char* argv[]) {
 
 	gramschmidt_trace(A, R, Q);
 
+    dumpRIHistogram();
+    
 	return 0;
 }

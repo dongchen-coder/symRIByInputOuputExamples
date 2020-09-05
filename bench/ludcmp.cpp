@@ -99,5 +99,7 @@ int main(int argc, char* argv[]) {
 
 	ludcmp_trace(A, b, y, x);
 
+    dumpRIHistogram();
+    
     return 0;
 }

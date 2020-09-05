@@ -72,6 +72,8 @@ int main(int argc, char* argv[]) {
 
 	durbin_trace(y, r, z);
 
+    dumpRIHistogram();
+    
 	return 0;
 }
 

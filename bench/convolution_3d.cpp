@@ -98,5 +98,7 @@ int main(int argc, char* argv[])
 
     conv3D_trace(A, B);
 
+    dumpRIHistogram();
+    
     return 0;
 }

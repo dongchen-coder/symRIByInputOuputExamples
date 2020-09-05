@@ -48,5 +48,7 @@ int main(int argc, char* argv[]) {
 
 	seidel_2d_trace(A);
 
+    dumpRIHistogram();
+    
 	return 0;
 }

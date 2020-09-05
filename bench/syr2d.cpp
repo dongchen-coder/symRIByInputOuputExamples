@@ -58,5 +58,7 @@ int main(int argc, char* argv[]) {
 
 	syr2k_trace(A, B, C, alpha, beta);
 
+    dumpRIHistogram();
+    
 	return 0;
 }

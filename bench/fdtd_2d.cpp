@@ -82,5 +82,7 @@ int main(int argc, char* argv[]) {
 
 	fdtd_2d_trace(_fict_, ey, ex, hz);
 
+    dumpRIHistogram();
+    
 	return 0;
 }

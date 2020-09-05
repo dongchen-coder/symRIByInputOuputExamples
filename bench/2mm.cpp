@@ -82,6 +82,8 @@ int main(int argc, char* argv[]) {
 	
 	mm2_trace(tmp, A, B, C, D, alpha, beta);
 
+    dumpRIHistogram();
+    
 	return 0;
 }
 

@@ -126,6 +126,8 @@ int main(int argc, char* argv[]) {
 
 	adi_trace(p, q, v, u);
 
+    dumpRIHistogram();
+    
 	return 0;
 }
 

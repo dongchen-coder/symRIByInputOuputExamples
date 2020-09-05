@@ -49,5 +49,7 @@ int main(int argc, char* argv[]) {
 
     stencil_trace(a, b, DIM_SIZE);
     
+    dumpRIHistogram();
+    
     return 0;
 }

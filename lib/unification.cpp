@@ -461,3 +461,16 @@ void unification::dumpSearchedProgram() {
     cout << "--------------------------------------" << endl;
 #endif
 }
+
+string unification::getSearchedProgram() {
+    if (inputOutputTree != NULL) {
+        if (inputOutputTree->searchedProg != "") {
+            return "Searched Program (^0^) : " + inputOutputTree->searchedProg;
+        } else {
+            return "Not yet founded, (T^T)";
+        }
+    }
+    return "Not yet founded, (T^T)";
+}
+
+

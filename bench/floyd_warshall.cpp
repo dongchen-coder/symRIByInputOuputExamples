@@ -48,5 +48,7 @@ int main(int argc, char* argv[]) {
 
 	floyd_warshall_trace(path);
 
+    dumpRIHistogram();
+    
 	return 0;
 }

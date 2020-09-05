@@ -103,5 +103,7 @@ int main(int argc, char* argv[]) {
 
     covariance_trace(data, mean, symmat, M, N);
     
+    dumpRIHistogram();
+    
     return 0;
 }

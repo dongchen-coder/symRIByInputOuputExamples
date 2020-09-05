@@ -73,5 +73,7 @@ int main(int argc, char* argv[])
 
     conv2D_trace(A, B);
 
+    dumpRIHistogram();
+    
     return 0;
 }

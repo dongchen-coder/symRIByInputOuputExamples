@@ -66,5 +66,7 @@ int main(int argc, char const *argv[])
 
     syrk_trace(alpha, beta, A, C);
 
+    dumpRIHistogram();
+    
     return 0;
 }

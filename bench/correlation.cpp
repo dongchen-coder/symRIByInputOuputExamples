@@ -160,5 +160,7 @@ int main(int argc, char* argv[]) {
 
     correlation_trace(data, mean, stddev, symmat);
 
+    dumpRIHistogram();
+    
     return 0;
 }

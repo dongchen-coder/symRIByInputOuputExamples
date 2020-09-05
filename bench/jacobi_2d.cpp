@@ -60,5 +60,7 @@ int main(int argc, char* argv[]) {
 
 	jacobi_2d_trace(A, B);
 
+    dumpRIHistogram();
+    
     return 0;
 }

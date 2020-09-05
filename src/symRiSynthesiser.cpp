@@ -404,19 +404,24 @@ bool readInputOutput(string fileName, inputOutputs_t* inputOutputs) {
         }
         inputOutputs->push_back(inputOutput);
     }
-/*
-    cout << "Input output examples:" << endl;
-    for (vector<map<string, int> >::iterator it = inputOutputs->begin(), eit = inputOutputs->end(); it != eit; ++it) {
-        cout << "    ";
-        for (map<string, int>::iterator it_m = (*it).begin(), eit_m = (*it).end(); it_m != eit_m; ++it_m) {
-            if (it_m->first != "_out") {
-                cout << it_m->first << " " << it_m->second << " ";
-            }
-        }
-        cout << "   _out " << (*it)["_out"] << endl;
-    }
-*/
     return true;
+}
+
+void writeSearchedProgram(string fileName, string prog) {
+    ofstream ofs;
+    size_t pos = fileName.find("/ris_per_iter_refsrc/");
+    if (pos != string::npos) {
+        pos = fileName.find_last_of("/");
+        string conf = fileName.substr(pos, fileName.size());
+        fileName.replace(0, 32, "./synResult/");
+        fileName.replace(fileName.size() - 4, fileName.size(), "_src.txt");
+        ofs.open(fileName);
+        if (ofs.is_open()) {
+            ofs << conf << " " << prog;
+        }
+        ofs.close();
+    }
+    return;
 }
 
 
@@ -517,9 +522,12 @@ int main(int argc, char* argv[]) {
 #endif
 
     uni->search(searchTimeForTermsInSeconds, searchTimeForPredsInSeconds, searchMode);
-    
-    //uni->dumpInputOutputTree();
+
+#ifdef DEBUG
     uni->dumpSearchedProgram();
+#endif
+
+    writeSearchedProgram(fileName, uni->getSearchedProgram());
     
     return 0;
 }

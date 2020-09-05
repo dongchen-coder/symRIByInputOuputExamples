@@ -115,5 +115,7 @@ int main(int argc, char const *argv[])
 
     gemver_trace(alpha, beta, A, u1, v1, u2, v2, w, x, y, z);
  	
+    dumpRIHistogram();
+    
     return 0;
 }

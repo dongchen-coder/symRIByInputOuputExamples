@@ -38,5 +38,7 @@ int main(int argc, char* argv[]) {
 
     trangle_trace(a, b, ISIZE, JSIZE);
 
+    dumpRIHistogram();
+    
     return 0;
 }

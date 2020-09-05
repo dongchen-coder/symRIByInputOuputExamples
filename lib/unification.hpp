@@ -48,6 +48,7 @@ public:
     void dumpLangDef();
     void dumpInputOutputTree();
     void dumpSearchedProgram();
+    string getSearchedProgram();
     
 private:
     /* Dumping fucntions */
