@@ -40,7 +40,7 @@ def summerizeForBench(bench):
 		f.close()
 	outputFile.close()
 
-	outputFile = open("./all/" + bench + "_Iminmax.txt", "w")
+	outputFile = open("./all/" + bench + "_IBound_result.txt", "w")
 	for f in files:
 		name = f
 		if ("min" not in name and "max" not in name):
@@ -59,9 +59,9 @@ def summerizeForBench(bench):
 
 	return
 
-#benches = ["stencil", "2mm", "3mm", "adi", "atax", "bicg", "cholesky", "correlation", "covariance", "deriche", "doitgen", "durbin", "fdtd_2d", "floyd_warshall", "gemm", "gemver", "gesummv", "gramschmidt", "heat_3d", "jacobi_1d", "jacobi_2d", "lu", "ludcmp", "mvt", "nussinov", "seidel_2d", "symm", "syr2d", "syrk", "trisolv", "trmm", "convolution_2d", "convolution_3d", "trangle"]
+benches = ["stencil", "2mm", "3mm", "adi", "atax", "bicg", "cholesky", "correlation", "covariance", "deriche", "doitgen", "durbin", "fdtd_2d", "floyd_warshall", "gemm", "gemver", "gesummv", "gramschmidt", "heat_3d", "jacobi_1d", "jacobi_2d", "lu", "ludcmp", "mvt", "nussinov", "seidel_2d", "symm", "syr2d", "syrk", "trisolv", "trmm", "convolution_2d", "convolution_3d", "trangle"]
 
-benches = ["stencil"]
+#benches = ["stencil"]
 
 for bench in benches:
 	summerizeForBench(bench)
