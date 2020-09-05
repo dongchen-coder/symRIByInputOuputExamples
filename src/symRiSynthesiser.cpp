@@ -412,7 +412,7 @@ void writeSearchedProgram(string fileName, string prog) {
     size_t pos = fileName.find("/ris_per_iter_refsrc/");
     if (pos != string::npos) {
         pos = fileName.find_last_of("/");
-        string conf = fileName.substr(pos, fileName.size());
+        string conf = fileName.substr(pos+1, fileName.size());
         string header = fileName.substr(0, pos);
         pos = header.find_last_of("/");
         fileName.replace(0, pos, "./synResult/");
