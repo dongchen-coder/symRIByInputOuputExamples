@@ -413,7 +413,9 @@ void writeSearchedProgram(string fileName, string prog) {
     if (pos != string::npos) {
         pos = fileName.find_last_of("/");
         string conf = fileName.substr(pos, fileName.size());
-        fileName.replace(0, 32, "./synResult/");
+        string header = fileName.substr(0, pos);
+        pos = header.find_last_of("/");
+        fileName.replace(0, pos, "./synResult/");
         fileName.replace(fileName.size() - 4, fileName.size(), "_src.txt");
         ofs.open(fileName);
         if (ofs.is_open()) {
