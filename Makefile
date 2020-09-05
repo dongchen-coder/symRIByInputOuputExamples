@@ -49,9 +49,15 @@ extractInputOutputForSingleRI.o:
 inputOutputGen.o:
 	$(CC) ${CCFLAG} -c $(SRC_DIR)/inputOutputGen.cpp -o $(OBJ_DIR)/inputOutputGen.o
 
+run.o:
+	$(CC) -std=c++17 -c $(SRC_DIR)/run.cpp -o $(OBJ_DIR)/run.o
+
 gen: extractInputOutputForSingleRI.o inputOutputGen.o symRiSynthesiser.o langDef.o bottomUpSearch.o unification.o sampler.o
 	$(CC) ${CCFLAG} -o $(BIN_DIR)/inputOutputGen $(OBJ_DIR)/extractInputOutputForSingleRI.o $(OBJ_DIR)/inputOutputGen.o
 	$(CC) ${CCFLAG} -pthread -o $(BIN_DIR)/symRiSymthesiser $(OBJ_DIR)/symRiSynthesiser.o $(OBJ_DIR)/langDef.o $(OBJ_DIR)/bottomUpSearch.o $(OBJ_DIR)/unification.o $(OBJ_DIR)/sampler.o
+
+run_gen: run.o
+	$(CC) -std=c++17 -o $(BIN_DIR)/run $(OBJ_DIR)/run.o
 
 bench_gen:
 	mkdir -p $(BENCH_BIN_DIR)
