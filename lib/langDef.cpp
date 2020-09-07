@@ -1032,7 +1032,7 @@ int Times::getNumOfOpsInProg(string opName) {
 }
 
 int Times::getNumOfSymbolsInProg(string symbolName) {
-    return _left->getNumOfSymbolsInProg(symbolName) + _left->getNumOfSymbolsInProg(symbolName);
+    return _left->getNumOfSymbolsInProg(symbolName) + _right->getNumOfSymbolsInProg(symbolName);
 }
 
 /******************************************

@@ -612,8 +612,9 @@ void bottomUpSearch::elimEquvalents() {
                 eqPList.push_back(pj);
                 
                 if (pj->getNumOfSymbolsInProg() < pi->getNumOfSymbolsInProg()) {
-                    pList[0] = pj;
-                    pList[pList.size() - 1] = pi;
+                    //cout << pj->toString() << " " << pj->getNumOfSymbolsInProg() << " " << pi->toString() << " " << pi->getNumOfSymbolsInProg() << endl;
+                    eqPList[0] = pj;
+                    eqPList[eqPList.size() - 1] = pi;
                     /* remove pi's record */
                     for (int inputOutputId = 0; inputOutputId < inputOutputs.size(); inputOutputId++) {
                         boolResultRecord.erase(make_pair(pi, inputOutputId));
@@ -640,7 +641,7 @@ void bottomUpSearch::elimEquvalents() {
         //programToKeep.push_back(eqPList[rand() % eqPList.size()]);
         /* always keep the first program, which is short in depth */
         programToKeep.push_back(eqPList[0]);
-        
+        //cout << " Keep " << eqPList[0]->toString() << endl;
         //dumpPlist(eqPList);
         //cout << "Keep " << dumpProgram(eqPList[0]) << endl;
     }
