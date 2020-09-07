@@ -613,6 +613,7 @@ void bottomUpSearch::elimEquvalents() {
                 
                 if ((pj->getNumOfSymbolsInProg("B") == 0 && pj->getNumOfSymbolsInProg() < pi->getNumOfSymbolsInProg()) ||
                     (pj->getNumOfSymbolsInProg("B") != 0 && pj->getNumOfSymbolsInProg("Isrc") < pi->getNumOfSymbolsInProg("Isrc"))) {
+                    
                     //cout << pj->toString() << " " << pj->getNumOfSymbolsInProg() << " " << pi->toString() << " " << pi->getNumOfSymbolsInProg() << endl;
                     eqPList[0] = pj;
                     eqPList[eqPList.size() - 1] = pi;
@@ -643,6 +644,7 @@ void bottomUpSearch::elimEquvalents() {
         //programToKeep.push_back(eqPList[rand() % eqPList.size()]);
         /* always keep the first program, which is short in depth */
         programToKeep.push_back(eqPList[0]);
+        
         //cout << " Keep " << eqPList[0]->toString() << endl;
         //dumpPlist(eqPList);
         //cout << "Keep " << dumpProgram(eqPList[0]) << endl;
@@ -651,6 +653,7 @@ void bottomUpSearch::elimEquvalents() {
     boolResultRecord.clear();
     intResultRecord.clear();
     
+    //dumpPlist(programToKeep);
     pList = programToKeep;
     return;
 }
@@ -759,6 +762,7 @@ string bottomUpSearch::search() {
     cout << "Init pList size " << getPlistSize() << ", check correct" << endl;
 #endif
     //dumpPlist();
+    elimEquvalents();
     while (getCorrect() == "") {
 #ifdef DEBUG
         cout << "Current pList size " << getPlistSize() << ", grow" << endl;
