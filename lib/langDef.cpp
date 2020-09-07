@@ -361,7 +361,7 @@ int Var::getNumOfOpsInProg(string opName) {
 }
 
 int Var::getNumOfSymbolsInProg(string symbolName) {
-    if (symbolName == _name) {
+    if (symbolName == "" || symbolName == _name) {
         return 1;
     }
     return 0;

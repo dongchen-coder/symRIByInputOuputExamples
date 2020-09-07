@@ -10,8 +10,8 @@ public:
     BaseType();
     string toString();
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
+    int getNumOfOpsInProg(string opName = "");
+    int getNumOfSymbolsInProg(string symbolName = "");
     virtual ~BaseType() {};
 };
 
@@ -20,8 +20,8 @@ public:
     IntType();
     string toString();
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
+    int getNumOfOpsInProg(string opName = "");
+    int getNumOfSymbolsInProg(string symbolName = "");
     virtual ~IntType() {};
 };
 
@@ -30,8 +30,8 @@ public:
     BoolType();
     string toString();
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
+    int getNumOfOpsInProg(string opName = "");
+    int getNumOfSymbolsInProg(string symbolName = "");
     virtual ~BoolType() {};
 };
 
@@ -41,9 +41,8 @@ public:
     string toString();
     bool interpret();
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    //~F() {};
+    int getNumOfOpsInProg(string opName = "");
+    int getNumOfSymbolsInProg(string symbolName = "");
 };
 
 class Var : public IntType {
@@ -54,9 +53,8 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    //~Var() {};
+    int getNumOfOpsInProg(string opName = "");
+    int getNumOfSymbolsInProg(string symbolName = "");
 };
 
 class Num : public IntType {
@@ -67,9 +65,8 @@ public:
     string toString();
     int interpret();
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    //~Num() {};
+    int getNumOfOpsInProg(string opName = "");
+    int getNumOfSymbolsInProg(string symbolName = "");
 };
 
 class Plus : public IntType {
@@ -81,9 +78,8 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    //~Plus() {delete _left; delete _right;};
+    int getNumOfOpsInProg(string opName = "");
+    int getNumOfSymbolsInProg(string symbolName = "");
 };
 
 class Minus : public IntType {
@@ -95,9 +91,8 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    //~Minus() {delete _left; delete right;};
+    int getNumOfOpsInProg(string opName = "");
+    int getNumOfSymbolsInProg(string symbolName = "");
 };
 
 class Times : public IntType {
@@ -109,9 +104,8 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    //~Times() {delete _left; delete _right;};
+    int getNumOfOpsInProg(string opName = "");
+    int getNumOfSymbolsInProg(string symbolName = "");
 };
 
 class Leftshift : public IntType {
@@ -123,9 +117,8 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    //~Leftshift() {delete _value; delete _offset;};
+    int getNumOfOpsInProg(string opName = "");
+    int getNumOfSymbolsInProg(string symbolName = "");
 };
 
 class Rightshift : public IntType {
@@ -137,9 +130,8 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    //~Rightshift() {delete _value; delete _offset;};
+    int getNumOfOpsInProg(string opName = "");
+    int getNumOfSymbolsInProg(string symbolName = "");
 };
 
 class Lt : public BoolType {
@@ -151,9 +143,8 @@ public:
     string toString();
     bool interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    //~Lt() {delete _left; delete _right;};
+    int getNumOfOpsInProg(string opName = "");
+    int getNumOfSymbolsInProg(string symbolName = "");
 };
 
 class And : public BoolType {
@@ -165,9 +156,8 @@ public:
     string toString();
     bool interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    //~And() {delete _left; delete _right;};
+    int getNumOfOpsInProg(string opName = "");
+    int getNumOfSymbolsInProg(string symbolName = "");
 };
 
 class Not : public BoolType {
@@ -178,9 +168,8 @@ public:
     string toString();
     bool interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    //~Not() {delete _left;};
+    int getNumOfOpsInProg(string opName = "");
+    int getNumOfSymbolsInProg(string symbolName = "");
 };
 
 class Ite : public IntType {
@@ -193,9 +182,8 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    //~Ite() {delete _cond; delete _tcase; delete _fcase;};
+    int getNumOfOpsInProg(string opName = "");
+    int getNumOfSymbolsInProg(string symbolName = "");
 };
 
 #endif

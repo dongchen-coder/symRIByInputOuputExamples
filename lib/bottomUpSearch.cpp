@@ -611,11 +611,23 @@ void bottomUpSearch::elimEquvalents() {
                 eqFlag[j] = true;
                 eqPList.push_back(pj);
                 
-                /* remove pj's record */
-                for (int inputOutputId = 0; inputOutputId < inputOutputs.size(); inputOutputId++) {
-                    boolResultRecord.erase(make_pair(pj, inputOutputId));
-                    intResultRecord.erase(make_pair(pj, inputOutputId));
+                if (pj->getNumOfSymbolsInProg() < pi->getNumOfSymbolsInProg()) {
+                    pList[0] = pj;
+                    pList[pList.size() - 1] = pi;
+                    /* remove pi's record */
+                    for (int inputOutputId = 0; inputOutputId < inputOutputs.size(); inputOutputId++) {
+                        boolResultRecord.erase(make_pair(pi, inputOutputId));
+                        intResultRecord.erase(make_pair(pi, inputOutputId));
+                    }
+                    pi = pj;
+                } else {
+                    /* remove pj's record */
+                    for (int inputOutputId = 0; inputOutputId < inputOutputs.size(); inputOutputId++) {
+                        boolResultRecord.erase(make_pair(pj, inputOutputId));
+                        intResultRecord.erase(make_pair(pj, inputOutputId));
+                    }
                 }
+                
             }
         }
         for (int inputOutputId = 0; inputOutputId < inputOutputs.size(); inputOutputId++) {
