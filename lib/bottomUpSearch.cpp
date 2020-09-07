@@ -611,7 +611,8 @@ void bottomUpSearch::elimEquvalents() {
                 eqFlag[j] = true;
                 eqPList.push_back(pj);
                 
-                if (pj->getNumOfSymbolsInProg() < pi->getNumOfSymbolsInProg()) {
+                if ((pj->getNumOfSymbolsInProg("B") == 0 && pj->getNumOfSymbolsInProg() < pi->getNumOfSymbolsInProg()) ||
+                    (pj->getNumOfSymbolsInProg("B") != 0 && pj->getNumOfSymbolsInProg("Isrc") < pi->getNumOfSymbolsInProg("Isrc"))) {
                     //cout << pj->toString() << " " << pj->getNumOfSymbolsInProg() << " " << pi->toString() << " " << pi->getNumOfSymbolsInProg() << endl;
                     eqPList[0] = pj;
                     eqPList[eqPList.size() - 1] = pi;
@@ -621,7 +622,8 @@ void bottomUpSearch::elimEquvalents() {
                         intResultRecord.erase(make_pair(pi, inputOutputId));
                     }
                     pi = pj;
-                } else {
+                }
+                else {
                     /* remove pj's record */
                     for (int inputOutputId = 0; inputOutputId < inputOutputs.size(); inputOutputId++) {
                         boolResultRecord.erase(make_pair(pj, inputOutputId));
