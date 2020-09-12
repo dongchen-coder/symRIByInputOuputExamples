@@ -108,6 +108,19 @@ public:
     int getNumOfSymbolsInProg(string symbolName = "");
 };
 
+class Div : public IntType {
+private:
+    IntType* _dividend;
+    IntType* _divisor;
+public:
+    Div(IntType* dividend, IntType* divisor);
+    string toString();
+    int interpret(inputOutput_t env);
+    int depth();
+    int getNumOfOpsInProg(string opName = "");
+    int getNumOfSymbolsInProg(string symbolName = "");
+};
+
 class Leftshift : public IntType {
 private:
     IntType* _value;
@@ -127,6 +140,19 @@ private:
     IntType* _offset;
 public:
     Rightshift(IntType* value, IntType* offset);
+    string toString();
+    int interpret(inputOutput_t env);
+    int depth();
+    int getNumOfOpsInProg(string opName = "");
+    int getNumOfSymbolsInProg(string symbolName = "");
+};
+
+class Min : public IntType {
+private:
+    IntType* _left;
+    IntType* _right;
+public:
+    Min(IntType* left, IntType* right);
     string toString();
     int interpret(inputOutput_t env);
     int depth();
