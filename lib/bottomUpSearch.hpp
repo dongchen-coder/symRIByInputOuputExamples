@@ -31,7 +31,7 @@ public:
     
 private:
     /* dump one program */
-    string dumpProgram(BaseType* p);
+    inline string dumpProgram(BaseType* p);
     
     /* Grow program list */
     void grow();
@@ -40,12 +40,12 @@ private:
     void elimEquvalents();
     
     /* Check whether there is a correct program in program list */
-    string getCorrect();
+    inline string getCorrect();
     
     /* Dumping function */
     void dumpPlist();
     void dumpPlist(vector<BaseType*> pList);
-    int getPlistSize();
+    inline int getPlistSize();
     
     /* grow expression rules */
     bool isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, string op);

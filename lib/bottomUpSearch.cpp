@@ -1,4 +1,7 @@
 #include "bottomUpSearch.hpp"
+
+
+
 /******************************************
     Constructor
  */
@@ -34,7 +37,7 @@ bottomUpSearch::bottomUpSearch(int depthBound,
 /******************************************
     Dump Program list
 */
-string bottomUpSearch::dumpProgram(BaseType* p) {
+inline string bottomUpSearch::dumpProgram(BaseType* p) {
     if (dynamic_cast<Var*>(p) != nullptr) {
         Var* var = dynamic_cast<Var*>(p);
         return var->toString();
@@ -110,7 +113,7 @@ void bottomUpSearch::dumpPlist() {
     return;
 }
 
-int bottomUpSearch::getPlistSize() {
+inline int bottomUpSearch::getPlistSize() {
     return _pList.size();
 }
 
@@ -402,7 +405,6 @@ BaseType* bottomUpSearch::growOneExpr(BaseType* i, BaseType* j, BaseType* k, str
     return nullptr;
 }
 
-
 void bottomUpSearch::grow() {
     
     vector<BaseType*> newPList;
@@ -663,90 +665,99 @@ void bottomUpSearch::elimEquvalents() {
     Check correct
  */
 bool bottomUpSearch::isCorrect(BaseType* p) {
-    if (dynamic_cast<IntType*>(p) != nullptr) {
-        for (int i = 0; i < _inputOutputs.size(); i++) {
-            int pValue = evaluateIntProgram(p, i);
-            if (pValue != _inputOutputs[i]["_out"]) {
-                return false;
-            }
-        }
-    }
-    else if (dynamic_cast<BoolType*>(p) != nullptr) {
-        /* all true or all false are both correct program */
-        bool allFalse = true;
-        bool allTrue = true;
-#ifdef DEBUG
-        bool firstFalse = true;
-        bool firstTrue = true;
-#endif
-        for (int i = 0; i < _inputOutputs.size(); i++) {
-            
-            if (!(_inputOutputs[i]["_out"] == 0 || _inputOutputs[i]["_out"] == 1)) {
-                return false;
-            }
-            int pValue = evaluateBoolProgram(p, i);
-            
-            if (pValue != _inputOutputs[i]["_out"]) {
-                allTrue = false;
-#ifdef DEBUG
-                if (firstFalse) {
-                    BoolType* boolcheck = dynamic_cast<BoolType*>(p);
-                    if (boolcheck->toString() == "(Isrc1 < B0)") {
-                        if (pValue != _inputOutputs[i]["_out"]) {
-                            cout << "First false NotEqual " << pValue << " _out " << _inputOutputs[i]["_out"] << endl ;
-                            
-                            for (auto it = _inputOutputs[i].begin(), eit = _inputOutputs[i].end(); it != eit; ++it) {
-                                cout << it->first << " " <<
-                                it->second << " ";
-                            }
-                            
-                            cout << endl;
-                        }
+    if (_isPred) {
+        if (dynamic_cast<BoolType*>(p) != nullptr) {
+                /* all true or all false are both correct program */
+                bool allFalse = true;
+                bool allTrue = true;
+        #ifdef DEBUG
+                bool firstFalse = true;
+                bool firstTrue = true;
+        #endif
+                for (int i = 0; i < _inputOutputs.size(); i++) {
+                    
+                    if (!(_inputOutputs[i]["_out"] == 0 || _inputOutputs[i]["_out"] == 1)) {
+                        return false;
                     }
-                }
-                firstFalse = false;
-#endif
-            } else {
-                allFalse = false;
-#ifdef DEBUG
-                if (firstTrue) {
-                    BoolType* boolcheck = dynamic_cast<BoolType*>(p);
-                    if (boolcheck->toString() == "(Isrc1 < B0)") {
-                        if (pValue == _inputOutputs[i]["_out"]) {
-                            cout << "First true NotEqual " << pValue << " _out " << _inputOutputs[i]["_out"] << endl ;
-                            
-                            for (auto it = _inputOutputs[i].begin(), eit = _inputOutputs[i].end(); it != eit; ++it) {
-                                cout << it->first << " " <<
-                                it->second << " ";
+                    int pValue = evaluateBoolProgram(p, i);
+                    
+                    if (pValue != _inputOutputs[i]["_out"]) {
+                        allTrue = false;
+        #ifdef DEBUG
+                        if (firstFalse) {
+                            BoolType* boolcheck = dynamic_cast<BoolType*>(p);
+                            if (boolcheck->toString() == "(Isrc1 < B0)") {
+                                if (pValue != _inputOutputs[i]["_out"]) {
+                                    cout << "First false NotEqual " << pValue << " _out " << _inputOutputs[i]["_out"] << endl ;
+                                    
+                                    for (auto it = _inputOutputs[i].begin(), eit = _inputOutputs[i].end(); it != eit; ++it) {
+                                        cout << it->first << " " <<
+                                        it->second << " ";
+                                    }
+                                    
+                                    cout << endl;
+                                }
                             }
-                            
-                            cout << endl;
                         }
+                        firstFalse = false;
+        #endif
+                    } else {
+                        allFalse = false;
+        #ifdef DEBUG
+                        if (firstTrue) {
+                            BoolType* boolcheck = dynamic_cast<BoolType*>(p);
+                            if (boolcheck->toString() == "(Isrc1 < B0)") {
+                                if (pValue == _inputOutputs[i]["_out"]) {
+                                    cout << "First true NotEqual " << pValue << " _out " << _inputOutputs[i]["_out"] << endl ;
+                                    
+                                    for (auto it = _inputOutputs[i].begin(), eit = _inputOutputs[i].end(); it != eit; ++it) {
+                                        cout << it->first << " " <<
+                                        it->second << " ";
+                                    }
+                                    
+                                    cout << endl;
+                                }
+                            }
+                        }
+                        firstTrue = false;
+        #endif
                     }
-                }
-                firstTrue = false;
-#endif
-            }
 
-            if (!allTrue && !allFalse) {
-#ifdef DEBUG
-                BoolType* boolcheck = dynamic_cast<BoolType*>(p);
-                if (boolcheck->toString() == "(Isrc1 < B0)") {
-                    cout << "allTrue " << allTrue << " allFalse " << allFalse << endl;
+                    if (!allTrue && !allFalse) {
+        #ifdef DEBUG
+                        BoolType* boolcheck = dynamic_cast<BoolType*>(p);
+                        if (boolcheck->toString() == "(Isrc1 < B0)") {
+                            cout << "allTrue " << allTrue << " allFalse " << allFalse << endl;
+                        }
+        #endif
+                        return false;
+                    }
                 }
-#endif
-                return false;
+                if (allFalse == true) {
+                    BoolType* booli = dynamic_cast<BoolType*>(p);
+                    p = new Not(booli);
+                }
             }
+        else {
+            return false;
         }
-        if (allFalse == true) {
-            BoolType* booli = dynamic_cast<BoolType*>(p);
-            p = new Not(booli);
+    } else {
+        if (dynamic_cast<IntType*>(p) != nullptr) {
+            for (int i = 0; i < _inputOutputs.size(); i++) {
+                int pValue = evaluateIntProgram(p, i);
+                if (pValue != _inputOutputs[i]["_out"]) {
+                    return false;
+                }
+            }
+        } else {
+            return false;
         }
     }
+    
     return true;
 }
 
-string bottomUpSearch::getCorrect() {
+inline string bottomUpSearch::getCorrect() {
     for (auto prog : _pList) {
         if (isCorrect(prog)) {
 #ifdef DEBUG
