@@ -1,6 +1,7 @@
 #ifndef LANGDEF_H
 #define LANGDEF_H
 #include <iostream>
+#include <limits>
 #include <map>
 #include "typeDef.hpp"
 using namespace std;

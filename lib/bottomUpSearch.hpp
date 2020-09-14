@@ -3,6 +3,7 @@
 
 #include "langDef.hpp"
 #include "typeDef.hpp"
+#include <algorithm>
 #include <future>
 #include <chrono>
 #include <thread>
