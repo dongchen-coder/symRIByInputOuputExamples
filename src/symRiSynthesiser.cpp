@@ -27,7 +27,7 @@ bool parser(int argc, char* argv[],
             vector<string>* boolOpsTerm,
             vector<string>* varsTerm,
             vector<string>* constantsTerm,
-            string* searchMode) {
+            vector<string>* rulesToApply) {
     
     for (int i = 1; i < argc; i++) {
         
@@ -40,16 +40,6 @@ bool parser(int argc, char* argv[],
                 *fileName = argvi;
             } else {
                 cout << "-FILE: error in providing file name" << endl;
-                return false;
-            }
-        }
-        else if (argvi == "-MODE") {
-            i++;
-            if (i < argc) {
-                argvi = argv[i];
-                *searchMode = argvi;
-            } else {
-                cout << "-MODE: error in providing search mode" << endl;
                 return false;
             }
         }
@@ -253,6 +243,24 @@ bool parser(int argc, char* argv[],
                 return false;
             }
         }
+        else if (argvi == "-RULESTOAPPLY") {
+            i++;
+            if (i < argc) {
+                argvi = argv[i];
+                while(argvi[0] != '-' && !isdigit(argvi[0])) {
+                    rulesToApply->push_back(argvi);
+                    i++;
+                    if (i >= argc) {
+                        break;
+                    }
+                    argvi = argv[i];
+                }
+                i--;
+            } else {
+                cout << "-RULESTOAPPLY: error in specifying the bool ops in the term language" << endl;
+                return false;
+            }
+        }
         else {
             cout << "error in providing command line arguments" << endl;
             return false;
@@ -432,7 +440,6 @@ int main(int argc, char* argv[]) {
     if (argc < 2) {
         cout << "Error: command line options:" << endl;
         cout << "      -FILE : specify path with the name of input-output-example file" << endl;
-        cout << "      -MODE : specify search mode (PerSrcIter, PerSrcSnk)" << endl;
         cout << "    Optional specification for predicate language" << endl;
         cout << "      -DEPTHBOUNDPRED : specify the depth of a predicate program" << endl;
         cout << "      -INTOPSPRED : specify the int ops for the predication language" << endl;
@@ -448,6 +455,8 @@ int main(int argc, char* argv[]) {
         cout << "    Optional to specify the search time (default to 20 seconds)"<< endl;
         cout << "      -SEARCHTIMEFORTERMSSINSECONDS : specify the search time for terms in seconds" << endl;
         cout << "      -SEARCHTIMEFORPREDSINSECONDS : specify the search time for preds in seconds" << endl;
+        cout << "    Optional to sepcify the search rules to apply" << endl;
+        cout << "      -RULESTOAPPLY : specify search mode (PerSrcIter, PerSrcSnk)" << endl;
         return 0;
     }
     
@@ -469,13 +478,13 @@ int main(int argc, char* argv[]) {
     int searchTimeForTermsInSeconds = 20;
     int searchTimeForPredsInSeconds = 20;
     
-    string searchMode;
+    vector<string> rulesToApply;
     
     if ( parser(argc, argv,
                &fileName, &searchTimeForTermsInSeconds, &searchTimeForPredsInSeconds,
                &depthBoundPred, &intOpsPred, &boolOpsPred, &varsPred, &constantsPred,
                &depthBoundTerm, &intOpsTerm, &boolOpsTerm, &varsTerm, &constantsTerm,
-               &searchMode) == false ) {
+               &rulesToApply) == false ) {
         cout << "Error in parsing command lines" << endl;
         return 0;
     }
@@ -498,14 +507,15 @@ int main(int argc, char* argv[]) {
      */
     
 #ifdef DEBUG
-    if (searchMode == "PerSrcIter") {
-        cout << "Per source iteration specific rules applied" << endl;
-    }
-    else if (searchMode == "PerSrcSnk") {
-        cout << "Per source sink specific rules applid" << endl;
+    if (rulesToApply.empty()) {
+        cout << "No mode specific rules specified" << endl;
     }
     else {
-        cout << "No mode specific rules specified" << endl;
+        cout << "Applying rules: " << endl;
+        for (auto rule : rulesToApply) {
+            cout << rule << " ";
+        }
+        cout << endl;
     }
 #endif
     
@@ -518,12 +528,13 @@ int main(int argc, char* argv[]) {
     
     unification* uni = new unification(depthBoundPred, intOpsPred, boolOpsPred, varsPred, constantsPred,
                                        depthBoundTerm, intOpsTerm, boolOpsTerm, varsTerm, constantsTerm,
+                                       rulesToApply,
                                        inputOutputs);
 #ifdef DEBUG
     uni->dumpLangDef();
 #endif
 
-    uni->search(searchTimeForTermsInSeconds, searchTimeForPredsInSeconds, searchMode);
+    uni->search(searchTimeForTermsInSeconds, searchTimeForPredsInSeconds);
 
 #ifdef DEBUG
     uni->dumpSearchedProgram();

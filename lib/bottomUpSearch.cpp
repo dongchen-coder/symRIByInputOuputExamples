@@ -7,25 +7,27 @@ bottomUpSearch::bottomUpSearch(int depthBound,
                                vector<string> boolOps,
                                vector<string> vars,
                                vector<string> constants,
-                               inputOutputs_t inputOutputs,
-                               string searchMode) {
-    this->depthBound = depthBound;
-    this->intOps = intOps;
-    this->boolOps = boolOps;
-    this->vars = vars;
-    this->constants = constants;
-    this->inputOutputs = inputOutputs;
-    this->searchMode = searchMode;
+                               bool isPred,
+                               vector<string> rulesToApply,
+                               inputOutputs_t inputOutputs) {
+    this->_depthBound = depthBound;
+    this->_intOps = intOps;
+    this->_boolOps = boolOps;
+    this->_vars = vars;
+    this->_constants = constants;
+    this->_inputOutputs = inputOutputs;
+    this->_isPred = isPred;
+    this->_rulesToApply = rulesToApply;
     
-    for (int i = 0; i < vars.size(); i++) {
-        Var* var = new Var(vars[i]);
+    for(auto varStr : vars) {
+        Var* var = new Var(varStr);
         BaseType* baseVar = dynamic_cast<BaseType*>(var);
-        this->pList.push_back(baseVar);
+        this->_pList.push_back(baseVar);
     }
-    for (int i = 0; i < constants.size(); i++) {
-        Num* num = new Num(stoi(constants[i]));
+    for (auto numStr : constants) {
+        Num* num = new Num(stoi(numStr));
         BaseType* baseNum = dynamic_cast<BaseType*>(num);
-        this->pList.push_back(baseNum);
+        this->_pList.push_back(baseNum);
     }
 }
 
@@ -86,9 +88,9 @@ string bottomUpSearch::dumpProgram(BaseType* p) {
 
 void bottomUpSearch::dumpPlist(vector<BaseType*> pList) {
     cout << "[";
-    for (int i = 0; i < pList.size(); i++) {
-        cout << dumpProgram(pList[i]);
-        if (i + 1 < pList.size()) {
+    for (auto prog : pList) {
+        cout << dumpProgram(prog);
+        if (prog != pList.back()) {
             cout << ", ";
         }
     }
@@ -98,9 +100,9 @@ void bottomUpSearch::dumpPlist(vector<BaseType*> pList) {
 
 void bottomUpSearch::dumpPlist() {
     cout << "[";
-    for (int i = 0; i < pList.size(); i++) {
-        cout << dumpProgram(pList[i]);
-        if (i + 1 < pList.size()) {
+    for (auto prog : _pList) {
+        cout << dumpProgram(prog);
+        if (prog != _pList.back()) {
             cout << ", ";
         }
     }
@@ -109,35 +111,35 @@ void bottomUpSearch::dumpPlist() {
 }
 
 int bottomUpSearch::getPlistSize() {
-    return pList.size();
+    return _pList.size();
 }
 
 void bottomUpSearch::dumpLangDef() {
     cout << "Dump language used:" << endl;
     cout << "    intOps: ";
-    for (auto op : intOps) cout << op << " ";
+    for (auto op : _intOps) cout << op << " ";
     cout << endl;
     cout << "    boolOps: ";
-    for (auto op : boolOps) cout << op << " ";
+    for (auto op : _boolOps) cout << op << " ";
     cout << endl;
     cout << "    constants: ";
-    for (auto c : constants) cout << c << " ";
+    for (auto c : _constants) cout << c << " ";
     cout << endl;
     cout << "    vars: ";
-    for (auto v : vars) cout << v << " ";
+    for (auto v : _vars) cout << v << " ";
     cout << endl;
 }
 
 /******************************************
     Specify and check  growing rules
 */
-bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, string op, int depthBound) {
+bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, string op) {
     /* basic rules */
     if (op == "PLUS") {
         if (dynamic_cast<IntType*>(i) != nullptr && dynamic_cast<IntType*>(j) != nullptr) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
-            if (inti->depth() >= depthBound || intj->depth() >= depthBound) {
+            if (inti->depth() >= _depthBound || intj->depth() >= _depthBound) {
                 return false;
             }
         } else {
@@ -148,7 +150,7 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
         if (dynamic_cast<IntType*>(i) != nullptr && dynamic_cast<IntType*>(j) != nullptr) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
-            if (inti->depth() >= depthBound || intj->depth() >= depthBound) {
+            if (inti->depth() >= _depthBound || intj->depth() >= _depthBound) {
                 return false;
             }
         } else {
@@ -159,7 +161,7 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
         if (dynamic_cast<IntType*>(i) != nullptr && dynamic_cast<IntType*>(j) != nullptr) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
-            if (inti->depth() >= depthBound || intj->depth() >= depthBound) {
+            if (inti->depth() >= _depthBound || intj->depth() >= _depthBound) {
                 return false;
             }
         } else {
@@ -170,7 +172,7 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
         if (dynamic_cast<IntType*>(i) != nullptr && dynamic_cast<IntType*>(j) != nullptr) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
-            if (inti->depth() >= depthBound || intj->depth() >= depthBound) {
+            if (inti->depth() >= _depthBound || intj->depth() >= _depthBound) {
                 return false;
             }
         } else {
@@ -181,7 +183,7 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
         if (dynamic_cast<IntType*>(i) != nullptr && dynamic_cast<IntType*>(j) != nullptr) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
-            if (inti->depth() >= depthBound || intj->depth() >= depthBound) {
+            if (inti->depth() >= _depthBound || intj->depth() >= _depthBound) {
                 return false;
             }
         } else {
@@ -193,7 +195,7 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
             BoolType* booli = dynamic_cast<BoolType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
             IntType* intk = dynamic_cast<IntType*>(k);
-            if (booli->depth() >= depthBound || intj->depth() >= depthBound || intk->depth() >= depthBound) {
+            if (booli->depth() >= _depthBound || intj->depth() >= _depthBound || intk->depth() >= _depthBound) {
                 return false;
             }
         } else {
@@ -203,7 +205,7 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
     else if (op == "NOT") {
         if (dynamic_cast<BoolType*>(i) != nullptr) {
             BoolType* booli = dynamic_cast<BoolType*>(i);
-            if (booli->depth() >= depthBound) {
+            if (booli->depth() >= _depthBound) {
                 return false;
             }
         } else {
@@ -214,7 +216,7 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
         if (dynamic_cast<BoolType*>(i) != nullptr && dynamic_cast<BoolType*>(j) != nullptr) {
             BoolType* booli = dynamic_cast<BoolType*>(i);
             BoolType* boolj = dynamic_cast<BoolType*>(j);
-            if (booli->depth() >= depthBound || boolj->depth() >= depthBound) {
+            if (booli->depth() >= _depthBound || boolj->depth() >= _depthBound) {
                 return false;
             }
         } else {
@@ -225,7 +227,7 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
         if (dynamic_cast<IntType*>(i) != nullptr && dynamic_cast<IntType*>(j) != nullptr) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
-            if (inti->depth() >= depthBound || intj->depth() >= depthBound) {
+            if (inti->depth() >= _depthBound || intj->depth() >= _depthBound) {
                 return false;
             }
         } else {
@@ -234,10 +236,10 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
     }
     
     /* Search mode specified rules */
-    if (searchMode == "PerSrcIter") {
+    if (find(_rulesToApply.begin(), _rulesToApply.end(), "PerSrcIter") != _rulesToApply.end() ) {
        
     }
-    else if (searchMode == "PerSrcSnk") {
+    else if (find(_rulesToApply.begin(), _rulesToApply.end(), "PerSrcSnk") != _rulesToApply.end() ) {
         /* rules for variables */
         if (i->getNumOfSymbolsInProg("Isrc0") + j->getNumOfSymbolsInProg("Isrc0") > 1) {
             return false;
@@ -320,9 +322,9 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
 /******************************************
     Grow program list
 */
-BaseType* bottomUpSearch::growOneExpr(BaseType* i, BaseType* j, BaseType* k, string op, int depthBound) {
+BaseType* bottomUpSearch::growOneExpr(BaseType* i, BaseType* j, BaseType* k, string op) {
     if (op == "PLUS") {
-        if (isGrowRuleSatisfied(i, j, k, op, depthBound)) {
+        if (isGrowRuleSatisfied(i, j, k, op)) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
             Plus* plus = new Plus(inti, intj);
@@ -330,7 +332,7 @@ BaseType* bottomUpSearch::growOneExpr(BaseType* i, BaseType* j, BaseType* k, str
         }
     }
     else if (op == "MINUS") {
-        if (isGrowRuleSatisfied(i, j, k, op, depthBound)) {
+        if (isGrowRuleSatisfied(i, j, k, op)) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
             Minus* minus = new Minus(inti, intj);
@@ -338,7 +340,7 @@ BaseType* bottomUpSearch::growOneExpr(BaseType* i, BaseType* j, BaseType* k, str
         }
     }
     else if (op == "LEFTSHIFT") {
-        if (isGrowRuleSatisfied(i, j, k, op, depthBound)) {
+        if (isGrowRuleSatisfied(i, j, k, op)) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
             Leftshift* leftshift = new Leftshift(inti, intj);
@@ -346,7 +348,7 @@ BaseType* bottomUpSearch::growOneExpr(BaseType* i, BaseType* j, BaseType* k, str
         }
     }
     else if (op == "RIGHTSHIFT") {
-        if (isGrowRuleSatisfied(i, j, k, op, depthBound)) {
+        if (isGrowRuleSatisfied(i, j, k, op)) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
             Rightshift* rightshift = new Rightshift(inti, intj);
@@ -354,7 +356,7 @@ BaseType* bottomUpSearch::growOneExpr(BaseType* i, BaseType* j, BaseType* k, str
         }
     }
     else if (op == "TIMES") {
-        if (isGrowRuleSatisfied(i, j, k, op, depthBound)) {
+        if (isGrowRuleSatisfied(i, j, k, op)) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
             Times* times = new Times(inti, intj);
@@ -362,7 +364,7 @@ BaseType* bottomUpSearch::growOneExpr(BaseType* i, BaseType* j, BaseType* k, str
         }
     }
     else if (op == "ITE") {
-        if (isGrowRuleSatisfied(i, j, k, op, depthBound)) {
+        if (isGrowRuleSatisfied(i, j, k, op)) {
             BoolType* booli = dynamic_cast<BoolType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
             IntType* intk = dynamic_cast<IntType*>(k);
@@ -375,16 +377,14 @@ BaseType* bottomUpSearch::growOneExpr(BaseType* i, BaseType* j, BaseType* k, str
         return dynamic_cast<BaseType*>(f);
     }
     else if (op == "NOT") {
-        if (dynamic_cast<BoolType*>(i) != nullptr) {
+        if (isGrowRuleSatisfied(i, j, k, op)) {
             BoolType* booli = dynamic_cast<BoolType*>(i);
-            if (booli->depth() < depthBound) {
-                Not* n = new Not(booli);
-                return dynamic_cast<BaseType*>(n);
-            }
+            Not* n = new Not(booli);
+            return dynamic_cast<BaseType*>(n);
         }
     }
     else if (op == "AND") {
-        if (isGrowRuleSatisfied(i, j, k, op, depthBound)) {
+        if (isGrowRuleSatisfied(i, j, k, op)) {
             BoolType* booli = dynamic_cast<BoolType*>(i);
             BoolType* boolj = dynamic_cast<BoolType*>(j);
             And* a = new And(booli, boolj);
@@ -392,7 +392,7 @@ BaseType* bottomUpSearch::growOneExpr(BaseType* i, BaseType* j, BaseType* k, str
         }
     }
     else if (op == "LT") {
-        if (isGrowRuleSatisfied(i, j, k, op, depthBound)) {
+        if (isGrowRuleSatisfied(i, j, k, op)) {
             IntType* inti = dynamic_cast<IntType*>(i);
             IntType* intj = dynamic_cast<IntType*>(j);
             Lt* lt = new Lt(inti, intj);
@@ -407,13 +407,13 @@ void bottomUpSearch::grow() {
     
     vector<BaseType*> newPList;
     
-    for (int i = 0; i < intOps.size(); i++) {
-        string op = intOps[i];
+    for (auto op : _intOps) {
+        
         /* communitive op */
         if (op == "PLUS" || op == "TIMES") {
-            for (int j = 0; j < pList.size(); j++) {
-                for (int k = j; k < pList.size(); k++) {
-                    BaseType* newExpr = growOneExpr(pList[j], pList[k], nullptr, op, depthBound);
+            for (int j = 0; j < _pList.size(); j++) {
+                for (int k = j; k < _pList.size(); k++) {
+                    BaseType* newExpr = growOneExpr(_pList[j], _pList[k], nullptr, op);
                     if (newExpr != nullptr) {
                         newPList.push_back(newExpr);
                     }
@@ -422,9 +422,9 @@ void bottomUpSearch::grow() {
         }
         /* non-communitie op */
         else if (op == "MINUS" || op == "LEFTSHIFT" || op == "RIGHTSHIFT") {
-            for (int j = 0; j < pList.size(); j++) {
-                for (int k = 0; k < pList.size(); k++) {
-                    BaseType* newExpr = growOneExpr(pList[j], pList[k], nullptr, op, depthBound);
+            for (int j = 0; j < _pList.size(); j++) {
+                for (int k = 0; k < _pList.size(); k++) {
+                    BaseType* newExpr = growOneExpr(_pList[j], _pList[k], nullptr, op);
                     if (newExpr != nullptr) {
                         newPList.push_back(newExpr);
                     }
@@ -432,10 +432,10 @@ void bottomUpSearch::grow() {
             }
         }
         else if (op == "ITE") {
-            for (int j = 0; j < pList.size(); j++) {
-                for (int k = 0; k < pList.size(); k++) {
-                    for (int l = 0; l < pList.size(); l++) {
-                        BaseType* newExpr = growOneExpr(pList[j], pList[k], pList[l], op, depthBound);
+            for (int j = 0; j < _pList.size(); j++) {
+                for (int k = 0; k < _pList.size(); k++) {
+                    for (int l = 0; l < _pList.size(); l++) {
+                        BaseType* newExpr = growOneExpr(_pList[j], _pList[k], _pList[l], op);
                         if (newExpr != nullptr) {
                             newPList.push_back(newExpr);
                         }
@@ -445,26 +445,27 @@ void bottomUpSearch::grow() {
         }
     }
     
-    for (int i = 0; i < boolOps.size(); i++) {
-        string op = boolOps[i];
+    
+    for (auto op : _boolOps) {
+        
         if (op == "F") {
-            BaseType* newExpr = growOneExpr(nullptr, nullptr, nullptr, op, depthBound);
+            BaseType* newExpr = growOneExpr(nullptr, nullptr, nullptr, op);
             if (newExpr != nullptr) {
                 newPList.push_back(newExpr);
             }
         }
         else if (op == "NOT") {
-            for (int j = 0; j < pList.size(); j++) {
-                BaseType* newExpr = growOneExpr(pList[j], nullptr, nullptr, op, depthBound);
+            for (int j = 0; j < _pList.size(); j++) {
+                BaseType* newExpr = growOneExpr(_pList[j], nullptr, nullptr, op);
                 if (newExpr != nullptr) {
                     newPList.push_back(newExpr);
                 }
             }
         }
         else if (op == "AND") {
-            for (int j = 0; j < pList.size(); j++) {
-                for (int k = j+1; k < pList.size(); k++) {
-                    BaseType* newExpr = growOneExpr(pList[j], pList[k], nullptr, op, depthBound);
+            for (int j = 0; j < _pList.size(); j++) {
+                for (int k = j+1; k < _pList.size(); k++) {
+                    BaseType* newExpr = growOneExpr(_pList[j], _pList[k], nullptr, op);
                     if (newExpr != nullptr) {
                         newPList.push_back(newExpr);
                     }
@@ -472,9 +473,9 @@ void bottomUpSearch::grow() {
             }
         }
         else if (op == "LT") {
-            for (int j = 0; j < pList.size(); j++) {
-                for (int k = 0; k < pList.size(); k++) {
-                    BaseType* newExpr = growOneExpr(pList[j], pList[k], nullptr, op, depthBound);
+            for (int j = 0; j < _pList.size(); j++) {
+                for (int k = 0; k < _pList.size(); k++) {
+                    BaseType* newExpr = growOneExpr(_pList[j], _pList[k], nullptr, op);
                     if (newExpr != nullptr) {
                         newPList.push_back(newExpr);
                     }
@@ -483,7 +484,7 @@ void bottomUpSearch::grow() {
         }
     }
     
-    pList.insert(pList.end(), newPList.begin(), newPList.end());
+    _pList.insert(_pList.end(), newPList.begin(), newPList.end());
     return;
 }
 
@@ -492,8 +493,8 @@ void bottomUpSearch::grow() {
 */
 inline int bottomUpSearch::evaluateIntProgram(BaseType* p, int inputOutputId) {
     
-    if (intResultRecord.find(make_pair(p, inputOutputId)) != intResultRecord.end()) {
-        return intResultRecord[make_pair(p, inputOutputId)];
+    if (_intResultRecord.find(make_pair(p, inputOutputId)) != _intResultRecord.end()) {
+        return _intResultRecord[make_pair(p, inputOutputId)];
     }
     
     int pValue;
@@ -503,40 +504,40 @@ inline int bottomUpSearch::evaluateIntProgram(BaseType* p, int inputOutputId) {
     }
     else if (dynamic_cast<Var*>(p)) {
         Var* var = dynamic_cast<Var*>(p);
-        pValue = var->interpret(inputOutputs[inputOutputId]);
+        pValue = var->interpret(_inputOutputs[inputOutputId]);
     }
     else if (dynamic_cast<Plus*>(p)) {
         Plus* plus = dynamic_cast<Plus*>(p);
-        pValue = plus->interpret(inputOutputs[inputOutputId]);
+        pValue = plus->interpret(_inputOutputs[inputOutputId]);
     }
     else if (dynamic_cast<Times*>(p)) {
         Times* times = dynamic_cast<Times*>(p);
-        pValue = times->interpret(inputOutputs[inputOutputId]);
+        pValue = times->interpret(_inputOutputs[inputOutputId]);
     }
     else if (dynamic_cast<Minus*>(p)) {
         Minus* minus = dynamic_cast<Minus*>(p);
-        pValue = minus->interpret(inputOutputs[inputOutputId]);
+        pValue = minus->interpret(_inputOutputs[inputOutputId]);
     }
     else if (dynamic_cast<Leftshift*>(p)) {
         Leftshift* leftshift = dynamic_cast<Leftshift*>(p);
-        pValue = leftshift->interpret(inputOutputs[inputOutputId]);
+        pValue = leftshift->interpret(_inputOutputs[inputOutputId]);
     }
     else if (dynamic_cast<Rightshift*>(p)) {
         Rightshift* rightshift = dynamic_cast<Rightshift*>(p);
-        pValue = rightshift->interpret(inputOutputs[inputOutputId]);
+        pValue = rightshift->interpret(_inputOutputs[inputOutputId]);
     }
     else if (dynamic_cast<Ite*>(p)) {
         Ite* ite = dynamic_cast<Ite*>(p);
-        pValue = ite->interpret(inputOutputs[inputOutputId]);
+        pValue = ite->interpret(_inputOutputs[inputOutputId]);
     }
     
-    intResultRecord[make_pair(p, inputOutputId)] = pValue;
+    _intResultRecord[make_pair(p, inputOutputId)] = pValue;
     return pValue;
 }
 
 inline bool bottomUpSearch::evaluateBoolProgram(BaseType* p, int inputOutputId) {
-    if (boolResultRecord.find(make_pair(p, inputOutputId)) != boolResultRecord.end()) {
-        return boolResultRecord[make_pair(p, inputOutputId)];
+    if (_boolResultRecord.find(make_pair(p, inputOutputId)) != _boolResultRecord.end()) {
+        return _boolResultRecord[make_pair(p, inputOutputId)];
     }
     
     bool pValue;
@@ -546,25 +547,25 @@ inline bool bottomUpSearch::evaluateBoolProgram(BaseType* p, int inputOutputId) 
     }
     else if (dynamic_cast<Not*>(p)) {
         Not* n = dynamic_cast<Not*>(p);
-        pValue = n->interpret(inputOutputs[inputOutputId]);
+        pValue = n->interpret(_inputOutputs[inputOutputId]);
     }
     else if (dynamic_cast<And*>(p)) {
         And* a = dynamic_cast<And*>(p);
-        pValue = a->interpret(inputOutputs[inputOutputId]);
+        pValue = a->interpret(_inputOutputs[inputOutputId]);
     }
     else if (dynamic_cast<Lt*>(p)) {
         Lt* lt = dynamic_cast<Lt*>(p);
-        pValue = lt->interpret(inputOutputs[inputOutputId]);
+        pValue = lt->interpret(_inputOutputs[inputOutputId]);
     }
     
-    boolResultRecord[make_pair(p, inputOutputId)] = pValue;
+    _boolResultRecord[make_pair(p, inputOutputId)] = pValue;
     return pValue;
 }
 
 inline bool bottomUpSearch::checkTwoProgramsEqual(BaseType* pi, BaseType* pj) {
     
     if (dynamic_cast<IntType*>(pi) != nullptr && dynamic_cast<IntType*>(pj) != nullptr) {
-        for (int i = 0; i < inputOutputs.size(); i++) {
+        for (int i = 0; i < _inputOutputs.size(); i++) {
             int iValue = evaluateIntProgram(pi, i);
             int jValue = evaluateIntProgram(pj, i);
             
@@ -574,7 +575,7 @@ inline bool bottomUpSearch::checkTwoProgramsEqual(BaseType* pi, BaseType* pj) {
         }
     }
     else if (dynamic_cast<BoolType*>(pi) != nullptr && dynamic_cast<BoolType*>(pj) != nullptr) {
-        for (int i = 0; i < inputOutputs.size(); i++) {
+        for (int i = 0; i < _inputOutputs.size(); i++) {
             bool iValue = evaluateBoolProgram(pi, i);
             bool jValue = evaluateBoolProgram(pj, i);
             
@@ -590,21 +591,21 @@ inline bool bottomUpSearch::checkTwoProgramsEqual(BaseType* pi, BaseType* pj) {
 
 void bottomUpSearch::elimEquvalents() {
     vector<BaseType*> programToKeep;
-    vector<bool> eqFlag(pList.size() ,false);
+    vector<bool> eqFlag(_pList.size() ,false);
     
-    for (int i = 0; i < pList.size(); i++) {
+    for (int i = 0; i < _pList.size(); i++) {
         if (eqFlag[i] == true) {
             continue;
         }
-        BaseType* pi = pList[i];
+        BaseType* pi = _pList[i];
         
         //cout << "        Check equals for: " << dumpProgram(pi) << endl;
         
         vector<BaseType*> eqPList;
         eqPList.push_back(pi);
         
-        for (int j = i+1; j < pList.size(); j++) {
-            BaseType* pj = pList[j];
+        for (int j = i+1; j < _pList.size(); j++) {
+            BaseType* pj = _pList[j];
             
             if (checkTwoProgramsEqual(pi, pj)) {
                 
@@ -618,25 +619,25 @@ void bottomUpSearch::elimEquvalents() {
                     eqPList[0] = pj;
                     eqPList[eqPList.size() - 1] = pi;
                     /* remove pi's record */
-                    for (int inputOutputId = 0; inputOutputId < inputOutputs.size(); inputOutputId++) {
-                        boolResultRecord.erase(make_pair(pi, inputOutputId));
-                        intResultRecord.erase(make_pair(pi, inputOutputId));
+                    for (int inputOutputId = 0; inputOutputId < _inputOutputs.size(); inputOutputId++) {
+                        _boolResultRecord.erase(make_pair(pi, inputOutputId));
+                        _intResultRecord.erase(make_pair(pi, inputOutputId));
                     }
                     pi = pj;
                 }
                 else {
                     /* remove pj's record */
-                    for (int inputOutputId = 0; inputOutputId < inputOutputs.size(); inputOutputId++) {
-                        boolResultRecord.erase(make_pair(pj, inputOutputId));
-                        intResultRecord.erase(make_pair(pj, inputOutputId));
+                    for (int inputOutputId = 0; inputOutputId < _inputOutputs.size(); inputOutputId++) {
+                        _boolResultRecord.erase(make_pair(pj, inputOutputId));
+                        _intResultRecord.erase(make_pair(pj, inputOutputId));
                     }
                 }
                 
             }
         }
-        for (int inputOutputId = 0; inputOutputId < inputOutputs.size(); inputOutputId++) {
-            boolResultRecord.erase(make_pair(pi, inputOutputId));
-            intResultRecord.erase(make_pair(pi, inputOutputId));
+        for (int inputOutputId = 0; inputOutputId < _inputOutputs.size(); inputOutputId++) {
+            _boolResultRecord.erase(make_pair(pi, inputOutputId));
+            _intResultRecord.erase(make_pair(pi, inputOutputId));
         }
         
         /* random choose program to keep */
@@ -650,11 +651,11 @@ void bottomUpSearch::elimEquvalents() {
         //cout << "Keep " << dumpProgram(eqPList[0]) << endl;
     }
     
-    boolResultRecord.clear();
-    intResultRecord.clear();
+    _boolResultRecord.clear();
+    _intResultRecord.clear();
     
     //dumpPlist(programToKeep);
-    pList = programToKeep;
+    _pList = programToKeep;
     return;
 }
 
@@ -663,9 +664,9 @@ void bottomUpSearch::elimEquvalents() {
  */
 bool bottomUpSearch::isCorrect(BaseType* p) {
     if (dynamic_cast<IntType*>(p) != nullptr) {
-        for (int i = 0; i < inputOutputs.size(); i++) {
+        for (int i = 0; i < _inputOutputs.size(); i++) {
             int pValue = evaluateIntProgram(p, i);
-            if (pValue != inputOutputs[i]["_out"]) {
+            if (pValue != _inputOutputs[i]["_out"]) {
                 return false;
             }
         }
@@ -678,23 +679,23 @@ bool bottomUpSearch::isCorrect(BaseType* p) {
         bool firstFalse = true;
         bool firstTrue = true;
 #endif
-        for (int i = 0; i < inputOutputs.size(); i++) {
+        for (int i = 0; i < _inputOutputs.size(); i++) {
             
-            if (!(inputOutputs[i]["_out"] == 0 || inputOutputs[i]["_out"] == 1)) {
+            if (!(_inputOutputs[i]["_out"] == 0 || _inputOutputs[i]["_out"] == 1)) {
                 return false;
             }
             int pValue = evaluateBoolProgram(p, i);
             
-            if (pValue != inputOutputs[i]["_out"]) {
+            if (pValue != _inputOutputs[i]["_out"]) {
                 allTrue = false;
 #ifdef DEBUG
                 if (firstFalse) {
                     BoolType* boolcheck = dynamic_cast<BoolType*>(p);
                     if (boolcheck->toString() == "(Isrc1 < B0)") {
-                        if (pValue != inputOutputs[i]["_out"]) {
-                            cout << "First false NotEqual " << pValue << " _out " << inputOutputs[i]["_out"] << endl ;
+                        if (pValue != _inputOutputs[i]["_out"]) {
+                            cout << "First false NotEqual " << pValue << " _out " << _inputOutputs[i]["_out"] << endl ;
                             
-                            for (auto it = inputOutputs[i].begin(), eit = inputOutputs[i].end(); it != eit; ++it) {
+                            for (auto it = _inputOutputs[i].begin(), eit = _inputOutputs[i].end(); it != eit; ++it) {
                                 cout << it->first << " " <<
                                 it->second << " ";
                             }
@@ -711,10 +712,10 @@ bool bottomUpSearch::isCorrect(BaseType* p) {
                 if (firstTrue) {
                     BoolType* boolcheck = dynamic_cast<BoolType*>(p);
                     if (boolcheck->toString() == "(Isrc1 < B0)") {
-                        if (pValue == inputOutputs[i]["_out"]) {
-                            cout << "First true NotEqual " << pValue << " _out " << inputOutputs[i]["_out"] << endl ;
+                        if (pValue == _inputOutputs[i]["_out"]) {
+                            cout << "First true NotEqual " << pValue << " _out " << _inputOutputs[i]["_out"] << endl ;
                             
-                            for (auto it = inputOutputs[i].begin(), eit = inputOutputs[i].end(); it != eit; ++it) {
+                            for (auto it = _inputOutputs[i].begin(), eit = _inputOutputs[i].end(); it != eit; ++it) {
                                 cout << it->first << " " <<
                                 it->second << " ";
                             }
@@ -746,12 +747,12 @@ bool bottomUpSearch::isCorrect(BaseType* p) {
 }
 
 string bottomUpSearch::getCorrect() {
-    for (int i = 0; i < pList.size(); i++) {
-        if (isCorrect(pList[i])) {
+    for (auto prog : _pList) {
+        if (isCorrect(prog)) {
 #ifdef DEBUG
-            cout << "SynProg: " << dumpProgram(pList[i]) << endl;
+            cout << "SynProg: " << dumpProgram(prog) << endl;
 #endif
-            return dumpProgram(pList[i]);
+            return dumpProgram(prog);
         }
     }
     return "";

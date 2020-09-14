@@ -19,8 +19,9 @@ public:
                    vector<string> boolOps,
                    vector<string> vars,
                    vector<string> constants,
-                   inputOutputs_t inputOutputs,
-                   string searchMode);
+                   bool isPred,
+                   vector<string> rulesToApply,
+                   inputOutputs_t inputOutputs);
     
     /* search function */
     string search();
@@ -47,14 +48,14 @@ private:
     int getPlistSize();
     
     /* grow expression rules */
-    bool isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, string op, int depthBound);
+    bool isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, string op);
     
     /* Construct one expression: op i j */
-    BaseType* growOneExpr(BaseType* i, BaseType* j, BaseType* k, string op, int depthBound);
+    BaseType* growOneExpr(BaseType* i, BaseType* j, BaseType* k, string op);
     
     /* Temporal program evaluation result record */
-    map<pair<BaseType*, int>, int> intResultRecord;
-    map<pair<BaseType*, int>, int> boolResultRecord;
+    map<pair<BaseType*, int>, int> _intResultRecord;
+    map<pair<BaseType*, int>, int> _boolResultRecord;
     
     /* Evaluate program */
     inline int evaluateIntProgram(BaseType* p, int inputOutputId);
@@ -67,19 +68,18 @@ private:
     bool isCorrect(BaseType* p);
     
     /* Program list */
-    vector<BaseType*> pList;
+    vector<BaseType*> _pList;
     
     /* Input-output examples */
-    inputOutputs_t inputOutputs;
-    
-    /* Search mode */
-    string searchMode;
+    inputOutputs_t _inputOutputs;
 
     /* Language defination */
-    int depthBound;
-    vector<string> intOps;
-    vector<string> boolOps;
-    vector<string> vars;
-    vector<string> constants;
+    int _depthBound;
+    vector<string> _intOps;
+    vector<string> _boolOps;
+    vector<string> _vars;
+    vector<string> _constants;
+    bool _isPred;
+    vector<string> _rulesToApply;
 };
 #endif

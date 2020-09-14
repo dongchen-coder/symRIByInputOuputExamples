@@ -35,14 +35,18 @@ public:
                 vector<string> boolOpsPred,
                 vector<string> varsPred,
                 vector<string> constantsPred,
+                
                 int depthBoundTerm,
                 vector<string> intOpsTerm,
                 vector<string> boolOpsTerm,
                 vector<string> varsTerm,
                 vector<string> constantsTerm,
+                
+                vector<string> rulesToApply,
+                
                 inputOutputs_t inputOutputs);
     
-    string search(int searchTimeForTermsInSeconds, int searchTimeForPredsInSeconds, string searchMode);
+    string search(int searchTimeForTermsInSeconds, int searchTimeForPredsInSeconds);
     
     /* Dumping fucntions */
     void dumpLangDef();
@@ -55,8 +59,8 @@ private:
     void dumpInputOutputTreeNode(inputOutputTreeNode* node, string space="");
     
     /* Search node */
-    string searchNodeOnePass(int timeBoundInSeconds, string searchMode, inputOutputTreeNode* node);
-    string searchNode(int searchTimeForTermsInSeconds, int searchTimeForPredsInSeconds, string searchMode, inputOutputTreeNode* node);
+    string searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNode* node);
+    string searchNode(int searchTimeForTermsInSeconds, int searchTimeForPredsInSeconds, inputOutputTreeNode* node);
     
     /* Split current tree node of inputoutput examples */
     bool splitInputOutputTreeNode(inputOutputTreeNode* node, int splitMode);
@@ -80,6 +84,9 @@ private:
     vector<string> boolOpsTerm;
     vector<string> varsTerm;
     vector<string> constantsTerm;
+    
+    /* Rules to apple */
+    vector<string> rulesToApply;
 };
 
 
