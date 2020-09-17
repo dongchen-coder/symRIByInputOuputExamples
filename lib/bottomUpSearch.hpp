@@ -38,6 +38,7 @@ private:
     void grow();
     
     /* Eliminate equalivlent programs */
+    inline BaseType* elimOneProgWithRules(BaseType* pi, BaseType* pj);
     void elimEquvalents();
     
     /* Check whether there is a correct program in program list */

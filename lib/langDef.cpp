@@ -347,7 +347,7 @@ int F::getNumOfOpsInProg(string opName) {
 }
 
 int F::getNumOfSymbolsInProg(string symbolName) {
-    if (symbolName == "false") {
+    if (symbolName == "false" || symbolName == "ALL") {
         return 1;
     }
     return 0;
@@ -377,9 +377,10 @@ int Var::getNumOfOpsInProg(string opName) {
 }
 
 int Var::getNumOfSymbolsInProg(string symbolName) {
-    if (symbolName == "" ||
+    if (symbolName == "ALL" ||
+        symbolName == "VAR" ||
         symbolName == _name ||
-        (symbolName != "" && symbolName.size() < _name.size() && symbolName == _name.substr(0, symbolName.size())) ) {
+        (symbolName.size() < _name.size() && symbolName == _name.substr(0, symbolName.size())) ) {
         return 1;
     }
     return 0;
@@ -409,7 +410,7 @@ int Num::getNumOfOpsInProg(string opName) {
 }
 
 int Num::getNumOfSymbolsInProg(string symbolName) {
-    if (symbolName == to_string(_num)) {
+    if (symbolName == to_string(_num) || symbolName == "ALL" || symbolName == "NUM") {
         return 1;
     }
     return 0;
@@ -667,7 +668,7 @@ int Plus::depth() {
 }
 
 int Plus::getNumOfOpsInProg(string opName) {
-    if (opName == "PLUS" || opName == "") {
+    if (opName == "PLUS" || opName == "ALL") {
         return _left->getNumOfOpsInProg(opName) + _left->getNumOfOpsInProg(opName) + 1;
     }
     return _left->getNumOfOpsInProg(opName) + _left->getNumOfOpsInProg(opName);
@@ -926,7 +927,7 @@ int Minus::depth() {
 }
 
 int Minus::getNumOfOpsInProg(string opName) {
-    if (opName == "MINUS" || opName == "") {
+    if (opName == "MINUS" || opName == "ALL") {
         return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName) + 1;
     }
     return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName);
@@ -1187,7 +1188,7 @@ int Times::depth() {
 }
 
 int Times::getNumOfOpsInProg(string opName) {
-    if (opName == "TIMES" || opName == "") {
+    if (opName == "TIMES" || opName == "ALL") {
         return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName) + 1;
     }
     return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName);
@@ -1445,7 +1446,7 @@ int Min::depth() {
     return depth;
 }
 int Min::getNumOfOpsInProg(string opName) {
-    if (opName == "MIN" || opName == "") {
+    if (opName == "MIN" || opName == "ALL") {
         return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName) + 1;
     }
     return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName);
@@ -1712,7 +1713,7 @@ int Div::depth() {
 }
 
 int Div::getNumOfOpsInProg(string opName) {
-    if (opName == "DIV" || opName == "") {
+    if (opName == "DIV" || opName == "ALL") {
         return _dividend->getNumOfOpsInProg(opName) + _divisor->getNumOfOpsInProg(opName) + 1;
     }
     return _dividend->getNumOfOpsInProg(opName) + _divisor->getNumOfOpsInProg(opName);
@@ -1973,7 +1974,7 @@ int Leftshift::depth() {
 }
 
 int Leftshift::getNumOfOpsInProg(string opName) {
-    if (opName == "LEFTSHIFT" || opName == "") {
+    if (opName == "LEFTSHIFT" || opName == "ALL") {
         return _value->getNumOfOpsInProg(opName) + _offset->getNumOfOpsInProg(opName) + 1;
     }
     return _value->getNumOfOpsInProg(opName) + _offset->getNumOfOpsInProg(opName);
@@ -2233,7 +2234,7 @@ int Rightshift::depth() {
 }
 
 int Rightshift::getNumOfOpsInProg(string opName) {
-    if (opName == "RIGHTSHIFT" || opName == "") {
+    if (opName == "RIGHTSHIFT" || opName == "ALL") {
         return _value->getNumOfOpsInProg(opName) + _offset->getNumOfOpsInProg(opName) + 1;
     }
     return _value->getNumOfOpsInProg(opName) + _offset->getNumOfOpsInProg(opName);
@@ -2492,7 +2493,7 @@ int Lt::depth() {
 }
 
 int Lt::getNumOfOpsInProg(string opName) {
-    if (opName == "LT" || opName == "") {
+    if (opName == "LT" || opName == "ALL") {
         return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName) + 1;
     }
     return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName);
@@ -2631,7 +2632,7 @@ int And::depth() {
 }
 
 int And::getNumOfOpsInProg(string opName) {
-    if (opName == "AND") {
+    if (opName == "AND" || opName == "ALL") {
         return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName) + 1;
     }
     return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName);
@@ -2714,7 +2715,7 @@ int Not::depth() {
 }
 
 int Not::getNumOfOpsInProg(string opName) {
-    if (opName == "NOT") {
+    if (opName == "NOT" || opName == "ALL") {
         return _left->getNumOfOpsInProg(opName) + 1;
     }
     return _left->getNumOfOpsInProg(opName);
@@ -3032,7 +3033,7 @@ int Ite::depth() {
 }
 
 int Ite::getNumOfOpsInProg(string opName) {
-    if (opName == "ITE" || opName == "") {
+    if (opName == "ITE" || opName == "ALL") {
         return _cond->getNumOfOpsInProg(opName) + _tcase->getNumOfOpsInProg(opName) + _fcase->getNumOfOpsInProg(opName) + 1;
     }
     return _cond->getNumOfOpsInProg(opName) + _tcase->getNumOfOpsInProg(opName) + _fcase->getNumOfOpsInProg(opName);

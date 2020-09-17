@@ -1,7 +1,4 @@
 #include "bottomUpSearch.hpp"
-
-
-
 /******************************************
     Constructor
  */
@@ -591,8 +588,100 @@ inline bool bottomUpSearch::checkTwoProgramsEqual(BaseType* pi, BaseType* pj) {
     return true;
 }
 
+// Support definition
+#define GET_NUM_OF_OPS(prog, op)            ( prog->getNumOfOpsInProg(op) )
+#define GET_NUM_OF_SYMS(prog, sym)          ( prog->getNumOfSymbolsInProg(sym) )
+#define GET_LENGTH(prog)                    ( GET_NUM_OF_SYMS(prog, "ALL") + GET_NUM_OF_OPS(prog, "ALL") )
+
+#define CHECK_NO_SYM(prog, sym)             ( GET_NUM_OF_SYMS(prog, sym) == 0 )
+#define CHECK_LESS_SYM(pi, pj, sym)         ( GET_NUM_OF_SYMS(pi, sym) < GET_NUM_OF_SYMS(pj, sym) )
+#define CHECK_EQ_SYM(pi, pj, sym)           ( GET_NUM_OF_SYMS(pi, sym) == GET_NUM_OF_SYMS(pj, sym) )
+
+#define DEPTH_SHOTER(pi, pj)                ( pi->depth() < pj->depth() )
+#define LENGTH_SHOTER(pi, pj)               ( GET_LENGTH(pi) < GET_LENGTH(pj) )
+
+// NO SYM
+#define NO_SYM_1(prog)                      ( CHECK_NO_SYM(pi, "ALL") )
+#define NO_SYM_2(pi, pj)                    ( CHECK_NO_SYM(pi, "ALL") && CHECK_NO_SYM(pj, "ALL") )
+
+#define GET_LENGTH_SHOTER(pi, pj)           ( LENGTH_SHOTER(pi, pj) ? pi : pj )
+
+
+// B SYM ONLY
+#define B_SYM_ONLY_1(prog)                  ( !NO_SYM_1(prog) && CHECK_NO_SYM(prog, "I") )
+#define B_SYM_ONLY_2(pi, pj)                ( !NO_SYM_2(pi, pj) && CHECK_NO_SYM(pi, "I") && CHECK_NO_SYM(pj, "I") )
+
+// I SYM ONLY
+#define I_SYM_ONLY_1(prog)                  ( !NO_SYM_1(prog) && CHECK_NO_SYM(prog, "B") )
+#define I_SYM_ONLY_2(pi, pj)                ( !NO_SYM_2(pi, pj) && CHECK_NO_SYM(pi, "B") && CHECK_NO_SYM(pj, "B") )
+
+// BOTH SYM
+#define BOTH_SYM_1(prog)                    ( !CHECK_NO_SYM(prog, "B") && !CHECK_NO_SYM(prog, "I") )
+#define BOTH_SYM_2(pi, pj)                  ( BOTH_SYM_1(pi) && BOTH_SYM_1(pj) )
+
+// LENGTH RULE
+#define GET_LENGTH_SHOTER(pi, pj)           ( LENGTH_SHOTER(pi, pj) ? pi : pj )
+#define GET_LESS_SYM(pi, pj, sym)           ( CHECK_EQ_SYM(pi, pj, sym) ? pi : pj )
+
+inline BaseType* bottomUpSearch::elimOneProgWithRules(BaseType* pi, BaseType* pj) {
+    
+    if (pi == nullptr) {
+        return pj;
+    }
+    if (pj == nullptr) {
+        return pi;
+    }
+    
+    BaseType* progToKeep = pi;
+    
+    // Apply common rules
+    if (NO_SYM_2(pi, pj) ) {
+        progToKeep = GET_LENGTH_SHOTER(pi, pj);
+    }
+    
+    // Apply different rules for predicts and terms
+    if (_isPred) {
+        if (BOTH_SYM_2(pi, pj)) {
+            progToKeep = GET_LESS_SYM(pi, pj, "ALL");
+        } else {
+            if (BOTH_SYM_1(pi)) {
+                progToKeep = pi;
+            } else if (BOTH_SYM_1(pj)) {
+                progToKeep = pj;
+            } else {
+                progToKeep = GET_LESS_SYM(pi, pj, "ALL");
+            }
+        }
+    } else {
+        if (B_SYM_ONLY_2(pi, pj)) {
+            return GET_LENGTH_SHOTER(pi, pj);
+        } else {
+            if (CHECK_LESS_SYM(pi, pj, "I")) {
+                return pi;
+                
+            } else {
+                return pj;
+            }
+        }
+    }
+    
+    if (progToKeep == pi) {
+        for (int inputOutputId = 0; inputOutputId < _inputOutputs.size(); inputOutputId++) {
+            _boolResultRecord.erase(make_pair(pj, inputOutputId));
+            _intResultRecord.erase(make_pair(pj, inputOutputId));
+        }
+    } else {
+        for (int inputOutputId = 0; inputOutputId < _inputOutputs.size(); inputOutputId++) {
+            _boolResultRecord.erase(make_pair(pi, inputOutputId));
+            _intResultRecord.erase(make_pair(pi, inputOutputId));
+        }
+    }
+    
+    return progToKeep;
+}
+
 void bottomUpSearch::elimEquvalents() {
-    vector<BaseType*> programToKeep;
+    vector<BaseType*> progToKeepList;
     vector<bool> eqFlag(_pList.size() ,false);
     
     for (int i = 0; i < _pList.size(); i++) {
@@ -601,42 +690,25 @@ void bottomUpSearch::elimEquvalents() {
         }
         BaseType* pi = _pList[i];
         
-        //cout << "        Check equals for: " << dumpProgram(pi) << endl;
-        
+        /* Find all programs that equal */
         vector<BaseType*> eqPList;
         eqPList.push_back(pi);
-        
         for (int j = i+1; j < _pList.size(); j++) {
             BaseType* pj = _pList[j];
             
             if (checkTwoProgramsEqual(pi, pj)) {
-                
                 eqFlag[j] = true;
                 eqPList.push_back(pj);
-                
-                if ((pj->getNumOfSymbolsInProg("B") == 0 && pj->getNumOfSymbolsInProg() < pi->getNumOfSymbolsInProg()) ||
-                    (pj->getNumOfSymbolsInProg("B") != 0 && pj->getNumOfSymbolsInProg("Isrc") < pi->getNumOfSymbolsInProg("Isrc"))) {
-                    
-                    //cout << pj->toString() << " " << pj->getNumOfSymbolsInProg() << " " << pi->toString() << " " << pi->getNumOfSymbolsInProg() << endl;
-                    eqPList[0] = pj;
-                    eqPList[eqPList.size() - 1] = pi;
-                    /* remove pi's record */
-                    for (int inputOutputId = 0; inputOutputId < _inputOutputs.size(); inputOutputId++) {
-                        _boolResultRecord.erase(make_pair(pi, inputOutputId));
-                        _intResultRecord.erase(make_pair(pi, inputOutputId));
-                    }
-                    pi = pj;
-                }
-                else {
-                    /* remove pj's record */
-                    for (int inputOutputId = 0; inputOutputId < _inputOutputs.size(); inputOutputId++) {
-                        _boolResultRecord.erase(make_pair(pj, inputOutputId));
-                        _intResultRecord.erase(make_pair(pj, inputOutputId));
-                    }
-                }
-                
             }
         }
+        
+        /* Find the program to keep */
+        BaseType* progToKeep = nullptr;
+        for (auto prog : eqPList) {
+            progToKeep = elimOneProgWithRules(progToKeep, prog);
+        }
+        
+        
         for (int inputOutputId = 0; inputOutputId < _inputOutputs.size(); inputOutputId++) {
             _boolResultRecord.erase(make_pair(pi, inputOutputId));
             _intResultRecord.erase(make_pair(pi, inputOutputId));
@@ -646,18 +718,12 @@ void bottomUpSearch::elimEquvalents() {
         //srand((unsigned)time(nullptr));
         //programToKeep.push_back(eqPList[rand() % eqPList.size()]);
         /* always keep the first program, which is short in depth */
-        programToKeep.push_back(eqPList[0]);
-        
-        //cout << " Keep " << eqPList[0]->toString() << endl;
-        //dumpPlist(eqPList);
-        //cout << "Keep " << dumpProgram(eqPList[0]) << endl;
+        progToKeepList.push_back(progToKeep);
     }
     
     _boolResultRecord.clear();
     _intResultRecord.clear();
-    
-    //dumpPlist(programToKeep);
-    _pList = programToKeep;
+    _pList = progToKeepList;
     return;
 }
 
@@ -774,7 +840,9 @@ string bottomUpSearch::search() {
     cout << "Init pList size " << getPlistSize() << ", check correct" << endl;
 #endif
     //dumpPlist();
+    
     elimEquvalents();
+    
     while (getCorrect() == "") {
 #ifdef DEBUG
         cout << "Current pList size " << getPlistSize() << ", grow" << endl;
