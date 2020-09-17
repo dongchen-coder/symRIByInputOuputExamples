@@ -202,6 +202,10 @@ string unification::search(int searchTimeForTermsInSeconds, int searchTimeForPre
 #ifdef DEBUG
     cout << "--------------------------------------, search start" << endl;
 #endif
+    
+    inputOutputs_t leftInputOutputs;
+    inputOutputs_t rightInputOutputs;
+    
     return searchNode(searchTimeForTermsInSeconds, searchTimeForPredsInSeconds, inputOutputTree);
 #ifdef DEBUG
     cout << "--------------------------------------" << endl;
@@ -278,14 +282,14 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitM
          (1) split -1 into a group and others in the other group
          (2) if all -1, split half and half
          */
-        if (outputs.front() == -1) {
-            if (outputs.back() == -1) {
+        if (outputs.front() == 0) {
+            if (outputs.back() == 0) {
                 half_size = outputs.size() / 2;
                 splitFlag = true;
                 allSameValue = true;
             } else {
                 half_size = 0;
-                while(half_size < outputs.size() && outputs[half_size] == -1) {
+                while(half_size < outputs.size() && outputs[half_size] == 0) {
                     half_size++;
                 }
                 splitFlag = true;
