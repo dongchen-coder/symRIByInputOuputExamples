@@ -493,8 +493,6 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                     
                     for (int i = 0; i < numOfCombinations; i++) {
                         
-                        cout << "numOfCombinations " << numOfCombinations << endl;
-                        
                         vector<uint64_t> symbolic_bounds;
                         int symbolic_bounds_idx = i;
                         for (int j = 0; j < numOfSymbolicLoopBounds; j++) {
