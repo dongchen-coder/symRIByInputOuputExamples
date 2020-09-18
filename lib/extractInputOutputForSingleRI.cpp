@@ -303,6 +303,8 @@ void dumpPerRefRi(vector<uint64_t> sizes) {
     return;
 }
 
+
+
 void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate) {
     
 	if (sizes.size() <= 0) {
@@ -318,7 +320,6 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
             maxSize = sizes[i];
         }
 	}
-    
     
     // ref_src_id -> ref_snk_id -> src iter vector -> snk iter vector -> sizes vector -> ri;
     for (auto ref_src_it = all_ri.begin(), ref_src_eit = all_ri.end(); ref_src_it != ref_src_eit; ++ref_src_it) {
@@ -354,13 +355,16 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                     genFlag = false;
                 }
                 
+                map<vector<uint64_t>, pair<vector<uint64_t>, uint64_t>* > sizeSnkiterRi;
+                
+                vector<uint64_t> idx_src = idx_src_it->first;
+                string idx_src_str = "";
+                for (int i = 0; i < idx_src.size(); i++) {
+                    idx_src_str += "_" + to_string(idx_src[i]);
+                }
+                
+                // snk iter vector -> sizes vector -> ri;
                 for (auto idx_snk_it = (idx_src_it->second)->begin(), idx_snk_eit = (idx_src_it->second)->end(); idx_snk_it != idx_snk_eit; ++idx_snk_it) {
-                    
-                    vector<uint64_t> idx_src = idx_src_it->first;
-                    string idx_src_str = "";
-                    for (int i = 0; i < idx_src.size(); i++) {
-                        idx_src_str += "_" + to_string(idx_src[i]);
-                    }
                     
                     vector<uint64_t> idx_snk = idx_snk_it->first;
                     string idx_snk_str = "";
@@ -368,9 +372,62 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                         idx_snk_str += "_" + to_string(idx_snk[i]);
                     }
                     
+                    // sizes vector -> ri;
                     for (auto cur_sizes_it = (idx_snk_it->second)->begin(), cur_sizes_eit = (idx_snk_it->second)->end(); cur_sizes_it != cur_sizes_eit; ++cur_sizes_it) {
                         
                         vector<uint64_t> cur_sizes = cur_sizes_it->first;
+                        
+                        if (genFlag) {
+                            if (sizeSnkiterRi.find(cur_sizes) == sizeSnkiterRi.end()) {
+                                sizeSnkiterRi[cur_sizes] = new pair<vector<uint64_t>, uint64_t>;
+                            } else {
+                                (*sizeSnkiterRi[cur_sizes]) = make_pair(idx_snk, cur_sizes_it->second);
+                            }
+                        }
+                        
+                        if (genFlag) {
+                            /* create a file named by ref src/snk ID and iteration vector */
+                            ofs_perIterRefsrcsnk.open("./inputoutput/ris_per_iter_refsrcsnk/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it->first) + "_refsnk_" + to_string(ref_snk_it->first) + ".txt", ofstream::out | ofstream::app);
+                            
+                            /* Check each sizes for symoblic bounds */
+                            int numOfSizes = sizes.size();
+                            int numOfCombinations;
+                            if (numOfSizes == 0 || numOfSymbolicLoopBounds == 0) {
+                                numOfCombinations = 0;
+                            } else {
+                                numOfCombinations = 1;
+                            }
+                            for (int i = 0; i < numOfSymbolicLoopBounds; i++) {
+                                numOfCombinations *= numOfSizes;
+                            }
+                            
+                            for (int i = 0; i < numOfCombinations; i++) {
+                                vector<uint64_t> symbolic_bounds;
+                                int symbolic_bounds_idx = i;
+                                for (int j = 0; j < numOfSymbolicLoopBounds; j++) {
+                                    symbolic_bounds.push_back(sizes[symbolic_bounds_idx % numOfSizes]);
+                                    symbolic_bounds_idx /= numOfSizes;
+                                }
+                                
+                                /* iteration vector is one of the inputs */
+                                for (int j = 0; j < idx_src.size(); j++) {
+                                    ofs_perIterRefsrcsnk << "Isrc" + to_string(j) << " " << to_string(idx_src[j]) << " ";
+                                }
+                                for (int j = 0; j < idx_snk.size(); j++) {
+                                    ofs_perIterRefsrcsnk << "Isnk" + to_string(j) << " " << to_string(idx_snk[j]) << " ";
+                                }
+                                /* symbolic bounds is another input */
+                                for (int j = 0; j < symbolic_bounds.size(); j++) {
+                                    ofs_perIterRefsrcsnk << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
+                                }
+                                if ((*idx_snk_it->second).find(symbolic_bounds) != (*idx_snk_it->second).end()) {
+                                    ofs_perIterRefsrcsnk << "_out " << (*idx_snk_it->second)[symbolic_bounds] << endl;
+                                } else {
+                                    ofs_perIterRefsrcsnk << "_out " << 0 << endl;
+                                }
+                            }
+                            ofs_perIterRefsrcsnk.close();
+                        }
                         
                         if (ref_srcsnk_srcmin_idx.find(cur_sizes) == ref_srcsnk_srcmin_idx.end()) {
                             ref_srcsnk_srcmin_idx[cur_sizes] = idx_src;
@@ -415,64 +472,57 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                                 ref_src_max_idx[cur_sizes][i] = max(ref_src_max_idx[cur_sizes][i], idx_src[i]);
                             }
                         }
-                        
                     }
-                     
-                    if (genFlag) {
-                        /* create a file named by ref src ID and iteration vector */
-                        ofs_perIterRefsrc.open("./inputoutput/ris_per_iter_refsrc/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it->first) + "_itersrc" + idx_src_str + ".txt", ofstream::out | ofstream::app);
-                        /* create a file named by ref src/snk ID and iteration vector */
-                        ofs_perIterRefsrcsnk.open("./inputoutput/ris_per_iter_refsrcsnk/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it->first) + "_refsnk_" + to_string(ref_snk_it->first) + ".txt", ofstream::out | ofstream::app);
-                    
-                        /* Check each sizes for symoblic bounds */
-                        int numOfSizes = sizes.size();
-                        int numOfCombinations;
-                        if (numOfSizes == 0 || numOfSymbolicLoopBounds == 0) {
-                            numOfCombinations = 0;
-                        } else {
-                            numOfCombinations = 1;
-                        }
-                        for (int i = 0; i < numOfSymbolicLoopBounds; i++) {
-                            numOfCombinations *= numOfSizes;
-                        }
-                    
-                    
-                        for (int i = 0; i < numOfCombinations; i++) {
-                            vector<uint64_t> symbolic_bounds;
-                            int symbolic_bounds_idx = i;
-                            for (int j = 0; j < numOfSymbolicLoopBounds; j++) {
-                                symbolic_bounds.push_back(sizes[symbolic_bounds_idx % numOfSizes]);
-                                symbolic_bounds_idx /= numOfSizes;
-                            }
+                }
                 
+                if (genFlag) {
+                    /* create a file named by ref src ID and iteration vector */
+                    ofs_perIterRefsrc.open("./inputoutput/ris_per_iter_refsrc/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it->first) + "_itersrc" + idx_src_str + ".txt", ofstream::out | ofstream::app);
+                    
+                    /* Check each sizes for symoblic bounds */
+                    int numOfSizes = sizes.size();
+                    int numOfCombinations;
+                    if (numOfSizes == 0 || numOfSymbolicLoopBounds == 0) {
+                        numOfCombinations = 0;
+                    } else {
+                        numOfCombinations = 1;
+                    }
+                    for (int i = 0; i < numOfSymbolicLoopBounds; i++) {
+                        numOfCombinations *= numOfSizes;
+                    }
+                    
+                    for (int i = 0; i < numOfCombinations; i++) {
+                        
+                        cout << "numOfCombinations " << numOfCombinations << endl;
+                        
+                        vector<uint64_t> symbolic_bounds;
+                        int symbolic_bounds_idx = i;
+                        for (int j = 0; j < numOfSymbolicLoopBounds; j++) {
+                            symbolic_bounds.push_back(sizes[symbolic_bounds_idx % numOfSizes]);
+                            symbolic_bounds_idx /= numOfSizes;
+                        }
+                
+                        if (sizeSnkiterRi.find(symbolic_bounds) != sizeSnkiterRi.end()) {
                             /* iteration vector is one of the inputs */
                             for (int j = 0; j < idx_src.size(); j++) {
                                 ofs_perIterRefsrc << "Isrc" + to_string(j) << " " << to_string(idx_src[j]) << " ";
-                                ofs_perIterRefsrcsnk << "Isrc" + to_string(j) << " " << to_string(idx_src[j]) << " ";
                             }
-                
-                            for (int j = 0; j < idx_snk.size(); j++) {
-                                ofs_perIterRefsrcsnk << "Isnk" + to_string(j) << " " << to_string(idx_snk[j]) << " ";
-                            }
-                        
                             /* symbolic bounds is another input */
                             for (int j = 0; j < symbolic_bounds.size(); j++) {
                                 ofs_perIterRefsrc << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
-                                ofs_perIterRefsrcsnk << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
                             }
-                
-                            if ((*idx_snk_it->second).find(symbolic_bounds) != (*idx_snk_it->second).end()) {
-                                ofs_perIterRefsrc << "_out " << (*idx_snk_it->second)[symbolic_bounds] << endl;
-                                ofs_perIterRefsrcsnk << "_out " << (*idx_snk_it->second)[symbolic_bounds] << endl;
-                            } else {
-                                ofs_perIterRefsrc << "_out " << 0 << endl;
-                                ofs_perIterRefsrcsnk << "_out " << 0 << endl;
+                            ofs_perIterRefsrc << "_out " << (*sizeSnkiterRi[symbolic_bounds]).second << endl;
+                        } else {
+                            for (int j = 0; j < idx_src.size(); j++) {
+                                ofs_perIterRefsrc << "Isrc" + to_string(j) << " " << to_string(idx_src[j]) << " ";
                             }
+                            for (int j = 0; j < symbolic_bounds.size(); j++) {
+                                ofs_perIterRefsrc << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
+                            }
+                            ofs_perIterRefsrc << "_out " << 0 << endl;
                         }
-                        
-                        ofs_perIterRefsrcsnk.close();
-                        ofs_perIterRefsrc.close();
                     }
+                    ofs_perIterRefsrc.close();
                 }
             }
             
