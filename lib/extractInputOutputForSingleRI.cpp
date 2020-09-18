@@ -380,9 +380,8 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                         if (genFlag) {
                             if (sizeSnkiterRi.find(cur_sizes) == sizeSnkiterRi.end()) {
                                 sizeSnkiterRi[cur_sizes] = new pair<vector<uint64_t>, uint64_t>;
-                            } else {
-                                (*sizeSnkiterRi[cur_sizes]) = make_pair(idx_snk, cur_sizes_it->second);
                             }
+                            (*sizeSnkiterRi[cur_sizes]) = make_pair(idx_snk, cur_sizes_it->second);
                         }
                         
                         if (genFlag) {
