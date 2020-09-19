@@ -277,29 +277,31 @@ void readAllRi(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds)
 }
 
 void dumpPerRefRi(vector<uint64_t> sizes) {
-    /*
-    for (auto it = all_ri.begin(), eit = all_ri.end(); it != eit; ++it) {
-        for (int si = 0; si < sizes.size(); si++) {
-            for (int sj = 0; sj < sizes.size(); sj++) {
-                cout << "ref_id " << (*it).first << " isize " << sizes[si] << " jsize " << sizes[sj] << endl;
-                for (int i = 0; i < sizes[si]; i++) {
-                    for (int j = 0; j < sizes[sj]; j++) {
-                        
-                        if ((*it->second).find(sizes[si]) != (*it->second).end() &&
-                        (*(*it->second)[sizes[si]]).find(sizes[sj]) != (*(*it->second)[sizes[si]]).end() &&
-                        (*(*(*it->second)[sizes[si]])[sizes[sj]]).find(i) != (*(*(*it->second)[sizes[si]])[sizes[sj]]).end() &&
-                        (*(*(*(*it->second)[sizes[si]])[sizes[sj]])[i]).find(j) != (*(*(*(*it->second)[sizes[si]])[sizes[sj]])[i]).end() ) {
-                            cout << setw(5) << (*(*(*(*it->second)[sizes[si]])[sizes[sj]])[i])[j] << " ";
-                        } else {
-                            cout << "    X ";
-                        }
+    // ref_src_id -> ref_snk_id -> src iter vector -> snk iter vector -> sizes vector -> ri;
+    for (auto ref_src_it : all_ri) {
+        for (auto ref_snk_it : (*ref_src_it.second)) {
+            for (auto idx_src_it : (*ref_snk_it.second)) {
+                for (auto idx_snk_it : (*idx_src_it.second)) {
+                    for (auto cur_sizes_ri : (*idx_snk_it.second)) {
+                        /*
+                        {
+                            cout << "RefSrc " << ref_src_it.first << " RefSnk " << ref_snk_it.first << " ";
+                            cout << "IdxSrc ";
+                            for (auto idx : idx_src_it.first) cout << idx << " ";
+                            cout << "IdxSnk ";
+                            for (auto idx : idx_snk_it.first) cout << idx << " ";
+                            cout << "Sizes ";
+                            for (auto size : cur_sizes_ri.first) cout << size << " ";
+                            cout << "RI ";
+                            cout << cur_sizes_ri.second << endl;
+                         }
+                         */
                     }
-                    cout << endl;
                 }
             }
         }
     }
-    */
+    
     return;
 }
 
@@ -310,85 +312,186 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
 	if (sizes.size() <= 0) {
 		return;
 	}
+    sort(sizes.begin(), sizes.end());
 	int minSize = sizes[0];
-    int maxSize = sizes[0];
-	for (int i = 1; i < sizes.size(); i++) {
-        if (sizes[i] < minSize) {
-			minSize = sizes[i];
-		}
-        if (sizes[i] > maxSize) {
-            maxSize = sizes[i];
-        }
-	}
+    int maxSize = sizes.back();
     
     // ref_src_id -> ref_snk_id -> src iter vector -> snk iter vector -> sizes vector -> ri;
-    for (auto ref_src_it = all_ri.begin(), ref_src_eit = all_ri.end(); ref_src_it != ref_src_eit; ++ref_src_it) {
+    for (auto ref_src_it : all_ri) {
+        ofstream ofs_perIterRefsrc;
+        
+        // sample src idxs
+        vector<vector<uint64_t> > all_src_idxs;
+        for (auto ref_snk_it : (*ref_src_it.second)) {
+            for (const auto idx_src_it : (*ref_snk_it.second)) {
+                if (find(all_src_idxs.begin(), all_src_idxs.end(), idx_src_it.first) == all_src_idxs.end()) {
+                    all_src_idxs.push_back(idx_src_it.first);
+                }
+            }
+        }
+        vector<vector<uint64_t> > sampled_idxs = samplingRandom(all_src_idxs, samplingRate);
+        cout << "sample" << endl;
+        map<vector<uint64_t>, map<vector<uint64_t>, uint64_t>* > srciterSizeRi;
+        
+        // ref_snk_id -> src iter vector -> snk iter vector -> sizes vector -> ri;
+        for (auto ref_snk_it : (*ref_src_it.second)) {
+            // src iter vector -> snk iter vector -> sizes vector -> ri;
+            for (auto idx_src_it : (*ref_snk_it.second)) {
+                if (find(sampled_idxs.begin(), sampled_idxs.end(), idx_src_it.first) == sampled_idxs.end()) {
+                    continue;
+                }
+                vector<uint64_t> idx_src = idx_src_it.first;
+                // snk iter vector -> sizes vector -> ri;
+                for (auto idx_snk_it : (*idx_src_it.second) ) {
+                    // sizes vector -> ri;
+                    for (auto cur_sizes_it : (*idx_snk_it.second)) {
+                        vector<uint64_t> cur_sizes = cur_sizes_it.first;
+                        if (srciterSizeRi.find(idx_src) == srciterSizeRi.end()) {
+                            srciterSizeRi[idx_src] = new map<vector<uint64_t>, uint64_t>;
+                        }
+                        (*srciterSizeRi[idx_src])[cur_sizes] = cur_sizes_it.second;
+                    }
+                    
+                }
+            }
+        }
+        
+        for (auto elm : srciterSizeRi) {
+            
+            vector<uint64_t> idx_src = elm.first;
+            map<vector<uint64_t>, uint64_t> sizes_ri = *(elm.second);
+            
+            string idx_src_str = "";
+            for (int i = 0; i < idx_src.size(); i++) {
+                idx_src_str += "_" + to_string(idx_src[i]);
+            }
+            
+            // create a file named by ref src ID and iteration vector
+            ofs_perIterRefsrc.open("./inputoutput/ris_per_iter_refsrc/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it.first) + "_itersrc" + idx_src_str + ".txt", ofstream::out);
+            
+            // Check each sizes for symoblic bounds
+            int numOfSizes = sizes.size();
+            int numOfCombinations;
+            if (numOfSizes == 0 || numOfSymbolicLoopBounds == 0) {
+                numOfCombinations = 0;
+            } else {
+                numOfCombinations = 1;
+            }
+            for (int i = 0; i < numOfSymbolicLoopBounds; i++) {
+                numOfCombinations *= numOfSizes;
+            }
+            
+            for (int i = 0; i < numOfCombinations; i++) {
+                
+                vector<uint64_t> symbolic_bounds;
+                int symbolic_bounds_idx = i;
+                for (int j = 0; j < numOfSymbolicLoopBounds; j++) {
+                    symbolic_bounds.push_back(sizes[symbolic_bounds_idx % numOfSizes]);
+                    symbolic_bounds_idx /= numOfSizes;
+                }
+        
+                if (sizes_ri.find(symbolic_bounds) != sizes_ri.end()) {
+                    // iteration vector is one of the inputs
+                    for (int j = 0; j < idx_src.size(); j++) {
+                        ofs_perIterRefsrc << "Isrc" + to_string(j) << " " << to_string(idx_src[j]) << " ";
+                    }
+                    // symbolic bounds is another input
+                    for (int j = 0; j < symbolic_bounds.size(); j++) {
+                        ofs_perIterRefsrc << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
+                    }
+                    ofs_perIterRefsrc << "_out " << sizes_ri[symbolic_bounds] << endl;
+                } else {
+                    for (int j = 0; j < idx_src.size(); j++) {
+                        ofs_perIterRefsrc << "Isrc" + to_string(j) << " " << to_string(idx_src[j]) << " ";
+                    }
+                    for (int j = 0; j < symbolic_bounds.size(); j++) {
+                        ofs_perIterRefsrc << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
+                    }
+                    ofs_perIterRefsrc << "_out " << 0 << endl;
+                }
+            }
+            
+            ofs_perIterRefsrc.close();
+        }
+    }
+    
+    // ref_src_id -> ref_snk_id -> src iter vector -> snk iter vector -> sizes vector -> ri;
+    /*
+    for (auto ref_src_it : all_ri) {
         ofstream ofs_perIterRefsrc;
         
         map<vector<uint64_t>, vector<uint64_t> > ref_src_min_idx;
         map<vector<uint64_t>, vector<uint64_t> > ref_src_max_idx;
         
+        // sample src idxs
+        vector<vector<uint64_t> > all_src_idxs;
+        for (auto ref_snk_it : (*ref_src_it.second)) {
+            for (const auto idx_src_it : (*ref_snk_it.second)) {
+                all_src_idxs.push_back(idx_src_it.first);
+            }
+        }
+        //vector<vector<uint64_t> > sampled_idxs = samplingBorderInner(all_src_idxs, samplingRate);
+        vector<vector<uint64_t> > sampled_idxs = samplingRandom(all_src_idxs, samplingRate);
+        cout << "sample" << endl;
+        
         // ref_snk_id -> src iter vector -> snk iter vector -> sizes vector -> ri;
-        for (auto ref_snk_it = (ref_src_it->second)->begin(), ref_snk_eit = (ref_src_it->second)->end(); ref_snk_it != ref_snk_eit; ++ref_snk_it) {
+        for (auto ref_snk_it : (*ref_src_it.second)) {
             ofstream ofs_perIterRefsrcsnk;
             
-            /* sizes -> min */
+            // sizes -> min
             map<vector<uint64_t>, vector<uint64_t> > ref_srcsnk_srcmin_idx;
             map<vector<uint64_t>, vector<uint64_t> > ref_srcsnk_srcmax_idx;
             map<vector<uint64_t>, vector<uint64_t> > ref_srcsnk_snkmin_idx;
             map<vector<uint64_t>, vector<uint64_t> > ref_srcsnk_snkmax_idx;
             
-            /* sample src idxs */
-            vector<vector<uint64_t> > all_src_idxs;
-            for (const auto idx_src_it : *(ref_snk_it->second)) {
-                all_src_idxs.push_back(idx_src_it.first);
-            }
-            
-            //vector<vector<uint64_t> > sampled_idxs = samplingBorderInner(all_src_idxs, samplingRate);
-            vector<vector<uint64_t> > sampled_idxs = samplingRandom(all_src_idxs, samplingRate);
-            
             // src iter vector -> snk iter vector -> sizes vector -> ri;
-            for (auto idx_src_it = (ref_snk_it->second)->begin(), idx_src_eit = (ref_snk_it->second)->end(); idx_src_it != idx_src_eit; ++idx_src_it) {
-                
+            for (auto idx_src_it : (*ref_snk_it.second)) {
                 bool genFlag = true;
-                if (find(sampled_idxs.begin(), sampled_idxs.end(), idx_src_it->first) == sampled_idxs.end()) {
+                if (find(sampled_idxs.begin(), sampled_idxs.end(), idx_src_it.first) == sampled_idxs.end()) {
                     genFlag = false;
                 }
                 
                 map<vector<uint64_t>, pair<vector<uint64_t>, uint64_t>* > sizeSnkiterRi;
                 
-                vector<uint64_t> idx_src = idx_src_it->first;
+                vector<uint64_t> idx_src = idx_src_it.first;
                 string idx_src_str = "";
                 for (int i = 0; i < idx_src.size(); i++) {
                     idx_src_str += "_" + to_string(idx_src[i]);
                 }
                 
                 // snk iter vector -> sizes vector -> ri;
-                for (auto idx_snk_it = (idx_src_it->second)->begin(), idx_snk_eit = (idx_src_it->second)->end(); idx_snk_it != idx_snk_eit; ++idx_snk_it) {
-                    
-                    vector<uint64_t> idx_snk = idx_snk_it->first;
+                for (auto idx_snk_it : (*idx_src_it.second) ) {
+                    vector<uint64_t> idx_snk = idx_snk_it.first;
                     string idx_snk_str = "";
                     for (int i = 0; i < idx_snk.size(); i++) {
                         idx_snk_str += "_" + to_string(idx_snk[i]);
                     }
                     
                     // sizes vector -> ri;
-                    for (auto cur_sizes_it = (idx_snk_it->second)->begin(), cur_sizes_eit = (idx_snk_it->second)->end(); cur_sizes_it != cur_sizes_eit; ++cur_sizes_it) {
+                    for (auto cur_sizes_it : (*idx_snk_it.second)) {
+                        vector<uint64_t> cur_sizes = cur_sizes_it.first;
                         
-                        vector<uint64_t> cur_sizes = cur_sizes_it->first;
+                        if (ref_src_it.first == 0 && idx_src == vector<uint64_t>({5, 16})) {
+                            cout << "Here" << cur_sizes_it.second << " genFlag " << genFlag << endl;
+                        }
                         
                         if (genFlag) {
                             if (sizeSnkiterRi.find(cur_sizes) == sizeSnkiterRi.end()) {
                                 sizeSnkiterRi[cur_sizes] = new pair<vector<uint64_t>, uint64_t>;
                             }
-                            (*sizeSnkiterRi[cur_sizes]) = make_pair(idx_snk, cur_sizes_it->second);
+                            (*sizeSnkiterRi[cur_sizes]) = make_pair(idx_snk, cur_sizes_it.second);
+                            
+                            if (ref_src_it.first == 0 && idx_src == vector<uint64_t>({5, 16})) {
+                                cout << cur_sizes_it.second << endl;
+                            }
+                            
                         }
                         
                         if (genFlag) {
-                            /* create a file named by ref src/snk ID and iteration vector */
-                            ofs_perIterRefsrcsnk.open("./inputoutput/ris_per_iter_refsrcsnk/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it->first) + "_refsnk_" + to_string(ref_snk_it->first) + ".txt", ofstream::out | ofstream::app);
+                            // create a file named by ref src/snk ID and iteration vector
+                            ofs_perIterRefsrcsnk.open("./inputoutput/ris_per_iter_refsrcsnk/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it.first) + "_refsnk_" + to_string(ref_snk_it.first) + ".txt", ofstream::out | ofstream::app);
                             
-                            /* Check each sizes for symoblic bounds */
+                            // Check each sizes for symoblic bounds
                             int numOfSizes = sizes.size();
                             int numOfCombinations;
                             if (numOfSizes == 0 || numOfSymbolicLoopBounds == 0) {
@@ -408,19 +511,19 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                                     symbolic_bounds_idx /= numOfSizes;
                                 }
                                 
-                                /* iteration vector is one of the inputs */
+                                // iteration vector is one of the inputs
                                 for (int j = 0; j < idx_src.size(); j++) {
                                     ofs_perIterRefsrcsnk << "Isrc" + to_string(j) << " " << to_string(idx_src[j]) << " ";
                                 }
                                 for (int j = 0; j < idx_snk.size(); j++) {
                                     ofs_perIterRefsrcsnk << "Isnk" + to_string(j) << " " << to_string(idx_snk[j]) << " ";
                                 }
-                                /* symbolic bounds is another input */
+                                // symbolic bounds is another input
                                 for (int j = 0; j < symbolic_bounds.size(); j++) {
                                     ofs_perIterRefsrcsnk << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
                                 }
-                                if ((*idx_snk_it->second).find(symbolic_bounds) != (*idx_snk_it->second).end()) {
-                                    ofs_perIterRefsrcsnk << "_out " << (*idx_snk_it->second)[symbolic_bounds] << endl;
+                                if ((*idx_snk_it.second).find(symbolic_bounds) != (*idx_snk_it.second).end()) {
+                                    ofs_perIterRefsrcsnk << "_out " << (*idx_snk_it.second)[symbolic_bounds] << endl;
                                 } else {
                                     ofs_perIterRefsrcsnk << "_out " << 0 << endl;
                                 }
@@ -475,10 +578,10 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                 }
                 
                 if (genFlag) {
-                    /* create a file named by ref src ID and iteration vector */
-                    ofs_perIterRefsrc.open("./inputoutput/ris_per_iter_refsrc/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it->first) + "_itersrc" + idx_src_str + ".txt", ofstream::out | ofstream::app);
+                    // create a file named by ref src ID and iteration vector
+                    ofs_perIterRefsrc.open("./inputoutput/ris_per_iter_refsrc/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it.first) + "_itersrc" + idx_src_str + ".txt", ofstream::out);
                     
-                    /* Check each sizes for symoblic bounds */
+                    // Check each sizes for symoblic bounds
                     int numOfSizes = sizes.size();
                     int numOfCombinations;
                     if (numOfSizes == 0 || numOfSymbolicLoopBounds == 0) {
@@ -500,11 +603,11 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                         }
                 
                         if (sizeSnkiterRi.find(symbolic_bounds) != sizeSnkiterRi.end()) {
-                            /* iteration vector is one of the inputs */
+                            // iteration vector is one of the inputs
                             for (int j = 0; j < idx_src.size(); j++) {
                                 ofs_perIterRefsrc << "Isrc" + to_string(j) << " " << to_string(idx_src[j]) << " ";
                             }
-                            /* symbolic bounds is another input */
+                            // symbolic bounds is another input
                             for (int j = 0; j < symbolic_bounds.size(); j++) {
                                 ofs_perIterRefsrc << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
                             }
@@ -527,12 +630,11 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
             ofstream ofs_Srcsnk_src_IVMax;
             ofstream ofs_Srcsnk_snk_IVMin;
             ofstream ofs_Srcsnk_snk_IVMax;
-            
             for (auto sizesToImin : ref_srcsnk_srcmin_idx) {
                 vector<uint64_t> cur_sizes = sizesToImin.first;
                 vector<uint64_t> cur_Imin = sizesToImin.second;
                 for (int i = 0; i < cur_Imin.size(); i++) {
-                    ofs_Srcsnk_src_IVMin.open("./inputoutput/IMinMax/" + name + "/" +name+ "_refsrc_" + to_string(ref_src_it->first) + "_refsnk_" + to_string(ref_snk_it->first) + "_I" + to_string(i) + "_src_min.txt", ofstream::out | ofstream::app);
+                    ofs_Srcsnk_src_IVMin.open("./inputoutput/IMinMax/" + name + "/" +name+ "_refsrc_" + to_string(ref_src_it.first) + "_refsnk_" + to_string(ref_snk_it.first) + "_I" + to_string(i) + "_src_min.txt", ofstream::out | ofstream::app);
                     
                     string cur_sizes_str = "";
                     for (int j = 0; j < cur_sizes.size(); j++) {
@@ -547,7 +649,7 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                 vector<uint64_t> cur_sizes = sizesToImax.first;
                 vector<uint64_t> cur_Imax = sizesToImax.second;
                 for (int i = 0; i < cur_Imax.size(); i++) {
-                    ofs_Srcsnk_src_IVMax.open("./inputoutput/IMinMax/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it->first) + "_refsnk_" + to_string(ref_snk_it->first) + "_I" + to_string(i) + "_src_max.txt", ofstream::out | ofstream::app);
+                    ofs_Srcsnk_src_IVMax.open("./inputoutput/IMinMax/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it.first) + "_refsnk_" + to_string(ref_snk_it.first) + "_I" + to_string(i) + "_src_max.txt", ofstream::out | ofstream::app);
                     
                     string cur_sizes_str = "";
                     for (int j = 0; j < cur_sizes.size(); j++) {
@@ -558,12 +660,11 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                     ofs_Srcsnk_src_IVMax.close();
                 }
             }
-            
             for (auto sizesToImin : ref_srcsnk_snkmin_idx) {
                 vector<uint64_t> cur_sizes = sizesToImin.first;
                 vector<uint64_t> cur_Imin = sizesToImin.second;
                 for (int i = 0; i < cur_Imin.size(); i++) {
-                    ofs_Srcsnk_snk_IVMin.open("./inputoutput/IMinMax/" + name + "/" +name + "_refsrc_" + to_string(ref_src_it->first) + "_refsnk_" + to_string(ref_snk_it->first) + "_I" + to_string(i) + "_snk_min.txt", ofstream::out | ofstream::app);
+                    ofs_Srcsnk_snk_IVMin.open("./inputoutput/IMinMax/" + name + "/" +name + "_refsrc_" + to_string(ref_src_it.first) + "_refsnk_" + to_string(ref_snk_it.first) + "_I" + to_string(i) + "_snk_min.txt", ofstream::out | ofstream::app);
                     
                     string cur_sizes_str = "";
                     for (int j = 0; j < cur_sizes.size(); j++) {
@@ -578,7 +679,7 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
                 vector<uint64_t> cur_sizes = sizesToImax.first;
                 vector<uint64_t> cur_Imax = sizesToImax.second;
                 for (int i = 0; i < cur_Imax.size(); i++) {
-                    ofs_Srcsnk_snk_IVMax.open("./inputoutput/IMinMax/" + name + "/" +name + "_refsrc_" + to_string(ref_src_it->first) + "_refsnk_" + to_string(ref_snk_it->first) + "_I" + to_string(i) + "_snk_max.txt", ofstream::out | ofstream::app);
+                    ofs_Srcsnk_snk_IVMax.open("./inputoutput/IMinMax/" + name + "/" +name + "_refsrc_" + to_string(ref_src_it.first) + "_refsnk_" + to_string(ref_snk_it.first) + "_I" + to_string(i) + "_snk_max.txt", ofstream::out | ofstream::app);
                     
                     string cur_sizes_str = "";
                     for (int j = 0; j < cur_sizes.size(); j++) {
@@ -599,7 +700,7 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
             vector<uint64_t> cur_sizes = sizesToImin.first;
             vector<uint64_t> cur_Imin = sizesToImin.second;
             for (int i = 0; i < cur_Imin.size(); i++) {
-                ofs_perRefsrcIVMin.open("./inputoutput/IMinMax/" + name + "/" +name+ "_refsrc_" + to_string(ref_src_it->first) + "_I" + to_string(i) + "_src_min.txt", ofstream::out | ofstream::app);
+                ofs_perRefsrcIVMin.open("./inputoutput/IMinMax/" + name + "/" +name+ "_refsrc_" + to_string(ref_src_it.first) + "_I" + to_string(i) + "_src_min.txt", ofstream::out | ofstream::app);
                 
                 string cur_sizes_str = "";
                 for (int j = 0; j < cur_sizes.size(); j++) {
@@ -615,7 +716,7 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
             vector<uint64_t> cur_sizes = sizesToImax.first;
             vector<uint64_t> cur_Imax = sizesToImax.second;
             for (int i = 0; i < cur_Imax.size(); i++) {
-                ofs_perRefsrcIVMax.open("./inputoutput/IMinMax/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it->first) + "_I" + to_string(i) + "_src_max.txt", ofstream::out | ofstream::app);
+                ofs_perRefsrcIVMax.open("./inputoutput/IMinMax/" + name + "/" +name+"_refsrc_" + to_string(ref_src_it.first) + "_I" + to_string(i) + "_src_max.txt", ofstream::out | ofstream::app);
                 
                 string cur_sizes_str = "";
                 for (int j = 0; j < cur_sizes.size(); j++) {
@@ -628,6 +729,6 @@ void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymboli
         }
         
     }
-    
+    */
 	return;
 }
