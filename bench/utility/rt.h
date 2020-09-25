@@ -4,9 +4,10 @@
 #include<vector>
 using namespace std;
 
-#define CLS 1
-#define DS 1
-#define TRACE
+#define CLS 64
+#define DS 8
+//#define TRACE
+#define PROFILE
 
 uint64_t refT = 0;
 
@@ -22,8 +23,12 @@ map<uint64_t, vector<int> > srcIter;
 /* RI histogram */
 map<uint64_t, uint64_t> RI;
 
+/* Cache pos */
+map<uint64_t, uint64_t> cachePos;
+
 void rtTmpAccess(uint64_t addr, uint64_t ref_id, uint64_t array_id, vector<int> idx) {
-    addr = addr * DS / CLS;
+    uint64_t index = addr;
+	addr = addr * DS / CLS;
     refT++;
     
     if (lat.find(addr) != lat.end()) {
@@ -61,6 +66,8 @@ void rtTmpAccess(uint64_t addr, uint64_t ref_id, uint64_t array_id, vector<int> 
                 cout << ",";
             }
 		}
+		cout << cachePos[addr] << ",";
+		cout << index % (CLS/DS) << ",";
 		cout << ri << endl;
 #endif
 	}
@@ -68,6 +75,7 @@ void rtTmpAccess(uint64_t addr, uint64_t ref_id, uint64_t array_id, vector<int> 
 	lat[addr] = refT;
     srcRef[addr] = ref_id;
     srcIter[addr] = idx;
+	cachePos[addr] = index % (CLS/DS);
 
     return;
 }
