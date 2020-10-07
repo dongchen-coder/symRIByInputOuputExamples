@@ -174,15 +174,15 @@ vector<vector<uint64_t> > samplingRandom(vector< vector<uint64_t> > idxs, double
     return sampled_idxs;
 }
 
-void processSingleRiFile(string name, string fileSuffix, vector<uint64_t> symbolic_bounds) {
+void processSingleRiFile(string cacheConfig, string name, string fileSuffix, vector<uint64_t> symbolic_bounds) {
 
     string fileName = name + fileSuffix;
 	ifstream ifs;
-    ifs.open("./inputoutput/raw_ris_per_size/"+ name + "/" + fileName, ifstream::in);
+    ifs.open("./inputoutput/raw_ris_per_size_" + cacheConfig + "/"+ name + "/" + fileName, ifstream::in);
     if (ifs.is_open()) {
-        cout << "./inputoutput/raw_ris_per_size/"+ name + "/" + fileName << " succeed " << endl;
+        cout << "./inputoutput/raw_ris_per_size_" + cacheConfig + "/"+ name + "/" + fileName << " succeed " << endl;
     } else {
-        cout << "./inputoutput/raw_ris_per_size/"+ name + "/" + fileName << " failed " << endl;
+        cout << "./inputoutput/raw_ris_per_size_" + cacheConfig + "/"+ name + "/" + fileName << " failed " << endl;
     }
     
     uint64_t ref_src_id;
@@ -256,7 +256,7 @@ void processSingleRiFile(string name, string fileSuffix, vector<uint64_t> symbol
 
 }
 
-void readAllRi(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds) {
+void readAllRi(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds) {
     int numOfSizes = sizes.size();
     
     int numOfCombinations;
@@ -279,7 +279,7 @@ void readAllRi(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds)
             symbolic_bounds.push_back(sizes[symbolic_bounds_idx % numOfSizes]);
             symbolic_bounds_idx /= numOfSizes;
         }
-        processSingleRiFile(name, symbolic_bounds_str + ".txt", symbolic_bounds);
+        processSingleRiFile(cacheConfig, name, symbolic_bounds_str + ".txt", symbolic_bounds);
     }
         
     return;
@@ -316,7 +316,7 @@ void dumpPerRefRi(vector<uint64_t> sizes) {
 
 
 
-void genInOutWithFormatSrcIterPos(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate) {
+void genInOutWithFormatSrcIterPos(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate) {
     
 	if (sizes.size() <= 0) {
 		return;
@@ -431,7 +431,7 @@ void genInOutWithFormatSrcIterPos(string name, vector<uint64_t> sizes, int numOf
 }
 
 
-void genInOutWithFormatSrcIterPosSnk(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate) {
+void genInOutWithFormatSrcIterPosSnk(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate) {
     if (sizes.size() <= 0) {
         return;
     }
@@ -540,7 +540,7 @@ void genInOutWithFormatSrcIterPosSnk(string name, vector<uint64_t> sizes, int nu
     }
 }
 
-void genInOutWithFormatSrcIterPosSnkIterPos(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate) {
+void genInOutWithFormatSrcIterPosSnkIterPos(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate) {
     if (sizes.size() <= 0) {
         return;
     }
@@ -735,7 +735,7 @@ void genInOutWithFormatSrcIterPosSnkIterPos(string name, vector<uint64_t> sizes,
     }
 }
 
-void genInOutWithFormatSrcShape(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds) {
+void genInOutWithFormatSrcShape(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds) {
     
 }
 

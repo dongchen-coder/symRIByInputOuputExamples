@@ -3,7 +3,10 @@
 #include <exception>
 using namespace std;
 
-bool parser(int argc, char* argv[], vector<uint64_t>* sizes, string* name, int* numOfLoopBounds, double* samplingRate) {
+bool parser(int argc, char* argv[],
+            vector<uint64_t>* sizes, string* name, int* numOfLoopBounds, double* samplingRate,
+            bool* srcIterPosFlag, bool* srcIterPosSnkFlag, bool* srcIterPosSnkIterPosFlag, bool* srcShapeFlag,
+            string* cacheConfig) {
     for (int i = 1; i < argc; i++) {
         string argvi(argv[i]);
         if (argvi == "-NAME") {
@@ -70,6 +73,32 @@ bool parser(int argc, char* argv[], vector<uint64_t>* sizes, string* name, int* 
                 return false;
             }
         }
+        else if (argvi == "-FORMATSRCITERPOS") {
+            i++;
+            *srcIterPosFlag = true;
+        }
+        else if (argvi == "-FORMATSRCITERPOSSNK") {
+            i++;
+            *srcIterPosSnkFlag = true;
+        }
+        else if (argvi == "-FORMATSRCITERPOSSNKITERPOS") {
+            i++;
+            *srcIterPosSnkIterPosFlag = true;
+        }
+        else if (argvi == "-FORMATSRCSHAPE") {
+            i++;
+            *srcShapeFlag = true;
+        }
+        else if (argvi == "-CACHECONFIG") {
+            i++;
+            if (i < argc) {
+                argvi = argv[i];
+                *cacheConfig = argvi;
+            }
+            else {
+                return false;
+            }
+        }
         else {
             return false;
         }
@@ -84,7 +113,17 @@ int main(int argc, char* argv[]) {
     int numOfSymbolicLoopBounds;
     double samplingRate = 1;
     
-    if(!parser(argc, argv, &sizes, &name, &numOfSymbolicLoopBounds, &samplingRate)) {
+    bool srcIterPosFlag = false;
+    bool srcIterPosSnkFlag = false;
+    bool srcIterPosSnkIterPosFlag = false;
+    bool srcShapeFlag = false;
+    
+    string cacheConfig = "ELM";
+    
+    if(!parser(argc, argv,
+               &sizes, &name, &numOfSymbolicLoopBounds, &samplingRate,
+               &srcIterPosFlag, &srcIterPosSnkFlag, &srcIterPosSnkIterPosFlag, &srcShapeFlag,
+               &cacheConfig)) {
         cout << "Error in parsing command line" << endl;
         return 0;
     } else {
@@ -98,22 +137,29 @@ int main(int argc, char* argv[]) {
     }
     
     /* read all ri into a map */
-    readAllRi(name, sizes, numOfSymbolicLoopBounds);
+    readAllRi(cacheConfig, name, sizes, numOfSymbolicLoopBounds);
     
     dumpPerRefRi(sizes);
     
     /* construct inputoutput examples for (source reference, source iteration, source position format) */
-    genInOutWithFormatSrcIterPos(name, sizes, numOfSymbolicLoopBounds, samplingRate);
+    if (srcIterPosFlag) {
+        genInOutWithFormatSrcIterPos(cacheConfig, name, sizes, numOfSymbolicLoopBounds, samplingRate);
+    }
     
     /* construct inputoutput examples for (source reference, source iteration, source position, sink reference format) */
-    genInOutWithFormatSrcIterPosSnk(name, sizes, numOfSymbolicLoopBounds, samplingRate);
+    if (srcIterPosSnkFlag) {
+        genInOutWithFormatSrcIterPosSnk(cacheConfig, name, sizes, numOfSymbolicLoopBounds, samplingRate);
+    }
     
     /* construct inputoutput examples for (source reference, source iteration, source position, sink reference, sinkIter format) */
-    genInOutWithFormatSrcIterPosSnkIterPos(name, sizes, numOfSymbolicLoopBounds, samplingRate);
+    if (srcIterPosSnkIterPosFlag) {
+        genInOutWithFormatSrcIterPosSnkIterPos(cacheConfig, name, sizes, numOfSymbolicLoopBounds, samplingRate);
+    }
     
     /* contruct the shape for the source iteration space */
-    genInOutWithFormatSrcShape(name, sizes,numOfSymbolicLoopBounds);
+    if (srcShapeFlag) {
+        genInOutWithFormatSrcShape(cacheConfig, name, sizes,numOfSymbolicLoopBounds);
+    }
     
     return 0;
 }
-
