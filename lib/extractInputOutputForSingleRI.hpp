@@ -27,6 +27,9 @@ void readAllRi(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds)
 void dumpPerRefRi(vector<uint64_t> sizes);
 
 /* Generate inputoutput example */
-void genInputOutputExample(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate);
+void genInOutWithFormatSrcIterPos(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate);
+void genInOutWithFormatSrcIterPosSnk(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate);
+void genInOutWithFormatSrcIterPosSnkIterPos(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate);
+void genInOutWithFormatSrcShape(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds);
 
 #endif

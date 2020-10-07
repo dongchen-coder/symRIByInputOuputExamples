@@ -102,8 +102,17 @@ int main(int argc, char* argv[]) {
     
     dumpPerRefRi(sizes);
     
-    /* construct inputoutput examples for each iteration */
-    genInputOutputExample(name, sizes, numOfSymbolicLoopBounds, samplingRate);
+    /* construct inputoutput examples for (source reference, source iteration, source position format) */
+    genInOutWithFormatSrcIterPos(name, sizes, numOfSymbolicLoopBounds, samplingRate);
+    
+    /* construct inputoutput examples for (source reference, source iteration, source position, sink reference format) */
+    genInOutWithFormatSrcIterPosSnk(name, sizes, numOfSymbolicLoopBounds, samplingRate);
+    
+    /* construct inputoutput examples for (source reference, source iteration, source position, sink reference, sinkIter format) */
+    genInOutWithFormatSrcIterPosSnkIterPos(name, sizes, numOfSymbolicLoopBounds, samplingRate);
+    
+    /* contruct the shape for the source iteration space */
+    genInOutWithFormatSrcShape(name, sizes,numOfSymbolicLoopBounds);
     
     return 0;
 }
