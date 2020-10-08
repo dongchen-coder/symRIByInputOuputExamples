@@ -7,7 +7,7 @@ BENCH_DIR=./bench
 BENCH_BIN_DIR=./bin/bench_bin
 
 RIS_RAW_DIR=./inputoutput/raw_ris_per_size
-INPUTOUTPUT_DIRS=./inputoutput/ris_per_iter_refsrc ./inputoutput/ris_per_iter_refsrcsnk ./inputoutput/IMinMax
+INPUTOUTPUT_DIRS=./inputoutput/ris_refsrc_Isrc_Psrc ./inputoutput/ris_refsrc_Isrc_Psrc_refsnk ./inputoutput/ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk
 
 RIS_MATCH_DIR=./verify/histoToMatch
 
@@ -57,7 +57,7 @@ gen: extractInputOutputForSingleRI.o inputOutputGen.o symRiSynthesiser.o langDef
 	$(CC) ${CCFLAG} -pthread -o $(BIN_DIR)/symRiSymthesiser $(OBJ_DIR)/symRiSynthesiser.o $(OBJ_DIR)/langDef.o $(OBJ_DIR)/bottomUpSearch.o $(OBJ_DIR)/unification.o $(OBJ_DIR)/sampler.o
 
 run_gen: run.o
-	$(CC) -std=c++17 -o $(BIN_DIR)/run $(OBJ_DIR)/run.o
+	$(CC) -std=c++17 -lpthread -o $(BIN_DIR)/run $(OBJ_DIR)/run.o -lstdc++fs
 
 bench_gen:
 	mkdir -p $(BENCH_BIN_DIR)
@@ -110,11 +110,13 @@ inputoutput_gen:
 	$(foreach name, $(bench), \
 		$(foreach dir, $(INPUTOUTPUT_DIRS), mkdir -p $(dir)/$(name) ;) \
 	)
-	$(foreach name, $(bench_1para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 1 -SAMPLINGRATE ${SRATE};)
-	$(foreach name, $(bench_2para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 2 -SAMPLINGRATE ${SRATE};)
-	$(foreach name, $(bench_3para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 3 -SAMPLINGRATE ${SRATE};)
-	$(foreach name, $(bench_4para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 4 -SAMPLINGRATE ${SRATE};)
-	$(foreach name, $(bench_5para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 5 -SAMPLINGRATE ${SRATE};)
+	$(foreach name, $(bench_1para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 1 -SAMPLINGRATE ${SRATE} -FORMATSRCITERPOS -FORMATSRCITERPOSSNK -CACHECONFIG ELM;)
+	$(foreach name, $(bench_1para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 1 -SAMPLINGRATE ${SRATE} -FORMATSRCITERPOS -FORMATSRCITERPOSSNK -CACHECONFIG CLS32_DS8;)
+	#$(foreach name, $(bench_2para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 2 -SAMPLINGRATE ${SRATE};)
+	#$(foreach name, $(bench_3para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 3 -SAMPLINGRATE ${SRATE};)
+	#$(foreach name, $(bench_4para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 4 -SAMPLINGRATE ${SRATE};)
+	#$(foreach name, $(bench_5para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 5 -SAMPLINGRATE ${SRATE};)
+
 
 histogramToMatch_gen:
 	$(foreach name, $(bench), rm -r -f $(RIS_MATCH_DIR)/$(name) ; )
