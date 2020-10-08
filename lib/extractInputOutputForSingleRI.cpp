@@ -378,7 +378,7 @@ void genInOutWithFormatSrcIterPos(string cacheConfig, string name, vector<uint64
                 "_refsrc_" + to_string(ref_src_it.first) +
                 "_Isrc" + idx_src_str +
                 "_Psrc_" + to_string(src_pos_it.first) +
-                ".RI", ofstream::out);
+                ".RI." + cacheConfig, ofstream::out);
             
                 // Check each sizes for symoblic bounds
                 int numOfSizes = sizes.size();
@@ -489,7 +489,7 @@ void genInOutWithFormatSrcIterPosSnk(string cacheConfig, string name, vector<uin
                                                "_Isrc" + idx_src_str +
                                                "_Psrc_" + to_string(src_pos_it.first) +
                                                "_refsnk_" + to_string(ref_snk_it.first) +
-                                               ".RI", ofstream::out);
+                                               ".RI." + cacheConfig, ofstream::out);
                         
                         // Check each sizes for symoblic bounds
                         int numOfSizes = sizes.size();
@@ -606,7 +606,7 @@ void genInOutWithFormatSrcIterPosSnkIterPos(string cacheConfig, string name, vec
                                                "_Isrc" + idx_src_str +
                                                "_Psrc_" + to_string(src_pos_it.first) +
                                                "_refsnk_" + to_string(ref_snk_it.first) +
-                                               ".RI", ofstream::out);
+                                               ".RI." + cacheConfig, ofstream::out);
                         
                     // Check each sizes for symoblic bounds
                     int numOfSizes = sizes.size();
