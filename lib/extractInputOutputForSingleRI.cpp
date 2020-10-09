@@ -671,7 +671,7 @@ void genInOutWithFormatSrcIterPosSnkIterPos(string cacheConfig, string name, vec
                         map<vector<uint64_t>, vector<uint64_t> > sizes_idxsnk = *(elm.second);
                         
                         string idx_src_str = "";
-                        for (int j = 0; j < idx_src.size(); j++) {
+                        for (int i = 0; i < idx_src.size(); i++) {
                             idx_src_str += "_" + to_string(idx_src[i]);
                         }
                         
