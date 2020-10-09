@@ -110,8 +110,8 @@ inputoutput_gen:
 	$(foreach name, $(bench), \
 		$(foreach dir, $(INPUTOUTPUT_DIRS), mkdir -p $(dir)/$(name) ;) \
 	)
-	$(foreach name, $(bench_1para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 1 -SAMPLINGRATE ${SRATE} -FORMATSRCITERPOS -FORMATSRCITERPOSSNK -CACHECONFIG ELM;)
-	$(foreach name, $(bench_1para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 1 -SAMPLINGRATE ${SRATE} -FORMATSRCITERPOS -FORMATSRCITERPOSSNK -CACHECONFIG CLS32_DS8;)
+	$(foreach name, $(bench_1para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 1 -SAMPLINGRATE ${SRATE} -FORMATSRCITERPOS -FORMATSRCITERPOSSNK -FORMATSRCITERPOSSNKITERPOS -CACHECONFIG ELM;)
+	$(foreach name, $(bench_1para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 1 -SAMPLINGRATE ${SRATE} -FORMATSRCITERPOS -FORMATSRCITERPOSSNK -FORMATSRCITERPOSSNKITERPOS -CACHECONFIG CLS32_DS8;)
 	#$(foreach name, $(bench_2para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 2 -SAMPLINGRATE ${SRATE};)
 	#$(foreach name, $(bench_3para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 3 -SAMPLINGRATE ${SRATE};)
 	#$(foreach name, $(bench_4para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 4 -SAMPLINGRATE ${SRATE};)

@@ -74,19 +74,15 @@ bool parser(int argc, char* argv[],
             }
         }
         else if (argvi == "-FORMATSRCITERPOS") {
-            i++;
             *srcIterPosFlag = true;
         }
         else if (argvi == "-FORMATSRCITERPOSSNK") {
-            i++;
             *srcIterPosSnkFlag = true;
         }
         else if (argvi == "-FORMATSRCITERPOSSNKITERPOS") {
-            i++;
             *srcIterPosSnkIterPosFlag = true;
         }
         else if (argvi == "-FORMATSRCSHAPE") {
-            i++;
             *srcShapeFlag = true;
         }
         else if (argvi == "-CACHECONFIG") {
@@ -100,6 +96,7 @@ bool parser(int argc, char* argv[],
             }
         }
         else {
+            cout << "Unknown command line option: " << argvi << endl;
             return false;
         }
     }
