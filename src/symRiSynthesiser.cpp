@@ -541,6 +541,7 @@ int main(int argc, char* argv[]) {
 #endif
 
     writeSearchedProgram(fileName, uni->getSearchedProgram());
+    uni->dumpSearchedProgram();
     
     return 0;
 }
