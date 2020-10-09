@@ -665,7 +665,7 @@ void genInOutWithFormatSrcIterPosSnkIterPos(string cacheConfig, string name, vec
                 
                 
                 // gen example for Isnk
-                for (int i = 0; i < sinkIterSize; i++) {
+                for (int sinkIdx = 0; sinkIdx < sinkIterSize; sinkIdx++) {
                     for (auto elm : srciterSizeSnkiter) {
                         vector<uint64_t> idx_src = elm.first;
                         map<vector<uint64_t>, vector<uint64_t> > sizes_idxsnk = *(elm.second);
@@ -681,7 +681,8 @@ void genInOutWithFormatSrcIterPosSnkIterPos(string cacheConfig, string name, vec
                                       "_Isrc" + idx_src_str +
                                       "_Psrc_" + to_string(src_pos_it.first) +
                                       "_refsnk_" + to_string(ref_snk_it.first) +
-                                      ".Isnk" + to_string(i);
+                                      ".Isnk" + to_string(sinkIdx) +
+                                      "." + cacheConfig;
                         
                         ofstream ofs_Refsrc_Isrc_Psrc_Refsnk_Isnk;
                         ofs_Refsrc_Isrc_Psrc_Refsnk_Isnk.open(fileName, ofstream::out);
