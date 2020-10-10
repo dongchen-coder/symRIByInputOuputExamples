@@ -6,7 +6,9 @@ def summerizeForBenchWithFormat(bench, inOutFormat):
     
     for f in files:
         name = f
-        if (inOutFormat not in name):
+        #if (inOutFormat not in name):
+        #    continue
+        if (not name.endswith(inOutFormat)):
             continue
         
         f = open("./"+bench+"/"+f, 'r')
