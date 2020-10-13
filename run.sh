@@ -7,7 +7,7 @@ do
 
     rm -r -f ./synResult/${bench}
 	mkdir -p ./synResult/${bench}
-    for dir in "ris_refsrc_Isrc_Psrc" "ris_refsrc_Isrc_Psrc_refsnk" "ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk"
+    for dir in "ris_refsrc_Isrc_Psrc" "ris_refsrc_Isrc_Psrc_refsnk" "ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk" "ris_Ibound"
     do
         for entry in "./inputoutput/"${dir}/${bench}/*
 	    do
