@@ -722,8 +722,152 @@ void genInOutWithFormatSrcIterPosSnkIterPos(string cacheConfig, string name, vec
     }
 }
 
+/* ISSUE: For shape here, we only consider the relation between min/max and Bounds.
+          For each loop, the induction variables of outer loop should also be considered.
+          How the shape relates to scaling the iteration point */
 void genInOutWithFormatSrcShape(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds) {
+    if (sizes.size() <= 0) {
+        return;
+    }
+    int numOfSizes = sizes.size();
+    int numOfCombinations;
+    if (numOfSizes == 0 || numOfSymbolicLoopBounds == 0) {
+        numOfCombinations = 0;
+    } else {
+        numOfCombinations = 1;
+    }
+    for (int i = 0; i < numOfSymbolicLoopBounds; i++) {
+        numOfCombinations *= numOfSizes;
+    }
     
+    // ref_src_id -> souce pos -> ref_snk_id -> sink pos -> src iter vector -> snk iter vector -> sizes vector -> ri;
+    for (auto ref_src_it : all_ri) {
+        
+        // refsnk->sizes->IMin
+        uint64_t IsrcLen = 0;
+        map<uint64_t, map < vector<uint64_t>, vector<uint64_t> >* > srcsnk_IsrcMin;
+        map<uint64_t, map < vector<uint64_t>, vector<uint64_t> >* > srcsnk_IsrcMax;
+        
+        for (auto src_pos_it : (*ref_src_it.second)) {
+            for (auto ref_snk_it : (*src_pos_it.second)) {
+                uint64_t ref_snk = ref_snk_it.first;
+                if (srcsnk_IsrcMin.find(ref_snk) == srcsnk_IsrcMin.end()) {
+                    srcsnk_IsrcMin[ref_snk] = new map< vector<uint64_t>, vector<uint64_t> >;
+                }
+                if (srcsnk_IsrcMax.find(ref_snk) == srcsnk_IsrcMax.end()) {
+                    srcsnk_IsrcMax[ref_snk] = new map< vector<uint64_t>, vector<uint64_t> >;
+                }
+                for (auto snk_pos_it : (*ref_snk_it.second)) {
+                    for (auto idx_src_it : (*snk_pos_it.second)) {
+                        vector<uint64_t> Isrc = idx_src_it.first;
+                        IsrcLen = Isrc.size();
+                        
+                        for (auto idx_snk_it : (*idx_src_it.second) ) {
+                            for (auto cur_sizes_it : (*idx_snk_it.second)) {
+                                vector<uint64_t> cur_sizes = cur_sizes_it.first;
+                                if ((*srcsnk_IsrcMin[ref_snk]).find(cur_sizes) == (*srcsnk_IsrcMin[ref_snk]).end()) {
+                                    (*srcsnk_IsrcMin[ref_snk])[cur_sizes] = Isrc;
+                                    (*srcsnk_IsrcMax[ref_snk])[cur_sizes] = Isrc;
+                                } else {
+                                    for (int i = 0; i < (*srcsnk_IsrcMin[ref_snk])[cur_sizes].size(); i++) {
+                                        (*srcsnk_IsrcMin[ref_snk])[cur_sizes][i] = min(Isrc[i], (*srcsnk_IsrcMin[ref_snk])[cur_sizes][i]);
+                                    }
+                                    for (int i = 0; i < (*srcsnk_IsrcMax[ref_snk])[cur_sizes].size(); i++) {
+                                        (*srcsnk_IsrcMax[ref_snk])[cur_sizes][i] = max(Isrc[i], (*srcsnk_IsrcMax[ref_snk])[cur_sizes][i]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        map< vector<uint64_t>, vector<uint64_t> > src_IsrcMin;
+        map< vector<uint64_t>, vector<uint64_t> > src_IsrcMax;
+        
+        for (auto elm : srcsnk_IsrcMin) {
+            uint64_t ref_snk = elm.first;
+            for (int I_idx = 0; I_idx < IsrcLen; I_idx++) {
+                ofstream ofs_Refsrc_Refsnk_Imin;
+                ofstream ofs_Refsrc_Refsnk_Imax;
+                ofs_Refsrc_Refsnk_Imin.open("./inputoutput/ris_Ibound/" + name + "/" + name +
+                                        "_refsrc_" + to_string(ref_src_it.first) +
+                                        "_refsnk_" + to_string(ref_snk) +
+                                        ".Imin" + to_string(I_idx) + "." + cacheConfig, ofstream::out);
+                ofs_Refsrc_Refsnk_Imax.open("./inputoutput/ris_Ibound/" + name + "/" + name +
+                                        "_refsrc_" + to_string(ref_src_it.first) +
+                                        "_refsnk_" + to_string(ref_snk) +
+                                        ".Imax" + to_string(I_idx) + "." + cacheConfig, ofstream::out);
+                
+                for (int i = 0; i < numOfCombinations; i++) {
+                    vector<uint64_t> symbolic_bounds;
+                    int symbolic_bounds_idx = i;
+                    for (int j = 0; j < numOfSymbolicLoopBounds; j++) {
+                        symbolic_bounds.push_back(sizes[symbolic_bounds_idx % numOfSizes]);
+                        symbolic_bounds_idx /= numOfSizes;
+                    }
+                    
+                    for (int j = 0; j < symbolic_bounds.size(); j++) {
+                        ofs_Refsrc_Refsnk_Imin << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
+                        ofs_Refsrc_Refsnk_Imax << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
+                    }
+                    if ((*srcsnk_IsrcMin[ref_snk]).find(symbolic_bounds) != (*srcsnk_IsrcMin[ref_snk]).end()) {
+                        ofs_Refsrc_Refsnk_Imin << "_out " << (*srcsnk_IsrcMin[ref_snk])[symbolic_bounds][I_idx] << endl;
+                        ofs_Refsrc_Refsnk_Imax << "_out " << (*srcsnk_IsrcMax[ref_snk])[symbolic_bounds][I_idx] << endl;
+                        if (src_IsrcMin.find(symbolic_bounds) != src_IsrcMin.end()) {
+                            for (int j = 0; j < src_IsrcMin[symbolic_bounds].size(); j++) {
+                                src_IsrcMin[symbolic_bounds][j] = min((*srcsnk_IsrcMin[ref_snk])[symbolic_bounds][j], src_IsrcMin[symbolic_bounds][j]);
+                                src_IsrcMax[symbolic_bounds][j] = max((*srcsnk_IsrcMax[ref_snk])[symbolic_bounds][j], src_IsrcMax[symbolic_bounds][j]);
+                            }
+                        } else {
+                            src_IsrcMin[symbolic_bounds] = (*srcsnk_IsrcMin[ref_snk])[symbolic_bounds];
+                            src_IsrcMax[symbolic_bounds] = (*srcsnk_IsrcMax[ref_snk])[symbolic_bounds];
+                        }
+                    } else {
+                        ofs_Refsrc_Refsnk_Imin << "_out " << 0 << endl;
+                        ofs_Refsrc_Refsnk_Imax << "_out " << 0 << endl;
+                    }
+                    
+                }
+                ofs_Refsrc_Refsnk_Imin.close();
+                ofs_Refsrc_Refsnk_Imax.close();
+            }
+        }
+        
+        for (int I_idx = 0; I_idx < IsrcLen; I_idx++) {
+            ofstream ofs_Refsrc_Imin;
+            ofstream ofs_Refsrc_Imax;
+            ofs_Refsrc_Imin.open("./inputoutput/ris_Ibound/" + name + "/" + name +
+                                "_refsrc_" + to_string(ref_src_it.first) +
+                                ".Imin" + to_string(I_idx) + "." + cacheConfig, ofstream::out);
+            ofs_Refsrc_Imax.open("./inputoutput/ris_Ibound/" + name + "/" + name +
+                                "_refsrc_" + to_string(ref_src_it.first) +
+                                ".Imax" + to_string(I_idx) + "." + cacheConfig, ofstream::out);
+        
+            for (int i = 0; i < numOfCombinations; i++) {
+                vector<uint64_t> symbolic_bounds;
+                int symbolic_bounds_idx = i;
+                for (int j = 0; j < numOfSymbolicLoopBounds; j++) {
+                    symbolic_bounds.push_back(sizes[symbolic_bounds_idx % numOfSizes]);
+                    symbolic_bounds_idx /= numOfSizes;
+                }
+                for (int j = 0; j < symbolic_bounds.size(); j++) {
+                    ofs_Refsrc_Imin << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
+                    ofs_Refsrc_Imax << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
+                    if (src_IsrcMin.find(symbolic_bounds) != src_IsrcMin.end()) {
+                        ofs_Refsrc_Imin << "_out " << src_IsrcMin[symbolic_bounds][I_idx] << endl;
+                        ofs_Refsrc_Imax << "_out " << src_IsrcMax[symbolic_bounds][I_idx] << endl;
+                    } else {
+                        ofs_Refsrc_Imin << "_out " << 0 << endl;
+                        ofs_Refsrc_Imax << "_out " << 0 << endl;
+                    }
+                }
+            }
+            ofs_Refsrc_Imin.close();
+            ofs_Refsrc_Imax.close();
+        }
+    }
 }
 
 
