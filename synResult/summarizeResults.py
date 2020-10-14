@@ -44,6 +44,9 @@ def summerizeForBench(bench):
         summerizeForBenchWithFormat(bench, ".Isnk"+str(IsnkCnt)+".ELM.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk")
         summerizeForBenchWithFormat(bench, ".Isnk"+str(IsnkCnt)+".CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk")
         IsnkCnt += 1
+    
+    summerizeForBenchWithFormat(bench, ".ELM.ris_Ibound")
+    summerizeForBenchWithFormat(bench, ".CLS32_DS8.ris_Ibound")
 
     return
 
