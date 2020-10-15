@@ -1,101 +1,179 @@
 import os
 
-def readSymbolicHistSrc(path, benchName):
-    symbolicHistSrc = {}
-    if (os.path.exists(path + benchName + "_src.txt")):
-        f_src = open(path + benchName + "_src.txt", "r")
-        for line in f_src:
-            line = line.replace("\n", "")
-            prog = line[line.find(' Prog:') + 7: len(line)]
-            prog = prog.replace("\n", "")
-            
-            conf = line[0 : line.find(' Prog:')]
-            conf = conf.replace("_src_result.txt", "")
-            conf = conf.replace(benchName + "_refsrc_","")
-            conf = conf.replace("_itersrc_", " ")
-            conf = conf.split(" ")
-            ref_id = int(conf[0])
-            idxs_str = conf[1].split("_")
-            idxs = []
-            for idx in idxs_str:
-                idxs.append(int(idx))
-            idxs = tuple(idxs)
-            
-            if (ref_id not in symbolicHistSrc.keys()):
-                symbolicHistSrc[ref_id] = {}
-            symbolicHistSrc[ref_id][idxs] = prog
-        f_src.close()
+# read RI
+def decodeLineRI(line):
     
-    return symbolicHistSrc
-
-def readSymbolicHistSrcsnk(path, benchName):
-    symbolicHistSrcsnk = {}
-    if (os.path.exists(path + benchName + "_srcsnk.txt")):
-        f_srcsnk = open(path + benchName + "_srcsnk.txt", "r")
-        for line in f_srcsnk:
-            line = line.replace("\n", "")
-            prog = line[line.find(' Prog:') + 7: len(line)]
-            prog = prog.replace("\n", "")
-            
-            conf = line[0 : line.find(' Prog:')]
-            conf = conf.replace("_srcsnk_result.txt", "")
-            conf = conf.replace(benchName + "_refsrc_", "")
-            conf = conf.replace("_refsnk_", " ")
-            conf = conf.replace("_iter_", " ")
-            conf = conf.split(" ")
-            ref_src_id = int(conf[0])
-            ref_snk_id = int(conf[1])
-            
-            if (ref_src_id not in symbolicHistSrcsnk.keys()):
-                symbolicHistSrcsnk[ref_src_id] = {}
-            symbolicHistSrcsnk[ref_src_id][ref_snk_id] = prog
-        f_srcsnk.close()
+    refSrc = ""
+    Isrc = []
+    Psrc = ""
+    refSnk = ""
     
-    return symbolicHistSrcsnk
+    prog = ""
+    
+    line = line.replace("\n", "")
+    prog = line[line.find(' Prog:') + 7: len(line)]
+    
+    info = line[0 : line.find('.')]
+    
+    if ("_refsrc_" in info and "_Isrc_" in info):
+        refSrc = int(info[info.find("_refsrc_") + 8 : info.find("_Isrc_")])
+    if ("_Isrc_" in info and "_Psrc_" in info):
+        IsrcStr = info[info.find("_Isrc_") + 6 : info.find("_Psrc_")]
+        Isrc = IsrcStr.split("_")
+        Isrc = [int(x) for x in Isrc]
+        Isrc = tuple(Isrc)
+    if ("_Psrc_" in info):
+        if ("_refsnk_" in info):
+            Psrc = int(info[info.find("_Psrc_") + 6 : info.find("_refsnk_")])
+        else:
+            Psrc = int(info[info.find("_Psrc_") + 6 : ])
+    if ("_refsnk_" in info):
+        refSnk = int(info[info.find("_refsnk_") + 8 : ])
+    
+    return [refSrc, Isrc, Psrc, refSnk, prog]
 
-def readSymbolicIBoundsSrc(path, benchName):
-    symbolicIBoundsSrc = {}
-    if (os.path.exists(path + benchName + "_IBound_result.txt")):
-        f_IBound = open(path + benchName + "_IBound_result.txt", "r")
-        for line in f_IBound:
-            line = line.replace("\n", "")
-            prog = line[line.find(' Prog:') + 7: len(line)]
+def readSymbolicHist(benchName, surfix):
+    symbolicHist = {}
+    path = "../../synResult/all/"
+    if (os.path.exists(path + benchName + surfix)):
+        f = open(path + benchName + surfix, "r")
+        for line in f:
+            if ("Prog" not in line):
+                continue
             
-            conf = line[0 : line.find(' Prog:')]
-            conf = conf.replace("_IBound", "")
-            conf = conf.replace("refsrc_", "")
-            conf = conf.split("_")
-            ref_src_id = int(conf[0])
-            Isrc = conf[1].replace("I", "Isrc")
-
-            if (ref_src_id not in symbolicIBoundsSrc.keys()):
-                symbolicIBoundsSrc[ref_src_id] = {}
+            [refSrc, Isrc, Psrc, refSnk, prog] = decodeLineRI(line)
             
-            if (Isrc not in symbolicIBoundsSrc[ref_src_id].keys()):
-                if ("min" in line):
-                    symbolicIBoundsSrc[ref_src_id][Isrc] = [prog, ""]
-                if ("max" in line):
-                    symbolicIBoundsSrc[ref_src_id][Isrc] = ["", prog]
+            if (refSrc not in symbolicHist.keys()):
+                symbolicHist[refSrc] = {}
+            if (refSnk == ""):
+                symbolicHist[refSrc][Isrc] = prog
             else:
-                if ("min" in line):
-                    symbolicIBoundsSrc[ref_src_id][Isrc][0] = prog
-                if ("max" in line):
-                    symbolicIBoundsSrc[ref_src_id][Isrc][1] = prog
+                if (refSnk not in symbolicHist[refSrc].keys()):
+                    symbolicHist[refSrc][refSnk] = {}
+                symbolicHist[refSrc][refSnk][Isrc] = prog
+        f.close()
+    return symbolicHist
 
-        f_IBound.close()
+# read Ibound
+def decodeLineIbound(line):
+    refSrc = ""
+    refSnk = ""
+    I = ""
+    prog = ""
 
-    print symbolicIBoundsSrc
+    line = line.replace("\n", "")
 
-    return symbolicIBoundsSrc
+    info = line.split('.')[0]
+    I = line.split('.')[1]
 
-def readSymbolicIBoundsSrcsnk(path, benchName):
-    symbolicIBoundsSrcsnk = {}
-    return symbolicIBoundsSrcsnk
+    if ("refsnk" in line):
+        refSnk = int(info[info.find("_refsnk_") + 8 : ])
+        refSrc = int(info[info.find("_refsrc_") + 8 : info.find("_refsnk_")])
+    else:
+        refSrc = int(info[info.find("_refsrc_") + 8 : ])
 
-def readTraceFile(name, symBoundValueForPred):
+    prog = line[line.find("Prog:") + 6 : ]
+    return [refSrc, refSnk, I, prog]
+
+def readSymbolicIBounds(benchName, mode, surfix):
+    symbolicIBound = {}
+    path = "../../synResult/all/"
+    
+    if (os.path.exists(path + benchName + surfix)):
+        f = open(path + benchName + surfix, "r")
+        for line in f:
+            if ("Prog" not in line):
+                continue
+            if (mode == "src" and "_refsnk_" in line):
+                continue
+            if (mode == "srcsnk" and "_refsnk_" not in line):
+                continue
+            
+            [refSrc, refSnk, I, prog] = decodeLineIbound(line)
+            
+            if (mode == "src"):
+                if (refSrc not in symbolicIBound.keys()):
+                    symbolicIBound[refSrc] = {}
+                if ("min" in I):
+                    I_idx = int(I.replace("Imin",""))
+                    if (I_idx not in symbolicIBound[refSrc].keys()):
+                        symbolicIBound[refSrc][I_idx] = [prog, "X"]
+                    else:
+                        symbolicIBound[refSrc][I_idx][0] = prog
+                if ("max" in I):
+                    I_idx = int(I.replace("Imax",""))
+                    if (I not in symbolicIBound[refSrc].keys()):
+                        symbolicIBound[refSrc][I_idx] = ["X", prog]
+                    else:
+                        symbolicIBound[refSrc][I_idx][1] = prog
+            elif (mode == "srcsnk"):
+                if (refSrc not in symbolicIBound.keys()):
+                    symbolicIBound[refSrc] = {}
+                if (refSnk not in symbolicIBound[refSrc].keys()):
+                    symbolicIBound[refSrc][refSnk] = {}
+                if ("min" in I):
+                    I_idx = int(I.replace("Imin",""))
+                    if (I_idx not in symbolicIBound[refSrc][refSnk].keys()):
+                        symbolicIBound[refSrc][refSnk][I_idx] = [prog, "X"]
+                    else:
+                        symbolicIBound[refSrc][refSnk][I_idx][0] = prog
+                if ("max" in I):
+                    I_idx = int(I.replace("Imax",""))
+                    if (I_idx not in symbolicIBound[refSrc][refSnk].keys()):
+                        symbolicIBound[refSrc][refSnk][I_idx] = ["X", prog]
+                    else:
+                        symbolicIBound[refSrc][refSnk][I_idx][1] = prog
+                
+    return symbolicIBound
+
+# read Isnk
+def decodeLineIsnk(line):
+    refSrc = ""
+    refSnk = ""
+    Isrc = []
+    prog = ""
+    
+    line = line.replace("\n","")
+    info = line.split(".")[0]
+    
+    refSrc = int(info[info.find("_refsrc_") + 8 : info.find("_Isrc_")])
+    refSnk = int(info[info.find("_refsnk_") + 8 : ])
+    Isrc = info[info.find("_Isrc_") + 6 : info.find("_Psrc_")]
+    Isrc = Isrc.split("_")
+    Isrc = [int(x) for x in Isrc]
+    Isrc = tuple(Isrc)
+    prog = line[line.find("Prog:") + 6 : ]
+    
+    return [refSrc, refSnk, Isrc, prog]
+
+def readSymbolicIsnk(benchName, surfix):
+    symbolicIsnk = {}
+    path = "../../synResult/all/"
+    IsnkIdx = 0
+    while(os.path.exists(path + benchName + ".Isnk" + str(IsnkIdx) + "." + surfix)):
+        f = open(path + benchName + ".Isnk" + str(IsnkIdx) + "." + surfix, "r")
+        for line in f:
+            if ("Prog" not in line):
+                continue
+            [refSrc, refSnk, Isrc, prog] = decodeLineIsnk(line)
+            
+            if (refSrc not in symbolicIsnk):
+                symbolicIsnk[refSrc] = {}
+            if (refSnk not in symbolicIsnk[refSrc].keys()):
+                symbolicIsnk[refSrc][refSnk] = {}
+            if (IsnkIdx == 0):
+                symbolicIsnk[refSrc][refSnk][Isrc] = [prog]
+            else:
+                symbolicIsnk[refSrc][refSnk][Isrc].append(prog)
+            
+        IsnkIdx += 1
+    return symbolicIsnk
+
+# read trace
+def readTraceFile(name, symBoundValueForPred, cacheConfig):
     histogram = {}
 
-    fName = "../histoToMatch/" + name + "/" + name;
+    fName = "../histoToMatch_" + cacheConfig + "/" + name + "/" + name;
     for bound in symBoundValueForPred:
         fName += "_" + str(bound)
     fName += ".txt"
