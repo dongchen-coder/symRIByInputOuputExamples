@@ -702,7 +702,7 @@ void genInOutWithFormatSrcIterPosSnkIterPos(string cacheConfig, string name, vec
                                 for (int j = 0; j < symbolic_bounds.size(); j++) {
                                     ofs_Refsrc_Isrc_Psrc_Refsnk_Isnk << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
                                 }
-                                ofs_Refsrc_Isrc_Psrc_Refsnk_Isnk << "_out " << sizes_idxsnk[symbolic_bounds][i] << endl;
+                                ofs_Refsrc_Isrc_Psrc_Refsnk_Isnk << "_out " << sizes_idxsnk[symbolic_bounds][sinkIdx] << endl;
                             } else {
                                 for (int j = 0; j < idx_src.size(); j++) {
                                     ofs_Refsrc_Isrc_Psrc_Refsnk_Isnk << "Isrc" + to_string(j) << " " << to_string(idx_src[j]) << " ";
