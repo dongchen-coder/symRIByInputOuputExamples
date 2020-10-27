@@ -54,6 +54,7 @@ for mode in ["ELM", "CLS32_DS8"]:
                 if (mode in f and "Isnk" in f):
                     cntSnk += 1
             print bench, cntRI, cntSnk,
+    print ""
 
     print "************************************"
-    print ""
+   
