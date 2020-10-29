@@ -10,6 +10,8 @@
 #include <iomanip>
 using namespace std;
 
+#define WITHPOS
+
 /* Split helper function */
 size_t split(const std::string &txt, std::vector<std::string> &strs, char ch);
 
@@ -17,6 +19,9 @@ size_t split(const std::string &txt, std::vector<std::string> &strs, char ch);
 void filterSrcIter();
 vector<vector<uint64_t> > samplingBorderInner(vector< vector<uint64_t> > idxs, double samplingRate);
 vector<vector<uint64_t> > samplingRandom(vector< vector<uint64_t> > idxs, double samplingRate);
+
+/* gen train sizes for bounds */
+vector<vector<uint64_t> > genTrainSizes(vector<uint64_t> sizes, int numOfSymbolicLoopBounds);
 
 /* Read RI from files */
 void processSingleRiFile(string cacheConfig, string name, string fileSuffix, vector<uint64_t> symbolic_bounds);
