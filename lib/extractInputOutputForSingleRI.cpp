@@ -55,6 +55,11 @@ vector<vector<uint64_t> > genTrainSizes(vector<uint64_t> sizes, int numOfSymboli
 }
 
 vector<vector<uint64_t> > samplingRandom(vector< vector<uint64_t> > idxs, double samplingRate) {
+
+#ifdef DEBUG
+    cout << "Start to sample with rate," << samplingRate;
+#endif
+
     if (samplingRate == 1.0) {
         return idxs;
     }
@@ -65,8 +70,12 @@ vector<vector<uint64_t> > samplingRandom(vector< vector<uint64_t> > idxs, double
     int numOfLoops = idxs.front().size();
     uint64_t numOfSamples = idxs.size() * samplingRate;
     for (int i = 1; i < numOfLoops; i++) {
-        numOfSamples = numOfSamples * samplingRate;
+        numOfSamples *= samplingRate;
     }
+    
+#ifdef DEBUG
+    cout << " sample num " << numOfSamples << endl;
+#endif
     
     set<int> samples;
     for (int i = 0; i < numOfSamples; i++) {
@@ -84,6 +93,10 @@ vector<vector<uint64_t> > samplingRandom(vector< vector<uint64_t> > idxs, double
     for (auto i : samples) {
         sampled_idxs.push_back(idxs[i]);
     }
+    
+#ifdef DEBUG
+    cout << "Finished sampling" << endl;
+#endif
     
     return sampled_idxs;
 }
@@ -210,12 +223,13 @@ void readAllRi(string cacheConfig, string name, vector<uint64_t> sizes, int numO
 
 void dumpPerRefRi(vector<uint64_t> sizes) {
     // ref_src_id -> ref_snk_id -> src iter vector -> snk iter vector -> sizes vector -> ri;
+    /*
     for (auto ref_src_it : all_ri) {
         for (auto ref_snk_it : (*ref_src_it.second)) {
             for (auto idx_src_it : (*ref_snk_it.second)) {
                 for (auto idx_snk_it : (*idx_src_it.second)) {
                     for (auto cur_sizes_ri : (*idx_snk_it.second)) {
-                        /*
+                        
                         {
                             cout << "RefSrc " << ref_src_it.first << " RefSnk " << ref_snk_it.first << " ";
                             cout << "IdxSrc ";
@@ -227,13 +241,13 @@ void dumpPerRefRi(vector<uint64_t> sizes) {
                             cout << "RI ";
                             cout << cur_sizes_ri.second << endl;
                          }
-                         */
+                         
                     }
                 }
             }
         }
     }
-    
+    */
     return;
 }
 
