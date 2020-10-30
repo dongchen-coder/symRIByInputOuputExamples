@@ -9,7 +9,7 @@ symBoundValueTrain = [4, 8, 16, 32]
 samplingRate = 0.2
 
 # refSrc -> refSnk -> srcIdx
-srcSnkIdx = {}
+# srcSnkIdx = {}
 
 srcIdx = {}
 
@@ -39,13 +39,16 @@ for mode in ["raw_ris_per_size_ELM", "raw_ris_per_size_CLS32_DS8"]:
                         for idx in srcInfo[1 : ]:
                             idxSrc += " " + str(idx)
                         #print refSrc, refSnk, idxSrc
-                        if (refSrc not in srcSnkIdx):
+                        '''
+                        if (refSrc not in srcSnkIdx.keys()):
                             srcSnkIdx[refSrc] = {}
-                            srcIdx[refSrc] = []
-                        if (refSnk not in srcSnkIdx[refSrc]):
+                        if (refSnk not in srcSnkIdx[refSrc].keys()):
                             srcSnkIdx[refSrc][refSnk] = []
                         if (idxSrc not in srcSnkIdx[refSrc][refSnk]):
                             srcSnkIdx[refSrc][refSnk].append(idxSrc)
+                        '''
+                        if (refSrc not in srcIdx.keys()):
+                            srcIdx[refSrc] = []
                         if (idxSrc not in srcIdx[refSrc]):
                             srcIdx[refSrc].append(idxSrc)
                     lines.close()
@@ -56,12 +59,12 @@ for mode in ["raw_ris_per_size_ELM", "raw_ris_per_size_CLS32_DS8"]:
             
             reservedLines = []
             for refSrc in srcIdx.keys():
-                print len(srcIdx[refSrc]), rate
+                #print len(srcIdx[refSrc]), rate
                 sampleNum = int(len(srcIdx[refSrc]) * rate)
                 shuffle(srcIdx[refSrc])
                 for x in srcIdx[refSrc][0 : sampleNum]:
                     reservedLines.append(refSrc + x)
-            print reservedLines
+            #print reservedLines
         
             for conf in confs:
                 confStr = ""
