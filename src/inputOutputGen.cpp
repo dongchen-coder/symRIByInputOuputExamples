@@ -136,7 +136,7 @@ int main(int argc, char* argv[]) {
     /* read all ri into a map */
     readAllRi(cacheConfig, name, sizes, numOfSymbolicLoopBounds);
     
-    dumpPerRefRi(sizes);
+    //dumpPerRefRi(sizes);
     
     /* construct inputoutput examples for (source reference, source iteration, source position format) */
     if (srcIterPosFlag) {
