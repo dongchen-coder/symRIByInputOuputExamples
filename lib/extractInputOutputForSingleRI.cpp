@@ -187,6 +187,10 @@ void processSingleRiFile(string cacheConfig, string name, string fileSuffix, vec
 
 void readAllRi(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds) {
     
+#ifdef DEBUG
+    cout << "Start reading files" << endl;
+#endif
+    
     vector<vector<uint64_t> > trainSizes = genTrainSizes(sizes, numOfSymbolicLoopBounds);
     
     for (auto trainSize : trainSizes) {
@@ -197,7 +201,10 @@ void readAllRi(string cacheConfig, string name, vector<uint64_t> sizes, int numO
         }
         processSingleRiFile(cacheConfig, name, symbolic_bounds_str + ".txt", trainSize);
     }
-
+#ifdef DEBUG
+    cout << "Finished reading files" << endl;
+#endif
+    
     return;
 }
 
@@ -232,10 +239,18 @@ void dumpPerRefRi(vector<uint64_t> sizes) {
 
 void genInOutWithFormatSrcIterPos(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate) {
     
+#ifdef DEBUG
+    cout << "Start to generate input-output examples for SrcOnly" << endl;
+#endif
+    
     vector<vector<uint64_t> > trainSizes = genTrainSizes(sizes, numOfSymbolicLoopBounds);
     
     // ref_src_id -> souce pos -> ref_snk_id -> sink pos -> src iter vector -> snk iter vector -> sizes vector -> ri;
     for (auto ref_src_it : all_ri) {
+#ifdef DEBUG
+        cout << "RefSrc " << ref_src_it.first << endl;
+#endif
+        
 #ifdef WITHPOS
         for (auto src_pos_it : (*ref_src_it.second)) {
 #endif
@@ -354,6 +369,11 @@ void genInOutWithFormatSrcIterPos(string cacheConfig, string name, vector<uint64
         }
 #endif
     }
+    
+#ifdef DEBUG
+    cout << "Finished to generate input-output examples" << endl;
+#endif
+    
 	return;
 }
 
@@ -361,10 +381,19 @@ void genInOutWithFormatSrcIterPos(string cacheConfig, string name, vector<uint64
 
 void genInOutWithFormatSrcIterPosSnk(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate) {
 
+#ifdef DEBUG
+    cout << "Start to generate input-output examples for SrcEnhanced" << endl;
+#endif
+    
     vector<vector<uint64_t> > trainSizes = genTrainSizes(sizes, numOfSymbolicLoopBounds);
     
     // ref_src_id -> souce pos -> ref_snk_id -> sink pos -> src iter vector -> snk iter vector -> sizes vector -> ri;
     for (auto ref_src_it : all_ri) {
+
+#ifdef DEBUG
+        cout << "RefSrc " << ref_src_it.first << endl;
+#endif
+        
 #ifdef WITHPOS
         for (auto src_pos_it : (*ref_src_it.second)) {
             for (auto ref_snk_it : (*src_pos_it.second)) {
@@ -470,14 +499,27 @@ void genInOutWithFormatSrcIterPosSnk(string cacheConfig, string name, vector<uin
         }
 #endif
     }
+
+#ifdef DEBUG
+    cout << "Finished to generate input-output examples" << endl;
+#endif
 }
 
 void genInOutWithFormatSrcIterPosSnkIterPos(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate) {
+
+#ifdef DEBUG
+    cout << "Start to generate input-output examples for SrcSnk" << endl;
+#endif
 
     vector<vector<uint64_t> > trainSizes = genTrainSizes(sizes, numOfSymbolicLoopBounds);
     
     // ref_src_id -> souce pos -> ref_snk_id -> sink pos -> src iter vector -> snk iter vector -> sizes vector -> ri;
     for (auto ref_src_it : all_ri) {
+        
+#ifdef DEBUG
+        cout << "RefSrc " << ref_src_it.first << endl;
+#endif
+        
 #ifdef WITHPOS
         for (auto src_pos_it : (*ref_src_it.second)) {
             for (auto ref_snk_it : (*src_pos_it.second)) {
@@ -653,6 +695,10 @@ void genInOutWithFormatSrcIterPosSnkIterPos(string cacheConfig, string name, vec
         }
 #endif
     }
+            
+#ifdef DEBUG
+    cout << "Finished to generate input-output examples" << endl;
+#endif
 }
 
 /* ISSUE: For shape here, we only consider the relation between min/max and Bounds.
@@ -660,10 +706,18 @@ void genInOutWithFormatSrcIterPosSnkIterPos(string cacheConfig, string name, vec
           How the shape relates to scaling the iteration point */
 void genInOutWithFormatSrcShape(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds) {
 
+#ifdef DEBUG
+    cout << "Start to generate input-output examples for Shape" << endl;
+#endif
+    
     vector<vector<uint64_t> > trainSizes = genTrainSizes(sizes, numOfSymbolicLoopBounds);
     
     // ref_src_id -> souce pos -> ref_snk_id -> sink pos -> src iter vector -> snk iter vector -> sizes vector -> ri;
     for (auto ref_src_it : all_ri) {
+        
+#ifdef DEBUG
+        cout << "RefSrc " << ref_src_it.first << endl;
+#endif
         
         // refsnk->sizes->IMin
         uint64_t IsrcLen = 0;
@@ -787,6 +841,10 @@ void genInOutWithFormatSrcShape(string cacheConfig, string name, vector<uint64_t
             ofs_Refsrc_Imax.close();
         }
     }
+            
+#ifdef DEBUG
+    cout << "Finished to generate input-output examples" << endl;
+#endif
 }
 
 
