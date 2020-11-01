@@ -53,6 +53,18 @@ int BaseType::getNumOfSymbolsInProg(string symbolName) {
     return 0;
 }
 
+int BaseType::getExponentOfSymbolInProg(string symbolName) {
+    if (dynamic_cast<IntType*>(this)) {
+        IntType* intType = dynamic_cast<IntType*>(this);
+        return intType->getExponentOfSymbolInProg(symbolName);
+    }
+    else if (dynamic_cast<BoolType*>(this)) {
+        BoolType* boolType = dynamic_cast<BoolType*>(this);
+        return boolType->getExponentOfSymbolInProg(symbolName);
+    }
+    return 0;
+}
+
 /*
  Int and Bool type
  */
@@ -195,7 +207,7 @@ int IntType::getNumOfOpsInProg(string opName) {
 }
 
 int IntType::getNumOfSymbolsInProg(string symbolName) {
-    int numOfSymbolsInProg;
+    int numOfSymbolsInProg = 0;
     if (dynamic_cast<Num*>(this) != 0) {
         Num* num = dynamic_cast<Num*>(this);
         numOfSymbolsInProg = num->getNumOfSymbolsInProg(symbolName);
@@ -238,6 +250,52 @@ int IntType::getNumOfSymbolsInProg(string symbolName) {
     }
     return numOfSymbolsInProg;
 }
+
+int IntType::getExponentOfSymbolInProg(string symbolName) {
+    int numOfExponent = 0;
+    if (dynamic_cast<Num*>(this) != 0) {
+        Num* num = dynamic_cast<Num*>(this);
+        numOfExponent = num->getExponentOfSymbolInProg(symbolName);
+    }
+    else if (dynamic_cast<Var*>(this) != 0) {
+        Var* var = dynamic_cast<Var*>(this);
+        numOfExponent = var->getExponentOfSymbolInProg(symbolName);
+    }
+    else if (dynamic_cast<Plus*>(this) != 0) {
+        Plus* plus = dynamic_cast<Plus*>(this);
+        numOfExponent = plus->getExponentOfSymbolInProg(symbolName);
+    }
+    else if (dynamic_cast<Minus*>(this) != 0) {
+        Minus* minus = dynamic_cast<Minus*>(this);
+        numOfExponent = minus->getExponentOfSymbolInProg(symbolName);
+    }
+    else if (dynamic_cast<Times*>(this) != 0) {
+        Times* times = dynamic_cast<Times*>(this);
+        numOfExponent = times->getExponentOfSymbolInProg(symbolName);
+    }
+    else if (dynamic_cast<Div*>(this) != 0) {
+        Div* div = dynamic_cast<Div*>(this);
+        numOfExponent = div->getExponentOfSymbolInProg(symbolName);
+    }
+    else if (dynamic_cast<Min*>(this) != 0) {
+        Min* mn = dynamic_cast<Min*>(this);
+        numOfExponent = mn->getExponentOfSymbolInProg(symbolName);
+    }
+    else if (dynamic_cast<Leftshift*>(this) != 0) {
+        Leftshift* leftshift = dynamic_cast<Leftshift*>(this);
+        numOfExponent = leftshift->getExponentOfSymbolInProg(symbolName);
+    }
+    else if (dynamic_cast<Rightshift*>(this) != 0) {
+        Rightshift* rightshift = dynamic_cast<Rightshift*>(this);
+        numOfExponent = rightshift->getExponentOfSymbolInProg(symbolName);
+    }
+    else if (dynamic_cast<Ite*>(this) != 0) {
+        Ite* ite = dynamic_cast<Ite*>(this);
+        numOfExponent = ite->getExponentOfSymbolInProg(symbolName);
+    }
+    return numOfExponent;
+}
+
 
 BoolType::BoolType() {};
 
@@ -325,6 +383,27 @@ int BoolType::getNumOfSymbolsInProg(string symbolName) {
     return numOfSymbolsInProg;
 }
 
+int BoolType::getExponentOfSymbolInProg(string symbolName) {
+    int numOfExponent;
+    if (dynamic_cast<F*>(this) != 0) {
+        F* f = dynamic_cast<F*>(this);
+        numOfExponent = f->getExponentOfSymbolInProg(symbolName);
+    }
+    else if (dynamic_cast<Not*>(this) != 0) {
+        Not* n = dynamic_cast<Not*>(this);
+        numOfExponent = n->getExponentOfSymbolInProg(symbolName);
+    }
+    else if (dynamic_cast<And*>(this) != 0) {
+        And* a = dynamic_cast<And*>(this);
+        numOfExponent = a->getExponentOfSymbolInProg(symbolName);
+    }
+    else if (dynamic_cast<Lt*>(this) != 0) {
+        Lt* lt = dynamic_cast<Lt*>(this);
+        numOfExponent = lt->getExponentOfSymbolInProg(symbolName);
+    }
+    return numOfExponent;
+}
+
 /******************************************
 Constructs: False
 */
@@ -350,6 +429,10 @@ int F::getNumOfSymbolsInProg(string symbolName) {
     if (symbolName == "false" || symbolName == "ALL") {
         return 1;
     }
+    return 0;
+}
+
+int F::getExponentOfSymbolInProg(string symbolName) {
     return 0;
 }
 
@@ -386,6 +469,14 @@ int Var::getNumOfSymbolsInProg(string symbolName) {
     return 0;
 }
 
+int Var::getExponentOfSymbolInProg(string symbolName) {
+    if (symbolName == _name ||
+        (symbolName.size() < _name.size() && symbolName == _name.substr(0, symbolName.size())) ) {
+        return 1;
+    }
+    return 0;
+}
+
 /******************************************
 Constructs: Num
 */
@@ -413,6 +504,10 @@ int Num::getNumOfSymbolsInProg(string symbolName) {
     if (symbolName == to_string(_num) || symbolName == "ALL" || symbolName == "NUM") {
         return 1;
     }
+    return 0;
+}
+
+int Num::getExponentOfSymbolInProg(string symbolName) {
     return 0;
 }
 
@@ -678,6 +773,10 @@ int Plus::getNumOfSymbolsInProg(string symbolName) {
     return _left->getNumOfSymbolsInProg(symbolName) + _right->getNumOfSymbolsInProg(symbolName);
 }
 
+int Plus::getExponentOfSymbolInProg(string symbolName) {
+    return max(_left->getExponentOfSymbolInProg(symbolName), _right->getExponentOfSymbolInProg(symbolName));
+}
+
 /******************************************
 Constructs: Minus
 */
@@ -935,6 +1034,10 @@ int Minus::getNumOfOpsInProg(string opName) {
 
 int Minus::getNumOfSymbolsInProg(string symbolName) {
     return _left->getNumOfSymbolsInProg(symbolName) + _right->getNumOfSymbolsInProg(symbolName);
+}
+
+int Minus::getExponentOfSymbolInProg(string symbolName) {
+    return max(_left->getExponentOfSymbolInProg(symbolName), _right->getExponentOfSymbolInProg(symbolName));
 }
 
 /******************************************
@@ -1198,6 +1301,10 @@ int Times::getNumOfSymbolsInProg(string symbolName) {
     return _left->getNumOfSymbolsInProg(symbolName) + _right->getNumOfSymbolsInProg(symbolName);
 }
 
+int Times::getExponentOfSymbolInProg(string symbolName) {
+    return _left->getExponentOfSymbolInProg(symbolName) + _right->getExponentOfSymbolInProg(symbolName);
+}
+
 /******************************************
 Constructs: Min
 */
@@ -1453,6 +1560,10 @@ int Min::getNumOfOpsInProg(string opName) {
 }
 int Min::getNumOfSymbolsInProg(string symbolName) {
     return _left->getNumOfSymbolsInProg(symbolName) + _right->getNumOfSymbolsInProg(symbolName);
+}
+
+int Min::getExponentOfSymbolInProg(string symbolName) {
+    return max(_left->getExponentOfSymbolInProg(symbolName), _right->getExponentOfSymbolInProg(symbolName));
 }
 
 /******************************************
@@ -1723,6 +1834,10 @@ int Div::getNumOfSymbolsInProg(string symbolName) {
     return _dividend->getNumOfSymbolsInProg(symbolName) + _divisor->getNumOfSymbolsInProg(symbolName);
 }
 
+int Div::getExponentOfSymbolInProg(string symbolName) {
+    return _dividend->getExponentOfSymbolInProg(symbolName) - _divisor->getExponentOfSymbolInProg(symbolName);
+}
+
 /******************************************
 Constructs: Leftshift
 */
@@ -1982,6 +2097,10 @@ int Leftshift::getNumOfOpsInProg(string opName) {
 
 int Leftshift::getNumOfSymbolsInProg(string symbolName) {
     return _value->getNumOfSymbolsInProg(symbolName) + _offset->getNumOfSymbolsInProg(symbolName);
+}
+
+int Leftshift::getExponentOfSymbolInProg(string symbolName) {
+    return max(_value->getExponentOfSymbolInProg(symbolName), _offset->getExponentOfSymbolInProg(symbolName));
 }
 
 /******************************************
@@ -2244,6 +2363,10 @@ int Rightshift::getNumOfSymbolsInProg(string symbolName) {
     return _value->getNumOfSymbolsInProg(symbolName) + _offset->getNumOfSymbolsInProg(symbolName);
 }
 
+int Rightshift::getExponentOfSymbolInProg(string symbolName) {
+    return max(_value->getExponentOfSymbolInProg(symbolName), _offset->getExponentOfSymbolInProg(symbolName));
+}
+
 /******************************************
 Constructs: Lt
 */
@@ -2503,6 +2626,10 @@ int Lt::getNumOfSymbolsInProg(string symbolName) {
     return _left->getNumOfSymbolsInProg(symbolName) + _right->getNumOfSymbolsInProg(symbolName);
 }
 
+int Lt::getExponentOfSymbolInProg(string symbolName) {
+    return max(_left->getExponentOfSymbolInProg(symbolName), _right->getExponentOfSymbolInProg(symbolName));
+}
+
 /******************************************
 Constructs: And
 */
@@ -2642,6 +2769,10 @@ int And::getNumOfSymbolsInProg(string symbolName) {
     return _left->getNumOfSymbolsInProg(symbolName) + _right->getNumOfSymbolsInProg(symbolName);
 }
 
+int And::getExponentOfSymbolInProg(string symbolName) {
+    return max(_left->getExponentOfSymbolInProg(symbolName), _right->getExponentOfSymbolInProg(symbolName));
+}
+
 /******************************************
 Constructs: Not
 */
@@ -2723,6 +2854,10 @@ int Not::getNumOfOpsInProg(string opName) {
 
 int Not::getNumOfSymbolsInProg(string symbolName) {
     return _left->getNumOfSymbolsInProg(symbolName);
+}
+
+int Not::getExponentOfSymbolInProg(string symbolName) {
+    return _left->getExponentOfSymbolInProg(symbolName);
 }
 
 /******************************************
@@ -3041,4 +3176,8 @@ int Ite::getNumOfOpsInProg(string opName) {
 
 int Ite::getNumOfSymbolsInProg(string symbolName) {
     return _cond->getNumOfSymbolsInProg(symbolName) + _tcase->getNumOfSymbolsInProg(symbolName) + _fcase->getNumOfSymbolsInProg(symbolName);
+}
+
+int Ite::getExponentOfSymbolInProg(string symbolName) {
+    return max(_cond->getExponentOfSymbolInProg(symbolName), max(_tcase->getExponentOfSymbolInProg(symbolName), _fcase->getExponentOfSymbolInProg(symbolName)));
 }
