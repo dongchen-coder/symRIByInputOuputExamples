@@ -19,12 +19,42 @@ for bench in bench_1para:
         cmd = BENCH_BIN_DIR + "/" + bench + "_CLS32_DS8 " + str(size1) + " > " + RIS_CLS_RAW_DIR + "/" + bench + "/" + bench + "_" + str(size1) + ".txt"
         os.system(cmd)
 
-for bench in bench_1para:
+for bench in bench_2para:
     for size1 in train_sizes:
         for size2 in train_sizes:
             cmd = BENCH_BIN_DIR + "/" + bench + "_ELM " + str(size1) + " " + str(size2) " > " + RIS_ELM_RAW_DIR + "/" + bench + "/" + bench + "_" + str(size1) + "_" + str(size2) + ".txt"
             os.system(cmd)
             cmd = BENCH_BIN_DIR + "/" + bench + "_CLS32_DS8 " + str(size1) + " " + str(size2) " > " + RIS_CLS_RAW_DIR + "/" + bench + "/" + bench + "_" + str(size1) + "_" + str(size2) + ".txt"
             os.system(cmd)
+
+for bench in bench_3para:
+    for size1 in train_sizes:
+        for size2 in train_sizes:
+            for size3 in train_sizes:
+                cmd = BENCH_BIN_DIR + "/" + bench + "_ELM " + str(size1) + " " + str(size2) + " " + str(size3)  " > " + RIS_ELM_RAW_DIR + "/" + bench + "/" + bench + "_" + str(size1) + "_" + str(size2) + "_" + str(size3) + ".txt"
+                os.system(cmd)
+                cmd = BENCH_BIN_DIR + "/" + bench + "_CLS32_DS8 " + str(size1) + " " + str(size2) + " " + str(size3) " > " + RIS_CLS_RAW_DIR + "/" + bench + "/" + bench + "_" + str(size1) + "_" + str(size2) + "_" + str(size3) + ".txt"
+                os.system(cmd)
+
+for bench in bench_4para:
+    for size1 in train_sizes:
+        for size2 in train_sizes:
+            for size3 in train_sizes:
+                for size4 in train_sizes:
+                    cmd = BENCH_BIN_DIR + "/" + bench + "_ELM " + str(size1) + " " + str(size2) + " " + str(size3) + " " + str(size4)  " > " + RIS_ELM_RAW_DIR + "/" + bench + "/" + bench + "_" + str(size1) + "_" + str(size2) + "_" + str(size3) + "_" + str(size4) + ".txt"
+                    os.system(cmd)
+                    cmd = BENCH_BIN_DIR + "/" + bench + "_CLS32_DS8 " + str(size1) + " " + str(size2) + " " + str(size3) + " " + str(size4) " > " + RIS_CLS_RAW_DIR + "/" + bench + "/" + bench + "_" + str(size1) + "_" + str(size2) + "_" + str(size3) + "_" + str(size4) + ".txt"
+                    os.system(cmd)
+
+for bench in bench_5para:
+    for size1 in train_sizes:
+        for size2 in train_sizes:
+            for size3 in train_sizes:
+                for size4 in train_sizes:
+                    for size5 in train_sizes:
+                        cmd = BENCH_BIN_DIR + "/" + bench + "_ELM " + str(size1) + " " + str(size2) + " " + str(size3) + " " + str(size4) + " " + str(size5) " > " + RIS_ELM_RAW_DIR + "/" + bench + "/" + bench + "_" + str(size1) + "_" + str(size2) + "_" + str(size3) + "_" + str(size4) + "_" + str(size5) + ".txt"
+                        os.system(cmd)
+                        cmd = BENCH_BIN_DIR + "/" + bench + "_CLS32_DS8 " + str(size1) + " " + str(size2) + " " + str(size3) + " " + str(size4) + " " + str(size5)  " > " + RIS_CLS_RAW_DIR + "/" + bench + "/" + bench + "_" + str(size1) + "_" + str(size2) + "_" + str(size3) + "_" + str(size4) + "_" + str(size5) + ".txt"
+                        os.system(cmd)
 
 
