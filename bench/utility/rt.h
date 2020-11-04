@@ -2,12 +2,13 @@
 #include<map>
 #include<set>
 #include<vector>
+#include"rt_conf.h"
 using namespace std;
 
-#define CLS 64
-#define DS 8
+//#define CLS 32
+//#define DS 8
 //#define TRACE
-#define PROFILE
+//#define PROFILE
 
 uint64_t refT = 0;
 
