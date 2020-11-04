@@ -13,6 +13,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    int getExponentOfSymbolInProg(string symbolName);
     virtual ~BaseType() {};
 };
 
@@ -23,6 +24,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    int getExponentOfSymbolInProg(string symbolName);
     virtual ~IntType() {};
 };
 
@@ -33,6 +35,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    int getExponentOfSymbolInProg(string symbolName);
     virtual ~BoolType() {};
 };
 
@@ -44,6 +47,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    int getExponentOfSymbolInProg(string symbolName);
 };
 
 class Var : public IntType {
@@ -56,6 +60,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    int getExponentOfSymbolInProg(string symbolName);
 };
 
 class Num : public IntType {
@@ -68,6 +73,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    int getExponentOfSymbolInProg(string symbolName);
 };
 
 class Plus : public IntType {
@@ -81,6 +87,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    int getExponentOfSymbolInProg(string symbolName);
 };
 
 class Minus : public IntType {
@@ -94,6 +101,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    int getExponentOfSymbolInProg(string symbolName);
 };
 
 class Times : public IntType {
@@ -107,6 +115,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    int getExponentOfSymbolInProg(string symbolName);
 };
 
 class Div : public IntType {
@@ -120,6 +129,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    int getExponentOfSymbolInProg(string symbolName);
 };
 
 class Leftshift : public IntType {
@@ -133,6 +143,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    int getExponentOfSymbolInProg(string symbolName);
 };
 
 class Rightshift : public IntType {
@@ -146,6 +157,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    int getExponentOfSymbolInProg(string symbolName);
 };
 
 class Min : public IntType {
@@ -159,6 +171,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    int getExponentOfSymbolInProg(string symbolName);
 };
 
 class Lt : public BoolType {
@@ -172,6 +185,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    int getExponentOfSymbolInProg(string symbolName);
 };
 
 class And : public BoolType {
@@ -185,6 +199,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    int getExponentOfSymbolInProg(string symbolName);
 };
 
 class Not : public BoolType {
@@ -197,6 +212,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    int getExponentOfSymbolInProg(string symbolName);
 };
 
 class Ite : public IntType {
@@ -211,6 +227,7 @@ public:
     int depth();
     int getNumOfOpsInProg(string opName);
     int getNumOfSymbolsInProg(string symbolName);
+    int getExponentOfSymbolInProg(string symbolName);
 };
 
 #endif
