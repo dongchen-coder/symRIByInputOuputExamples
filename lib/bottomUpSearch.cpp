@@ -17,7 +17,6 @@ bottomUpSearch::bottomUpSearch(int depthBound,
     this->_constants = constants;
     this->_inputOutputs = inputOutputs;
     this->_isPred = isPred;
-    this->_rulesToApply = rulesToApply;
     
     for(auto varStr : vars) {
         Var* var = new Var(varStr);
@@ -29,6 +28,19 @@ bottomUpSearch::bottomUpSearch(int depthBound,
         BaseType* baseNum = dynamic_cast<BaseType*>(num);
         this->_pList.push_back(baseNum);
     }
+    /*
+    if (! isPred) {
+        for (auto rule : rulesToApply) {
+            if (rule == "SrcOnly") {
+                
+            } else if (rule == "SrcEnhanced") {
+                
+            } else if (rule == "SrcSnk") {
+                
+            }
+        }
+    }
+     */
 }
 
 /******************************************
@@ -592,8 +604,10 @@ inline bool bottomUpSearch::checkTwoProgramsEqual(BaseType* pi, BaseType* pj) {
 #define GET_NUM_OF_OPS(prog, op)            ( prog->getNumOfOpsInProg(op) )
 #define GET_NUM_OF_SYMS(prog, sym)          ( prog->getNumOfSymbolsInProg(sym) )
 #define GET_LENGTH(prog)                    ( GET_NUM_OF_SYMS(prog, "ALL") + GET_NUM_OF_OPS(prog, "ALL") )
+#define GET_EXP(prog, sym)                  ( prog->getExponentOfSymbolInProg(sym))
 
 #define CHECK_NO_SYM(prog, sym)             ( GET_NUM_OF_SYMS(prog, sym) == 0 )
+#define HAS_SYM(prog, sym)                  ( GET_NUM_OF_SYMS(prog, sym) > 0 )
 #define CHECK_LESS_SYM(pi, pj, sym)         ( GET_NUM_OF_SYMS(pi, sym) < GET_NUM_OF_SYMS(pj, sym) )
 #define CHECK_EQ_SYM(pi, pj, sym)           ( GET_NUM_OF_SYMS(pi, sym) == GET_NUM_OF_SYMS(pj, sym) )
 
@@ -605,7 +619,6 @@ inline bool bottomUpSearch::checkTwoProgramsEqual(BaseType* pi, BaseType* pj) {
 #define NO_SYM_2(pi, pj)                    ( CHECK_NO_SYM(pi, "ALL") && CHECK_NO_SYM(pj, "ALL") )
 
 #define GET_LENGTH_SHOTER(pi, pj)           ( LENGTH_SHOTER(pi, pj) ? pi : pj )
-
 
 // B SYM ONLY
 #define B_SYM_ONLY_1(prog)                  ( !NO_SYM_1(prog) && CHECK_NO_SYM(prog, "I") )
@@ -623,6 +636,7 @@ inline bool bottomUpSearch::checkTwoProgramsEqual(BaseType* pi, BaseType* pj) {
 #define GET_LENGTH_SHOTER(pi, pj)           ( LENGTH_SHOTER(pi, pj) ? pi : pj )
 #define GET_LESS_SYM(pi, pj, sym)           ( CHECK_EQ_SYM(pi, pj, sym) ? pi : pj )
 
+
 inline BaseType* bottomUpSearch::elimOneProgWithRules(BaseType* pi, BaseType* pj) {
     
     if (pi == nullptr) {
@@ -633,7 +647,7 @@ inline BaseType* bottomUpSearch::elimOneProgWithRules(BaseType* pi, BaseType* pj
     }
     
     BaseType* progToKeep = pi;
-    
+        
     // Apply common rules
     if (NO_SYM_2(pi, pj) ) {
         progToKeep = GET_LENGTH_SHOTER(pi, pj);
@@ -641,6 +655,57 @@ inline BaseType* bottomUpSearch::elimOneProgWithRules(BaseType* pi, BaseType* pj
     
     // Apply different rules for predicts and terms
     if (_isPred) {
+        if (HAS_SYM(pi, "B") > 0 && HAS_SYM(pj, "B") > 0) {
+            if (HAS_SYM(pi, "Isrc") > 0 && HAS_SYM(pj, "Isrc") > 0) {
+                if (HAS_SYM(pi, "Isnk") > 0 && HAS_SYM(pj, "Isnk") > 0) {
+                    progToKeep = GET_LESS_SYM(pi, pj, "ALL");
+                } else {
+                    if (HAS_SYM(pi, "Isnk") > 0) {
+                        progToKeep = pj;
+                    } else if (HAS_SYM(pj, "Isnk") > 0) {
+                        progToKeep = pi;
+                    } else {
+                        if (GET_EXP(pi, "Isrc") < GET_EXP(pj, "Isrc")) {
+                            progToKeep = pi;
+                        } else if (GET_EXP(pi, "Isrc") > GET_EXP(pj, "Isrc")) {
+                            progToKeep = pj;
+                        } else {
+                            if (GET_EXP(pi, "B") < GET_EXP(pj, "B")) {
+                                progToKeep = pi;
+                            } else if (GET_EXP(pi, "B") > GET_EXP(pj, "B")) {
+                                progToKeep = pj;
+                            } else {
+                                progToKeep = GET_LESS_SYM(pi, pj, "ALL");
+                            }
+                        }
+                    }
+                }
+            } else {
+                if (HAS_SYM(pi, "Isrc") > 0) {
+                    progToKeep = pi;
+                } else if (HAS_SYM(pj, "Isrc") > 0) {
+                    progToKeep = pj;
+                } else {
+                    if (GET_NUM_OF_SYMS(pi, "B") < GET_NUM_OF_SYMS(pj, "B")) {
+                        progToKeep = pi;
+                    } else if (GET_NUM_OF_SYMS(pi, "B") > GET_NUM_OF_SYMS(pj, "B")) {
+                        progToKeep = pj;
+                    } else {
+                        progToKeep = GET_LENGTH_SHOTER(pi, pj);
+                    }
+                }
+            }
+        } else {
+            if (HAS_SYM(pi, "B") > 0) {
+                progToKeep = pi;
+            } else if (HAS_SYM(pj, "B") > 0) {
+                progToKeep = pj;
+            } else {
+                progToKeep = GET_LENGTH_SHOTER(pi, pj);
+            }
+        }
+        
+        /*
         if (BOTH_SYM_2(pi, pj)) {
             progToKeep = GET_LESS_SYM(pi, pj, "ALL");
         } else {
@@ -652,7 +717,42 @@ inline BaseType* bottomUpSearch::elimOneProgWithRules(BaseType* pi, BaseType* pj
                 progToKeep = GET_LESS_SYM(pi, pj, "ALL");
             }
         }
+        */
     } else {
+        
+        if (HAS_SYM(pi, "B") > 0 && HAS_SYM(pj, "B") > 0) {
+            if (HAS_SYM(pi, "Isrc") > 0 && HAS_SYM(pj, "Isrc") > 0) {
+                if (HAS_SYM(pi, "Isnk") > 0 && HAS_SYM(pj, "Isnk") > 0) {
+                    progToKeep = GET_LESS_SYM(pi, pj, "ALL");;
+                } else {
+                    if (HAS_SYM(pi, "Isnk") > 0) {
+                        progToKeep = pi;
+                    } else if (HAS_SYM(pj, "Isnk") > 0) {
+                        progToKeep = pj;
+                    } else {
+                        progToKeep = GET_LESS_SYM(pi, pj, "ALL");
+                    }
+                }
+            } else {
+                if (HAS_SYM(pi, "Isrc") > 0) {
+                    progToKeep = pj;
+                } else if (HAS_SYM(pj, "Isrc") > 0) {
+                    progToKeep = pi;
+                } else {
+                    progToKeep = GET_LESS_SYM(pi, pj, "ALL");
+                }
+            }
+        } else {
+            if (HAS_SYM(pi, "B") > 0) {
+                progToKeep = pi;
+            } else if (HAS_SYM(pj, "B") > 0) {
+                progToKeep = pj;
+            } else {
+                progToKeep = GET_LENGTH_SHOTER(pi, pj);
+            }
+        }
+        
+        /*
         if (B_SYM_ONLY_2(pi, pj)) {
             return GET_LENGTH_SHOTER(pi, pj);
         } else {
@@ -663,6 +763,7 @@ inline BaseType* bottomUpSearch::elimOneProgWithRules(BaseType* pi, BaseType* pj
                 return pj;
             }
         }
+        */
     }
     
     if (progToKeep == pi) {

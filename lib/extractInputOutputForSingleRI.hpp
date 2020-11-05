@@ -10,8 +10,8 @@
 #include <iomanip>
 using namespace std;
 
-#define WITHPOS
-#define DEBUG
+//#define WITHPOS
+//#define DEBUG
 
 /* Split helper function */
 size_t split(const std::string &txt, std::vector<std::string> &strs, char ch);

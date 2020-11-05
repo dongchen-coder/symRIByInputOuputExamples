@@ -68,7 +68,7 @@ string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNod
                                                      varsTerm,
                                                      constantsTerm,
                                                      false,
-                                                     rulesToApply,
+                                                     this->rulesToApply,
                                                      node->inputOutputs);
             searchedProg = bus->search();
         }

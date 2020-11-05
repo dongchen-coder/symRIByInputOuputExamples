@@ -456,7 +456,7 @@ int main(int argc, char* argv[]) {
         cout << "      -SEARCHTIMEFORTERMSSINSECONDS : specify the search time for terms in seconds" << endl;
         cout << "      -SEARCHTIMEFORPREDSINSECONDS : specify the search time for preds in seconds" << endl;
         cout << "    Optional to sepcify the search rules to apply" << endl;
-        cout << "      -RULESTOAPPLY : specify search mode (PerSrcIter, PerSrcSnk)" << endl;
+        cout << "      -RULESTOAPPLY : specify search mode (SrcOnly, SrcEnhanced, SrcSnk)" << endl;
         return 0;
     }
     

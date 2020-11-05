@@ -73,10 +73,6 @@ vector<vector<uint64_t> > samplingRandom(vector< vector<uint64_t> > idxs, double
         numOfSamples *= samplingRate;
     }
     
-#ifdef DEBUG
-    cout << " sample num " << numOfSamples << endl;
-#endif
-    
     set<int> samples;
     for (int i = 0; i < numOfSamples; i++) {
         int offset = rand() % idxs.size();
@@ -95,7 +91,7 @@ vector<vector<uint64_t> > samplingRandom(vector< vector<uint64_t> > idxs, double
     }
     
 #ifdef DEBUG
-    cout << "Finished sampling" << endl;
+    cout << "Finished sampling, idxs size " << idxs.size() << " sampled size " << sampled_idxs.size() << endl;
 #endif
     
     return sampled_idxs;
@@ -291,7 +287,10 @@ void genInOutWithFormatSrcIterPos(string cacheConfig, string name, vector<uint64
             }
 #endif
 
+
+            
             vector<vector<uint64_t> > sampled_idxs = samplingRandom(all_src_idxs, samplingRate);
+
             map<vector<uint64_t>, map<vector<uint64_t>, uint64_t>* > srciterSizeRi;
 
 #ifdef WITHPOS
@@ -433,7 +432,12 @@ void genInOutWithFormatSrcIterPosSnk(string cacheConfig, string name, vector<uin
                     }
                 }
 #endif
+            
+
                 vector<vector<uint64_t> > sampled_idxs = samplingRandom(all_src_idxs, samplingRate);
+
+            
+            
                 map<vector<uint64_t>, map<vector<uint64_t>, uint64_t>* > srciterSizeRi;
 #ifdef WITHPOS
                 for (auto snk_pos_it : (*ref_snk_it.second)) {
@@ -557,8 +561,8 @@ void genInOutWithFormatSrcIterPosSnkIterPos(string cacheConfig, string name, vec
                     }
                 }
 #endif
+                        
                 vector<vector<uint64_t> > sampled_idxs = samplingRandom(all_src_idxs, samplingRate);
-                
                 // gen example for RI
                 uint64_t sinkIterSize;
                 map<vector<uint64_t>, map< vector<uint64_t>, vector<uint64_t> >* > srciterSizeSnkiter;

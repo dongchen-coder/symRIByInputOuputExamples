@@ -82,6 +82,7 @@ private:
     vector<string> _vars;
     vector<string> _constants;
     bool _isPred;
+    
     vector<string> _rulesToApply;
 };
 #endif
