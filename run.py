@@ -6,26 +6,16 @@ import subprocess
 import os
 
 def processFile(f):
-    name = f[2].replace(".txt","")
-    if (f[0] == "IMinMax"):
-        #os.system("./bin/symRiSymthesiser -FILE ./inputoutput/" + f[0] + "/" + f[1] +  "/" + f[2] + " -CONSTANTSPRED 1 2 -INTOPSTERM VAR NUM PLUS TIMES MINUS -MODE PerSrcIter -SEARCHTIMEFORTERMSINSECONDS 40 -SEARCHTIMEFORPREDSINSECONDS 80 > ./synResult/" + f[1] + "/" + name + "_IBound_result.txt")
-        output = ""
-        cmd = "./bin/symRiSymthesiser -FILE ./inputoutput/" + f[0] + "/" + f[1] +  "/" + f[2] + " -CONSTANTSPRED 1 2 -INTOPSTERM VAR NUM PLUS TIMES MINUS -MODE PerSrcIter -SEARCHTIMEFORTERMSINSECONDS 40 -SEARCHTIMEFORPREDSINSECON    DS 80"
-        process = subprocess.Popen([cmd], stdout = subprocess.PIPE, shell=True)
-        output = [f[1] + "/" + name, process.stdout.read()]
-    if (f[0] == "ris_per_iter_refsrc"):
-        print "Start", f[3]
-        cmd = "./bin/symRiSymthesiser -FILE ./inputoutput/" + f[0] + "/" + f[1] +  "/" + f[2] + " -CONSTANTSPRED 1 2 -INTOPSTERM VAR NUM PLUS TIMES MINUS -MODE PerSrcIter -SEARCHTIMEFORTERMSINSECONDS 40 -SEARCHTIMEFORPREDSINSECONDS 80"
-        #print cmd
+
+    if (f[0] == "SrcOnly"):
+        cmd = "./bin/symRiSymthesiser -FILE ./inputoutput/ris_refsrc_Isrc_Psrc/" + f[1] +  "/" + f[2] + " -CONSTANTSPRED 1 2 -CONSTANTSTERM 0 1 2 3 4 5 6 -INTOPSTERM VAR NUM PLUS TIMES MINUS -SEARCHTIMEFORTERMSINSECONDS 20 -SEARCHTIMEFORPREDSINSECONDS 40 -RULESTOAPPLY SrcOnly > ./synResult/" + f[1] + "/" + f[2] + ".ris_refsrc_Isrc_Psrc"
+        print cmd
         os.system(cmd)
-        print "End", f[3]
+    if (f[0] == "Ibound"):
+        cmd = "./bin/symRiSymthesiser -FILE ./inputoutput/ris_Ibound/" + f[1] +  "/" + f[2] + " -CONSTANTSPRED 1 2 -CONSTANTSTERM 0 1 2 3 4 5 6 -INTOPSTERM VAR NUM PLUS TIMES MINUS -SEARCHTIMEFORTERMSINSECONDS 20 -SEARCHTIMEFORPREDSINSECONDS 40 -RULESTOAPPLY SrcOnly > ./synResult/" + f[1] + "/" + f[2] + ".ris_Ibound"
+        print cmd
+        os.system(cmd)
         
-        '''
-        output = ""
-        cmd = "./bin/symRiSymthesiser -FILE ./inputoutput/" + f[0] + "/" + f[1] +  "/" + f[2] + " -CONSTANTSPRED 1 2 -INTOPSTERM VAR NUM PLUS TIMES MINUS -MODE PerSrcIter -SEARCHTIMEFORTERMSINSECONDS 40 -SEARCHTIMEFORPREDSINSECONDS 80"
-        process = subprocess.Popen([cmd], stdout = subprocess.PIPE, shell=True)
-        output = [f[1] + "/" + name, process.stdout.read()]
-        '''
     return
 
 if __name__ == '__main__':
@@ -36,20 +26,24 @@ if __name__ == '__main__':
     for bench in benches:
         os.system("rm -r -f ./synResult/" + bench)
         os.system("mkdir -p ./synResult/" + bench)
-
     files = []
     
     for bench in benches:
-        filesForBench = os.listdir("./inputoutput/ris_per_iter_refsrc/" + bench)
-        files += [["ris_per_iter_refsrc", bench, f, benches.index(bench)] for f in filesForBench]
+        filesForBench = os.listdir("./inputoutput/ris_refsrc_Isrc_Psrc/" + bench)
+        filesCLS = []
+        for f in filesForBench:
+            if ("CLS32_DS8" in f):
+                filesCLS.append(f)
+        files += [["SrcOnly", bench, f, benches.index(bench)] for f in filesCLS]
+        
+    print len(files)
     '''
     for bench in benches:
-        filesForBench = os.listdir("./inputoutput/IMinMax/" + bench)
-        for f in filesForBench:
-            if ("snk" not in f):
-                files.append(["IMinMax",bench, f])
+        filesForBench = os.listdir("./inputoutput/ris_Ibound/" + bench)
+        files += [["Ibound", bench, f, benches.index(bench)] for f in filesForBench]
     '''
     p = Pool(60)
     p.map(processFile, files)
     p.close()
     p.join()
+    
