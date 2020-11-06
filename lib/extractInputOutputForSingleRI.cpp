@@ -846,13 +846,13 @@ void genInOutWithFormatSrcShape(string cacheConfig, string name, vector<uint64_t
                 for (int j = 0; j < symbolic_bounds.size(); j++) {
                     ofs_Refsrc_Imin << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
                     ofs_Refsrc_Imax << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
-                    if (src_IsrcMin.find(symbolic_bounds) != src_IsrcMin.end()) {
-                        ofs_Refsrc_Imin << "_out " << src_IsrcMin[symbolic_bounds][I_idx] << endl;
-                        ofs_Refsrc_Imax << "_out " << src_IsrcMax[symbolic_bounds][I_idx] << endl;
-                    } else {
-                        ofs_Refsrc_Imin << "_out " << 0 << endl;
-                        ofs_Refsrc_Imax << "_out " << 0 << endl;
-                    }
+                }
+                if (src_IsrcMin.find(symbolic_bounds) != src_IsrcMin.end()) {
+                    ofs_Refsrc_Imin << "_out " << src_IsrcMin[symbolic_bounds][I_idx] << endl;
+                    ofs_Refsrc_Imax << "_out " << src_IsrcMax[symbolic_bounds][I_idx] << endl;
+                } else {
+                    ofs_Refsrc_Imin << "_out " << 0 << endl;
+                    ofs_Refsrc_Imax << "_out " << 0 << endl;
                 }
             }
             ofs_Refsrc_Imin.close();
