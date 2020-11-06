@@ -1,0 +1,324 @@
+ludcmp_refsrc_1.Imin2.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_1.Imax2.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
+ludcmp_refsrc_2_refsnk_2.Imin0.CLS32_DS8.ris_Ibound Prog: 3
+ludcmp_refsrc_2_refsnk_2.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_2_refsnk_2.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_2_refsnk_2.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
+ludcmp_refsrc_2_refsnk_2.Imin2.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_2_refsnk_2.Imax2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 1 else 4) else (B0 - 4)))
+ludcmp_refsrc_6_refsnk_3.Imax2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 1 else 2) else (B0 - 6)))
+ludcmp_refsrc_8.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_8.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_9_refsnk_9.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_9_refsnk_9.Imax0.CLS32_DS8.ris_Ibound Prog: (if (((2 + 2) + (2 + 2)) < B0) then (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 2 else 6) else (B0 - 2))
+ludcmp_refsrc_9_refsnk_11.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 4)
+ludcmp_refsrc_2_refsnk_3.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else 4)
+ludcmp_refsrc_6_refsnk_6.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 1 else 2)
+ludcmp_refsrc_9_refsnk_11.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 5)
+ludcmp_refsrc_2_refsnk_3.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 2))
+ludcmp_refsrc_6_refsnk_6.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_6_refsnk_6.Imin1.CLS32_DS8.ris_Ibound Prog: 2
+ludcmp_refsrc_6_refsnk_6.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_6_refsnk_6.Imin2.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_6_refsnk_6.Imax2.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
+ludcmp_refsrc_6_refsnk_7.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 1)
+ludcmp_refsrc_9.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_9.Imax0.CLS32_DS8.ris_Ibound Prog: (if (((2 + 2) + (2 + 2)) < B0) then (if ((2 + 2) < B0) then 2 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 5 else 6)) else (B0 - 2))
+ludcmp_refsrc_2_refsnk_3.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else 3)
+ludcmp_refsrc_6_refsnk_7.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 5)
+ludcmp_refsrc_2_refsnk_3.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then 3 else (B0 - 5)))
+ludcmp_refsrc_6_refsnk_7.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 4)
+ludcmp_refsrc_6_refsnk_7.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 5)
+ludcmp_refsrc_10_refsnk_10.Imin0.CLS32_DS8.ris_Ibound Prog: 2
+ludcmp_refsrc_10_refsnk_10.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_10_refsnk_10.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_10_refsnk_10.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
+ludcmp_refsrc_10_refsnk_14.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 1 else 2)
+ludcmp_refsrc_2_refsnk_3.Imin2.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_2_refsnk_3.Imax2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then 2 else (B0 - 6)))
+ludcmp_refsrc_6_refsnk_7.Imin2.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_6_refsnk_7.Imax2.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 1)
+ludcmp_refsrc_10_refsnk_14.Imax0.CLS32_DS8.ris_Ibound Prog: (if (((2 + 2) + (2 + 2)) < B0) then (if ((2 + 2) < B0) then 2 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 5 else 6)) else (B0 - 2))
+ludcmp_refsrc_6_refsnk_8.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_6_refsnk_8.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_6_refsnk_8.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_6_refsnk_8.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_6_refsnk_8.Imin2.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_6_refsnk_8.Imax2.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_6_refsnk_10.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else 4)
+ludcmp_refsrc_2_refsnk_7.Imin0.CLS32_DS8.ris_Ibound Prog: 2
+ludcmp_refsrc_2_refsnk_7.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_2_refsnk_7.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_2_refsnk_7.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_2_refsnk_7.Imin2.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_2_refsnk_7.Imax2.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
+ludcmp_refsrc_2_refsnk_10.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 1))
+ludcmp_refsrc_6_refsnk_10.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 4 else (B0 - 1)) else (B0 - 1)))
+ludcmp_refsrc_2_refsnk_10.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 1))
+ludcmp_refsrc_10_refsnk_14.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 1)
+ludcmp_refsrc_2_refsnk_10.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else 3)
+ludcmp_refsrc_2_refsnk_10.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then 3 else (B0 - 5)))
+ludcmp_refsrc_10_refsnk_14.Imax1.CLS32_DS8.ris_Ibound Prog: (if (((2 + 2) + (2 + 2)) < B0) then (if ((2 + 2) < B0) then 1 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 2 else 5)) else (B0 - 3))
+ludcmp_refsrc_6_refsnk_10.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 1))
+ludcmp_refsrc_6_refsnk_10.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 1))
+ludcmp_refsrc_2_refsnk_10.Imin2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 1 else 2))
+ludcmp_refsrc_6_refsnk_10.Imin2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else 3)
+ludcmp_refsrc_10_refsnk_16.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 1 else 3)
+ludcmp_refsrc_6_refsnk_10.Imax2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then 3 else (B0 - 5)))
+ludcmp_refsrc_2_refsnk_10.Imax2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then 2 else (B0 - 6)))
+ludcmp_refsrc_10_refsnk_16.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_10_refsnk_16.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 2)
+ludcmp_refsrc_10_refsnk_16.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_10.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_10.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_10.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_10.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_11_refsnk_9.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 3)
+ludcmp_refsrc_6.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_6.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_6.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_6.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_6.Imin2.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_6.Imax2.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_7_refsnk_2.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 2 else 4))
+ludcmp_refsrc_2_refsnk_14.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 1))
+ludcmp_refsrc_11_refsnk_9.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 4)
+ludcmp_refsrc_2_refsnk_14.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 1))
+ludcmp_refsrc_11_refsnk_9.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 1)
+ludcmp_refsrc_7_refsnk_2.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 2))
+ludcmp_refsrc_2_refsnk_14.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else 3)
+ludcmp_refsrc_11_refsnk_9.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 1)
+ludcmp_refsrc_7_refsnk_2.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 5 else (3 + 4)))
+ludcmp_refsrc_2_refsnk_14.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then 3 else (B0 - 5)))
+ludcmp_refsrc_11_refsnk_11.Imin0.CLS32_DS8.ris_Ibound Prog: 2
+ludcmp_refsrc_11_refsnk_11.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_11_refsnk_11.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_11_refsnk_11.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
+ludcmp_refsrc_11_refsnk_12.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_11_refsnk_12.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_11_refsnk_12.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_11_refsnk_12.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_11_refsnk_13.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 1))
+ludcmp_refsrc_11_refsnk_13.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 1))
+ludcmp_refsrc_7_refsnk_2.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 1))
+ludcmp_refsrc_2_refsnk_14.Imin2.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_2_refsnk_14.Imax2.CLS32_DS8.ris_Ibound Prog: (if (((2 + 2) + (2 + 2)) < B0) then 0 else ((B0 - 6) - 2))
+ludcmp_refsrc_11_refsnk_13.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 1 else 3))
+ludcmp_refsrc_7_refsnk_2.Imin2.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 1)
+ludcmp_refsrc_2.Imin0.CLS32_DS8.ris_Ibound Prog: 2
+ludcmp_refsrc_2.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_2.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_2.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_2.Imin2.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_2.Imax2.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
+ludcmp_refsrc_3_refsnk_2.Imin0.CLS32_DS8.ris_Ibound Prog: 2
+ludcmp_refsrc_3_refsnk_2.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_3_refsnk_2.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_3_refsnk_2.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
+ludcmp_refsrc_3_refsnk_3.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 0 else 4)
+ludcmp_refsrc_7_refsnk_2.Imax2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 2 else 3) else (B0 - 5)))
+ludcmp_refsrc_3_refsnk_3.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 0 else (B0 - 2))
+ludcmp_refsrc_11_refsnk_13.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 5))
+ludcmp_refsrc_3_refsnk_3.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 0 else 3)
+ludcmp_refsrc_11.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_11.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_11.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_11.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_12_refsnk_11.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_12_refsnk_11.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_12_refsnk_13.Imin0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_12_refsnk_13.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_12.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_12.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_13_refsnk_13.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_13_refsnk_13.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_13.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_13.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_14_refsnk_14.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_14_refsnk_14.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
+ludcmp_refsrc_14_refsnk_14.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_14_refsnk_14.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_14_refsnk_16.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_14_refsnk_16.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_14_refsnk_16.Imin1.CLS32_DS8.ris_Ibound Prog: 3
+ludcmp_refsrc_14_refsnk_16.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_14.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_14.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_14.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_14.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_15_refsnk_15.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_15_refsnk_15.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
+ludcmp_refsrc_15_refsnk_15.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_15_refsnk_15.Imax1.CLS32_DS8.ris_Ibound Prog: (if (((2 + 2) + (2 + 2)) < B0) then (if ((2 + 2) < B0) then 2 else (B0 - 1)) else (B0 - 1))
+ludcmp_refsrc_3_refsnk_3.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 0 else (B0 - 5))
+ludcmp_refsrc_7_refsnk_3.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_7_refsnk_3.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_7_refsnk_3.Imin1.CLS32_DS8.ris_Ibound Prog: 3
+ludcmp_refsrc_7_refsnk_3.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_7_refsnk_3.Imin2.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_7_refsnk_3.Imax2.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
+ludcmp_refsrc_7_refsnk_6.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 1)
+ludcmp_refsrc_3_refsnk_6.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 5)
+ludcmp_refsrc_15_refsnk_17.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_15_refsnk_17.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_15_refsnk_17.Imin1.CLS32_DS8.ris_Ibound Prog: 3
+ludcmp_refsrc_15_refsnk_17.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_15.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_15.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_15.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_15.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_16_refsnk_14.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 1)
+ludcmp_refsrc_7_refsnk_6.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 3)
+ludcmp_refsrc_3_refsnk_6.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 5)
+ludcmp_refsrc_0_refsnk_1.Imin0.CLS32_DS8.ris_Ibound Prog: 2
+ludcmp_refsrc_0_refsnk_1.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_0_refsnk_1.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_0_refsnk_1.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_0_refsnk_4.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_0_refsnk_4.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_0_refsnk_4.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_0_refsnk_4.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 4)
+ludcmp_refsrc_0.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_0.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_0.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_0.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_1_refsnk_1.Imin0.CLS32_DS8.ris_Ibound Prog: 3
+ludcmp_refsrc_1_refsnk_1.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_1_refsnk_1.Imin1.CLS32_DS8.ris_Ibound Prog: 2
+ludcmp_refsrc_1_refsnk_1.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_1_refsnk_1.Imin2.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_1_refsnk_1.Imax2.CLS32_DS8.ris_Ibound Prog: (B0 - 4)
+ludcmp_refsrc_1_refsnk_3.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 5)
+ludcmp_refsrc_16_refsnk_14.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 1)
+ludcmp_refsrc_7_refsnk_6.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 4)
+ludcmp_refsrc_3_refsnk_6.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 4)
+ludcmp_refsrc_1_refsnk_3.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 5)
+ludcmp_refsrc_16.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 1)
+ludcmp_refsrc_7_refsnk_6.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 4)
+ludcmp_refsrc_3_refsnk_6.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 4)
+ludcmp_refsrc_1_refsnk_3.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 4)
+ludcmp_refsrc_16.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 1)
+ludcmp_refsrc_7_refsnk_6.Imin2.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_7_refsnk_6.Imax2.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 2)
+ludcmp_refsrc_3_refsnk_7.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_3_refsnk_7.Imax0.CLS32_DS8.ris_Ibound Prog: (if (((2 + 2) + (2 + 2)) < B0) then (if ((2 + 2) < B0) then 3 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 4 else (B0 - 1))) else (B0 - 1))
+ludcmp_refsrc_1_refsnk_3.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 4)
+ludcmp_refsrc_17_refsnk_15.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_17_refsnk_15.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_17.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_17.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_7_refsnk_7.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_7_refsnk_7.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_7_refsnk_7.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_7_refsnk_7.Imax1.CLS32_DS8.ris_Ibound Prog: (if (((2 + 2) + (2 + 2)) < B0) then (if ((2 + 2) < B0) then 2 else (B0 - 1)) else (B0 - 1))
+ludcmp_refsrc_1_refsnk_3.Imin2.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 1)
+ludcmp_refsrc_1_refsnk_3.Imax2.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 1)
+ludcmp_refsrc_7_refsnk_7.Imin2.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_7_refsnk_7.Imax2.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
+ludcmp_refsrc_7_refsnk_10.Imin0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_7_refsnk_10.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_7_refsnk_10.Imin1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_7_refsnk_10.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_7_refsnk_10.Imin2.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else (B0 - 3))
+ludcmp_refsrc_3_refsnk_7.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_3_refsnk_7.Imax1.CLS32_DS8.ris_Ibound Prog: (if (((2 + 2) + (2 + 2)) < B0) then (if ((2 + 2) < B0) then 2 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 3 else 6)) else (B0 - 2))
+ludcmp_refsrc_1_refsnk_4.Imin0.CLS32_DS8.ris_Ibound Prog: 2
+ludcmp_refsrc_1_refsnk_4.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_1_refsnk_4.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_1_refsnk_4.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_1_refsnk_4.Imin2.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_1_refsnk_4.Imax2.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
+ludcmp_refsrc_1_refsnk_6.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 3 else 5))
+ludcmp_refsrc_7_refsnk_10.Imax2.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_7_refsnk_14.Imin0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_7_refsnk_14.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_7_refsnk_14.Imin1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_7_refsnk_14.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_7_refsnk_14.Imin2.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 1)
+ludcmp_refsrc_7_refsnk_14.Imax2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 1 else 4) else (B0 - 4)))
+ludcmp_refsrc_1_refsnk_6.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then ((B0 - 6) - (3 - B0)) else (B0 - 1)))
+ludcmp_refsrc_3_refsnk_10.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 0 else (B0 - 1))
+ludcmp_refsrc_3_refsnk_10.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 0 else (B0 - 1))
+ludcmp_refsrc_1_refsnk_6.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 2 else 4))
+ludcmp_refsrc_7.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_7.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_7.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_7.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_7.Imin2.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_7.Imax2.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_8_refsnk_0.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_8_refsnk_0.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 4)
+ludcmp_refsrc_3_refsnk_10.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 0 else 3)
+ludcmp_refsrc_3_refsnk_10.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 0 else (B0 - 5))
+ludcmp_refsrc_8_refsnk_0.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 5)
+ludcmp_refsrc_1_refsnk_6.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then (2 * (B0 - 5)) else (B0 - 2)))
+ludcmp_refsrc_3.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_3.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_3.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_3.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_4_refsnk_0.Imin0.CLS32_DS8.ris_Ibound Prog: 2
+ludcmp_refsrc_4_refsnk_0.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_4_refsnk_0.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_4_refsnk_0.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
+ludcmp_refsrc_4_refsnk_1.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 3 else 5))
+ludcmp_refsrc_8_refsnk_0.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 5)
+ludcmp_refsrc_8_refsnk_3.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_8_refsnk_3.Imax0.CLS32_DS8.ris_Ibound Prog: (if (((2 + 2) + (2 + 2)) < B0) then (if ((2 + 2) < B0) then 2 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 3 else 6)) else (B0 - 2))
+ludcmp_refsrc_1_refsnk_6.Imin2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 1 else 3))
+ludcmp_refsrc_4_refsnk_1.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 1))
+ludcmp_refsrc_4_refsnk_1.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 1 else 3))
+ludcmp_refsrc_1_refsnk_6.Imax2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 5))
+ludcmp_refsrc_8_refsnk_3.Imin1.CLS32_DS8.ris_Ibound Prog: 3
+ludcmp_refsrc_8_refsnk_3.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_8_refsnk_5.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_8_refsnk_5.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_8_refsnk_5.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_8_refsnk_5.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_8_refsnk_6.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else 1)
+ludcmp_refsrc_1.Imin0.CLS32_DS8.ris_Ibound Prog: 2
+ludcmp_refsrc_1.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_1.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_1.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_4_refsnk_1.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 5))
+ludcmp_refsrc_8_refsnk_6.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 2 else 3) else (B0 - 5)))
+ludcmp_refsrc_4_refsnk_5.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_4_refsnk_5.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_4_refsnk_5.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_4_refsnk_5.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_4_refsnk_6.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else 4)
+ludcmp_refsrc_4_refsnk_6.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then 4 else (B0 - 4)))
+ludcmp_refsrc_8_refsnk_6.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 1 else 3))
+ludcmp_refsrc_4_refsnk_6.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else 3)
+ludcmp_refsrc_4_refsnk_6.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then 3 else (B0 - 5)))
+ludcmp_refsrc_8_refsnk_6.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then 3 else (B0 - 5)))
+ludcmp_refsrc_4.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_4.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_4.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_4.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
+ludcmp_refsrc_5_refsnk_6.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_5_refsnk_6.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_5_refsnk_6.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+ludcmp_refsrc_5_refsnk_6.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_5_refsnk_8.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_5_refsnk_8.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then 4 else (B0 - 4)))
+ludcmp_refsrc_8_refsnk_7.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 1)
+ludcmp_refsrc_8_refsnk_7.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 5))
+ludcmp_refsrc_5_refsnk_8.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_5_refsnk_8.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_5.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_5.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_5.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_5.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_6_refsnk_3.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 1 else 2))
+ludcmp_refsrc_8_refsnk_7.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 5 else (3 + 4)))
+ludcmp_refsrc_6_refsnk_3.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (if (((2 + 2) + (2 + 2)) < B0) then (if ((B0 + 1) < ((2 + 2) + (2 + 2))) then 2 else 3) else (B0 - 5)))
+ludcmp_refsrc_8_refsnk_7.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 1))
+ludcmp_refsrc_8_refsnk_10.Imin0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_8_refsnk_10.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_8_refsnk_10.Imin1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_8_refsnk_10.Imax1.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_8.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+ludcmp_refsrc_8.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 1)
+ludcmp_refsrc_6_refsnk_3.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 1))
+ludcmp_refsrc_6_refsnk_3.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B0) then 0 else (B0 - 1))
+ludcmp_refsrc_6_refsnk_3.Imin2.CLS32_DS8.ris_Ibound Prog: (if ((((2 + 2) + (2 + 2)) < ((1 + 1) + (B0 + 1))) && ((B0 + 1) < ((2 + 2) + (2 + 2)))) then 0 else 1)
