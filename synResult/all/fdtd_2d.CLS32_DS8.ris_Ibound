@@ -1,124 +1,263 @@
-fdtd_2d_refsrc_3_refsnk_7.Imin0.CLS32_DS8.ris_Ibound Prog: (B1 - 1)
-fdtd_2d_refsrc_3_refsnk_7.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 1)
-fdtd_2d_refsrc_3_refsnk_7.Imax1.CLS32_DS8.ris_Ibound Prog: (B2 - 1)
-fdtd_2d_refsrc_3.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+fdtd_2d_refsrc_3.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_3.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_10_refsnk_15.Imin1.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_10_refsnk_15.Imax1.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
+fdtd_2d_refsrc_10_refsnk_15.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_10.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_0_refsnk_0.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-fdtd_2d_refsrc_0_refsnk_0.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 1)
+fdtd_2d_refsrc_10.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_0_refsnk_0.Imin1.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_0_refsnk_0.Imax1.CLS32_DS8.ris_Ibound Prog: (B2 - 1)
-fdtd_2d_refsrc_4_refsnk_4.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-fdtd_2d_refsrc_4_refsnk_4.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 1)
+fdtd_2d_refsrc_0_refsnk_0.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_4_refsnk_4.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_4_refsnk_4.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_10.Imin1.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_4_refsnk_7.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-fdtd_2d_refsrc_4_refsnk_7.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 1)
+fdtd_2d_refsrc_10.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_11_refsnk_11.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_11_refsnk_11.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_0_refsnk_1.Imin1.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_4_refsnk_7.Imax1.CLS32_DS8.ris_Ibound Prog: (B2 - 1)
-fdtd_2d_refsrc_4.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+fdtd_2d_refsrc_0_refsnk_1.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_4.Imin1.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_5_refsnk_2.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-fdtd_2d_refsrc_5_refsnk_2.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 1)
+fdtd_2d_refsrc_4.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_5_refsnk_2.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_5_refsnk_2.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_11_refsnk_12.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_11_refsnk_12.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
+fdtd_2d_refsrc_11_refsnk_12.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_11_refsnk_12.Imin1.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_11_refsnk_12.Imax1.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
+fdtd_2d_refsrc_11_refsnk_12.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_11.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_11.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_11.Imin1.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_0.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-fdtd_2d_refsrc_12_refsnk_6.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
+fdtd_2d_refsrc_11.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_12_refsnk_6.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_12_refsnk_6.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_0.Imin1.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_12_refsnk_6.Imax1.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
+fdtd_2d_refsrc_0.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_12_refsnk_11.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_5_refsnk_13.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-fdtd_2d_refsrc_5_refsnk_13.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 1)
+fdtd_2d_refsrc_12_refsnk_11.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_12_refsnk_11.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_12_refsnk_11.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_1_refsnk_0.Imin1.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_5.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+fdtd_2d_refsrc_1_refsnk_0.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_12_refsnk_12.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_1_refsnk_1.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-fdtd_2d_refsrc_1_refsnk_1.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 1)
+fdtd_2d_refsrc_12_refsnk_12.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_1_refsnk_1.Imin1.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_1_refsnk_1.Imax1.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
+fdtd_2d_refsrc_1_refsnk_1.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_5.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_5.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_6_refsnk_9.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_6_refsnk_9.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 1)
-fdtd_2d_refsrc_6_refsnk_9.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-fdtd_2d_refsrc_6_refsnk_9.Imax1.CLS32_DS8.ris_Ibound Prog: (B2 - 1)
+fdtd_2d_refsrc_6_refsnk_9.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_6.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_6.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+fdtd_2d_refsrc_6.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_12_refsnk_13.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_12_refsnk_13.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_12_refsnk_13.Imax0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_12_refsnk_13.Imax0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_7_refsnk_7.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_1_refsnk_14.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-fdtd_2d_refsrc_1_refsnk_14.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 1)
+fdtd_2d_refsrc_7_refsnk_7.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_12.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_1.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+fdtd_2d_refsrc_12.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_12.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_12.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_7_refsnk_8.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_7_refsnk_8.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 1)
-fdtd_2d_refsrc_7_refsnk_8.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-fdtd_2d_refsrc_7_refsnk_8.Imax1.CLS32_DS8.ris_Ibound Prog: (B2 - 1)
+fdtd_2d_refsrc_7_refsnk_8.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_7.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_7.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_1.Imin1.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_13_refsnk_2.Imin0.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-fdtd_2d_refsrc_13_refsnk_2.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-fdtd_2d_refsrc_7.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-fdtd_2d_refsrc_2_refsnk_5.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-fdtd_2d_refsrc_2_refsnk_5.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 1)
+fdtd_2d_refsrc_1.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_2_refsnk_5.Imin1.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_2_refsnk_5.Imax1.CLS32_DS8.ris_Ibound Prog: (B2 - 1)
-fdtd_2d_refsrc_2.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-fdtd_2d_refsrc_13_refsnk_2.Imax1.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
+fdtd_2d_refsrc_2_refsnk_5.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_13_refsnk_13.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_13_refsnk_13.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
+fdtd_2d_refsrc_13_refsnk_13.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_13_refsnk_13.Imin1.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_8_refsnk_3.Imin0.CLS32_DS8.ris_Ibound Prog: (B1 - 1)
-fdtd_2d_refsrc_8_refsnk_3.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 1)
+fdtd_2d_refsrc_13_refsnk_13.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_2.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_2.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_13_refsnk_14.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_8_refsnk_3.Imax1.CLS32_DS8.ris_Ibound Prog: (B2 - 1)
+fdtd_2d_refsrc_13_refsnk_14.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_8_refsnk_6.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_8_refsnk_6.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_8_refsnk_6.Imax0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_3_refsnk_3.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-fdtd_2d_refsrc_3_refsnk_3.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 1)
+fdtd_2d_refsrc_8_refsnk_6.Imax0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_3_refsnk_3.Imin1.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_3_refsnk_4.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+fdtd_2d_refsrc_3_refsnk_3.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_8_refsnk_7.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_8_refsnk_7.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_13.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_13.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_13.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_13.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_14_refsnk_0.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_14_refsnk_0.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_14_refsnk_0.Imax0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_14_refsnk_0.Imax0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_8_refsnk_8.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_8_refsnk_8.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_14_refsnk_1.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_14_refsnk_2.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-fdtd_2d_refsrc_14_refsnk_2.Imax1.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
+fdtd_2d_refsrc_14_refsnk_1.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_14_refsnk_1.Imax0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_14_refsnk_1.Imax0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_8_refsnk_10.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_8_refsnk_10.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_14_refsnk_14.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_14_refsnk_14.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
+fdtd_2d_refsrc_14_refsnk_14.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_14_refsnk_14.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_14_refsnk_14.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_8.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_8.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_14.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_8.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+fdtd_2d_refsrc_14.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_14.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_14.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_9_refsnk_6.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_9_refsnk_6.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 1)
-fdtd_2d_refsrc_15_refsnk_3.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-fdtd_2d_refsrc_15_refsnk_3.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-fdtd_2d_refsrc_9_refsnk_6.Imax1.CLS32_DS8.ris_Ibound Prog: (B2 - 1)
-fdtd_2d_refsrc_15_refsnk_3.Imax1.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
+fdtd_2d_refsrc_9_refsnk_6.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_15_refsnk_4.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_15_refsnk_4.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_15_refsnk_4.Imax0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_15_refsnk_4.Imax0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_15_refsnk_10.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_15_refsnk_10.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
+fdtd_2d_refsrc_15_refsnk_10.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_15_refsnk_10.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_15_refsnk_10.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_15.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_15.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_9_refsnk_11.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_9_refsnk_11.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_15.Imin1.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_15.Imin1.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_9.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_9.Imin1.CLS32_DS8.ris_Ibound Prog: 1
+fdtd_2d_refsrc_9.Imin0.CLS32_DS8.ris_Ibound Prog: 0
 fdtd_2d_refsrc_10_refsnk_15.Imin0.CLS32_DS8.ris_Ibound Prog: 0
-fdtd_2d_refsrc_10_refsnk_15.Imax0.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
+fdtd_2d_refsrc_10_refsnk_15.Imin0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_10_Isrc_4_0_refsnk_15.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B1) then 0 else 5)
+fdtd_2d_refsrc_6_Isrc_12_3_refsnk_9.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B1) then 0 else 3)
+fdtd_2d_refsrc_10_Isrc_13_13_refsnk_15.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B1)) then 0 else 5)
+fdtd_2d_refsrc_6_Isrc_11_11_refsnk_9.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B1)) then 0 else 3)
+fdtd_2d_refsrc_6_Isrc_6_14_refsnk_9.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 3)
+fdtd_2d_refsrc_3_Isrc_16_16_refsnk_3.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B1)) then 0 else 4)
+fdtd_2d_refsrc_6_Isrc_17_3_refsnk_9.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B1) then 0 else 3)
+fdtd_2d_refsrc_10_Isrc_6_12_refsnk_15.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 5)
+fdtd_2d_refsrc_2_Isrc_2_4_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < B2) then 0 else 3)
+fdtd_2d_refsrc_10_Isrc_13_2_refsnk_15.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B1) then 0 else 5)
+fdtd_2d_refsrc_10_Isrc_14_1_refsnk_15.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B1) then 0 else 5)
+fdtd_2d_refsrc_2_Isrc_7_6_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B1)) then 0 else 3)
+fdtd_2d_refsrc_6_Isrc_19_1_refsnk_9.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B1) then 0 else 3)
+fdtd_2d_refsrc_3_Isrc_8_10_refsnk_3.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B1)) then 0 else 4)
+fdtd_2d_refsrc_7_Isrc_18_11_refsnk_8.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 1)
+fdtd_2d_refsrc_9_Isrc_13_2_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B1) then 0 else 1)
+fdtd_2d_refsrc_3_Isrc_18_2_refsnk_3.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B1) then 0 else 4)
+fdtd_2d_refsrc_2_Isrc_7_2_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B1) then 0 else 3)
+fdtd_2d_refsrc_7_Isrc_6_17_refsnk_8.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 1)
+fdtd_2d_refsrc_7_Isrc_3_9_refsnk_8.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < B2) then 0 else 1)
+fdtd_2d_refsrc_9_Isrc_10_14_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 1)
+fdtd_2d_refsrc_2_Isrc_15_19_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 3)
+fdtd_2d_refsrc_2_Isrc_5_10_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 3)
+fdtd_2d_refsrc_5_Isrc_5_0_refsnk_2.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B1) then 0 else 1)
+fdtd_2d_refsrc_3_Isrc_10_4_refsnk_3.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 4)
+fdtd_2d_refsrc_9_Isrc_9_18_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 1)
+fdtd_2d_refsrc_11_Isrc_4_18_refsnk_12.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 1)
+fdtd_2d_refsrc_7_Isrc_2_1_refsnk_8.RI.CLS32_DS8.ris_Ibound Prog: 1
+fdtd_2d_refsrc_9_Isrc_2_16_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < B2) then 0 else 1)
+fdtd_2d_refsrc_5_Isrc_6_2_refsnk_2.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B1) then 0 else 1)
+fdtd_2d_refsrc_6_Isrc_1_13_refsnk_9.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < B2) then 0 else 3)
+fdtd_2d_refsrc_6_Isrc_9_9_refsnk_9.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B1)) then 0 else 3)
+fdtd_2d_refsrc_11_Isrc_2_10_refsnk_12.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < B2) then 0 else 1)
+fdtd_2d_refsrc_9_Isrc_0_19_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: Isnk0
+fdtd_2d_refsrc_9_Isrc_0_19_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: Isnk0
+fdtd_2d_refsrc_6_Isrc_9_5_refsnk_9.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 3)
+fdtd_2d_refsrc_2_Isrc_1_2_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: 3
+fdtd_2d_refsrc_11_Isrc_11_2_refsnk_12.RI.CLS32_DS8.ris_Ibound Prog: (if (B1 < (Isrc0 + Isrc1)) then 0 else 1)
+fdtd_2d_refsrc_9_Isrc_19_10_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 1)
+fdtd_2d_refsrc_10_Isrc_14_4_refsnk_15.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 5)
+fdtd_2d_refsrc_2_Isrc_3_8_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < B2) then 0 else 3)
+fdtd_2d_refsrc_7_Isrc_10_3_refsnk_8.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B1) then 0 else 1)
+fdtd_2d_refsrc_6_Isrc_2_7_refsnk_9.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < B2) then 0 else 3)
+fdtd_2d_refsrc_6_Isrc_5_13_refsnk_9.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 3)
+fdtd_2d_refsrc_2_Isrc_19_5_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 3)
+fdtd_2d_refsrc_5_Isrc_4_0_refsnk_2.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B1) then 0 else 1)
+fdtd_2d_refsrc_3_Isrc_15_6_refsnk_3.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 4)
+fdtd_2d_refsrc_2_Isrc_16_11_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 3)
+fdtd_2d_refsrc_13_Isrc_14_0_refsnk_13.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B1) then 0 else 6)
+fdtd_2d_refsrc_2_Isrc_15_8_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 3)
+fdtd_2d_refsrc_6_Isrc_7_16_refsnk_9.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 3)
+fdtd_2d_refsrc_9_Isrc_1_18_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < B2) then 0 else 1)
+fdtd_2d_refsrc_5_Isrc_17_18_refsnk_2.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B1)) then 0 else 1)
+fdtd_2d_refsrc_5_Isrc_12_14_refsnk_2.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B1)) then 0 else 1)
+fdtd_2d_refsrc_5_Isrc_6_18_refsnk_2.Isnk1.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else (B2 - 1))
+fdtd_2d_refsrc_4_Isrc_3_0_refsnk_4.Isnk1.CLS32_DS8.ris_Ibound Prog: 1
+fdtd_2d_refsrc_10_Isrc_6_9_refsnk_15.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 6)
+fdtd_2d_refsrc_13_Isrc_18_5_refsnk_13.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < Isnk1) then 0 else 6)
+fdtd_2d_refsrc_12_Isrc_14_9_refsnk_11.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < Isnk1) then 0 else 5)
+fdtd_2d_refsrc_0_Isrc_1_18_refsnk_0.RI.CLS32_DS8.ris_Ibound Prog: (if (B2 < Isnk1) then 0 else 2)
+fdtd_2d_refsrc_6_Isrc_11_17_refsnk_9.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else Isrc0)
+fdtd_2d_refsrc_2_Isrc_2_14_refsnk_5.Isnk1.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < B2) then 0 else Isrc1)
+fdtd_2d_refsrc_6_Isrc_18_8_refsnk_9.Isnk1.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else Isrc1)
+fdtd_2d_refsrc_12_Isrc_18_9_refsnk_11.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < Isnk1) then 0 else 5)
+fdtd_2d_refsrc_0_Isrc_19_17_refsnk_0.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B1)) then 0 else Isrc0)
+fdtd_2d_refsrc_9_Isrc_19_16_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: (Isnk1 - Isrc1)
+fdtd_2d_refsrc_11_Isrc_6_6_refsnk_12.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B1)) then 0 else 1)
+fdtd_2d_refsrc_7_Isrc_18_11_refsnk_8.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else Isrc0)
+fdtd_2d_refsrc_10_Isrc_9_2_refsnk_15.Isnk0.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B1) then 0 else Isrc0)
+fdtd_2d_refsrc_10_Isrc_12_12_refsnk_15.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B1)) then 0 else 5)
+fdtd_2d_refsrc_7_Isrc_4_11_refsnk_8.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isnk1 < B2)) then 0 else 1)
+fdtd_2d_refsrc_9_Isrc_13_6_refsnk_6.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else Isrc0)
+fdtd_2d_refsrc_11_Isrc_13_1_refsnk_11.RI.CLS32_DS8.ris_Ibound Prog: (if (Isnk1 < 2) then 0 else 6)
+fdtd_2d_refsrc_2_Isrc_2_13_refsnk_5.Isnk1.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < B2) then 0 else Isrc1)
+fdtd_2d_refsrc_8_Isrc_5_13_refsnk_7.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < Isnk1) then 0 else 3)
+fdtd_2d_refsrc_2_Isrc_3_5_refsnk_5.Isnk1.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < B2) then 0 else 5)
+fdtd_2d_refsrc_12_Isrc_14_11_refsnk_11.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < Isnk1) then 0 else 5)
+fdtd_2d_refsrc_4_Isrc_16_12_refsnk_4.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else Isrc0)
+fdtd_2d_refsrc_10_Isrc_12_12_refsnk_15.Isnk1.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B1)) then 0 else Isrc1)
+fdtd_2d_refsrc_2_Isrc_5_19_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isnk1 < B2)) then 0 else 3)
+fdtd_2d_refsrc_14_Isrc_10_12_refsnk_14.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else Isrc0)
+fdtd_2d_refsrc_10_Isrc_7_9_refsnk_15.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B2) && (Isrc1 < B1)) then 0 else Isrc0)
+fdtd_2d_refsrc_2_Isrc_9_1_refsnk_5.Isnk1.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B1) then 0 else 1)
+fdtd_2d_refsrc_7_Isrc_18_13_refsnk_8.Isnk1.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else Isrc1)
+fdtd_2d_refsrc_8_Isrc_19_16_refsnk_7.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < Isnk1) then 0 else 3)
+fdtd_2d_refsrc_14_Isrc_18_10_refsnk_14.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < Isnk1) then 0 else 6)
+fdtd_2d_refsrc_15_Isrc_14_1_refsnk_10.RI.CLS32_DS8.ris_Ibound Prog: (Isnk1 - 1)
+fdtd_2d_refsrc_3_Isrc_5_16_refsnk_3.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else 5)
+fdtd_2d_refsrc_11_Isrc_6_6_refsnk_12.Isnk1.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B1)) then 0 else 6)
+fdtd_2d_refsrc_9_Isrc_13_10_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: (Isnk1 - Isrc1)
+fdtd_2d_refsrc_5_Isrc_13_10_refsnk_2.RI.CLS32_DS8.ris_Ibound Prog: (Isnk1 - Isrc1)
+fdtd_2d_refsrc_12_Isrc_8_7_refsnk_11.RI.CLS32_DS8.ris_Ibound Prog: (if (Isnk1 < Isrc0) then 0 else 5)
+fdtd_2d_refsrc_13_Isrc_9_16_refsnk_13.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else Isrc0)
+fdtd_2d_refsrc_8_Isrc_15_3_refsnk_10.Isnk1.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_6_Isrc_16_5_refsnk_9.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else Isrc0)
+fdtd_2d_refsrc_15_Isrc_9_0_refsnk_10.RI.CLS32_DS8.ris_Ibound Prog: Isnk1
+fdtd_2d_refsrc_6_Isrc_1_12_refsnk_9.Isnk0.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < B2) then 0 else 1)
+fdtd_2d_refsrc_11_Isrc_12_0_refsnk_12.Isnk0.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B1) then 0 else Isrc0)
+fdtd_2d_refsrc_14_Isrc_18_3_refsnk_14.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < Isnk1) then 0 else 6)
+fdtd_2d_refsrc_9_Isrc_0_2_refsnk_6.Isnk1.CLS32_DS8.ris_Ibound Prog: 3
+fdtd_2d_refsrc_14_Isrc_17_12_refsnk_14.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else Isrc0)
+fdtd_2d_refsrc_5_Isrc_13_10_refsnk_2.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else Isrc0)
+fdtd_2d_refsrc_7_Isrc_8_6_refsnk_7.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < Isnk1) then 0 else 4)
+fdtd_2d_refsrc_15_Isrc_7_8_refsnk_10.RI.CLS32_DS8.ris_Ibound Prog: (Isnk1 - Isrc1)
+fdtd_2d_refsrc_4_Isrc_3_6_refsnk_4.RI.CLS32_DS8.ris_Ibound Prog: (if (Isnk1 < B2) then 0 else 4)
+fdtd_2d_refsrc_9_Isrc_6_12_refsnk_6.Isnk1.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else (Isrc1 + 1))
+fdtd_2d_refsrc_10_Isrc_13_13_refsnk_15.Isnk1.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B1)) then 0 else Isrc1)
+fdtd_2d_refsrc_15_Isrc_2_5_refsnk_10.RI.CLS32_DS8.ris_Ibound Prog: (Isnk1 - 5)
+fdtd_2d_refsrc_7_Isrc_11_16_refsnk_7.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < Isnk1) then 0 else 4)
+fdtd_2d_refsrc_4_Isrc_9_12_refsnk_4.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < Isnk1) then 0 else 4)
+fdtd_2d_refsrc_7_Isrc_0_15_refsnk_8.Isnk0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_4_Isrc_3_6_refsnk_4.Isnk0.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < B2) then 0 else 3)
+fdtd_2d_refsrc_4_Isrc_3_6_refsnk_4.Isnk0.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < B2) then 0 else 3)
+fdtd_2d_refsrc_15_Isrc_3_5_refsnk_10.RI.CLS32_DS8.ris_Ibound Prog: (Isnk1 - 5)
+fdtd_2d_refsrc_15_Isrc_3_5_refsnk_10.RI.CLS32_DS8.ris_Ibound Prog: (Isnk1 - 5)
+fdtd_2d_refsrc_0_Isrc_7_7_refsnk_14.Isnk0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_0_Isrc_7_7_refsnk_14.Isnk0.CLS32_DS8.ris_Ibound Prog: 0
+fdtd_2d_refsrc_9_Isrc_1_13_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: (Isnk1 - Isrc1)
+fdtd_2d_refsrc_9_Isrc_1_13_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: (Isnk1 - Isrc1)
+fdtd_2d_refsrc_2_Isrc_6_17_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isnk0 < B1) && (Isrc1 < B2)) then 0 else 3)
+fdtd_2d_refsrc_2_Isrc_6_17_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isnk0 < B1) && (Isrc1 < B2)) then 0 else 3)
+fdtd_2d_refsrc_13_Isrc_2_3_refsnk_13.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < Isnk1) then 0 else 6)
+fdtd_2d_refsrc_13_Isrc_2_3_refsnk_13.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < Isnk1) then 0 else 6)
+fdtd_2d_refsrc_0_Isrc_1_18_refsnk_0.Isnk0.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < B2) then 0 else 1)
+fdtd_2d_refsrc_0_Isrc_1_18_refsnk_0.Isnk0.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < B2) then 0 else 1)
+fdtd_2d_refsrc_2_Isrc_3_18_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: (if (B2 < Isrc1) then 0 else 3)
+fdtd_2d_refsrc_2_Isrc_3_18_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: (if (B2 < Isrc1) then 0 else 3)
+fdtd_2d_refsrc_10_Isrc_7_9_refsnk_15.Isnk1.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B2) && (Isrc1 < B1)) then 0 else Isrc1)
+fdtd_2d_refsrc_10_Isrc_7_9_refsnk_15.Isnk1.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B2) && (Isrc1 < B1)) then 0 else Isrc1)
+fdtd_2d_refsrc_14_Isrc_12_3_refsnk_14.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < Isnk1) then 0 else B0)
+fdtd_2d_refsrc_14_Isrc_12_3_refsnk_14.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < Isnk1) then 0 else B0)
+fdtd_2d_refsrc_7_Isrc_4_11_refsnk_8.Isnk1.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else Isrc1)
+fdtd_2d_refsrc_7_Isrc_4_11_refsnk_8.Isnk1.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc1 < B2)) then 0 else Isrc1)
+fdtd_2d_refsrc_5_Isrc_2_19_refsnk_2.RI.CLS32_DS8.ris_Ibound Prog: (Isnk0 - 2)
+fdtd_2d_refsrc_5_Isrc_2_19_refsnk_2.RI.CLS32_DS8.ris_Ibound Prog: (Isnk0 - 2)

@@ -1,0 +1,22 @@
+correlation_refsrc_27_Isrc_7_8_0_refsnk_27.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 0
+correlation_refsrc_27_Isrc_7_8_0_refsnk_27.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 0
+correlation_refsrc_30_Isrc_1_18_18_refsnk_29.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isrc2 < B1) && (Isrc2 < B0)) then 0 else (B1 - 1))
+correlation_refsrc_30_Isrc_1_18_18_refsnk_29.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isrc2 < B1) && (Isrc2 < B0)) then 0 else (B1 - 1))
+correlation_refsrc_26_Isrc_8_18_refsnk_29.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 0
+correlation_refsrc_26_Isrc_8_18_refsnk_29.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 0
+correlation_refsrc_28_Isrc_4_14_10_refsnk_28.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isrc1 < B0) && (Isrc2 < B1)) then 0 else Isrc2)
+correlation_refsrc_28_Isrc_4_14_10_refsnk_28.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isrc1 < B0) && (Isrc2 < B1)) then 0 else Isrc2)
+correlation_refsrc_28_Isrc_6_15_8_refsnk_28.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isrc1 < B0) && (Isrc2 < B1)) then 0 else Isrc2)
+correlation_refsrc_28_Isrc_6_15_8_refsnk_28.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isrc1 < B0) && (Isrc2 < B1)) then 0 else Isrc2)
+correlation_refsrc_28_Isrc_5_15_10_refsnk_28.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isrc1 < B0) && (Isrc2 < B1)) then 0 else Isrc2)
+correlation_refsrc_28_Isrc_5_15_10_refsnk_28.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isrc1 < B0) && (Isrc2 < B1)) then 0 else Isrc2)
+correlation_refsrc_27_Isrc_0_16_15_refsnk_27.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isrc1 < B0) && (Isrc2 < B1)) then 0 else Isrc2)
+correlation_refsrc_27_Isrc_0_16_15_refsnk_27.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isrc1 < B0) && (Isrc2 < B1)) then 0 else Isrc2)
+correlation_refsrc_28_Isrc_4_10_12_refsnk_28.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isrc1 < B0) && (Isrc2 < B1)) then 0 else Isrc2)
+correlation_refsrc_28_Isrc_4_10_12_refsnk_28.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isrc1 < B0) && (Isrc2 < B1)) then 0 else Isrc2)
+correlation_refsrc_30_Isrc_2_9_2_refsnk_29.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc1 < B0) then 0 else 3)
+correlation_refsrc_30_Isrc_2_9_2_refsnk_29.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc1 < B0) then 0 else 3)
+correlation_refsrc_28_Isrc_15_19_3_refsnk_27.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc1 < B0) then 0 else 3)
+correlation_refsrc_28_Isrc_15_19_3_refsnk_27.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc1 < B0) then 0 else 3)
+correlation_refsrc_28_Isrc_5_7_18_refsnk_27.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isrc1 < B0) && (Isrc2 < B1)) then 0 else Isrc2)
+correlation_refsrc_28_Isrc_5_7_18_refsnk_27.Isnk2.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isrc1 < B0) && (Isrc2 < B1)) then 0 else Isrc2)

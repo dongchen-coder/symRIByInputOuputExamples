@@ -1,245 +1,131 @@
-convolution_3d_refsrc_1_refsnk_3.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_1_refsnk_3.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
-convolution_3d_refsrc_1.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_6_refsnk_9.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else (B0 - 3))
-convolution_3d_refsrc_14_refsnk_8.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
-convolution_3d_refsrc_14_refsnk_8.Imin1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_14_refsnk_8.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_1.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_14_refsnk_8.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
-convolution_3d_refsrc_14_refsnk_12.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_14_refsnk_12.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_14_refsnk_12.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_14_refsnk_12.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 3)
-convolution_3d_refsrc_14_refsnk_12.Imin2.CLS32_DS8.ris_Ibound Prog: 2
-convolution_3d_refsrc_14_refsnk_12.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
-convolution_3d_refsrc_14_refsnk_14.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_14_refsnk_14.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_14_refsnk_14.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_14_refsnk_14.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_14_refsnk_14.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_14_refsnk_14.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 3)
-convolution_3d_refsrc_14.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_1.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_10_refsnk_7.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_10_refsnk_7.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
-convolution_3d_refsrc_10_refsnk_7.Imin1.CLS32_DS8.ris_Ibound Prog: 2
-convolution_3d_refsrc_10_refsnk_7.Imax1.CLS32_DS8.ris_Ibound Prog: 2
-convolution_3d_refsrc_10_refsnk_7.Imin2.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
-convolution_3d_refsrc_10_refsnk_7.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
-convolution_3d_refsrc_10_refsnk_8.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B1) then 0 else 1)
-convolution_3d_refsrc_14.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_10_refsnk_8.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B1) then 0 else (B0 - 3))
-convolution_3d_refsrc_2_refsnk_4.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_2_refsnk_4.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_2_refsnk_4.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_2_refsnk_4.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_2_refsnk_4.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_2_refsnk_4.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
-convolution_3d_refsrc_2.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_14.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_2.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_10_refsnk_8.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B1) then 0 else (B1 - 2))
-convolution_3d_refsrc_15_refsnk_15.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_15_refsnk_15.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_15_refsnk_15.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_15_refsnk_15.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_15_refsnk_15.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_10_refsnk_8.Imin2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B1) then 0 else (B2 - 2))
-convolution_3d_refsrc_2.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_10_refsnk_8.Imax2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B1) then 0 else (B2 - 2))
-convolution_3d_refsrc_10_refsnk_10.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 1)
-convolution_3d_refsrc_10_refsnk_10.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else (B0 - 2))
-convolution_3d_refsrc_15.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_10_refsnk_10.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 1)
-convolution_3d_refsrc_10_refsnk_10.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else (B1 - 2))
-convolution_3d_refsrc_3_refsnk_5.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_3_refsnk_5.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_3_refsnk_5.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_3_refsnk_5.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_3_refsnk_5.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_3_refsnk_5.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
-convolution_3d_refsrc_3.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_15.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_3.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_6_refsnk_11.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_6_refsnk_11.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
-convolution_3d_refsrc_6_refsnk_11.Imin1.CLS32_DS8.ris_Ibound Prog: 2
-convolution_3d_refsrc_6_refsnk_11.Imax1.CLS32_DS8.ris_Ibound Prog: 2
-convolution_3d_refsrc_15.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_3.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_6_refsnk_11.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
-convolution_3d_refsrc_6_refsnk_13.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B1) then 0 else 1)
-convolution_3d_refsrc_6_refsnk_13.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B1) then 0 else (B0 - 3))
-convolution_3d_refsrc_6_refsnk_13.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B1) then 0 else 3)
-convolution_3d_refsrc_6_refsnk_13.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B1) then 0 else (B1 - 2))
-convolution_3d_refsrc_4_refsnk_0.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 1)
-convolution_3d_refsrc_4_refsnk_0.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else (B0 - 2))
-convolution_3d_refsrc_10.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_4_refsnk_0.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 1)
-convolution_3d_refsrc_4_refsnk_0.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else (B1 - 2))
-convolution_3d_refsrc_10.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_6_refsnk_13.Imax2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B1) then 0 else (B2 - 2))
-convolution_3d_refsrc_6.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_10.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_6.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_6.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_4_refsnk_9.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_4_refsnk_9.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_4_refsnk_9.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_4_refsnk_9.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_4_refsnk_9.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_4_refsnk_9.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
-convolution_3d_refsrc_4.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_7_refsnk_6.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_7_refsnk_6.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_7_refsnk_6.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_7_refsnk_6.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 3)
-convolution_3d_refsrc_4.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_7_refsnk_6.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
-convolution_3d_refsrc_7_refsnk_7.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_7_refsnk_7.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_7_refsnk_7.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_7_refsnk_7.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_7_refsnk_7.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_4.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_7_refsnk_13.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_7_refsnk_13.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
-convolution_3d_refsrc_7_refsnk_13.Imin1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_7_refsnk_13.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_7_refsnk_13.Imin2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 2 else 3)
-convolution_3d_refsrc_7_refsnk_13.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
-convolution_3d_refsrc_7.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_5_refsnk_1.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 1)
-convolution_3d_refsrc_5_refsnk_1.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else (B0 - 2))
-convolution_3d_refsrc_5_refsnk_1.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 1)
-convolution_3d_refsrc_5_refsnk_1.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else (B1 - 2))
-convolution_3d_refsrc_7.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_7.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_11_refsnk_9.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 1)
-convolution_3d_refsrc_11_refsnk_9.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else (B0 - 2))
-convolution_3d_refsrc_11_refsnk_9.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 1)
-convolution_3d_refsrc_11_refsnk_9.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else (B1 - 3))
-convolution_3d_refsrc_8_refsnk_7.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_8_refsnk_7.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_8_refsnk_7.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_5_refsnk_6.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 1)
-convolution_3d_refsrc_5_refsnk_6.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else (B0 - 3))
-convolution_3d_refsrc_5_refsnk_6.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 1)
-convolution_3d_refsrc_5_refsnk_6.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 1)
-convolution_3d_refsrc_11_refsnk_9.Imax2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else (B2 - 2))
-convolution_3d_refsrc_5_refsnk_6.Imin2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 4)
-convolution_3d_refsrc_11_refsnk_11.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_11_refsnk_11.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_11_refsnk_11.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_11_refsnk_11.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_11_refsnk_11.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_11_refsnk_11.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 3)
-convolution_3d_refsrc_11.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_11.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_8_refsnk_8.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_8_refsnk_8.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_8_refsnk_8.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_8_refsnk_8.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_8_refsnk_8.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_5_refsnk_7.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 1)
-convolution_3d_refsrc_5_refsnk_7.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else (B0 - 3))
-convolution_3d_refsrc_11.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_8_refsnk_13.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_8_refsnk_13.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
-convolution_3d_refsrc_8_refsnk_13.Imin1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_8_refsnk_13.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_5_refsnk_7.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 2)
-convolution_3d_refsrc_5_refsnk_7.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 2)
-convolution_3d_refsrc_8_refsnk_13.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
-convolution_3d_refsrc_8.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_8.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_5_refsnk_7.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 4)
-convolution_3d_refsrc_8.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_9_refsnk_0.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_9_refsnk_0.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_9_refsnk_0.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_9_refsnk_0.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_9_refsnk_0.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_9_refsnk_9.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 1)
-convolution_3d_refsrc_9_refsnk_9.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else (B0 - 2))
-convolution_3d_refsrc_9_refsnk_9.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 1)
-convolution_3d_refsrc_9_refsnk_9.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else (B1 - 2))
-convolution_3d_refsrc_12_refsnk_8.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_12_refsnk_8.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
-convolution_3d_refsrc_12_refsnk_8.Imin1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_12_refsnk_8.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_12_refsnk_8.Imin2.CLS32_DS8.ris_Ibound Prog: 2
-convolution_3d_refsrc_12_refsnk_8.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
-convolution_3d_refsrc_12_refsnk_10.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 1)
-convolution_3d_refsrc_12_refsnk_10.Imax0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else (B0 - 2))
-convolution_3d_refsrc_12_refsnk_10.Imin1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 1)
-convolution_3d_refsrc_12_refsnk_10.Imax1.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else (B1 - 3))
-convolution_3d_refsrc_5_refsnk_10.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_5_refsnk_10.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_5_refsnk_10.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_5_refsnk_10.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_5_refsnk_10.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_5_refsnk_10.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
-convolution_3d_refsrc_5.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_9.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_5.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_12_refsnk_10.Imax2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else (B2 - 2))
-convolution_3d_refsrc_12_refsnk_12.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_12_refsnk_12.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_12_refsnk_12.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_12_refsnk_12.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_12.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_12_refsnk_12.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_12_refsnk_12.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 3)
-convolution_3d_refsrc_9.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_5.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_0_refsnk_2.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_0_refsnk_2.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_0_refsnk_2.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_0_refsnk_2.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_0_refsnk_2.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_0_refsnk_2.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
-convolution_3d_refsrc_0.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_12.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_9.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_6_refsnk_0.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_6_refsnk_0.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 3)
-convolution_3d_refsrc_6_refsnk_0.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_6_refsnk_0.Imax1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_6_refsnk_0.Imin2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 2 else 3)
-convolution_3d_refsrc_0.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_6_refsnk_0.Imax2.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 2 else 3)
-convolution_3d_refsrc_6_refsnk_6.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_6_refsnk_6.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_6_refsnk_6.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_6_refsnk_6.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_6_refsnk_6.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_12.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_10_refsnk_1.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_10_refsnk_1.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_10_refsnk_1.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_10_refsnk_1.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_10_refsnk_1.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_0.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_6_refsnk_9.Imin0.CLS32_DS8.ris_Ibound Prog: (if ((2 + 2) < B2) then 0 else 1)
-convolution_3d_refsrc_13_refsnk_11.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_13_refsnk_11.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_13_refsnk_11.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_13_refsnk_11.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 3)
-convolution_3d_refsrc_13_refsnk_11.Imin2.CLS32_DS8.ris_Ibound Prog: 2
-convolution_3d_refsrc_13_refsnk_11.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 2)
-convolution_3d_refsrc_13_refsnk_13.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_13_refsnk_13.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_13_refsnk_13.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_13_refsnk_13.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_13_refsnk_13.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_13_refsnk_13.Imax2.CLS32_DS8.ris_Ibound Prog: (B2 - 3)
-convolution_3d_refsrc_13.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_1_refsnk_3.Imin0.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_1_refsnk_3.Imax0.CLS32_DS8.ris_Ibound Prog: (B0 - 2)
-convolution_3d_refsrc_1_refsnk_3.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_1_refsnk_3.Imax1.CLS32_DS8.ris_Ibound Prog: (B1 - 2)
-convolution_3d_refsrc_13.Imin1.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_13.Imin2.CLS32_DS8.ris_Ibound Prog: 1
-convolution_3d_refsrc_14_refsnk_8.Imin0.CLS32_DS8.ris_Ibound Prog: 1
+convolution_3d_refsrc_4_Isrc_4_3_1_refsnk_9.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc0 < B0)) then 0 else 5)
+convolution_3d_refsrc_14_Isrc_2_2_5_refsnk_14.RI.CLS32_DS8.ris_Ibound Prog: (if ((B2 + Isrc0) < (Isrc2 + Isrc2)) then 0 else (4 * 4))
+convolution_3d_refsrc_3_Isrc_6_2_10_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B0) && (Isrc2 < B2)) then 0 else 2)
+convolution_3d_refsrc_12_Isrc_3_1_1_refsnk_12.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 + B0) < (Isrc0 + Isrc0)) then 0 else (4 * 4))
+convolution_3d_refsrc_13_Isrc_2_6_9_refsnk_13.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B1) && (Isrc2 < B2)) then 0 else (4 * 4))
+convolution_3d_refsrc_0_Isrc_2_17_2_refsnk_2.RI.CLS32_DS8.ris_Ibound Prog: (if (B1 < Isrc1) then 0 else 2)
+convolution_3d_refsrc_1_Isrc_2_15_17_refsnk_3.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc2 < B2) && (Isrc2 < B1)) then 0 else 2)
+convolution_3d_refsrc_8_Isrc_6_1_16_refsnk_8.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B0) && (Isrc2 < B2)) then 0 else Isrc2)
+convolution_3d_refsrc_6_Isrc_1_10_8_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B2) && (Isrc1 < B1)) then 0 else (4 * 4))
+convolution_3d_refsrc_13_Isrc_2_17_12_refsnk_13.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B1) && (Isrc2 < B2)) then 0 else (B1 - 4))
+convolution_3d_refsrc_5_Isrc_17_1_13_refsnk_10.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B0) && (Isrc2 < B2)) then 0 else 5)
+convolution_3d_refsrc_15_Isrc_10_2_16_refsnk_15.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B0) && (Isrc2 < B2)) then 0 else Isrc2)
+convolution_3d_refsrc_0_Isrc_6_2_4_refsnk_2.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B0) && (Isrc2 < B2)) then 0 else 2)
+convolution_3d_refsrc_7_Isrc_2_2_1_refsnk_7.RI.CLS32_DS8.ris_Ibound Prog: (4 * 4)
+convolution_3d_refsrc_12_Isrc_12_13_1_refsnk_12.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc0 < B0)) then 0 else (4 * 4))
+convolution_3d_refsrc_2_Isrc_17_1_4_refsnk_4.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B0) && (Isrc2 < B2)) then 0 else 2)
+convolution_3d_refsrc_7_Isrc_1_12_1_refsnk_7.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc1 < B1) then 0 else (4 * 4))
+convolution_3d_refsrc_13_Isrc_14_1_11_refsnk_13.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B0)) then 0 else (4 * 4))
+convolution_3d_refsrc_3_Isrc_1_14_8_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B1) && (Isrc2 < B2)) then 0 else 2)
+convolution_3d_refsrc_10_Isrc_16_1_15_refsnk_10.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B0)) then 0 else Isrc0)
+convolution_3d_refsrc_5_Isrc_1_7_2_refsnk_10.RI.CLS32_DS8.ris_Ibound Prog: (if ((B1 + Isrc2) < (Isrc1 + Isrc1)) then 0 else 5)
+convolution_3d_refsrc_2_Isrc_18_1_2_refsnk_4.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B0) then 0 else 2)
+convolution_3d_refsrc_3_Isrc_2_4_9_refsnk_5.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B1) && (Isrc2 < B2)) then 0 else 2)
+convolution_3d_refsrc_8_Isrc_14_1_8_refsnk_8.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B0) && (Isrc2 < B2)) then 0 else (4 * 4))
+convolution_3d_refsrc_0_Isrc_18_9_1_refsnk_2.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B0) && (Isrc1 < B1)) then 0 else 2)
+convolution_3d_refsrc_13_Isrc_8_9_2_refsnk_11.Isnk2.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc0 < B0)) then 0 else 1)
+convolution_3d_refsrc_13_Isrc_8_9_2_refsnk_11.Isnk2.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc0 < B0)) then 0 else 1)
+convolution_3d_refsrc_6_Isrc_17_5_4_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isnk2 < Isrc1) && (2 < Isnk2)) then 0 else (B0 - 4))
+convolution_3d_refsrc_6_Isrc_17_5_4_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isnk2 < Isrc1) && (2 < Isnk2)) then 0 else (B0 - 4))
+convolution_3d_refsrc_14_Isrc_10_4_15_refsnk_14.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else Isnk2)
+convolution_3d_refsrc_14_Isrc_10_4_15_refsnk_14.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else Isnk2)
+convolution_3d_refsrc_12_Isrc_12_2_13_refsnk_12.Isnk2.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B0)) then 0 else (Isrc2 + 1))
+convolution_3d_refsrc_12_Isrc_12_2_13_refsnk_12.Isnk2.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B0)) then 0 else (Isrc2 + 1))
+convolution_3d_refsrc_5_Isrc_8_18_3_refsnk_1.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (B1 - Isnk0))
+convolution_3d_refsrc_5_Isrc_8_18_3_refsnk_1.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (B1 - Isnk0))
+convolution_3d_refsrc_11_Isrc_13_14_8_refsnk_11.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (4 * 4))
+convolution_3d_refsrc_11_Isrc_13_14_8_refsnk_11.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (4 * 4))
+convolution_3d_refsrc_13_Isrc_2_9_13_refsnk_13.Isnk2.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B1) && (Isrc2 < B2)) then 0 else (Isrc2 + 1))
+convolution_3d_refsrc_13_Isrc_2_9_13_refsnk_13.Isnk2.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B1) && (Isrc2 < B2)) then 0 else (Isrc2 + 1))
+convolution_3d_refsrc_13_Isrc_16_5_7_refsnk_13.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else Isnk0)
+convolution_3d_refsrc_13_Isrc_16_5_7_refsnk_13.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else Isnk0)
+convolution_3d_refsrc_7_Isrc_1_15_16_refsnk_7.Isnk2.CLS32_DS8.ris_Ibound Prog: (if ((Isrc2 < B2) && (Isrc2 < B1)) then 0 else (B2 - 3))
+convolution_3d_refsrc_7_Isrc_1_15_16_refsnk_7.Isnk2.CLS32_DS8.ris_Ibound Prog: (if ((Isrc2 < B2) && (Isrc2 < B1)) then 0 else (B2 - 3))
+convolution_3d_refsrc_5_Isrc_7_4_1_refsnk_1.RI.CLS32_DS8.ris_Ibound Prog: (if (Isnk2 < 2) then 0 else (B2 + B2))
+convolution_3d_refsrc_5_Isrc_7_4_1_refsnk_1.RI.CLS32_DS8.ris_Ibound Prog: (if (Isnk2 < 2) then 0 else (B2 + B2))
+convolution_3d_refsrc_0_Isrc_7_8_2_refsnk_2.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B1) && (Isrc1 < B0)) then 0 else Isrc0)
+convolution_3d_refsrc_0_Isrc_7_8_2_refsnk_2.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B1) && (Isrc1 < B0)) then 0 else Isrc0)
+convolution_3d_refsrc_6_Isrc_10_1_16_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else Isrc2)
+convolution_3d_refsrc_6_Isrc_10_1_16_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else Isrc2)
+convolution_3d_refsrc_5_Isrc_17_1_18_refsnk_10.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B0)) then 0 else Isrc0)
+convolution_3d_refsrc_5_Isrc_17_1_18_refsnk_10.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B0)) then 0 else Isrc0)
+convolution_3d_refsrc_8_Isrc_1_14_17_refsnk_8.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B1) && (Isrc2 < B2)) then 0 else 1)
+convolution_3d_refsrc_8_Isrc_1_14_17_refsnk_8.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B1) && (Isrc2 < B2)) then 0 else 1)
+convolution_3d_refsrc_9_Isrc_5_8_15_refsnk_9.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else Isnk2)
+convolution_3d_refsrc_9_Isrc_5_8_15_refsnk_9.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else Isnk2)
+convolution_3d_refsrc_14_Isrc_15_2_11_refsnk_14.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (B0 - 4))
+convolution_3d_refsrc_14_Isrc_15_2_11_refsnk_14.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (B0 - 4))
+convolution_3d_refsrc_6_Isrc_2_7_1_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: (if (Isnk2 < 2) then 0 else (4 * 4))
+convolution_3d_refsrc_6_Isrc_2_7_1_refsnk_6.RI.CLS32_DS8.ris_Ibound Prog: (if (Isnk2 < 2) then 0 else (4 * 4))
+convolution_3d_refsrc_12_Isrc_14_1_1_refsnk_12.RI.CLS32_DS8.ris_Ibound Prog: (if (B0 < Isnk0) then 0 else (4 * 4))
+convolution_3d_refsrc_12_Isrc_14_1_1_refsnk_12.RI.CLS32_DS8.ris_Ibound Prog: (if (B0 < Isnk0) then 0 else (4 * 4))
+convolution_3d_refsrc_0_Isrc_7_8_2_refsnk_2.Isnk2.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B1) && (Isrc1 < B0)) then 0 else 2)
+convolution_3d_refsrc_0_Isrc_7_8_2_refsnk_2.Isnk2.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B1) && (Isrc1 < B0)) then 0 else 2)
+convolution_3d_refsrc_12_Isrc_16_4_15_refsnk_12.RI.CLS32_DS8.ris_Ibound Prog: (if (Isnk2 < Isnk0) then 0 else Isnk0)
+convolution_3d_refsrc_12_Isrc_16_4_15_refsnk_12.RI.CLS32_DS8.ris_Ibound Prog: (if (Isnk2 < Isnk0) then 0 else Isnk0)
+convolution_3d_refsrc_8_Isrc_1_14_17_refsnk_8.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (B2 - 4))
+convolution_3d_refsrc_8_Isrc_1_14_17_refsnk_8.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (B2 - 4))
+convolution_3d_refsrc_14_Isrc_14_13_2_refsnk_12.Isnk2.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc0 < B0)) then 0 else 1)
+convolution_3d_refsrc_14_Isrc_14_13_2_refsnk_12.Isnk2.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc0 < B0)) then 0 else 1)
+convolution_3d_refsrc_10_Isrc_18_15_8_refsnk_1.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (Isrc2 - 1))
+convolution_3d_refsrc_10_Isrc_18_15_8_refsnk_1.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (Isrc2 - 1))
+convolution_3d_refsrc_15_Isrc_17_11_5_refsnk_15.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (B0 - 4))
+convolution_3d_refsrc_15_Isrc_17_11_5_refsnk_15.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (B0 - 4))
+convolution_3d_refsrc_12_Isrc_10_16_11_refsnk_12.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else Isrc1)
+convolution_3d_refsrc_12_Isrc_10_16_11_refsnk_12.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else Isrc1)
+convolution_3d_refsrc_2_Isrc_4_1_18_refsnk_4.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isnk0 < B0) && (Isrc2 < B2)) then 0 else 2)
+convolution_3d_refsrc_2_Isrc_4_1_18_refsnk_4.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isnk0 < B0) && (Isrc2 < B2)) then 0 else 2)
+convolution_3d_refsrc_11_Isrc_17_15_1_refsnk_11.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc0 < B0)) then 0 else Isrc0)
+convolution_3d_refsrc_11_Isrc_17_15_1_refsnk_11.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc0 < B0)) then 0 else Isrc0)
+convolution_3d_refsrc_1_Isrc_1_1_11_refsnk_3.Isnk0.CLS32_DS8.ris_Ibound Prog: (if (B2 < (Isrc2 + 2)) then 0 else 1)
+convolution_3d_refsrc_1_Isrc_1_1_11_refsnk_3.Isnk0.CLS32_DS8.ris_Ibound Prog: (if (B2 < (Isrc2 + 2)) then 0 else 1)
+convolution_3d_refsrc_10_Isrc_1_2_1_refsnk_10.RI.CLS32_DS8.ris_Ibound Prog: (if (1 < Isnk2) then 0 else (4 * 4))
+convolution_3d_refsrc_10_Isrc_1_2_1_refsnk_10.RI.CLS32_DS8.ris_Ibound Prog: (if (1 < Isnk2) then 0 else (4 * 4))
+convolution_3d_refsrc_15_Isrc_4_15_13_refsnk_15.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (B1 - 4))
+convolution_3d_refsrc_15_Isrc_4_15_13_refsnk_15.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (B1 - 4))
+convolution_3d_refsrc_14_Isrc_17_16_8_refsnk_14.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else Isrc1)
+convolution_3d_refsrc_14_Isrc_17_16_8_refsnk_14.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else Isrc1)
+convolution_3d_refsrc_14_Isrc_10_2_1_refsnk_14.Isnk0.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B0) then 0 else Isrc0)
+convolution_3d_refsrc_14_Isrc_10_2_1_refsnk_14.Isnk0.CLS32_DS8.ris_Ibound Prog: (if (Isrc0 < B0) then 0 else Isrc0)
+convolution_3d_refsrc_14_Isrc_14_1_13_refsnk_14.RI.CLS32_DS8.ris_Ibound Prog: (if (Isnk2 < Isnk0) then 0 else (4 * 4))
+convolution_3d_refsrc_14_Isrc_14_1_13_refsnk_14.RI.CLS32_DS8.ris_Ibound Prog: (if (Isnk2 < Isnk0) then 0 else (4 * 4))
+convolution_3d_refsrc_4_Isrc_17_13_3_refsnk_0.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (Isnk0 - 5))
+convolution_3d_refsrc_4_Isrc_17_13_3_refsnk_0.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (Isnk0 - 5))
+convolution_3d_refsrc_5_Isrc_2_11_2_refsnk_10.Isnk1.CLS32_DS8.ris_Ibound Prog: (if (B1 < (2 + Isrc1)) then 0 else Isrc1)
+convolution_3d_refsrc_5_Isrc_2_11_2_refsnk_10.Isnk1.CLS32_DS8.ris_Ibound Prog: (if (B1 < (2 + Isrc1)) then 0 else Isrc1)
+convolution_3d_refsrc_10_Isrc_2_5_3_refsnk_10.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (4 * 4))
+convolution_3d_refsrc_10_Isrc_2_5_3_refsnk_10.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (4 * 4))
+convolution_3d_refsrc_15_Isrc_9_14_6_refsnk_15.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (4 * 4))
+convolution_3d_refsrc_15_Isrc_9_14_6_refsnk_15.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (4 * 4))
+convolution_3d_refsrc_15_Isrc_2_17_14_refsnk_15.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B2) && (Isrc1 < B1)) then 0 else 2)
+convolution_3d_refsrc_15_Isrc_2_17_14_refsnk_15.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B2) && (Isrc1 < B1)) then 0 else 2)
+convolution_3d_refsrc_9_Isrc_18_2_1_refsnk_0.RI.CLS32_DS8.ris_Ibound Prog: (if (Isnk2 < 2) then 0 else (3 + 4))
+convolution_3d_refsrc_9_Isrc_18_2_1_refsnk_0.RI.CLS32_DS8.ris_Ibound Prog: (if (Isnk2 < 2) then 0 else (3 + 4))
+convolution_3d_refsrc_9_Isrc_15_3_16_refsnk_0.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (2 + 5))
+convolution_3d_refsrc_9_Isrc_15_3_16_refsnk_0.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (2 + 5))
+convolution_3d_refsrc_1_Isrc_13_2_4_refsnk_3.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B0) && (Isrc2 < B2)) then 0 else Isrc0)
+convolution_3d_refsrc_1_Isrc_13_2_4_refsnk_3.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B0) && (Isrc2 < B2)) then 0 else Isrc0)
+convolution_3d_refsrc_5_Isrc_13_1_9_refsnk_10.Isnk1.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B0) && (Isrc2 < B2)) then 0 else 1)
+convolution_3d_refsrc_5_Isrc_13_1_9_refsnk_10.Isnk1.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B0) && (Isrc2 < B2)) then 0 else 1)
+convolution_3d_refsrc_5_Isrc_1_9_1_refsnk_10.Isnk2.CLS32_DS8.ris_Ibound Prog: (if (B1 < Isrc1) then 0 else 1)
+convolution_3d_refsrc_5_Isrc_1_9_1_refsnk_10.Isnk2.CLS32_DS8.ris_Ibound Prog: (if (B1 < Isrc1) then 0 else 1)
+convolution_3d_refsrc_11_Isrc_10_7_3_refsnk_11.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (4 * 4))
+convolution_3d_refsrc_11_Isrc_10_7_3_refsnk_11.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (4 * 4))
+convolution_3d_refsrc_1_Isrc_1_18_15_refsnk_3.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B2) && (Isrc1 < B1)) then 0 else 1)
+convolution_3d_refsrc_1_Isrc_1_18_15_refsnk_3.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B2) && (Isrc1 < B1)) then 0 else 1)
+convolution_3d_refsrc_1_Isrc_1_2_13_refsnk_3.Isnk0.CLS32_DS8.ris_Ibound Prog: (if (B2 < Isrc2) then 0 else 1)
+convolution_3d_refsrc_1_Isrc_1_2_13_refsnk_3.Isnk0.CLS32_DS8.ris_Ibound Prog: (if (B2 < Isrc2) then 0 else 1)
+convolution_3d_refsrc_7_Isrc_12_14_9_refsnk_7.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (4 * 4))
+convolution_3d_refsrc_7_Isrc_12_14_9_refsnk_7.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (4 * 4))
+convolution_3d_refsrc_1_Isrc_14_18_1_refsnk_3.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B1) && (Isnk0 < B0)) then 0 else 2)
+convolution_3d_refsrc_1_Isrc_14_18_1_refsnk_3.RI.CLS32_DS8.ris_Ibound Prog: (if ((Isrc1 < B1) && (Isnk0 < B0)) then 0 else 2)
+convolution_3d_refsrc_5_Isrc_12_1_14_refsnk_10.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B0)) then 0 else Isrc0)
+convolution_3d_refsrc_5_Isrc_12_1_14_refsnk_10.Isnk0.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B0)) then 0 else Isrc0)
+convolution_3d_refsrc_7_Isrc_16_5_6_refsnk_7.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else Isnk0)
+convolution_3d_refsrc_7_Isrc_16_5_6_refsnk_7.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else Isnk0)
+convolution_3d_refsrc_2_Isrc_8_2_7_refsnk_4.Isnk2.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B0)) then 0 else Isrc2)
+convolution_3d_refsrc_2_Isrc_8_2_7_refsnk_4.Isnk2.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B2) && (Isrc0 < B0)) then 0 else Isrc2)
+convolution_3d_refsrc_4_Isrc_9_18_3_refsnk_0.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (Isrc1 - 6))
+convolution_3d_refsrc_4_Isrc_9_18_3_refsnk_0.RI.CLS32_DS8.ris_Ibound Prog: (if (Isrc2 < Isnk2) then 0 else (Isrc1 - 6))
+convolution_3d_refsrc_14_Isrc_14_13_2_refsnk_12.Isnk1.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc0 < B0)) then 0 else Isrc0)
+convolution_3d_refsrc_14_Isrc_14_13_2_refsnk_12.Isnk1.CLS32_DS8.ris_Ibound Prog: (if ((Isrc0 < B1) && (Isrc0 < B0)) then 0 else Isrc0)
