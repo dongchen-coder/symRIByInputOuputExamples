@@ -155,7 +155,8 @@ int main(int argc, char* argv[]) {
     
     /* contruct the shape for the source iteration space */
     if (srcShapeFlag) {
-        genInOutWithFormatSrcShape(cacheConfig, name, sizes, numOfSymbolicLoopBounds);
+        //genInOutWithFormatSrcShapeFromReuses(cacheConfig, name, sizes, numOfSymbolicLoopBounds);
+        genInOutWithFormatSrcShapeFromAccesses(name, sizes, numOfSymbolicLoopBounds);
     }
     
     return 0;

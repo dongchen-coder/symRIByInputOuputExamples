@@ -8,6 +8,10 @@ map<uint64_t, map<uint64_t, map<uint64_t, map<uint64_t, map<vector<uint64_t>, ma
 map<uint64_t, map<uint64_t, map<vector<uint64_t>, map<vector<uint64_t>, map<vector<uint64_t>, uint64_t>* >* >* >* > all_ri;
 #endif
 
+map<uint64_t, map<vector<uint64_t>, vector<uint64_t> >* > Imin;
+map<uint64_t, uint64_t> ILen;
+map<uint64_t, map<vector<uint64_t>, vector<uint64_t> >* > Imax;
+
 size_t split(const std::string &txt, std::vector<std::string> &strs, char ch) {
     size_t pos = txt.find( ch );
     size_t initialPos = 0;
@@ -194,6 +198,8 @@ void processSingleRiFile(string cacheConfig, string name, string fileSuffix, vec
 
 }
 
+
+
 void readAllRi(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds) {
     
 #ifdef DEBUG
@@ -216,6 +222,74 @@ void readAllRi(string cacheConfig, string name, vector<uint64_t> sizes, int numO
     
     return;
 }
+
+void processSingleIBoundFile(string name, string fileSuffix, vector<uint64_t> symbolic_bounds) {
+    
+    string fileName = name + fileSuffix;
+    ifstream ifs;
+    ifs.open("./inputoutput/raw_ibound/"+ name + "/" + fileName, ifstream::in);
+    if (ifs.is_open()) {
+        cout << "./inputoutput/raw_ibound/"+ name + "/" + fileName << " succeed " << endl;
+    } else {
+        cout << "./inputoutput/raw_ibound/"+ name + "/" + fileName << " failed " << endl;
+    }
+    
+    uint64_t ref_src_id;
+    vector<uint64_t> idx_src;
+    
+    if (ifs.is_open()) {
+        string line;
+        vector<string> lineList;
+        
+        while(getline(ifs, line)) {
+            int lineListLen = split(line, lineList, ',');
+            //cout << line << endl;
+            if (lineListLen < 2) {
+                cout << "Error in dumping IBound" << endl;
+                break;
+            }
+            vector<string> srcIDIterV;
+            int srcIDIterVLen = split(lineList[1], srcIDIterV, ' ');
+            
+            ref_src_id = stoi(lineList[0]);
+            ILen[ref_src_id] = srcIDIterVLen;
+            idx_src.clear();
+            for (int i = 0; i < srcIDIterV.size(); i++) {
+                idx_src.push_back(stoi(srcIDIterV[i]));
+            }
+            
+            if (Imin.find(ref_src_id) == Imin.end()) {
+                Imin[ref_src_id] = new map<vector<uint64_t>, vector<uint64_t> >;
+                Imax[ref_src_id] = new map<vector<uint64_t>, vector<uint64_t> >;
+            }
+            if ((*Imin[ref_src_id]).find(symbolic_bounds) == (*Imin[ref_src_id]).end()) {
+                (*Imin[ref_src_id])[symbolic_bounds] = idx_src;
+                (*Imax[ref_src_id])[symbolic_bounds] = idx_src;
+            } else {
+                for (int i = 0; i < idx_src.size(); i++) {
+                    (*Imin[ref_src_id])[symbolic_bounds][i] = min((*Imin[ref_src_id])[symbolic_bounds][i], idx_src[i]);
+                    (*Imax[ref_src_id])[symbolic_bounds][i] = max((*Imax[ref_src_id])[symbolic_bounds][i], idx_src[i]);
+                }
+            }
+        }
+    }
+    ifs.close();
+    return;
+}
+
+void readAllIBound(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds) {
+    vector<vector<uint64_t> > trainSizes = genTrainSizes(sizes, numOfSymbolicLoopBounds);
+    
+    for (auto trainSize : trainSizes) {
+        string symbolic_bounds_str = "";
+        for (auto size : trainSize) {
+            symbolic_bounds_str += "_";
+            symbolic_bounds_str += to_string(size);
+        }
+        processSingleIBoundFile(name, symbolic_bounds_str + ".txt", trainSize);
+    }
+}
+
 
 void dumpPerRefRi(vector<uint64_t> sizes) {
     // ref_src_id -> ref_snk_id -> src iter vector -> snk iter vector -> sizes vector -> ri;
@@ -389,7 +463,6 @@ void genInOutWithFormatSrcIterPos(string cacheConfig, string name, vector<uint64
     
 	return;
 }
-
 
 
 void genInOutWithFormatSrcIterPosSnk(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate) {
@@ -722,7 +795,7 @@ void genInOutWithFormatSrcIterPosSnkIterPos(string cacheConfig, string name, vec
 /* ISSUE: For shape here, we only consider the relation between min/max and Bounds.
           For each loop, the induction variables of outer loop should also be considered.
           How the shape relates to scaling the iteration point */
-void genInOutWithFormatSrcShape(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds) {
+void genInOutWithFormatSrcShapeFromReuses(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds) {
 
 #ifdef DEBUG
     cout << "Start to generate input-output examples for Shape" << endl;
@@ -865,6 +938,62 @@ void genInOutWithFormatSrcShape(string cacheConfig, string name, vector<uint64_t
 #endif
 }
 
+void genInOutWithFormatSrcShapeFromAccesses(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds) {
+    
+    vector<vector<uint64_t> > trainSizes = genTrainSizes(sizes, numOfSymbolicLoopBounds);
+    
+    for (auto elm : Imin) {
+        uint64_t ref_src_id = elm.first;
+        for (int I_idx = 0; I_idx < ILen[ref_src_id]; I_idx++) {
+            
+            ofstream ofs_Imin;
+            
+            ofs_Imin.open("./inputoutput/ris_Ibound/" + name + "/" + name +
+            "_refsrc_" + to_string(ref_src_id) +
+            ".Imin" + to_string(I_idx) , ofstream::out);
+            
+            for (auto symbolic_bounds : trainSizes) {
+                for (int j = 0; j < symbolic_bounds.size(); j++) {
+                    ofs_Imin << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
+                }
+                if ((*elm.second).find(symbolic_bounds) != (*elm.second).end()) {
+                    ofs_Imin << "_out " << (*elm.second)[symbolic_bounds][I_idx] << endl;
+                } else {
+                    ofs_Imin << "_out " << 0 << endl;
+                }
+            }
+            ofs_Imin.close();
+        }
+    }
+    
+    for (auto elm : Imax) {
+        uint64_t ref_src_id = elm.first;
+        for (int I_idx = 0; I_idx < ILen[ref_src_id]; I_idx++) {
+            
+            ofstream ofs_Imax;
+            
+            ofs_Imax.open("./inputoutput/ris_Ibound/" + name + "/" + name +
+            "_refsrc_" + to_string(ref_src_id) +
+            ".Imax" + to_string(I_idx) , ofstream::out);
+            
+            for (auto symbolic_bounds : trainSizes) {
+                for (int j = 0; j < symbolic_bounds.size(); j++) {
+                    ofs_Imax << "B" + to_string(j) << " " << to_string(symbolic_bounds[j]) << " ";
+                }
+                if ((*elm.second).find(symbolic_bounds) != (*elm.second).end()) {
+                    ofs_Imax << "_out " << (*elm.second)[symbolic_bounds][I_idx] << endl;
+                } else {
+                    ofs_Imax << "_out " << 0 << endl;
+                }
+            }
+            ofs_Imax.close();
+        }
+    }
+    
+    
+    return;
+}
+        
 
 /* Not used for now ========================== */
 void filterSrcIter() {

@@ -27,6 +27,9 @@ vector<vector<uint64_t> > genTrainSizes(vector<uint64_t> sizes, int numOfSymboli
 /* Read RI from files */
 void processSingleRiFile(string cacheConfig, string name, string fileSuffix, vector<uint64_t> symbolic_bounds);
 void readAllRi(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds);
+void processSingleIBoundFile(string name, string fileSuffix, vector<uint64_t> symbolic_bounds);
+void readAllIBound(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds);
+
 
 /* Dump RI */
 void dumpPerRefRi(vector<uint64_t> sizes);
@@ -35,6 +38,6 @@ void dumpPerRefRi(vector<uint64_t> sizes);
 void genInOutWithFormatSrcIterPos(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate);
 void genInOutWithFormatSrcIterPosSnk(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate);
 void genInOutWithFormatSrcIterPosSnkIterPos(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds, double samplingRate);
-void genInOutWithFormatSrcShape(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds);
-
+void genInOutWithFormatSrcShapeFromReuses(string cacheConfig, string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds);
+void genInOutWithFormatSrcShapeFromAccesses(string name, vector<uint64_t> sizes, int numOfSymbolicLoopBounds);
 #endif
