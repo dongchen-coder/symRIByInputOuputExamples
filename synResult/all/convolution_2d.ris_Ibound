@@ -1,0 +1,40 @@
+convolution_2d_refsrc_3.Imin0.ris_Ibound Prog: 1
+convolution_2d_refsrc_8.Imin0.ris_Ibound Prog: 1
+convolution_2d_refsrc_3.Imax0.ris_Ibound Prog: (B0 - 2)
+convolution_2d_refsrc_8.Imax0.ris_Ibound Prog: (B0 - 2)
+convolution_2d_refsrc_3.Imin1.ris_Ibound Prog: 1
+convolution_2d_refsrc_8.Imin1.ris_Ibound Prog: 1
+convolution_2d_refsrc_4.Imin0.ris_Ibound Prog: 1
+convolution_2d_refsrc_9.Imin0.ris_Ibound Prog: 1
+convolution_2d_refsrc_3.Imax1.ris_Ibound Prog: (B1 - 2)
+convolution_2d_refsrc_8.Imax1.ris_Ibound Prog: (B1 - 2)
+convolution_2d_refsrc_4.Imin1.ris_Ibound Prog: 1
+convolution_2d_refsrc_9.Imin1.ris_Ibound Prog: 1
+convolution_2d_refsrc_0.Imax0.ris_Ibound Prog: (B0 - 2)
+convolution_2d_refsrc_5.Imin0.ris_Ibound Prog: 1
+convolution_2d_refsrc_9.Imax0.ris_Ibound Prog: (B0 - 2)
+convolution_2d_refsrc_4.Imax0.ris_Ibound Prog: (B0 - 2)
+convolution_2d_refsrc_5.Imin1.ris_Ibound Prog: 1
+convolution_2d_refsrc_6.Imin0.ris_Ibound Prog: 1
+convolution_2d_refsrc_0.Imax1.ris_Ibound Prog: (B1 - 2)
+convolution_2d_refsrc_9.Imax1.ris_Ibound Prog: (B1 - 2)
+convolution_2d_refsrc_4.Imax1.ris_Ibound Prog: (B1 - 2)
+convolution_2d_refsrc_6.Imin1.ris_Ibound Prog: 1
+convolution_2d_refsrc_0.Imin0.ris_Ibound Prog: 1
+convolution_2d_refsrc_7.Imin0.ris_Ibound Prog: 1
+convolution_2d_refsrc_0.Imin1.ris_Ibound Prog: 1
+convolution_2d_refsrc_1.Imax0.ris_Ibound Prog: (B0 - 2)
+convolution_2d_refsrc_5.Imax0.ris_Ibound Prog: (B0 - 2)
+convolution_2d_refsrc_7.Imin1.ris_Ibound Prog: 1
+convolution_2d_refsrc_1.Imin0.ris_Ibound Prog: 1
+convolution_2d_refsrc_1.Imin1.ris_Ibound Prog: 1
+convolution_2d_refsrc_1.Imax1.ris_Ibound Prog: (B1 - 2)
+convolution_2d_refsrc_5.Imax1.ris_Ibound Prog: (B1 - 2)
+convolution_2d_refsrc_2.Imin0.ris_Ibound Prog: 1
+convolution_2d_refsrc_2.Imin1.ris_Ibound Prog: 1
+convolution_2d_refsrc_6.Imax0.ris_Ibound Prog: (B0 - 2)
+convolution_2d_refsrc_2.Imax0.ris_Ibound Prog: (B0 - 2)
+convolution_2d_refsrc_6.Imax1.ris_Ibound Prog: (B1 - 2)
+convolution_2d_refsrc_2.Imax1.ris_Ibound Prog: (B1 - 2)
+convolution_2d_refsrc_7.Imax0.ris_Ibound Prog: (B0 - 2)
+convolution_2d_refsrc_7.Imax1.ris_Ibound Prog: (B1 - 2)
