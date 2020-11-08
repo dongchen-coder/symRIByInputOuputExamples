@@ -7,6 +7,7 @@ BENCH_DIR=./bench
 BENCH_BIN_DIR=./bin/bench_bin
 
 RIS_RAW_DIR=./inputoutput/raw_ris_per_size
+IBOUND_RAW_DIR=./inputoutput/raw_ibound
 INPUTOUTPUT_DIRS=./inputoutput/ris_refsrc_Isrc_Psrc ./inputoutput/ris_refsrc_Isrc_Psrc_refsnk ./inputoutput/ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk ./inputoutput/ris_Ibound
 
 RIS_MATCH_DIR=./verify/histoToMatch
@@ -19,6 +20,8 @@ bench_3para= doitgen convolution_3d doitgen fdtd_2d gemm
 bench_4para= 2mm
 bench_5para= 3mm
 
+inputoutputGenTarget= -FORMATSRCSHAPE #-FORMATSRCITERPOS -FORMATSRCITERPOSSNK -FORMATSRCITERPOSSNKITERPOS -FORMATSRCSHAPE
+
 train_size=4 8 12 16 20 24
 
 verify_size=32 64 128
@@ -26,7 +29,7 @@ verify_size=32 64 128
 SRATE?=0.2
 
 CC=g++
-CCFLAG= -std=c++11 -O2
+CCFLAG= -std=c++11 -O2 -pipe #-save-temps=obj
 
 symRiSynthesiser.o:
 	$(CC) ${CCFLAG} -c $(SRC_DIR)/symRiSynthesiser.cpp -o $(OBJ_DIR)/symRiSynthesiser.o
@@ -61,22 +64,30 @@ run_gen: run.o
 
 bench_gen:
 	mkdir -p $(BENCH_BIN_DIR)
-	echo "#define PROFILE" >  $(BENCH_DIR)/utility/rt_conf.h
+	#echo "#define PROFILE" >  $(BENCH_DIR)/utility/rt_conf.h
+	#echo "#define CLS 32" >> $(BENCH_DIR)/utility/rt_conf.h
+	#echo "#define DS 8" >> $(BENCH_DIR)/utility/rt_conf.h
+	#$(foreach name, $(bench), $(CC) -std=c++11 -O -o $(BENCH_BIN_DIR)/$(name)_CLS32_DS8 $(BENCH_DIR)/$(name).cpp ;)
+	#echo "#define PROFILE" >  $(BENCH_DIR)/utility/rt_conf.h
+	#echo "#define CLS 1" >> $(BENCH_DIR)/utility/rt_conf.h
+	#echo "#define DS 1" >> $(BENCH_DIR)/utility/rt_conf.h
+	#$(foreach name, $(bench), $(CC) -std=c++11 -O -o $(BENCH_BIN_DIR)/$(name)_ELM $(BENCH_DIR)/$(name).cpp ;)
+	echo "#define PROFILE_IBOUND" >  $(BENCH_DIR)/utility/rt_conf.h
 	echo "#define CLS 32" >> $(BENCH_DIR)/utility/rt_conf.h
 	echo "#define DS 8" >> $(BENCH_DIR)/utility/rt_conf.h
-	$(foreach name, $(bench), $(CC) -std=c++11 -O -o $(BENCH_BIN_DIR)/$(name)_CLS32_DS8 $(BENCH_DIR)/$(name).cpp ;)
-	echo "#define PROFILE" >  $(BENCH_DIR)/utility/rt_conf.h
-	echo "#define CLS 1" >> $(BENCH_DIR)/utility/rt_conf.h
-	echo "#define DS 1" >> $(BENCH_DIR)/utility/rt_conf.h
-	$(foreach name, $(bench), $(CC) -std=c++11 -O -o $(BENCH_BIN_DIR)/$(name)_ELM $(BENCH_DIR)/$(name).cpp ;)
+	$(foreach name, $(bench), $(CC) -std=c++11 -O -o $(BENCH_BIN_DIR)/$(name)_IBOUND $(BENCH_DIR)/$(name).cpp ;)
 
 ris_raw_gen:
-	mkdir -p $(RIS_RAW_DIR)_ELM
-	$(foreach name, $(bench), rm -r -f $(RIS_RAW_DIR)_ELM/$(name) ;)
-	$(foreach name, $(bench), mkdir -p $(RIS_RAW_DIR)_ELM/$(name) ;)
-	mkdir -p $(RIS_RAW_DIR)_CLS32_DS8
-	$(foreach name, $(bench), rm -r -f $(RIS_RAW_DIR)_CLS32_DS8/$(name) ;)
-	$(foreach name, $(bench), mkdir -p $(RIS_RAW_DIR)_CLS32_DS8/$(name) ;)
+	#mkdir -p $(RIS_RAW_DIR)_ELM
+	#$(foreach name, $(bench), rm -r -f $(RIS_RAW_DIR)_ELM/$(name) ;)
+	#$(foreach name, $(bench), mkdir -p $(RIS_RAW_DIR)_ELM/$(name) ;)
+	#mkdir -p $(RIS_RAW_DIR)_CLS32_DS8
+	#$(foreach name, $(bench), rm -r -f $(RIS_RAW_DIR)_CLS32_DS8/$(name) ;)
+	#$(foreach name, $(bench), mkdir -p $(RIS_RAW_DIR)_CLS32_DS8/$(name) ;)
+	mkdir -p $(IBOUND_RAW_DIR)
+	$(foreach name, $(bench), rm -r -f $(IBOUND_RAW_DIR)/$(name) ;)
+	$(foreach name, $(bench), mkdir -p $(IBOUND_RAW_DIR)/$(name) ;)
+	
 
 inputoutput_gen:
 	#$(foreach name, $(bench), \
@@ -85,16 +96,16 @@ inputoutput_gen:
 	#$(foreach name, $(bench), \
 		$(foreach dir, $(INPUTOUTPUT_DIRS), mkdir -p $(dir)/$(name) ;) \
 	)
-	$(foreach name, $(bench_1para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 1 -SAMPLINGRATE ${SRATE} -FORMATSRCITERPOS -FORMATSRCITERPOSSNK -FORMATSRCITERPOSSNKITERPOS -FORMATSRCSHAPE -CACHECONFIG ELM;)
-	$(foreach name, $(bench_1para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 1 -SAMPLINGRATE ${SRATE} -FORMATSRCITERPOS -FORMATSRCITERPOSSNK -FORMATSRCITERPOSSNKITERPOS -FORMATSRCSHAPE -CACHECONFIG CLS32_DS8;)
-	$(foreach name, $(bench_2para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 2 -SAMPLINGRATE ${SRATE} -FORMATSRCITERPOS -FORMATSRCITERPOSSNK -FORMATSRCITERPOSSNKITERPOS -FORMATSRCSHAPE -CACHECONFIG ELM;)
-	$(foreach name, $(bench_2para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 2 -SAMPLINGRATE ${SRATE} -FORMATSRCITERPOS -FORMATSRCITERPOSSNK -FORMATSRCITERPOSSNKITERPOS -FORMATSRCSHAPE -CACHECONFIG CLS32_DS8;)
-	$(foreach name, $(bench_3para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 3 -SAMPLINGRATE ${SRATE} -FORMATSRCITERPOS -FORMATSRCITERPOSSNK -FORMATSRCITERPOSSNKITERPOS -FORMATSRCSHAPE -CACHECONFIG ELM;)
-	$(foreach name, $(bench_3para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 3 -SAMPLINGRATE ${SRATE} -FORMATSRCITERPOS -FORMATSRCITERPOSSNK -FORMATSRCITERPOSSNKITERPOS -FORMATSRCSHAPE -CACHECONFIG CLS32_DS8;)
-	$(foreach name, $(bench_4para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 4 -SAMPLINGRATE ${SRATE} -FORMATSRCITERPOS -FORMATSRCITERPOSSNK -FORMATSRCITERPOSSNKITERPOS -FORMATSRCSHAPE -CACHECONFIG ELM;)
-	$(foreach name, $(bench_4para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 4 -SAMPLINGRATE ${SRATE} -FORMATSRCITERPOS -FORMATSRCITERPOSSNK -FORMATSRCITERPOSSNKITERPOS -FORMATSRCSHAPE -CACHECONFIG CLS32_DS8;)
-	$(foreach name, $(bench_5para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 5 -SAMPLINGRATE ${SRATE} -FORMATSRCITERPOS -FORMATSRCITERPOSSNK -FORMATSRCITERPOSSNKITERPOS -FORMATSRCSHAPE -CACHECONFIG ELM;)
-	$(foreach name, $(bench_5para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 5 -SAMPLINGRATE ${SRATE} -FORMATSRCITERPOS -FORMATSRCITERPOSSNK -FORMATSRCITERPOSSNKITERPOS -FORMATSRCSHAPE -CACHECONFIG CLS32_DS8;)
+	#$(foreach name, $(bench_1para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 1 -SAMPLINGRATE ${SRATE} ${inputoutputGenTarget} -CACHECONFIG ELM;)
+	$(foreach name, $(bench_1para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 1 -SAMPLINGRATE ${SRATE} ${inputoutputGenTarget} -CACHECONFIG CLS32_DS8;)
+	#$(foreach name, $(bench_2para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 2 -SAMPLINGRATE ${SRATE} ${inputoutputGenTarget} -CACHECONFIG ELM;)
+	$(foreach name, $(bench_2para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 2 -SAMPLINGRATE ${SRATE} ${inputoutputGenTarget} -CACHECONFIG CLS32_DS8;)
+	#$(foreach name, $(bench_3para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 3 -SAMPLINGRATE ${SRATE} ${inputoutputGenTarget} -CACHECONFIG ELM;)
+	$(foreach name, $(bench_3para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 3 -SAMPLINGRATE ${SRATE} ${inputoutputGenTarget} -CACHECONFIG CLS32_DS8;)
+	#$(foreach name, $(bench_4para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 4 -SAMPLINGRATE ${SRATE} ${inputoutputGenTarget} -CACHECONFIG ELM;)
+	$(foreach name, $(bench_4para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 4 -SAMPLINGRATE ${SRATE} ${inputoutputGenTarget} -CACHECONFIG CLS32_DS8;)
+	#$(foreach name, $(bench_5para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 5 -SAMPLINGRATE ${SRATE} ${inputoutputGenTarget} -CACHECONFIG ELM;)
+	$(foreach name, $(bench_5para), $(BIN_DIR)/inputOutputGen -NAME $(name) -SIZES 4 8 16 32 -NUMOFLOOPBOUNDS 5 -SAMPLINGRATE ${SRATE} ${inputoutputGenTarget} -CACHECONFIG CLS32_DS8;)
 
 histogramToMatch_gen:
 	$(foreach name, $(bench), rm -r -f $(RIS_MATCH_DIR)/$(name) ; )
