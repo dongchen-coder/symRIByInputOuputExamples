@@ -411,9 +411,9 @@ bool readInputOutput(string fileName, inputOutputs_t* inputOutputs) {
             return false;
         }
         bool eliminateFlag = false;
-        for (auto elm : symRiSynthesiser.cpp) {
+        for (auto elm : inputOutput) {
             if (elm.first != "_out") {
-                if (elm.second == 6 || elm.second == 12 || elm.second == 20) {
+                if (elm.second == 6 || elm.second == 12 || elm.second == 24) {
                     eliminateFlag = true;
                     break;
                 }
@@ -423,6 +423,18 @@ bool readInputOutput(string fileName, inputOutputs_t* inputOutputs) {
             inputOutputs->push_back(inputOutput);
         }
     }
+    
+    int zeroOutCnt = 0
+    for (auto elm : inputOutputs) {
+        if (elm["_out"] == 0) {
+            zeroOutCnt ++;
+        }
+    }
+    
+    if (zeroOutCnt > 10) {
+        cout << "Zero Cnt " << zeroOutCnt << endl;
+    }
+    
     return true;
 }
 
