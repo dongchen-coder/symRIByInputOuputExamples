@@ -410,7 +410,18 @@ bool readInputOutput(string fileName, inputOutputs_t* inputOutputs) {
             cout << "value need to be int" << endl;
             return false;
         }
-        inputOutputs->push_back(inputOutput);
+        bool eliminateFlag = false;
+        for (auto elm : symRiSynthesiser.cpp) {
+            if (elm.first != "_out") {
+                if (elm.second == 6 || elm.second == 12 || elm.second == 20) {
+                    eliminateFlag = true;
+                    break;
+                }
+            }
+        }
+        if (eliminateFlag == false) {
+            inputOutputs->push_back(inputOutput);
+        }
     }
     return true;
 }
