@@ -540,7 +540,7 @@ int main(int argc, char* argv[]) {
     uni->dumpSearchedProgram();
 #endif
 
-    writeSearchedProgram(fileName, uni->getSearchedProgram());
+    //writeSearchedProgram(fileName, uni->getSearchedProgram());
     uni->dumpSearchedProgram();
     
     return 0;
