@@ -87,7 +87,41 @@ ris_raw_gen:
 	mkdir -p $(IBOUND_RAW_DIR)
 	$(foreach name, $(bench), rm -r -f $(IBOUND_RAW_DIR)/$(name) ;)
 	$(foreach name, $(bench), mkdir -p $(IBOUND_RAW_DIR)/$(name) ;)
-	
+	$(foreach size, $(train_size), \
+		$(foreach name, $(bench_1para), $(BENCH_BIN_DIR)/$(name)_IBOUND $(size) > $(IBOUND_RAW_DIR)/$(name)/$(name)_$(size).txt ;) \
+	)
+	$(foreach size1, $(train_size), \
+		$(foreach size2, $(train_size), \
+			$(foreach name, $(bench_2para), $(BENCH_BIN_DIR)/$(name)_IBOUND $(size1) $(size2) > $(IBOUND_RAW_DIR)/$(name)/$(name)_$(size1)_$(size2).txt ;) \
+		) \
+	)
+	$(foreach size1, $(train_size), \
+		$(foreach size2, $(train_size), \
+			$(foreach size3, $(train_size), \
+				$(foreach name, $(bench_3para), $(BENCH_BIN_DIR)/$(name)_IBOUND $(size1) $(size2) $(size3) > $(IBOUND_RAW_DIR)/$(name)/$(name)_$(size1)_$(size2)_$(size3).txt ;) \
+			) \
+		) \
+	)
+	$(foreach size1, $(train_size), \
+		$(foreach size2, $(train_size), \
+			$(foreach size3, $(train_size), \
+				$(foreach size4, $(verify_size), \
+					$(foreach name, $(bench_4para), $(BENCH_BIN_DIR)/$(name)_IBOUND $(size1) $(size2) $(size3) $(size4) > $(IBOUND_RAW_DIR)/$(name)/$(name)_$(size1)_$(size2)_$(size3)_$(size4).txt ;) \
+				) \
+			) \
+		) \
+	)
+	$(foreach size1, $(train_size), \
+		$(foreach size2, $(train_size), \
+			$(foreach size3, $(train_size), \
+				$(foreach size4, $(train_size), \
+					$(foreach size5, $(train_size), \
+						$(foreach name, $(bench_5para), $(BENCH_BIN_DIR)/$(name)_IBOUND $(size1) $(size2) $(size3) $(size4) $(size5) > $(IBOUND_RAW_DIR)/$(name)/$(name)_$(size1)_$(size2)_$(size3)_$(size4)_$(size5).txt ;) \
+					) \
+				) \
+			) \
+		) \
+	)
 
 inputoutput_gen:
 	#$(foreach name, $(bench), \
