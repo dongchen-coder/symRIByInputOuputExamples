@@ -134,8 +134,12 @@ int main(int argc, char* argv[]) {
     }
     
     /* read all ri into a map */
-    readAllRi(cacheConfig, name, sizes, numOfSymbolicLoopBounds);
-    
+    if (srcIterPosFlag || srcIterPosSnkFlag || srcIterPosSnkIterPosFlag) {
+        readAllRi(cacheConfig, name, sizes, numOfSymbolicLoopBounds);
+    }
+    if (srcShapeFlag) {
+        readAllIBound(name, sizes, numOfSymbolicLoopBounds);
+    }
     //dumpPerRefRi(sizes);
     
     /* construct inputoutput examples for (source reference, source iteration, source position format) */
