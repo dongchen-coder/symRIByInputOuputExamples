@@ -126,6 +126,7 @@ covariance_refsrc_7_Isrc_14_7.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc Prog: (if ((Isrc
 covariance_refsrc_7_Isrc_14_7.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc Prog: (if ((Isrc0 < B1) && (Isrc1 < B0)) then 0 else 1)
 covariance_refsrc_0_Isrc_6.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc Prog: (if (Isrc0 < B0) then 0 else 2)
 covariance_refsrc_0_Isrc_6.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc Prog: (if (Isrc0 < B0) then 0 else 2)
+covariance_refsrc_11_Isrc_8_11_7.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc Prog: (if ((Isrc0 < B0) && (Isrc2 < B1)) then 0 else ((B1 + 2) + (B1 * 3)))
 covariance_refsrc_10_Isrc_4_8_8.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc Prog: (if ((Isrc2 < B1) && (Isrc2 < B0)) then 0 else (if ((Isrc2 + Isrc2) < B1) then (if ((B1 + 1) < (Isrc2 + Isrc2)) then ((B1 * 5) - (B1 - 3)) else ((B1 + 3) + (B1 * 3))) else ((B1 + 3) + (B1 * 3))))
 covariance_refsrc_10_Isrc_4_8_8.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc Prog: (if ((Isrc2 < B1) && (Isrc2 < B0)) then 0 else (if ((Isrc2 + Isrc2) < B1) then (if ((B1 + 1) < (Isrc2 + Isrc2)) then ((B1 * 5) - (B1 - 3)) else ((B1 + 3) + (B1 * 3))) else ((B1 + 3) + (B1 * 3))))
 covariance_refsrc_13_Isrc_7_11_6.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc Prog: (if ((Isrc0 < B1) && (Isrc1 < B0)) then 0 else 3)
