@@ -2,6 +2,43 @@
 /******************************************
     Constructor
  */
+
+// Support definition
+#define GET_NUM_OF_OPS(prog, op)            ( prog->getNumOfOpsInProg(op) )
+#define GET_NUM_OF_SYMS(prog, sym)          ( prog->getNumOfSymbolsInProg(sym) )
+#define GET_LENGTH(prog)                    ( GET_NUM_OF_SYMS(prog, "ALL") + GET_NUM_OF_OPS(prog, "ALL") )
+#define GET_EXP(prog, sym)                  ( prog->getExponentOfSymbolInProg(sym))
+
+#define CHECK_NO_SYM(prog, sym)             ( GET_NUM_OF_SYMS(prog, sym) == 0 )
+#define HAS_SYM(prog, sym)                  ( GET_NUM_OF_SYMS(prog, sym) > 0 )
+#define CHECK_LESS_SYM(pi, pj, sym)         ( GET_NUM_OF_SYMS(pi, sym) < GET_NUM_OF_SYMS(pj, sym) )
+#define CHECK_EQ_SYM(pi, pj, sym)           ( GET_NUM_OF_SYMS(pi, sym) == GET_NUM_OF_SYMS(pj, sym) )
+
+#define DEPTH_SHOTER(pi, pj)                ( pi->depth() < pj->depth() )
+#define LENGTH_SHOTER(pi, pj)               ( GET_LENGTH(pi) < GET_LENGTH(pj) )
+
+// NO SYM
+#define NO_SYM_1(prog)                      ( CHECK_NO_SYM(pi, "ALL") )
+#define NO_SYM_2(pi, pj)                    ( CHECK_NO_SYM(pi, "ALL") && CHECK_NO_SYM(pj, "ALL") )
+
+#define GET_LENGTH_SHOTER(pi, pj)           ( LENGTH_SHOTER(pi, pj) ? pi : pj )
+
+// B SYM ONLY
+#define B_SYM_ONLY_1(prog)                  ( !NO_SYM_1(prog) && CHECK_NO_SYM(prog, "I") )
+#define B_SYM_ONLY_2(pi, pj)                ( !NO_SYM_2(pi, pj) && CHECK_NO_SYM(pi, "I") && CHECK_NO_SYM(pj, "I") )
+
+// I SYM ONLY
+#define I_SYM_ONLY_1(prog)                  ( !NO_SYM_1(prog) && CHECK_NO_SYM(prog, "B") )
+#define I_SYM_ONLY_2(pi, pj)                ( !NO_SYM_2(pi, pj) && CHECK_NO_SYM(pi, "B") && CHECK_NO_SYM(pj, "B") )
+
+// BOTH SYM
+#define BOTH_SYM_1(prog)                    ( !CHECK_NO_SYM(prog, "B") && !CHECK_NO_SYM(prog, "I") )
+#define BOTH_SYM_2(pi, pj)                  ( BOTH_SYM_1(pi) && BOTH_SYM_1(pj) )
+
+// LENGTH RULE
+#define GET_LENGTH_SHOTER(pi, pj)           ( LENGTH_SHOTER(pi, pj) ? pi : pj )
+#define GET_LESS_SYM(pi, pj, sym)           ( CHECK_EQ_SYM(pi, pj, sym) ? pi : pj )
+
 bottomUpSearch::bottomUpSearch(int depthBound,
                                vector<string> intOps,
                                vector<string> boolOps,
@@ -248,8 +285,8 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
     }
     
     /* Search mode specified rules */
-    if (find(_rulesToApply.begin(), _rulesToApply.end(), "PerSrcIter") != _rulesToApply.end() ) {
-       
+    if (find(_rulesToApply.begin(), _rulesToApply.end(), "SrcOnly") != _rulesToApply.end() ) {
+        cout << "Applying rules for grow" << endl;
     }
     else if (find(_rulesToApply.begin(), _rulesToApply.end(), "PerSrcSnk") != _rulesToApply.end() ) {
         /* rules for variables */
@@ -272,14 +309,20 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
             if (dynamic_cast<Var*>(i) != nullptr && dynamic_cast<Var*>(j) != nullptr) {
                 return false;
             }
-            /* do not do two constant plus excrpt "1 + -1" */
-            if (dynamic_cast<Num*>(i) != nullptr && dynamic_cast<Num*>(j) != nullptr) {
+            /* do not plus "0" */
+            if (dynamic_cast<Num*>(i) != nullptr) {
                 Num* numi = dynamic_cast<Num*>(i);
-                Num* numj = dynamic_cast<Num*>(j);
-                if (!(numi->toString() == "1" && numj->toString() == "-1")) {
+                if (numi->toString() == "0") {
                     return false;
                 }
             }
+            if (dynamic_cast<Num*>(j) != nullptr) {
+                Num* numj = dynamic_cast<Num*>(j);
+                if (numj->toString() == "0") {
+                    return false;
+                }
+            }
+            /* do not plus */
         }
         /* rules for MINUS */
         else if (op == "MINUS") {
@@ -599,43 +642,6 @@ inline bool bottomUpSearch::checkTwoProgramsEqual(BaseType* pi, BaseType* pj) {
     }
     return true;
 }
-
-// Support definition
-#define GET_NUM_OF_OPS(prog, op)            ( prog->getNumOfOpsInProg(op) )
-#define GET_NUM_OF_SYMS(prog, sym)          ( prog->getNumOfSymbolsInProg(sym) )
-#define GET_LENGTH(prog)                    ( GET_NUM_OF_SYMS(prog, "ALL") + GET_NUM_OF_OPS(prog, "ALL") )
-#define GET_EXP(prog, sym)                  ( prog->getExponentOfSymbolInProg(sym))
-
-#define CHECK_NO_SYM(prog, sym)             ( GET_NUM_OF_SYMS(prog, sym) == 0 )
-#define HAS_SYM(prog, sym)                  ( GET_NUM_OF_SYMS(prog, sym) > 0 )
-#define CHECK_LESS_SYM(pi, pj, sym)         ( GET_NUM_OF_SYMS(pi, sym) < GET_NUM_OF_SYMS(pj, sym) )
-#define CHECK_EQ_SYM(pi, pj, sym)           ( GET_NUM_OF_SYMS(pi, sym) == GET_NUM_OF_SYMS(pj, sym) )
-
-#define DEPTH_SHOTER(pi, pj)                ( pi->depth() < pj->depth() )
-#define LENGTH_SHOTER(pi, pj)               ( GET_LENGTH(pi) < GET_LENGTH(pj) )
-
-// NO SYM
-#define NO_SYM_1(prog)                      ( CHECK_NO_SYM(pi, "ALL") )
-#define NO_SYM_2(pi, pj)                    ( CHECK_NO_SYM(pi, "ALL") && CHECK_NO_SYM(pj, "ALL") )
-
-#define GET_LENGTH_SHOTER(pi, pj)           ( LENGTH_SHOTER(pi, pj) ? pi : pj )
-
-// B SYM ONLY
-#define B_SYM_ONLY_1(prog)                  ( !NO_SYM_1(prog) && CHECK_NO_SYM(prog, "I") )
-#define B_SYM_ONLY_2(pi, pj)                ( !NO_SYM_2(pi, pj) && CHECK_NO_SYM(pi, "I") && CHECK_NO_SYM(pj, "I") )
-
-// I SYM ONLY
-#define I_SYM_ONLY_1(prog)                  ( !NO_SYM_1(prog) && CHECK_NO_SYM(prog, "B") )
-#define I_SYM_ONLY_2(pi, pj)                ( !NO_SYM_2(pi, pj) && CHECK_NO_SYM(pi, "B") && CHECK_NO_SYM(pj, "B") )
-
-// BOTH SYM
-#define BOTH_SYM_1(prog)                    ( !CHECK_NO_SYM(prog, "B") && !CHECK_NO_SYM(prog, "I") )
-#define BOTH_SYM_2(pi, pj)                  ( BOTH_SYM_1(pi) && BOTH_SYM_1(pj) )
-
-// LENGTH RULE
-#define GET_LENGTH_SHOTER(pi, pj)           ( LENGTH_SHOTER(pi, pj) ? pi : pj )
-#define GET_LESS_SYM(pi, pj, sym)           ( CHECK_EQ_SYM(pi, pj, sym) ? pi : pj )
-
 
 inline BaseType* bottomUpSearch::elimOneProgWithRules(BaseType* pi, BaseType* pj) {
     
