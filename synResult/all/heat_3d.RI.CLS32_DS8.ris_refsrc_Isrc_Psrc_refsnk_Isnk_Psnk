@@ -20,6 +20,7 @@ heat_3d_refsrc_3_Isrc_6_14_8_13_refsnk_3.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsn
 heat_3d_refsrc_3_Isrc_6_14_8_13_refsnk_3.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else (Isrc1 - 3))
 heat_3d_refsrc_9_Isrc_7_10_15_5_refsnk_1.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else 3)
 heat_3d_refsrc_9_Isrc_7_10_15_5_refsnk_1.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else 3)
+heat_3d_refsrc_8_Isrc_7_9_9_12_refsnk_5.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
 heat_3d_refsrc_14_Isrc_17_14_3_14_refsnk_14.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc1 < Isnk3) then 0 else (Isnk3 - 4))
 heat_3d_refsrc_14_Isrc_17_14_3_14_refsnk_14.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc1 < Isnk3) then 0 else (Isnk3 - 4))
 heat_3d_refsrc_7_Isrc_16_17_2_12_refsnk_9.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isnk3 < B1) && (Isrc1 < B0)) then 0 else 2)
@@ -44,6 +45,7 @@ heat_3d_refsrc_4_Isrc_8_13_7_13_refsnk_6.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsn
 heat_3d_refsrc_4_Isrc_8_13_7_13_refsnk_6.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isrc2 < B1) && (Isrc1 < B0)) then 0 else 2)
 heat_3d_refsrc_4_Isrc_9_14_14_1_refsnk_6.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isrc1 < B0) && (Isnk0 < B1)) then 0 else 2)
 heat_3d_refsrc_4_Isrc_9_14_14_1_refsnk_6.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isrc1 < B0) && (Isnk0 < B1)) then 0 else 2)
+heat_3d_refsrc_16_Isrc_2_10_10_15_refsnk_13.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 0
 heat_3d_refsrc_7_Isrc_19_14_1_16_refsnk_9.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isnk0 + Isnk0) < (B0 + B1)) then 0 else 2)
 heat_3d_refsrc_7_Isrc_19_14_1_16_refsnk_9.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((Isnk0 + Isnk0) < (B0 + B1)) then 0 else 2)
 heat_3d_refsrc_6_Isrc_4_5_2_1_refsnk_7.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if ((2 + B0) < (Isrc1 + Isrc1)) then 0 else 1)
@@ -64,3 +66,153 @@ heat_3d_refsrc_17_Isrc_3_17_5_7_refsnk_12.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refs
 heat_3d_refsrc_17_Isrc_3_17_5_7_refsnk_12.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc1 < B0) then 0 else 6)
 heat_3d_refsrc_0_Isrc_6_16_6_4_refsnk_0.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else (Isrc1 - 5))
 heat_3d_refsrc_0_Isrc_6_16_6_4_refsnk_0.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else (Isrc1 - 5))
+heat_3d_refsrc_16_Isrc_12_12_10_14_refsnk_13.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_0_Isrc_14_3_10_5_refsnk_0.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 0
+heat_3d_refsrc_8_Isrc_3_14_7_10_refsnk_9.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc1 < B0) then 0 else 1)
+heat_3d_refsrc_17_Isrc_3_18_15_6_refsnk_18.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_16_Isrc_18_16_6_18_refsnk_13.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_9_Isrc_12_5_1_14_refsnk_5.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_9_Isrc_1_3_2_3_refsnk_8.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc1 < Isnk3) then 0 else (5 + 5))
+heat_3d_refsrc_8_Isrc_6_18_18_9_refsnk_9.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_21_Isrc_20_4_6_8_refsnk_21.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_5_Isrc_6_6_2_5_refsnk_5.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_16_Isrc_5_7_7_8_refsnk_16.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_20_Isrc_6_13_7_14_refsnk_16.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_12_Isrc_1_14_13_11_refsnk_15.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < B0) then 0 else 3)
+heat_3d_refsrc_2_Isrc_20_13_10_7_refsnk_21.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 0
+heat_3d_refsrc_16_Isrc_6_17_10_8_refsnk_16.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_1_Isrc_4_5_12_10_refsnk_4.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_0_Isrc_8_15_10_2_refsnk_0.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (2 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_6_Isrc_9_14_6_17_refsnk_7.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_8_Isrc_1_8_12_11_refsnk_9.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_21_Isrc_11_9_1_3_refsnk_0.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 0
+heat_3d_refsrc_6_Isrc_16_10_17_3_refsnk_1.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else 6)
+heat_3d_refsrc_17_Isrc_9_17_15_15_refsnk_12.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < Isnk3) then 0 else 6)
+heat_3d_refsrc_3_Isrc_9_17_10_10_refsnk_3.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_6_Isrc_2_7_12_15_refsnk_1.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_1_Isrc_15_14_4_12_refsnk_4.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_2_Isrc_18_16_8_12_refsnk_2.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_20_Isrc_20_3_9_14_refsnk_16.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 0
+heat_3d_refsrc_7_Isrc_16_2_12_11_refsnk_8.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_20_Isrc_10_18_14_16_refsnk_12.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else 3)
+heat_3d_refsrc_20_Isrc_12_12_14_18_refsnk_16.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_13_Isrc_4_18_12_10_refsnk_13.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_16_Isrc_12_8_1_6_refsnk_16.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_0_Isrc_15_14_13_9_refsnk_0.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_17_Isrc_18_4_1_7_refsnk_12.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else 6)
+heat_3d_refsrc_21_Isrc_20_15_2_14_refsnk_21.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_20_Isrc_11_11_16_5_refsnk_12.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 0
+heat_3d_refsrc_9_Isrc_1_1_3_10_refsnk_1.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < B0) then 0 else 3)
+heat_3d_refsrc_4_Isrc_19_13_12_1_refsnk_6.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_20_Isrc_8_4_5_6_refsnk_12.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_12_Isrc_4_8_8_17_refsnk_15.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isnk3 < B0) then 0 else 3)
+heat_3d_refsrc_20_Isrc_5_7_18_14_refsnk_12.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else 3)
+heat_3d_refsrc_10_Isrc_1_3_3_9_refsnk_10.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < B0) then 0 else (5 + 6))
+heat_3d_refsrc_4_Isrc_7_18_18_12_refsnk_6.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_0_Isrc_2_3_3_6_refsnk_3.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_6_Isrc_18_13_4_6_refsnk_7.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_6_Isrc_4_17_4_11_refsnk_1.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 0
+heat_3d_refsrc_0_Isrc_4_1_1_8_refsnk_0.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < B0) then 0 else (5 + 6))
+heat_3d_refsrc_7_Isrc_11_7_12_8_refsnk_9.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_12_Isrc_10_15_6_17_refsnk_15.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_13_Isrc_2_12_10_3_refsnk_10.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_15_Isrc_2_18_14_14_refsnk_17.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc1 < B0) then 0 else 2)
+heat_3d_refsrc_5_Isrc_12_6_9_1_refsnk_5.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_4_Isrc_1_12_17_2_refsnk_6.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_18_Isrc_2_10_2_17_refsnk_19.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isnk3 < B0) then 0 else 1)
+heat_3d_refsrc_3_Isrc_4_11_7_8_refsnk_3.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < B0) then 0 else (5 + 6))
+heat_3d_refsrc_4_Isrc_17_6_6_11_refsnk_7.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_2_Isrc_2_7_15_16_refsnk_2.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < B0) then 0 else (5 + 6))
+heat_3d_refsrc_2_Isrc_3_2_4_10_refsnk_2.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < B0) then 0 else (5 + 6))
+heat_3d_refsrc_21_Isrc_4_7_9_10_refsnk_21.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < B0) then 0 else (5 + 6))
+heat_3d_refsrc_12_Isrc_18_5_12_12_refsnk_15.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_2_Isrc_20_11_14_9_refsnk_2.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_0_Isrc_1_5_2_9_refsnk_0.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < B0) then 0 else (5 + 6))
+heat_3d_refsrc_8_Isrc_9_12_11_10_refsnk_9.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_0_Isrc_5_16_12_3_refsnk_3.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_2_Isrc_10_12_6_18_refsnk_21.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_21_Isrc_18_12_16_14_refsnk_21.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_11_Isrc_10_1_16_10_refsnk_11.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isnk0 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_20_Isrc_11_5_10_6_refsnk_12.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_10_Isrc_6_4_1_6_refsnk_11.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_14_Isrc_4_14_12_10_refsnk_14.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_17_Isrc_4_1_18_7_refsnk_12.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < B0) then 0 else 6)
+heat_3d_refsrc_7_Isrc_2_16_3_6_refsnk_8.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_18_Isrc_1_13_17_9_refsnk_19.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < B0) then 0 else 1)
+heat_3d_refsrc_8_Isrc_12_10_14_3_refsnk_9.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_2_Isrc_10_4_15_2_refsnk_2.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (2 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_9_Isrc_18_14_11_6_refsnk_1.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_10_Isrc_14_1_7_2_refsnk_10.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (2 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_12_Isrc_14_12_11_14_refsnk_15.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_21_Isrc_3_7_14_14_refsnk_21.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_15_Isrc_3_2_17_8_refsnk_17.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < B0) then 0 else 2)
+heat_3d_refsrc_7_Isrc_3_4_6_1_refsnk_8.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_12_Isrc_1_9_13_14_refsnk_15.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < B0) then 0 else 3)
+heat_3d_refsrc_20_Isrc_20_18_7_10_refsnk_12.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else 3)
+heat_3d_refsrc_20_Isrc_11_7_4_4_refsnk_12.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < Isnk3) then 0 else 3)
+heat_3d_refsrc_18_Isrc_11_5_6_15_refsnk_19.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_17_Isrc_12_8_14_14_refsnk_18.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_5_Isrc_20_12_12_8_refsnk_5.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_3_Isrc_14_4_8_2_refsnk_3.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (2 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_20_Isrc_10_11_3_3_refsnk_19.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < Isnk3) then 0 else (5 + 5))
+heat_3d_refsrc_19_Isrc_4_12_1_11_refsnk_20.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_2_Isrc_18_14_16_16_refsnk_2.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_3_Isrc_12_13_2_1_refsnk_3.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_15_Isrc_4_17_7_12_refsnk_17.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_20_Isrc_20_10_11_10_refsnk_12.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc1 < Isnk3) then 0 else 3)
+heat_3d_refsrc_18_Isrc_1_8_18_16_refsnk_20.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < B0) then 0 else 2)
+heat_3d_refsrc_15_Isrc_7_2_12_15_refsnk_18.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_21_Isrc_17_6_9_13_refsnk_21.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_10_Isrc_1_3_10_10_refsnk_11.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 0
+heat_3d_refsrc_1_Isrc_8_11_2_12_refsnk_4.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_10_Isrc_7_2_15_15_refsnk_11.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 0
+heat_3d_refsrc_16_Isrc_10_13_2_14_refsnk_13.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 0
+heat_3d_refsrc_19_Isrc_19_6_12_13_refsnk_20.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_5_Isrc_17_10_12_7_refsnk_2.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_5_Isrc_3_5_17_16_refsnk_5.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < B0) then 0 else (5 + 6))
+heat_3d_refsrc_1_Isrc_12_13_15_2_refsnk_4.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_21_Isrc_12_1_4_6_refsnk_21.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_14_Isrc_12_5_4_10_refsnk_17.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_13_Isrc_19_17_4_16_refsnk_13.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_17_Isrc_12_17_18_6_refsnk_18.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_3_Isrc_1_12_16_12_refsnk_3.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_5_Isrc_17_15_17_10_refsnk_5.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_2_Isrc_6_5_5_14_refsnk_2.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_20_Isrc_20_16_1_17_refsnk_12.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else 3)
+heat_3d_refsrc_9_Isrc_10_5_7_3_refsnk_8.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else (5 + 5))
+heat_3d_refsrc_7_Isrc_12_16_11_15_refsnk_8.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_11_Isrc_4_7_6_14_refsnk_14.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_21_Isrc_1_18_17_9_refsnk_21.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < B0) then 0 else (5 + 6))
+heat_3d_refsrc_15_Isrc_12_12_8_10_refsnk_17.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_14_Isrc_5_3_8_8_refsnk_14.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_5_Isrc_5_5_1_13_refsnk_5.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_3_Isrc_18_1_16_16_refsnk_3.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_13_Isrc_18_6_16_15_refsnk_10.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_16_Isrc_19_1_3_1_refsnk_16.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isnk0 < B1) then 0 else (5 + 6))
+heat_3d_refsrc_0_Isrc_6_6_9_18_refsnk_3.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_11_Isrc_1_7_17_14_refsnk_11.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < B0) then 0 else (5 + 6))
+heat_3d_refsrc_18_Isrc_1_13_3_3_refsnk_19.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc1 < B0) then 0 else 1)
+heat_3d_refsrc_4_Isrc_2_4_14_3_refsnk_7.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < B0) then 0 else 3)
+heat_3d_refsrc_0_Isrc_13_11_7_1_refsnk_0.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (1 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_6_Isrc_6_1_3_6_refsnk_7.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_13_Isrc_17_6_16_13_refsnk_13.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_0_Isrc_15_12_16_12_refsnk_0.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_19_Isrc_14_8_10_12_refsnk_16.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_9_Isrc_5_3_14_3_refsnk_8.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc1 < Isnk3) then 0 else (5 + 5))
+heat_3d_refsrc_20_Isrc_5_5_4_4_refsnk_12.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < Isnk3) then 0 else 3)
+heat_3d_refsrc_11_Isrc_5_5_15_10_refsnk_11.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_10_Isrc_10_3_3_14_refsnk_10.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_14_Isrc_5_14_14_14_refsnk_14.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc1 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_20_Isrc_1_7_11_1_refsnk_12.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc2 < B0) then 0 else 3)
+heat_3d_refsrc_1_Isrc_8_6_12_16_refsnk_4.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_13_Isrc_12_14_12_15_refsnk_10.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_5_Isrc_17_12_10_5_refsnk_5.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_13_Isrc_17_4_5_6_refsnk_10.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_20_Isrc_2_7_15_1_refsnk_12.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (1 < Isnk3) then 0 else 3)
+heat_3d_refsrc_12_Isrc_17_5_3_6_refsnk_15.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_21_Isrc_6_3_14_14_refsnk_21.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_5_Isrc_11_10_5_17_refsnk_5.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (Isrc3 < Isnk3) then 0 else (5 + 6))
+heat_3d_refsrc_13_Isrc_13_7_12_5_refsnk_13.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_7_Isrc_12_4_18_13_refsnk_8.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
+heat_3d_refsrc_3_Isrc_1_3_11_7_refsnk_6.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 0
+heat_3d_refsrc_10_Isrc_19_9_8_2_refsnk_10.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (2 < Isnk3) then 0 else (5 + 6))
