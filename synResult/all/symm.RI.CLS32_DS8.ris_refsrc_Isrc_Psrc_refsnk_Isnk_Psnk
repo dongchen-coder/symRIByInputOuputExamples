@@ -217,3 +217,4 @@ symm_refsrc_9_Isrc_16_10_refsnk_6.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_
 symm_refsrc_0_Isrc_18_4_4_refsnk_0.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (B1 < Isnk0) then 0 else 6)
 symm_refsrc_9_Isrc_19_1_refsnk_6.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: (if (B1 < Isnk0) then 0 else ((B1 * 6) - 5))
 symm_refsrc_8_Isrc_13_2_refsnk_1.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 0
+symm_refsrc_0_Isrc_13_6_9_refsnk_0.RI.CLS32_DS8.ris_refsrc_Isrc_Psrc_refsnk_Isnk_Psnk Prog: 6
