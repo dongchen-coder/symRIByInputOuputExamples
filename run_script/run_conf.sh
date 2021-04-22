@@ -1,0 +1,2 @@
+./bin/symRiSymthesiser -FILE ./inputoutput/ris_per_iter_refsrcsnk/stencil/stencil_refsrc_4_refsnk_1.txt -CONSTANTSPRED 1 2 -CONSTANTSTERM 1 2 3 4 5 6 7 8 9 -INTOPSTERM VAR NUM PLUS TIMES MINUS -MODE PerSrcSnk -SEARCHTIMEFORTERMSINSECONDS 400 -SEARCHTIMEFORPREDSINSECONDS 120
+
