@@ -17,10 +17,10 @@ def gen_raw_data(bench, n_paras, train_sizes, target):
         p_str = map(str, p)
         p_space = ' '.join(p_str)
         p_underscore = '_'.join(p_str)
-        cmd = "../input-output_example_gen/bin/bench_bin/" + bench + "_" + target + " " + p_space +  " > " + "./data/generated_raw_data/" + target + "/" + bench + "/" + bench + "_" + p_underscore + ".txt"
+        cmd = "../input-output_example_gen/bin/bench_bin/" + bench + "_" + target + " " + p_space +  " > " + "./data/raw_data/" + target + "/" + bench + "/" + bench + "_" + p_underscore + ".txt"
         #print cmd
         os.system(cmd)
-        cmd = "../input-output_example_gen/bin/bench_bin/" + bench + "_ibound " + p_space +  " > " + "./data/generated_raw_data/ibound/" + bench + "/" + bench + "_" + p_underscore + ".txt"        
+        cmd = "../input-output_example_gen/bin/bench_bin/" + bench + "_ibound " + p_space +  " > " + "./data/raw_data/ibound/" + bench + "/" + bench + "_" + p_underscore + ".txt"        
         #print cmd
         os.system(cmd)
     return

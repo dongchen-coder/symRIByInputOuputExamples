@@ -3,6 +3,7 @@ import os
 sys.path.insert(1, './package/ioe_gen')
 from gen_raw_data import *
 from gen_ioe_from_raw_data import *
+from sample_raw_data import *
 
 if __name__ ==  "__main__":
     train_sizes = [4, 6, 8, 12, 20]
@@ -12,11 +13,17 @@ if __name__ ==  "__main__":
     # gen input-output examples for all benchmarks
     for bench, n_paras in bench_n_paras.items():
         # init path to raw data
-        init_raw_data_paths("./data/generated_raw_data/", bench)
+        init_raw_data_paths("./data/raw_data/", bench)
         # gen raw data
         gen_raw_data(bench, n_paras, train_sizes, "cls32_ds8")
+
+        # init path to sampled raw data
+        init_sampled_raw_data_paths("./data/sampled_raw_data/", bench)
+        # sample raw data
+        sample_raw_data(bench, n_paras, train_sizes, "cls32_ds8", 500)
+
         # init path to input-output examples
-        init_ioe_paths("./data/generated_input-output_examples/", bench)
+        init_ioe_paths("./data/input-output_examples/", bench)
         # gen input-output examples for all benchmarks
         gen_ioe_from_raw_data(bench, n_paras, train_sizes, "cls32_ds8")
 

@@ -105,9 +105,9 @@ void processSingleRiFile(string cacheConfig, string name, string fileSuffix, vec
 
     string fileName = name + fileSuffix;
 	ifstream ifs;
-    ifs.open("./data/generated_raw_data/" + cacheConfig + "/"+ name + "/" + fileName, ifstream::in);
+    ifs.open("./data/sampled_raw_data/" + cacheConfig + "/"+ name + "/" + fileName, ifstream::in);
     if (! ifs.is_open()) {
-        cout << "./data/generated_raw_data/" + cacheConfig + "/"+ name + "/" + fileName << " failed " << endl;
+        cout << "./data/sampled_raw_data/" + cacheConfig + "/"+ name + "/" + fileName << " failed " << endl;
         return;
     }
     
@@ -226,9 +226,9 @@ void processSingleIBoundFile(string name, string fileSuffix, vector<uint64_t> sy
     
     string fileName = name + fileSuffix;
     ifstream ifs;
-    ifs.open("./data/generated_raw_data/ibound/"+ name + "/" + fileName, ifstream::in);
+    ifs.open("./data/raw_data/ibound/"+ name + "/" + fileName, ifstream::in);
     if (! ifs.is_open()) {
-        cout << "./data/generated_raw_data/ibound/"+ name + "/" + fileName << " failed " << endl;
+        cout << "./data/raw_data/ibound/"+ name + "/" + fileName << " failed " << endl;
         return;
     }
     
@@ -416,7 +416,7 @@ void genInOutWithFormatSrcIterPos(string cacheConfig, string name, vector<uint64
                     idx_src_str += "_" + to_string(idx_src[i]);
                 }
                 
-                ofs_Refsrc_Isrc_Psrc.open("./data/generated_input-output_examples/" + name + "/src_only/"  + name +
+                ofs_Refsrc_Isrc_Psrc.open("./data/input-output_examples/" + name + "/src_only/"  + name +
                 "_refsrc_" + to_string(ref_src_it.first) +
                 "_isrc" + idx_src_str +
 #ifdef WITHOPS
@@ -545,7 +545,7 @@ void genInOutWithFormatSrcIterPosSnk(string cacheConfig, string name, vector<uin
                         }
                         
                         // create a file named by ref src ID and iteration vector
-                        ofs_Refsrc_Isrc_Psrc_Refsnk.open("./data/generated_input-output_examples/" + name + "/src_enhanced/" + name +
+                        ofs_Refsrc_Isrc_Psrc_Refsnk.open("./data/input-output_examples/" + name + "/src_enhanced/" + name +
                                                "_refsrc_" + to_string(ref_src_it.first) +
                                                "_isrc" + idx_src_str +
 #ifdef WITHPOS
@@ -684,7 +684,7 @@ void genInOutWithFormatSrcIterPosSnkIterPos(string cacheConfig, string name, vec
                     }
                     
                     // create a file named by ref src ID and iteration vector
-                    ofs_Refsrc_Isrc_Psrc_Refsnk_RI.open("./data/generated_input-output_examples/" + name + "/src_snk/" + name +
+                    ofs_Refsrc_Isrc_Psrc_Refsnk_RI.open("./data/input-output_examples/" + name + "/src_snk/" + name +
                                                "_refsrc_" + to_string(ref_src_it.first) +
                                                "_isrc" + idx_src_str +
 #ifdef WITHPOS
@@ -740,7 +740,7 @@ void genInOutWithFormatSrcIterPosSnkIterPos(string cacheConfig, string name, vec
                         }
                         
                         // create a file named by ref src ID and iteration vector
-                        string fileName = "./data/generated_input-output_examples/" + name + "/src_snk/" + name +
+                        string fileName = "./data/input-output_examples/" + name + "/src_snk/" + name +
                                       "_refsrc_" + to_string(ref_src_it.first) +
                                       "_isrc" + idx_src_str +
 #ifdef WITHPOS
@@ -863,11 +863,11 @@ void genInOutWithFormatSrcShapeFromReuses(string cacheConfig, string name, vecto
             for (int I_idx = 0; I_idx < IsrcLen; I_idx++) {
                 ofstream ofs_Refsrc_Refsnk_Imin;
                 ofstream ofs_Refsrc_Refsnk_Imax;
-                ofs_Refsrc_Refsnk_Imin.open("./data/generated_input-output_examples/" + name + "/ibound/" + name +
+                ofs_Refsrc_Refsnk_Imin.open("./data/input-output_examples/" + name + "/ibound/" + name +
                                         "_refsrc_" + to_string(ref_src_it.first) +
                                         "_refsnk_" + to_string(ref_snk) +
                                         ".Imin" + to_string(I_idx) + "." + cacheConfig, ofstream::out);
-                ofs_Refsrc_Refsnk_Imax.open("./data/generated_input-output_examples/" + name + "/ibound/" + name +
+                ofs_Refsrc_Refsnk_Imax.open("./data/input-output_examples/" + name + "/ibound/" + name +
                                         "_refsrc_" + to_string(ref_src_it.first) +
                                         "_refsnk_" + to_string(ref_snk) +
                                         ".Imax" + to_string(I_idx) + "." + cacheConfig, ofstream::out);
@@ -904,10 +904,10 @@ void genInOutWithFormatSrcShapeFromReuses(string cacheConfig, string name, vecto
         for (int I_idx = 0; I_idx < IsrcLen; I_idx++) {
             ofstream ofs_Refsrc_Imin;
             ofstream ofs_Refsrc_Imax;
-            ofs_Refsrc_Imin.open("./data/generated_input-output_examples/" + name + "/ibound/" + name +
+            ofs_Refsrc_Imin.open("./data/input-output_examples/" + name + "/ibound/" + name +
                                 "_refsrc_" + to_string(ref_src_it.first) +
                                 ".imin" + to_string(I_idx) + "." + cacheConfig, ofstream::out);
-            ofs_Refsrc_Imax.open("./data/generated_input-output_examples/" + name + "/ibound/" + name +
+            ofs_Refsrc_Imax.open("./data/input-output_examples/" + name + "/ibound/" + name +
                                 "_refsrc_" + to_string(ref_src_it.first) +
                                 ".imax" + to_string(I_idx) + "." + cacheConfig, ofstream::out);
         
@@ -944,7 +944,7 @@ void genInOutWithFormatSrcShapeFromAccesses(string name, vector<uint64_t> sizes,
             
             ofstream ofs_Imin;
             
-            ofs_Imin.open("./data/generated_input-output_examples/" + name + "/ibound/" + name +
+            ofs_Imin.open("./data/input-output_examples/" + name + "/ibound/" + name +
             "_refsrc_" + to_string(ref_src_id) +
             ".imin" + to_string(I_idx) , ofstream::out);
             
@@ -968,7 +968,7 @@ void genInOutWithFormatSrcShapeFromAccesses(string name, vector<uint64_t> sizes,
             
             ofstream ofs_Imax;
             
-            ofs_Imax.open("./data/generated_input-output_examples/" + name + "/ibound/" + name +
+            ofs_Imax.open("./data/input-output_examples/" + name + "/ibound/" + name +
             "_refsrc_" + to_string(ref_src_id) +
             ".imax" + to_string(I_idx) , ofstream::out);
             

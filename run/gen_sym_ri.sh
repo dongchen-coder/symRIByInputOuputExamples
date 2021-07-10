@@ -14,7 +14,7 @@ do
         for entry in "./data/generated_input-output_examples/"${bench}/${dir}/*
         do
 
-            name=${entry#./data/generated_input-output_examples/${bench}/${dir}/}
+            name=${entry#./data/input-output_examples/${bench}/${dir}/}
             echo $name
             if [ ${dir} == "src_only" ]; then
                 echo "src_only"
