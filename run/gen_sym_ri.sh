@@ -11,7 +11,7 @@ do
     mkdir -p ${SYM_RI_PATH}${bench}
     for dir in "src_only" "src_enhanced" "src_snk" "ibound"
     do
-        for entry in "./data/generated_input-output_examples/"${bench}/${dir}/*
+        for entry in "./data/input-output_examples/"${bench}/${dir}/*
         do
 
             name=${entry#./data/input-output_examples/${bench}/${dir}/}
