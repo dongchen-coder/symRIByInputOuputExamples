@@ -16,27 +16,22 @@ do
 
             name=${entry#./data/input-output_examples/${bench}/${dir}/}
             echo $name
-            if [ ${dir} == "src_only" ] 
-            then
+            if [ ${dir} == "src_only" ]; then
                 echo "src_only"
                 ../synthesizer/bin/symRiSymthesiser -FILE ${entry} ${SYN_CONF} -RULESTOAPPLY SrcOnly > ./data/sym_ri/${bench}/${name}.${dir} &
-            elif [ ${dir} == "src_enhanced" ] 
-            then
+            elif [ ${dir} == "src_enhanced" ]; then
                 echo "src_enhanced"
                 ../synthesizer/bin/symRiSymthesiser -FILE ${entry} ${SYN_CONF} -RULESTOAPPLY SrcEnhanced > ./data/sym_ri/${bench}/${name}.${dir} &
-            elif [ ${dir} == "src_snk" ] 
-            then
+            elif [ ${dir} == "src_snk" ]; then
                 echo "src_snk"
                 ../synthesizer/bin/symRiSymthesiser -FILE ${entry} ${SYN_CONF} -RULESTOAPPLY SrcSnk > ./data/sym_ri/${bench}/${name}.${dir} &
-            elif [ ${dir} == "ibound" ] 
-            then
+            elif [ ${dir} == "ibound" ]; then
                 echo "ibound"
                 ../synthesizer/bin/symRiSymthesiser -FILE ${entry} ${SYN_CONF} -RULESTOAPPLY SrcOnly > ./data/sym_ri/${bench}/${name}.${dir} &
             fi 
 
             NPROC=$(($NPROC+1))
-            if [ "$NPROC" -ge 60 ]
-            then
+            if [ "$NPROC" -ge 60 ]; then
                 wait
                 NPROC=0
             fi
