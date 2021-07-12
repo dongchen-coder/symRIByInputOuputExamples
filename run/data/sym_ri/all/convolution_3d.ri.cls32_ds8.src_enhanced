@@ -1,0 +1,293 @@
+convolution_3d_refsrc_13_isrc_13_12_3_refsnk_13.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_12_12_15_refsnk_14.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_3_isrc_17_6_10_refsnk_5.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_5_isrc_5_16_1_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_3_isrc_6_14_13_refsnk_5.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_9_isrc_10_14_1_refsnk_9.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_5_isrc_12_17_3_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_10_isrc_1_1_4_refsnk_1.ri.cls32_ds8.src_enhanced Prog: (if (isrc2 < b2) then 0 else (2 + 5))
+convolution_3d_refsrc_10_isrc_14_14_4_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_3_isrc_12_13_11_refsnk_5.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_10_isrc_6_10_10_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_10_isrc_1_17_8_refsnk_1.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 + isrc1) < (b1 + b2)) then 0 else (isrc2 - 1))
+convolution_3d_refsrc_8_isrc_11_4_4_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_14_isrc_6_18_1_refsnk_14.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_12_isrc_6_9_12_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_9_isrc_3_15_12_refsnk_0.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_7_isrc_6_8_10_refsnk_6.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_6_isrc_12_13_13_refsnk_6.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_3_isrc_17_7_12_refsnk_5.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_12_isrc_11_1_9_refsnk_12.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 < b0) && (isrc2 < b2)) then 0 else (b2 - 4))
+convolution_3d_refsrc_14_isrc_16_6_2_refsnk_14.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_10_isrc_12_7_7_refsnk_10.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_4_isrc_16_17_1_refsnk_9.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 + isrc0) < (b0 + b1)) then 0 else 5)
+convolution_3d_refsrc_12_isrc_10_3_2_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_15_isrc_2_3_3_refsnk_15.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_8_isrc_6_15_7_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_2_isrc_6_7_10_refsnk_4.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_6_isrc_1_5_12_refsnk_6.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_1_isrc_2_11_5_refsnk_3.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 < b1) && (isrc2 < b2)) then 0 else 2)
+convolution_3d_refsrc_0_isrc_17_7_6_refsnk_2.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_15_isrc_16_2_17_refsnk_15.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 + isrc2) < (b0 + b2)) then 0 else isrc0)
+convolution_3d_refsrc_13_isrc_12_13_14_refsnk_11.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_9_9_6_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_6_6_4_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_0_isrc_6_5_5_refsnk_2.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_10_isrc_12_9_12_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_9_isrc_6_8_13_refsnk_0.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_2_6_18_refsnk_13.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_13_6_4_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_9_3_12_refsnk_14.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_3_12_2_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_2_6_18_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_4_isrc_16_12_1_refsnk_0.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_6_isrc_18_8_12_refsnk_6.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_2_isrc_6_16_15_refsnk_4.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_12_isrc_1_8_17_refsnk_12.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 + isrc2) < (b1 + b2)) then 0 else (isrc2 - 1))
+convolution_3d_refsrc_13_isrc_3_12_3_refsnk_13.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_7_4_4_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_2_isrc_14_15_12_refsnk_4.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_12_isrc_8_2_6_refsnk_10.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_7_isrc_1_8_10_refsnk_7.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 < b1) && (isrc2 < b2)) then 0 else (b2 - 4))
+convolution_3d_refsrc_13_isrc_10_12_3_refsnk_13.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_12_isrc_7_3_2_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_10_isrc_2_16_12_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_9_9_6_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_1_13_1_refsnk_8.ri.cls32_ds8.src_enhanced Prog: (if (isrc1 < b1) then 0 else (b1 - 4))
+convolution_3d_refsrc_8_isrc_12_6_7_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_5_isrc_16_16_2_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_14_isrc_6_15_13_refsnk_14.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_3_12_2_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_0_isrc_3_13_6_refsnk_2.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_12_6_7_refsnk_13.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_13_isrc_6_12_14_refsnk_11.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_11_isrc_13_6_10_refsnk_9.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_3_isrc_2_14_9_refsnk_5.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 + isrc1) < (b1 + b2)) then 0 else 2)
+convolution_3d_refsrc_9_isrc_7_6_3_refsnk_0.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_0_isrc_16_9_12_refsnk_2.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_5_isrc_12_2_3_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_12_isrc_1_12_7_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_3_10_12_refsnk_14.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_9_isrc_6_7_13_refsnk_0.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_6_isrc_16_7_10_refsnk_13.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_12_isrc_13_6_12_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_7_9_12_refsnk_14.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_5_isrc_3_12_8_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_3_isrc_4_6_17_refsnk_5.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_6_isrc_17_2_6_refsnk_6.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_18_16_1_refsnk_8.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 + isrc0) < (b0 + b1)) then 0 else isrc1)
+convolution_3d_refsrc_3_isrc_10_1_1_refsnk_5.ri.cls32_ds8.src_enhanced Prog: (if (b0 < isrc0) then 0 else 2)
+convolution_3d_refsrc_1_isrc_18_12_18_refsnk_3.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_10_isrc_1_12_6_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_4_isrc_6_2_13_refsnk_9.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_2_isrc_13_2_6_refsnk_4.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_0_isrc_1_10_12_refsnk_2.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_6_isrc_12_11_15_refsnk_13.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_11_isrc_12_13_4_refsnk_9.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_3_isrc_12_4_14_refsnk_5.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_10_isrc_13_9_10_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_2_isrc_1_1_9_refsnk_4.ri.cls32_ds8.src_enhanced Prog: (if (b2 < isrc2) then 0 else 2)
+convolution_3d_refsrc_12_isrc_2_7_16_refsnk_12.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 + isrc2) < (b1 + b2)) then 0 else isrc2)
+convolution_3d_refsrc_8_isrc_8_4_1_refsnk_8.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else (b0 - 4))
+convolution_3d_refsrc_6_isrc_17_6_4_refsnk_13.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_1_17_5_refsnk_14.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 < b1) && (isrc2 < b2)) then 0 else (b1 - 4))
+convolution_3d_refsrc_8_isrc_6_6_4_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_16_6_3_refsnk_14.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_0_isrc_15_6_6_refsnk_2.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_13_6_4_refsnk_14.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_10_isrc_2_15_12_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_11_4_4_refsnk_13.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_1_isrc_16_6_9_refsnk_3.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_2_7_10_refsnk_8.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 < b1) && (isrc2 < b2)) then 0 else (b2 - 4))
+convolution_3d_refsrc_11_isrc_15_6_3_refsnk_11.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_4_14_1_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_11_isrc_17_6_12_refsnk_11.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_9_isrc_7_6_3_refsnk_9.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_6_6_5_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_10_isrc_9_6_8_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_2_isrc_5_16_2_refsnk_4.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else 2)
+convolution_3d_refsrc_14_isrc_13_4_18_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_10_isrc_12_14_10_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_7_isrc_2_12_3_refsnk_6.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_5_isrc_18_1_18_refsnk_10.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 + isrc2) < (b0 + b2)) then 0 else 5)
+convolution_3d_refsrc_9_isrc_12_10_9_refsnk_0.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_1_isrc_13_2_7_refsnk_3.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 < b0) && (isrc0 < b2)) then 0 else 2)
+convolution_3d_refsrc_0_isrc_8_12_1_refsnk_2.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_2_isrc_12_16_4_refsnk_4.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_0_isrc_2_6_14_refsnk_2.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_7_isrc_11_13_6_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_15_isrc_18_8_6_refsnk_15.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_17_12_6_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_18_16_1_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_2_isrc_17_4_2_refsnk_4.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else 2)
+convolution_3d_refsrc_15_isrc_11_5_1_refsnk_15.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else (b0 - 4))
+convolution_3d_refsrc_2_isrc_13_12_2_refsnk_4.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_15_isrc_18_12_1_refsnk_15.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_12_isrc_14_11_2_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_2_isrc_13_1_17_refsnk_4.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 + isrc2) < (b0 + b2)) then 0 else 2)
+convolution_3d_refsrc_8_isrc_5_4_18_refsnk_13.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_4_isrc_4_8_1_refsnk_9.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else 5)
+convolution_3d_refsrc_12_isrc_15_6_7_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_4_isrc_3_2_3_refsnk_9.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_0_isrc_6_4_7_refsnk_2.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_15_isrc_15_6_6_refsnk_15.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_11_isrc_12_14_7_refsnk_11.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_6_isrc_5_6_4_refsnk_13.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_5_isrc_6_13_14_refsnk_10.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_8_4_1_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_9_isrc_18_1_7_refsnk_9.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 + isrc0) < (b0 + b2)) then 0 else (isrc0 - 2))
+convolution_3d_refsrc_14_isrc_10_12_1_refsnk_14.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_7_isrc_18_1_10_refsnk_7.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 + isrc2) < (b0 + b2)) then 0 else (isrc0 - 2))
+convolution_3d_refsrc_9_isrc_16_7_12_refsnk_0.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_5_isrc_12_2_3_refsnk_10.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_5_isrc_1_12_2_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_7_isrc_7_6_1_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_10_isrc_5_10_12_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_11_isrc_6_15_8_refsnk_11.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_12_isrc_5_2_3_refsnk_12.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 < b0) && (isrc0 < b2)) then 0 else (4 * 4))
+convolution_3d_refsrc_12_isrc_8_5_12_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_2_isrc_6_11_8_refsnk_4.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_7_isrc_14_12_13_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_4_15_1_refsnk_14.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else (b1 - 4))
+convolution_3d_refsrc_5_isrc_15_14_1_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_10_isrc_12_14_10_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_6_6_4_refsnk_13.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_16_6_2_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_1_9_8_refsnk_8.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 < b1) && (isrc2 < b2)) then 0 else (b2 - 4))
+convolution_3d_refsrc_0_isrc_18_11_6_refsnk_2.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_7_isrc_11_13_6_refsnk_6.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_6_isrc_11_3_6_refsnk_13.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_11_isrc_12_13_4_refsnk_11.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_15_isrc_6_4_8_refsnk_15.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_1_isrc_18_6_17_refsnk_3.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_12_isrc_12_17_8_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_18_6_14_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_2_isrc_6_15_10_refsnk_4.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_9_isrc_2_8_16_refsnk_0.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 + isrc2) < (b1 + b2)) then 0 else (isrc1 - 1))
+convolution_3d_refsrc_10_isrc_12_12_10_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_0_isrc_12_18_4_refsnk_2.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_8_isrc_9_2_5_refsnk_8.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 < b0) && (isrc2 < b2)) then 0 else (b0 - 4))
+convolution_3d_refsrc_5_isrc_11_1_12_refsnk_6.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_9_isrc_1_3_4_refsnk_0.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 < b1) && (isrc2 < b2)) then 0 else (2 + 5))
+convolution_3d_refsrc_12_isrc_8_2_6_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_15_isrc_9_1_10_refsnk_15.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 < b0) && (isrc2 < b2)) then 0 else (b2 - 4))
+convolution_3d_refsrc_3_isrc_10_9_12_refsnk_5.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_3_isrc_14_8_1_refsnk_5.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 + isrc0) < (b0 + b1)) then 0 else 2)
+convolution_3d_refsrc_13_isrc_16_17_6_refsnk_11.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_0_isrc_11_2_6_refsnk_2.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_7_4_12_refsnk_14.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_7_isrc_1_8_10_refsnk_6.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_0_isrc_10_11_2_refsnk_2.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 < b0) && (isrc0 < b1)) then 0 else 2)
+convolution_3d_refsrc_7_isrc_12_10_15_refsnk_6.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_1_isrc_12_13_17_refsnk_3.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_9_isrc_12_6_7_refsnk_9.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_10_isrc_16_12_2_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_7_isrc_6_15_12_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_11_isrc_2_8_7_refsnk_11.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 < b1) && (isrc1 < b2)) then 0 else (b2 - 4))
+convolution_3d_refsrc_10_isrc_1_17_15_refsnk_10.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 + isrc2) < (b1 + b2)) then 0 else (b2 - 4))
+convolution_3d_refsrc_10_isrc_12_12_5_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_10_isrc_9_8_4_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_3_isrc_2_14_1_refsnk_5.ri.cls32_ds8.src_enhanced Prog: (if (isrc1 < b1) then 0 else 2)
+convolution_3d_refsrc_10_isrc_16_12_2_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_6_isrc_18_8_1_refsnk_6.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 + isrc0) < (b0 + b1)) then 0 else (isrc0 - 2))
+convolution_3d_refsrc_7_isrc_15_15_12_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_13_isrc_6_7_15_refsnk_13.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_3_isrc_12_6_9_refsnk_5.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_5_isrc_13_15_12_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_15_6_2_refsnk_14.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_10_6_12_refsnk_14.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_13_isrc_2_4_16_refsnk_13.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 < b1) && (isrc2 < b2)) then 0 else isrc2)
+convolution_3d_refsrc_15_isrc_2_16_8_refsnk_15.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 + isrc1) < (b1 + b2)) then 0 else isrc1)
+convolution_3d_refsrc_5_isrc_8_14_2_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_7_isrc_5_2_1_refsnk_7.ri.cls32_ds8.src_enhanced Prog: (if (b0 < isrc0) then 0 else (4 * 4))
+convolution_3d_refsrc_12_isrc_1_9_11_refsnk_12.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 < b1) && (isrc2 < b2)) then 0 else (b2 - 4))
+convolution_3d_refsrc_8_isrc_2_7_10_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_12_isrc_10_5_1_refsnk_12.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else (b0 - 4))
+convolution_3d_refsrc_5_isrc_18_4_2_refsnk_10.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else 5)
+convolution_3d_refsrc_5_isrc_15_12_6_refsnk_10.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_0_isrc_14_11_2_refsnk_2.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 + isrc0) < (b0 + b1)) then 0 else 2)
+convolution_3d_refsrc_2_isrc_3_8_12_refsnk_4.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_5_isrc_16_16_2_refsnk_10.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 + isrc0) < (b0 + b1)) then 0 else 5)
+convolution_3d_refsrc_10_isrc_1_12_6_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_12_isrc_12_16_10_refsnk_10.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_5_isrc_8_14_2_refsnk_10.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 + isrc1) < (b0 + b1)) then 0 else 5)
+convolution_3d_refsrc_3_isrc_9_10_12_refsnk_5.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_5_isrc_12_2_17_refsnk_10.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_2_isrc_12_14_18_refsnk_4.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_7_isrc_18_1_10_refsnk_6.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_8_isrc_4_14_1_refsnk_8.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else (b1 - 4))
+convolution_3d_refsrc_9_isrc_10_14_1_refsnk_0.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 + isrc1) < (b0 + b1)) then 0 else (isrc0 - 3))
+convolution_3d_refsrc_7_isrc_12_10_15_refsnk_13.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_6_isrc_5_2_10_refsnk_11.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_0_isrc_5_12_9_refsnk_2.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_5_isrc_5_16_1_refsnk_10.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else 5)
+convolution_3d_refsrc_6_isrc_3_9_10_refsnk_13.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_6_isrc_5_6_4_refsnk_6.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_5_isrc_6_9_1_refsnk_10.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_12_isrc_12_1_16_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_4_isrc_6_9_13_refsnk_9.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_13_isrc_16_1_17_refsnk_13.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 + isrc2) < (b0 + b2)) then 0 else isrc0)
+convolution_3d_refsrc_3_isrc_2_4_5_refsnk_5.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 < b1) && (isrc2 < b2)) then 0 else 2)
+convolution_3d_refsrc_7_isrc_12_15_6_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_2_isrc_9_8_12_refsnk_4.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_11_isrc_12_3_12_refsnk_11.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_12_isrc_6_4_13_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_10_isrc_9_8_3_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_6_isrc_6_2_11_refsnk_11.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_5_isrc_15_14_1_refsnk_10.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 + isrc0) < (b0 + b1)) then 0 else 5)
+convolution_3d_refsrc_1_isrc_13_15_6_refsnk_3.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_12_isrc_10_6_13_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_6_isrc_1_17_9_refsnk_6.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 + isrc1) < (b1 + b2)) then 0 else (b2 - 4))
+convolution_3d_refsrc_12_isrc_13_12_5_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_4_isrc_4_8_1_refsnk_0.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_14_isrc_14_14_4_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_5_isrc_1_12_2_refsnk_10.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_6_isrc_17_6_4_refsnk_6.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_2_isrc_14_12_8_refsnk_4.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_11_isrc_14_12_14_refsnk_9.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_1_isrc_12_7_18_refsnk_3.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_4_isrc_16_12_1_refsnk_9.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_7_4_4_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_2_isrc_9_1_1_refsnk_4.ri.cls32_ds8.src_enhanced Prog: (if (b0 < isrc0) then 0 else 2)
+convolution_3d_refsrc_14_isrc_16_6_2_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_11_isrc_11_3_2_refsnk_11.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_5_isrc_12_7_12_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_10_isrc_6_10_10_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_3_isrc_1_12_18_refsnk_5.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_10_isrc_11_11_1_refsnk_1.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 < b0) && (isrc0 < b1)) then 0 else (isrc0 - 4))
+convolution_3d_refsrc_1_isrc_14_2_2_refsnk_3.ri.cls32_ds8.src_enhanced Prog: (if (b0 < isrc0) then 0 else 2)
+convolution_3d_refsrc_15_isrc_15_12_6_refsnk_15.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_7_isrc_12_17_16_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_15_6_2_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_1_isrc_6_15_1_refsnk_3.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_12_isrc_14_6_3_refsnk_12.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_13_isrc_2_17_16_refsnk_13.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 + isrc2) < (b1 + b2)) then 0 else isrc2)
+convolution_3d_refsrc_13_isrc_16_9_1_refsnk_13.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 + isrc0) < (b0 + b1)) then 0 else isrc0)
+convolution_3d_refsrc_3_isrc_5_6_1_refsnk_5.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_2_isrc_1_17_14_refsnk_4.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 + isrc2) < (b1 + b2)) then 0 else 2)
+convolution_3d_refsrc_13_isrc_1_11_17_refsnk_13.ri.cls32_ds8.src_enhanced Prog: (if ((isrc2 + isrc2) < (b1 + b2)) then 0 else (isrc2 - 1))
+convolution_3d_refsrc_7_isrc_7_7_3_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 0
+convolution_3d_refsrc_14_isrc_13_6_4_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_15_6_2_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_0_isrc_10_12_5_refsnk_2.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_1_isrc_15_10_1_refsnk_3.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 + isrc0) < (b0 + b1)) then 0 else 2)
+convolution_3d_refsrc_6_isrc_5_2_10_refsnk_6.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 < b0) && (isrc2 < b2)) then 0 else (b2 - 4))
+convolution_3d_refsrc_10_isrc_12_12_10_refsnk_8.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_0_isrc_12_1_12_refsnk_2.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_11_isrc_7_12_12_refsnk_11.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_3_isrc_11_16_12_refsnk_5.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_3_isrc_4_6_1_refsnk_5.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_7_isrc_12_15_6_refsnk_6.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_7_isrc_6_8_10_refsnk_7.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_6_isrc_11_3_6_refsnk_6.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_6_isrc_16_11_12_refsnk_6.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_14_isrc_10_2_5_refsnk_14.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 < b0) && (isrc2 < b2)) then 0 else (b0 - 4))
+convolution_3d_refsrc_2_isrc_5_11_1_refsnk_4.ri.cls32_ds8.src_enhanced Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else 2)
+convolution_3d_refsrc_13_isrc_3_12_18_refsnk_11.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_6_isrc_17_2_6_refsnk_11.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_12_isrc_14_11_2_refsnk_1.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 + isrc0) < (b0 + b1)) then 0 else (if ((2 + 2) < b2) then 5 else (if (isrc0 < b2) then (5 + (b2 * b2)) else ((b2 * isrc0) - (b2 - 1)))))
+convolution_3d_refsrc_10_isrc_6_8_9_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_5_isrc_6_2_11_refsnk_1.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_4_isrc_6_8_15_refsnk_0.ri.cls32_ds8.src_enhanced Prog: 6
+convolution_3d_refsrc_6_isrc_16_11_1_refsnk_6.ri.cls32_ds8.src_enhanced Prog: (if ((isrc0 + isrc0) < (b0 + b1)) then 0 else isrc0)
+convolution_3d_refsrc_12_isrc_11_12_6_refsnk_10.ri.cls32_ds8.src_enhanced Prog: 6
