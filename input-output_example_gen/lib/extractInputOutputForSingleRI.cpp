@@ -252,15 +252,11 @@ void processSingleIBoundFile(string name, string fileSuffix, vector<uint64_t> sy
                 srcIDIterV.push_back(tmp);
             }
             int srcIDIterVLen = srcIDIterV.size();
-            
-            cout << line << endl;
-            
+                        
             ref_src_id = stoi(lineList[0]);
             ILen[ref_src_id] = srcIDIterVLen;
             idx_src.clear();
-            
-            cout << srcIDIterV.size() << endl;
-            
+                        
             for (int i = 0; i < srcIDIterV.size(); i++) {
                 idx_src.push_back(stoi(srcIDIterV[i]));
             }
