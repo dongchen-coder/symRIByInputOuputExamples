@@ -135,7 +135,7 @@ void processSingleRiFile(string cacheConfig, string name, string fileSuffix, vec
             vector<string> snkIDIterV;
             int snkIDIterVLen = split(lineList[2], snkIDIterV, ' ');
             
-            //cout << "srcIDIterVLen " << srcIDIterVLen << " snkIDIterVLen " << snkIDIterVLen << endl;
+            // cout << "srcIDIterVLen " << srcIDIterVLen << " snkIDIterVLen " << snkIDIterVLen << endl;
             
             ref_src_id = stoi(srcIDIterV[0]);
             ref_snk_id = stoi(snkIDIterV[0]);
@@ -247,11 +247,20 @@ void processSingleIBoundFile(string name, string fileSuffix, vector<uint64_t> sy
                 break;
             }
             vector<string> srcIDIterV;
-            int srcIDIterVLen = split(lineList[1], srcIDIterV, ' ');
+            stringstream ss(lineList[1]);
+            for(string tmp; ss >> tmp; ) {
+                srcIDIterV.push_back(tmp);
+            }
+            int srcIDIterVLen = srcIDIterV.size();
+            
+            cout << line << endl;
             
             ref_src_id = stoi(lineList[0]);
             ILen[ref_src_id] = srcIDIterVLen;
             idx_src.clear();
+            
+            cout << srcIDIterV.size() << endl;
+            
             for (int i = 0; i < srcIDIterV.size(); i++) {
                 idx_src.push_back(stoi(srcIDIterV[i]));
             }
