@@ -12,7 +12,9 @@ string BaseType::toString() {
     else if (auto boolType = dynamic_cast<BoolType*>(this)) {
         return boolType->toString();
     }
-    return "";
+    else {
+        throw runtime_error("BaseType::toString() operates on UNKNOWN type!");
+    }
 }
 
 int BaseType::depth() {
@@ -22,7 +24,9 @@ int BaseType::depth() {
     else if (auto boolType = dynamic_cast<BoolType*>(this)) {
         return boolType->depth();
     }
-    return 0;
+    else {
+        throw runtime_error("BaseType::depth() operates on UNKNOWN type!");
+    }
 }
 
 int BaseType::getNumOfOpsInProg(string opName) {
@@ -32,7 +36,9 @@ int BaseType::getNumOfOpsInProg(string opName) {
     else if (auto boolType = dynamic_cast<BoolType*>(this)) {
         return boolType->getNumOfOpsInProg(opName);
     }
-    return 0;
+    else {
+        throw runtime_error("BaseType::getNumOfOpsInProg() operates on UNKNOWN type!");
+    }
 }
 
 int BaseType::getNumOfSymbolsInProg(string symbolName) {
@@ -42,7 +48,9 @@ int BaseType::getNumOfSymbolsInProg(string symbolName) {
     else if (auto boolType = dynamic_cast<BoolType*>(this)) {
         return boolType->getNumOfSymbolsInProg(symbolName);
     }
-    return 0;
+    else {
+        throw runtime_error("BaseType::getNumOfSymbolsInProg() operates on UNKNOWN type!");
+    }
 }
 
 int BaseType::getExponentOfSymbolInProg(string symbolName) {
@@ -52,7 +60,9 @@ int BaseType::getExponentOfSymbolInProg(string symbolName) {
     else if (auto boolType = dynamic_cast<BoolType*>(this)) {
         return boolType->getExponentOfSymbolInProg(symbolName);
     }
-    return 0;
+    else {
+        throw runtime_error("BaseType::getExponentOfSymbolInProg() operates on UNKNOWN type!");
+    }
 }
 
 /*
@@ -92,7 +102,9 @@ string IntType::toString() {
     else if (auto ite = dynamic_cast<Ite*>(this)) {
         return ite->toString();
     }
-    return "";
+    else {
+        throw runtime_error("IntType::toString() operates on UNKNOWN type!");
+    }
 }
 
 int IntType::depth() {
@@ -126,7 +138,9 @@ int IntType::depth() {
     else if (auto ite = dynamic_cast<Ite*>(this)) {
         return ite->depth();
     }
-    return 1;
+    else {
+        throw runtime_error("IntType::depth() operates on UNKNOWN type!");
+    }
 }
 
 int IntType::getNumOfOpsInProg(string opName) {
@@ -160,7 +174,9 @@ int IntType::getNumOfOpsInProg(string opName) {
     else if (auto ite = dynamic_cast<Ite*>(this)) {
         return ite->getNumOfOpsInProg(opName);
     }
-    return 0;
+    else {
+        throw runtime_error("IntType::getNumOfOpsInProg() operates on UNKNOWN type!");
+    }
 }
 
 int IntType::getNumOfSymbolsInProg(string symbolName) {
@@ -194,7 +210,9 @@ int IntType::getNumOfSymbolsInProg(string symbolName) {
     else if (auto ite = dynamic_cast<Ite*>(this)) {
         return ite->getNumOfSymbolsInProg(symbolName);
     }
-    return 0;
+    else {
+        throw runtime_error("IntType::getNumOfSymbolsInProg() operates on UNKNOWN type");
+    }
 }
 
 int IntType::getExponentOfSymbolInProg(string symbolName) {
@@ -228,78 +246,84 @@ int IntType::getExponentOfSymbolInProg(string symbolName) {
     else if (auto ite = dynamic_cast<Ite*>(this)) {
         return ite->getExponentOfSymbolInProg(symbolName);
     }
-    return 0;
+    else {
+        throw runtime_error("IntType::getExponentOfSymbolInProg() operates on UNKOWN type!");
+    }
 }
 
 
 BoolType::BoolType() {};
 
 string BoolType::toString() {
-    string output;
     if (auto f = dynamic_cast<F*>(this) ) {
-        output = f->toString();
+        return f->toString();
     }
     else if (auto n = dynamic_cast<Not*>(this)) {
-        output = n->toString();
+        return n->toString();
     }
     else if (auto a = dynamic_cast<And*>(this)) {
-        output = a->toString();
+        return a->toString();
     }
     else if (auto lt = dynamic_cast<Lt*>(this)) {
-        output = lt->toString();
+        return lt->toString();
     }
-    return output;
+    else {
+        throw runtime_error("BoolType::toString() operates on UNKOWN type!");
+    }
 }
 
 int BoolType::depth() {
-    int depth;
     if (auto f = dynamic_cast<F*>(this) ) {
-        depth = f->depth();
+        return f->depth();
     }
     else if (auto n = dynamic_cast<Not*>(this)) {
-        depth = n->depth();
+        return n->depth();
     }
     else if (auto a = dynamic_cast<And*>(this)) {
-        depth = a->depth();
+        return a->depth();
     }
     else if (auto lt = dynamic_cast<Lt*>(this)) {
-        depth = lt->depth();
+        return lt->depth();
     }
-    return depth;
+    else {
+        throw runtime_error("BoolType::depth() operates on UNKOWN type!");
+    }
 }
 
 int BoolType::getNumOfOpsInProg(string opName) {
-    int numOfOpsInProg;
     if (auto f = dynamic_cast<F*>(this) ) {
-        numOfOpsInProg = f->getNumOfOpsInProg(opName);
+        return f->getNumOfOpsInProg(opName);
     }
     else if (auto n = dynamic_cast<Not*>(this)) {
-        numOfOpsInProg = n->getNumOfOpsInProg(opName);
+        return n->getNumOfOpsInProg(opName);
     }
     else if (auto a = dynamic_cast<And*>(this)) {
-        numOfOpsInProg = a->getNumOfOpsInProg(opName);
+        return a->getNumOfOpsInProg(opName);
     }
     else if (auto lt = dynamic_cast<Lt*>(this)) {
-        numOfOpsInProg = lt->getNumOfOpsInProg(opName);
+        return lt->getNumOfOpsInProg(opName);
     }
-    return numOfOpsInProg;
+    else {
+        throw runtime_error("BoolType::getNumOfOpsInProg() operates on UNKOWN type!");
+    }
 }
 
 int BoolType::getNumOfSymbolsInProg(string symbolName) {
-    int numOfSymbolsInProg;
     if (auto f = dynamic_cast<F*>(this) ) {
-        numOfSymbolsInProg = f->getNumOfSymbolsInProg(symbolName);
+        return f->getNumOfSymbolsInProg(symbolName);
     }
     else if (auto n = dynamic_cast<Not*>(this)) {
-        numOfSymbolsInProg = n->getNumOfSymbolsInProg(symbolName);
+        return n->getNumOfSymbolsInProg(symbolName);
     }
     else if (auto a = dynamic_cast<And*>(this)) {
-        numOfSymbolsInProg = a->getNumOfSymbolsInProg(symbolName);
+        return a->getNumOfSymbolsInProg(symbolName);
     }
     else if (auto lt = dynamic_cast<Lt*>(this)) {
-        numOfSymbolsInProg = lt->getNumOfSymbolsInProg(symbolName);
+        return lt->getNumOfSymbolsInProg(symbolName);
     }
-    return numOfSymbolsInProg;
+    else {
+        throw runtime_error("BoolType::getNumOfSymbolsInProg() operates on UNKOWN type!");
+    }
 }
 
 int BoolType::getExponentOfSymbolInProg(string symbolName) {
@@ -315,7 +339,9 @@ int BoolType::getExponentOfSymbolInProg(string symbolName) {
     else if (auto lt = dynamic_cast<Lt*>(this)) {
         return lt->getExponentOfSymbolInProg(symbolName);
     }
-    return 0;
+    else {
+        throw runtime_error("BoolType::getExponentOfSymbolInProg() operates on UNKOWN type!");
+    }
 }
 
 /******************************************
@@ -463,6 +489,9 @@ string Plus::toString() {
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         output += left->toString();
     }
+    else {
+        throw runtime_error("Plus::toString() operates on UNKNOWN type!");
+    }
     
     output += " + ";
     
@@ -493,14 +522,16 @@ string Plus::toString() {
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         output += right->toString();
     }
+    else {
+        throw runtime_error("Plus::toString() operates on UNKNOWN type!");
+    }
     
     output += ")";
     return output;
 }
     
 int Plus::interpret(inputOutput_t env) {
-    int output = numeric_limits<int>::min();
-    
+    int output;
     if (auto left = dynamic_cast<Var*>(_left)) {
         output = left->interpret(env);
     }
@@ -527,6 +558,9 @@ int Plus::interpret(inputOutput_t env) {
     }
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         output = left->interpret(env);
+    }
+    else {
+        throw runtime_error("Plus::interpret() operates on UNKNOWN type!");
     }
     
     if (auto right = dynamic_cast<Var*>(_right)) {
@@ -556,12 +590,15 @@ int Plus::interpret(inputOutput_t env) {
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         output += right->interpret(env);
     }
+    else {
+        throw runtime_error("Plus::interpret() operates on UNKNOWN type!");
+    }
     
     return output;
 }
     
 int Plus::depth() {
-    int depth = 1;
+    int depth;
     
     if (auto left = dynamic_cast<Var*>(_left)) {
         depth = left->depth();
@@ -589,6 +626,9 @@ int Plus::depth() {
     }
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         depth = left->depth();
+    }
+    else {
+        throw runtime_error("Plus::depth() operates on UNKNOWN type!");
     }
     
     if (auto right = dynamic_cast<Var*>(_right)) {
@@ -618,6 +658,10 @@ int Plus::depth() {
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
+    else {
+        throw runtime_error("Plus::interpret() operates on UNKNOWN type!");
+    }
+    
     return depth;
 }
 
@@ -674,6 +718,9 @@ string Minus::toString() {
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         output += left->toString();
     }
+    else {
+        throw runtime_error("Plus::toString() operates on UNKNOWN type!");
+    }
     
     output += " - ";
     
@@ -704,6 +751,10 @@ string Minus::toString() {
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         output += right->toString();
     }
+    else {
+        throw runtime_error("Plus::toString() operates on UNKNOWN type!");
+    }
+    
     output += ")";
     return output;
 }
@@ -738,6 +789,9 @@ int Minus::interpret(inputOutput_t env) {
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         output = left->interpret(env);
     }
+    else {
+        throw runtime_error("Minus::interpret() operates on UNKNOWN type!");
+    }
     
     if (auto right = dynamic_cast<Var*>(_right)) {
         output -= right->interpret(env);
@@ -766,11 +820,15 @@ int Minus::interpret(inputOutput_t env) {
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         output -= right->interpret(env);
     }
+    else {
+        throw runtime_error("Minus::interpret() operates on UNKNOWN type!");
+    }
+    
     return output;
 }
     
 int Minus::depth() {
-    int depth = 1;
+    int depth;
     
     if (auto left = dynamic_cast<Var*>(_left)) {
         depth = left->depth();
@@ -798,6 +856,9 @@ int Minus::depth() {
     }
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         depth = left->depth();
+    }
+    else {
+        throw runtime_error("Minus::depth() operates on UNKNOWN type!");
     }
     
     if (auto right = dynamic_cast<Var*>(_right)) {
@@ -827,6 +888,10 @@ int Minus::depth() {
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
+    else {
+        throw runtime_error("Minus::depth() operates on UNKNOWN type!");
+    }
+    
     return depth;
 }
 
@@ -883,6 +948,9 @@ string Times::toString() {
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         output += left->toString();
     }
+    else {
+        throw runtime_error("Times::toString() operates on UNKNOWN type!");
+    }
     
     output += " * ";
     
@@ -913,12 +981,16 @@ string Times::toString() {
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         output += right->toString();
     }
+    else {
+        throw runtime_error("Times::toString() operates on UNKNOWN type!");
+    }
+    
     output += ")";
     return output;
 }
     
 int Times::interpret(inputOutput_t env) {
-    int output = numeric_limits<int>::min();
+    int output;
     
     if (auto left = dynamic_cast<Var*>(_left)) {
         output = left->interpret(env);
@@ -946,6 +1018,9 @@ int Times::interpret(inputOutput_t env) {
     }
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         output = left->interpret(env);
+    }
+    else {
+        throw runtime_error("Times::interpret() operates on UNKNOWN type!");
     }
     
     if (auto right = dynamic_cast<Var*>(_right)) {
@@ -975,12 +1050,15 @@ int Times::interpret(inputOutput_t env) {
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         output *= right->interpret(env);
     }
+    else {
+        throw runtime_error("Times::interpret() operates on UNKNOWN type!");
+    }
     
     return output;
 }
     
 int Times::depth() {
-    int depth = 1;
+    int depth;
     
     if (auto left = dynamic_cast<Var*>(_left)) {
         depth = left->depth();
@@ -1008,6 +1086,9 @@ int Times::depth() {
     }
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         depth = left->depth();
+    }
+    else {
+        throw runtime_error("Times::depth() operates on UNKNOWN type!");
     }
     
     if (auto right = dynamic_cast<Var*>(_right)) {
@@ -1037,6 +1118,10 @@ int Times::depth() {
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
+    else {
+        throw runtime_error("Times::depth() operates on UNKNOWN type!");
+    }
+    
     return depth;
 }
 
@@ -1092,6 +1177,9 @@ string Min::toString() {
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         output += left->toString();
     }
+    else {
+        throw runtime_error("Min::toString() operates on UNKNOWN type!");
+    }
     
     output += " , ";
     
@@ -1122,6 +1210,10 @@ string Min::toString() {
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         output += right->toString();
     }
+    else {
+        throw runtime_error("Min::toString() operates on UNKNOWN type!");
+    }
+    
     output += " ) ";
     return output;
 }
@@ -1156,6 +1248,9 @@ int Min::interpret(inputOutput_t env) {
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         leftValue = left->interpret(env);
     }
+    else {
+        throw runtime_error("Min::interpret() operates on UNKNOWN type!");
+    }
     
     
     if (auto right = dynamic_cast<Var*>(_right)) {
@@ -1184,6 +1279,9 @@ int Min::interpret(inputOutput_t env) {
     }
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         rightValue = right->interpret(env);
+    }
+    else {
+        throw runtime_error("Min::interpret() operates on UNKNOWN type!");
     }
     
     return min(leftValue, rightValue);
@@ -1218,6 +1316,9 @@ int Min::depth() {
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         depth = left->depth();
     }
+    else {
+        throw runtime_error("Min::depth() operates on UNKNOWN type!");
+    }
     
     if (auto right = dynamic_cast<Var*>(_right)) {
         depth = max(depth, right->depth()) + 1;
@@ -1246,6 +1347,10 @@ int Min::depth() {
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
+    else {
+        throw runtime_error("Min::depth() operates on UNKNOWN type!");
+    }
+    
     return depth;
 }
 int Min::getNumOfOpsInProg(string opName) {
@@ -1301,6 +1406,9 @@ string Div::toString() {
     else if (auto dividend = dynamic_cast<Rightshift*>(_dividend)) {
         output += dividend->toString();
     }
+    else {
+        throw runtime_error("Div::toString() operates on UNKNOWN type!");
+    }
     
     output += " / ";
     
@@ -1331,13 +1439,17 @@ string Div::toString() {
     else if (auto divisor = dynamic_cast<Rightshift*>(_divisor)) {
         output += divisor->toString();
     }
+    else {
+        throw runtime_error("Div::toString() operates on UNKNOWN type!");
+    }
+    
     output += ")";
     return output;
 }
 
 int Div::interpret(inputOutput_t env) {
-    int dividendValue = 0;
-    int divisorValue = 1;
+    int dividendValue;
+    int divisorValue;
     
     if (auto dividend = dynamic_cast<Var*>(_dividend)) {
         dividendValue = dividend->interpret(env);
@@ -1366,7 +1478,9 @@ int Div::interpret(inputOutput_t env) {
     else if (auto dividend = dynamic_cast<Rightshift*>(_dividend)) {
         dividendValue = dividend->interpret(env);
     }
-    
+    else {
+        throw runtime_error("Div::interpret() operates on UNKNOWN type!");
+    }
     
     if (auto divisor = dynamic_cast<Var*>(_divisor)) {
         divisorValue = divisor->interpret(env);
@@ -1395,16 +1509,19 @@ int Div::interpret(inputOutput_t env) {
     else if (auto divisor = dynamic_cast<Rightshift*>(_divisor)) {
         divisorValue = divisor->interpret(env);
     }
+    else {
+        throw runtime_error("Div::interpret() operates on UNKNOWN type!");
+    }
     
     if (divisorValue == 0) {
-        return numeric_limits<int>::max();
+        throw runtime_error("Divided by 0!");
     } else {
         return dividendValue / divisorValue;
     }
 }
 
 int Div::depth() {
-    int depth = 0;
+    int depth;
     
     if (auto dividend = dynamic_cast<Var*>(_dividend)) {
         depth = dividend->depth();
@@ -1433,6 +1550,9 @@ int Div::depth() {
     else if (auto dividend = dynamic_cast<Rightshift*>(_dividend)) {
         depth = dividend->depth();
     }
+    else {
+        throw runtime_error("Div::depth() operates on UNKNOWN type!");
+    }
     
     if (auto divisor = dynamic_cast<Var*>(_divisor)) {
         depth = max(depth, divisor->depth()) + 1;
@@ -1460,6 +1580,9 @@ int Div::depth() {
     }
     else if (auto divisor = dynamic_cast<Rightshift*>(_divisor)) {
         depth = max(depth, divisor->depth()) + 1;
+    }
+    else {
+        throw runtime_error("Div::depth() operates on UNKNOWN type!");
     }
     
     return depth;
@@ -1527,6 +1650,9 @@ string Leftshift::toString() {
         Rightshift* value = dynamic_cast<Rightshift*>(_value);
         output += value->toString();
     }
+    else {
+        throw runtime_error("Leftshift::toString() operates on UNKNOWN type!");
+    }
     
     output += " << ";
     
@@ -1565,6 +1691,9 @@ string Leftshift::toString() {
     else if (dynamic_cast<Rightshift*>(_offset) != 0) {
         Rightshift* offset = dynamic_cast<Rightshift*>(_offset);
         output += offset->toString();
+    }
+    else {
+        throw runtime_error("Leftshift::toString() operates on UNKNOWN type!");
     }
     
     output += ")";
@@ -1610,6 +1739,9 @@ int Leftshift::interpret(inputOutput_t env) {
         Rightshift* value = dynamic_cast<Rightshift*>(_value);
         output = value->interpret(env);
     }
+    else {
+        throw runtime_error("Leftshift::interpret() operates on UNKNOWN type!");
+    }
     
     if (dynamic_cast<Var*>(_offset) != 0) {
         Var* offset = dynamic_cast<Var*>(_offset);
@@ -1646,6 +1778,9 @@ int Leftshift::interpret(inputOutput_t env) {
     else if (dynamic_cast<Rightshift*>(_offset) != 0) {
         Rightshift* offset = dynamic_cast<Rightshift*>(_offset);
         output = output << offset->interpret(env);
+    }
+    else {
+        throw runtime_error("Leftshift::interpret() operates on UNKNOWN type!");
     }
     
     return output;
@@ -1690,6 +1825,9 @@ int Leftshift::depth() {
         Rightshift* value = dynamic_cast<Rightshift*>(_value);
         depth = value->depth();
     }
+    else {
+        throw runtime_error("Leftshift::depth() operates on UNKNOWN type!");
+    }
     
     if (dynamic_cast<Var*>(_offset) != 0) {
         Var* offset = dynamic_cast<Var*>(_offset);
@@ -1727,6 +1865,10 @@ int Leftshift::depth() {
         Rightshift* offset = dynamic_cast<Rightshift*>(_offset);
         depth = max(depth, offset->depth()) + 1;
     }
+    else {
+        throw runtime_error("Leftshift::depth() operates on UNKNOWN type!");
+    }
+    
     return depth;
 }
 
@@ -1792,6 +1934,9 @@ string Rightshift::toString() {
         Rightshift* value = dynamic_cast<Rightshift*>(_value);
         output += value->toString();
     }
+    else {
+        throw runtime_error("Rightshift::toString() operates on UNKNOWN type!");
+    }
     
     output += " >> ";
     
@@ -1831,6 +1976,10 @@ string Rightshift::toString() {
         Rightshift* offset = dynamic_cast<Rightshift*>(_offset);
         output += offset->toString();
     }
+    else {
+        throw runtime_error("Rightshift::toString() operates on UNKNOWN type!");
+    }
+    
     output += ")";
     return output;
 }
@@ -1874,6 +2023,9 @@ int Rightshift::interpret(inputOutput_t env) {
         Rightshift* value = dynamic_cast<Rightshift*>(_value);
         output = value->interpret(env);
     }
+    else {
+        throw runtime_error("Rightshift::interpret() operates on UNKNOWN type!");
+    }
     
     if (dynamic_cast<Var*>(_offset) != 0) {
         Var* offset = dynamic_cast<Var*>(_offset);
@@ -1910,6 +2062,9 @@ int Rightshift::interpret(inputOutput_t env) {
     else if (dynamic_cast<Rightshift*>(_offset) != 0) {
         Rightshift* offset = dynamic_cast<Rightshift*>(_offset);
         output = output >> offset->interpret(env);
+    }
+    else {
+        throw runtime_error("Rightshift::interpret() operates on UNKNOWN type!");
     }
     
     return output;
@@ -1954,6 +2109,9 @@ int Rightshift::depth() {
         Rightshift* value = dynamic_cast<Rightshift*>(_value);
         depth = value->depth();
     }
+    else {
+        throw runtime_error("Rightshift::interpret() operates on UNKNOWN type!");
+    }
     
     if (dynamic_cast<Var*>(_offset) != 0) {
         Var* offset = dynamic_cast<Var*>(_offset);
@@ -1991,6 +2149,10 @@ int Rightshift::depth() {
         Rightshift* offset = dynamic_cast<Rightshift*>(_offset);
         depth = max(depth, offset->depth()) + 1;
     }
+    else {
+        throw runtime_error("Rightshift::interpret() operates on UNKNOWN type!");
+    }
+    
     return depth;
 }
 
@@ -2047,6 +2209,9 @@ string Lt::toString() {
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         output += left->toString();
     }
+    else {
+        throw runtime_error("Lt::toString() operates on UNKNOWN type!");
+    }
     
     output += " < ";
     
@@ -2077,12 +2242,17 @@ string Lt::toString() {
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         output += right->toString();
     }
+    else {
+        throw runtime_error("Lt::toString() operates on UNKNOWN type!");
+    }
+    
     output += ")";
     return output;
 }
     
 bool Lt::interpret(inputOutput_t env) {
     int leftValue;
+    
     if (auto left = dynamic_cast<Var*>(_left)) {
         leftValue = left->interpret(env);
     }
@@ -2109,6 +2279,9 @@ bool Lt::interpret(inputOutput_t env) {
     }
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         leftValue = left->interpret(env);
+    }
+    else {
+        throw runtime_error("Lt::interpret() operates on UNKNOWN type!");
     }
     
     int rightValue;
@@ -2139,6 +2312,10 @@ bool Lt::interpret(inputOutput_t env) {
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         rightValue = right->interpret(env);
     }
+    else {
+        throw runtime_error("Lt::interpret() operates on UNKNOWN type!");
+    }
+    
     return leftValue < rightValue;
 }
     
@@ -2172,6 +2349,9 @@ int Lt::depth() {
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         depth = left->depth();
     }
+    else {
+        throw runtime_error("Lt::depth() operates on UNKNOWN type!");
+    }
     
     if (auto right = dynamic_cast<Var*>(_right)) {
         depth = max(depth, right->depth()) + 1;
@@ -2200,6 +2380,10 @@ int Lt::depth() {
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
+    else {
+        throw runtime_error("Lt::depth() operates on UNKNOWN type!");
+    }
+    
     return depth;
 }
 
@@ -2241,6 +2425,9 @@ string And::toString() {
     else if (auto left = dynamic_cast<Not*>(_left)) {
         output += left->toString();
     }
+    else {
+        throw runtime_error("And::toString() operates on UNKNOWN type!");
+    }
     
     output += " && ";
     
@@ -2256,6 +2443,10 @@ string And::toString() {
     else if (auto right = dynamic_cast<Not*>(_right)) {
         output += right->toString();
     }
+    else {
+        throw runtime_error("And::toString() operates on UNKNOWN type!");
+    }
+    
     output += ")";
     return output;
 }
@@ -2275,6 +2466,9 @@ bool And::interpret(inputOutput_t env) {
     else if (auto left = dynamic_cast<Not*>(_left)) {
         output = left->interpret(env);
     }
+    else {
+        throw runtime_error("And::interpret() operates on UNKNOWN type!");
+    }
     
     if (auto right = dynamic_cast<F*>(_right)) {
         output &= right->interpret();
@@ -2288,6 +2482,10 @@ bool And::interpret(inputOutput_t env) {
     else if (auto right = dynamic_cast<Not*>(_right)) {
         output &= right->interpret(env);
     }
+    else {
+        throw runtime_error("And::interpret() operates on UNKNOWN type!");
+    }
+    
     return output;
 }
     
@@ -2306,6 +2504,9 @@ int And::depth() {
     else if (auto left = dynamic_cast<Not*>(_left)) {
         depth = left->depth();
     }
+    else {
+        throw runtime_error("And::depth() operates on UNKNOWN type!");
+    }
     
     if (auto right = dynamic_cast<F*>(_right)) {
         depth = max(depth, right->depth()) + 1;
@@ -2319,6 +2520,10 @@ int And::depth() {
     else if (auto right = dynamic_cast<Not*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
+    else {
+        throw runtime_error("And::depth() operates on UNKNOWN type!");
+    }
+    
     return depth;
 }
 
@@ -2359,42 +2564,47 @@ string Not::toString() {
     else if (auto left = dynamic_cast<Not*>(_left)) {
         output += left->toString();
     }
+    else {
+        throw runtime_error("Not::toString() operates on UNKNOWN type!");
+    }
+    
     output += " )";
     return output;
 }
     
 bool Not::interpret(inputOutput_t env) {
-    bool leftValue;
     if (auto left = dynamic_cast<F*>(_left)) {
-        leftValue = left->interpret();
+        return !(left->interpret());
     }
     else if (auto left = dynamic_cast<Lt*>(_left)) {
-        leftValue = left->interpret(env);
+        return !(left->interpret(env));
     }
     else if (auto left = dynamic_cast<And*>(_left)) {
-        leftValue = left->interpret(env);
+        return !(left->interpret(env));
     }
     else if (auto left = dynamic_cast<Not*>(_left)) {
-        leftValue = left->interpret(env);
+        return !(left->interpret(env));
     }
-    return !leftValue;
+    else {
+        throw runtime_error("Not::interpret() operates on UNKNOWN type!");
+    }
 }
     
 int Not::depth() {
-    int depth;
     if (auto left = dynamic_cast<F*>(_left)) {
-        depth = left->depth();
+        return left->depth();
     }
     else if (auto left = dynamic_cast<Lt*>(_left)) {
-        depth = left->depth();
+        return left->depth();
     }
     else if (auto left = dynamic_cast<And*>(_left)) {
-        depth = left->depth();
+        return left->depth();
     }
     else if (auto left = dynamic_cast<Not*>(_left)) {
-        depth = left->depth();
+        return left->depth();
+    } else {
+        throw runtime_error("Not::depth() operates on UNKNOWN type!");
     }
-    return depth+1;
 }
 
 int Not::getNumOfOpsInProg(string opName) {
@@ -2436,6 +2646,9 @@ string Ite::toString() {
     else if (auto cond = dynamic_cast<Not*>(_cond)) {
         output += cond->toString();
     }
+    else {
+        throw runtime_error("Ite::toString() operates on UNKNOWN type!");
+    }
     
     output += " then ";
     
@@ -2465,6 +2678,9 @@ string Ite::toString() {
     }
     else if (auto tcase = dynamic_cast<Rightshift*>(_tcase)) {
         output += tcase->toString();
+    }
+    else {
+        throw runtime_error("Ite::toString() operates on UNKNOWN type!");
     }
     
     output += " else ";
@@ -2496,6 +2712,9 @@ string Ite::toString() {
     else if (auto fcase = dynamic_cast<Rightshift*>(_fcase)) {
         output += fcase->toString();
     }
+    else {
+        throw runtime_error("Ite::toString() operates on UNKNOWN type!");
+    }
     
     output += " )";
     return output;
@@ -2517,6 +2736,9 @@ int Ite::interpret(inputOutput_t env) {
     }
     else if (auto cond = dynamic_cast<Not*>(_cond)) {
         condValue = cond->interpret(env);
+    }
+    else {
+        throw runtime_error("Ite::interpret() operates on UNKOWN type!");
     }
     
     if (auto tcase = dynamic_cast<Var*>(_tcase)) {
@@ -2546,6 +2768,9 @@ int Ite::interpret(inputOutput_t env) {
     else if (auto tcase = dynamic_cast<Rightshift*>(_tcase)) {
         tcaseValue = tcase->interpret(env);
     }
+    else {
+        throw runtime_error("Ite::interpret() operates on UNKOWN type!");
+    }
     
     if (auto fcase = dynamic_cast<Var*>(_fcase)) {
         fcaseValue = fcase->interpret(env);
@@ -2574,6 +2799,9 @@ int Ite::interpret(inputOutput_t env) {
     else if (auto fcase = dynamic_cast<Rightshift*>(_fcase)) {
         fcaseValue = fcase->interpret(env);
     }
+    else {
+        throw runtime_error("Ite::interpret() operates on UNKOWN type!");
+    }
     
     return condValue ? tcaseValue : fcaseValue;
 }
@@ -2592,6 +2820,9 @@ int Ite::depth() {
     }
     else if (auto cond = dynamic_cast<Not*>(_cond)) {
         depth = cond->depth();
+    }
+    else {
+        throw runtime_error("Ite::depth() operates on UNKOWN type!");
     }
     
     if (auto tcase = dynamic_cast<Var*>(_tcase)) {
@@ -2621,6 +2852,9 @@ int Ite::depth() {
     else if (auto tcase = dynamic_cast<Rightshift*>(_tcase)) {
         depth = max(depth, tcase->depth());
     }
+    else {
+        throw runtime_error("Ite::depth() operates on UNKOWN type!");
+    }
     
     if (auto fcase = dynamic_cast<Var*>(_fcase)) {
         depth = max(depth, fcase->depth()) + 1;
@@ -2648,6 +2882,9 @@ int Ite::depth() {
     }
     else if (auto fcase = dynamic_cast<Rightshift*>(_fcase)) {
         depth = max(depth, fcase->depth()) + 1;
+    }
+    else {
+        throw runtime_error("Ite::depth() operates on UNKOWN type!");
     }
     
     return depth;
