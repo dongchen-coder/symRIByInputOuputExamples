@@ -425,19 +425,22 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitM
 void unification::backtracing(inputOutputTreeNode* node) {
     node->inputOutputs.clear();
     
-    for (auto ioe : node->left->inputOutputs) {
-        node->inputOutputs.push_back(ioe);
+    if (node != nullptr && node->left != nullptr) {
+        for (auto ioe : node->left->inputOutputs) {
+            node->inputOutputs.push_back(ioe);
+        }
+        node->left->inputOutputs.clear();
+        delete(node->left);
     }
-    for (auto ioe : node->right->inputOutputs) {
-        node->inputOutputs.push_back(ioe);
+    if (node != nullptr && node->right != nullptr) {
+        for (auto ioe : node->right->inputOutputs) {
+            node->inputOutputs.push_back(ioe);
+        }
+        node->right->inputOutputs.clear();
+        delete(node->right);
     }
-    
-    node->left->inputOutputs.clear();
-    node->right->inputOutputs.clear();
-    delete(node->left);
-    delete(node->right);
-    node->left = NULL;
-    node->right = NULL;
+    node->left = nullptr;
+    node->right = nullptr;
 }
 
 /*

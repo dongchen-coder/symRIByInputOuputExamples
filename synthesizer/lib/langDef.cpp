@@ -6,60 +6,50 @@
 BaseType::BaseType() {};
 
 string BaseType::toString() {
-    if (dynamic_cast<IntType*>(this)) {
-        IntType* intType = dynamic_cast<IntType*>(this);
+    if (auto intType = dynamic_cast<IntType*>(this)) {
         return intType->toString();
     }
-    else if (dynamic_cast<BoolType*>(this)) {
-        BoolType* boolType = dynamic_cast<BoolType*>(this);
+    else if (auto boolType = dynamic_cast<BoolType*>(this)) {
         return boolType->toString();
     }
     return "";
 }
 
 int BaseType::depth() {
-    if (dynamic_cast<IntType*>(this)) {
-        IntType* intType = dynamic_cast<IntType*>(this);
+    if (auto intType = dynamic_cast<IntType*>(this)) {
         return intType->depth();
     }
-    else if (dynamic_cast<BoolType*>(this)) {
-        BoolType* boolType = dynamic_cast<BoolType*>(this);
+    else if (auto boolType = dynamic_cast<BoolType*>(this)) {
         return boolType->depth();
     }
     return 0;
 }
 
 int BaseType::getNumOfOpsInProg(string opName) {
-    if (dynamic_cast<IntType*>(this)) {
-        IntType* intType = dynamic_cast<IntType*>(this);
+    if (auto intType = dynamic_cast<IntType*>(this)) {
         return intType->getNumOfOpsInProg(opName);
     }
-    else if (dynamic_cast<BoolType*>(this)) {
-        BoolType* boolType = dynamic_cast<BoolType*>(this);
+    else if (auto boolType = dynamic_cast<BoolType*>(this)) {
         return boolType->getNumOfOpsInProg(opName);
     }
     return 0;
 }
 
 int BaseType::getNumOfSymbolsInProg(string symbolName) {
-    if (dynamic_cast<IntType*>(this)) {
-        IntType* intType = dynamic_cast<IntType*>(this);
+    if (auto intType = dynamic_cast<IntType*>(this)) {
         return intType->getNumOfSymbolsInProg(symbolName);
     }
-    else if (dynamic_cast<BoolType*>(this)) {
-        BoolType* boolType = dynamic_cast<BoolType*>(this);
+    else if (auto boolType = dynamic_cast<BoolType*>(this)) {
         return boolType->getNumOfSymbolsInProg(symbolName);
     }
     return 0;
 }
 
 int BaseType::getExponentOfSymbolInProg(string symbolName) {
-    if (dynamic_cast<IntType*>(this)) {
-        IntType* intType = dynamic_cast<IntType*>(this);
+    if (auto intType = dynamic_cast<IntType*>(this)) {
         return intType->getExponentOfSymbolInProg(symbolName);
     }
-    else if (dynamic_cast<BoolType*>(this)) {
-        BoolType* boolType = dynamic_cast<BoolType*>(this);
+    else if (auto boolType = dynamic_cast<BoolType*>(this)) {
         return boolType->getExponentOfSymbolInProg(symbolName);
     }
     return 0;
@@ -72,228 +62,173 @@ int BaseType::getExponentOfSymbolInProg(string symbolName) {
 IntType::IntType() {};
 
 string IntType::toString() {
-    string output;
-    if (dynamic_cast<Num*>(this) != 0) {
-        Num* num = dynamic_cast<Num*>(this);
-        output = num->toString();
+    if (auto num = dynamic_cast<Num*>(this)) {
+        return num->toString();
     }
-    else if (dynamic_cast<Var*>(this) != 0) {
-        Var* var = dynamic_cast<Var*>(this);
-        output = var->toString();
+    else if (auto var = dynamic_cast<Var*>(this)) {
+        return var->toString();
     }
-    else if (dynamic_cast<Plus*>(this) != 0) {
-        Plus* plus = dynamic_cast<Plus*>(this);
-        output = plus->toString();
+    else if (auto plus = dynamic_cast<Plus*>(this)) {
+        return plus->toString();
     }
-    else if (dynamic_cast<Minus*>(this) != 0) {
-        Minus* minus = dynamic_cast<Minus*>(this);
-        output = minus->toString();
+    else if (auto minus = dynamic_cast<Minus*>(this)) {
+        return minus->toString();
     }
-    else if (dynamic_cast<Times*>(this) != 0) {
-        Times* times = dynamic_cast<Times*>(this);
-        output = times->toString();
+    else if (auto times = dynamic_cast<Times*>(this)) {
+        return times->toString();
     }
-    else if (dynamic_cast<Div*>(this) != 0) {
-        Div* div = dynamic_cast<Div*>(this);
-        output = div->toString();
+    else if (auto div = dynamic_cast<Div*>(this)) {
+        return div->toString();
     }
-    else if (dynamic_cast<Min*>(this) != 0) {
-        Min* mn = dynamic_cast<Min*>(this);
-        output = mn->toString();
+    else if (auto mn = dynamic_cast<Min*>(this)) {
+        return mn->toString();
     }
-    else if (dynamic_cast<Leftshift*>(this) != 0) {
-        Leftshift* leftshift = dynamic_cast<Leftshift*>(this);
-        output = leftshift->toString();
+    else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
+        return leftshift->toString();
     }
-    else if (dynamic_cast<Rightshift*>(this) != 0) {
-        Rightshift* rightshift = dynamic_cast<Rightshift*>(this);
-        output = rightshift->toString();
+    else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
+        return rightshift->toString();
     }
-    else if (dynamic_cast<Ite*>(this) != 0) {
-        Ite* ite = dynamic_cast<Ite*>(this);
-        output = ite->toString();
+    else if (auto ite = dynamic_cast<Ite*>(this)) {
+        return ite->toString();
     }
-    return output;
+    return "";
 }
 
 int IntType::depth() {
-    int depth;
-    if (dynamic_cast<Num*>(this) != 0) {
-        Num* num = dynamic_cast<Num*>(this);
-        depth = num->depth();
+    if (auto num = dynamic_cast<Num*>(this)) {
+        return num->depth();
     }
-    else if (dynamic_cast<Var*>(this) != 0) {
-        Var* var = dynamic_cast<Var*>(this);
-        depth = var->depth();
+    else if (auto var = dynamic_cast<Var*>(this)) {
+        return var->depth();
     }
-    else if (dynamic_cast<Plus*>(this) != 0) {
-        Plus* plus = dynamic_cast<Plus*>(this);
-        depth = plus->depth();
+    else if (auto plus = dynamic_cast<Plus*>(this)) {
+        return plus->depth();
     }
-    else if (dynamic_cast<Minus*>(this) != 0) {
-        Minus* minus = dynamic_cast<Minus*>(this);
-        depth = minus->depth();
+    else if (auto minus = dynamic_cast<Minus*>(this)) {
+        return minus->depth();
     }
-    else if (dynamic_cast<Times*>(this) != 0) {
-        Times* times = dynamic_cast<Times*>(this);
-        depth = times->depth();
+    else if (auto times = dynamic_cast<Times*>(this)) {
+        return times->depth();
     }
-    else if (dynamic_cast<Div*>(this) != 0) {
-        Div* div = dynamic_cast<Div*>(this);
-        depth = div->depth();
+    else if (auto div = dynamic_cast<Div*>(this)) {
+        return div->depth();
     }
-    else if (dynamic_cast<Min*>(this) != 0) {
-        Min* mn = dynamic_cast<Min*>(this);
-        depth = mn->depth();
+    else if (auto mn = dynamic_cast<Min*>(this)) {
+        return mn->depth();
     }
-    else if (dynamic_cast<Leftshift*>(this) != 0) {
-        Leftshift* leftshift = dynamic_cast<Leftshift*>(this);
-        depth = leftshift->depth();
+    else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
+        return leftshift->depth();
     }
-    else if (dynamic_cast<Rightshift*>(this) != 0) {
-        Rightshift* rightshift = dynamic_cast<Rightshift*>(this);
-        depth = rightshift->depth();
+    else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
+        return rightshift->depth();
     }
-    else if (dynamic_cast<Ite*>(this) != 0) {
-        Ite* ite = dynamic_cast<Ite*>(this);
-        depth = ite->depth();
+    else if (auto ite = dynamic_cast<Ite*>(this)) {
+        return ite->depth();
     }
-    return depth;
+    return 1;
 }
 
 int IntType::getNumOfOpsInProg(string opName) {
-    int numOfOpsInProg;
-    if (dynamic_cast<Num*>(this) != 0) {
-        Num* num = dynamic_cast<Num*>(this);
-        numOfOpsInProg = num->getNumOfOpsInProg(opName);
+    if (auto num = dynamic_cast<Num*>(this)) {
+        return num->getNumOfOpsInProg(opName);
     }
-    else if (dynamic_cast<Var*>(this) != 0) {
-        Var* var = dynamic_cast<Var*>(this);
-        numOfOpsInProg = var->getNumOfOpsInProg(opName);
+    else if (auto var = dynamic_cast<Var*>(this)) {
+        return var->getNumOfOpsInProg(opName);
     }
-    else if (dynamic_cast<Plus*>(this) != 0) {
-        Plus* plus = dynamic_cast<Plus*>(this);
-        numOfOpsInProg = plus->getNumOfOpsInProg(opName);
+    else if (auto plus = dynamic_cast<Plus*>(this)) {
+        return plus->getNumOfOpsInProg(opName);
     }
-    else if (dynamic_cast<Minus*>(this) != 0) {
-        Minus* minus = dynamic_cast<Minus*>(this);
-        numOfOpsInProg = minus->getNumOfOpsInProg(opName);
+    else if (auto minus = dynamic_cast<Minus*>(this)) {
+        return minus->getNumOfOpsInProg(opName);
     }
-    else if (dynamic_cast<Times*>(this) != 0) {
-        Times* times = dynamic_cast<Times*>(this);
-        numOfOpsInProg = times->getNumOfOpsInProg(opName);
+    else if (auto times = dynamic_cast<Times*>(this)) {
+        return times->getNumOfOpsInProg(opName);
     }
-    else if (dynamic_cast<Div*>(this) != 0) {
-        Div* div = dynamic_cast<Div*>(this);
-        numOfOpsInProg = div->getNumOfOpsInProg(opName);
+    else if (auto div = dynamic_cast<Div*>(this)) {
+        return div->getNumOfOpsInProg(opName);
     }
-    else if (dynamic_cast<Min*>(this) != 0) {
-        Min* mn = dynamic_cast<Min*>(this);
-        numOfOpsInProg = mn->getNumOfOpsInProg(opName);
+    else if (auto mn = dynamic_cast<Min*>(this)) {
+        return mn->getNumOfOpsInProg(opName);
     }
-    else if (dynamic_cast<Leftshift*>(this) != 0) {
-        Leftshift* leftshift = dynamic_cast<Leftshift*>(this);
-        numOfOpsInProg = leftshift->getNumOfOpsInProg(opName);
+    else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
+        return leftshift->getNumOfOpsInProg(opName);
     }
-    else if (dynamic_cast<Rightshift*>(this) != 0) {
-        Rightshift* rightshift = dynamic_cast<Rightshift*>(this);
-        numOfOpsInProg = rightshift->getNumOfOpsInProg(opName);
+    else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
+        return rightshift->getNumOfOpsInProg(opName);
     }
-    else if (dynamic_cast<Ite*>(this) != 0) {
-        Ite* ite = dynamic_cast<Ite*>(this);
-        numOfOpsInProg = ite->getNumOfOpsInProg(opName);
+    else if (auto ite = dynamic_cast<Ite*>(this)) {
+        return ite->getNumOfOpsInProg(opName);
     }
-    return numOfOpsInProg;
+    return 0;
 }
 
 int IntType::getNumOfSymbolsInProg(string symbolName) {
-    int numOfSymbolsInProg = 0;
-    if (dynamic_cast<Num*>(this) != 0) {
-        Num* num = dynamic_cast<Num*>(this);
-        numOfSymbolsInProg = num->getNumOfSymbolsInProg(symbolName);
+    if (auto num = dynamic_cast<Num*>(this)) {
+        return num->getNumOfSymbolsInProg(symbolName);
     }
-    else if (dynamic_cast<Var*>(this) != 0) {
-        Var* var = dynamic_cast<Var*>(this);
-        numOfSymbolsInProg = var->getNumOfSymbolsInProg(symbolName);
+    else if (auto var = dynamic_cast<Var*>(this)) {
+        return var->getNumOfSymbolsInProg(symbolName);
     }
-    else if (dynamic_cast<Plus*>(this) != 0) {
-        Plus* plus = dynamic_cast<Plus*>(this);
-        numOfSymbolsInProg = plus->getNumOfSymbolsInProg(symbolName);
+    else if (auto plus = dynamic_cast<Plus*>(this)) {
+        return plus->getNumOfSymbolsInProg(symbolName);
     }
-    else if (dynamic_cast<Minus*>(this) != 0) {
-        Minus* minus = dynamic_cast<Minus*>(this);
-        numOfSymbolsInProg = minus->getNumOfSymbolsInProg(symbolName);
+    else if (auto minus = dynamic_cast<Minus*>(this)) {
+        return minus->getNumOfSymbolsInProg(symbolName);
     }
-    else if (dynamic_cast<Times*>(this) != 0) {
-        Times* times = dynamic_cast<Times*>(this);
-        numOfSymbolsInProg = times->getNumOfSymbolsInProg(symbolName);
+    else if (auto times = dynamic_cast<Times*>(this)) {
+        return times->getNumOfSymbolsInProg(symbolName);
     }
-    else if (dynamic_cast<Div*>(this) != 0) {
-        Div* div = dynamic_cast<Div*>(this);
-        numOfSymbolsInProg = div->getNumOfSymbolsInProg(symbolName);
+    else if (auto div = dynamic_cast<Div*>(this)) {
+        return div->getNumOfSymbolsInProg(symbolName);
     }
-    else if (dynamic_cast<Min*>(this) != 0) {
-        Min* mn = dynamic_cast<Min*>(this);
-        numOfSymbolsInProg = mn->getNumOfSymbolsInProg(symbolName);
+    else if (auto mn = dynamic_cast<Min*>(this)) {
+        return mn->getNumOfSymbolsInProg(symbolName);
     }
-    else if (dynamic_cast<Leftshift*>(this) != 0) {
-        Leftshift* leftshift = dynamic_cast<Leftshift*>(this);
-        numOfSymbolsInProg = leftshift->getNumOfSymbolsInProg(symbolName);
+    else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
+        return leftshift->getNumOfSymbolsInProg(symbolName);
     }
-    else if (dynamic_cast<Rightshift*>(this) != 0) {
-        Rightshift* rightshift = dynamic_cast<Rightshift*>(this);
-        numOfSymbolsInProg = rightshift->getNumOfSymbolsInProg(symbolName);
+    else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
+        return rightshift->getNumOfSymbolsInProg(symbolName);
     }
-    else if (dynamic_cast<Ite*>(this) != 0) {
-        Ite* ite = dynamic_cast<Ite*>(this);
-        numOfSymbolsInProg = ite->getNumOfSymbolsInProg(symbolName);
+    else if (auto ite = dynamic_cast<Ite*>(this)) {
+        return ite->getNumOfSymbolsInProg(symbolName);
     }
-    return numOfSymbolsInProg;
+    return 0;
 }
 
 int IntType::getExponentOfSymbolInProg(string symbolName) {
-    int numOfExponent = 0;
-    if (dynamic_cast<Num*>(this) != 0) {
-        Num* num = dynamic_cast<Num*>(this);
-        numOfExponent = num->getExponentOfSymbolInProg(symbolName);
+    if (auto num = dynamic_cast<Num*>(this)) {
+        return num->getExponentOfSymbolInProg(symbolName);
     }
-    else if (dynamic_cast<Var*>(this) != 0) {
-        Var* var = dynamic_cast<Var*>(this);
-        numOfExponent = var->getExponentOfSymbolInProg(symbolName);
+    else if (auto var = dynamic_cast<Var*>(this)) {
+        return var->getExponentOfSymbolInProg(symbolName);
     }
-    else if (dynamic_cast<Plus*>(this) != 0) {
-        Plus* plus = dynamic_cast<Plus*>(this);
-        numOfExponent = plus->getExponentOfSymbolInProg(symbolName);
+    else if (auto plus = dynamic_cast<Plus*>(this)) {
+        return plus->getExponentOfSymbolInProg(symbolName);
     }
-    else if (dynamic_cast<Minus*>(this) != 0) {
-        Minus* minus = dynamic_cast<Minus*>(this);
-        numOfExponent = minus->getExponentOfSymbolInProg(symbolName);
+    else if (auto minus = dynamic_cast<Minus*>(this)) {
+        return minus->getExponentOfSymbolInProg(symbolName);
     }
-    else if (dynamic_cast<Times*>(this) != 0) {
-        Times* times = dynamic_cast<Times*>(this);
-        numOfExponent = times->getExponentOfSymbolInProg(symbolName);
+    else if (auto times = dynamic_cast<Times*>(this)) {
+        return times->getExponentOfSymbolInProg(symbolName);
     }
-    else if (dynamic_cast<Div*>(this) != 0) {
-        Div* div = dynamic_cast<Div*>(this);
-        numOfExponent = div->getExponentOfSymbolInProg(symbolName);
+    else if (auto div = dynamic_cast<Div*>(this)) {
+        return div->getExponentOfSymbolInProg(symbolName);
     }
-    else if (dynamic_cast<Min*>(this) != 0) {
-        Min* mn = dynamic_cast<Min*>(this);
-        numOfExponent = mn->getExponentOfSymbolInProg(symbolName);
+    else if (auto mn = dynamic_cast<Min*>(this)) {
+        return mn->getExponentOfSymbolInProg(symbolName);
     }
-    else if (dynamic_cast<Leftshift*>(this) != 0) {
-        Leftshift* leftshift = dynamic_cast<Leftshift*>(this);
-        numOfExponent = leftshift->getExponentOfSymbolInProg(symbolName);
+    else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
+        return leftshift->getExponentOfSymbolInProg(symbolName);
     }
-    else if (dynamic_cast<Rightshift*>(this) != 0) {
-        Rightshift* rightshift = dynamic_cast<Rightshift*>(this);
-        numOfExponent = rightshift->getExponentOfSymbolInProg(symbolName);
+    else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
+        return rightshift->getExponentOfSymbolInProg(symbolName);
     }
-    else if (dynamic_cast<Ite*>(this) != 0) {
-        Ite* ite = dynamic_cast<Ite*>(this);
-        numOfExponent = ite->getExponentOfSymbolInProg(symbolName);
+    else if (auto ite = dynamic_cast<Ite*>(this)) {
+        return ite->getExponentOfSymbolInProg(symbolName);
     }
-    return numOfExponent;
+    return 0;
 }
 
 
@@ -301,20 +236,16 @@ BoolType::BoolType() {};
 
 string BoolType::toString() {
     string output;
-    if (dynamic_cast<F*>(this) != 0) {
-        F* f = dynamic_cast<F*>(this);
+    if (auto f = dynamic_cast<F*>(this) ) {
         output = f->toString();
     }
-    else if (dynamic_cast<Not*>(this) != 0) {
-        Not* n = dynamic_cast<Not*>(this);
+    else if (auto n = dynamic_cast<Not*>(this)) {
         output = n->toString();
     }
-    else if (dynamic_cast<And*>(this) != 0) {
-        And* a = dynamic_cast<And*>(this);
+    else if (auto a = dynamic_cast<And*>(this)) {
         output = a->toString();
     }
-    else if (dynamic_cast<Lt*>(this) != 0) {
-        Lt* lt = dynamic_cast<Lt*>(this);
+    else if (auto lt = dynamic_cast<Lt*>(this)) {
         output = lt->toString();
     }
     return output;
@@ -322,20 +253,16 @@ string BoolType::toString() {
 
 int BoolType::depth() {
     int depth;
-    if (dynamic_cast<F*>(this) != 0) {
-        F* f = dynamic_cast<F*>(this);
+    if (auto f = dynamic_cast<F*>(this) ) {
         depth = f->depth();
     }
-    else if (dynamic_cast<Not*>(this) != 0) {
-        Not* n = dynamic_cast<Not*>(this);
+    else if (auto n = dynamic_cast<Not*>(this)) {
         depth = n->depth();
     }
-    else if (dynamic_cast<And*>(this) != 0) {
-        And* a = dynamic_cast<And*>(this);
+    else if (auto a = dynamic_cast<And*>(this)) {
         depth = a->depth();
     }
-    else if (dynamic_cast<Lt*>(this) != 0) {
-        Lt* lt = dynamic_cast<Lt*>(this);
+    else if (auto lt = dynamic_cast<Lt*>(this)) {
         depth = lt->depth();
     }
     return depth;
@@ -343,20 +270,16 @@ int BoolType::depth() {
 
 int BoolType::getNumOfOpsInProg(string opName) {
     int numOfOpsInProg;
-    if (dynamic_cast<F*>(this) != 0) {
-        F* f = dynamic_cast<F*>(this);
+    if (auto f = dynamic_cast<F*>(this) ) {
         numOfOpsInProg = f->getNumOfOpsInProg(opName);
     }
-    else if (dynamic_cast<Not*>(this) != 0) {
-        Not* n = dynamic_cast<Not*>(this);
+    else if (auto n = dynamic_cast<Not*>(this)) {
         numOfOpsInProg = n->getNumOfOpsInProg(opName);
     }
-    else if (dynamic_cast<And*>(this) != 0) {
-        And* a = dynamic_cast<And*>(this);
+    else if (auto a = dynamic_cast<And*>(this)) {
         numOfOpsInProg = a->getNumOfOpsInProg(opName);
     }
-    else if (dynamic_cast<Lt*>(this) != 0) {
-        Lt* lt = dynamic_cast<Lt*>(this);
+    else if (auto lt = dynamic_cast<Lt*>(this)) {
         numOfOpsInProg = lt->getNumOfOpsInProg(opName);
     }
     return numOfOpsInProg;
@@ -364,44 +287,35 @@ int BoolType::getNumOfOpsInProg(string opName) {
 
 int BoolType::getNumOfSymbolsInProg(string symbolName) {
     int numOfSymbolsInProg;
-    if (dynamic_cast<F*>(this) != 0) {
-        F* f = dynamic_cast<F*>(this);
+    if (auto f = dynamic_cast<F*>(this) ) {
         numOfSymbolsInProg = f->getNumOfSymbolsInProg(symbolName);
     }
-    else if (dynamic_cast<Not*>(this) != 0) {
-        Not* n = dynamic_cast<Not*>(this);
+    else if (auto n = dynamic_cast<Not*>(this)) {
         numOfSymbolsInProg = n->getNumOfSymbolsInProg(symbolName);
     }
-    else if (dynamic_cast<And*>(this) != 0) {
-        And* a = dynamic_cast<And*>(this);
+    else if (auto a = dynamic_cast<And*>(this)) {
         numOfSymbolsInProg = a->getNumOfSymbolsInProg(symbolName);
     }
-    else if (dynamic_cast<Lt*>(this) != 0) {
-        Lt* lt = dynamic_cast<Lt*>(this);
+    else if (auto lt = dynamic_cast<Lt*>(this)) {
         numOfSymbolsInProg = lt->getNumOfSymbolsInProg(symbolName);
     }
     return numOfSymbolsInProg;
 }
 
 int BoolType::getExponentOfSymbolInProg(string symbolName) {
-    int numOfExponent;
-    if (dynamic_cast<F*>(this) != 0) {
-        F* f = dynamic_cast<F*>(this);
-        numOfExponent = f->getExponentOfSymbolInProg(symbolName);
+    if (auto f = dynamic_cast<F*>(this) ) {
+        return f->getExponentOfSymbolInProg(symbolName);
     }
-    else if (dynamic_cast<Not*>(this) != 0) {
-        Not* n = dynamic_cast<Not*>(this);
-        numOfExponent = n->getExponentOfSymbolInProg(symbolName);
+    else if (auto n = dynamic_cast<Not*>(this)) {
+        return n->getExponentOfSymbolInProg(symbolName);
     }
-    else if (dynamic_cast<And*>(this) != 0) {
-        And* a = dynamic_cast<And*>(this);
-        numOfExponent = a->getExponentOfSymbolInProg(symbolName);
+    else if (auto a = dynamic_cast<And*>(this)) {
+        return a->getExponentOfSymbolInProg(symbolName);
     }
-    else if (dynamic_cast<Lt*>(this) != 0) {
-        Lt* lt = dynamic_cast<Lt*>(this);
-        numOfExponent = lt->getExponentOfSymbolInProg(symbolName);
+    else if (auto lt = dynamic_cast<Lt*>(this)) {
+        return lt->getExponentOfSymbolInProg(symbolName);
     }
-    return numOfExponent;
+    return 0;
 }
 
 /******************************************
@@ -522,79 +436,61 @@ Plus::Plus(IntType* left, IntType* right) {
 string Plus::toString() {
     string output = "(";
     
-    if (dynamic_cast<Var*>(_left) != 0) {
-        Var* left = dynamic_cast<Var*>(_left);
+    if (auto left = dynamic_cast<Var*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Num*>(_left) != 0) {
-        Num* left = dynamic_cast<Num*>(_left);
+    else if (auto left = dynamic_cast<Num*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Plus*>(_left) != 0) {
-        Plus* left = dynamic_cast<Plus*>(_left);
+    else if (auto left = dynamic_cast<Plus*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Times*>(_left) != 0) {
-        Times* left = dynamic_cast<Times*>(_left);
+    else if (auto left = dynamic_cast<Times*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Div*>(_left) != 0) {
-        Div* left = dynamic_cast<Div*>(_left);
+    else if (auto left = dynamic_cast<Div*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Min*>(_left) != 0) {
-        Min* left = dynamic_cast<Min*>(_left);
+    else if (auto left = dynamic_cast<Min*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Minus*>(_left) != 0) {
-        Minus* left = dynamic_cast<Minus*>(_left);
+    else if (auto left = dynamic_cast<Minus*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Leftshift*>(_left) != 0) {
-        Leftshift* left = dynamic_cast<Leftshift*>(_left);
+    else if (auto left = dynamic_cast<Leftshift*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Rightshift*>(_left) != 0) {
-        Rightshift* left = dynamic_cast<Rightshift*>(_left);
+    else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         output += left->toString();
     }
     
     output += " + ";
     
-    if (dynamic_cast<Var*>(_right) != 0) {
-        Var* right = dynamic_cast<Var*>(_right);
+    if (auto right = dynamic_cast<Var*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Num*>(_right) != 0) {
-        Num* right = dynamic_cast<Num*>(_right);
+    else if (auto right = dynamic_cast<Num*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Plus*>(_right) != 0) {
-        Plus* right = dynamic_cast<Plus*>(_right);
+    else if (auto right = dynamic_cast<Plus*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Times*>(_right) != 0) {
-        Times* right = dynamic_cast<Times*>(_right);
+    else if (auto right = dynamic_cast<Times*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Div*>(_right) != 0) {
-        Div* right = dynamic_cast<Div*>(_right);
+    else if (auto right = dynamic_cast<Div*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Min*>(_right) != 0) {
-        Min* right = dynamic_cast<Min*>(_right);
+    else if (auto right = dynamic_cast<Min*>(_right))  {
         output += right->toString();
     }
-    else if (dynamic_cast<Minus*>(_right) != 0) {
-        Minus* right = dynamic_cast<Minus*>(_right);
+    else if (auto right = dynamic_cast<Minus*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Leftshift*>(_right) != 0) {
-        Leftshift* right = dynamic_cast<Leftshift*>(_right);
+    else if (auto right = dynamic_cast<Leftshift*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Rightshift*>(_right) != 0) {
-        Rightshift* right = dynamic_cast<Rightshift*>(_right);
+    else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         output += right->toString();
     }
     
@@ -603,79 +499,61 @@ string Plus::toString() {
 }
     
 int Plus::interpret(inputOutput_t env) {
-    int output;
+    int output = numeric_limits<int>::min();
     
-    if (dynamic_cast<Var*>(_left) != 0) {
-        Var* left = dynamic_cast<Var*>(_left);
+    if (auto left = dynamic_cast<Var*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Num*>(_left) != 0) {
-        Num* left = dynamic_cast<Num*>(_left);
+    else if (auto left = dynamic_cast<Num*>(_left)) {
         output = left->interpret();
     }
-    else if (dynamic_cast<Plus*>(_left) != 0) {
-        Plus* left = dynamic_cast<Plus*>(_left);
+    else if (auto left = dynamic_cast<Plus*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Times*>(_left) != 0) {
-        Times* left = dynamic_cast<Times*>(_left);
+    else if (auto left = dynamic_cast<Times*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Div*>(_left) != 0) {
-        Div* left = dynamic_cast<Div*>(_left);
+    else if (auto left = dynamic_cast<Div*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Min*>(_left) != 0) {
-        Min* left = dynamic_cast<Min*>(_left);
+    else if (auto left = dynamic_cast<Min*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Minus*>(_left) != 0) {
-        Minus* left = dynamic_cast<Minus*>(_left);
+    else if (auto left = dynamic_cast<Minus*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Leftshift*>(_left) != 0) {
-        Leftshift* left = dynamic_cast<Leftshift*>(_left);
+    else if (auto left = dynamic_cast<Leftshift*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Rightshift*>(_left) != 0) {
-        Rightshift* left = dynamic_cast<Rightshift*>(_left);
+    else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         output = left->interpret(env);
     }
     
-    if (dynamic_cast<Var*>(_right) != 0) {
-        Var* right = dynamic_cast<Var*>(_right);
+    if (auto right = dynamic_cast<Var*>(_right)) {
         output += right->interpret(env);
     }
-    else if (dynamic_cast<Num*>(_right) != 0) {
-        Num* right = dynamic_cast<Num*>(_right);
+    else if (auto right = dynamic_cast<Num*>(_right)) {
         output += right->interpret();
     }
-    else if (dynamic_cast<Plus*>(_right) != 0) {
-        Plus* right = dynamic_cast<Plus*>(_right);
+    else if (auto right = dynamic_cast<Plus*>(_right)) {
         output += right->interpret(env);
     }
-    else if (dynamic_cast<Times*>(_right) != 0) {
-        Times* right = dynamic_cast<Times*>(_right);
+    else if (auto right = dynamic_cast<Times*>(_right)) {
         output += right->interpret(env);
     }
-    else if (dynamic_cast<Div*>(_right) != 0) {
-        Div* right = dynamic_cast<Div*>(_right);
+    else if (auto right = dynamic_cast<Div*>(_right)) {
         output += right->interpret(env);
     }
-    else if (dynamic_cast<Min*>(_right) != 0) {
-        Min* right = dynamic_cast<Min*>(_right);
+    else if (auto right = dynamic_cast<Min*>(_right))  {
         output += right->interpret(env);
     }
-    else if (dynamic_cast<Minus*>(_right) != 0) {
-        Minus* right = dynamic_cast<Minus*>(_right);
+    else if (auto right = dynamic_cast<Minus*>(_right)) {
         output += right->interpret(env);
     }
-    else if (dynamic_cast<Leftshift*>(_right) != 0) {
-        Leftshift* right = dynamic_cast<Leftshift*>(_right);
+    else if (auto right = dynamic_cast<Leftshift*>(_right)) {
         output += right->interpret(env);
     }
-    else if (dynamic_cast<Rightshift*>(_right) != 0) {
-        Rightshift* right = dynamic_cast<Rightshift*>(_right);
+    else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         output += right->interpret(env);
     }
     
@@ -683,82 +561,63 @@ int Plus::interpret(inputOutput_t env) {
 }
     
 int Plus::depth() {
-    int depth;
+    int depth = 1;
     
-    if (dynamic_cast<Var*>(_left) != 0) {
-        Var* left = dynamic_cast<Var*>(_left);
+    if (auto left = dynamic_cast<Var*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Num*>(_left) != 0) {
-        Num* left = dynamic_cast<Num*>(_left);
+    else if (auto left = dynamic_cast<Num*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Plus*>(_left) != 0) {
-        Plus* left = dynamic_cast<Plus*>(_left);
+    else if (auto left = dynamic_cast<Plus*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Times*>(_left) != 0) {
-        Times* left = dynamic_cast<Times*>(_left);
+    else if (auto left = dynamic_cast<Times*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Div*>(_left) != 0) {
-        Div* left = dynamic_cast<Div*>(_left);
+    else if (auto left = dynamic_cast<Div*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Min*>(_left) != 0) {
-        Min* left = dynamic_cast<Min*>(_left);
+    else if (auto left = dynamic_cast<Min*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Minus*>(_left) != 0) {
-        Minus* left = dynamic_cast<Minus*>(_left);
+    else if (auto left = dynamic_cast<Minus*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Leftshift*>(_left) != 0) {
-        Leftshift* left = dynamic_cast<Leftshift*>(_left);
+    else if (auto left = dynamic_cast<Leftshift*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Rightshift*>(_left) != 0) {
-        Rightshift* left = dynamic_cast<Rightshift*>(_left);
+    else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         depth = left->depth();
     }
     
-    if (dynamic_cast<Var*>(_right) != 0) {
-        Var* right = dynamic_cast<Var*>(_right);
+    if (auto right = dynamic_cast<Var*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Num*>(_right) != 0) {
-        Num* right = dynamic_cast<Num*>(_right);
+    else if (auto right = dynamic_cast<Num*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Plus*>(_right) != 0) {
-        Plus* right = dynamic_cast<Plus*>(_right);
+    else if (auto right = dynamic_cast<Plus*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Times*>(_right) != 0) {
-        Times* right = dynamic_cast<Times*>(_right);
+    else if (auto right = dynamic_cast<Times*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Div*>(_right) != 0) {
-        Div* right = dynamic_cast<Div*>(_right);
+    else if (auto right = dynamic_cast<Div*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Min*>(_right) != 0) {
-        Min* right = dynamic_cast<Min*>(_right);
+    else if (auto right = dynamic_cast<Min*>(_right))  {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Minus*>(_right) != 0) {
-        Minus* right = dynamic_cast<Minus*>(_right);
+    else if (auto right = dynamic_cast<Minus*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Leftshift*>(_right) != 0) {
-        Leftshift* right = dynamic_cast<Leftshift*>(_right);
+    else if (auto right = dynamic_cast<Leftshift*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Rightshift*>(_right) != 0) {
-        Rightshift* right = dynamic_cast<Rightshift*>(_right);
+    else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    
     return depth;
 }
 
@@ -788,79 +647,61 @@ Minus::Minus(IntType* left, IntType* right) {
 string Minus::toString() {
     string output = "(";
     
-    if (dynamic_cast<Var*>(_left) != 0) {
-        Var* left = dynamic_cast<Var*>(_left);
+    if (auto left = dynamic_cast<Var*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Num*>(_left) != 0) {
-        Num* left = dynamic_cast<Num*>(_left);
+    else if (auto left = dynamic_cast<Num*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Plus*>(_left) != 0) {
-        Plus* left = dynamic_cast<Plus*>(_left);
+    else if (auto left = dynamic_cast<Plus*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Times*>(_left) != 0) {
-        Times* left = dynamic_cast<Times*>(_left);
+    else if (auto left = dynamic_cast<Times*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Div*>(_left) != 0) {
-        Div* left = dynamic_cast<Div*>(_left);
+    else if (auto left = dynamic_cast<Div*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Min*>(_left) != 0) {
-        Min* left = dynamic_cast<Min*>(_left);
+    else if (auto left = dynamic_cast<Min*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Minus*>(_left) != 0) {
-        Minus* left = dynamic_cast<Minus*>(_left);
+    else if (auto left = dynamic_cast<Minus*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Leftshift*>(_left) != 0) {
-        Leftshift* left = dynamic_cast<Leftshift*>(_left);
+    else if (auto left = dynamic_cast<Leftshift*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Rightshift*>(_left) != 0) {
-        Rightshift* left = dynamic_cast<Rightshift*>(_left);
+    else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         output += left->toString();
     }
     
     output += " - ";
     
-    if (dynamic_cast<Var*>(_right) != 0) {
-        Var* right = dynamic_cast<Var*>(_right);
+    if (auto right = dynamic_cast<Var*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Num*>(_right) != 0) {
-        Num* right = dynamic_cast<Num*>(_right);
+    else if (auto right = dynamic_cast<Num*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Plus*>(_right) != 0) {
-        Plus* right = dynamic_cast<Plus*>(_right);
+    else if (auto right = dynamic_cast<Plus*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Times*>(_right) != 0) {
-        Times* right = dynamic_cast<Times*>(_right);
+    else if (auto right = dynamic_cast<Times*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Div*>(_right) != 0) {
-        Div* right = dynamic_cast<Div*>(_right);
+    else if (auto right = dynamic_cast<Div*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Min*>(_right) != 0) {
-        Min* right = dynamic_cast<Min*>(_right);
+    else if (auto right = dynamic_cast<Min*>(_right))  {
         output += right->toString();
     }
-    else if (dynamic_cast<Minus*>(_right) != 0) {
-        Minus* right = dynamic_cast<Minus*>(_right);
+    else if (auto right = dynamic_cast<Minus*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Leftshift*>(_right) != 0) {
-        Leftshift* right = dynamic_cast<Leftshift*>(_right);
+    else if (auto right = dynamic_cast<Leftshift*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Rightshift*>(_right) != 0) {
-        Rightshift* right = dynamic_cast<Rightshift*>(_right);
+    else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         output += right->toString();
     }
     output += ")";
@@ -870,156 +711,120 @@ string Minus::toString() {
 int Minus::interpret(inputOutput_t env) {
     int output;
     
-    if (dynamic_cast<Var*>(_left) != 0) {
-        Var* left = dynamic_cast<Var*>(_left);
+    if (auto left = dynamic_cast<Var*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Num*>(_left) != 0) {
-        Num* left = dynamic_cast<Num*>(_left);
+    else if (auto left = dynamic_cast<Num*>(_left)) {
         output = left->interpret();
     }
-    else if (dynamic_cast<Plus*>(_left) != 0) {
-        Plus* left = dynamic_cast<Plus*>(_left);
+    else if (auto left = dynamic_cast<Plus*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Times*>(_left) != 0) {
-        Times* left = dynamic_cast<Times*>(_left);
+    else if (auto left = dynamic_cast<Times*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Div*>(_left) != 0) {
-        Div* left = dynamic_cast<Div*>(_left);
+    else if (auto left = dynamic_cast<Div*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Min*>(_left) != 0) {
-        Min* left = dynamic_cast<Min*>(_left);
+    else if (auto left = dynamic_cast<Min*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Minus*>(_left) != 0) {
-        Minus* left = dynamic_cast<Minus*>(_left);
+    else if (auto left = dynamic_cast<Minus*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Leftshift*>(_left) != 0) {
-        Leftshift* left = dynamic_cast<Leftshift*>(_left);
+    else if (auto left = dynamic_cast<Leftshift*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Rightshift*>(_left) != 0) {
-        Rightshift* left = dynamic_cast<Rightshift*>(_left);
+    else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         output = left->interpret(env);
     }
     
-    if (dynamic_cast<Var*>(_right) != 0) {
-        Var* right = dynamic_cast<Var*>(_right);
+    if (auto right = dynamic_cast<Var*>(_right)) {
         output -= right->interpret(env);
     }
-    else if (dynamic_cast<Num*>(_right) != 0) {
-        Num* right = dynamic_cast<Num*>(_right);
+    else if (auto right = dynamic_cast<Num*>(_right)) {
         output -= right->interpret();
     }
-    else if (dynamic_cast<Plus*>(_right) != 0) {
-        Plus* right = dynamic_cast<Plus*>(_right);
+    else if (auto right = dynamic_cast<Plus*>(_right)) {
         output -= right->interpret(env);
     }
-    else if (dynamic_cast<Times*>(_right) != 0) {
-        Times* right = dynamic_cast<Times*>(_right);
+    else if (auto right = dynamic_cast<Times*>(_right)) {
         output -= right->interpret(env);
     }
-    else if (dynamic_cast<Div*>(_right) != 0) {
-        Div* right = dynamic_cast<Div*>(_right);
+    else if (auto right = dynamic_cast<Div*>(_right)) {
         output -= right->interpret(env);
     }
-    else if (dynamic_cast<Min*>(_right) != 0) {
-        Min* right = dynamic_cast<Min*>(_right);
+    else if (auto right = dynamic_cast<Min*>(_right))  {
         output -= right->interpret(env);
     }
-    else if (dynamic_cast<Minus*>(_right) != 0) {
-         Minus* right = dynamic_cast<Minus*>(_right);
+    else if (auto right = dynamic_cast<Minus*>(_right)) {
         output -= right->interpret(env);
     }
-    else if (dynamic_cast<Leftshift*>(_right) != 0) {
-        Leftshift* right = dynamic_cast<Leftshift*>(_right);
+    else if (auto right = dynamic_cast<Leftshift*>(_right)) {
         output -= right->interpret(env);
     }
-    else if (dynamic_cast<Rightshift*>(_right) != 0) {
-        Rightshift* right = dynamic_cast<Rightshift*>(_right);
+    else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         output -= right->interpret(env);
     }
     return output;
 }
     
 int Minus::depth() {
-    int depth;
+    int depth = 1;
     
-    if (dynamic_cast<Var*>(_left) != 0) {
-        Var* left = dynamic_cast<Var*>(_left);
+    if (auto left = dynamic_cast<Var*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Num*>(_left) != 0) {
-        Num* left = dynamic_cast<Num*>(_left);
+    else if (auto left = dynamic_cast<Num*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Plus*>(_left) != 0) {
-        Plus* left = dynamic_cast<Plus*>(_left);
+    else if (auto left = dynamic_cast<Plus*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Times*>(_left) != 0) {
-        Times* left = dynamic_cast<Times*>(_left);
+    else if (auto left = dynamic_cast<Times*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Div*>(_left) != 0) {
-        Div* left = dynamic_cast<Div*>(_left);
+    else if (auto left = dynamic_cast<Div*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Min*>(_left) != 0) {
-        Min* left = dynamic_cast<Min*>(_left);
+    else if (auto left = dynamic_cast<Min*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Minus*>(_left) != 0) {
-        Minus* left = dynamic_cast<Minus*>(_left);
+    else if (auto left = dynamic_cast<Minus*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Leftshift*>(_left) != 0) {
-        Leftshift* left = dynamic_cast<Leftshift*>(_left);
+    else if (auto left = dynamic_cast<Leftshift*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Rightshift*>(_left) != 0) {
-        Rightshift* left = dynamic_cast<Rightshift*>(_left);
+    else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         depth = left->depth();
     }
     
-    if (dynamic_cast<Var*>(_right) != 0) {
-        Var* right = dynamic_cast<Var*>(_right);
+    if (auto right = dynamic_cast<Var*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Num*>(_right) != 0) {
-        Num* right = dynamic_cast<Num*>(_right);
+    else if (auto right = dynamic_cast<Num*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Plus*>(_right) != 0) {
-        Plus* right = dynamic_cast<Plus*>(_right);
+    else if (auto right = dynamic_cast<Plus*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Times*>(_right) != 0) {
-        Times* right = dynamic_cast<Times*>(_right);
+    else if (auto right = dynamic_cast<Times*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Div*>(_right) != 0) {
-        Div* right = dynamic_cast<Div*>(_right);
+    else if (auto right = dynamic_cast<Div*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Min*>(_right) != 0) {
-        Min* right = dynamic_cast<Min*>(_right);
+    else if (auto right = dynamic_cast<Min*>(_right))  {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Minus*>(_right) != 0) {
-        Minus* right = dynamic_cast<Minus*>(_right);
+    else if (auto right = dynamic_cast<Minus*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Leftshift*>(_right) != 0) {
-        Leftshift* right = dynamic_cast<Leftshift*>(_right);
+    else if (auto right = dynamic_cast<Leftshift*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Rightshift*>(_right) != 0) {
-        Rightshift* right = dynamic_cast<Rightshift*>(_right);
+    else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
     return depth;
@@ -1051,79 +856,61 @@ Times::Times(IntType* left, IntType* right) {
 string Times::toString() {
     string output = "(";
     
-    if (dynamic_cast<Var*>(_left) != 0) {
-        Var* left = dynamic_cast<Var*>(_left);
+    if (auto left = dynamic_cast<Var*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Num*>(_left) != 0) {
-        Num* left = dynamic_cast<Num*>(_left);
+    else if (auto left = dynamic_cast<Num*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Plus*>(_left) != 0) {
-        Plus* left = dynamic_cast<Plus*>(_left);
+    else if (auto left = dynamic_cast<Plus*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Times*>(_left) != 0) {
-        Times* left = dynamic_cast<Times*>(_left);
+    else if (auto left = dynamic_cast<Times*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Div*>(_left) != 0) {
-        Div* left = dynamic_cast<Div*>(_left);
+    else if (auto left = dynamic_cast<Div*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Min*>(_left) != 0) {
-        Min* left = dynamic_cast<Min*>(_left);
+    else if (auto left = dynamic_cast<Min*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Minus*>(_left) != 0) {
-        Minus* left = dynamic_cast<Minus*>(_left);
+    else if (auto left = dynamic_cast<Minus*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Leftshift*>(_left) != 0) {
-        Leftshift* left = dynamic_cast<Leftshift*>(_left);
+    else if (auto left = dynamic_cast<Leftshift*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Rightshift*>(_left) != 0) {
-        Rightshift* left = dynamic_cast<Rightshift*>(_left);
+    else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         output += left->toString();
     }
     
     output += " * ";
     
-    if (dynamic_cast<Var*>(_right) != 0) {
-        Var* right = dynamic_cast<Var*>(_right);
+    if (auto right = dynamic_cast<Var*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Num*>(_right) != 0) {
-        Num* right = dynamic_cast<Num*>(_right);
+    else if (auto right = dynamic_cast<Num*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Plus*>(_right) != 0) {
-        Plus* right = dynamic_cast<Plus*>(_right);
+    else if (auto right = dynamic_cast<Plus*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Times*>(_right) != 0) {
-        Times* right = dynamic_cast<Times*>(_right);
+    else if (auto right = dynamic_cast<Times*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Div*>(_right) != 0) {
-        Div* right = dynamic_cast<Div*>(_right);
+    else if (auto right = dynamic_cast<Div*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Min*>(_right) != 0) {
-        Min* right = dynamic_cast<Min*>(_right);
+    else if (auto right = dynamic_cast<Min*>(_right))  {
         output += right->toString();
     }
-    else if (dynamic_cast<Minus*>(_right) != 0) {
-        Minus* right = dynamic_cast<Minus*>(_right);
+    else if (auto right = dynamic_cast<Minus*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Leftshift*>(_right) != 0) {
-        Leftshift* right = dynamic_cast<Leftshift*>(_right);
+    else if (auto right = dynamic_cast<Leftshift*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Rightshift*>(_right) != 0) {
-        Rightshift* right = dynamic_cast<Rightshift*>(_right);
+    else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         output += right->toString();
     }
     output += ")";
@@ -1131,80 +918,61 @@ string Times::toString() {
 }
     
 int Times::interpret(inputOutput_t env) {
-    int output;
+    int output = numeric_limits<int>::min();
     
-    if (dynamic_cast<Var*>(_left) != 0) {
-        Var* left = dynamic_cast<Var*>(_left);
+    if (auto left = dynamic_cast<Var*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Num*>(_left) != 0) {
-        Num* left = dynamic_cast<Num*>(_left);
+    else if (auto left = dynamic_cast<Num*>(_left)) {
         output = left->interpret();
     }
-    else if (dynamic_cast<Plus*>(_left) != 0) {
-        Plus* left = dynamic_cast<Plus*>(_left);
+    else if (auto left = dynamic_cast<Plus*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Times*>(_left) != 0) {
-        Times* left = dynamic_cast<Times*>(_left);
+    else if (auto left = dynamic_cast<Times*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Div*>(_left) != 0) {
-        Div* left = dynamic_cast<Div*>(_left);
+    else if (auto left = dynamic_cast<Div*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Min*>(_left) != 0) {
-        Min* left = dynamic_cast<Min*>(_left);
+    else if (auto left = dynamic_cast<Min*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Minus*>(_left) != 0) {
-        Minus* left = dynamic_cast<Minus*>(_left);
+    else if (auto left = dynamic_cast<Minus*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Leftshift*>(_left) != 0) {
-        Leftshift* left = dynamic_cast<Leftshift*>(_left);
+    else if (auto left = dynamic_cast<Leftshift*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Rightshift*>(_left) != 0) {
-        Rightshift* left = dynamic_cast<Rightshift*>(_left);
+    else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         output = left->interpret(env);
     }
     
-    
-    if (dynamic_cast<Var*>(_right) != 0) {
-        Var* right = dynamic_cast<Var*>(_right);
+    if (auto right = dynamic_cast<Var*>(_right)) {
         output *= right->interpret(env);
     }
-    else if (dynamic_cast<Num*>(_right) != 0) {
-        Num* right = dynamic_cast<Num*>(_right);
+    else if (auto right = dynamic_cast<Num*>(_right)) {
         output *= right->interpret();
     }
-    else if (dynamic_cast<Plus*>(_right) != 0) {
-        Plus* right = dynamic_cast<Plus*>(_right);
+    else if (auto right = dynamic_cast<Plus*>(_right)) {
         output *= right->interpret(env);
     }
-    else if (dynamic_cast<Times*>(_right) != 0) {
-        Times* right = dynamic_cast<Times*>(_right);
+    else if (auto right = dynamic_cast<Times*>(_right)) {
         output *= right->interpret(env);
     }
-    else if (dynamic_cast<Div*>(_right) != 0) {
-        Div* right = dynamic_cast<Div*>(_right);
+    else if (auto right = dynamic_cast<Div*>(_right)) {
         output *= right->interpret(env);
     }
-    else if (dynamic_cast<Min*>(_right) != 0) {
-        Min* right = dynamic_cast<Min*>(_right);
+    else if (auto right = dynamic_cast<Min*>(_right))  {
         output *= right->interpret(env);
     }
-    else if (dynamic_cast<Minus*>(_right) != 0) {
-        Minus* right = dynamic_cast<Minus*>(_right);
+    else if (auto right = dynamic_cast<Minus*>(_right)) {
         output *= right->interpret(env);
     }
-    else if (dynamic_cast<Leftshift*>(_right) != 0) {
-        Leftshift* right = dynamic_cast<Leftshift*>(_right);
+    else if (auto right = dynamic_cast<Leftshift*>(_right)) {
         output *= right->interpret(env);
     }
-    else if (dynamic_cast<Rightshift*>(_right) != 0) {
-        Rightshift* right = dynamic_cast<Rightshift*>(_right);
+    else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         output *= right->interpret(env);
     }
     
@@ -1212,79 +980,61 @@ int Times::interpret(inputOutput_t env) {
 }
     
 int Times::depth() {
-    int depth;
+    int depth = 1;
     
-    if (dynamic_cast<Var*>(_left) != 0) {
-        Var* left = dynamic_cast<Var*>(_left);
+    if (auto left = dynamic_cast<Var*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Num*>(_left) != 0) {
-        Num* left = dynamic_cast<Num*>(_left);
+    else if (auto left = dynamic_cast<Num*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Plus*>(_left) != 0) {
-        Plus* left = dynamic_cast<Plus*>(_left);
+    else if (auto left = dynamic_cast<Plus*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Times*>(_left) != 0) {
-        Times* left = dynamic_cast<Times*>(_left);
+    else if (auto left = dynamic_cast<Times*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Div*>(_left) != 0) {
-        Div* left = dynamic_cast<Div*>(_left);
+    else if (auto left = dynamic_cast<Div*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Min*>(_left) != 0) {
-        Min* left = dynamic_cast<Min*>(_left);
+    else if (auto left = dynamic_cast<Min*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Minus*>(_left) != 0) {
-        Minus* left = dynamic_cast<Minus*>(_left);
+    else if (auto left = dynamic_cast<Minus*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Leftshift*>(_left) != 0) {
-        Leftshift* left = dynamic_cast<Leftshift*>(_left);
+    else if (auto left = dynamic_cast<Leftshift*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Rightshift*>(_left) != 0) {
-        Rightshift* left = dynamic_cast<Rightshift*>(_left);
+    else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         depth = left->depth();
     }
     
-    if (dynamic_cast<Var*>(_right) != 0) {
-        Var* right = dynamic_cast<Var*>(_right);
+    if (auto right = dynamic_cast<Var*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Num*>(_right) != 0) {
-        Num* right = dynamic_cast<Num*>(_right);
+    else if (auto right = dynamic_cast<Num*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Plus*>(_right) != 0) {
-        Plus* right = dynamic_cast<Plus*>(_right);
+    else if (auto right = dynamic_cast<Plus*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Times*>(_right) != 0) {
-        Times* right = dynamic_cast<Times*>(_right);
+    else if (auto right = dynamic_cast<Times*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Div*>(_right) != 0) {
-        Div* right = dynamic_cast<Div*>(_right);
+    else if (auto right = dynamic_cast<Div*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Min*>(_right) != 0) {
-        Min* right = dynamic_cast<Min*>(_right);
+    else if (auto right = dynamic_cast<Min*>(_right))  {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Minus*>(_right) != 0) {
-        Minus* right = dynamic_cast<Minus*>(_right);
+    else if (auto right = dynamic_cast<Minus*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Leftshift*>(_right) != 0) {
-        Leftshift* right = dynamic_cast<Leftshift*>(_right);
+    else if (auto right = dynamic_cast<Leftshift*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Rightshift*>(_right) != 0) {
-        Rightshift* right = dynamic_cast<Rightshift*>(_right);
+    else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
     return depth;
@@ -1315,79 +1065,61 @@ Min::Min(IntType* left, IntType* right) {
 string Min::toString() {
     string output = " min( ";
     
-    if (dynamic_cast<Var*>(_left) != 0) {
-        Var* left = dynamic_cast<Var*>(_left);
+    if (auto left = dynamic_cast<Var*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Num*>(_left) != 0) {
-        Num* left = dynamic_cast<Num*>(_left);
+    else if (auto left = dynamic_cast<Num*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Plus*>(_left) != 0) {
-        Plus* left = dynamic_cast<Plus*>(_left);
+    else if (auto left = dynamic_cast<Plus*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Times*>(_left) != 0) {
-        Times* left = dynamic_cast<Times*>(_left);
+    else if (auto left = dynamic_cast<Times*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Div*>(_left) != 0) {
-        Div* left = dynamic_cast<Div*>(_left);
+    else if (auto left = dynamic_cast<Div*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Min*>(_left) != 0) {
-        Min* left = dynamic_cast<Min*>(_left);
+    else if (auto left = dynamic_cast<Min*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Minus*>(_left) != 0) {
-        Minus* left = dynamic_cast<Minus*>(_left);
+    else if (auto left = dynamic_cast<Minus*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Leftshift*>(_left) != 0) {
-        Leftshift* left = dynamic_cast<Leftshift*>(_left);
+    else if (auto left = dynamic_cast<Leftshift*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Rightshift*>(_left) != 0) {
-        Rightshift* left = dynamic_cast<Rightshift*>(_left);
+    else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         output += left->toString();
     }
     
     output += " , ";
     
-    if (dynamic_cast<Var*>(_right) != 0) {
-        Var* right = dynamic_cast<Var*>(_right);
+    if (auto right = dynamic_cast<Var*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Num*>(_right) != 0) {
-        Num* right = dynamic_cast<Num*>(_right);
+    else if (auto right = dynamic_cast<Num*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Plus*>(_right) != 0) {
-        Plus* right = dynamic_cast<Plus*>(_right);
+    else if (auto right = dynamic_cast<Plus*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Times*>(_right) != 0) {
-        Times* right = dynamic_cast<Times*>(_right);
+    else if (auto right = dynamic_cast<Times*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Div*>(_right) != 0) {
-        Div* right = dynamic_cast<Div*>(_right);
+    else if (auto right = dynamic_cast<Div*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Min*>(_right) != 0) {
-        Min* right = dynamic_cast<Min*>(_right);
+    else if (auto right = dynamic_cast<Min*>(_right))  {
         output += right->toString();
     }
-    else if (dynamic_cast<Minus*>(_right) != 0) {
-        Minus* right = dynamic_cast<Minus*>(_right);
+    else if (auto right = dynamic_cast<Minus*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Leftshift*>(_right) != 0) {
-        Leftshift* right = dynamic_cast<Leftshift*>(_right);
+    else if (auto right = dynamic_cast<Leftshift*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Rightshift*>(_right) != 0) {
-        Rightshift* right = dynamic_cast<Rightshift*>(_right);
+    else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         output += right->toString();
     }
     output += " ) ";
@@ -1397,78 +1129,60 @@ int Min::interpret(inputOutput_t env) {
     int leftValue;
     int rightValue;
     
-    if (dynamic_cast<Var*>(_left) != 0) {
-        Var* left = dynamic_cast<Var*>(_left);
+    if (auto left = dynamic_cast<Var*>(_left)) {
         leftValue = left->interpret(env);
     }
-    else if (dynamic_cast<Num*>(_left) != 0) {
-        Num* left = dynamic_cast<Num*>(_left);
+    else if (auto left = dynamic_cast<Num*>(_left)) {
         leftValue = left->interpret();
     }
-    else if (dynamic_cast<Plus*>(_left) != 0) {
-        Plus* left = dynamic_cast<Plus*>(_left);
+    else if (auto left = dynamic_cast<Plus*>(_left)) {
         leftValue = left->interpret(env);
     }
-    else if (dynamic_cast<Times*>(_left) != 0) {
-        Times* left = dynamic_cast<Times*>(_left);
+    else if (auto left = dynamic_cast<Times*>(_left)) {
         leftValue = left->interpret(env);
     }
-    else if (dynamic_cast<Div*>(_left) != 0) {
-        Div* left = dynamic_cast<Div*>(_left);
+    else if (auto left = dynamic_cast<Div*>(_left)) {
         leftValue = left->interpret(env);
     }
-    else if (dynamic_cast<Min*>(_left) != 0) {
-        Min* left = dynamic_cast<Min*>(_left);
+    else if (auto left = dynamic_cast<Min*>(_left)) {
         leftValue = left->interpret(env);
     }
-    else if (dynamic_cast<Minus*>(_left) != 0) {
-        Minus* left = dynamic_cast<Minus*>(_left);
+    else if (auto left = dynamic_cast<Minus*>(_left)) {
         leftValue = left->interpret(env);
     }
-    else if (dynamic_cast<Leftshift*>(_left) != 0) {
-        Leftshift* left = dynamic_cast<Leftshift*>(_left);
+    else if (auto left = dynamic_cast<Leftshift*>(_left)) {
         leftValue = left->interpret(env);
     }
-    else if (dynamic_cast<Rightshift*>(_left) != 0) {
-        Rightshift* left = dynamic_cast<Rightshift*>(_left);
+    else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         leftValue = left->interpret(env);
     }
     
     
-    if (dynamic_cast<Var*>(_right) != 0) {
-        Var* right = dynamic_cast<Var*>(_right);
+    if (auto right = dynamic_cast<Var*>(_right)) {
         rightValue = right->interpret(env);
     }
-    else if (dynamic_cast<Num*>(_right) != 0) {
-        Num* right = dynamic_cast<Num*>(_right);
+    else if (auto right = dynamic_cast<Num*>(_right)) {
         rightValue = right->interpret();
     }
-    else if (dynamic_cast<Plus*>(_right) != 0) {
-        Plus* right = dynamic_cast<Plus*>(_right);
+    else if (auto right = dynamic_cast<Plus*>(_right)) {
         rightValue = right->interpret(env);
     }
-    else if (dynamic_cast<Times*>(_right) != 0) {
-        Times* right = dynamic_cast<Times*>(_right);
+    else if (auto right = dynamic_cast<Times*>(_right)) {
         rightValue = right->interpret(env);
     }
-    else if (dynamic_cast<Div*>(_right) != 0) {
-        Div* right = dynamic_cast<Div*>(_right);
+    else if (auto right = dynamic_cast<Div*>(_right)) {
         rightValue = right->interpret(env);
     }
-    else if (dynamic_cast<Min*>(_right) != 0) {
-        Min* right = dynamic_cast<Min*>(_right);
+    else if (auto right = dynamic_cast<Min*>(_right))  {
         rightValue = right->interpret(env);
     }
-    else if (dynamic_cast<Minus*>(_right) != 0) {
-        Minus* right = dynamic_cast<Minus*>(_right);
+    else if (auto right = dynamic_cast<Minus*>(_right)) {
         rightValue = right->interpret(env);
     }
-    else if (dynamic_cast<Leftshift*>(_right) != 0) {
-        Leftshift* right = dynamic_cast<Leftshift*>(_right);
+    else if (auto right = dynamic_cast<Leftshift*>(_right)) {
         rightValue = right->interpret(env);
     }
-    else if (dynamic_cast<Rightshift*>(_right) != 0) {
-        Rightshift* right = dynamic_cast<Rightshift*>(_right);
+    else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         rightValue = right->interpret(env);
     }
     
@@ -1477,77 +1191,59 @@ int Min::interpret(inputOutput_t env) {
 int Min::depth() {
     int depth;
     
-    if (dynamic_cast<Var*>(_left) != 0) {
-        Var* left = dynamic_cast<Var*>(_left);
+    if (auto left = dynamic_cast<Var*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Num*>(_left) != 0) {
-        Num* left = dynamic_cast<Num*>(_left);
+    else if (auto left = dynamic_cast<Num*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Plus*>(_left) != 0) {
-        Plus* left = dynamic_cast<Plus*>(_left);
+    else if (auto left = dynamic_cast<Plus*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Times*>(_left) != 0) {
-        Times* left = dynamic_cast<Times*>(_left);
+    else if (auto left = dynamic_cast<Times*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Div*>(_left) != 0) {
-        Div* left = dynamic_cast<Div*>(_left);
+    else if (auto left = dynamic_cast<Div*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Min*>(_left) != 0) {
-        Min* left = dynamic_cast<Min*>(_left);
+    else if (auto left = dynamic_cast<Min*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Minus*>(_left) != 0) {
-        Minus* left = dynamic_cast<Minus*>(_left);
+    else if (auto left = dynamic_cast<Minus*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Leftshift*>(_left) != 0) {
-        Leftshift* left = dynamic_cast<Leftshift*>(_left);
+    else if (auto left = dynamic_cast<Leftshift*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Rightshift*>(_left) != 0) {
-        Rightshift* left = dynamic_cast<Rightshift*>(_left);
+    else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         depth = left->depth();
     }
     
-    if (dynamic_cast<Var*>(_right) != 0) {
-        Var* right = dynamic_cast<Var*>(_right);
+    if (auto right = dynamic_cast<Var*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Num*>(_right) != 0) {
-        Num* right = dynamic_cast<Num*>(_right);
+    else if (auto right = dynamic_cast<Num*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Plus*>(_right) != 0) {
-        Plus* right = dynamic_cast<Plus*>(_right);
+    else if (auto right = dynamic_cast<Plus*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Times*>(_right) != 0) {
-        Times* right = dynamic_cast<Times*>(_right);
+    else if (auto right = dynamic_cast<Times*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Div*>(_right) != 0) {
-        Div* right = dynamic_cast<Div*>(_right);
+    else if (auto right = dynamic_cast<Div*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Min*>(_right) != 0) {
-        Min* right = dynamic_cast<Min*>(_right);
+    else if (auto right = dynamic_cast<Min*>(_right))  {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Minus*>(_right) != 0) {
-        Minus* right = dynamic_cast<Minus*>(_right);
+    else if (auto right = dynamic_cast<Minus*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Leftshift*>(_right) != 0) {
-        Leftshift* right = dynamic_cast<Leftshift*>(_right);
+    else if (auto right = dynamic_cast<Leftshift*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Rightshift*>(_right) != 0) {
-        Rightshift* right = dynamic_cast<Rightshift*>(_right);
+    else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
     return depth;
@@ -1578,79 +1274,61 @@ Div::Div(IntType* dividend, IntType* divisor) {
 string Div::toString() {
     string output = "(";
     
-    if (dynamic_cast<Var*>(_dividend) != 0) {
-        Var* dividend = dynamic_cast<Var*>(_dividend);
+    if (auto dividend = dynamic_cast<Var*>(_dividend)) {
         output += dividend->toString();
     }
-    else if (dynamic_cast<Num*>(_dividend) != 0) {
-        Num* dividend = dynamic_cast<Num*>(_dividend);
+    else if (auto dividend = dynamic_cast<Num*>(_dividend)) {
         output += dividend->toString();
     }
-    else if (dynamic_cast<Plus*>(_dividend) != 0) {
-        Plus* dividend = dynamic_cast<Plus*>(_dividend);
+    else if (auto dividend = dynamic_cast<Plus*>(_dividend)) {
         output += dividend->toString();
     }
-    else if (dynamic_cast<Times*>(_dividend) != 0) {
-        Times* dividend = dynamic_cast<Times*>(_dividend);
+    else if (auto dividend = dynamic_cast<Times*>(_dividend)) {
         output += dividend->toString();
     }
-    else if (dynamic_cast<Div*>(_dividend) != 0) {
-        Div* dividend = dynamic_cast<Div*>(_dividend);
+    else if (auto dividend = dynamic_cast<Div*>(_dividend)) {
         output += dividend->toString();
     }
-    else if (dynamic_cast<Min*>(_dividend) != 0) {
-        Min* dividend = dynamic_cast<Min*>(_dividend);
+    else if (auto dividend = dynamic_cast<Min*>(_dividend)) {
         output += dividend->toString();
     }
-    else if (dynamic_cast<Minus*>(_dividend) != 0) {
-        Minus* dividend = dynamic_cast<Minus*>(_dividend);
+    else if (auto dividend = dynamic_cast<Minus*>(_dividend)) {
         output += dividend->toString();
     }
-    else if (dynamic_cast<Leftshift*>(_dividend) != 0) {
-        Leftshift* dividend = dynamic_cast<Leftshift*>(_dividend);
+    else if (auto dividend = dynamic_cast<Leftshift*>(_dividend)) {
         output += dividend->toString();
     }
-    else if (dynamic_cast<Rightshift*>(_dividend) != 0) {
-        Rightshift* dividend = dynamic_cast<Rightshift*>(_dividend);
+    else if (auto dividend = dynamic_cast<Rightshift*>(_dividend)) {
         output += dividend->toString();
     }
     
     output += " / ";
     
-    if (dynamic_cast<Var*>(_divisor) != 0) {
-        Var* divisor = dynamic_cast<Var*>(_divisor);
+    if (auto divisor = dynamic_cast<Var*>(_divisor)) {
         output += divisor->toString();
     }
-    else if (dynamic_cast<Num*>(_divisor) != 0) {
-        Num* divisor = dynamic_cast<Num*>(_divisor);
+    else if (auto divisor = dynamic_cast<Num*>(_divisor)) {
         output += divisor->toString();
     }
-    else if (dynamic_cast<Plus*>(_divisor) != 0) {
-        Plus* divisor = dynamic_cast<Plus*>(_divisor);
+    else if (auto divisor = dynamic_cast<Plus*>(_divisor)) {
         output += divisor->toString();
     }
-    else if (dynamic_cast<Times*>(_divisor) != 0) {
-        Times* divisor = dynamic_cast<Times*>(_divisor);
+    else if (auto divisor = dynamic_cast<Times*>(_divisor)) {
         output += divisor->toString();
     }
-    else if (dynamic_cast<Div*>(_divisor) != 0) {
-        Div* divisor = dynamic_cast<Div*>(_divisor);
+    else if (auto divisor = dynamic_cast<Div*>(_divisor)) {
         output += divisor->toString();
     }
-    else if (dynamic_cast<Min*>(_divisor) != 0) {
-        Min* divisor = dynamic_cast<Min*>(_divisor);
+    else if (auto divisor = dynamic_cast<Min*>(_divisor)) {
         output += divisor->toString();
     }
-    else if (dynamic_cast<Minus*>(_divisor) != 0) {
-        Minus* divisor = dynamic_cast<Minus*>(_divisor);
+    else if (auto divisor = dynamic_cast<Minus*>(_divisor)) {
         output += divisor->toString();
     }
-    else if (dynamic_cast<Leftshift*>(_divisor) != 0) {
-        Leftshift* divisor = dynamic_cast<Leftshift*>(_divisor);
+    else if (auto divisor = dynamic_cast<Leftshift*>(_divisor)) {
         output += divisor->toString();
     }
-    else if (dynamic_cast<Rightshift*>(_divisor) != 0) {
-        Rightshift* divisor = dynamic_cast<Rightshift*>(_divisor);
+    else if (auto divisor = dynamic_cast<Rightshift*>(_divisor)) {
         output += divisor->toString();
     }
     output += ")";
@@ -1658,81 +1336,63 @@ string Div::toString() {
 }
 
 int Div::interpret(inputOutput_t env) {
-    int dividendValue;
-    int divisorValue;
+    int dividendValue = 0;
+    int divisorValue = 1;
     
-    if (dynamic_cast<Var*>(_dividend) != 0) {
-        Var* dividend = dynamic_cast<Var*>(_dividend);
+    if (auto dividend = dynamic_cast<Var*>(_dividend)) {
         dividendValue = dividend->interpret(env);
     }
-    else if (dynamic_cast<Num*>(_dividend) != 0) {
-        Num* dividend = dynamic_cast<Num*>(_dividend);
+    else if (auto dividend = dynamic_cast<Num*>(_dividend)) {
         dividendValue = dividend->interpret();
     }
-    else if (dynamic_cast<Plus*>(_dividend) != 0) {
-        Plus* dividend = dynamic_cast<Plus*>(_dividend);
+    else if (auto dividend = dynamic_cast<Plus*>(_dividend)) {
         dividendValue = dividend->interpret(env);
     }
-    else if (dynamic_cast<Times*>(_dividend) != 0) {
-        Times* dividend = dynamic_cast<Times*>(_dividend);
+    else if (auto dividend = dynamic_cast<Times*>(_dividend)) {
         dividendValue = dividend->interpret(env);
     }
-    else if (dynamic_cast<Div*>(_dividend) != 0) {
-        Div* dividend = dynamic_cast<Div*>(_dividend);
+    else if (auto dividend = dynamic_cast<Div*>(_dividend)) {
         dividendValue = dividend->interpret(env);
     }
-    else if (dynamic_cast<Min*>(_dividend) != 0) {
-        Min* dividend = dynamic_cast<Min*>(_dividend);
+    else if (auto dividend = dynamic_cast<Min*>(_dividend)) {
         dividendValue = dividend->interpret(env);
     }
-    else if (dynamic_cast<Minus*>(_dividend) != 0) {
-        Minus* dividend = dynamic_cast<Minus*>(_dividend);
+    else if (auto dividend = dynamic_cast<Minus*>(_dividend))  {
         dividendValue = dividend->interpret(env);
     }
-    else if (dynamic_cast<Leftshift*>(_dividend) != 0) {
-        Leftshift* dividend = dynamic_cast<Leftshift*>(_dividend);
+    else if (auto dividend = dynamic_cast<Leftshift*>(_dividend)) {
         dividendValue = dividend->interpret(env);
     }
-    else if (dynamic_cast<Rightshift*>(_dividend) != 0) {
-        Rightshift* dividend = dynamic_cast<Rightshift*>(_dividend);
+    else if (auto dividend = dynamic_cast<Rightshift*>(_dividend)) {
         dividendValue = dividend->interpret(env);
     }
     
     
-    if (dynamic_cast<Var*>(_divisor) != 0) {
-        Var* divisor = dynamic_cast<Var*>(_divisor);
+    if (auto divisor = dynamic_cast<Var*>(_divisor)) {
         divisorValue = divisor->interpret(env);
     }
-    else if (dynamic_cast<Num*>(_divisor) != 0) {
-        Num* divisor = dynamic_cast<Num*>(_divisor);
+    else if (auto divisor = dynamic_cast<Num*>(_divisor)) {
         divisorValue = divisor->interpret();
     }
-    else if (dynamic_cast<Plus*>(_divisor) != 0) {
-        Plus* divisor = dynamic_cast<Plus*>(_divisor);
+    else if (auto divisor = dynamic_cast<Plus*>(_divisor)) {
         divisorValue = divisor->interpret(env);
     }
-    else if (dynamic_cast<Times*>(_divisor) != 0) {
-        Times* divisor = dynamic_cast<Times*>(_divisor);
+    else if (auto divisor = dynamic_cast<Times*>(_divisor)) {
         divisorValue = divisor->interpret(env);
     }
-    else if (dynamic_cast<Div*>(_divisor) != 0) {
-        Div* divisor = dynamic_cast<Div*>(_divisor);
+    else if (auto divisor = dynamic_cast<Div*>(_divisor)) {
         divisorValue = divisor->interpret(env);
     }
-    else if (dynamic_cast<Min*>(_divisor) != 0) {
-        Min* divisor = dynamic_cast<Min*>(_divisor);
+    else if (auto divisor = dynamic_cast<Min*>(_divisor)) {
         divisorValue = divisor->interpret(env);
     }
-    else if (dynamic_cast<Minus*>(_divisor) != 0) {
-        Minus* divisor = dynamic_cast<Minus*>(_divisor);
+    else if (auto divisor = dynamic_cast<Minus*>(_divisor)) {
         divisorValue = divisor->interpret(env);
     }
-    else if (dynamic_cast<Leftshift*>(_divisor) != 0) {
-        Leftshift* divisor = dynamic_cast<Leftshift*>(_divisor);
+    else if (auto divisor = dynamic_cast<Leftshift*>(_divisor)) {
         divisorValue = divisor->interpret(env);
     }
-    else if (dynamic_cast<Rightshift*>(_divisor) != 0) {
-        Rightshift* divisor = dynamic_cast<Rightshift*>(_divisor);
+    else if (auto divisor = dynamic_cast<Rightshift*>(_divisor)) {
         divisorValue = divisor->interpret(env);
     }
     
@@ -1744,79 +1404,61 @@ int Div::interpret(inputOutput_t env) {
 }
 
 int Div::depth() {
-    int depth;
+    int depth = 0;
     
-    if (dynamic_cast<Var*>(_dividend) != 0) {
-        Var* dividend = dynamic_cast<Var*>(_dividend);
+    if (auto dividend = dynamic_cast<Var*>(_dividend)) {
         depth = dividend->depth();
     }
-    else if (dynamic_cast<Num*>(_dividend) != 0) {
-        Num* dividend = dynamic_cast<Num*>(_dividend);
+    else if (auto dividend = dynamic_cast<Num*>(_dividend)) {
         depth = dividend->depth();
     }
-    else if (dynamic_cast<Plus*>(_dividend) != 0) {
-        Plus* dividend = dynamic_cast<Plus*>(_dividend);
+    else if (auto dividend = dynamic_cast<Plus*>(_dividend)) {
         depth = dividend->depth();
     }
-    else if (dynamic_cast<Times*>(_dividend) != 0) {
-        Times* dividend = dynamic_cast<Times*>(_dividend);
+    else if (auto dividend = dynamic_cast<Times*>(_dividend)) {
         depth = dividend->depth();
     }
-    else if (dynamic_cast<Div*>(_dividend) != 0) {
-        Div* dividend = dynamic_cast<Div*>(_dividend);
+    else if (auto dividend = dynamic_cast<Div*>(_dividend)) {
         depth = dividend->depth();
     }
-    else if (dynamic_cast<Min*>(_dividend) != 0) {
-        Min* dividend = dynamic_cast<Min*>(_dividend);
+    else if (auto dividend = dynamic_cast<Min*>(_dividend)) {
         depth = dividend->depth();
     }
-    else if (dynamic_cast<Minus*>(_dividend) != 0) {
-        Minus* dividend = dynamic_cast<Minus*>(_dividend);
+    else if (auto dividend = dynamic_cast<Minus*>(_dividend))  {
         depth = dividend->depth();
     }
-    else if (dynamic_cast<Leftshift*>(_dividend) != 0) {
-        Leftshift* dividend = dynamic_cast<Leftshift*>(_dividend);
+    else if (auto dividend = dynamic_cast<Leftshift*>(_dividend)) {
         depth = dividend->depth();
     }
-    else if (dynamic_cast<Rightshift*>(_dividend) != 0) {
-        Rightshift* dividend = dynamic_cast<Rightshift*>(_dividend);
+    else if (auto dividend = dynamic_cast<Rightshift*>(_dividend)) {
         depth = dividend->depth();
     }
     
-    if (dynamic_cast<Var*>(_divisor) != 0) {
-        Var* divisor = dynamic_cast<Var*>(_divisor);
+    if (auto divisor = dynamic_cast<Var*>(_divisor)) {
         depth = max(depth, divisor->depth()) + 1;
     }
-    else if (dynamic_cast<Num*>(_divisor) != 0) {
-        Num* divisor = dynamic_cast<Num*>(_divisor);
+    else if (auto divisor = dynamic_cast<Num*>(_divisor)) {
         depth = max(depth, divisor->depth()) + 1;
     }
-    else if (dynamic_cast<Plus*>(_divisor) != 0) {
-        Plus* divisor = dynamic_cast<Plus*>(_divisor);
+    else if (auto divisor = dynamic_cast<Plus*>(_divisor)) {
         depth = max(depth, divisor->depth()) + 1;
     }
-    else if (dynamic_cast<Times*>(_divisor) != 0) {
-        Times* divisor = dynamic_cast<Times*>(_divisor);
+    else if (auto divisor = dynamic_cast<Times*>(_divisor)) {
         depth = max(depth, divisor->depth()) + 1;
     }
-    else if (dynamic_cast<Div*>(_divisor) != 0) {
-        Div* divisor = dynamic_cast<Div*>(_divisor);
+    else if (auto divisor = dynamic_cast<Div*>(_divisor)) {
         depth = max(depth, divisor->depth()) + 1;
     }
-    else if (dynamic_cast<Min*>(_divisor) != 0) {
-        Min* divisor = dynamic_cast<Min*>(_divisor);
+    else if (auto divisor = dynamic_cast<Min*>(_divisor)) {
         depth = max(depth, divisor->depth()) + 1;
     }
-    else if (dynamic_cast<Minus*>(_divisor) != 0) {
-        Minus* divisor = dynamic_cast<Minus*>(_divisor);
+    else if (auto divisor = dynamic_cast<Minus*>(_divisor)) {
         depth = max(depth, divisor->depth()) + 1;
     }
-    else if (dynamic_cast<Leftshift*>(_divisor) != 0) {
-        Leftshift* divisor = dynamic_cast<Leftshift*>(_divisor);
+    else if (auto divisor = dynamic_cast<Leftshift*>(_divisor)) {
         depth = max(depth, divisor->depth()) + 1;
     }
-    else if (dynamic_cast<Rightshift*>(_divisor) != 0) {
-        Rightshift* divisor = dynamic_cast<Rightshift*>(_divisor);
+    else if (auto divisor = dynamic_cast<Rightshift*>(_divisor)) {
         depth = max(depth, divisor->depth()) + 1;
     }
     
@@ -2378,79 +2020,61 @@ Lt::Lt(IntType* left, IntType* right) {
 string Lt::toString() {
     string output = "(";
     
-    if (dynamic_cast<Var*>(_left) != 0) {
-        Var* left = dynamic_cast<Var*>(_left);
+    if (auto left = dynamic_cast<Var*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Num*>(_left) != 0) {
-        Num* left = dynamic_cast<Num*>(_left);
+    else if (auto left = dynamic_cast<Num*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Plus*>(_left) != 0) {
-        Plus* left = dynamic_cast<Plus*>(_left);
+    else if (auto left = dynamic_cast<Plus*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Times*>(_left) != 0) {
-        Times* left = dynamic_cast<Times*>(_left);
+    else if (auto left = dynamic_cast<Times*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Div*>(_left) != 0) {
-        Div* left = dynamic_cast<Div*>(_left);
+    else if (auto left = dynamic_cast<Div*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Min*>(_left) != 0) {
-        Min* left = dynamic_cast<Min*>(_left);
+    else if (auto left = dynamic_cast<Min*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Minus*>(_left) != 0) {
-        Minus* left = dynamic_cast<Minus*>(_left);
+    else if (auto left = dynamic_cast<Minus*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Leftshift*>(_left) != 0) {
-        Leftshift* left = dynamic_cast<Leftshift*>(_left);
+    else if (auto left = dynamic_cast<Leftshift*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Rightshift*>(_left) != 0) {
-        Rightshift* left = dynamic_cast<Rightshift*>(_left);
+    else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         output += left->toString();
     }
     
     output += " < ";
     
-    if (dynamic_cast<Var*>(_right) != 0) {
-        Var* right = dynamic_cast<Var*>(_right);
+    if (auto right = dynamic_cast<Var*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Num*>(_right) != 0) {
-        Num* right = dynamic_cast<Num*>(_right);
+    else if (auto right = dynamic_cast<Num*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Plus*>(_right) != 0) {
-        Plus* right = dynamic_cast<Plus*>(_right);
+    else if (auto right = dynamic_cast<Plus*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Times*>(_right) != 0) {
-        Times* right = dynamic_cast<Times*>(_right);
+    else if (auto right = dynamic_cast<Times*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Div*>(_right) != 0) {
-        Div* right = dynamic_cast<Div*>(_right);
+    else if (auto right = dynamic_cast<Div*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Min*>(_right) != 0) {
-        Min* right = dynamic_cast<Min*>(_right);
+    else if (auto right = dynamic_cast<Min*>(_right))  {
         output += right->toString();
     }
-    else if (dynamic_cast<Minus*>(_right) != 0) {
-        Minus* right = dynamic_cast<Minus*>(_right);
+    else if (auto right = dynamic_cast<Minus*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Leftshift*>(_right) != 0) {
-        Leftshift* right = dynamic_cast<Leftshift*>(_right);
+    else if (auto right = dynamic_cast<Leftshift*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Rightshift*>(_right) != 0) {
-        Rightshift* right = dynamic_cast<Rightshift*>(_right);
+    else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         output += right->toString();
     }
     output += ")";
@@ -2459,78 +2083,60 @@ string Lt::toString() {
     
 bool Lt::interpret(inputOutput_t env) {
     int leftValue;
-    if (dynamic_cast<Var*>(_left) != 0) {
-        Var* left = dynamic_cast<Var*>(_left);
+    if (auto left = dynamic_cast<Var*>(_left)) {
         leftValue = left->interpret(env);
     }
-    else if (dynamic_cast<Num*>(_left) != 0) {
-        Num* left = dynamic_cast<Num*>(_left);
+    else if (auto left = dynamic_cast<Num*>(_left)) {
         leftValue = left->interpret();
     }
-    else if (dynamic_cast<Plus*>(_left) != 0) {
-        Plus* left = dynamic_cast<Plus*>(_left);
+    else if (auto left = dynamic_cast<Plus*>(_left)) {
         leftValue = left->interpret(env);
     }
-    else if (dynamic_cast<Times*>(_left) != 0) {
-        Times* left = dynamic_cast<Times*>(_left);
+    else if (auto left = dynamic_cast<Times*>(_left)) {
         leftValue = left->interpret(env);
     }
-    else if (dynamic_cast<Div*>(_left) != 0) {
-        Div* left = dynamic_cast<Div*>(_left);
+    else if (auto left = dynamic_cast<Div*>(_left)) {
         leftValue = left->interpret(env);
     }
-    else if (dynamic_cast<Min*>(_left) != 0) {
-        Min* left = dynamic_cast<Min*>(_left);
+    else if (auto left = dynamic_cast<Min*>(_left)) {
         leftValue = left->interpret(env);
     }
-    else if (dynamic_cast<Minus*>(_left) != 0) {
-        Minus* left = dynamic_cast<Minus*>(_left);
+    else if (auto left = dynamic_cast<Minus*>(_left)) {
         leftValue = left->interpret(env);
     }
-    else if (dynamic_cast<Leftshift*>(_left) != 0) {
-        Leftshift* left = dynamic_cast<Leftshift*>(_left);
+    else if (auto left = dynamic_cast<Leftshift*>(_left)) {
         leftValue = left->interpret(env);
     }
-    else if (dynamic_cast<Rightshift*>(_left) != 0) {
-        Rightshift* left = dynamic_cast<Rightshift*>(_left);
+    else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         leftValue = left->interpret(env);
     }
     
     int rightValue;
-    if (dynamic_cast<Var*>(_right) != 0) {
-        Var* right = dynamic_cast<Var*>(_right);
+    if (auto right = dynamic_cast<Var*>(_right)) {
         rightValue = right->interpret(env);
     }
-    else if (dynamic_cast<Num*>(_right) != 0) {
-        Num* right = dynamic_cast<Num*>(_right);
+    else if (auto right = dynamic_cast<Num*>(_right)) {
         rightValue = right->interpret();
     }
-    else if (dynamic_cast<Plus*>(_right) != 0) {
-        Plus* right = dynamic_cast<Plus*>(_right);
+    else if (auto right = dynamic_cast<Plus*>(_right)) {
         rightValue = right->interpret(env);
     }
-    else if (dynamic_cast<Times*>(_right) != 0) {
-        Times* right = dynamic_cast<Times*>(_right);
+    else if (auto right = dynamic_cast<Times*>(_right)) {
         rightValue = right->interpret(env);
     }
-    else if (dynamic_cast<Div*>(_right) != 0) {
-        Div* right = dynamic_cast<Div*>(_right);
+    else if (auto right = dynamic_cast<Div*>(_right)) {
         rightValue = right->interpret(env);
     }
-    else if (dynamic_cast<Min*>(_right) != 0) {
-        Min* right = dynamic_cast<Min*>(_right);
+    else if (auto right = dynamic_cast<Min*>(_right))  {
         rightValue = right->interpret(env);
     }
-    else if (dynamic_cast<Minus*>(_right) != 0) {
-        Minus* right = dynamic_cast<Minus*>(_right);
+    else if (auto right = dynamic_cast<Minus*>(_right)) {
         rightValue = right->interpret(env);
     }
-    else if (dynamic_cast<Leftshift*>(_right) != 0) {
-        Leftshift* right = dynamic_cast<Leftshift*>(_right);
+    else if (auto right = dynamic_cast<Leftshift*>(_right)) {
         rightValue = right->interpret(env);
     }
-    else if (dynamic_cast<Rightshift*>(_right) != 0) {
-        Rightshift* right = dynamic_cast<Rightshift*>(_right);
+    else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         rightValue = right->interpret(env);
     }
     return leftValue < rightValue;
@@ -2539,77 +2145,59 @@ bool Lt::interpret(inputOutput_t env) {
 int Lt::depth() {
     int depth;
     
-    if (dynamic_cast<Var*>(_left) != 0) {
-        Var* left = dynamic_cast<Var*>(_left);
+    if (auto left = dynamic_cast<Var*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Num*>(_left) != 0) {
-        Num* left = dynamic_cast<Num*>(_left);
+    else if (auto left = dynamic_cast<Num*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Plus*>(_left) != 0) {
-        Plus* left = dynamic_cast<Plus*>(_left);
+    else if (auto left = dynamic_cast<Plus*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Times*>(_left) != 0) {
-        Times* left = dynamic_cast<Times*>(_left);
+    else if (auto left = dynamic_cast<Times*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Div*>(_left) != 0) {
-        Div* left = dynamic_cast<Div*>(_left);
+    else if (auto left = dynamic_cast<Div*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Min*>(_left) != 0) {
-        Min* left = dynamic_cast<Min*>(_left);
+    else if (auto left = dynamic_cast<Min*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Minus*>(_left) != 0) {
-        Minus* left = dynamic_cast<Minus*>(_left);
+    else if (auto left = dynamic_cast<Minus*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Leftshift*>(_left) != 0) {
-        Leftshift* left = dynamic_cast<Leftshift*>(_left);
+    else if (auto left = dynamic_cast<Leftshift*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Rightshift*>(_left) != 0) {
-        Rightshift* left = dynamic_cast<Rightshift*>(_left);
+    else if (auto left = dynamic_cast<Rightshift*>(_left)) {
         depth = left->depth();
     }
     
-    if (dynamic_cast<Var*>(_right) != 0) {
-        Var* right = dynamic_cast<Var*>(_right);
+    if (auto right = dynamic_cast<Var*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Num*>(_right) != 0) {
-        Num* right = dynamic_cast<Num*>(_right);
+    else if (auto right = dynamic_cast<Num*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Plus*>(_right) != 0) {
-        Plus* right = dynamic_cast<Plus*>(_right);
+    else if (auto right = dynamic_cast<Plus*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Times*>(_right) != 0) {
-        Times* right = dynamic_cast<Times*>(_right);
+    else if (auto right = dynamic_cast<Times*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Div*>(_right) != 0) {
-        Div* right = dynamic_cast<Div*>(_right);
+    else if (auto right = dynamic_cast<Div*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Min*>(_right) != 0) {
-        Min* right = dynamic_cast<Min*>(_right);
+    else if (auto right = dynamic_cast<Min*>(_right))  {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Minus*>(_right) != 0) {
-        Minus* right = dynamic_cast<Minus*>(_right);
+    else if (auto right = dynamic_cast<Minus*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Leftshift*>(_right) != 0) {
-        Leftshift* right = dynamic_cast<Leftshift*>(_right);
+    else if (auto right = dynamic_cast<Leftshift*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Rightshift*>(_right) != 0) {
-        Rightshift* right = dynamic_cast<Rightshift*>(_right);
+    else if (auto right = dynamic_cast<Rightshift*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
     return depth;
@@ -2641,39 +2229,31 @@ And::And(BoolType* left, BoolType* right) {
 string And::toString() {
     string output = "(";
     
-    if (dynamic_cast<F*>(_left) != 0) {
-        F* left = dynamic_cast<F*>(_left);
+    if (auto left = dynamic_cast<F*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Lt*>(_left) != 0) {
-        Lt* left = dynamic_cast<Lt*>(_left);
+    else if (auto left = dynamic_cast<Lt*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<And*>(_left) != 0) {
-        And* left = dynamic_cast<And*>(_left);
+    else if (auto left = dynamic_cast<And*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Not*>(_left) != 0) {
-        Not* left = dynamic_cast<Not*>(_left);
+    else if (auto left = dynamic_cast<Not*>(_left)) {
         output += left->toString();
     }
     
     output += " && ";
     
-    if (dynamic_cast<F*>(_right) != 0) {
-        F* right = dynamic_cast<F*>(_right);
+    if (auto right = dynamic_cast<F*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Lt*>(_right) != 0) {
-        Lt* right = dynamic_cast<Lt*>(_right);
+    else if (auto right = dynamic_cast<Lt*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<And*>(_right) != 0) {
-        And* right = dynamic_cast<And*>(_right);
+    else if (auto right = dynamic_cast<And*>(_right)) {
         output += right->toString();
     }
-    else if (dynamic_cast<Not*>(_right) != 0) {
-        Not* right = dynamic_cast<Not*>(_right);
+    else if (auto right = dynamic_cast<Not*>(_right)) {
         output += right->toString();
     }
     output += ")";
@@ -2683,37 +2263,29 @@ string And::toString() {
 bool And::interpret(inputOutput_t env) {
     bool output;
     
-    if (dynamic_cast<F*>(_left) != 0) {
-        F* left = dynamic_cast<F*>(_left);
+    if (auto left = dynamic_cast<F*>(_left)) {
         output = left->interpret();
     }
-    else if (dynamic_cast<Lt*>(_left) != 0) {
-        Lt* left = dynamic_cast<Lt*>(_left);
+    else if (auto left = dynamic_cast<Lt*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<And*>(_left) != 0) {
-        And* left = dynamic_cast<And*>(_left);
+    else if (auto left = dynamic_cast<And*>(_left)) {
         output = left->interpret(env);
     }
-    else if (dynamic_cast<Not*>(_left) != 0) {
-        Not* left = dynamic_cast<Not*>(_left);
+    else if (auto left = dynamic_cast<Not*>(_left)) {
         output = left->interpret(env);
     }
     
-    if (dynamic_cast<F*>(_right) != 0) {
-        F* right = dynamic_cast<F*>(_right);
+    if (auto right = dynamic_cast<F*>(_right)) {
         output &= right->interpret();
     }
-    else if (dynamic_cast<Lt*>(_right) != 0) {
-        Lt* right = dynamic_cast<Lt*>(_right);
+    else if (auto right = dynamic_cast<Lt*>(_right)) {
         output &= right->interpret(env);
     }
-    else if (dynamic_cast<And*>(_right) != 0) {
-        And* right = dynamic_cast<And*>(_right);
+    else if (auto right = dynamic_cast<And*>(_right)) {
         output &= right->interpret(env);
     }
-    else if (dynamic_cast<Not*>(_right) != 0) {
-        Not* right = dynamic_cast<Not*>(_right);
+    else if (auto right = dynamic_cast<Not*>(_right)) {
         output &= right->interpret(env);
     }
     return output;
@@ -2722,37 +2294,29 @@ bool And::interpret(inputOutput_t env) {
 int And::depth() {
     int depth;
     
-    if (dynamic_cast<F*>(_left) != 0) {
-        F* left = dynamic_cast<F*>(_left);
+    if (auto left = dynamic_cast<F*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Lt*>(_left) != 0) {
-        Lt* left = dynamic_cast<Lt*>(_left);
+    else if (auto left = dynamic_cast<Lt*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<And*>(_left) != 0) {
-        And* left = dynamic_cast<And*>(_left);
+    else if (auto left = dynamic_cast<And*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Not*>(_left) != 0) {
-        Not* left = dynamic_cast<Not*>(_left);
+    else if (auto left = dynamic_cast<Not*>(_left)) {
         depth = left->depth();
     }
     
-    if (dynamic_cast<F*>(_right) != 0) {
-        F* right = dynamic_cast<F*>(_right);
+    if (auto right = dynamic_cast<F*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Lt*>(_right) != 0) {
-        Lt* right = dynamic_cast<Lt*>(_right);
+    else if (auto right = dynamic_cast<Lt*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<And*>(_right) != 0) {
-        And* right = dynamic_cast<And*>(_right);
+    else if (auto right = dynamic_cast<And*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
-    else if (dynamic_cast<Not*>(_right) != 0) {
-        Not* right = dynamic_cast<Not*>(_right);
+    else if (auto right = dynamic_cast<Not*>(_right)) {
         depth = max(depth, right->depth()) + 1;
     }
     return depth;
@@ -2783,20 +2347,16 @@ Not::Not(BoolType* left) {
 string Not::toString() {
     string output = "(! ";
     
-    if (dynamic_cast<F*>(_left) != 0) {
-        F* left = dynamic_cast<F*>(_left);
+    if (auto left = dynamic_cast<F*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Lt*>(_left) != 0) {
-        Lt* left = dynamic_cast<Lt*>(_left);
+    else if (auto left = dynamic_cast<Lt*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<And*>(_left) != 0) {
-        And* left = dynamic_cast<And*>(_left);
+    else if (auto left = dynamic_cast<And*>(_left)) {
         output += left->toString();
     }
-    else if (dynamic_cast<Not*>(_left) != 0) {
-        Not* left = dynamic_cast<Not*>(_left);
+    else if (auto left = dynamic_cast<Not*>(_left)) {
         output += left->toString();
     }
     output += " )";
@@ -2805,20 +2365,16 @@ string Not::toString() {
     
 bool Not::interpret(inputOutput_t env) {
     bool leftValue;
-    if (dynamic_cast<F*>(_left) != 0) {
-        F* left = dynamic_cast<F*>(_left);
+    if (auto left = dynamic_cast<F*>(_left)) {
         leftValue = left->interpret();
     }
-    else if (dynamic_cast<Lt*>(_left) != 0) {
-        Lt* left = dynamic_cast<Lt*>(_left);
+    else if (auto left = dynamic_cast<Lt*>(_left)) {
         leftValue = left->interpret(env);
     }
-    else if (dynamic_cast<And*>(_left) != 0) {
-        And* left = dynamic_cast<And*>(_left);
+    else if (auto left = dynamic_cast<And*>(_left)) {
         leftValue = left->interpret(env);
     }
-    else if (dynamic_cast<Not*>(_left) != 0) {
-        Not* left = dynamic_cast<Not*>(_left);
+    else if (auto left = dynamic_cast<Not*>(_left)) {
         leftValue = left->interpret(env);
     }
     return !leftValue;
@@ -2826,20 +2382,16 @@ bool Not::interpret(inputOutput_t env) {
     
 int Not::depth() {
     int depth;
-    if (dynamic_cast<F*>(_left) != 0) {
-        F* left = dynamic_cast<F*>(_left);
+    if (auto left = dynamic_cast<F*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Lt*>(_left) != 0) {
-        Lt* left = dynamic_cast<Lt*>(_left);
+    else if (auto left = dynamic_cast<Lt*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<And*>(_left) != 0) {
-        And* left = dynamic_cast<And*>(_left);
+    else if (auto left = dynamic_cast<And*>(_left)) {
         depth = left->depth();
     }
-    else if (dynamic_cast<Not*>(_left) != 0) {
-        Not* left = dynamic_cast<Not*>(_left);
+    else if (auto left = dynamic_cast<Not*>(_left)) {
         depth = left->depth();
     }
     return depth+1;
@@ -2872,98 +2424,76 @@ Ite::Ite(BoolType* cond, IntType* tcase, IntType* fcase) {
 string Ite::toString() {
     string output = "(if ";
     
-    if (dynamic_cast<F*>(_cond) != 0) {
-        F* cond = dynamic_cast<F*>(_cond);
+    if (auto cond = dynamic_cast<F*>(_cond)) {
         output += cond->toString();
     }
-    else if (dynamic_cast<Lt*>(_cond) != 0) {
-        Lt* cond = dynamic_cast<Lt*>(_cond);
+    else if (auto cond = dynamic_cast<Lt*>(_cond)) {
         output += cond->toString();
     }
-    else if (dynamic_cast<And*>(_cond) != 0) {
-        And* cond = dynamic_cast<And*>(_cond);
+    else if (auto cond = dynamic_cast<And*>(_cond)) {
         output += cond->toString();
     }
-    else if (dynamic_cast<Not*>(_cond) != 0) {
-        Not* cond = dynamic_cast<Not*>(_cond);
+    else if (auto cond = dynamic_cast<Not*>(_cond)) {
         output += cond->toString();
     }
     
     output += " then ";
     
-    if (dynamic_cast<Var*>(_tcase) != 0) {
-        Var* tcase = dynamic_cast<Var*>(_tcase);
+    if (auto tcase = dynamic_cast<Var*>(_tcase)) {
         output += tcase->toString();
     }
-    else if (dynamic_cast<Num*>(_tcase) != 0) {
-        Num* tcase = dynamic_cast<Num*>(_tcase);
+    else if (auto tcase = dynamic_cast<Num*>(_tcase)) {
         output += tcase->toString();
     }
-    else if (dynamic_cast<Plus*>(_tcase) != 0) {
-        Plus* tcase = dynamic_cast<Plus*>(_tcase);
+    else if (auto tcase = dynamic_cast<Plus*>(_tcase)) {
         output += tcase->toString();
     }
-    else if (dynamic_cast<Times*>(_tcase) != 0) {
-        Times* tcase = dynamic_cast<Times*>(_tcase);
+    else if (auto tcase = dynamic_cast<Times*>(_tcase)) {
         output += tcase->toString();
     }
-    else if (dynamic_cast<Div*>(_tcase) != 0) {
-        Div* tcase = dynamic_cast<Div*>(_tcase);
+    else if (auto tcase = dynamic_cast<Div*>(_tcase)) {
         output += tcase->toString();
     }
-    else if (dynamic_cast<Min*>(_tcase) != 0) {
-        Min* tcase = dynamic_cast<Min*>(_tcase);
+    else if (auto tcase = dynamic_cast<Min*>(_tcase)) {
         output += tcase->toString();
     }
-    else if (dynamic_cast<Minus*>(_tcase) != 0) {
-        Minus* tcase = dynamic_cast<Minus*>(_tcase);
+    else if (auto tcase = dynamic_cast<Minus*>(_tcase)) {
         output += tcase->toString();
     }
-    else if (dynamic_cast<Leftshift*>(_tcase) != 0) {
-        Leftshift* tcase = dynamic_cast<Leftshift*>(_tcase);
+    else if (auto tcase = dynamic_cast<Leftshift*>(_tcase)) {
         output += tcase->toString();
     }
-    else if (dynamic_cast<Rightshift*>(_tcase) != 0) {
-        Rightshift* tcase = dynamic_cast<Rightshift*>(_tcase);
+    else if (auto tcase = dynamic_cast<Rightshift*>(_tcase)) {
         output += tcase->toString();
     }
     
     output += " else ";
     
-    if (dynamic_cast<Var*>(_fcase) != 0) {
-        Var* fcase = dynamic_cast<Var*>(_fcase);
+    if (auto fcase = dynamic_cast<Var*>(_fcase)) {
         output += fcase->toString();
     }
-    else if (dynamic_cast<Num*>(_fcase) != 0) {
-        Num* fcase = dynamic_cast<Num*>(_fcase);
+    else if (auto fcase = dynamic_cast<Num*>(_fcase)) {
         output += fcase->toString();
     }
-    else if (dynamic_cast<Plus*>(_fcase) != 0) {
-        Plus* fcase = dynamic_cast<Plus*>(_fcase);
+    else if (auto fcase = dynamic_cast<Plus*>(_fcase)) {
         output += fcase->toString();
     }
-    else if (dynamic_cast<Times*>(_fcase) != 0) {
-        Times* fcase = dynamic_cast<Times*>(_fcase);
+    else if (auto fcase = dynamic_cast<Times*>(_fcase)) {
         output += fcase->toString();
     }
-    else if (dynamic_cast<Div*>(_fcase) != 0) {
-        Div* fcase = dynamic_cast<Div*>(_fcase);
+    else if (auto fcase = dynamic_cast<Div*>(_fcase)) {
         output += fcase->toString();
     }
-    else if (dynamic_cast<Min*>(_fcase) != 0) {
-        Min* fcase = dynamic_cast<Min*>(_fcase);
+    else if (auto fcase = dynamic_cast<Min*>(_fcase)) {
         output += fcase->toString();
     }
-    else if (dynamic_cast<Minus*>(_fcase) != 0) {
-        Minus* fcase = dynamic_cast<Minus*>(_fcase);
+    else if (auto fcase = dynamic_cast<Minus*>(_fcase)) {
         output += fcase->toString();
     }
-    else if (dynamic_cast<Leftshift*>(_fcase) != 0) {
-        Leftshift* fcase = dynamic_cast<Leftshift*>(_fcase);
+    else if (auto fcase = dynamic_cast<Leftshift*>(_fcase)) {
         output += fcase->toString();
     }
-    else if (dynamic_cast<Rightshift*>(_fcase) != 0) {
-        Rightshift* fcase = dynamic_cast<Rightshift*>(_fcase);
+    else if (auto fcase = dynamic_cast<Rightshift*>(_fcase)) {
         output += fcase->toString();
     }
     
@@ -2976,94 +2506,72 @@ int Ite::interpret(inputOutput_t env) {
     int tcaseValue;
     int fcaseValue;
     
-    if (dynamic_cast<F*>(_cond) != 0) {
-        F* cond = dynamic_cast<F*>(_cond);
+    if (auto cond = dynamic_cast<F*>(_cond)) {
         condValue = cond->interpret();
     }
-    else if (dynamic_cast<Lt*>(_cond) != 0) {
-        Lt* cond = dynamic_cast<Lt*>(_cond);
+    else if (auto cond = dynamic_cast<Lt*>(_cond)) {
         condValue = cond->interpret(env);
     }
-    else if (dynamic_cast<And*>(_cond) != 0) {
-        And* cond = dynamic_cast<And*>(_cond);
+    else if (auto cond = dynamic_cast<And*>(_cond)) {
         condValue = cond->interpret(env);
     }
-    else if (dynamic_cast<Not*>(_cond) != 0) {
-        Not* cond = dynamic_cast<Not*>(_cond);
+    else if (auto cond = dynamic_cast<Not*>(_cond)) {
         condValue = cond->interpret(env);
     }
     
-    if (dynamic_cast<Var*>(_tcase) != 0) {
-        Var* tcase = dynamic_cast<Var*>(_tcase);
+    if (auto tcase = dynamic_cast<Var*>(_tcase)) {
         tcaseValue = tcase->interpret(env);
     }
-    else if (dynamic_cast<Num*>(_tcase) != 0) {
-        Num* tcase = dynamic_cast<Num*>(_tcase);
+    else if (auto tcase = dynamic_cast<Num*>(_tcase)) {
         tcaseValue = tcase->interpret();
     }
-    else if (dynamic_cast<Plus*>(_tcase) != 0) {
-        Plus* tcase = dynamic_cast<Plus*>(_tcase);
+    else if (auto tcase = dynamic_cast<Plus*>(_tcase)) {
         tcaseValue = tcase->interpret(env);
     }
-    else if (dynamic_cast<Times*>(_tcase) != 0) {
-        Times* tcase = dynamic_cast<Times*>(_tcase);
+    else if (auto tcase = dynamic_cast<Times*>(_tcase)) {
         tcaseValue = tcase->interpret(env);
     }
-    else if (dynamic_cast<Div*>(_tcase) != 0) {
-        Div* tcase = dynamic_cast<Div*>(_tcase);
+    else if (auto tcase = dynamic_cast<Div*>(_tcase)) {
         tcaseValue = tcase->interpret(env);
     }
-    else if (dynamic_cast<Min*>(_tcase) != 0) {
-        Min* tcase = dynamic_cast<Min*>(_tcase);
+    else if (auto tcase = dynamic_cast<Min*>(_tcase)) {
         tcaseValue = tcase->interpret(env);
     }
-    else if (dynamic_cast<Minus*>(_tcase) != 0) {
-        Minus* tcase = dynamic_cast<Minus*>(_tcase);
+    else if (auto tcase = dynamic_cast<Minus*>(_tcase)) {
         tcaseValue = tcase->interpret(env);
     }
-    else if (dynamic_cast<Leftshift*>(_tcase) != 0) {
-        Leftshift* tcase = dynamic_cast<Leftshift*>(_tcase);
+    else if (auto tcase = dynamic_cast<Leftshift*>(_tcase)) {
         tcaseValue = tcase->interpret(env);
     }
-    else if (dynamic_cast<Rightshift*>(_tcase) != 0) {
-        Rightshift* tcase = dynamic_cast<Rightshift*>(_tcase);
+    else if (auto tcase = dynamic_cast<Rightshift*>(_tcase)) {
         tcaseValue = tcase->interpret(env);
     }
     
-    if (dynamic_cast<Var*>(_fcase) != 0) {
-        Var* fcase = dynamic_cast<Var*>(_fcase);
+    if (auto fcase = dynamic_cast<Var*>(_fcase)) {
         fcaseValue = fcase->interpret(env);
     }
-    else if (dynamic_cast<Num*>(_fcase) != 0) {
-        Num* fcase = dynamic_cast<Num*>(_fcase);
+    else if (auto fcase = dynamic_cast<Num*>(_fcase)) {
         fcaseValue = fcase->interpret();
     }
-    else if (dynamic_cast<Plus*>(_fcase) != 0) {
-        Plus* fcase = dynamic_cast<Plus*>(_fcase);
+    else if (auto fcase = dynamic_cast<Plus*>(_fcase)) {
         fcaseValue = fcase->interpret(env);
     }
-    else if (dynamic_cast<Times*>(_fcase) != 0) {
-        Times* fcase = dynamic_cast<Times*>(_fcase);
+    else if (auto fcase = dynamic_cast<Times*>(_fcase)) {
         fcaseValue = fcase->interpret(env);
     }
-    else if (dynamic_cast<Div*>(_fcase) != 0) {
-        Div* fcase = dynamic_cast<Div*>(_fcase);
+    else if (auto fcase = dynamic_cast<Div*>(_fcase)) {
         fcaseValue = fcase->interpret(env);
     }
-    else if (dynamic_cast<Min*>(_fcase) != 0) {
-        Min* fcase = dynamic_cast<Min*>(_fcase);
+    else if (auto fcase = dynamic_cast<Min*>(_fcase)) {
         fcaseValue = fcase->interpret(env);
     }
-    else if (dynamic_cast<Minus*>(_fcase) != 0) {
-        Minus* fcase = dynamic_cast<Minus*>(_fcase);
+    else if (auto fcase = dynamic_cast<Minus*>(_fcase)) {
         fcaseValue = fcase->interpret(env);
     }
-    else if (dynamic_cast<Leftshift*>(_fcase) != 0) {
-        Leftshift* fcase = dynamic_cast<Leftshift*>(_fcase);
+    else if (auto fcase = dynamic_cast<Leftshift*>(_fcase)) {
         fcaseValue = fcase->interpret(env);
     }
-    else if (dynamic_cast<Rightshift*>(_fcase) != 0) {
-        Rightshift* fcase = dynamic_cast<Rightshift*>(_fcase);
+    else if (auto fcase = dynamic_cast<Rightshift*>(_fcase)) {
         fcaseValue = fcase->interpret(env);
     }
     
@@ -3073,94 +2581,72 @@ int Ite::interpret(inputOutput_t env) {
 int Ite::depth() {
     int depth;
     
-    if (dynamic_cast<F*>(_cond) != 0) {
-        F* cond = dynamic_cast<F*>(_cond);
+    if (auto cond = dynamic_cast<F*>(_cond)) {
         depth = cond->depth();
     }
-    else if (dynamic_cast<Lt*>(_cond) != 0) {
-        Lt* cond = dynamic_cast<Lt*>(_cond);
+    else if (auto cond = dynamic_cast<Lt*>(_cond)) {
         depth = cond->depth();
     }
-    else if (dynamic_cast<And*>(_cond) != 0) {
-        And* cond = dynamic_cast<And*>(_cond);
+    else if (auto cond = dynamic_cast<And*>(_cond)) {
         depth = cond->depth();
     }
-    else if (dynamic_cast<Not*>(_cond) != 0) {
-        Not* cond = dynamic_cast<Not*>(_cond);
+    else if (auto cond = dynamic_cast<Not*>(_cond)) {
         depth = cond->depth();
     }
     
-    if (dynamic_cast<Var*>(_tcase) != 0) {
-        Var* tcase = dynamic_cast<Var*>(_tcase);
+    if (auto tcase = dynamic_cast<Var*>(_tcase)) {
         depth = max(depth, tcase->depth());
     }
-    else if (dynamic_cast<Num*>(_tcase) != 0) {
-        Num* tcase = dynamic_cast<Num*>(_tcase);
+    else if (auto tcase = dynamic_cast<Num*>(_tcase)) {
         depth = max(depth, tcase->depth());
     }
-    else if (dynamic_cast<Plus*>(_tcase) != 0) {
-        Plus* tcase = dynamic_cast<Plus*>(_tcase);
+    else if (auto tcase = dynamic_cast<Plus*>(_tcase)) {
         depth = max(depth, tcase->depth());
     }
-    else if (dynamic_cast<Times*>(_tcase) != 0) {
-        Times* tcase = dynamic_cast<Times*>(_tcase);
+    else if (auto tcase = dynamic_cast<Times*>(_tcase)) {
         depth = max(depth, tcase->depth());
     }
-    else if (dynamic_cast<Div*>(_tcase) != 0) {
-        Div* tcase = dynamic_cast<Div*>(_tcase);
+    else if (auto tcase = dynamic_cast<Div*>(_tcase)) {
         depth = max(depth, tcase->depth());
     }
-    else if (dynamic_cast<Min*>(_tcase) != 0) {
-        Min* tcase = dynamic_cast<Min*>(_tcase);
+    else if (auto tcase = dynamic_cast<Min*>(_tcase)) {
         depth = max(depth, tcase->depth());
     }
-    else if (dynamic_cast<Minus*>(_tcase) != 0) {
-        Minus* tcase = dynamic_cast<Minus*>(_tcase);
+    else if (auto tcase = dynamic_cast<Minus*>(_tcase)) {
         depth = max(depth, tcase->depth());
     }
-    else if (dynamic_cast<Leftshift*>(_tcase) != 0) {
-        Leftshift* tcase = dynamic_cast<Leftshift*>(_tcase);
+    else if (auto tcase = dynamic_cast<Leftshift*>(_tcase)) {
         depth = max(depth, tcase->depth());
     }
-    else if (dynamic_cast<Rightshift*>(_tcase) != 0) {
-        Rightshift* tcase = dynamic_cast<Rightshift*>(_tcase);
+    else if (auto tcase = dynamic_cast<Rightshift*>(_tcase)) {
         depth = max(depth, tcase->depth());
     }
     
-    if (dynamic_cast<Var*>(_fcase) != 0) {
-        Var* fcase = dynamic_cast<Var*>(_fcase);
+    if (auto fcase = dynamic_cast<Var*>(_fcase)) {
         depth = max(depth, fcase->depth()) + 1;
     }
-    else if (dynamic_cast<Num*>(_fcase) != 0) {
-        Num* fcase = dynamic_cast<Num*>(_fcase);
+    else if (auto fcase = dynamic_cast<Num*>(_fcase)) {
         depth = max(depth, fcase->depth()) + 1;
     }
-    else if (dynamic_cast<Plus*>(_fcase) != 0) {
-        Plus* fcase = dynamic_cast<Plus*>(_fcase);
+    else if (auto fcase = dynamic_cast<Plus*>(_fcase)) {
         depth = max(depth, fcase->depth()) + 1;
     }
-    else if (dynamic_cast<Times*>(_fcase) != 0) {
-        Times* fcase = dynamic_cast<Times*>(_fcase);
+    else if (auto fcase = dynamic_cast<Times*>(_fcase)) {
         depth = max(depth, fcase->depth()) + 1;
     }
-    else if (dynamic_cast<Div*>(_fcase) != 0) {
-        Div* fcase = dynamic_cast<Div*>(_fcase);
+    else if (auto fcase = dynamic_cast<Div*>(_fcase)) {
         depth = max(depth, fcase->depth()) + 1;
     }
-    else if (dynamic_cast<Min*>(_fcase) != 0) {
-        Min* fcase = dynamic_cast<Min*>(_fcase);
+    else if (auto fcase = dynamic_cast<Min*>(_fcase)) {
         depth = max(depth, fcase->depth()) + 1;
     }
-    else if (dynamic_cast<Minus*>(_fcase) != 0) {
-        Minus* fcase = dynamic_cast<Minus*>(_fcase);
+    else if (auto fcase = dynamic_cast<Minus*>(_fcase)) {
         depth = max(depth, fcase->depth()) + 1;
     }
-    else if (dynamic_cast<Leftshift*>(_fcase) != 0) {
-        Leftshift* fcase = dynamic_cast<Leftshift*>(_fcase);
+    else if (auto fcase = dynamic_cast<Leftshift*>(_fcase)) {
         depth = max(depth, fcase->depth()) + 1;
     }
-    else if (dynamic_cast<Rightshift*>(_fcase) != 0) {
-        Rightshift* fcase = dynamic_cast<Rightshift*>(_fcase);
+    else if (auto fcase = dynamic_cast<Rightshift*>(_fcase)) {
         depth = max(depth, fcase->depth()) + 1;
     }
     

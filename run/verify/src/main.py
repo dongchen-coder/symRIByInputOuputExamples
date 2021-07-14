@@ -163,8 +163,8 @@ if __name__ == "__main__":
     all_traced_mr = {}
 
     for bench_name in num_of_symbolic_bounds.keys():
-        if (bench_name != "stencil"): #and bench_name != "stencil_tiled"):
-            continue
+        #if (bench_name != "stencil"): #and bench_name != "stencil_tiled"):
+        #    continue
         
         # assign 32 to all symbolic bounds
         value_assigned_for_prediction = [32] * num_of_symbolic_bounds[bench_name]
