@@ -20,8 +20,8 @@ struct inputOutputTreeNode {
     inputOutputTreeNode *right;
     inputOutputTreeNode() {
         inputOutputs = inputOutputs_t ();
-        left = NULL;
-        right = NULL;
+        left = nullptr;
+        right = nullptr;
         searchedProg = "";
     }
     inputOutputTreeNode(inputOutputs_t ios) : inputOutputs(ios), left(nullptr), right(nullptr), searchedProg("") {}

@@ -108,18 +108,25 @@ string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNod
             if (WTERMSIG(status) == SIGALRM) {
 #ifdef DEBUG
                 // child interrupted by alarm signal
-                cout << "Time out for bottem up search" << endl;
-#endif
-            }else{
-#ifdef DEBUG
-                // child interrupted by another signal
-                cout << "interrupted by another signal in bottem up search" << endl;
+                cout << "Time out for bottom up search" << endl;
 #endif
             }
-        }else{
+            else {
+#ifdef DEBUG
+                // child interrupted by another signal
+                cout << "interrupted by another signal in bottom up search" << endl;
+#endif
+            }
+        }
+        else {
 #ifdef DEBUG
             // child ran to completion
-            cout << "Complete, program found " << searchedProg << endl;
+            if (searchedProg == "") {
+                cout << "Complete, failed to find program" << endl;
+            }
+            else {
+                cout << "Complete, program found " << searchedProg << endl;
+            }
 #endif
         }
     }
@@ -130,13 +137,12 @@ string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNod
 string unification::searchNode(int searchTimeForTermsInSeconds,
                                int searchTimeForPredsInSeconds,
                                inputOutputTreeNode* node) {
-    if (node == NULL) {
-        return "";
-    }
+    if (node == nullptr) return "";
+    
 #ifdef DEBUG
     cout << endl << "Start search node " << node << endl;
 #endif
- 
+    
 #ifdef DEBUG
     dumpInputOutputTreeNode(node, "");
 #endif
@@ -149,7 +155,8 @@ string unification::searchNode(int searchTimeForTermsInSeconds,
         cout << "Failed, try to split node: ";
 #endif
         for (int mode = 0; mode < 2; mode++) {
-            if (splitInputOutputTreeNode(node, mode)) {
+            bool is_split_succeed = splitInputOutputTreeNode(node, mode);
+            if (is_split_succeed) {
 #ifdef DEBUG
                 cout << "Split current node, succeed" << endl;
                 cout << "Start search condition, ";
@@ -157,29 +164,33 @@ string unification::searchNode(int searchTimeForTermsInSeconds,
                 string cond = searchNodeOnePass(searchTimeForPredsInSeconds, node);
                 if (cond != "") {
 #ifdef DEBUG
-                    cout << "succeed" << endl;
+                    cout << "Find condition " << cond << endl;
 #endif
                     string tcase = searchNode(searchTimeForTermsInSeconds, searchTimeForPredsInSeconds, node->left);
-                    string fcase = searchNode(searchTimeForTermsInSeconds, searchTimeForPredsInSeconds, node->right);
-                    if (tcase == "" || fcase == "") {
+                    if (tcase != "") {
+                        string fcase = searchNode(searchTimeForTermsInSeconds, searchTimeForPredsInSeconds, node->right);
+                        if (fcase != "") {
+                            searchedProg = "(if " + cond + " then " + tcase + " else " + fcase + ")";
+                        }
+                        else {
 #ifdef DEBUG
-                        if (tcase == "") {
-                            cout << "Search tcase failed" << endl;
-                        }
-                        if (fcase == "") {
                             cout << "Search fcase failed" << endl;
-                        }
 #endif
-                        searchedProg = "";
-                    } else {
-                        searchedProg = "(if " + cond + " then " + tcase + " else " + fcase + ")";
+                        }
                     }
-                } else {
+                    else {
+#ifdef DEBUG
+                        cout << "Search tcase failed" << endl;
+#endif
+                    }
+                }
+                else {
 #ifdef DEBUG
                     cout << "faild" << endl;
 #endif
                 }
-            } else {
+            }
+            else {
 #ifdef DEBUG
                 cout << "Split current node, failed" << endl;
 #endif
@@ -187,7 +198,8 @@ string unification::searchNode(int searchTimeForTermsInSeconds,
             }
             if (searchedProg != "") {
                 break;
-            } else {
+            }
+            if (is_split_succeed) {
                 backtracing(node);
             }
         }
@@ -453,7 +465,7 @@ void unification::dumpInputOutputTree() {
 }
 
 void unification::dumpInputOutputTreeNode(inputOutputTreeNode* node, string space) {
-    if (node != NULL) {
+    if (node != nullptr) {
         for (auto ioe : node->inputOutputs) {
             cout << space;
             for (auto varValue : ioe) {
@@ -464,7 +476,6 @@ void unification::dumpInputOutputTreeNode(inputOutputTreeNode* node, string spac
             cout << "_out " << ioe["_out"] << endl;
         }
         
-        cout << "Searched Program: " << node->searchedProg << endl;
         dumpInputOutputTreeNode(node->left, space + "L---");
         dumpInputOutputTreeNode(node->right, space + "R---");
     }
@@ -474,14 +485,10 @@ void unification::dumpSearchedProgram() {
 #ifdef DEBUG
     cout << "--------------------------------------, dump search result start" << endl;
 #endif
-    if (inputOutputTree != NULL) {
-        if (inputOutputTree->searchedProg != "") {
-            cout << "Searched Program (^0^) : " << inputOutputTree->searchedProg << endl;
-        } else {
-            cout << "Not yet founded, (T^T)" << endl;
-        }
+    if (inputOutputTree != nullptr && inputOutputTree->searchedProg != "") {
+        cout << "Searched Program (^0^) : " << inputOutputTree->searchedProg << endl;
     } else {
-        cout << "Not yet founded, (T^T)" << endl;
+        cout << "Not yet found, (T^T)" << endl;
     }
 #ifdef DEBUG
     cout << "--------------------------------------" << endl;
@@ -489,12 +496,8 @@ void unification::dumpSearchedProgram() {
 }
 
 string unification::getSearchedProgram() {
-    if (inputOutputTree != NULL) {
-        if (inputOutputTree->searchedProg != "") {
-            return "Searched Program (^0^) : " + inputOutputTree->searchedProg;
-        } else {
-            return "Not yet founded, (T^T)";
-        }
+    if (inputOutputTree != nullptr && inputOutputTree->searchedProg != "") {
+        return "Searched Program (^0^) : " + inputOutputTree->searchedProg;
     }
     return "Not yet founded, (T^T)";
 }

@@ -36,6 +36,7 @@ private:
     
     /* Grow program list */
     void grow();
+    //void grow_with_specific_operations(vector<string> opertions);
     
     /* Eliminate equalivlent programs */
     inline BaseType* elimOneProgWithRules(BaseType* pi, BaseType* pj);
