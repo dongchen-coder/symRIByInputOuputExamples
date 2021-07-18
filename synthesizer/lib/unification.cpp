@@ -41,8 +41,7 @@ string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNod
     }
     
     int fd[2];
-    if (pipe(fd) < 0) throw runtime_error("Open pipe failed");
-    
+    pipe(fd);
     pid_t pid = fork();
     
     string searchedProg = "";
@@ -78,7 +77,7 @@ string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNod
         
         /* write searched program to pipe, to parent process */
         close(fd[0]);
-        if (write(fd[1], searchedProg.c_str(), searchedProg.size()) < 0) throw runtime_error("Wrtie pipe failed");
+        write(fd[1], searchedProg.c_str(), searchedProg.size());
         close(fd[1]);
         
         exit(0);
@@ -90,7 +89,7 @@ string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNod
         /* read searched program in pipe, to child process */
         close(fd[1]);
         char readBuffer[1000] = {0};
-        if (read(fd[0], readBuffer, sizeof(readBuffer)) < 0) throw runtime_error("Read pipe failed");
+        read(fd[0], readBuffer, sizeof(readBuffer));
         close(fd[0]);
         
         int acturalSize = 0;
@@ -502,5 +501,4 @@ string unification::getSearchedProgram() {
     }
     return "Not yet founded, (T^T)";
 }
-
 

@@ -160,62 +160,54 @@ void bottomUpSearch::dumpLangDef() {
 /******************************************
     Specify and check  growing rules
 */
-bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, string op) {
-    /* basic rules */
+bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op) {
+    // depth rule
+    if (operand_a && operand_a->depth() >= _depthBound) return false;
+    if (operand_b && operand_b->depth() >= _depthBound) return false;
+    if (operand_c && operand_c->depth() >= _depthBound) return false;
+    
     if (op == "PLUS" || op == "MINUS" || op == "TIMES" || op == "LT" || op == "LEFTSHIFT" || op == "RIGHTSHIFT") {
-        if (dynamic_cast<IntType*>(i) != nullptr && dynamic_cast<IntType*>(j) != nullptr) {
-            IntType* inti = dynamic_cast<IntType*>(i);
-            IntType* intj = dynamic_cast<IntType*>(j);
-            if (inti->depth() >= _depthBound || intj->depth() >= _depthBound) {
-                return false;
-            }
-        } else {
+        // type rule
+        if (!(dynamic_cast<IntType*>(operand_a) && dynamic_cast<IntType*>(operand_b))) {
+            return false;
+        }
+        if (operand_a->getNumOfSymbolsInProg("isrc0") > 1
+            || operand_a->getNumOfSymbolsInProg("isrc1") > 1
+            || operand_a->getNumOfSymbolsInProg("isrc2") > 1) {
+            return false;
+        }
+        // remove expr "Nun < Num"
+        if (op == "LT" && dynamic_cast<Num*>(operand_a) &&  dynamic_cast<Num*>(operand_b)) {
             return false;
         }
     }
     else if (op == "NOT") {
-        if (dynamic_cast<BoolType*>(i) != nullptr) {
-            BoolType* booli = dynamic_cast<BoolType*>(i);
-            if (booli->depth() >= _depthBound) {
-                return false;
-            }
-        } else {
+        if (!dynamic_cast<BoolType*>(operand_a)) {
             return false;
         }
     }
     else if (op == "AND") {
-        if (dynamic_cast<BoolType*>(i) != nullptr && dynamic_cast<BoolType*>(j) != nullptr) {
-            BoolType* booli = dynamic_cast<BoolType*>(i);
-            BoolType* boolj = dynamic_cast<BoolType*>(j);
-            if (booli->depth() >= _depthBound || boolj->depth() >= _depthBound) {
-                return false;
-            }
-        } else {
+        if (!(dynamic_cast<BoolType*>(operand_a) && dynamic_cast<BoolType*>(operand_b))) {
             return false;
         }
     }
     else if (op == "ITE") {
-        if (dynamic_cast<BoolType*>(i) != nullptr && dynamic_cast<IntType*>(j) != nullptr && dynamic_cast<IntType*>(k) != nullptr) {
-            BoolType* booli = dynamic_cast<BoolType*>(i);
-            IntType* intj = dynamic_cast<IntType*>(j);
-            IntType* intk = dynamic_cast<IntType*>(k);
-            if (booli->depth() >= _depthBound || intj->depth() >= _depthBound || intk->depth() >= _depthBound) {
-                return false;
-            }
-        } else {
+        if (!(dynamic_cast<BoolType*>(operand_a) && dynamic_cast<IntType*>(operand_b) && dynamic_cast<IntType*>(operand_c))) {
             return false;
         }
     }
     else {
-        throw runtime_error("bottomUpSearch::isGrowRuleSatisfied() operates on UNKNOWN type!");
+        throw runtime_error("bottomUpSearch::isGrowRuleSatisfied() operates on UNKNOWN type: " + op);
     }
     
-    /* Search mode specified rules */
+    
+    
+    /* Search mode specified rules
     if (find(_rulesToApply.begin(), _rulesToApply.end(), "SrcOnly") != _rulesToApply.end() ) {
         cout << "Applying rules for grow" << endl;
     }
     else if (find(_rulesToApply.begin(), _rulesToApply.end(), "PerSrcSnk") != _rulesToApply.end() ) {
-        /* rules for variables */
+        // rules for variables
         if (i->getNumOfSymbolsInProg("Isrc0") + j->getNumOfSymbolsInProg("Isrc0") > 1) {
             return false;
         }
@@ -229,13 +221,13 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
             return false;
         }
         
-        /* rules for PLUS */
+        // rules for PLUS
         if (op == "PLUS") {
-            /* do not do two single variable plus */
+            // do not do two single variable plus
             if (dynamic_cast<Var*>(i) != nullptr && dynamic_cast<Var*>(j) != nullptr) {
                 return false;
             }
-            /* do not plus "0" */
+            // do not plus "0"
             if (dynamic_cast<Num*>(i) != nullptr) {
                 Num* numi = dynamic_cast<Num*>(i);
                 if (numi->toString() == "0") {
@@ -248,11 +240,10 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
                     return false;
                 }
             }
-            /* do not plus */
         }
-        /* rules for MINUS */
+        // rules for MINUS
         else if (op == "MINUS") {
-            /* Isnk - Isrc */
+            // Isnk - Isrc
             if (dynamic_cast<Var*>(i) != nullptr && dynamic_cast<Var*>(j) != nullptr) {
                 Var* vari = dynamic_cast<Var*>(i);
                 Var* varj = dynamic_cast<Var*>(j);
@@ -261,20 +252,20 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
                     return false;
                 }
             }
-            /* X - C exclude C - C */
+            // X - C exclude C - C
             else if (dynamic_cast<Num*>(j) != nullptr) {
                 if (dynamic_cast<Num*>(i) != nullptr) {
                     return false;
                 }
             }
-            /* exclude C - X */
+            // exclude C - X
             else if (dynamic_cast<Num*>(i) != nullptr && dynamic_cast<Var*>(j) != nullptr) {
                 return false;
             }
         }
-        /* rules for TIMES */
+        // rules for TIMES
         else if (op == "TIMES") {
-            /* exclude B * B */
+            // exclude B * B
             if (dynamic_cast<Var*>(i) != nullptr && dynamic_cast<Var*>(j) != nullptr) {
                 Var* vari = dynamic_cast<Var*>(i);
                 Var* varj = dynamic_cast<Var*>(j);
@@ -283,96 +274,92 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, 
                     return false;
                 }
             }
-            /* exclude B * C */
+            // exclude B * C
             else if (dynamic_cast<Num*>(i) != nullptr && dynamic_cast<Num*>(i) != nullptr) {
                 return false;
             }
-            /* exclude I * I */
-            //else if () {
-                
-            //}
+            // exclude I * I
         }
     }
     else {
         
     }
-    
+    */
     return true;
 }
 
 /******************************************
     Grow program list
 */
-inline BaseType* bottomUpSearch::growOneExpr(BaseType* i, BaseType* j, BaseType* k, string op) {
-    if (op == "PLUS") {
-        if (isGrowRuleSatisfied(i, j, k, op)) {
-            Plus* plus = new Plus(dynamic_cast<IntType*>(i), dynamic_cast<IntType*>(j));
-            return dynamic_cast<BaseType*>(plus);
-        }
+inline BaseType* bottomUpSearch::growOneExpr(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op) {
+    // check rules
+    if (op == "F" || !isGrowRuleSatisfied(operand_a, operand_b, operand_c, op)) {
         return nullptr;
+    }
+    // constant expression, only grow constant expression by times
+    if (auto a = dynamic_cast<Num*>(operand_a)) {
+        if (auto b = dynamic_cast<Num*>(operand_b)) {
+            if (op != "TIMES") {
+                return nullptr;
+            }
+            int num_a = a->interpret();
+            int num_b = b->interpret();
+            int num_c = 0;
+            num_c = num_a * num_b;
+            if (num_c < 2 || num_a < 2 || num_b < 2) return nullptr;
+            return dynamic_cast<BaseType*>(new Num(num_c));
+        }
+    }
+    // non-constant expression
+    if (op == "PLUS" || op == "MINUS" || op == "LEFTSHIFT" || op == "RIGHTSHIFT" || op == "TIMES") {
+        
+    }
+    
+    
+    if (op == "PLUS") {
+        Plus* plus = new Plus(dynamic_cast<IntType*>(operand_a), dynamic_cast<IntType*>(operand_b));
+        return dynamic_cast<BaseType*>(plus);
     }
     else if (op == "MINUS") {
-        if (isGrowRuleSatisfied(i, j, k, op)) {
-            Minus* minus = new Minus(dynamic_cast<IntType*>(i), dynamic_cast<IntType*>(j));
-            return dynamic_cast<BaseType*>(minus);
-        }
-        return nullptr;
+        Minus* minus = new Minus(dynamic_cast<IntType*>(operand_a), dynamic_cast<IntType*>(operand_b));
+        return dynamic_cast<BaseType*>(minus);
     }
     else if (op == "LEFTSHIFT") {
-        if (isGrowRuleSatisfied(i, j, k, op)) {
-            Leftshift* leftshift = new Leftshift(dynamic_cast<IntType*>(i), dynamic_cast<IntType*>(j));
-            return dynamic_cast<BaseType*>(leftshift);
-        }
-        return nullptr;
+        Leftshift* leftshift = new Leftshift(dynamic_cast<IntType*>(operand_a), dynamic_cast<IntType*>(operand_b));
+        return dynamic_cast<BaseType*>(leftshift);
     }
     else if (op == "RIGHTSHIFT") {
-        if (isGrowRuleSatisfied(i, j, k, op)) {
-            Rightshift* rightshift = new Rightshift(dynamic_cast<IntType*>(i), dynamic_cast<IntType*>(j));
-            return dynamic_cast<BaseType*>(rightshift);
-        }
-        return nullptr;
+        Rightshift* rightshift = new Rightshift(dynamic_cast<IntType*>(operand_a), dynamic_cast<IntType*>(operand_b));
+        return dynamic_cast<BaseType*>(rightshift);
     }
     else if (op == "TIMES") {
-        if (isGrowRuleSatisfied(i, j, k, op)) {
-            Times* times = new Times(dynamic_cast<IntType*>(i), dynamic_cast<IntType*>(j));
-            return dynamic_cast<BaseType*>(times);
-        }
-        return nullptr;
+        Times* times = new Times(dynamic_cast<IntType*>(operand_a), dynamic_cast<IntType*>(operand_b));
+        return dynamic_cast<BaseType*>(times);
     }
     else if (op == "ITE") {
-        if (isGrowRuleSatisfied(i, j, k, op)) {
-            Ite* ite = new Ite(dynamic_cast<BoolType*>(i), dynamic_cast<IntType*>(j), dynamic_cast<IntType*>(k));
-            return dynamic_cast<BaseType*>(ite);
-        }
-        return nullptr;
+        Ite* ite = new Ite(dynamic_cast<BoolType*>(operand_a), dynamic_cast<IntType*>(operand_b), dynamic_cast<IntType*>(operand_c));
+        return dynamic_cast<BaseType*>(ite);
     }
     else if (op == "F") {
         F* f = new F();
         return dynamic_cast<BaseType*>(f);
     }
     else if (op == "NOT") {
-        if (isGrowRuleSatisfied(i, j, k, op)) {
-            Not* n = new Not(dynamic_cast<BoolType*>(i));
-            return dynamic_cast<BaseType*>(n);
-        }
-        return nullptr;
+        Not* n = new Not(dynamic_cast<BoolType*>(operand_a));
+        return dynamic_cast<BaseType*>(n);
     }
     else if (op == "AND") {
-        if (isGrowRuleSatisfied(i, j, k, op)) {
-            And* a = new And(dynamic_cast<BoolType*>(i), dynamic_cast<BoolType*>(j));
-            return dynamic_cast<BaseType*>(a);
-        }
+        And* a = new And(dynamic_cast<BoolType*>(operand_a), dynamic_cast<BoolType*>(operand_b));
+        return dynamic_cast<BaseType*>(a);
     }
     else if (op == "LT") {
-        if (isGrowRuleSatisfied(i, j, k, op)) {
-            Lt* lt = new Lt(dynamic_cast<IntType*>(i), dynamic_cast<IntType*>(j));
-            return dynamic_cast<BaseType*>(lt);
-        }
-        return nullptr;
+        Lt* lt = new Lt(dynamic_cast<IntType*>(operand_a), dynamic_cast<IntType*>(operand_b));
+        return dynamic_cast<BaseType*>(lt);
     }
     else {
         throw runtime_error("bottomUpSearch::growOneExpr() operates on UNKNOWN type!");
     }
+    
     return nullptr;
 }
 
@@ -719,8 +706,10 @@ void bottomUpSearch::elimEquvalents() {
         /* Find the program to keep */
         BaseType* progToKeep = nullptr;
         for (auto prog : eqPList) {
+            //cout << prog->toString() << " ";
             progToKeep = elimOneProgWithRules(progToKeep, prog);
         }
+        //cout << endl;
         
         
         for (int inputOutputId = 0; inputOutputId < _inputOutputs.size(); inputOutputId++) {

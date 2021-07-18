@@ -554,6 +554,7 @@ int main(int argc, char* argv[]) {
                                        rulesToApply,
                                        inputOutputs);
 #ifdef DEBUG
+    cout << "Search time: terms " << searchTimeForTermsInSeconds << " predications " << searchTimeForPredsInSeconds << endl;
     uni->dumpLangDef();
 #endif
 
