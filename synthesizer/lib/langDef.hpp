@@ -11,9 +11,9 @@ public:
     BaseType();
     string toString();
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    int getExponentOfSymbolInProg(string symbolName);
+    int getNumberOfOpsInProg(string opName);
+    int getNumberOfVarsInProg(string varName);
+    int getExponentOfVarInProg(string varName);
     virtual ~BaseType() {};
 };
 
@@ -22,9 +22,9 @@ public:
     IntType();
     string toString();
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    int getExponentOfSymbolInProg(string symbolName);
+    int getNumberOfOpsInProg(string opName);
+    int getNumberOfVarsInProg(string varName);
+    int getExponentOfVarInProg(string varName);
     virtual ~IntType() {};
 };
 
@@ -33,9 +33,9 @@ public:
     BoolType();
     string toString();
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    int getExponentOfSymbolInProg(string symbolName);
+    int getNumberOfOpsInProg(string opName);
+    int getNumberOfVarsInProg(string varName);
+    int getExponentOfVarInProg(string varName);
     virtual ~BoolType() {};
 };
 
@@ -45,9 +45,9 @@ public:
     string toString();
     bool interpret();
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    int getExponentOfSymbolInProg(string symbolName);
+    int getNumberOfOpsInProg(string opName);
+    int getNumberOfVarsInProg(string varName);
+    int getExponentOfVarInProg(string varName);
 };
 
 class Var : public IntType {
@@ -58,9 +58,9 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    int getExponentOfSymbolInProg(string symbolName);
+    int getNumberOfOpsInProg(string opName);
+    int getNumberOfVarsInProg(string varName);
+    int getExponentOfVarInProg(string varName);
 };
 
 class Num : public IntType {
@@ -71,9 +71,9 @@ public:
     string toString();
     int interpret();
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    int getExponentOfSymbolInProg(string symbolName);
+    int getNumberOfOpsInProg(string opName);
+    int getNumberOfVarsInProg(string varName);
+    int getExponentOfVarInProg(string varName);
 };
 
 class Plus : public IntType {
@@ -85,9 +85,9 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    int getExponentOfSymbolInProg(string symbolName);
+    int getNumberOfOpsInProg(string opName);
+    int getNumberOfVarsInProg(string varName);
+    int getExponentOfVarInProg(string varName);
 };
 
 class Minus : public IntType {
@@ -99,9 +99,9 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    int getExponentOfSymbolInProg(string symbolName);
+    int getNumberOfOpsInProg(string opName);
+    int getNumberOfVarsInProg(string varName);
+    int getExponentOfVarInProg(string varName);
 };
 
 class Times : public IntType {
@@ -113,9 +113,9 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    int getExponentOfSymbolInProg(string symbolName);
+    int getNumberOfOpsInProg(string opName);
+    int getNumberOfVarsInProg(string varName);
+    int getExponentOfVarInProg(string varName);
 };
 
 class Div : public IntType {
@@ -127,9 +127,9 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    int getExponentOfSymbolInProg(string symbolName);
+    int getNumberOfOpsInProg(string opName);
+    int getNumberOfVarsInProg(string varName);
+    int getExponentOfVarInProg(string varName);
 };
 
 class Leftshift : public IntType {
@@ -141,9 +141,9 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    int getExponentOfSymbolInProg(string symbolName);
+    int getNumberOfOpsInProg(string opName);
+    int getNumberOfVarsInProg(string varName);
+    int getExponentOfVarInProg(string varName);
 };
 
 class Rightshift : public IntType {
@@ -155,9 +155,9 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    int getExponentOfSymbolInProg(string symbolName);
+    int getNumberOfOpsInProg(string opName);
+    int getNumberOfVarsInProg(string varName);
+    int getExponentOfVarInProg(string varName);
 };
 
 class Min : public IntType {
@@ -169,9 +169,9 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    int getExponentOfSymbolInProg(string symbolName);
+    int getNumberOfOpsInProg(string opName);
+    int getNumberOfVarsInProg(string varName);
+    int getExponentOfVarInProg(string varName);
 };
 
 class Lt : public BoolType {
@@ -183,9 +183,9 @@ public:
     string toString();
     bool interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    int getExponentOfSymbolInProg(string symbolName);
+    int getNumberOfOpsInProg(string opName);
+    int getNumberOfVarsInProg(string varName);
+    int getExponentOfVarInProg(string varName);
 };
 
 class And : public BoolType {
@@ -197,9 +197,9 @@ public:
     string toString();
     bool interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    int getExponentOfSymbolInProg(string symbolName);
+    int getNumberOfOpsInProg(string opName);
+    int getNumberOfVarsInProg(string varName);
+    int getExponentOfVarInProg(string varName);
 };
 
 class Not : public BoolType {
@@ -210,9 +210,9 @@ public:
     string toString();
     bool interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    int getExponentOfSymbolInProg(string symbolName);
+    int getNumberOfOpsInProg(string opName);
+    int getNumberOfVarsInProg(string varName);
+    int getExponentOfVarInProg(string varName);
 };
 
 class Ite : public IntType {
@@ -225,9 +225,9 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
-    int getNumOfOpsInProg(string opName);
-    int getNumOfSymbolsInProg(string symbolName);
-    int getExponentOfSymbolInProg(string symbolName);
+    int getNumberOfOpsInProg(string opName);
+    int getNumberOfVarsInProg(string varName);
+    int getExponentOfVarInProg(string varName);
 };
 
 #endif

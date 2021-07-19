@@ -4,10 +4,10 @@
  */
 
 // Support definition
-#define GET_NUM_OF_OPS(prog, op)            ( prog->getNumOfOpsInProg(op) )
-#define GET_NUM_OF_SYMS(prog, sym)          ( prog->getNumOfSymbolsInProg(sym) )
+#define GET_NUM_OF_OPS(prog, op)            ( prog->getNumberOfOpsInProg(op) )
+#define GET_NUM_OF_SYMS(prog, sym)          ( prog->getNumberOfVarsInProg(sym) )
 #define GET_LENGTH(prog)                    ( GET_NUM_OF_SYMS(prog, "ALL") + GET_NUM_OF_OPS(prog, "ALL") )
-#define GET_EXP(prog, sym)                  ( prog->getExponentOfSymbolInProg(sym))
+#define GET_EXP(prog, sym)                  ( prog->getExponentOfVarInProg(sym))
 
 #define CHECK_NO_SYM(prog, sym)             ( GET_NUM_OF_SYMS(prog, sym) == 0 )
 #define HAS_SYM(prog, sym)                  ( GET_NUM_OF_SYMS(prog, sym) > 0 )
@@ -166,18 +166,30 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_
     if (operand_b && operand_b->depth() >= _depthBound) return false;
     if (operand_c && operand_c->depth() >= _depthBound) return false;
     
+    // value rule
+    auto a = dynamic_cast<Num*>(operand_a);
+    auto b = dynamic_cast<Num*>(operand_b);
+    if (a && b) {
+        if (op != "TIMES") return false;
+        int num_a = a->interpret();
+        int num_b = b->interpret();
+        int num_c = num_a * num_b;
+        if (num_c < 2 || num_a < 2 || num_b < 2) return false;
+    }
+    if (a && b == nullptr) {
+        int num_a = a->interpret();
+        if (num_a < 2 && op == "TIMES") return false;
+        if (num_a == 0 && op == "PLUS") return false;
+    }
+    if (a == nullptr && b) {
+        int num_b = b->interpret();
+        if (num_b < 2 && op == "TIMES") return false;
+        if (num_b == 0 && op == "PLUS") return false;
+    }
+    
+    // type rule
     if (op == "PLUS" || op == "MINUS" || op == "TIMES" || op == "LT" || op == "LEFTSHIFT" || op == "RIGHTSHIFT") {
-        // type rule
         if (!(dynamic_cast<IntType*>(operand_a) && dynamic_cast<IntType*>(operand_b))) {
-            return false;
-        }
-        if (operand_a->getNumOfSymbolsInProg("isrc0") > 1
-            || operand_a->getNumOfSymbolsInProg("isrc1") > 1
-            || operand_a->getNumOfSymbolsInProg("isrc2") > 1) {
-            return false;
-        }
-        // remove expr "Nun < Num"
-        if (op == "LT" && dynamic_cast<Num*>(operand_a) &&  dynamic_cast<Num*>(operand_b)) {
             return false;
         }
     }
@@ -200,6 +212,30 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_
         throw runtime_error("bottomUpSearch::isGrowRuleSatisfied() operates on UNKNOWN type: " + op);
     }
     
+    // form rule
+    if (op == "PLUS" || op == "MINUS" || op == "TIMES" || op == "LEFTSHIFT" || op == "RIGHTSHIFT") {
+        // limiting appearance of Num
+        int num_in_a = operand_a->getNumberOfVarsInProg("NUM");
+        int num_in_b = operand_b->getNumberOfVarsInProg("NUM");
+        if (op == "PLUS" && dynamic_cast<Plus*>(operand_a) && dynamic_cast<Plus*>(operand_b) && num_in_a + num_in_b > 1) return false;
+        if (op == "PLUS" && dynamic_cast<Plus*>(operand_a) && dynamic_cast<Num*>(operand_b) && num_in_a + num_in_b > 1) return false;
+        if (op == "PLUS" && dynamic_cast<Num*>(operand_a) && dynamic_cast<Plus*>(operand_b) && num_in_a + num_in_b > 1) return false;
+        
+        // limiting the form to be a0 * x^n0 + a1 * y^n1 + a0
+        if (op == "PLUS" && operand_a->getNumberOfOpsInProg("PLUS") != 0 && operand_b->getNumberOfOpsInProg("PLUS")) return false;
+        
+        if (op == "TIMES" && dynamic_cast<Times*>(operand_a) && dynamic_cast<Times*>(operand_b) && num_in_a + num_in_b > 1) return false;
+        if (op == "TIMES" && dynamic_cast<Times*>(operand_a) && dynamic_cast<Num*>(operand_b) && num_in_a + num_in_b > 1) return false;
+        if (op == "TIMES" && dynamic_cast<Num*>(operand_a) && dynamic_cast<Times*>(operand_b) && num_in_a + num_in_b > 1) return false;
+        
+        if (op == "MINUS" && dynamic_cast<Minus*>(operand_a) && dynamic_cast<Minus*>(operand_b) && num_in_a + num_in_b > 1) return false;
+        if (op == "LEFTSHIFT" && dynamic_cast<Leftshift*>(operand_a) && dynamic_cast<Leftshift*>(operand_b) && num_in_a + num_in_b > 1) return false;
+        if (op == "RIGHTSHIFT" && dynamic_cast<Rightshift*>(operand_a) && dynamic_cast<Rightshift*>(operand_b) && num_in_a + num_in_b > 1) return false;
+    }
+    // remove expr "Nun < Num"
+    if (op == "LT" && dynamic_cast<Num*>(operand_a) && dynamic_cast<Num*>(operand_b)) {
+        return false;
+    }
     
     
     /* Search mode specified rules
@@ -208,16 +244,16 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_
     }
     else if (find(_rulesToApply.begin(), _rulesToApply.end(), "PerSrcSnk") != _rulesToApply.end() ) {
         // rules for variables
-        if (i->getNumOfSymbolsInProg("Isrc0") + j->getNumOfSymbolsInProg("Isrc0") > 1) {
+        if (i->getNumberOfVarsInProg("Isrc0") + j->getNumberOfVarsInProg("Isrc0") > 1) {
             return false;
         }
-        if (i->getNumOfSymbolsInProg("Isrc1") + j->getNumOfSymbolsInProg("Isrc1") > 1) {
+        if (i->getNumberOfVarsInProg("Isrc1") + j->getNumberOfVarsInProg("Isrc1") > 1) {
             return false;
         }
-        if (i->getNumOfSymbolsInProg("Isnk0") + j->getNumOfSymbolsInProg("Isnk0") > 1) {
+        if (i->getNumberOfVarsInProg("Isnk0") + j->getNumberOfVarsInProg("Isnk0") > 1) {
             return false;
         }
-        if (i->getNumOfSymbolsInProg("Isnk1") + j->getNumOfSymbolsInProg("Isnk1") > 1) {
+        if (i->getNumberOfVarsInProg("Isnk1") + j->getNumberOfVarsInProg("Isnk1") > 1) {
             return false;
         }
         
@@ -299,22 +335,9 @@ inline BaseType* bottomUpSearch::growOneExpr(BaseType* operand_a, BaseType* oper
     // constant expression, only grow constant expression by times
     if (auto a = dynamic_cast<Num*>(operand_a)) {
         if (auto b = dynamic_cast<Num*>(operand_b)) {
-            if (op != "TIMES") {
-                return nullptr;
-            }
-            int num_a = a->interpret();
-            int num_b = b->interpret();
-            int num_c = 0;
-            num_c = num_a * num_b;
-            if (num_c < 2 || num_a < 2 || num_b < 2) return nullptr;
-            return dynamic_cast<BaseType*>(new Num(num_c));
+            return dynamic_cast<BaseType*>(new Num(a->interpret() * b->interpret()));
         }
     }
-    // non-constant expression
-    if (op == "PLUS" || op == "MINUS" || op == "LEFTSHIFT" || op == "RIGHTSHIFT" || op == "TIMES") {
-        
-    }
-    
     
     if (op == "PLUS") {
         Plus* plus = new Plus(dynamic_cast<IntType*>(operand_a), dynamic_cast<IntType*>(operand_b));
@@ -706,11 +729,10 @@ void bottomUpSearch::elimEquvalents() {
         /* Find the program to keep */
         BaseType* progToKeep = nullptr;
         for (auto prog : eqPList) {
-            //cout << prog->toString() << " ";
+            //if (eqPList.size() > 1) cout << prog->toString() << " ";
             progToKeep = elimOneProgWithRules(progToKeep, prog);
         }
-        //cout << endl;
-        
+        //if (eqPList.size() > 1) cout << endl;
         
         for (int inputOutputId = 0; inputOutputId < _inputOutputs.size(); inputOutputId++) {
             _boolResultRecord.erase(make_pair(pi, inputOutputId));

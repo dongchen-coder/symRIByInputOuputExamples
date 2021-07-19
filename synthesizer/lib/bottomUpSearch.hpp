@@ -11,7 +11,7 @@
 
 using namespace std;
 
-#define DEBUG
+//#define DEBUG
 
 class bottomUpSearch {
 public:

@@ -29,39 +29,39 @@ int BaseType::depth() {
     }
 }
 
-int BaseType::getNumOfOpsInProg(string opName) {
+int BaseType::getNumberOfOpsInProg(string opName) {
     if (auto intType = dynamic_cast<IntType*>(this)) {
-        return intType->getNumOfOpsInProg(opName);
+        return intType->getNumberOfOpsInProg(opName);
     }
     else if (auto boolType = dynamic_cast<BoolType*>(this)) {
-        return boolType->getNumOfOpsInProg(opName);
+        return boolType->getNumberOfOpsInProg(opName);
     }
     else {
-        throw runtime_error("BaseType::getNumOfOpsInProg() operates on UNKNOWN type!");
+        throw runtime_error("BaseType::getNumberOfOpsInProg() operates on UNKNOWN type!");
     }
 }
 
-int BaseType::getNumOfSymbolsInProg(string symbolName) {
+int BaseType::getNumberOfVarsInProg(string varName) {
     if (auto intType = dynamic_cast<IntType*>(this)) {
-        return intType->getNumOfSymbolsInProg(symbolName);
+        return intType->getNumberOfVarsInProg(varName);
     }
     else if (auto boolType = dynamic_cast<BoolType*>(this)) {
-        return boolType->getNumOfSymbolsInProg(symbolName);
+        return boolType->getNumberOfVarsInProg(varName);
     }
     else {
-        throw runtime_error("BaseType::getNumOfSymbolsInProg() operates on UNKNOWN type!");
+        throw runtime_error("BaseType::getNumberOfVarsInProg() operates on UNKNOWN type!");
     }
 }
 
-int BaseType::getExponentOfSymbolInProg(string symbolName) {
+int BaseType::getExponentOfVarInProg(string varName) {
     if (auto intType = dynamic_cast<IntType*>(this)) {
-        return intType->getExponentOfSymbolInProg(symbolName);
+        return intType->getExponentOfVarInProg(varName);
     }
     else if (auto boolType = dynamic_cast<BoolType*>(this)) {
-        return boolType->getExponentOfSymbolInProg(symbolName);
+        return boolType->getExponentOfVarInProg(varName);
     }
     else {
-        throw runtime_error("BaseType::getExponentOfSymbolInProg() operates on UNKNOWN type!");
+        throw runtime_error("BaseType::getExponentOfVarInProg() operates on UNKNOWN type!");
     }
 }
 
@@ -143,111 +143,111 @@ int IntType::depth() {
     }
 }
 
-int IntType::getNumOfOpsInProg(string opName) {
+int IntType::getNumberOfOpsInProg(string opName) {
     if (auto num = dynamic_cast<Num*>(this)) {
-        return num->getNumOfOpsInProg(opName);
+        return num->getNumberOfOpsInProg(opName);
     }
     else if (auto var = dynamic_cast<Var*>(this)) {
-        return var->getNumOfOpsInProg(opName);
+        return var->getNumberOfOpsInProg(opName);
     }
     else if (auto plus = dynamic_cast<Plus*>(this)) {
-        return plus->getNumOfOpsInProg(opName);
+        return plus->getNumberOfOpsInProg(opName);
     }
     else if (auto minus = dynamic_cast<Minus*>(this)) {
-        return minus->getNumOfOpsInProg(opName);
+        return minus->getNumberOfOpsInProg(opName);
     }
     else if (auto times = dynamic_cast<Times*>(this)) {
-        return times->getNumOfOpsInProg(opName);
+        return times->getNumberOfOpsInProg(opName);
     }
     else if (auto div = dynamic_cast<Div*>(this)) {
-        return div->getNumOfOpsInProg(opName);
+        return div->getNumberOfOpsInProg(opName);
     }
     else if (auto mn = dynamic_cast<Min*>(this)) {
-        return mn->getNumOfOpsInProg(opName);
+        return mn->getNumberOfOpsInProg(opName);
     }
     else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
-        return leftshift->getNumOfOpsInProg(opName);
+        return leftshift->getNumberOfOpsInProg(opName);
     }
     else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
-        return rightshift->getNumOfOpsInProg(opName);
+        return rightshift->getNumberOfOpsInProg(opName);
     }
     else if (auto ite = dynamic_cast<Ite*>(this)) {
-        return ite->getNumOfOpsInProg(opName);
+        return ite->getNumberOfOpsInProg(opName);
     }
     else {
-        throw runtime_error("IntType::getNumOfOpsInProg() operates on UNKNOWN type!");
+        throw runtime_error("IntType::getNumberOfOpsInProg() operates on UNKNOWN type!");
     }
 }
 
-int IntType::getNumOfSymbolsInProg(string symbolName) {
+int IntType::getNumberOfVarsInProg(string varName) {
     if (auto num = dynamic_cast<Num*>(this)) {
-        return num->getNumOfSymbolsInProg(symbolName);
+        return num->getNumberOfVarsInProg(varName);
     }
     else if (auto var = dynamic_cast<Var*>(this)) {
-        return var->getNumOfSymbolsInProg(symbolName);
+        return var->getNumberOfVarsInProg(varName);
     }
     else if (auto plus = dynamic_cast<Plus*>(this)) {
-        return plus->getNumOfSymbolsInProg(symbolName);
+        return plus->getNumberOfVarsInProg(varName);
     }
     else if (auto minus = dynamic_cast<Minus*>(this)) {
-        return minus->getNumOfSymbolsInProg(symbolName);
+        return minus->getNumberOfVarsInProg(varName);
     }
     else if (auto times = dynamic_cast<Times*>(this)) {
-        return times->getNumOfSymbolsInProg(symbolName);
+        return times->getNumberOfVarsInProg(varName);
     }
     else if (auto div = dynamic_cast<Div*>(this)) {
-        return div->getNumOfSymbolsInProg(symbolName);
+        return div->getNumberOfVarsInProg(varName);
     }
     else if (auto mn = dynamic_cast<Min*>(this)) {
-        return mn->getNumOfSymbolsInProg(symbolName);
+        return mn->getNumberOfVarsInProg(varName);
     }
     else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
-        return leftshift->getNumOfSymbolsInProg(symbolName);
+        return leftshift->getNumberOfVarsInProg(varName);
     }
     else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
-        return rightshift->getNumOfSymbolsInProg(symbolName);
+        return rightshift->getNumberOfVarsInProg(varName);
     }
     else if (auto ite = dynamic_cast<Ite*>(this)) {
-        return ite->getNumOfSymbolsInProg(symbolName);
+        return ite->getNumberOfVarsInProg(varName);
     }
     else {
-        throw runtime_error("IntType::getNumOfSymbolsInProg() operates on UNKNOWN type");
+        throw runtime_error("IntType::getNumberOfVarsInProg() operates on UNKNOWN type");
     }
 }
 
-int IntType::getExponentOfSymbolInProg(string symbolName) {
+int IntType::getExponentOfVarInProg(string varName) {
     if (auto num = dynamic_cast<Num*>(this)) {
-        return num->getExponentOfSymbolInProg(symbolName);
+        return num->getExponentOfVarInProg(varName);
     }
     else if (auto var = dynamic_cast<Var*>(this)) {
-        return var->getExponentOfSymbolInProg(symbolName);
+        return var->getExponentOfVarInProg(varName);
     }
     else if (auto plus = dynamic_cast<Plus*>(this)) {
-        return plus->getExponentOfSymbolInProg(symbolName);
+        return plus->getExponentOfVarInProg(varName);
     }
     else if (auto minus = dynamic_cast<Minus*>(this)) {
-        return minus->getExponentOfSymbolInProg(symbolName);
+        return minus->getExponentOfVarInProg(varName);
     }
     else if (auto times = dynamic_cast<Times*>(this)) {
-        return times->getExponentOfSymbolInProg(symbolName);
+        return times->getExponentOfVarInProg(varName);
     }
     else if (auto div = dynamic_cast<Div*>(this)) {
-        return div->getExponentOfSymbolInProg(symbolName);
+        return div->getExponentOfVarInProg(varName);
     }
     else if (auto mn = dynamic_cast<Min*>(this)) {
-        return mn->getExponentOfSymbolInProg(symbolName);
+        return mn->getExponentOfVarInProg(varName);
     }
     else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
-        return leftshift->getExponentOfSymbolInProg(symbolName);
+        return leftshift->getExponentOfVarInProg(varName);
     }
     else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
-        return rightshift->getExponentOfSymbolInProg(symbolName);
+        return rightshift->getExponentOfVarInProg(varName);
     }
     else if (auto ite = dynamic_cast<Ite*>(this)) {
-        return ite->getExponentOfSymbolInProg(symbolName);
+        return ite->getExponentOfVarInProg(varName);
     }
     else {
-        throw runtime_error("IntType::getExponentOfSymbolInProg() operates on UNKOWN type!");
+        throw runtime_error("IntType::getExponentOfVarInProg() operates on UNKOWN type!");
     }
 }
 
@@ -290,57 +290,57 @@ int BoolType::depth() {
     }
 }
 
-int BoolType::getNumOfOpsInProg(string opName) {
+int BoolType::getNumberOfOpsInProg(string opName) {
     if (auto f = dynamic_cast<F*>(this) ) {
-        return f->getNumOfOpsInProg(opName);
+        return f->getNumberOfOpsInProg(opName);
     }
     else if (auto n = dynamic_cast<Not*>(this)) {
-        return n->getNumOfOpsInProg(opName);
+        return n->getNumberOfOpsInProg(opName);
     }
     else if (auto a = dynamic_cast<And*>(this)) {
-        return a->getNumOfOpsInProg(opName);
+        return a->getNumberOfOpsInProg(opName);
     }
     else if (auto lt = dynamic_cast<Lt*>(this)) {
-        return lt->getNumOfOpsInProg(opName);
+        return lt->getNumberOfOpsInProg(opName);
     }
     else {
-        throw runtime_error("BoolType::getNumOfOpsInProg() operates on UNKOWN type!");
+        throw runtime_error("BoolType::getNumberOfOpsInProg() operates on UNKOWN type!");
     }
 }
 
-int BoolType::getNumOfSymbolsInProg(string symbolName) {
+int BoolType::getNumberOfVarsInProg(string varName) {
     if (auto f = dynamic_cast<F*>(this) ) {
-        return f->getNumOfSymbolsInProg(symbolName);
+        return f->getNumberOfVarsInProg(varName);
     }
     else if (auto n = dynamic_cast<Not*>(this)) {
-        return n->getNumOfSymbolsInProg(symbolName);
+        return n->getNumberOfVarsInProg(varName);
     }
     else if (auto a = dynamic_cast<And*>(this)) {
-        return a->getNumOfSymbolsInProg(symbolName);
+        return a->getNumberOfVarsInProg(varName);
     }
     else if (auto lt = dynamic_cast<Lt*>(this)) {
-        return lt->getNumOfSymbolsInProg(symbolName);
+        return lt->getNumberOfVarsInProg(varName);
     }
     else {
-        throw runtime_error("BoolType::getNumOfSymbolsInProg() operates on UNKOWN type!");
+        throw runtime_error("BoolType::getNumberOfVarsInProg() operates on UNKOWN type!");
     }
 }
 
-int BoolType::getExponentOfSymbolInProg(string symbolName) {
+int BoolType::getExponentOfVarInProg(string varName) {
     if (auto f = dynamic_cast<F*>(this) ) {
-        return f->getExponentOfSymbolInProg(symbolName);
+        return f->getExponentOfVarInProg(varName);
     }
     else if (auto n = dynamic_cast<Not*>(this)) {
-        return n->getExponentOfSymbolInProg(symbolName);
+        return n->getExponentOfVarInProg(varName);
     }
     else if (auto a = dynamic_cast<And*>(this)) {
-        return a->getExponentOfSymbolInProg(symbolName);
+        return a->getExponentOfVarInProg(varName);
     }
     else if (auto lt = dynamic_cast<Lt*>(this)) {
-        return lt->getExponentOfSymbolInProg(symbolName);
+        return lt->getExponentOfVarInProg(varName);
     }
     else {
-        throw runtime_error("BoolType::getExponentOfSymbolInProg() operates on UNKOWN type!");
+        throw runtime_error("BoolType::getExponentOfVarInProg() operates on UNKOWN type!");
     }
 }
 
@@ -361,18 +361,18 @@ int F::depth() {
     return 1;
 }
 
-int F::getNumOfOpsInProg(string opName) {
+int F::getNumberOfOpsInProg(string opName) {
     return 0;
 }
 
-int F::getNumOfSymbolsInProg(string symbolName) {
-    if (symbolName == "false" || symbolName == "ALL") {
+int F::getNumberOfVarsInProg(string varName) {
+    if (varName == "false" || varName == "ALL") {
         return 1;
     }
     return 0;
 }
 
-int F::getExponentOfSymbolInProg(string symbolName) {
+int F::getExponentOfVarInProg(string varName) {
     return 0;
 }
 
@@ -395,23 +395,23 @@ int Var::depth() {
     return 1;
 }
 
-int Var::getNumOfOpsInProg(string opName) {
+int Var::getNumberOfOpsInProg(string opName) {
     return 0;
 }
 
-int Var::getNumOfSymbolsInProg(string symbolName) {
-    if (symbolName == "ALL" ||
-        symbolName == "VAR" ||
-        symbolName == _name ||
-        (symbolName.size() < _name.size() && symbolName == _name.substr(0, symbolName.size())) ) {
+int Var::getNumberOfVarsInProg(string varName) {
+    if (varName == "ALL" ||
+        varName == "VAR" ||
+        varName == _name ||
+        (varName.size() < _name.size() && varName == _name.substr(0, varName.size())) ) {
         return 1;
     }
     return 0;
 }
 
-int Var::getExponentOfSymbolInProg(string symbolName) {
-    if (symbolName == _name ||
-        (symbolName.size() < _name.size() && symbolName == _name.substr(0, symbolName.size())) ) {
+int Var::getExponentOfVarInProg(string varName) {
+    if (varName == _name ||
+        (varName.size() < _name.size() && varName == _name.substr(0, varName.size())) ) {
         return 1;
     }
     return 0;
@@ -436,18 +436,18 @@ int Num::depth() {
     return 1;
 }
 
-int Num::getNumOfOpsInProg(string opName) {
+int Num::getNumberOfOpsInProg(string opName) {
     return 0;
 }
 
-int Num::getNumOfSymbolsInProg(string symbolName) {
-    if (symbolName == to_string(_num) || symbolName == "ALL" || symbolName == "NUM") {
+int Num::getNumberOfVarsInProg(string varName) {
+    if (varName == to_string(_num) || varName == "ALL" || varName == "NUM") {
         return 1;
     }
     return 0;
 }
 
-int Num::getExponentOfSymbolInProg(string symbolName) {
+int Num::getExponentOfVarInProg(string varName) {
     return 0;
 }
 
@@ -665,19 +665,19 @@ int Plus::depth() {
     return depth;
 }
 
-int Plus::getNumOfOpsInProg(string opName) {
+int Plus::getNumberOfOpsInProg(string opName) {
     if (opName == "PLUS" || opName == "ALL") {
-        return _left->getNumOfOpsInProg(opName) + _left->getNumOfOpsInProg(opName) + 1;
+        return _left->getNumberOfOpsInProg(opName) + _left->getNumberOfOpsInProg(opName) + 1;
     }
-    return _left->getNumOfOpsInProg(opName) + _left->getNumOfOpsInProg(opName);
+    return _left->getNumberOfOpsInProg(opName) + _left->getNumberOfOpsInProg(opName);
 }
 
-int Plus::getNumOfSymbolsInProg(string symbolName) {
-    return _left->getNumOfSymbolsInProg(symbolName) + _right->getNumOfSymbolsInProg(symbolName);
+int Plus::getNumberOfVarsInProg(string varName) {
+    return _left->getNumberOfVarsInProg(varName) + _right->getNumberOfVarsInProg(varName);
 }
 
-int Plus::getExponentOfSymbolInProg(string symbolName) {
-    return max(_left->getExponentOfSymbolInProg(symbolName), _right->getExponentOfSymbolInProg(symbolName));
+int Plus::getExponentOfVarInProg(string varName) {
+    return max(_left->getExponentOfVarInProg(varName), _right->getExponentOfVarInProg(varName));
 }
 
 /******************************************
@@ -895,19 +895,19 @@ int Minus::depth() {
     return depth;
 }
 
-int Minus::getNumOfOpsInProg(string opName) {
+int Minus::getNumberOfOpsInProg(string opName) {
     if (opName == "MINUS" || opName == "ALL") {
-        return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName) + 1;
+        return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName) + 1;
     }
-    return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName);
+    return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName);
 }
 
-int Minus::getNumOfSymbolsInProg(string symbolName) {
-    return _left->getNumOfSymbolsInProg(symbolName) + _right->getNumOfSymbolsInProg(symbolName);
+int Minus::getNumberOfVarsInProg(string varName) {
+    return _left->getNumberOfVarsInProg(varName) + _right->getNumberOfVarsInProg(varName);
 }
 
-int Minus::getExponentOfSymbolInProg(string symbolName) {
-    return max(_left->getExponentOfSymbolInProg(symbolName), _right->getExponentOfSymbolInProg(symbolName));
+int Minus::getExponentOfVarInProg(string varName) {
+    return max(_left->getExponentOfVarInProg(varName), _right->getExponentOfVarInProg(varName));
 }
 
 /******************************************
@@ -1125,19 +1125,19 @@ int Times::depth() {
     return depth;
 }
 
-int Times::getNumOfOpsInProg(string opName) {
+int Times::getNumberOfOpsInProg(string opName) {
     if (opName == "TIMES" || opName == "ALL") {
-        return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName) + 1;
+        return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName) + 1;
     }
-    return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName);
+    return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName);
 }
 
-int Times::getNumOfSymbolsInProg(string symbolName) {
-    return _left->getNumOfSymbolsInProg(symbolName) + _right->getNumOfSymbolsInProg(symbolName);
+int Times::getNumberOfVarsInProg(string varName) {
+    return _left->getNumberOfVarsInProg(varName) + _right->getNumberOfVarsInProg(varName);
 }
 
-int Times::getExponentOfSymbolInProg(string symbolName) {
-    return _left->getExponentOfSymbolInProg(symbolName) + _right->getExponentOfSymbolInProg(symbolName);
+int Times::getExponentOfVarInProg(string varName) {
+    return _left->getExponentOfVarInProg(varName) + _right->getExponentOfVarInProg(varName);
 }
 
 /******************************************
@@ -1353,18 +1353,18 @@ int Min::depth() {
     
     return depth;
 }
-int Min::getNumOfOpsInProg(string opName) {
+int Min::getNumberOfOpsInProg(string opName) {
     if (opName == "MIN" || opName == "ALL") {
-        return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName) + 1;
+        return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName) + 1;
     }
-    return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName);
+    return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName);
 }
-int Min::getNumOfSymbolsInProg(string symbolName) {
-    return _left->getNumOfSymbolsInProg(symbolName) + _right->getNumOfSymbolsInProg(symbolName);
+int Min::getNumberOfVarsInProg(string varName) {
+    return _left->getNumberOfVarsInProg(varName) + _right->getNumberOfVarsInProg(varName);
 }
 
-int Min::getExponentOfSymbolInProg(string symbolName) {
-    return max(_left->getExponentOfSymbolInProg(symbolName), _right->getExponentOfSymbolInProg(symbolName));
+int Min::getExponentOfVarInProg(string varName) {
+    return max(_left->getExponentOfVarInProg(varName), _right->getExponentOfVarInProg(varName));
 }
 
 /******************************************
@@ -1588,19 +1588,19 @@ int Div::depth() {
     return depth;
 }
 
-int Div::getNumOfOpsInProg(string opName) {
+int Div::getNumberOfOpsInProg(string opName) {
     if (opName == "DIV" || opName == "ALL") {
-        return _dividend->getNumOfOpsInProg(opName) + _divisor->getNumOfOpsInProg(opName) + 1;
+        return _dividend->getNumberOfOpsInProg(opName) + _divisor->getNumberOfOpsInProg(opName) + 1;
     }
-    return _dividend->getNumOfOpsInProg(opName) + _divisor->getNumOfOpsInProg(opName);
+    return _dividend->getNumberOfOpsInProg(opName) + _divisor->getNumberOfOpsInProg(opName);
 }
 
-int Div::getNumOfSymbolsInProg(string symbolName) {
-    return _dividend->getNumOfSymbolsInProg(symbolName) + _divisor->getNumOfSymbolsInProg(symbolName);
+int Div::getNumberOfVarsInProg(string varName) {
+    return _dividend->getNumberOfVarsInProg(varName) + _divisor->getNumberOfVarsInProg(varName);
 }
 
-int Div::getExponentOfSymbolInProg(string symbolName) {
-    return _dividend->getExponentOfSymbolInProg(symbolName) - _divisor->getExponentOfSymbolInProg(symbolName);
+int Div::getExponentOfVarInProg(string varName) {
+    return _dividend->getExponentOfVarInProg(varName) - _divisor->getExponentOfVarInProg(varName);
 }
 
 /******************************************
@@ -1872,19 +1872,19 @@ int Leftshift::depth() {
     return depth;
 }
 
-int Leftshift::getNumOfOpsInProg(string opName) {
+int Leftshift::getNumberOfOpsInProg(string opName) {
     if (opName == "LEFTSHIFT" || opName == "ALL") {
-        return _value->getNumOfOpsInProg(opName) + _offset->getNumOfOpsInProg(opName) + 1;
+        return _value->getNumberOfOpsInProg(opName) + _offset->getNumberOfOpsInProg(opName) + 1;
     }
-    return _value->getNumOfOpsInProg(opName) + _offset->getNumOfOpsInProg(opName);
+    return _value->getNumberOfOpsInProg(opName) + _offset->getNumberOfOpsInProg(opName);
 }
 
-int Leftshift::getNumOfSymbolsInProg(string symbolName) {
-    return _value->getNumOfSymbolsInProg(symbolName) + _offset->getNumOfSymbolsInProg(symbolName);
+int Leftshift::getNumberOfVarsInProg(string varName) {
+    return _value->getNumberOfVarsInProg(varName) + _offset->getNumberOfVarsInProg(varName);
 }
 
-int Leftshift::getExponentOfSymbolInProg(string symbolName) {
-    return max(_value->getExponentOfSymbolInProg(symbolName), _offset->getExponentOfSymbolInProg(symbolName));
+int Leftshift::getExponentOfVarInProg(string varName) {
+    return max(_value->getExponentOfVarInProg(varName), _offset->getExponentOfVarInProg(varName));
 }
 
 /******************************************
@@ -2156,19 +2156,19 @@ int Rightshift::depth() {
     return depth;
 }
 
-int Rightshift::getNumOfOpsInProg(string opName) {
+int Rightshift::getNumberOfOpsInProg(string opName) {
     if (opName == "RIGHTSHIFT" || opName == "ALL") {
-        return _value->getNumOfOpsInProg(opName) + _offset->getNumOfOpsInProg(opName) + 1;
+        return _value->getNumberOfOpsInProg(opName) + _offset->getNumberOfOpsInProg(opName) + 1;
     }
-    return _value->getNumOfOpsInProg(opName) + _offset->getNumOfOpsInProg(opName);
+    return _value->getNumberOfOpsInProg(opName) + _offset->getNumberOfOpsInProg(opName);
 }
 
-int Rightshift::getNumOfSymbolsInProg(string symbolName) {
-    return _value->getNumOfSymbolsInProg(symbolName) + _offset->getNumOfSymbolsInProg(symbolName);
+int Rightshift::getNumberOfVarsInProg(string varName) {
+    return _value->getNumberOfVarsInProg(varName) + _offset->getNumberOfVarsInProg(varName);
 }
 
-int Rightshift::getExponentOfSymbolInProg(string symbolName) {
-    return max(_value->getExponentOfSymbolInProg(symbolName), _offset->getExponentOfSymbolInProg(symbolName));
+int Rightshift::getExponentOfVarInProg(string varName) {
+    return max(_value->getExponentOfVarInProg(varName), _offset->getExponentOfVarInProg(varName));
 }
 
 /******************************************
@@ -2387,19 +2387,19 @@ int Lt::depth() {
     return depth;
 }
 
-int Lt::getNumOfOpsInProg(string opName) {
+int Lt::getNumberOfOpsInProg(string opName) {
     if (opName == "LT" || opName == "ALL") {
-        return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName) + 1;
+        return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName) + 1;
     }
-    return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName);
+    return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName);
 }
 
-int Lt::getNumOfSymbolsInProg(string symbolName) {
-    return _left->getNumOfSymbolsInProg(symbolName) + _right->getNumOfSymbolsInProg(symbolName);
+int Lt::getNumberOfVarsInProg(string varName) {
+    return _left->getNumberOfVarsInProg(varName) + _right->getNumberOfVarsInProg(varName);
 }
 
-int Lt::getExponentOfSymbolInProg(string symbolName) {
-    return max(_left->getExponentOfSymbolInProg(symbolName), _right->getExponentOfSymbolInProg(symbolName));
+int Lt::getExponentOfVarInProg(string varName) {
+    return max(_left->getExponentOfVarInProg(varName), _right->getExponentOfVarInProg(varName));
 }
 
 /******************************************
@@ -2527,19 +2527,19 @@ int And::depth() {
     return depth;
 }
 
-int And::getNumOfOpsInProg(string opName) {
+int And::getNumberOfOpsInProg(string opName) {
     if (opName == "AND" || opName == "ALL") {
-        return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName) + 1;
+        return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName) + 1;
     }
-    return _left->getNumOfOpsInProg(opName) + _right->getNumOfOpsInProg(opName);
+    return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName);
 }
 
-int And::getNumOfSymbolsInProg(string symbolName) {
-    return _left->getNumOfSymbolsInProg(symbolName) + _right->getNumOfSymbolsInProg(symbolName);
+int And::getNumberOfVarsInProg(string varName) {
+    return _left->getNumberOfVarsInProg(varName) + _right->getNumberOfVarsInProg(varName);
 }
 
-int And::getExponentOfSymbolInProg(string symbolName) {
-    return max(_left->getExponentOfSymbolInProg(symbolName), _right->getExponentOfSymbolInProg(symbolName));
+int And::getExponentOfVarInProg(string varName) {
+    return max(_left->getExponentOfVarInProg(varName), _right->getExponentOfVarInProg(varName));
 }
 
 /******************************************
@@ -2607,19 +2607,19 @@ int Not::depth() {
     }
 }
 
-int Not::getNumOfOpsInProg(string opName) {
+int Not::getNumberOfOpsInProg(string opName) {
     if (opName == "NOT" || opName == "ALL") {
-        return _left->getNumOfOpsInProg(opName) + 1;
+        return _left->getNumberOfOpsInProg(opName) + 1;
     }
-    return _left->getNumOfOpsInProg(opName);
+    return _left->getNumberOfOpsInProg(opName);
 }
 
-int Not::getNumOfSymbolsInProg(string symbolName) {
-    return _left->getNumOfSymbolsInProg(symbolName);
+int Not::getNumberOfVarsInProg(string varName) {
+    return _left->getNumberOfVarsInProg(varName);
 }
 
-int Not::getExponentOfSymbolInProg(string symbolName) {
-    return _left->getExponentOfSymbolInProg(symbolName);
+int Not::getExponentOfVarInProg(string varName) {
+    return _left->getExponentOfVarInProg(varName);
 }
 
 /******************************************
@@ -2890,17 +2890,17 @@ int Ite::depth() {
     return depth;
 }
 
-int Ite::getNumOfOpsInProg(string opName) {
+int Ite::getNumberOfOpsInProg(string opName) {
     if (opName == "ITE" || opName == "ALL") {
-        return _cond->getNumOfOpsInProg(opName) + _tcase->getNumOfOpsInProg(opName) + _fcase->getNumOfOpsInProg(opName) + 1;
+        return _cond->getNumberOfOpsInProg(opName) + _tcase->getNumberOfOpsInProg(opName) + _fcase->getNumberOfOpsInProg(opName) + 1;
     }
-    return _cond->getNumOfOpsInProg(opName) + _tcase->getNumOfOpsInProg(opName) + _fcase->getNumOfOpsInProg(opName);
+    return _cond->getNumberOfOpsInProg(opName) + _tcase->getNumberOfOpsInProg(opName) + _fcase->getNumberOfOpsInProg(opName);
 }
 
-int Ite::getNumOfSymbolsInProg(string symbolName) {
-    return _cond->getNumOfSymbolsInProg(symbolName) + _tcase->getNumOfSymbolsInProg(symbolName) + _fcase->getNumOfSymbolsInProg(symbolName);
+int Ite::getNumberOfVarsInProg(string varName) {
+    return _cond->getNumberOfVarsInProg(varName) + _tcase->getNumberOfVarsInProg(varName) + _fcase->getNumberOfVarsInProg(varName);
 }
 
-int Ite::getExponentOfSymbolInProg(string symbolName) {
-    return max(_cond->getExponentOfSymbolInProg(symbolName), max(_tcase->getExponentOfSymbolInProg(symbolName), _fcase->getExponentOfSymbolInProg(symbolName)));
+int Ite::getExponentOfVarInProg(string varName) {
+    return max(_cond->getExponentOfVarInProg(varName), max(_tcase->getExponentOfVarInProg(varName), _fcase->getExponentOfVarInProg(varName)));
 }
