@@ -11,7 +11,7 @@
 
 using namespace std;
 
-//#define DEBUG
+#define DEBUG
 
 class bottomUpSearch {
 public:
@@ -35,7 +35,7 @@ private:
     inline string dumpProgram(BaseType* p);
     
     /* Grow program list */
-    void grow();
+    void grow(int prog_generation);
     //void grow_with_specific_operations(vector<string> opertions);
     
     /* Eliminate equalivlent programs */
@@ -43,7 +43,7 @@ private:
     void elimEquvalents();
     
     /* Check whether there is a correct program in program list */
-    inline string getCorrect();
+    inline string getCorrect(int prog_generation);
     
     /* Dumping function */
     void dumpPlist();
@@ -51,10 +51,10 @@ private:
     inline int getPlistSize();
     
     /* grow expression rules */
-    bool isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, string op);
+    bool isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, string op, int prog_generation);
     
     /* Construct one expression: op i j */
-    BaseType* growOneExpr(BaseType* i, BaseType* j, BaseType* k, string op);
+    BaseType* growOneExpr(BaseType* i, BaseType* j, BaseType* k, string op, int prog_generation);
     
     /* Temporal program evaluation result record */
     map<pair<BaseType*, int>, int> _intResultRecord;

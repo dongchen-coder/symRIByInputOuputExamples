@@ -160,11 +160,18 @@ void bottomUpSearch::dumpLangDef() {
 /******************************************
     Specify and check  growing rules
 */
-bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op) {
+bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation) {
     // depth rule
     if (operand_a && operand_a->depth() >= _depthBound) return false;
     if (operand_b && operand_b->depth() >= _depthBound) return false;
     if (operand_c && operand_c->depth() >= _depthBound) return false;
+    
+    // generation rule
+    int cur_generation = 0;
+    if (operand_a) cur_generation = max(cur_generation, operand_a->depth());
+    if (operand_b) cur_generation = max(cur_generation, operand_b->depth());
+    if (operand_c) cur_generation = max(cur_generation, operand_c->depth());
+    if (cur_generation + 1 != prog_generation) return false;
     
     // value rule
     auto a = dynamic_cast<Num*>(operand_a);
@@ -214,9 +221,16 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_
     
     // form rule
     if (op == "PLUS" || op == "MINUS" || op == "TIMES" || op == "LEFTSHIFT" || op == "RIGHTSHIFT") {
-        // limiting appearance of Num
         int num_in_a = operand_a->getNumberOfVarsInProg("NUM");
         int num_in_b = operand_b->getNumberOfVarsInProg("NUM");
+        int plus_in_b = operand_b->getNumberOfOpsInProg("PLUS");
+        // Num can only appear in left operand of TIMES
+        if (op == "TIMES" && num_in_b != 0) return false;
+        
+        // Only one constant term on the left
+        if (op == "PLUS" && dynamic_cast<Num*>(operand_a) && plus_in_b+1 < num_in_b) return false;
+        
+        // limiting appearance of Num
         if (op == "PLUS" && dynamic_cast<Plus*>(operand_a) && dynamic_cast<Plus*>(operand_b) && num_in_a + num_in_b > 1) return false;
         if (op == "PLUS" && dynamic_cast<Plus*>(operand_a) && dynamic_cast<Num*>(operand_b) && num_in_a + num_in_b > 1) return false;
         if (op == "PLUS" && dynamic_cast<Num*>(operand_a) && dynamic_cast<Plus*>(operand_b) && num_in_a + num_in_b > 1) return false;
@@ -238,98 +252,15 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_
     }
     
     
-    /* Search mode specified rules
-    if (find(_rulesToApply.begin(), _rulesToApply.end(), "SrcOnly") != _rulesToApply.end() ) {
-        cout << "Applying rules for grow" << endl;
-    }
-    else if (find(_rulesToApply.begin(), _rulesToApply.end(), "PerSrcSnk") != _rulesToApply.end() ) {
-        // rules for variables
-        if (i->getNumberOfVarsInProg("Isrc0") + j->getNumberOfVarsInProg("Isrc0") > 1) {
-            return false;
-        }
-        if (i->getNumberOfVarsInProg("Isrc1") + j->getNumberOfVarsInProg("Isrc1") > 1) {
-            return false;
-        }
-        if (i->getNumberOfVarsInProg("Isnk0") + j->getNumberOfVarsInProg("Isnk0") > 1) {
-            return false;
-        }
-        if (i->getNumberOfVarsInProg("Isnk1") + j->getNumberOfVarsInProg("Isnk1") > 1) {
-            return false;
-        }
-        
-        // rules for PLUS
-        if (op == "PLUS") {
-            // do not do two single variable plus
-            if (dynamic_cast<Var*>(i) != nullptr && dynamic_cast<Var*>(j) != nullptr) {
-                return false;
-            }
-            // do not plus "0"
-            if (dynamic_cast<Num*>(i) != nullptr) {
-                Num* numi = dynamic_cast<Num*>(i);
-                if (numi->toString() == "0") {
-                    return false;
-                }
-            }
-            if (dynamic_cast<Num*>(j) != nullptr) {
-                Num* numj = dynamic_cast<Num*>(j);
-                if (numj->toString() == "0") {
-                    return false;
-                }
-            }
-        }
-        // rules for MINUS
-        else if (op == "MINUS") {
-            // Isnk - Isrc
-            if (dynamic_cast<Var*>(i) != nullptr && dynamic_cast<Var*>(j) != nullptr) {
-                Var* vari = dynamic_cast<Var*>(i);
-                Var* varj = dynamic_cast<Var*>(j);
-                if (vari->toString().substr(0, 4) != "Isnk" ||
-                    varj->toString().substr(0, 4) != "Isrc") {
-                    return false;
-                }
-            }
-            // X - C exclude C - C
-            else if (dynamic_cast<Num*>(j) != nullptr) {
-                if (dynamic_cast<Num*>(i) != nullptr) {
-                    return false;
-                }
-            }
-            // exclude C - X
-            else if (dynamic_cast<Num*>(i) != nullptr && dynamic_cast<Var*>(j) != nullptr) {
-                return false;
-            }
-        }
-        // rules for TIMES
-        else if (op == "TIMES") {
-            // exclude B * B
-            if (dynamic_cast<Var*>(i) != nullptr && dynamic_cast<Var*>(j) != nullptr) {
-                Var* vari = dynamic_cast<Var*>(i);
-                Var* varj = dynamic_cast<Var*>(j);
-                if (varj->toString().substr(0, 1) != "B" ||
-                    vari->toString().substr(0, 1) != "B") {
-                    return false;
-                }
-            }
-            // exclude B * C
-            else if (dynamic_cast<Num*>(i) != nullptr && dynamic_cast<Num*>(i) != nullptr) {
-                return false;
-            }
-            // exclude I * I
-        }
-    }
-    else {
-        
-    }
-    */
     return true;
 }
 
 /******************************************
     Grow program list
 */
-inline BaseType* bottomUpSearch::growOneExpr(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op) {
+inline BaseType* bottomUpSearch::growOneExpr(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation) {
     // check rules
-    if (op == "F" || !isGrowRuleSatisfied(operand_a, operand_b, operand_c, op)) {
+    if (op == "F" || !isGrowRuleSatisfied(operand_a, operand_b, operand_c, op, prog_generation)) {
         return nullptr;
     }
     // constant expression, only grow constant expression by times
@@ -386,17 +317,17 @@ inline BaseType* bottomUpSearch::growOneExpr(BaseType* operand_a, BaseType* oper
     return nullptr;
 }
 
-void bottomUpSearch::grow() {
+void bottomUpSearch::grow(int prog_generation) {
     
     vector<BaseType*> newPList;
-    
+     
     for (auto op : _intOps) {
         
         /* communitive op */
         if (op == "PLUS" || op == "TIMES") {
             for (int j = 0; j < _pList.size(); j++) {
                 for (int k = j; k < _pList.size(); k++) {
-                    BaseType* newExpr = growOneExpr(_pList[j], _pList[k], nullptr, op);
+                    BaseType* newExpr = growOneExpr(_pList[j], _pList[k], nullptr, op, prog_generation);
                     if (newExpr != nullptr) {
                         newPList.push_back(newExpr);
                     }
@@ -407,7 +338,7 @@ void bottomUpSearch::grow() {
         else if (op == "MINUS" || op == "LEFTSHIFT" || op == "RIGHTSHIFT") {
             for (int j = 0; j < _pList.size(); j++) {
                 for (int k = 0; k < _pList.size(); k++) {
-                    BaseType* newExpr = growOneExpr(_pList[j], _pList[k], nullptr, op);
+                    BaseType* newExpr = growOneExpr(_pList[j], _pList[k], nullptr, op, prog_generation);
                     if (newExpr != nullptr) {
                         newPList.push_back(newExpr);
                     }
@@ -418,7 +349,7 @@ void bottomUpSearch::grow() {
             for (int j = 0; j < _pList.size(); j++) {
                 for (int k = 0; k < _pList.size(); k++) {
                     for (int l = 0; l < _pList.size(); l++) {
-                        BaseType* newExpr = growOneExpr(_pList[j], _pList[k], _pList[l], op);
+                        BaseType* newExpr = growOneExpr(_pList[j], _pList[k], _pList[l], op, prog_generation);
                         if (newExpr != nullptr) {
                             newPList.push_back(newExpr);
                         }
@@ -432,14 +363,14 @@ void bottomUpSearch::grow() {
     for (auto op : _boolOps) {
         
         if (op == "F") {
-            BaseType* newExpr = growOneExpr(nullptr, nullptr, nullptr, op);
+            BaseType* newExpr = growOneExpr(nullptr, nullptr, nullptr, op, prog_generation);
             if (newExpr != nullptr) {
                 newPList.push_back(newExpr);
             }
         }
         else if (op == "NOT") {
             for (int j = 0; j < _pList.size(); j++) {
-                BaseType* newExpr = growOneExpr(_pList[j], nullptr, nullptr, op);
+                BaseType* newExpr = growOneExpr(_pList[j], nullptr, nullptr, op, prog_generation);
                 if (newExpr != nullptr) {
                     newPList.push_back(newExpr);
                 }
@@ -448,7 +379,7 @@ void bottomUpSearch::grow() {
         else if (op == "AND") {
             for (int j = 0; j < _pList.size(); j++) {
                 for (int k = j+1; k < _pList.size(); k++) {
-                    BaseType* newExpr = growOneExpr(_pList[j], _pList[k], nullptr, op);
+                    BaseType* newExpr = growOneExpr(_pList[j], _pList[k], nullptr, op, prog_generation);
                     if (newExpr != nullptr) {
                         newPList.push_back(newExpr);
                     }
@@ -458,7 +389,7 @@ void bottomUpSearch::grow() {
         else if (op == "LT") {
             for (int j = 0; j < _pList.size(); j++) {
                 for (int k = 0; k < _pList.size(); k++) {
-                    BaseType* newExpr = growOneExpr(_pList[j], _pList[k], nullptr, op);
+                    BaseType* newExpr = growOneExpr(_pList[j], _pList[k], nullptr, op, prog_generation);
                     if (newExpr != nullptr) {
                         newPList.push_back(newExpr);
                     }
@@ -803,9 +734,9 @@ bool bottomUpSearch::isCorrect(BaseType* p) {
     return true;
 }
 
-inline string bottomUpSearch::getCorrect() {
+inline string bottomUpSearch::getCorrect(int prog_generation) {
     for (auto prog : _pList) {
-        if (isCorrect(prog)) {
+        if (prog->depth() == prog_generation && isCorrect(prog)) {
 #ifdef DEBUG
             cout << "SynProg: " << dumpProgram(prog) << endl;
 #endif
@@ -824,12 +755,14 @@ string bottomUpSearch::search() {
     
     elimEquvalents();
     
-    while (getCorrect() == "") {
+    int prog_generation = 1;
+    while (getCorrect(prog_generation) == "") {
 #ifdef DEBUG
         cout << "Current pList size " << getPlistSize() << ", grow" << endl;
 #endif
         //dumpPlist();
-        grow();
+        prog_generation++;
+        grow(prog_generation);
         //dumpPlist();
 #ifdef DEBUG
         cout << "Current pList size " << getPlistSize() << ", eliminate equvalents" << endl;
@@ -841,5 +774,5 @@ string bottomUpSearch::search() {
 #endif
     }
     
-    return getCorrect();
+    return getCorrect(prog_generation);
 }

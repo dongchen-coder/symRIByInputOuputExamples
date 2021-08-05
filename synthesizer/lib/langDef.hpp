@@ -7,6 +7,8 @@
 using namespace std;
 
 class BaseType {
+private:
+    int _generation;
 public:
     BaseType();
     string toString();
