@@ -55,11 +55,16 @@ bottomUpSearch::bottomUpSearch(int depthBound,
     this->_inputOutputs = inputOutputs;
     this->_isPred = isPred;
     
+    int var_order = 1;
     for(auto varStr : vars) {
         Var* var = new Var(varStr);
         BaseType* baseVar = dynamic_cast<BaseType*>(var);
         this->_pList.push_back(baseVar);
+        this->_vars_orders[varStr] = var_order;
+        var_order++;
     }
+    _num_of_vars = vars.size();
+    
     for (auto numStr : constants) {
         Num* num = new Num(stoi(numStr));
         BaseType* baseNum = dynamic_cast<BaseType*>(num);
@@ -160,6 +165,19 @@ void bottomUpSearch::dumpLangDef() {
 /******************************************
     Specify and check  growing rules
 */
+vector<int> bottomUpSearch::getTimesLexicalOrder(IntType* prog) {
+    vector<int> lex(_num_of_vars, 0);
+    if (auto prog_times = dynamic_cast<Times*>(prog)) {
+        vector<int> left_lex = getTimesLexicalOrder(prog_times->getLeft());
+        vector<int> right_lex = getTimesLexicalOrder(prog_times->getRight());
+        for (int i = 0; i < left_lex.size(); i++) lex[i] = (left_lex[i] + right_lex[i]);
+    }
+    else if (auto prog_var = dynamic_cast<Var*>(prog)) {
+        lex[_vars_orders[prog_var->toString()]-1]++;
+    }
+    return lex;
+}
+
 bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation) {
     // depth rule
     if (operand_a && operand_a->depth() >= _depthBound) return false;
@@ -221,30 +239,54 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_
     
     // form rule
     if (op == "PLUS" || op == "MINUS" || op == "TIMES" || op == "LEFTSHIFT" || op == "RIGHTSHIFT") {
+        bool is_a_num = dynamic_cast<Num*>(operand_a) != nullptr;
+        bool is_a_var = dynamic_cast<Var*>(operand_a) != nullptr;
+        bool is_a_plus = dynamic_cast<Plus*>(operand_a) != nullptr;
+        bool is_a_times = dynamic_cast<Times*>(operand_a) != nullptr;
+        
+        bool is_b_num = dynamic_cast<Num*>(operand_b) != nullptr;
+        bool is_b_var = dynamic_cast<Var*>(operand_b) != nullptr;
+        bool is_b_times = dynamic_cast<Times*>(operand_b) != nullptr;
+        bool is_b_plus = dynamic_cast<Plus*>(operand_b) != nullptr;
+        
         int num_in_a = operand_a->getNumberOfVarsInProg("NUM");
         int num_in_b = operand_b->getNumberOfVarsInProg("NUM");
+        int plus_in_a = operand_a->getNumberOfOpsInProg("PLUS");
         int plus_in_b = operand_b->getNumberOfOpsInProg("PLUS");
-        // Num can only appear in left operand of TIMES
-        if (op == "TIMES" && num_in_b != 0) return false;
         
-        // Only one constant term on the left
-        if (op == "PLUS" && dynamic_cast<Num*>(operand_a) && plus_in_b+1 < num_in_b) return false;
+        if (op == "TIMES") {
+            if ( !(is_a_var || is_a_num) ) return false;
+            if ( !(is_b_var || is_b_times) ) return false;
+            if ( is_a_var && is_b_var && _vars_orders[operand_a->toString()] > _vars_orders[operand_b->toString()]) return false;
+            if ( auto b_times = dynamic_cast<Times*>(operand_b) ) {
+                if (dynamic_cast<Num*>(b_times->getLeft())) return false;
+                if (is_a_var) {
+                    if (_vars_orders[operand_a->toString()] > _vars_orders[b_times->getLeft()->toString()]) return false;
+                }
+            }
+        }
         
-        // limiting appearance of Num
-        if (op == "PLUS" && dynamic_cast<Plus*>(operand_a) && dynamic_cast<Plus*>(operand_b) && num_in_a + num_in_b > 1) return false;
-        if (op == "PLUS" && dynamic_cast<Plus*>(operand_a) && dynamic_cast<Num*>(operand_b) && num_in_a + num_in_b > 1) return false;
-        if (op == "PLUS" && dynamic_cast<Num*>(operand_a) && dynamic_cast<Plus*>(operand_b) && num_in_a + num_in_b > 1) return false;
-        
-        // limiting the form to be a0 * x^n0 + a1 * y^n1 + a0
-        if (op == "PLUS" && operand_a->getNumberOfOpsInProg("PLUS") != 0 && operand_b->getNumberOfOpsInProg("PLUS")) return false;
-        
-        if (op == "TIMES" && dynamic_cast<Times*>(operand_a) && dynamic_cast<Times*>(operand_b) && num_in_a + num_in_b > 1) return false;
-        if (op == "TIMES" && dynamic_cast<Times*>(operand_a) && dynamic_cast<Num*>(operand_b) && num_in_a + num_in_b > 1) return false;
-        if (op == "TIMES" && dynamic_cast<Num*>(operand_a) && dynamic_cast<Times*>(operand_b) && num_in_a + num_in_b > 1) return false;
-        
-        if (op == "MINUS" && dynamic_cast<Minus*>(operand_a) && dynamic_cast<Minus*>(operand_b) && num_in_a + num_in_b > 1) return false;
-        if (op == "LEFTSHIFT" && dynamic_cast<Leftshift*>(operand_a) && dynamic_cast<Leftshift*>(operand_b) && num_in_a + num_in_b > 1) return false;
-        if (op == "RIGHTSHIFT" && dynamic_cast<Rightshift*>(operand_a) && dynamic_cast<Rightshift*>(operand_b) && num_in_a + num_in_b > 1) return false;
+        if (op == "PLUS") {
+            if ( !(is_a_num || is_a_var || is_a_times) ) return false;
+            if ( !(is_b_var || is_b_times || is_b_plus) ) return false;
+            if ( (is_a_var || is_a_times) && (is_b_var || is_b_times)) {
+                vector<int> a_lex =  getTimesLexicalOrder(dynamic_cast<IntType*>(operand_a));
+                vector<int> b_lex =  getTimesLexicalOrder(dynamic_cast<IntType*>(operand_b));
+                if (a_lex == b_lex ||
+                    !lexicographical_compare(a_lex.begin(), a_lex.end(),
+                                            b_lex.begin(), b_lex.end()))
+                    return false;
+            }
+            if ( is_b_plus ) {
+                auto b_plus = dynamic_cast<Plus*>(operand_b);
+                vector<int> a_lex =  getTimesLexicalOrder(dynamic_cast<IntType*>(operand_a));
+                vector<int> b_plus_left_lex = getTimesLexicalOrder(b_plus->getLeft());
+                if(a_lex == b_plus_left_lex ||
+                   !lexicographical_compare(a_lex.begin(), a_lex.end(),
+                                           b_plus_left_lex.begin(), b_plus_left_lex.end()))
+                    return false;
+            }
+        }
     }
     // remove expr "Nun < Num"
     if (op == "LT" && dynamic_cast<Num*>(operand_a) && dynamic_cast<Num*>(operand_b)) {
@@ -323,19 +365,7 @@ void bottomUpSearch::grow(int prog_generation) {
      
     for (auto op : _intOps) {
         
-        /* communitive op */
-        if (op == "PLUS" || op == "TIMES") {
-            for (int j = 0; j < _pList.size(); j++) {
-                for (int k = j; k < _pList.size(); k++) {
-                    BaseType* newExpr = growOneExpr(_pList[j], _pList[k], nullptr, op, prog_generation);
-                    if (newExpr != nullptr) {
-                        newPList.push_back(newExpr);
-                    }
-                }
-            }
-        }
-        /* non-communitie op */
-        else if (op == "MINUS" || op == "LEFTSHIFT" || op == "RIGHTSHIFT") {
+        if (op == "PLUS" || op == "TIMES" || op == "MINUS" || op == "LEFTSHIFT" || op == "RIGHTSHIFT") {
             for (int j = 0; j < _pList.size(); j++) {
                 for (int k = 0; k < _pList.size(); k++) {
                     BaseType* newExpr = growOneExpr(_pList[j], _pList[k], nullptr, op, prog_generation);

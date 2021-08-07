@@ -665,6 +665,13 @@ int Plus::depth() {
     return depth;
 }
 
+IntType* Plus::getLeft() {
+    return _left;
+}
+IntType* Plus::getRight() {
+    return _right;
+}
+
 int Plus::getNumberOfOpsInProg(string opName) {
     if (opName == "PLUS" || opName == "ALL") {
         return _left->getNumberOfOpsInProg(opName) + _left->getNumberOfOpsInProg(opName) + 1;
@@ -1123,6 +1130,13 @@ int Times::depth() {
     }
     
     return depth;
+}
+
+IntType* Times::getLeft() {
+    return _left;
+}
+IntType* Times::getRight() {
+    return _right;
 }
 
 int Times::getNumberOfOpsInProg(string opName) {

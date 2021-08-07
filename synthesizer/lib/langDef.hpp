@@ -87,6 +87,8 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
+    IntType* getLeft();
+    IntType* getRight();
     int getNumberOfOpsInProg(string opName);
     int getNumberOfVarsInProg(string varName);
     int getExponentOfVarInProg(string varName);
@@ -115,6 +117,8 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
+    IntType* getLeft();
+    IntType* getRight();
     int getNumberOfOpsInProg(string opName);
     int getNumberOfVarsInProg(string varName);
     int getExponentOfVarInProg(string varName);

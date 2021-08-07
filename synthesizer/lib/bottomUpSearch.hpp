@@ -51,6 +51,7 @@ private:
     inline int getPlistSize();
     
     /* grow expression rules */
+    vector<int> getTimesLexicalOrder(IntType* prog);
     bool isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, string op, int prog_generation);
     
     /* Construct one expression: op i j */
@@ -83,6 +84,9 @@ private:
     vector<string> _vars;
     vector<string> _constants;
     bool _isPred;
+    int _num_of_vars;
+    
+    map<string, int> _vars_orders;
     
     vector<string> _rulesToApply;
 };
