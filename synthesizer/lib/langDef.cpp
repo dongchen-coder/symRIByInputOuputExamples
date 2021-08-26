@@ -2401,6 +2401,13 @@ int Lt::depth() {
     return depth;
 }
 
+IntType* Lt::getLeft() {
+    return _left;
+}
+IntType* Lt::getRight() {
+    return _right;
+}
+
 int Lt::getNumberOfOpsInProg(string opName) {
     if (opName == "LT" || opName == "ALL") {
         return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName) + 1;
@@ -2539,6 +2546,13 @@ int And::depth() {
     }
     
     return depth;
+}
+
+BoolType* And::getLeft() {
+    return _left;
+}
+BoolType* And::getRight() {
+    return _right;
 }
 
 int And::getNumberOfOpsInProg(string opName) {

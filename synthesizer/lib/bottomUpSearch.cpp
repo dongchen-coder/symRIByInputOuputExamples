@@ -288,9 +288,70 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_
             }
         }
     }
-    // remove expr "Nun < Num"
-    if (op == "LT" && dynamic_cast<Num*>(operand_a) && dynamic_cast<Num*>(operand_b)) {
-        return false;
+    
+    if (op == "LT") {
+        bool is_a_num = dynamic_cast<Num*>(operand_a) != nullptr;
+        bool is_a_var = dynamic_cast<Var*>(operand_a) != nullptr;
+        bool is_a_plus = dynamic_cast<Plus*>(operand_a) != nullptr;
+        bool is_a_times = dynamic_cast<Times*>(operand_a) != nullptr;
+        
+        bool is_b_num = dynamic_cast<Num*>(operand_b) != nullptr;
+        bool is_b_var = dynamic_cast<Var*>(operand_b) != nullptr;
+        bool is_b_times = dynamic_cast<Times*>(operand_b) != nullptr;
+        bool is_b_plus = dynamic_cast<Plus*>(operand_b) != nullptr;
+        
+        // remove expr "Nun < Num"
+        if (is_a_num && is_b_num) return false;
+        // enforce "no b < *"
+        if (operand_a->getNumberOfVarsInProg("b") != 0) return false;
+        // enforce "one isrc < *"
+        if (operand_a->getNumberOfVarsInProg("isrc") != 1) return false;
+        // enforce "* < no isrc"
+        if (operand_b->getNumberOfVarsInProg("isrc") != 0) return false;
+        if (is_a_plus && is_b_plus) {
+            auto a_plus = dynamic_cast<Plus*>(operand_a);
+            auto b_plus = dynamic_cast<Plus*>(operand_a);
+            // enforce no "num + * < num + *"
+            if (dynamic_cast<Num*>(a_plus->getLeft()) && dynamic_cast<Num*>(b_plus->getLeft())) return false;
+            vector<string> a_terms;
+            // enforce no common terms for +
+            while(a_plus) {
+                a_terms.push_back(a_plus->getLeft()->toString());
+                if (auto a_plus_right = dynamic_cast<Plus*>(a_plus->getRight())) {
+                    a_plus = a_plus_right;
+                } else {
+                    a_terms.push_back(a_plus->getRight()->toString());
+                    break;
+                }
+            }
+            while(b_plus) {
+                if (find(a_terms.begin(), a_terms.end(), b_plus->getLeft()->toString()) != a_terms.end()) return false;
+                
+                if (auto b_plus_right = dynamic_cast<Plus*>(b_plus->getRight())) {
+                    b_plus = b_plus_right;
+                } else {
+                    if (find(a_terms.begin(), a_terms.end(), b_plus->getRight()->toString()) != a_terms.end()) return false;
+                    break;
+                }
+            }
+        }
+    }
+    
+    if (op == "AND") {
+        // no F in AND
+        if (dynamic_cast<F*>(operand_a) || dynamic_cast<F*>(operand_b)) return false;
+        // Operand_a has to be LT
+        if (!dynamic_cast<Lt*>(operand_a)) return false;
+        // Operand_b has to be And/Not/Lt
+        if (!(dynamic_cast<And*>(operand_b) ||
+              dynamic_cast<Not*>(operand_b) ||
+              dynamic_cast<Lt*>(operand_b))) return false;
+        // no redundant expr
+        // To add
+    }
+    
+    if (op == "NOT") {
+        if (!dynamic_cast<And*>(operand_a)) return false;
     }
     
     
@@ -418,7 +479,7 @@ void bottomUpSearch::grow(int prog_generation) {
         }
         else if (op == "LT") {
             for (int j = 0; j < _pList.size(); j++) {
-                for (int k = 0; k < _pList.size(); k++) {
+                for (int k = j+1; k < _pList.size(); k++) {
                     BaseType* newExpr = growOneExpr(_pList[j], _pList[k], nullptr, op, prog_generation);
                     if (newExpr != nullptr) {
                         newPList.push_back(newExpr);
@@ -798,7 +859,7 @@ string bottomUpSearch::search() {
         cout << "Current pList size " << getPlistSize() << ", eliminate equvalents" << endl;
 #endif
         elimEquvalents();
-        //dumpPlist();
+        //if (_isPred) dumpPlist();
 #ifdef DEBUG
         cout << "Current pList size " << getPlistSize() << ", check correct" << endl;
 #endif
