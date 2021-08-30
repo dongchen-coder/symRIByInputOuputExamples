@@ -13,6 +13,7 @@ public:
     BaseType();
     string toString();
     int depth();
+    vector<int> getLexicalOrder(int num_of_vars, map<string, int>& vars_orders);
     int getNumberOfOpsInProg(string opName);
     int getNumberOfVarsInProg(string varName);
     int getExponentOfVarInProg(string varName);
@@ -24,6 +25,7 @@ public:
     IntType();
     string toString();
     int depth();
+    vector<int> getLexicalOrder(int num_of_vars, map<string, int>& vars_orders);
     int getNumberOfOpsInProg(string opName);
     int getNumberOfVarsInProg(string varName);
     int getExponentOfVarInProg(string varName);
@@ -35,6 +37,7 @@ public:
     BoolType();
     string toString();
     int depth();
+    vector<int> getLexicalOrder(int num_of_vars, map<string, int>& vars_orders);
     int getNumberOfOpsInProg(string opName);
     int getNumberOfVarsInProg(string varName);
     int getExponentOfVarInProg(string varName);
@@ -60,6 +63,7 @@ public:
     string toString();
     int interpret(inputOutput_t env);
     int depth();
+    vector<int> getLexicalOrder(int num_of_vars, map<string, int>& vars_orders);
     int getNumberOfOpsInProg(string opName);
     int getNumberOfVarsInProg(string varName);
     int getExponentOfVarInProg(string varName);
@@ -73,6 +77,7 @@ public:
     string toString();
     int interpret();
     int depth();
+    vector<int> getLexicalOrder(int num_of_vars, map<string, int>& vars_orders);
     int getNumberOfOpsInProg(string opName);
     int getNumberOfVarsInProg(string varName);
     int getExponentOfVarInProg(string varName);
@@ -89,6 +94,8 @@ public:
     int depth();
     IntType* getLeft();
     IntType* getRight();
+    vector<string> getTerms();
+    vector<int> getLexicalOrder(int num_of_vars, map<string, int>& vars_orders);
     int getNumberOfOpsInProg(string opName);
     int getNumberOfVarsInProg(string varName);
     int getExponentOfVarInProg(string varName);
@@ -119,6 +126,8 @@ public:
     int depth();
     IntType* getLeft();
     IntType* getRight();
+    vector<string> getFactors();
+    vector<int> getLexicalOrder(int num_of_vars, map<string, int>& vars_orders);
     int getNumberOfOpsInProg(string opName);
     int getNumberOfVarsInProg(string varName);
     int getExponentOfVarInProg(string varName);
@@ -191,6 +200,7 @@ public:
     int depth();
     IntType* getLeft();
     IntType* getRight();
+    vector<int> getLexicalOrder(int num_of_vars, map<string, int>& vars_orders);
     int getNumberOfOpsInProg(string opName);
     int getNumberOfVarsInProg(string varName);
     int getExponentOfVarInProg(string varName);
@@ -207,6 +217,7 @@ public:
     int depth();
     BoolType* getLeft();
     BoolType* getRight();
+    vector<int> getLexicalOrder(int num_of_vars, map<string, int>& vars_orders);
     int getNumberOfOpsInProg(string opName);
     int getNumberOfVarsInProg(string varName);
     int getExponentOfVarInProg(string varName);
@@ -220,6 +231,7 @@ public:
     string toString();
     bool interpret(inputOutput_t env);
     int depth();
+    vector<int> getLexicalOrder(int num_of_vars, map<string, int>& vars_orders);
     int getNumberOfOpsInProg(string opName);
     int getNumberOfVarsInProg(string varName);
     int getExponentOfVarInProg(string varName);

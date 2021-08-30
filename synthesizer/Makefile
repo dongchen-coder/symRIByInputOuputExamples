@@ -4,7 +4,7 @@ OBJ_DIR=./obj
 BIN_DIR=./bin
 
 CC=g++
-CCFLAG= -std=c++11 -O2 -pipe #-save-temps=obj
+CCFLAG= -std=c++17 -O2 -pipe #-save-temps=obj
 
 symRiSynthesiser.o:
 	$(CC) ${CCFLAG} -c $(SRC_DIR)/symRiSynthesiser.cpp -o $(OBJ_DIR)/symRiSynthesiser.o

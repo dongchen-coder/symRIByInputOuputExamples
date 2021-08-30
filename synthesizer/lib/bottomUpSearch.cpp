@@ -237,7 +237,7 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_
         throw runtime_error("bottomUpSearch::isGrowRuleSatisfied() operates on UNKNOWN type: " + op);
     }
     
-    // form rule
+    // form rule (No redunant expression rules)
     if (op == "PLUS" || op == "MINUS" || op == "TIMES" || op == "LEFTSHIFT" || op == "RIGHTSHIFT") {
         bool is_a_num = dynamic_cast<Num*>(operand_a) != nullptr;
         bool is_a_var = dynamic_cast<Var*>(operand_a) != nullptr;
@@ -300,43 +300,123 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_
         bool is_b_times = dynamic_cast<Times*>(operand_b) != nullptr;
         bool is_b_plus = dynamic_cast<Plus*>(operand_b) != nullptr;
         
-        // remove expr "Nun < Num"
+        // remove expr "Num < Num"
         if (is_a_num && is_b_num) return false;
-        // enforce "no b < *"
-        if (operand_a->getNumberOfVarsInProg("b") != 0) return false;
-        // enforce "one isrc < *"
-        if (operand_a->getNumberOfVarsInProg("isrc") != 1) return false;
-        // enforce "* < no isrc"
-        if (operand_b->getNumberOfVarsInProg("isrc") != 0) return false;
-        if (is_a_plus && is_b_plus) {
+        // remove expr "Num < Num + *" and "Num + * < Num"
+        if (is_a_num && is_b_plus) {
+            auto b_plus = dynamic_cast<Plus*>(operand_b);
+            if (dynamic_cast<Num*>(b_plus->getLeft())) return false;
+        }
+        if (is_b_num && is_a_plus) {
             auto a_plus = dynamic_cast<Plus*>(operand_a);
-            auto b_plus = dynamic_cast<Plus*>(operand_a);
-            // enforce no "num + * < num + *"
-            if (dynamic_cast<Num*>(a_plus->getLeft()) && dynamic_cast<Num*>(b_plus->getLeft())) return false;
-            vector<string> a_terms;
-            // enforce no common terms for +
-            while(a_plus) {
-                a_terms.push_back(a_plus->getLeft()->toString());
-                if (auto a_plus_right = dynamic_cast<Plus*>(a_plus->getRight())) {
-                    a_plus = a_plus_right;
-                } else {
-                    a_terms.push_back(a_plus->getRight()->toString());
-                    break;
+            if (dynamic_cast<Num*>(a_plus->getLeft())) return false;
+        }
+        // remove expr "Num < Num x *" if gcd is not 1
+        if (is_a_num && is_b_times) {
+            auto b_times = dynamic_cast<Times*>(operand_b);
+            if (auto b_coefficient = dynamic_cast<Num*>(b_times->getLeft())) {
+                if (gcd(stoi(operand_a->toString()), stoi(b_coefficient->toString())) != 1)
+                    return false;
+            }
+        }
+        if (is_b_num && is_a_times) {
+            auto a_times = dynamic_cast<Times*>(operand_a);
+            if (auto a_coefficient = dynamic_cast<Num*>(a_times->getLeft())) {
+                if (gcd(stoi(a_coefficient->toString()), stoi(operand_b->toString())) != 1) {
+                    return false;
                 }
             }
-            while(b_plus) {
-                if (find(a_terms.begin(), a_terms.end(), b_plus->getLeft()->toString()) != a_terms.end()) return false;
-                
-                if (auto b_plus_right = dynamic_cast<Plus*>(b_plus->getRight())) {
-                    b_plus = b_plus_right;
-                } else {
-                    if (find(a_terms.begin(), a_terms.end(), b_plus->getRight()->toString()) != a_terms.end()) return false;
-                    break;
+        }
+        
+        // remove "var < var" when var == var
+        if (is_a_var && is_b_var && operand_a->toString() == operand_b->toString()) return false;
+        // remove "var < x ", " x < var", when var is a factor
+        if (is_a_var && is_b_times) {
+            auto b_times = dynamic_cast<Times*>(operand_b);
+            vector<string> b_times_factors = b_times->getFactors();
+            if (find(b_times_factors.begin(), b_times_factors.end(), operand_a->toString()) != b_times_factors.end())
+                return false;
+        }
+        if (is_a_times && is_b_var) {
+            auto a_times = dynamic_cast<Times*>(operand_a);
+            vector<string> a_times_factors = a_times->getFactors();
+            if (find(a_times_factors.begin(), a_times_factors.end(), operand_b->toString()) != a_times_factors.end()) {
+                return false;
+            }
+        }
+        // remove "var < + ", "+ < var", when var is a term
+        if (is_a_var && is_b_plus) {
+            auto b_plus = dynamic_cast<Plus*>(operand_b);
+            vector<string> b_plus_terms = b_plus->getTerms();
+            if (find(b_plus_terms.begin(), b_plus_terms.end(), operand_a->toString()) != b_plus_terms.end()) {
+                return false;
+            }
+        }
+        if (is_a_plus && is_b_var) {
+            auto a_plus = dynamic_cast<Plus*>(operand_a);
+            vector<string> a_plus_terms = a_plus->getTerms();
+            if (find(a_plus_terms.begin(), a_plus_terms.end(), operand_b->toString()) != a_plus_terms.end()) {
+                return false;
+            }
+        }
+        
+        // remove "times < times ", where share same factor
+        if (is_a_times && is_b_times) {
+            auto a_times = dynamic_cast<Times*>(operand_a);
+            auto b_times = dynamic_cast<Times*>(operand_b);
+            vector<string> a_times_factors = a_times->getFactors();
+            vector<string> b_times_factors = b_times->getFactors();
+            for (auto factor : a_times_factors) {
+                if (find(b_times_factors.begin(), b_times_factors.end(), factor) != b_times_factors.end()) {
+                    return false;
+                }
+            }
+        }
+        // remove " time < + ", "+ < time", where time is a term of +
+        if (is_a_times && is_b_plus) {
+            auto a_times = dynamic_cast<Times*>(operand_a);
+            auto b_plus = dynamic_cast<Plus*>(operand_b);
+            vector<string> b_plus_terms = b_plus->getTerms();
+            string a_times_str_no_num;
+            if (dynamic_cast<Num*>(a_times->getLeft())) {
+                a_times_str_no_num = a_times->getRight()->toString();
+            } else {
+                a_times_str_no_num = a_times->toString();
+            }
+            if (find(b_plus_terms.begin(), b_plus_terms.end(), a_times_str_no_num) != b_plus_terms.end()) {
+                return false;
+            }
+        }
+        if (is_a_plus && is_b_times) {
+            auto a_plus = dynamic_cast<Plus*>(operand_a);
+            auto b_times = dynamic_cast<Times*>(operand_b);
+            vector<string> a_plus_terms = a_plus->getTerms();
+            string b_times_str_no_num;
+            if (dynamic_cast<Num*>(b_times->getLeft())) {
+                b_times_str_no_num = b_times->getRight()->toString();
+            } else {
+                b_times_str_no_num = b_times->toString();
+            }
+            if (find(a_plus_terms.begin(), a_plus_terms.end(), b_times_str_no_num) != a_plus_terms.end()) {
+                return false;
+            }
+        }
+        
+        // remove " + < + " with common terms
+        if (is_a_plus && is_b_plus) {
+            auto a_plus = dynamic_cast<Plus*>(operand_a);
+            auto b_plus = dynamic_cast<Plus*>(operand_b);
+            if (dynamic_cast<Num*>(a_plus->getLeft()) && dynamic_cast<Num*>(b_plus->getLeft()))
+                return false;
+            vector<string> a_plus_terms = a_plus->getTerms();
+            vector<string> b_plus_terms = b_plus->getTerms();
+            for (auto term : a_plus_terms) {
+                if (find(b_plus_terms.begin(), b_plus_terms.end(), term) != b_plus_terms.end()) {
+                    return false;
                 }
             }
         }
     }
-    
     if (op == "AND") {
         // no F in AND
         if (dynamic_cast<F*>(operand_a) || dynamic_cast<F*>(operand_b)) return false;
@@ -347,13 +427,36 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_
               dynamic_cast<Not*>(operand_b) ||
               dynamic_cast<Lt*>(operand_b))) return false;
         // no redundant expr
-        // To add
+        vector<int> left_lex = operand_a->getLexicalOrder(_num_of_vars, _vars_orders);
+        vector<int> right_lex;
+        if (auto b_and = dynamic_cast<And*>(operand_b)) {
+            right_lex = b_and->getRight()->getLexicalOrder(_num_of_vars, _vars_orders);
+            if(left_lex == right_lex ||
+               !lexicographical_compare(left_lex.begin(), left_lex.end(),
+                                        right_lex.begin(), right_lex.end()))
+                return false;
+            
+        } else {
+            right_lex = operand_b->getLexicalOrder(_num_of_vars, _vars_orders);
+            if(left_lex == right_lex ||
+               !lexicographical_compare(left_lex.begin(), left_lex.end(),
+                                        right_lex.begin(), right_lex.end()))
+                return false;
+        }
     }
-    
     if (op == "NOT") {
         if (!dynamic_cast<And*>(operand_a)) return false;
     }
     
+    // form rule, prefered forms
+    if (op == "LT") {
+        // enforce "no b < *"
+        if (operand_a->getNumberOfVarsInProg("b") != 0) return false;
+        // enforce "one isrc < *"
+        if (operand_a->getNumberOfVarsInProg("isrc") != 1) return false;
+        // enforce "* < no isrc"
+        if (operand_b->getNumberOfVarsInProg("isrc") != 0) return false;
+    }
     
     return true;
 }

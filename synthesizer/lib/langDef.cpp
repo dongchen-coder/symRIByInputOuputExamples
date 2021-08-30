@@ -29,6 +29,18 @@ int BaseType::depth() {
     }
 }
 
+vector<int> BaseType::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
+    if (auto intType = dynamic_cast<IntType*>(this)) {
+        return intType->getLexicalOrder(num_of_vars, vars_orders);
+    }
+    else if (auto boolType = dynamic_cast<BoolType*>(this)) {
+        return boolType->getLexicalOrder(num_of_vars, vars_orders);
+    }
+    else {
+        throw runtime_error("BaseType::getLexicalOrder() operates on UNKNOWN type!");
+    }
+}
+
 int BaseType::getNumberOfOpsInProg(string opName) {
     if (auto intType = dynamic_cast<IntType*>(this)) {
         return intType->getNumberOfOpsInProg(opName);
@@ -140,6 +152,24 @@ int IntType::depth() {
     }
     else {
         throw runtime_error("IntType::depth() operates on UNKNOWN type!");
+    }
+}
+
+vector<int> IntType::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
+    if (auto num = dynamic_cast<Num*>(this)) {
+        return num->getLexicalOrder(num_of_vars, vars_orders);
+    }
+    else if (auto var = dynamic_cast<Var*>(this)) {
+        return var->getLexicalOrder(num_of_vars, vars_orders);
+    }
+    else if (auto plus = dynamic_cast<Plus*>(this)) {
+        return plus->getLexicalOrder(num_of_vars, vars_orders);
+    }
+    else if (auto times = dynamic_cast<Times*>(this)) {
+        return times->getLexicalOrder(num_of_vars, vars_orders);
+    }
+    else {
+        throw runtime_error("IntType::getLexicalOrder() operates on UNKNOWN type!");
     }
 }
 
@@ -290,6 +320,21 @@ int BoolType::depth() {
     }
 }
 
+vector<int> BoolType::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
+    if (auto n = dynamic_cast<Not*>(this)) {
+        return n->getLexicalOrder(num_of_vars, vars_orders);
+    }
+    else if (auto a = dynamic_cast<And*>(this)) {
+        return a->getLexicalOrder(num_of_vars, vars_orders);
+    }
+    else if (auto lt = dynamic_cast<Lt*>(this)) {
+        return lt->getLexicalOrder(num_of_vars, vars_orders);
+    }
+    else {
+        throw runtime_error("BoolType::getLexicalOrder() operates on UNKOWN type!");
+    }
+}
+
 int BoolType::getNumberOfOpsInProg(string opName) {
     if (auto f = dynamic_cast<F*>(this) ) {
         return f->getNumberOfOpsInProg(opName);
@@ -395,6 +440,12 @@ int Var::depth() {
     return 1;
 }
 
+vector<int> Var::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
+    vector<int> lex(num_of_vars, 0);
+    lex[vars_orders[this->toString()]-1]++;
+    return lex;
+}
+
 int Var::getNumberOfOpsInProg(string opName) {
     return 0;
 }
@@ -434,6 +485,11 @@ int Num::interpret() {
     
 int Num::depth() {
     return 1;
+}
+
+vector<int> Num::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
+    vector<int> lex(num_of_vars, 0);
+    return lex;
 }
 
 int Num::getNumberOfOpsInProg(string opName) {
@@ -670,6 +726,41 @@ IntType* Plus::getLeft() {
 }
 IntType* Plus::getRight() {
     return _right;
+}
+
+vector<string> Plus::getTerms() {
+    vector<string> terms;
+    
+    if (dynamic_cast<Var*>(_left)) {
+        terms.push_back(_left->toString());
+    }
+    else if (auto left_times = dynamic_cast<Times*>(_left)) {
+        if (dynamic_cast<Num*>(left_times->getLeft())) {
+            terms.push_back(left_times->getRight()->toString());
+        } else {
+            terms.push_back(_left->toString());
+        }
+    }
+    
+    if (dynamic_cast<Var*>(_right)) {
+        terms.push_back(_right->toString());
+    }
+    else if (auto right_times = dynamic_cast<Times*>(_right)) {
+        if (dynamic_cast<Num*>(right_times->getRight())) {
+            terms.push_back(right_times->getRight()->toString());
+        } else {
+            terms.push_back(_right->toString());
+        }
+    }
+    else if (auto right_plus = dynamic_cast<Plus*>(_right)) {
+        vector<string> terms_right = right_plus->getTerms();
+        terms.insert(terms.end(), terms_right.begin(), terms_right.end());
+    }
+    return terms;
+}
+
+vector<int> Plus::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
+    return _right->getLexicalOrder(num_of_vars, vars_orders);
 }
 
 int Plus::getNumberOfOpsInProg(string opName) {
@@ -1137,6 +1228,43 @@ IntType* Times::getLeft() {
 }
 IntType* Times::getRight() {
     return _right;
+}
+
+vector<string> Times::getFactors() {
+    vector<string> factors;
+    if (dynamic_cast<Var*>(_left)) {
+        factors.push_back(_left->toString());
+    }
+    if (dynamic_cast<Var*>(_right)) {
+        factors.push_back(_right->toString());
+    }
+    if (auto right_times = dynamic_cast<Times*>(_right)) {
+        vector<string> factors_right = right_times->getFactors();
+        factors.insert(factors.end(), factors_right.begin(), factors_right.end());
+    }
+    return factors;
+}
+
+vector<int> Times::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
+    vector<int> lex_left(num_of_vars, 0);
+    vector<int> lex_right(num_of_vars, 0);
+    //lex[vars_orders[this->toString()]-1]++;
+    if (auto left_num = dynamic_cast<Num*>(_left)) {
+        lex_left = left_num->getLexicalOrder(num_of_vars, vars_orders);
+    }
+    else if (auto left_var = dynamic_cast<Var*>(_left)) {
+        lex_left = left_var->getLexicalOrder(num_of_vars, vars_orders);
+    }
+    if (auto right_var = dynamic_cast<Var*>(_right)) {
+        lex_right = right_var->getLexicalOrder(num_of_vars, vars_orders);
+    }
+    else if (auto right_times = dynamic_cast<Times*>(_right)) {
+        lex_right = right_var->getLexicalOrder(num_of_vars, vars_orders);
+    }
+    for (int i = 0; i < num_of_vars; i++) {
+        lex_left[i] += lex_right[i];
+    }
+    return lex_left;
 }
 
 int Times::getNumberOfOpsInProg(string opName) {
@@ -2408,6 +2536,13 @@ IntType* Lt::getRight() {
     return _right;
 }
 
+vector<int> Lt::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
+    vector<int> left_lex = _left->getLexicalOrder(num_of_vars, vars_orders);
+    vector<int> right_lex = _right->getLexicalOrder(num_of_vars, vars_orders);
+    left_lex.insert(left_lex.end(), right_lex.begin(), right_lex.end());
+    return left_lex;
+}
+
 int Lt::getNumberOfOpsInProg(string opName) {
     if (opName == "LT" || opName == "ALL") {
         return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName) + 1;
@@ -2555,6 +2690,10 @@ BoolType* And::getRight() {
     return _right;
 }
 
+vector<int> And::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
+    return _right->getLexicalOrder(num_of_vars, vars_orders);
+}
+
 int And::getNumberOfOpsInProg(string opName) {
     if (opName == "AND" || opName == "ALL") {
         return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName) + 1;
@@ -2633,6 +2772,10 @@ int Not::depth() {
     } else {
         throw runtime_error("Not::depth() operates on UNKNOWN type!");
     }
+}
+
+vector<int> Not::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
+    return _left->getLexicalOrder(num_of_vars, vars_orders);
 }
 
 int Not::getNumberOfOpsInProg(string opName) {

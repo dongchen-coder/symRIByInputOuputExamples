@@ -4,6 +4,7 @@
 #include "langDef.hpp"
 #include "typeDef.hpp"
 #include <algorithm>
+#include <numeric>
 #include <future>
 #include <chrono>
 #include <thread>
@@ -11,7 +12,7 @@
 
 using namespace std;
 
-#define DEBUG
+//#define DEBUG
 
 class bottomUpSearch {
 public:
