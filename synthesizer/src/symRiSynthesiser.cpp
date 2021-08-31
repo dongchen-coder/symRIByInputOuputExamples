@@ -9,6 +9,7 @@
 #include <functional>
 #include <string>
 #include <fstream>
+#include <sstream>
 using namespace std;
 
 //#define DEBUG
@@ -370,71 +371,93 @@ void langConfiguration(int* depthBoundPred,
     return;
 }
 
+void filterNonKeyIOEs(inputOutputs_t* inputOutputs) {
+    // find the set of bound variables and values
+    set<string> bound_vars;
+    set<int> bound_value;
+    for (auto ioe : *inputOutputs) {
+        for (auto [var, cnt] : ioe) {
+            if (var.find("b") != string::npos) {
+                bound_vars.insert(var);
+                bound_value.insert(cnt);
+            }
+        }
+    }
+    
+    map<int, int> bound_value_to_index;
+    int index = 0;
+    for (auto v : bound_value) {
+        bound_value_to_index[v] = index;
+        index++;
+    }
+    
+    // replace bound variables from values to indices
+    map<vector<int>, int> bound_space;
+    int m = bound_vars.size();
+    for (auto ioe : *inputOutputs) {
+        vector<int> bound_vec;
+        for (int i = 0; i < m; i++) {
+            bound_vec.push_back(bound_value_to_index[ioe["b" + to_string(i)]]);
+        }
+        bound_space[bound_vec] = ioe["_out"];
+    }
+    
+    // mark non-key ioe in bound_space
+    set<vector<int>> non_key_ioes;
+    for (auto [vec0, value0] : bound_space) {
+        int same_cnt = 0;
+        for (auto [vec1, value1] : bound_space) {
+            int distant = 0;
+            for (int i = 0; i < vec0.size(); i++) {
+                distant += (vec0[i] - vec1[i]) * (vec0[i] - vec1[i]);
+            }
+            if (distant == 1 && value0 != value1)
+                same_cnt++;
+        }
+        if (same_cnt == 0) {
+            non_key_ioes.insert(vec0);
+        }
+    }
+    auto it = inputOutputs->begin();
+    while(it != inputOutputs->end()) {
+        auto ioe = *it;
+        vector<int> bound_vec;
+        for (int i = 0; i < m; i++) {
+            bound_vec.push_back(bound_value_to_index[ioe["b" + to_string(i)]]);
+        }
+        if (find(non_key_ioes.begin(), non_key_ioes.end(), bound_vec) != non_key_ioes.end()) {
+            it = inputOutputs->erase(it);
+        } else {
+            ++it;
+        }
+    }
+}
+
 bool readInputOutput(string fileName, inputOutputs_t* inputOutputs) {
     ifstream ifs;
     ifs.open(fileName, ifstream::in);
     string line;
     
     while (getline(ifs, line)) {
-        string var = "";
-        string value = "";
-        int spaceCnt = 0;
         inputOutput_t inputOutput;
-        for (int i = 0; i < line.size(); i++) {
-            if (line[i] == ' ') {
-                if (spaceCnt % 2 == 0) {
-                    value = "";
-                } else {
-                    if (isdigit(value[0])) {
-                        inputOutput[var] = stoi(value);
-                    } else {
-                        cout << "value need to be int" << endl;
-                        return false;
-                    }
-                    var = "";
-                }
-                spaceCnt ++;
-            } else {
-                if (spaceCnt % 2 == 0) {
-                    var.push_back(line[i]);
-                } else {
-                    value.push_back(line[i]);
-                }
-            }
+        
+        stringstream ss(line);
+        string var;
+        int value;
+        while (ss >> var) {
+            ss >> value;
+            inputOutput[var] = value;
         }
-        if (isdigit(value[0])) {
-            inputOutput[var] = stoi(value);
-        } else if (value == "X") {
-            inputOutput[var] = -1;
-        } else {
-            cout << "value need to be int" << endl;
-            return false;
-        }
-        bool eliminateFlag = false;
-        for (auto elm : inputOutput) {
-            if (elm.first != "_out") {
-                if (elm.second == 6 || elm.second == 12 || elm.second == 24) {
-                    eliminateFlag = true;
-                    break;
-                }
-            }
-        }
-        if (eliminateFlag == false) {
+        
+        if (!inputOutput.empty())
             inputOutputs->push_back(inputOutput);
-        }
-    }
-    /*
-    int zeroOutCnt = 0;
-    for (auto elm : inputOutputs) {
-        if (elm["_out"] == 0) {
-            zeroOutCnt ++;
-        }
+        
     }
     
-    if (zeroOutCnt > 10) {
-        cout << "Zero Cnt " << zeroOutCnt << endl;
-    }
-    */
+    ifs.close();
+    
+    filterNonKeyIOEs(inputOutputs);
+    
     return true;
 }
 
