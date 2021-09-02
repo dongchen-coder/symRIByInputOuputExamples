@@ -383,7 +383,6 @@ void filterNonKeyIOEs(inputOutputs_t* inputOutputs) {
             }
         }
     }
-    
     map<int, int> bound_value_to_index;
     int index = 0;
     for (auto v : bound_value) {
@@ -418,7 +417,46 @@ void filterNonKeyIOEs(inputOutputs_t* inputOutputs) {
             non_key_ioes.insert(vec0);
         }
     }
+    
+    map<int, set<vector<int>>> reserved_ioes;
     auto it = inputOutputs->begin();
+    while(it != inputOutputs->end()) {
+        auto ioe = *it;
+        vector<int> bound_vec;
+        for (int i = 0; i < m; i++) {
+            bound_vec.push_back(bound_value_to_index[ioe["b" + to_string(i)]]);
+        }
+        if (find(non_key_ioes.begin(), non_key_ioes.end(), bound_vec) == non_key_ioes.end()) {
+            //it = inputOutputs->erase(it);
+            //} else {
+            reserved_ioes[ioe["_out"]].insert(bound_vec);
+        }
+        ++it;
+    }
+    
+    for (auto [out, set_v] : reserved_ioes) {
+        for (int i = 1; i < set_v.size()-1; i++) {
+            auto v1 = *next(set_v.begin(), i-1);
+            auto v2 = *next(set_v.begin(), i);
+            auto v3 = *next(set_v.begin(), i+1);
+            vector<int> diff_v1_v2;
+            vector<int> diff_v2_v3;
+            for (int j = 0; j < v1.size(); j++) {
+                diff_v1_v2.push_back(v2[j]-v1[j]);
+            }
+            for (int j = 0; j < v2.size(); j++) {
+                diff_v2_v3.push_back(v3[j]-v2[j]);
+            }
+            if (diff_v1_v2 == diff_v2_v3) {
+                non_key_ioes.insert(v2);
+            }
+        }
+    }
+    
+    //cout << bound_space.size() << " ";
+    //cout << non_key_ioes.size() << endl;
+    
+    it = inputOutputs->begin();
     while(it != inputOutputs->end()) {
         auto ioe = *it;
         vector<int> bound_vec;
@@ -431,6 +469,7 @@ void filterNonKeyIOEs(inputOutputs_t* inputOutputs) {
             ++it;
         }
     }
+    
 }
 
 bool readInputOutput(string fileName, inputOutputs_t* inputOutputs) {
@@ -456,7 +495,9 @@ bool readInputOutput(string fileName, inputOutputs_t* inputOutputs) {
     
     ifs.close();
     
+    //cout << "Resize IOE " << inputOutputs->size() << " to ";
     filterNonKeyIOEs(inputOutputs);
+    //cout << inputOutputs->size() << endl;
     
     return true;
 }

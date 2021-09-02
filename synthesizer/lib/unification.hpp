@@ -11,8 +11,6 @@
 
 //#define DEBUG
 
-//using namespace std;
-
 struct inputOutputTreeNode {
     inputOutputs_t inputOutputs;
     string searchedProg;
