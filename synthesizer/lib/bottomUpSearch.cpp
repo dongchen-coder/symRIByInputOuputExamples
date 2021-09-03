@@ -572,7 +572,7 @@ void bottomUpSearch::grow(int prog_generation) {
         }
         else if (op == "AND") {
             for (int j = 0; j < _pList.size(); j++) {
-                for (int k = j+1; k < _pList.size(); k++) {
+                for (int k = 0; k < _pList.size(); k++) {
                     BaseType* newExpr = growOneExpr(_pList[j], _pList[k], nullptr, op, prog_generation);
                     if (newExpr != nullptr) {
                         newPList.push_back(newExpr);
@@ -582,7 +582,7 @@ void bottomUpSearch::grow(int prog_generation) {
         }
         else if (op == "LT") {
             for (int j = 0; j < _pList.size(); j++) {
-                for (int k = j+1; k < _pList.size(); k++) {
+                for (int k = 0; k < _pList.size(); k++) {
                     BaseType* newExpr = growOneExpr(_pList[j], _pList[k], nullptr, op, prog_generation);
                     if (newExpr != nullptr) {
                         newPList.push_back(newExpr);
