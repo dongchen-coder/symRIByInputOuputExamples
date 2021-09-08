@@ -119,6 +119,42 @@ string IntType::toString() {
     }
 }
 
+int IntType::interpret(inputOutput_t env) {
+    if (auto num = dynamic_cast<Num*>(this)) {
+        return num->interpret();
+    }
+    else if (auto var = dynamic_cast<Var*>(this)) {
+        return var->interpret(env);
+    }
+    else if (auto plus = dynamic_cast<Plus*>(this)) {
+        return plus->interpret(env);
+    }
+    else if (auto minus = dynamic_cast<Minus*>(this)) {
+        return minus->interpret(env);
+    }
+    else if (auto times = dynamic_cast<Times*>(this)) {
+        return times->interpret(env);
+    }
+    else if (auto div = dynamic_cast<Div*>(this)) {
+        return div->interpret(env);
+    }
+    else if (auto mn = dynamic_cast<Min*>(this)) {
+        return mn->interpret(env);
+    }
+    else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
+        return leftshift->interpret(env);
+    }
+    else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
+        return rightshift->interpret(env);
+    }
+    else if (auto ite = dynamic_cast<Ite*>(this)) {
+        return ite->interpret(env);
+    }
+    else {
+        throw runtime_error("IntType::interpret() operates on UNKNOWN type!");
+    }
+}
+
 int IntType::depth() {
     if (auto num = dynamic_cast<Num*>(this)) {
         return num->depth();

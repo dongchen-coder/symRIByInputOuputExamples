@@ -294,10 +294,10 @@ void langConfiguration(int* depthBoundPred,
      */
     if (intOpsPred->size() == 0) {
         intOpsPred->push_back("VAR");
-        //intOpsPred->push_back("NUM");
+        intOpsPred->push_back("NUM");
         intOpsPred->push_back("PLUS");
         //intOpsPred->push_back("MINUS");
-        //intOpsPred->push_back("TIMES");
+        intOpsPred->push_back("TIMES");
         //intOpsPred->push_back("ITE");
     }
       
@@ -309,14 +309,19 @@ void langConfiguration(int* depthBoundPred,
     }
     
     if (constantsPred->size() == 0) {
-        //constantsPred->push_back("0");
-        //constantsPred->push_back("1");
+        constantsPred->push_back("0");
+        constantsPred->push_back("1");
         constantsPred->push_back("2");
-        //constantsPred->push_back("3");
-        //constantsPred->push_back("4");
-        //constantsPred->push_back("5");
-        //constantsPred->push_back("6");
-        //constantsPred->push_back("-1");
+        constantsPred->push_back("3");
+        constantsPred->push_back("5");
+        constantsPred->push_back("7");
+        constantsPred->push_back("11");
+        constantsPred->push_back("13");
+        constantsPred->push_back("17");
+        constantsPred->push_back("19");
+        constantsPred->push_back("23");
+        constantsPred->push_back("29");
+        constantsPred->push_back("31");
     }
     
     if (*depthBoundTerm == -1) {
@@ -340,20 +345,19 @@ void langConfiguration(int* depthBoundPred,
     }
     
     if (constantsTerm->size() == 0) {
-        //constantsTerm->push_back("0");
+        constantsTerm->push_back("0");
         constantsTerm->push_back("1");
         constantsTerm->push_back("2");
         constantsTerm->push_back("3");
-        constantsTerm->push_back("4");
         constantsTerm->push_back("5");
-        constantsTerm->push_back("6");
         constantsTerm->push_back("7");
-        constantsTerm->push_back("8");
-        constantsTerm->push_back("9");
-        constantsTerm->push_back("10");
         constantsTerm->push_back("11");
-        constantsTerm->push_back("12");
-        constantsTerm->push_back("-1");
+        constantsTerm->push_back("13");
+        constantsTerm->push_back("17");
+        constantsPred->push_back("19");
+        constantsPred->push_back("23");
+        constantsPred->push_back("29");
+        constantsPred->push_back("31");
     }
     
     /*

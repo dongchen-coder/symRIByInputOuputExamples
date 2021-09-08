@@ -24,6 +24,7 @@ class IntType : public BaseType {
 public:
     IntType();
     string toString();
+    int interpret(inputOutput_t env);
     int depth();
     vector<int> getLexicalOrder(int num_of_vars, map<string, int>& vars_orders);
     int getNumberOfOpsInProg(string opName);

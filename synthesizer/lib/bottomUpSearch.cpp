@@ -47,28 +47,41 @@ bottomUpSearch::bottomUpSearch(int depthBound,
                                bool isPred,
                                vector<string> rulesToApply,
                                inputOutputs_t inputOutputs) {
-    this->_depthBound = depthBound;
-    this->_intOps = intOps;
-    this->_boolOps = boolOps;
-    this->_vars = vars;
-    this->_constants = constants;
-    this->_inputOutputs = inputOutputs;
-    this->_isPred = isPred;
+    _depthBound = depthBound;
+    _intOps = intOps;
+    _boolOps = boolOps;
+    _constants = constants;
+    _inputOutputs = inputOutputs;
+    _isPred = isPred;
+    
+    if (isPred) {
+        _vars = vars;
+    } else {
+        for (auto v : vars) {
+            if (v.find("b") != string::npos) {
+                _vars.push_back(v);
+            }
+        }
+    }
     
     int var_order = 1;
-    for(auto varStr : vars) {
+    for(auto varStr : _vars) {
         Var* var = new Var(varStr);
         BaseType* baseVar = dynamic_cast<BaseType*>(var);
         this->_pList.push_back(baseVar);
         this->_vars_orders[varStr] = var_order;
         var_order++;
     }
-    _num_of_vars = vars.size();
+    _num_of_vars = _vars.size();
     
     for (auto numStr : constants) {
         Num* num = new Num(stoi(numStr));
         BaseType* baseNum = dynamic_cast<BaseType*>(num);
         this->_pList.push_back(baseNum);
+    }
+    
+    for (auto ioe : inputOutputs) {
+        this->_max_output = max(this->_max_output, ioe["_out"]);
     }
 }
 
@@ -192,24 +205,25 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_
     if (cur_generation + 1 != prog_generation) return false;
     
     // value rule
-    auto a = dynamic_cast<Num*>(operand_a);
-    auto b = dynamic_cast<Num*>(operand_b);
-    if (a && b) {
+    auto a_num = dynamic_cast<Num*>(operand_a);
+    auto b_num = dynamic_cast<Num*>(operand_b);
+    if (a_num && b_num) {
         if (op != "TIMES") return false;
-        int num_a = a->interpret();
-        int num_b = b->interpret();
-        int num_c = num_a * num_b;
-        if (num_c < 2 || num_a < 2 || num_b < 2) return false;
+        int a_value = a_num->interpret();
+        int b_value = b_num->interpret();
+        int c_value = a_value * b_value;
+        if (c_value < 2 || a_value < 2 || b_value < 2) return false;
+        //if (c_value < 20) return true;
     }
-    if (a && b == nullptr) {
-        int num_a = a->interpret();
-        if (num_a < 2 && op == "TIMES") return false;
-        if (num_a == 0 && op == "PLUS") return false;
+    if (a_num && b_num == nullptr) {
+        int a_value = a_num->interpret();
+        if (a_value < 2 && op == "TIMES") return false;
+        if (a_value == 0 && op == "PLUS") return false;
     }
-    if (a == nullptr && b) {
-        int num_b = b->interpret();
-        if (num_b < 2 && op == "TIMES") return false;
-        if (num_b == 0 && op == "PLUS") return false;
+    if (a_num == nullptr && b_num) {
+        int b_value = b_num->interpret();
+        if (b_value < 2 && op == "TIMES") return false;
+        if (b_value == 0 && op == "PLUS") return false;
     }
     
     // type rule
@@ -456,6 +470,14 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_
         if (operand_a->getNumberOfVarsInProg("isrc") != 1) return false;
         // enforce "* < no isrc"
         if (operand_b->getNumberOfVarsInProg("isrc") != 0) return false;
+    }
+    if (op == "TIMES") {
+        // enforce a * Var, a <= 20
+        if (auto a_num = dynamic_cast<Num*>(operand_a)) {
+            if (a_num->interpret() > 20) return false;
+        }
+        if (operand_a->getNumberOfVarsInProg("b") + operand_b->getNumberOfVarsInProg("b") > 3)
+            return false;
     }
     
     return true;
@@ -839,6 +861,12 @@ void bottomUpSearch::elimEquvalents() {
         }
         BaseType* pi = _pList[i];
         
+        /* reserve all variables */
+        if (dynamic_cast<Var*>(pi)) {
+            progToKeepList.push_back(pi);
+            continue;
+        }
+        
         /* Find all programs that equal */
         vector<BaseType*> eqPList;
         eqPList.push_back(pi);
@@ -874,6 +902,33 @@ void bottomUpSearch::elimEquvalents() {
     _boolResultRecord.clear();
     _intResultRecord.clear();
     _pList = progToKeepList;
+    return;
+}
+
+void bottomUpSearch::elimMaxEvaluatedValueOutOfBounds() {
+    vector<bool> keep_flag(_pList.size(), true);
+    //cout << _pList.size() << " ";
+    for (int i = 0; i < _pList.size(); i++) {
+        BaseType* program = _pList[i];
+        if (auto int_program = dynamic_cast<IntType*>(program)) {
+            for (auto ioe : _inputOutputs) {
+                int program_value = int_program->interpret(ioe);
+                if (program_value > _max_output) {
+                    keep_flag[i] = false;
+                    break;
+                }
+            }
+        }
+    }
+    
+    vector<BaseType*> programs_to_keep;
+    for (int i = 0; i < _pList.size(); i++) {
+        if (keep_flag[i]) {
+            programs_to_keep.push_back(_pList[i]);
+        }
+    }
+    _pList = programs_to_keep;
+    //cout << _pList.size() << endl;
     return;
 }
 
@@ -961,8 +1016,10 @@ string bottomUpSearch::search() {
 #ifdef DEBUG
         cout << "Current pList size " << getPlistSize() << ", eliminate equvalents" << endl;
 #endif
-        elimEquvalents();
-        //if (_isPred) dumpPlist();
+        if (!_isPred) elimMaxEvaluatedValueOutOfBounds();
+        if (_isPred) elimEquvalents();
+        
+        //if (!_isPred) dumpPlist();
 #ifdef DEBUG
         cout << "Current pList size " << getPlistSize() << ", check correct" << endl;
 #endif

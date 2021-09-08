@@ -42,6 +42,7 @@ private:
     /* Eliminate equalivlent programs */
     inline BaseType* elimOneProgWithRules(BaseType* pi, BaseType* pj);
     void elimEquvalents();
+    void elimMaxEvaluatedValueOutOfBounds();
     
     /* Check whether there is a correct program in program list */
     inline string getCorrect(int prog_generation);
@@ -77,6 +78,7 @@ private:
     
     /* Input-output examples */
     inputOutputs_t _inputOutputs;
+    int _max_output = 0;
 
     /* Language defination */
     int _depthBound;
