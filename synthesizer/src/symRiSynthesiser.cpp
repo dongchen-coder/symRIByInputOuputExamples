@@ -492,9 +492,10 @@ bool readInputOutput(string fileName, inputOutputs_t* inputOutputs) {
             inputOutput[var] = value;
         }
         
-        if (!inputOutput.empty())
+        if (!inputOutput.empty()) {
+            //inputOutput["_out"] /= 10;
             inputOutputs->push_back(inputOutput);
-        
+        }
     }
     
     ifs.close();

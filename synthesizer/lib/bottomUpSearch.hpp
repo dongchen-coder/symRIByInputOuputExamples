@@ -53,7 +53,9 @@ private:
     inline int getPlistSize();
     
     /* grow expression rules */
-    vector<int> getTimesLexicalOrder(IntType* prog);
+    inline bool depth_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation);
+    inline bool elimination_free_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation);
+    inline bool form_bias_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation);
     bool isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, string op, int prog_generation);
     
     /* Construct one expression: op i j */

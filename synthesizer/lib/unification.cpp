@@ -30,6 +30,12 @@ unification::unification(int depthBoundPred,
     this->rulesToApply = rulesToApply;
     
     this->inputOutputTree = new inputOutputTreeNode(inputOutputs);
+    for (auto ioe : inputOutputs) {
+        if (ioe["_out"] == 0) {
+            this->_has_zero_in_ioes = true;
+            break;
+        }
+    }
 }
 
 /*
@@ -147,7 +153,9 @@ string unification::searchNode(int searchTimeForTermsInSeconds,
     dumpInputOutputTreeNode(node, "");
 #endif
     
-    string searchedProg = searchNodeOnePass(searchTimeForTermsInSeconds, node);
+    string searchedProg = "";
+    if (!_has_zero_in_ioes) searchedProg = searchNodeOnePass(searchTimeForTermsInSeconds, node);
+    _has_zero_in_ioes = false;
     
     /* search a solution for corrent node */
     if (searchedProg == "") {

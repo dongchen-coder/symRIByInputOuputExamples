@@ -178,53 +178,20 @@ void bottomUpSearch::dumpLangDef() {
 /******************************************
     Specify and check  growing rules
 */
-vector<int> bottomUpSearch::getTimesLexicalOrder(IntType* prog) {
-    vector<int> lex(_num_of_vars, 0);
-    if (auto prog_times = dynamic_cast<Times*>(prog)) {
-        vector<int> left_lex = getTimesLexicalOrder(prog_times->getLeft());
-        vector<int> right_lex = getTimesLexicalOrder(prog_times->getRight());
-        for (int i = 0; i < left_lex.size(); i++) lex[i] = (left_lex[i] + right_lex[i]);
-    }
-    else if (auto prog_var = dynamic_cast<Var*>(prog)) {
-        lex[_vars_orders[prog_var->toString()]-1]++;
-    }
-    return lex;
-}
 
-bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation) {
-    // depth rule
+inline bool bottomUpSearch::depth_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation) {
     if (operand_a && operand_a->depth() >= _depthBound) return false;
     if (operand_b && operand_b->depth() >= _depthBound) return false;
     if (operand_c && operand_c->depth() >= _depthBound) return false;
-    
-    // generation rule
+    return true;
+}
+
+inline bool bottomUpSearch::elimination_free_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation) {
     int cur_generation = 0;
     if (operand_a) cur_generation = max(cur_generation, operand_a->depth());
     if (operand_b) cur_generation = max(cur_generation, operand_b->depth());
     if (operand_c) cur_generation = max(cur_generation, operand_c->depth());
     if (cur_generation + 1 != prog_generation) return false;
-    
-    // value rule
-    auto a_num = dynamic_cast<Num*>(operand_a);
-    auto b_num = dynamic_cast<Num*>(operand_b);
-    if (a_num && b_num) {
-        if (op != "TIMES") return false;
-        int a_value = a_num->interpret();
-        int b_value = b_num->interpret();
-        int c_value = a_value * b_value;
-        if (c_value < 2 || a_value < 2 || b_value < 2) return false;
-        //if (c_value < 20) return true;
-    }
-    if (a_num && b_num == nullptr) {
-        int a_value = a_num->interpret();
-        if (a_value < 2 && op == "TIMES") return false;
-        if (a_value == 0 && op == "PLUS") return false;
-    }
-    if (a_num == nullptr && b_num) {
-        int b_value = b_num->interpret();
-        if (b_value < 2 && op == "TIMES") return false;
-        if (b_value == 0 && op == "PLUS") return false;
-    }
     
     // type rule
     if (op == "PLUS" || op == "MINUS" || op == "TIMES" || op == "LT" || op == "LEFTSHIFT" || op == "RIGHTSHIFT") {
@@ -249,6 +216,28 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_
     }
     else {
         throw runtime_error("bottomUpSearch::isGrowRuleSatisfied() operates on UNKNOWN type: " + op);
+    }
+    
+    // grow NUM only by TIMES
+    auto a_num = dynamic_cast<Num*>(operand_a);
+    auto b_num = dynamic_cast<Num*>(operand_b);
+    if (a_num && b_num) {
+        if (op != "TIMES") return false;
+        int a_value = a_num->interpret();
+        int b_value = b_num->interpret();
+        int c_value = a_value * b_value;
+        if (c_value < 2 || a_value < 2 || b_value < 2) return false;
+        else return true;
+    }
+    // no 0/1 TIMES op_b
+    if (a_num && b_num == nullptr) {
+        int a_value = a_num->interpret();
+        if (a_value < 2 && op == "TIMES") return false;
+        if (a_value == 0 && op == "PLUS") return false;
+    }
+    // no NUM on the right handside of TIMES and PLUS
+    if (b_num && (op == "TIMES" || op == "PLUS")) {
+        return false;
     }
     
     // form rule (No redunant expression rules)
@@ -284,8 +273,8 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_
             if ( !(is_a_num || is_a_var || is_a_times) ) return false;
             if ( !(is_b_var || is_b_times || is_b_plus) ) return false;
             if ( (is_a_var || is_a_times) && (is_b_var || is_b_times)) {
-                vector<int> a_lex =  getTimesLexicalOrder(dynamic_cast<IntType*>(operand_a));
-                vector<int> b_lex =  getTimesLexicalOrder(dynamic_cast<IntType*>(operand_b));
+                vector<int> a_lex =  operand_a->getLexicalOrder(_num_of_vars, _vars_orders);
+                vector<int> b_lex =  operand_b->getLexicalOrder(_num_of_vars, _vars_orders);
                 if (a_lex == b_lex ||
                     !lexicographical_compare(a_lex.begin(), a_lex.end(),
                                             b_lex.begin(), b_lex.end()))
@@ -293,8 +282,8 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_
             }
             if ( is_b_plus ) {
                 auto b_plus = dynamic_cast<Plus*>(operand_b);
-                vector<int> a_lex =  getTimesLexicalOrder(dynamic_cast<IntType*>(operand_a));
-                vector<int> b_plus_left_lex = getTimesLexicalOrder(b_plus->getLeft());
+                vector<int> a_lex =  operand_a->getLexicalOrder(_num_of_vars, _vars_orders);
+                vector<int> b_plus_left_lex = operand_b->getLexicalOrder(_num_of_vars, _vars_orders);
                 if(a_lex == b_plus_left_lex ||
                    !lexicographical_compare(a_lex.begin(), a_lex.end(),
                                            b_plus_left_lex.begin(), b_plus_left_lex.end()))
@@ -462,25 +451,48 @@ bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_
         if (!dynamic_cast<And*>(operand_a)) return false;
     }
     
+    return true;
+}
+
+inline bool bottomUpSearch::form_bias_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation) {
+    /*
+    auto a_num = dynamic_cast<Num*>(operand_a);
+    auto b_num = dynamic_cast<Num*>(operand_b);
+    if (a_num && b_num) {
+        int c;
+        if (op == "TIMES") c = a_num->interpret() * b_num->interpret();
+        if (op == "PLUS") c = a_num->interpret() + b_num->interpret();
+        if (c > 100) return false;
+    }
+    */
     // form rule, prefered forms
     if (op == "LT") {
         // enforce "no b < *"
-        if (operand_a->getNumberOfVarsInProg("b") != 0) return false;
+        if (operand_a->getNumberOfVarsInProg("b") != 0 && operand_b->getNumberOfVarsInProg("b") != 0) return false;
+        if (operand_a->getNumberOfVarsInProg("b") == 0 && operand_b->getNumberOfVarsInProg("b") == 0) return false;
         // enforce "one isrc < *"
-        if (operand_a->getNumberOfVarsInProg("isrc") != 1) return false;
+        if (operand_a->getNumberOfVarsInProg("isrc") != 0 && operand_b->getNumberOfVarsInProg("isrc") != 0) return false;
+        if (operand_a->getNumberOfVarsInProg("isrc") == 0 && operand_b->getNumberOfVarsInProg("isrc") == 0) return false;
         // enforce "* < no isrc"
-        if (operand_b->getNumberOfVarsInProg("isrc") != 0) return false;
+        //if (operand_b->getNumberOfVarsInProg("isrc") != 0) return false;
     }
     if (op == "TIMES") {
         // enforce a * Var, a <= 20
+        /*
         if (auto a_num = dynamic_cast<Num*>(operand_a)) {
             if (a_num->interpret() > 20) return false;
         }
-        if (operand_a->getNumberOfVarsInProg("b") + operand_b->getNumberOfVarsInProg("b") > 3)
+         */
+        if (operand_a->getNumberOfVarsInProg("VAR") + operand_b->getNumberOfVarsInProg("VAR") > 4)
             return false;
     }
-    
     return true;
+}
+
+bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation) {
+    return depth_rule(operand_a, operand_b, operand_c, op, prog_generation) &&
+    elimination_free_rule(operand_a, operand_b, operand_c, op, prog_generation) &&
+           form_bias_rule(operand_a, operand_b, operand_c, op, prog_generation);
 }
 
 /******************************************
@@ -907,13 +919,12 @@ void bottomUpSearch::elimEquvalents() {
 
 void bottomUpSearch::elimMaxEvaluatedValueOutOfBounds() {
     vector<bool> keep_flag(_pList.size(), true);
-    //cout << _pList.size() << " ";
     for (int i = 0; i < _pList.size(); i++) {
         BaseType* program = _pList[i];
         if (auto int_program = dynamic_cast<IntType*>(program)) {
             for (auto ioe : _inputOutputs) {
                 int program_value = int_program->interpret(ioe);
-                if (program_value > _max_output) {
+                if (program_value > ioe["_out"] && ioe["_out"] != 0) {
                     keep_flag[i] = false;
                     break;
                 }
@@ -928,7 +939,6 @@ void bottomUpSearch::elimMaxEvaluatedValueOutOfBounds() {
         }
     }
     _pList = programs_to_keep;
-    //cout << _pList.size() << endl;
     return;
 }
 

@@ -68,6 +68,7 @@ private:
     
     /* Cluster the input-output examples to subsets for divde-and-conqure */
     inputOutputTreeNode* inputOutputTree;
+    bool _has_zero_in_ioes = false;
     
     /* Language definition for predicates */
     int depthBoundPred;
