@@ -52,6 +52,10 @@ string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNod
     
     string searchedProg = "";
     
+#ifdef DEBUG
+    cerr << "Start child process to run with " << timeBoundInSeconds << " seconds" << endl;
+#endif
+    
     if (pid == 0) {
         unsigned secsLeft = timeBoundInSeconds;
         alarm(secsLeft); // no handler (terminate proc)
@@ -78,7 +82,7 @@ string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNod
                                                      node->inputOutputs);
             searchedProg = bus->search();
         }
-        secsLeft = alarm(0);
+        alarm(0);
         // maybe write (MAX_SECONDS - secsLeft) to a file
         
         /* write searched program to pipe, to parent process */
@@ -98,6 +102,8 @@ string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNod
         read(fd[0], readBuffer, sizeof(readBuffer));
         close(fd[0]);
         
+        
+        stringstream ss(readBuffer);
         int acturalSize = 0;
         while(acturalSize < 1000) {
             if (readBuffer[acturalSize] != 0) {
@@ -120,7 +126,7 @@ string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNod
             else {
 #ifdef DEBUG
                 // child interrupted by another signal
-                cout << "interrupted by another signal in bottom up search" << endl;
+                cout << "interrupted by another signal in bottom up search: " << status << endl;
 #endif
             }
         }

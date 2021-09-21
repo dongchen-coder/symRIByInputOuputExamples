@@ -6,10 +6,11 @@
 #include <algorithm>
 #include <vector>
 #include <unistd.h>
+#include <sstream>
 #include <sys/types.h>
 #include <sys/wait.h>
 
-//#define DEBUG
+#define DEBUG
 
 struct inputOutputTreeNode {
     inputOutputs_t inputOutputs;

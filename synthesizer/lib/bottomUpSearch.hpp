@@ -12,7 +12,7 @@
 
 using namespace std;
 
-//#define DEBUG
+#define DEBUG
 
 class bottomUpSearch {
 public:
@@ -50,10 +50,11 @@ private:
     /* Dumping function */
     void dumpPlist();
     void dumpPlist(vector<BaseType*> pList);
-    inline int getPlistSize();
     
     /* grow expression rules */
     inline bool depth_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation);
+    inline bool generation_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation);
+    inline bool type_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation);
     inline bool elimination_free_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation);
     inline bool form_bias_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation);
     bool isGrowRuleSatisfied(BaseType* i, BaseType* j, BaseType* k, string op, int prog_generation);

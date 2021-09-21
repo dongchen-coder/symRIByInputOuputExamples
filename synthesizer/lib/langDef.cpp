@@ -29,6 +29,30 @@ int BaseType::depth() {
     }
 }
 
+int BaseType::get_generation() {
+    if (auto intType = dynamic_cast<IntType*>(this)) {
+        return intType->get_generation();
+    }
+    else if (auto boolType = dynamic_cast<BoolType*>(this)) {
+        return boolType->get_generation();
+    }
+    else {
+        throw runtime_error("BaseType::get_generation() operates on UNKNOWN type!");
+    }
+}
+
+void BaseType::set_generation(int generation) {
+    if (auto intType = dynamic_cast<IntType*>(this)) {
+        return intType->set_generation(generation);
+    }
+    else if (auto boolType = dynamic_cast<BoolType*>(this)) {
+        return boolType->set_generation(generation);
+    }
+    else {
+        throw runtime_error("BaseType::set_generation() operates on UNKNOWN type!");
+    }
+}
+
 vector<int> BaseType::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
     if (auto intType = dynamic_cast<IntType*>(this)) {
         return intType->getLexicalOrder(num_of_vars, vars_orders);
@@ -188,6 +212,78 @@ int IntType::depth() {
     }
     else {
         throw runtime_error("IntType::depth() operates on UNKNOWN type!");
+    }
+}
+
+int IntType::get_generation() {
+    if (auto num = dynamic_cast<Num*>(this)) {
+        return num->get_generation();
+    }
+    else if (auto var = dynamic_cast<Var*>(this)) {
+        return var->get_generation();
+    }
+    else if (auto plus = dynamic_cast<Plus*>(this)) {
+        return plus->get_generation();
+    }
+    else if (auto minus = dynamic_cast<Minus*>(this)) {
+        return minus->get_generation();
+    }
+    else if (auto times = dynamic_cast<Times*>(this)) {
+        return times->get_generation();
+    }
+    else if (auto div = dynamic_cast<Div*>(this)) {
+        return div->get_generation();
+    }
+    else if (auto mn = dynamic_cast<Min*>(this)) {
+        return mn->get_generation();
+    }
+    else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
+        return leftshift->get_generation();
+    }
+    else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
+        return rightshift->get_generation();
+    }
+    else if (auto ite = dynamic_cast<Ite*>(this)) {
+        return ite->get_generation();
+    }
+    else {
+        throw runtime_error("IntType::get_generation() operates on UNKNOWN type!");
+    }
+}
+
+void IntType::set_generation(int generation) {
+    if (auto num = dynamic_cast<Num*>(this)) {
+        return num->set_generation(generation);
+    }
+    else if (auto var = dynamic_cast<Var*>(this)) {
+        return var->set_generation(generation);
+    }
+    else if (auto plus = dynamic_cast<Plus*>(this)) {
+        return plus->set_generation(generation);
+    }
+    else if (auto minus = dynamic_cast<Minus*>(this)) {
+        return minus->set_generation(generation);
+    }
+    else if (auto times = dynamic_cast<Times*>(this)) {
+        return times->set_generation(generation);
+    }
+    else if (auto div = dynamic_cast<Div*>(this)) {
+        return div->set_generation(generation);
+    }
+    else if (auto mn = dynamic_cast<Min*>(this)) {
+        return mn->set_generation(generation);
+    }
+    else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
+        return leftshift->set_generation(generation);
+    }
+    else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
+        return rightshift->set_generation(generation);
+    }
+    else if (auto ite = dynamic_cast<Ite*>(this)) {
+        return ite->set_generation(generation);
+    }
+    else {
+        throw runtime_error("IntType::set_generation() operates on UNKNOWN type!");
     }
 }
 
@@ -356,6 +452,42 @@ int BoolType::depth() {
     }
 }
 
+int BoolType::get_generation() {
+    if (auto f = dynamic_cast<F*>(this) ) {
+        return f->get_generation();
+    }
+    else if (auto n = dynamic_cast<Not*>(this)) {
+        return n->get_generation();
+    }
+    else if (auto a = dynamic_cast<And*>(this)) {
+        return a->get_generation();
+    }
+    else if (auto lt = dynamic_cast<Lt*>(this)) {
+        return lt->get_generation();
+    }
+    else {
+        throw runtime_error("BoolType::get_generation() operates on UNKOWN type!");
+    }
+}
+
+void BoolType::set_generation(int generation) {
+    if (auto f = dynamic_cast<F*>(this) ) {
+        return f->set_generation(generation);
+    }
+    else if (auto n = dynamic_cast<Not*>(this)) {
+        return n->set_generation(generation);
+    }
+    else if (auto a = dynamic_cast<And*>(this)) {
+        return a->set_generation(generation);
+    }
+    else if (auto lt = dynamic_cast<Lt*>(this)) {
+        return lt->set_generation(generation);
+    }
+    else {
+        throw runtime_error("BoolType::set_generation() operates on UNKOWN type!");
+    }
+}
+
 vector<int> BoolType::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
     if (auto n = dynamic_cast<Not*>(this)) {
         return n->getLexicalOrder(num_of_vars, vars_orders);
@@ -428,7 +560,9 @@ int BoolType::getExponentOfVarInProg(string varName) {
 /******************************************
 Constructs: False
 */
-F::F() {};
+F::F() {
+    _generation = 0;
+};
 
 string F::toString() {
     return "false";
@@ -440,6 +574,14 @@ bool F::interpret() {
     
 int F::depth() {
     return 1;
+}
+
+int F::get_generation() {
+    return _generation;
+}
+
+void F::set_generation(int generation) {
+    _generation = generation;
 }
 
 int F::getNumberOfOpsInProg(string opName) {
@@ -462,6 +604,7 @@ Constructs: Var
 */
 Var::Var(string name) {
     _name = name;
+    _generation = 0;
 }
     
 string Var::toString() {
@@ -469,6 +612,7 @@ string Var::toString() {
 }
     
 int Var::interpret(inputOutput_t env) {
+    if (env.find(_name) == env.end()) throw runtime_error("Var::interpret(): _name " + _name + " is not found in env");
     return env[_name];
 }
     
@@ -476,8 +620,19 @@ int Var::depth() {
     return 1;
 }
 
+int Var::get_generation() {
+    return _generation;
+}
+
+void Var::set_generation(int generation) {
+    _generation = generation;
+}
+
 vector<int> Var::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
     vector<int> lex(num_of_vars, 0);
+    if (vars_orders.find(this->toString()) == vars_orders.end()) throw runtime_error("Var::getLexicalOrder() var not found in keys of vars_orders");
+    if (vars_orders[this->toString()] > lex.size()) throw runtime_error("Var::getLexicalOrder() number of vars is greater than lex vector size");
+    if (vars_orders[this->toString()] == 0) throw runtime_error("Var::getLexicalOrder() var's index is 0");
     lex[vars_orders[this->toString()]-1]++;
     return lex;
 }
@@ -509,6 +664,17 @@ Constructs: Num
 */
 Num::Num(int val) {
     _num = val;
+    _generation = 0;
+}
+
+Num::Num(Num* a, Num* b, string op) {
+    if (a == nullptr) throw runtime_error("Num a is null");
+    if (b == nullptr) throw runtime_error("Num b is null");
+    
+    if (op == "TIMES") _num = a->interpret() * b->interpret();
+    else if (op == "PLUS") _num = a->interpret() + b->interpret();
+    else throw runtime_error("Num::Num() UNKOWN op type");
+    _generation = max(a->get_generation(), b->get_generation()) + 10;
 }
     
 string Num::toString() {
@@ -521,6 +687,14 @@ int Num::interpret() {
     
 int Num::depth() {
     return 1;
+}
+
+int Num::get_generation() {
+    return _generation;
+}
+
+void Num::set_generation(int generation) {
+    _generation = generation;
 }
 
 vector<int> Num::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
@@ -547,8 +721,11 @@ int Num::getExponentOfVarInProg(string varName) {
 Constructs: Plus
 */
 Plus::Plus(IntType* left, IntType* right) {
+    if (left == nullptr) throw runtime_error("Plus: left is null");
+    if (right == nullptr) throw runtime_error("Plus: right is null");
     _left = left;
     _right = right;
+    _generation = max(left->get_generation(), right->get_generation()) + 1;
 }
 
 string Plus::toString() {
@@ -757,6 +934,14 @@ int Plus::depth() {
     return depth;
 }
 
+int Plus::get_generation() {
+    return _generation;
+}
+
+void Plus::set_generation(int generation) {
+    _generation = generation;
+}
+
 IntType* Plus::getLeft() {
     return _left;
 }
@@ -796,6 +981,7 @@ vector<string> Plus::getTerms() {
 }
 
 vector<int> Plus::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
+    if (_right == nullptr) throw runtime_error("Plus::getLexicalOrder() _right is null");
     return _right->getLexicalOrder(num_of_vars, vars_orders);
 }
 
@@ -818,8 +1004,11 @@ int Plus::getExponentOfVarInProg(string varName) {
 Constructs: Minus
 */
 Minus::Minus(IntType* left, IntType* right) {
+    if (left == nullptr) throw runtime_error("Minus: left is null");
+    if (right == nullptr) throw runtime_error("Minus: right is null");
     _left = left;
     _right = right;
+    _generation = max(left->get_generation(), right->get_generation()) + 1;
 }
     
 string Minus::toString() {
@@ -1029,6 +1218,14 @@ int Minus::depth() {
     return depth;
 }
 
+int Minus::get_generation() {
+    return _generation;
+}
+
+void Minus::set_generation(int generation) {
+    _generation = generation;
+}
+
 int Minus::getNumberOfOpsInProg(string opName) {
     if (opName == "MINUS" || opName == "ALL") {
         return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName) + 1;
@@ -1048,8 +1245,15 @@ int Minus::getExponentOfVarInProg(string varName) {
 Constructs: Times
 */
 Times::Times(IntType* left, IntType* right) {
+    if (left == nullptr) throw runtime_error("Times: left is null");
+    if (right == nullptr) throw runtime_error("Times: right is null");
     _left = left;
     _right = right;
+    //_left = new IntType;
+    //_right = new IntType;
+    //memcpy(_left, left, sizeof(IntType));
+    //memcpy(_right, right, sizeof(IntType));
+    _generation = max(left->get_generation(), right->get_generation()) + 1;
 }
     
 string Times::toString() {
@@ -1259,6 +1463,14 @@ int Times::depth() {
     return depth;
 }
 
+int Times::get_generation() {
+    return _generation;
+}
+
+void Times::set_generation(int generation) {
+    _generation = generation;
+}
+
 IntType* Times::getLeft() {
     return _left;
 }
@@ -1282,20 +1494,29 @@ vector<string> Times::getFactors() {
 }
 
 vector<int> Times::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
+    if (_left == nullptr) throw runtime_error("Times::getLexicalOrder() left is null");
+    if (_right == nullptr) throw runtime_error("Times::getLexicalOrder() right is null");
+    
     vector<int> lex_left(num_of_vars, 0);
     vector<int> lex_right(num_of_vars, 0);
-    //lex[vars_orders[this->toString()]-1]++;
+
     if (auto left_num = dynamic_cast<Num*>(_left)) {
         lex_left = left_num->getLexicalOrder(num_of_vars, vars_orders);
     }
     else if (auto left_var = dynamic_cast<Var*>(_left)) {
         lex_left = left_var->getLexicalOrder(num_of_vars, vars_orders);
     }
+    else {
+        throw runtime_error("Times::getLexicalOrder left is not a type of NUM/VAR");
+    }
     if (auto right_var = dynamic_cast<Var*>(_right)) {
         lex_right = right_var->getLexicalOrder(num_of_vars, vars_orders);
     }
     else if (auto right_times = dynamic_cast<Times*>(_right)) {
-        lex_right = right_var->getLexicalOrder(num_of_vars, vars_orders);
+        lex_right = right_times->getLexicalOrder(num_of_vars, vars_orders);
+    }
+    else {
+        throw runtime_error("Times::getLexicalOrder right is not a type of NUM/VAR");
     }
     for (int i = 0; i < num_of_vars; i++) {
         lex_left[i] += lex_right[i];
@@ -1322,8 +1543,11 @@ int Times::getExponentOfVarInProg(string varName) {
 Constructs: Min
 */
 Min::Min(IntType* left, IntType* right) {
+    if (left == nullptr) throw runtime_error("Min: left is null");
+    if (right == nullptr) throw runtime_error("Min: right is null");
     _left = left;
     _right = right;
+    _generation = max(left->get_generation(), right->get_generation()) + 1;
 }
 string Min::toString() {
     string output = " min( ";
@@ -1464,6 +1688,7 @@ int Min::interpret(inputOutput_t env) {
     
     return min(leftValue, rightValue);
 }
+
 int Min::depth() {
     int depth;
     
@@ -1531,12 +1756,22 @@ int Min::depth() {
     
     return depth;
 }
+
+int Min::get_generation() {
+    return _generation;
+}
+
+void Min::set_generation(int generation) {
+    _generation = generation;
+}
+
 int Min::getNumberOfOpsInProg(string opName) {
     if (opName == "MIN" || opName == "ALL") {
         return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName) + 1;
     }
     return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName);
 }
+
 int Min::getNumberOfVarsInProg(string varName) {
     return _left->getNumberOfVarsInProg(varName) + _right->getNumberOfVarsInProg(varName);
 }
@@ -1550,8 +1785,11 @@ Constructs: Div
 */
 
 Div::Div(IntType* dividend, IntType* divisor) {
+    if (dividend == nullptr) throw runtime_error("Div: dividend is null");
+    if (divisor == nullptr) throw runtime_error("Div: divisor is null");
     _dividend = dividend;
     _divisor = divisor;
+    _generation = max(dividend->get_generation(), divisor->get_generation()) + 1;
 }
 
 string Div::toString() {
@@ -1766,6 +2004,14 @@ int Div::depth() {
     return depth;
 }
 
+int Div::get_generation() {
+    return _generation;
+}
+
+void Div::set_generation(int generation) {
+    _generation = generation;
+}
+
 int Div::getNumberOfOpsInProg(string opName) {
     if (opName == "DIV" || opName == "ALL") {
         return _dividend->getNumberOfOpsInProg(opName) + _divisor->getNumberOfOpsInProg(opName) + 1;
@@ -1785,8 +2031,11 @@ int Div::getExponentOfVarInProg(string varName) {
 Constructs: Leftshift
 */
 Leftshift::Leftshift(IntType* value, IntType* offset) {
+    if (value == nullptr) throw runtime_error("Leftshift: value is null");
+    if (offset == nullptr) throw runtime_error("Leftshift: offset is null");
     _value = value;
     _offset = offset;
+    _generation = max(value->get_generation(), offset->get_generation()) + 1;
 }
 
 string Leftshift::toString() {
@@ -2050,6 +2299,14 @@ int Leftshift::depth() {
     return depth;
 }
 
+int Leftshift::get_generation() {
+    return _generation;
+}
+
+void Leftshift::set_generation(int generation) {
+    _generation = generation;
+}
+
 int Leftshift::getNumberOfOpsInProg(string opName) {
     if (opName == "LEFTSHIFT" || opName == "ALL") {
         return _value->getNumberOfOpsInProg(opName) + _offset->getNumberOfOpsInProg(opName) + 1;
@@ -2069,8 +2326,11 @@ int Leftshift::getExponentOfVarInProg(string varName) {
 Constructs: Leftshift
 */
 Rightshift::Rightshift(IntType* value, IntType* offset) {
+    if (value == nullptr) throw runtime_error("Rightshift: value is null");
+    if (offset == nullptr) throw runtime_error("Rightshift: offset is null");
     _value = value;
     _offset = offset;
+    _generation = max(value->get_generation(), offset->get_generation()) + 1;
 }
     
 string Rightshift::toString() {
@@ -2334,6 +2594,14 @@ int Rightshift::depth() {
     return depth;
 }
 
+int Rightshift::get_generation() {
+    return _generation;
+}
+
+void Rightshift::set_generation(int generation) {
+    _generation = generation;
+}
+
 int Rightshift::getNumberOfOpsInProg(string opName) {
     if (opName == "RIGHTSHIFT" || opName == "ALL") {
         return _value->getNumberOfOpsInProg(opName) + _offset->getNumberOfOpsInProg(opName) + 1;
@@ -2353,8 +2621,11 @@ int Rightshift::getExponentOfVarInProg(string varName) {
 Constructs: Lt
 */
 Lt::Lt(IntType* left, IntType* right) {
+    if (left == nullptr) throw runtime_error("Lt: left is null");
+    if (right == nullptr) throw runtime_error("Lt: right is null");
     _left = left;
     _right = right;
+    _generation = max(left->get_generation(), right->get_generation()) + 1;
 }
 
 string Lt::toString() {
@@ -2565,6 +2836,14 @@ int Lt::depth() {
     return depth;
 }
 
+int Lt::get_generation() {
+    return _generation;
+}
+
+void Lt::set_generation(int generation) {
+    _generation = generation;
+}
+
 IntType* Lt::getLeft() {
     return _left;
 }
@@ -2598,10 +2877,13 @@ int Lt::getExponentOfVarInProg(string varName) {
 Constructs: And
 */
 And::And(BoolType* left, BoolType* right) {
+    if (left == nullptr) throw runtime_error("And: value is null");
+    if (right == nullptr) throw runtime_error("And: offset is null");
     _left = left;
     _right = right;
+    _generation = max(left->get_generation(), right->get_generation()) + 1;
 }
-    
+
 string And::toString() {
     string output = "(";
     
@@ -2719,6 +3001,14 @@ int And::depth() {
     return depth;
 }
 
+int And::get_generation() {
+    return _generation;
+}
+
+void And::set_generation(int generation) {
+    _generation = generation;
+}
+
 BoolType* And::getLeft() {
     return _left;
 }
@@ -2749,7 +3039,9 @@ int And::getExponentOfVarInProg(string varName) {
 Constructs: Not
 */
 Not::Not(BoolType* left) {
+    if (left == nullptr) throw runtime_error("Not: value is null");
     _left = left;
+    _generation = left->get_generation() + 1;
 }
 
 string Not::toString() {
@@ -2810,6 +3102,14 @@ int Not::depth() {
     }
 }
 
+int Not::get_generation() {
+    return _generation;
+}
+
+void Not::set_generation(int generation) {
+    _generation = generation;
+}
+
 vector<int> Not::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
     return _left->getLexicalOrder(num_of_vars, vars_orders);
 }
@@ -2833,11 +3133,15 @@ int Not::getExponentOfVarInProg(string varName) {
 Constructs: Ite
 */
 Ite::Ite(BoolType* cond, IntType* tcase, IntType* fcase) {
+    if (cond == nullptr) throw runtime_error("Ite: cond is null");
+    if (tcase == nullptr) throw runtime_error("Ite: tcase is null");
+    if (fcase == nullptr) throw runtime_error("Ite: fcase is null");
     _cond = cond;
     _tcase = tcase;
     _fcase = fcase;
+    _generation = max(cond->get_generation(), max(tcase->get_generation(), fcase->get_generation())) + 1;
 }
-    
+
 string Ite::toString() {
     string output = "(if ";
     
@@ -3095,6 +3399,14 @@ int Ite::depth() {
     }
     
     return depth;
+}
+
+int Ite::get_generation() {
+    return _generation;
+}
+
+void Ite::set_generation(int generation) {
+    _generation = generation;
 }
 
 int Ite::getNumberOfOpsInProg(string opName) {
