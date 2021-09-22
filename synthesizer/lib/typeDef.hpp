@@ -7,7 +7,7 @@
 
 using namespace std;
 
-typedef unordered_map<string, int> inputOutput_t;
-typedef vector<inputOutput_t> inputOutputs_t;
+typedef unordered_map<string, int> input_output_t;
+typedef vector<input_output_t> input_outputs_t;
 
 #endif

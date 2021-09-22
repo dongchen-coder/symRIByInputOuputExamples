@@ -284,7 +284,7 @@ void langConfiguration(int* depthBoundPred,
                        vector<string>* boolOpsTerm,
                        vector<string>* varsTerm,
                        vector<string>* constantsTerm,
-                       inputOutputs_t inputOutputs) {
+                       input_outputs_t input_outputs) {
     
     if (*depthBoundPred == -1) {
         *depthBoundPred = 6;
@@ -363,8 +363,8 @@ void langConfiguration(int* depthBoundPred,
     /*
      varables are extracted from inputoutput examples
      */
-    if (!inputOutputs.empty()) {
-        for (auto varValue : inputOutputs[0]) {
+    if (!input_outputs.empty()) {
+        for (auto varValue : input_outputs[0]) {
             if (varValue.first != "_out") {
                 varsPred->push_back(varValue.first);
                 varsTerm->push_back(varValue.first);
@@ -375,11 +375,11 @@ void langConfiguration(int* depthBoundPred,
     return;
 }
 
-void filterNonKeyIOEs(inputOutputs_t* inputOutputs) {
+void filterNonKeyIOEs(input_outputs_t* input_outputs) {
     // find the set of bound variables and values
     set<string> bound_vars;
     set<int> bound_value;
-    for (auto ioe : *inputOutputs) {
+    for (auto ioe : *input_outputs) {
         for (auto [var, cnt] : ioe) {
             if (var.find("b") != string::npos) {
                 bound_vars.insert(var);
@@ -397,7 +397,7 @@ void filterNonKeyIOEs(inputOutputs_t* inputOutputs) {
     // replace bound variables from values to indices
     map<vector<int>, int> bound_space;
     int m = bound_vars.size();
-    for (auto ioe : *inputOutputs) {
+    for (auto ioe : *input_outputs) {
         vector<int> bound_vec;
         for (int i = 0; i < m; i++) {
             bound_vec.push_back(bound_value_to_index[ioe["b" + to_string(i)]]);
@@ -423,15 +423,15 @@ void filterNonKeyIOEs(inputOutputs_t* inputOutputs) {
     }
     
     map<int, set<vector<int>>> reserved_ioes;
-    auto it = inputOutputs->begin();
-    while(it != inputOutputs->end()) {
+    auto it = input_outputs->begin();
+    while(it != input_outputs->end()) {
         auto ioe = *it;
         vector<int> bound_vec;
         for (int i = 0; i < m; i++) {
             bound_vec.push_back(bound_value_to_index[ioe["b" + to_string(i)]]);
         }
         if (find(non_key_ioes.begin(), non_key_ioes.end(), bound_vec) == non_key_ioes.end()) {
-            //it = inputOutputs->erase(it);
+            //it = input_outputs->erase(it);
             //} else {
             reserved_ioes[ioe["_out"]].insert(bound_vec);
         }
@@ -460,15 +460,15 @@ void filterNonKeyIOEs(inputOutputs_t* inputOutputs) {
     //cout << bound_space.size() << " ";
     //cout << non_key_ioes.size() << endl;
     
-    it = inputOutputs->begin();
-    while(it != inputOutputs->end()) {
+    it = input_outputs->begin();
+    while(it != input_outputs->end()) {
         auto ioe = *it;
         vector<int> bound_vec;
         for (int i = 0; i < m; i++) {
             bound_vec.push_back(bound_value_to_index[ioe["b" + to_string(i)]]);
         }
         if (find(non_key_ioes.begin(), non_key_ioes.end(), bound_vec) != non_key_ioes.end()) {
-            it = inputOutputs->erase(it);
+            it = input_outputs->erase(it);
         } else {
             ++it;
         }
@@ -476,33 +476,33 @@ void filterNonKeyIOEs(inputOutputs_t* inputOutputs) {
     
 }
 
-bool readInputOutput(string fileName, inputOutputs_t* inputOutputs) {
+bool readInputOutput(string fileName, input_outputs_t* input_outputs) {
     ifstream ifs;
     ifs.open(fileName, ifstream::in);
     string line;
     
     while (getline(ifs, line)) {
-        inputOutput_t inputOutput;
+        input_output_t input_output;
         
         stringstream ss(line);
         string var;
         int value;
         while (ss >> var) {
             ss >> value;
-            inputOutput[var] = value;
+            input_output[var] = value;
         }
         
-        if (!inputOutput.empty()) {
-            //inputOutput["_out"] /= 10;
-            inputOutputs->push_back(inputOutput);
+        if (!input_output.empty()) {
+            //input_output["_out"] /= 10;
+            input_outputs->push_back(input_output);
         }
     }
     
     ifs.close();
     
-    //cout << "Resize IOE " << inputOutputs->size() << " to ";
-    filterNonKeyIOEs(inputOutputs);
-    //cout << inputOutputs->size() << endl;
+    //cout << "Resize IOE " << input_outputs->size() << " to ";
+    filterNonKeyIOEs(input_outputs);
+    //cout << input_outputs->size() << endl;
     
     return true;
 }
@@ -584,15 +584,15 @@ int main(int argc, char* argv[]) {
     /*
      read input output files
      */
-    inputOutputs_t inputOutputs;
-    if (!readInputOutput(fileName, &inputOutputs)) {
+    input_outputs_t input_outputs;
+    if (!readInputOutput(fileName, &input_outputs)) {
         cout << "Error reading files" << endl;
         return 0;
     }
     
     /* sample inputouput Files */
     //sampler s(0.1);
-    //inputOutputs = s.randomSampling(inputOutputs);
+    //input_outputs = s.randomSampling(input_outputs);
     
     /*
      output search mode
@@ -616,25 +616,25 @@ int main(int argc, char* argv[]) {
     */
     langConfiguration(&depthBoundPred, &intOpsPred, &boolOpsPred, &varsPred, &constantsPred,
                       &depthBoundTerm, &intOpsTerm, &boolOpsTerm, &varsTerm, &constantsTerm,
-                      inputOutputs);
+                      input_outputs);
     
     unification* uni = new unification(depthBoundPred, intOpsPred, boolOpsPred, varsPred, constantsPred,
                                        depthBoundTerm, intOpsTerm, boolOpsTerm, varsTerm, constantsTerm,
                                        rulesToApply,
-                                       inputOutputs);
+                                       input_outputs);
 #ifdef DEBUG
     cout << "Search time: terms " << searchTimeForTermsInSeconds << " predications " << searchTimeForPredsInSeconds << endl;
-    uni->dumpLangDef();
+    uni->dump_language_defination();
 #endif
 
     uni->search(searchTimeForTermsInSeconds, searchTimeForPredsInSeconds);
 
 #ifdef DEBUG
-    uni->dumpSearchedProgram();
+    uni->dump_searched_program();
 #endif
 
     //writeSearchedProgram(fileName, uni->getSearchedProgram());
-    uni->dumpSearchedProgram();
+    uni->dump_searched_program();
     
     return 0;
 }

@@ -4,54 +4,54 @@
  */
 
 // Support definition
-#define GET_NUM_OF_OPS(prog, op)            ( prog->getNumberOfOpsInProg(op) )
-#define GET_NUM_OF_SYMS(prog, sym)          ( prog->getNumberOfVarsInProg(sym) )
+#define GET_NUM_OF_OPS(prog, op)            ( prog->get_number_of_ops(op) )
+#define GET_NUM_OF_SYMS(prog, sym)          ( prog->get_number_of_vars(sym) )
 #define GET_LENGTH(prog)                    ( GET_NUM_OF_SYMS(prog, "ALL") + GET_NUM_OF_OPS(prog, "ALL") )
-#define GET_EXP(prog, sym)                  ( prog->getExponentOfVarInProg(sym))
+#define GET_EXP(prog, sym)                  ( prog->get_exponent_of_var(sym))
 
 #define CHECK_NO_SYM(prog, sym)             ( GET_NUM_OF_SYMS(prog, sym) == 0 )
 #define HAS_SYM(prog, sym)                  ( GET_NUM_OF_SYMS(prog, sym) > 0 )
-#define CHECK_LESS_SYM(pi, pj, sym)         ( GET_NUM_OF_SYMS(pi, sym) < GET_NUM_OF_SYMS(pj, sym) )
-#define CHECK_EQ_SYM(pi, pj, sym)           ( GET_NUM_OF_SYMS(pi, sym) == GET_NUM_OF_SYMS(pj, sym) )
+#define CHECK_LESS_SYM(program_a, program_b, sym)         ( GET_NUM_OF_SYMS(program_a, sym) < GET_NUM_OF_SYMS(program_b, sym) )
+#define CHECK_EQ_SYM(program_a, program_b, sym)           ( GET_NUM_OF_SYMS(program_a, sym) == GET_NUM_OF_SYMS(program_b, sym) )
 
-#define DEPTH_SHOTER(pi, pj)                ( pi->depth() < pj->depth() )
-#define LENGTH_SHOTER(pi, pj)               ( GET_LENGTH(pi) < GET_LENGTH(pj) )
+#define DEPTH_SHOTER(program_a, program_b)                ( program_a->depth() < program_b->depth() )
+#define LENGTH_SHOTER(program_a, program_b)               ( GET_LENGTH(program_a) < GET_LENGTH(program_b) )
 
 // NO SYM
-#define NO_SYM_1(prog)                      ( CHECK_NO_SYM(pi, "ALL") )
-#define NO_SYM_2(pi, pj)                    ( CHECK_NO_SYM(pi, "ALL") && CHECK_NO_SYM(pj, "ALL") )
+#define NO_SYM_1(prog)                      ( CHECK_NO_SYM(program_a, "ALL") )
+#define NO_SYM_2(program_a, program_b)                    ( CHECK_NO_SYM(program_a, "ALL") && CHECK_NO_SYM(program_b, "ALL") )
 
-#define GET_LENGTH_SHOTER(pi, pj)           ( LENGTH_SHOTER(pi, pj) ? pi : pj )
+#define GET_LENGTH_SHOTER(program_a, program_b)           ( LENGTH_SHOTER(program_a, program_b) ? program_a : program_b )
 
 // B SYM ONLY
 #define B_SYM_ONLY_1(prog)                  ( !NO_SYM_1(prog) && CHECK_NO_SYM(prog, "I") )
-#define B_SYM_ONLY_2(pi, pj)                ( !NO_SYM_2(pi, pj) && CHECK_NO_SYM(pi, "I") && CHECK_NO_SYM(pj, "I") )
+#define B_SYM_ONLY_2(program_a, program_b)                ( !NO_SYM_2(program_a, program_b) && CHECK_NO_SYM(program_a, "I") && CHECK_NO_SYM(program_b, "I") )
 
 // I SYM ONLY
 #define I_SYM_ONLY_1(prog)                  ( !NO_SYM_1(prog) && CHECK_NO_SYM(prog, "B") )
-#define I_SYM_ONLY_2(pi, pj)                ( !NO_SYM_2(pi, pj) && CHECK_NO_SYM(pi, "B") && CHECK_NO_SYM(pj, "B") )
+#define I_SYM_ONLY_2(program_a, program_b)                ( !NO_SYM_2(program_a, program_b) && CHECK_NO_SYM(program_a, "B") && CHECK_NO_SYM(program_b, "B") )
 
 // BOTH SYM
 #define BOTH_SYM_1(prog)                    ( !CHECK_NO_SYM(prog, "B") && !CHECK_NO_SYM(prog, "I") )
-#define BOTH_SYM_2(pi, pj)                  ( BOTH_SYM_1(pi) && BOTH_SYM_1(pj) )
+#define BOTH_SYM_2(program_a, program_b)                  ( BOTH_SYM_1(program_a) && BOTH_SYM_1(program_b) )
 
 // LENGTH RULE
-#define GET_LENGTH_SHOTER(pi, pj)           ( LENGTH_SHOTER(pi, pj) ? pi : pj )
-#define GET_LESS_SYM(pi, pj, sym)           ( CHECK_EQ_SYM(pi, pj, sym) ? pi : pj )
+#define GET_LENGTH_SHOTER(program_a, program_b)           ( LENGTH_SHOTER(program_a, program_b) ? program_a : program_b )
+#define GET_LESS_SYM(program_a, program_b, sym)           ( CHECK_EQ_SYM(program_a, program_b, sym) ? program_a : program_b )
 
-bottomUpSearch::bottomUpSearch(int depthBound,
-                               vector<string> intOps,
-                               vector<string> boolOps,
+bottomUpSearch::bottomUpSearch(int depth_bound,
+                               vector<string> int_ops,
+                               vector<string> bool_ops,
                                vector<string> vars,
                                vector<string> constants,
                                bool isPred,
-                               vector<string> rulesToApply,
-                               inputOutputs_t inputOutputs) {
-    _depthBound = depthBound;
-    _intOps = intOps;
-    _boolOps = boolOps;
+                               vector<string> rules_to_apply,
+                               input_outputs_t input_outputs) {
+    _depth_bound = depth_bound;
+    _int_ops = int_ops;
+    _bool_ops = bool_ops;
     _constants = constants;
-    _inputOutputs = inputOutputs;
+    _input_outputs = input_outputs;
     _isPred = isPred;
     
     if (isPred) {
@@ -65,34 +65,34 @@ bottomUpSearch::bottomUpSearch(int depthBound,
     }
     
     int var_order = 1;
-    for(auto varStr : _vars) {
-        Var* var = new Var(varStr);
-        BaseType* baseVar = dynamic_cast<BaseType*>(var);
-        if(baseVar == nullptr) throw runtime_error("Init Var list error");
-        _pList.push_back(baseVar);
-        _vars_orders[varStr] = var_order;
+    for(auto var_str : _vars) {
+        Var* var = new Var(var_str);
+        BaseType* var_base = dynamic_cast<BaseType*>(var);
+        if(var_base == nullptr) throw runtime_error("Init Var list error");
+        _program_list.push_back(var_base);
+        _vars_orders[var_str] = var_order;
         var_order++;
     }
     _num_of_vars = _vars.size();
     
-    for (auto numStr : constants) {
-        Num* num = new Num(stoi(numStr));
-        BaseType* baseNum = dynamic_cast<BaseType*>(num);
-        if (baseNum == nullptr) throw runtime_error("Init Num list error");
-        baseNum->set_generation(10);
-        _pList.push_back(baseNum);
+    for (auto num_str : constants) {
+        Num* num = new Num(stoi(num_str));
+        BaseType* num_base = dynamic_cast<BaseType*>(num);
+        if (num_base == nullptr) throw runtime_error("Init Num list error");
+        num_base->set_generation(10);
+        _program_list.push_back(num_base);
     }
     
-    for (auto prog : _pList) {
-        if (prog == nullptr) throw runtime_error("Nullptr in program list");
-        if (dynamic_cast<Num*>(prog)) {
-            prog->set_generation(10);
+    for (auto program : _program_list) {
+        if (program == nullptr) throw runtime_error("Nullptr in program list");
+        if (dynamic_cast<Num*>(program)) {
+            program->set_generation(1);
         } else {
-            prog->set_generation(1);
+            program->set_generation(1);
         }
     }
     
-    for (auto ioe : inputOutputs) {
+    for (auto ioe : input_outputs) {
         if (ioe.find("_out") == ioe.end()) throw runtime_error("No _out entry in IOE");
         _max_output = max(_max_output, ioe["_out"]);
     }
@@ -101,76 +101,76 @@ bottomUpSearch::bottomUpSearch(int depthBound,
 /******************************************
     Dump Program list
 */
-inline string bottomUpSearch::dumpProgram(BaseType* p) {
-    if (auto var = dynamic_cast<Var*>(p)) {
-        return var->toString();
+inline string bottomUpSearch::dump_program(BaseType* program) {
+    if (auto var = dynamic_cast<Var*>(program)) {
+        return var->to_string();
     }
-    else if (auto num = dynamic_cast<Num*>(p)) {
-        return num->toString();
+    else if (auto num = dynamic_cast<Num*>(program)) {
+        return num->to_string();
     }
-    else if (auto f = dynamic_cast<F*>(p)) {
-        return f->toString();
+    else if (auto f = dynamic_cast<F*>(program)) {
+        return f->to_string();
     }
-    else if (auto plus = dynamic_cast<Plus*>(p)) {
-        return plus->toString();
+    else if (auto plus = dynamic_cast<Plus*>(program)) {
+        return plus->to_string();
     }
-    else if (auto minus = dynamic_cast<Minus*>(p)) {
-        return minus->toString();
+    else if (auto minus = dynamic_cast<Minus*>(program)) {
+        return minus->to_string();
     }
-    else if (auto times = dynamic_cast<Times*>(p)) {
-        return times->toString();
+    else if (auto times = dynamic_cast<Times*>(program)) {
+        return times->to_string();
     }
-    else if (auto leftshift = dynamic_cast<Leftshift*>(p)) {
-        return leftshift->toString();
+    else if (auto leftshift = dynamic_cast<Leftshift*>(program)) {
+        return leftshift->to_string();
     }
-    else if (auto rightshift = dynamic_cast<Rightshift*>(p)) {
-        return rightshift->toString();
+    else if (auto rightshift = dynamic_cast<Rightshift*>(program)) {
+        return rightshift->to_string();
     }
-    else if (auto lt = dynamic_cast<Lt*>(p)) {
-        return lt->toString();
+    else if (auto lt = dynamic_cast<Lt*>(program)) {
+        return lt->to_string();
     }
-    else if (auto a = dynamic_cast<And*>(p)) {
-        return a->toString();
+    else if (auto a = dynamic_cast<And*>(program)) {
+        return a->to_string();
     }
-    else if (auto n = dynamic_cast<Not*>(p)) {
-        return n->toString();
+    else if (auto n = dynamic_cast<Not*>(program)) {
+        return n->to_string();
     }
-    else if (auto ite = dynamic_cast<Ite*>(p)) {
-        return ite->toString();
+    else if (auto ite = dynamic_cast<Ite*>(program)) {
+        return ite->to_string();
     }
     else {
-        throw runtime_error("bottomUpSearch::dumpProgram() operates on UNKNOWN type!");
+        throw runtime_error("bottomUpSearch::dump_program() operates on UNKNOWN type!");
     }
     return "NoExpr";
 }
 
-void bottomUpSearch::dumpPlist(vector<BaseType*> pList) {
+void bottomUpSearch::dump_program_list(vector<BaseType*> program_list) {
     cout << "[";
-    for (auto prog : pList) {
-        cout << dumpProgram(prog);
-        if (prog != pList.back()) cout << ", ";
+    for (auto program : program_list) {
+        cout << dump_program(program);
+        if (program != program_list.back()) cout << ", ";
     }
     cout << "]" << endl;
     return;
 }
 
-void bottomUpSearch::dumpPlist() {
+void bottomUpSearch::dump_program_list() {
     cout << "[";
-    for (auto prog : _pList) {
-        cout << dumpProgram(prog);
-        if (prog != _pList.back()) cout << ", ";
+    for (auto program : _program_list) {
+        cout << dump_program(program);
+        if (program != _program_list.back()) cout << ", ";
     }
     cout << "]" << endl;
     return;
 }
 
-void bottomUpSearch::dumpLangDef() {
+void bottomUpSearch::dump_language_defination() {
     cout << "Dump language used:" << endl;
-    cout << "    intOps: ";
-    for (auto op : _intOps) cout << op << " ";
+    cout << "    int_ops: ";
+    for (auto op : _int_ops) cout << op << " ";
     cout << endl;
-    cout << "    boolOps: ";
-    for (auto op : _boolOps) cout << op << " ";
+    cout << "    bool_ops: ";
+    for (auto op : _bool_ops) cout << op << " ";
     cout << endl;
     cout << "    constants: ";
     for (auto c : _constants) cout << c << " ";
@@ -184,24 +184,24 @@ void bottomUpSearch::dumpLangDef() {
     Specify and check  growing rules
 */
 
-inline bool bottomUpSearch::depth_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation) {
-    if (operand_a && operand_a->depth() >= _depthBound) return false;
-    if (operand_b && operand_b->depth() >= _depthBound) return false;
-    if (operand_c && operand_c->depth() >= _depthBound) return false;
+inline bool bottomUpSearch::depth_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int program_generation) {
+    if (operand_a && operand_a->depth() >= _depth_bound) return false;
+    if (operand_b && operand_b->depth() >= _depth_bound) return false;
+    if (operand_c && operand_c->depth() >= _depth_bound) return false;
     return true;
 }
 
-inline bool bottomUpSearch::generation_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation) {
+inline bool bottomUpSearch::generation_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int program_generation) {
     int cur_generation = 0;
     if (operand_a != nullptr) cur_generation = max(cur_generation, operand_a->get_generation());
     if (operand_b != nullptr) cur_generation = max(cur_generation, operand_b->get_generation());
     if (operand_c != nullptr) cur_generation = max(cur_generation, operand_c->get_generation());
     
-    if (cur_generation + 1 != prog_generation) return false;
+    if (cur_generation + 1 != program_generation) return false;
     return true;
 }
 
-inline bool bottomUpSearch::type_rule(BaseType *operand_a, BaseType *operand_b, BaseType *operand_c, string op, int prog_generation) {
+inline bool bottomUpSearch::type_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int program_generation) {
     if (op == "PLUS" || op == "MINUS" || op == "TIMES" || op == "LT" || op == "LEFTSHIFT" || op == "RIGHTSHIFT") {
         if (!(dynamic_cast<IntType*>(operand_a) && dynamic_cast<IntType*>(operand_b))) {
             return false;
@@ -223,12 +223,12 @@ inline bool bottomUpSearch::type_rule(BaseType *operand_a, BaseType *operand_b, 
         }
     }
     else {
-        throw runtime_error("bottomUpSearch::isGrowRuleSatisfied() operates on UNKNOWN type: " + op);
+        throw runtime_error("bottomUpSearch::is_grow_rule_satisfied() operates on UNKNOWN type: " + op);
     }
     return true;
 }
 
-inline bool bottomUpSearch::elimination_free_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation) {
+inline bool bottomUpSearch::elimination_free_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int program_generation) {
     
     // grow NUM only by TIMES
     auto a_num = dynamic_cast<Num*>(operand_a);
@@ -267,21 +267,21 @@ inline bool bottomUpSearch::elimination_free_rule(BaseType* operand_a, BaseType*
         bool is_b_times = ( dynamic_cast<Times*>(operand_b) != nullptr );
         bool is_b_plus = ( dynamic_cast<Plus*>(operand_b) != nullptr );
         
-        int num_in_a = operand_a->getNumberOfVarsInProg("NUM");
-        int num_in_b = operand_b->getNumberOfVarsInProg("NUM");
-        int plus_in_a = operand_a->getNumberOfOpsInProg("PLUS");
-        int plus_in_b = operand_b->getNumberOfOpsInProg("PLUS");
+        int num_in_a = operand_a->get_number_of_vars("NUM");
+        int num_in_b = operand_b->get_number_of_vars("NUM");
+        int plus_in_a = operand_a->get_number_of_ops("PLUS");
+        int plus_in_b = operand_b->get_number_of_ops("PLUS");
         
         if (op == "TIMES") {
             if ( !(is_a_var || is_a_num) ) return false;
             if ( !(is_b_var || is_b_times) ) return false;
-            if ( is_a_var && _vars_orders.find(operand_a->toString()) == _vars_orders.end() ) throw runtime_error("Var a not in _vars_orders list");
-            if ( is_b_var && _vars_orders.find(operand_b->toString()) == _vars_orders.end() ) throw runtime_error("Var b not in _vars_orders list");
-            if ( is_a_var && is_b_var && _vars_orders[operand_a->toString()] > _vars_orders[operand_b->toString()] ) return false;
+            if ( is_a_var && _vars_orders.find(operand_a->to_string()) == _vars_orders.end() ) throw runtime_error("Var a not in _vars_orders list");
+            if ( is_b_var && _vars_orders.find(operand_b->to_string()) == _vars_orders.end() ) throw runtime_error("Var b not in _vars_orders list");
+            if ( is_a_var && is_b_var && _vars_orders[operand_a->to_string()] > _vars_orders[operand_b->to_string()] ) return false;
             if ( auto b_times = dynamic_cast<Times*>(operand_b) ) {
-                if (dynamic_cast<Num*>(b_times->getLeft())) return false;
+                if (dynamic_cast<Num*>(b_times->get_left())) return false;
                 if (is_a_var) {
-                    if (_vars_orders[operand_a->toString()] > _vars_orders[b_times->getLeft()->toString()]) return false;
+                    if (_vars_orders[operand_a->to_string()] > _vars_orders[b_times->get_left()->to_string()]) return false;
                 }
             }
         }
@@ -291,21 +291,18 @@ inline bool bottomUpSearch::elimination_free_rule(BaseType* operand_a, BaseType*
             if ( !(is_b_var || is_b_times || is_b_plus) ) return false;
             
             if ( (is_a_var || is_a_times) && (is_b_var || is_b_times)) {
-                //cout << operand_a << " " << operand_a->toString() << " ";
-                vector<int> a_lex = operand_a->getLexicalOrder(_num_of_vars, _vars_orders);
-                //cout << operand_b << " " << operand_b->toString();
-                //cout << endl;
-                vector<int> b_lex = operand_b->getLexicalOrder(_num_of_vars, _vars_orders);
-                
+                vector<int> a_lex = operand_a->get_lexical_order(_num_of_vars, _vars_orders);
+                vector<int> b_lex = operand_b->get_lexical_order(_num_of_vars, _vars_orders);
                 if (a_lex == b_lex ||
                     !lexicographical_compare(a_lex.begin(), a_lex.end(),
                                             b_lex.begin(), b_lex.end()))
                     return false;
             }
+            
             if ( is_b_plus ) {
                 auto b_plus = dynamic_cast<Plus*>(operand_b);
-                vector<int> a_lex = operand_a->getLexicalOrder(_num_of_vars, _vars_orders);
-                vector<int> b_plus_left_lex = operand_b->getLexicalOrder(_num_of_vars, _vars_orders);
+                vector<int> a_lex = operand_a->get_lexical_order(_num_of_vars, _vars_orders);
+                vector<int> b_plus_left_lex = operand_b->get_lexical_order(_num_of_vars, _vars_orders);
                 if(a_lex == b_plus_left_lex ||
                    !lexicographical_compare(a_lex.begin(), a_lex.end(),
                                            b_plus_left_lex.begin(), b_plus_left_lex.end()))
@@ -330,42 +327,42 @@ inline bool bottomUpSearch::elimination_free_rule(BaseType* operand_a, BaseType*
         // remove expr "Num < Num + *" and "Num + * < Num"
         if (is_a_num && is_b_plus) {
             auto b_plus = dynamic_cast<Plus*>(operand_b);
-            if (dynamic_cast<Num*>(b_plus->getLeft())) return false;
+            if (dynamic_cast<Num*>(b_plus->get_left())) return false;
         }
         if (is_b_num && is_a_plus) {
             auto a_plus = dynamic_cast<Plus*>(operand_a);
-            if (dynamic_cast<Num*>(a_plus->getLeft())) return false;
+            if (dynamic_cast<Num*>(a_plus->get_left())) return false;
         }
         // remove expr "Num < Num x *" if gcd is not 1
         if (is_a_num && is_b_times) {
             auto b_times = dynamic_cast<Times*>(operand_b);
-            if (auto b_coefficient = dynamic_cast<Num*>(b_times->getLeft())) {
-                if (gcd(stoi(operand_a->toString()), stoi(b_coefficient->toString())) != 1)
+            if (auto b_coefficient = dynamic_cast<Num*>(b_times->get_left())) {
+                if (gcd(stoi(operand_a->to_string()), stoi(b_coefficient->to_string())) != 1)
                     return false;
             }
         }
         if (is_b_num && is_a_times) {
             auto a_times = dynamic_cast<Times*>(operand_a);
-            if (auto a_coefficient = dynamic_cast<Num*>(a_times->getLeft())) {
-                if (gcd(stoi(a_coefficient->toString()), stoi(operand_b->toString())) != 1) {
+            if (auto a_coefficient = dynamic_cast<Num*>(a_times->get_left())) {
+                if (gcd(stoi(a_coefficient->to_string()), stoi(operand_b->to_string())) != 1) {
                     return false;
                 }
             }
         }
         
         // remove "var < var" when var == var
-        if (is_a_var && is_b_var && operand_a->toString() == operand_b->toString()) return false;
+        if (is_a_var && is_b_var && operand_a->to_string() == operand_b->to_string()) return false;
         // remove "var < x ", " x < var", when var is a factor
         if (is_a_var && is_b_times) {
             auto b_times = dynamic_cast<Times*>(operand_b);
-            vector<string> b_times_factors = b_times->getFactors();
-            if (find(b_times_factors.begin(), b_times_factors.end(), operand_a->toString()) != b_times_factors.end())
+            vector<string> b_times_factors = b_times->get_factors();
+            if (find(b_times_factors.begin(), b_times_factors.end(), operand_a->to_string()) != b_times_factors.end())
                 return false;
         }
         if (is_a_times && is_b_var) {
             auto a_times = dynamic_cast<Times*>(operand_a);
-            vector<string> a_times_factors = a_times->getFactors();
-            if (find(a_times_factors.begin(), a_times_factors.end(), operand_b->toString()) != a_times_factors.end()) {
+            vector<string> a_times_factors = a_times->get_factors();
+            if (find(a_times_factors.begin(), a_times_factors.end(), operand_b->to_string()) != a_times_factors.end()) {
                 return false;
             }
         }
@@ -373,14 +370,14 @@ inline bool bottomUpSearch::elimination_free_rule(BaseType* operand_a, BaseType*
         if (is_a_var && is_b_plus) {
             auto b_plus = dynamic_cast<Plus*>(operand_b);
             vector<string> b_plus_terms = b_plus->getTerms();
-            if (find(b_plus_terms.begin(), b_plus_terms.end(), operand_a->toString()) != b_plus_terms.end()) {
+            if (find(b_plus_terms.begin(), b_plus_terms.end(), operand_a->to_string()) != b_plus_terms.end()) {
                 return false;
             }
         }
         if (is_a_plus && is_b_var) {
             auto a_plus = dynamic_cast<Plus*>(operand_a);
             vector<string> a_plus_terms = a_plus->getTerms();
-            if (find(a_plus_terms.begin(), a_plus_terms.end(), operand_b->toString()) != a_plus_terms.end()) {
+            if (find(a_plus_terms.begin(), a_plus_terms.end(), operand_b->to_string()) != a_plus_terms.end()) {
                 return false;
             }
         }
@@ -389,8 +386,8 @@ inline bool bottomUpSearch::elimination_free_rule(BaseType* operand_a, BaseType*
         if (is_a_times && is_b_times) {
             auto a_times = dynamic_cast<Times*>(operand_a);
             auto b_times = dynamic_cast<Times*>(operand_b);
-            vector<string> a_times_factors = a_times->getFactors();
-            vector<string> b_times_factors = b_times->getFactors();
+            vector<string> a_times_factors = a_times->get_factors();
+            vector<string> b_times_factors = b_times->get_factors();
             for (auto factor : a_times_factors) {
                 if (find(b_times_factors.begin(), b_times_factors.end(), factor) != b_times_factors.end()) {
                     return false;
@@ -403,10 +400,10 @@ inline bool bottomUpSearch::elimination_free_rule(BaseType* operand_a, BaseType*
             auto b_plus = dynamic_cast<Plus*>(operand_b);
             vector<string> b_plus_terms = b_plus->getTerms();
             string a_times_str_no_num;
-            if (dynamic_cast<Num*>(a_times->getLeft())) {
-                a_times_str_no_num = a_times->getRight()->toString();
+            if (dynamic_cast<Num*>(a_times->get_left())) {
+                a_times_str_no_num = a_times->get_right()->to_string();
             } else {
-                a_times_str_no_num = a_times->toString();
+                a_times_str_no_num = a_times->to_string();
             }
             if (find(b_plus_terms.begin(), b_plus_terms.end(), a_times_str_no_num) != b_plus_terms.end()) {
                 return false;
@@ -417,10 +414,10 @@ inline bool bottomUpSearch::elimination_free_rule(BaseType* operand_a, BaseType*
             auto b_times = dynamic_cast<Times*>(operand_b);
             vector<string> a_plus_terms = a_plus->getTerms();
             string b_times_str_no_num;
-            if (dynamic_cast<Num*>(b_times->getLeft())) {
-                b_times_str_no_num = b_times->getRight()->toString();
+            if (dynamic_cast<Num*>(b_times->get_left())) {
+                b_times_str_no_num = b_times->get_right()->to_string();
             } else {
-                b_times_str_no_num = b_times->toString();
+                b_times_str_no_num = b_times->to_string();
             }
             if (find(a_plus_terms.begin(), a_plus_terms.end(), b_times_str_no_num) != a_plus_terms.end()) {
                 return false;
@@ -431,7 +428,7 @@ inline bool bottomUpSearch::elimination_free_rule(BaseType* operand_a, BaseType*
         if (is_a_plus && is_b_plus) {
             auto a_plus = dynamic_cast<Plus*>(operand_a);
             auto b_plus = dynamic_cast<Plus*>(operand_b);
-            if (dynamic_cast<Num*>(a_plus->getLeft()) && dynamic_cast<Num*>(b_plus->getLeft()))
+            if (dynamic_cast<Num*>(a_plus->get_left()) && dynamic_cast<Num*>(b_plus->get_left()))
                 return false;
             vector<string> a_plus_terms = a_plus->getTerms();
             vector<string> b_plus_terms = b_plus->getTerms();
@@ -453,17 +450,17 @@ inline bool bottomUpSearch::elimination_free_rule(BaseType* operand_a, BaseType*
               dynamic_cast<Not*>(operand_b) ||
               dynamic_cast<Lt*>(operand_b))) return false;
         // no redundant expr
-        vector<int> left_lex = operand_a->getLexicalOrder(_num_of_vars, _vars_orders);
+        vector<int> left_lex = operand_a->get_lexical_order(_num_of_vars, _vars_orders);
         vector<int> right_lex;
         if (auto b_and = dynamic_cast<And*>(operand_b)) {
-            right_lex = b_and->getRight()->getLexicalOrder(_num_of_vars, _vars_orders);
+            right_lex = b_and->get_right()->get_lexical_order(_num_of_vars, _vars_orders);
             if(left_lex == right_lex ||
                !lexicographical_compare(left_lex.begin(), left_lex.end(),
                                         right_lex.begin(), right_lex.end()))
                 return false;
             
         } else {
-            right_lex = operand_b->getLexicalOrder(_num_of_vars, _vars_orders);
+            right_lex = operand_b->get_lexical_order(_num_of_vars, _vars_orders);
             if(left_lex == right_lex ||
                !lexicographical_compare(left_lex.begin(), left_lex.end(),
                                         right_lex.begin(), right_lex.end()))
@@ -478,7 +475,7 @@ inline bool bottomUpSearch::elimination_free_rule(BaseType* operand_a, BaseType*
     return true;
 }
 
-inline bool bottomUpSearch::form_bias_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation) {
+inline bool bottomUpSearch::form_bias_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int program_generation) {
     /*
     auto a_num = dynamic_cast<Num*>(operand_a);
     auto b_num = dynamic_cast<Num*>(operand_b);
@@ -493,16 +490,16 @@ inline bool bottomUpSearch::form_bias_rule(BaseType* operand_a, BaseType* operan
     if (op == "LT") {
         // enforce "no b < *"
         if (operand_a && operand_b &&
-            operand_a->getNumberOfVarsInProg("b") != 0 && operand_b->getNumberOfVarsInProg("b") != 0) return false;
+            operand_a->get_number_of_vars("b") != 0 && operand_b->get_number_of_vars("b") != 0) return false;
         if (operand_a && operand_b &&
-            operand_a->getNumberOfVarsInProg("b") == 0 && operand_b->getNumberOfVarsInProg("b") == 0) return false;
+            operand_a->get_number_of_vars("b") == 0 && operand_b->get_number_of_vars("b") == 0) return false;
         // enforce "one isrc < *"
         if (operand_a && operand_b &&
-            operand_a->getNumberOfVarsInProg("isrc") != 0 && operand_b->getNumberOfVarsInProg("isrc") != 0) return false;
+            operand_a->get_number_of_vars("isrc") != 0 && operand_b->get_number_of_vars("isrc") != 0) return false;
         if (operand_a && operand_b &&
-            operand_a->getNumberOfVarsInProg("isrc") == 0 && operand_b->getNumberOfVarsInProg("isrc") == 0) return false;
+            operand_a->get_number_of_vars("isrc") == 0 && operand_b->get_number_of_vars("isrc") == 0) return false;
         // enforce "* < no isrc"
-        //if (operand_b->getNumberOfVarsInProg("isrc") != 0) return false;
+        //if (operand_b->get_number_of_vars("isrc") != 0) return false;
     }
     if (op == "TIMES") {
         // enforce a * Var, a <= 20
@@ -512,27 +509,27 @@ inline bool bottomUpSearch::form_bias_rule(BaseType* operand_a, BaseType* operan
         }
          */
         if (operand_a && operand_b &&
-            operand_a->getNumberOfVarsInProg("VAR") + operand_b->getNumberOfVarsInProg("VAR") > 4)
+            operand_a->get_number_of_vars("VAR") + operand_b->get_number_of_vars("VAR") > 4)
             return false;
     }
     return true;
 }
 
-bool bottomUpSearch::isGrowRuleSatisfied(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation) {
-    if (depth_rule(operand_a, operand_b, operand_c, op, prog_generation) == false) return false;
-    if (type_rule(operand_a, operand_b, operand_c, op, prog_generation) == false) return false;
-    if (generation_rule(operand_a, operand_b, operand_c, op, prog_generation) == false) return false;
-    if (elimination_free_rule(operand_a, operand_b, operand_c, op, prog_generation) == false) return false;
-    if (form_bias_rule(operand_a, operand_b, operand_c, op, prog_generation) == false) return false;
+bool bottomUpSearch::is_grow_rule_satisfied(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int program_generation) {
+    if (depth_rule(operand_a, operand_b, operand_c, op, program_generation) == false) return false;
+    if (type_rule(operand_a, operand_b, operand_c, op, program_generation) == false) return false;
+    if (generation_rule(operand_a, operand_b, operand_c, op, program_generation) == false) return false;
+    if (elimination_free_rule(operand_a, operand_b, operand_c, op, program_generation) == false) return false;
+    if (form_bias_rule(operand_a, operand_b, operand_c, op, program_generation) == false) return false;
     return true;
 }
 
 /******************************************
     Grow program list
 */
-inline BaseType* bottomUpSearch::growOneExpr(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int prog_generation) {
+inline BaseType* bottomUpSearch::grow_one_expr(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int program_generation) {
     // check rules
-    if (op == "F" || !isGrowRuleSatisfied(operand_a, operand_b, operand_c, op, prog_generation)) {
+    if (op == "F" || !is_grow_rule_satisfied(operand_a, operand_b, operand_c, op, program_generation)) {
         return nullptr;
     }
     
@@ -584,23 +581,23 @@ inline BaseType* bottomUpSearch::growOneExpr(BaseType* operand_a, BaseType* oper
         return dynamic_cast<BaseType*>(lt);
     }
     else {
-        throw runtime_error("bottomUpSearch::growOneExpr() operates on UNKNOWN type!");
+        throw runtime_error("bottomUpSearch::grow_one_expr() operates on UNKNOWN type!");
     }
     
     return nullptr;
 }
 
-void bottomUpSearch::grow(int prog_generation) {
+void bottomUpSearch::grow(int program_generation) {
     
-    int program_list_length = _pList.size();
-    for (auto op : _intOps) {
-        
+    int program_list_length = _program_list.size();
+    
+    for (auto op : _int_ops) {
         if (op == "PLUS" || op == "TIMES" || op == "MINUS" || op == "LEFTSHIFT" || op == "RIGHTSHIFT") {
             int cnt = 0;
             for (int i = 0; i < program_list_length; i++) {
                 for (int j = 0; j < program_list_length; j++) {
-                    BaseType* new_expr = growOneExpr(_pList[i], _pList[j], nullptr, op, prog_generation);
-                    if (new_expr != nullptr) _pList.push_back(new_expr);
+                    BaseType* new_expr = grow_one_expr(_program_list[i], _program_list[j], nullptr, op, program_generation);
+                    if (new_expr != nullptr) _program_list.push_back(new_expr);
                 }
             }
         }
@@ -608,52 +605,49 @@ void bottomUpSearch::grow(int prog_generation) {
             for (int i = 0; i < program_list_length; i++) {
                 for (int j = 0; j < program_list_length; j++) {
                     for (int k = 0; k < program_list_length; k++) {
-                        BaseType* new_expr = growOneExpr(_pList[i], _pList[j], _pList[k], op, prog_generation);
-                        if (new_expr != nullptr)
-                            _pList.push_back(new_expr);
+                        BaseType* new_expr = grow_one_expr(_program_list[i], _program_list[j], _program_list[k], op, program_generation);
+                        if (new_expr != nullptr) _program_list.push_back(new_expr);
                     }
                 }
             }
         }
+        else {
+            if (op != "VAR" && op != "NUM") throw runtime_error("bottomUpSearch::grow(): UNKNOWN int op: " + op);
+        }
     }
     
-    for (auto op : _boolOps) {
+    for (auto op : _bool_ops) {
         
         if (op == "F") {
-            BaseType* new_expr = growOneExpr(nullptr, nullptr, nullptr, op, prog_generation);
+            BaseType* new_expr = grow_one_expr(nullptr, nullptr, nullptr, op, program_generation);
             if (new_expr != nullptr)
-                _pList.push_back(new_expr);
+                _program_list.push_back(new_expr);
         }
         else if (op == "NOT") {
-            for (int j = 0; j < program_list_length; j++) {
-                BaseType* new_expr = growOneExpr(_pList[j], nullptr, nullptr, op, prog_generation);
+            for (int i = 0; i < program_list_length; i++) {
+                BaseType* new_expr = grow_one_expr(_program_list[i], nullptr, nullptr, op, program_generation);
                 if (new_expr != nullptr)
-                    _pList.push_back(new_expr);
+                    _program_list.push_back(new_expr);
             }
         }
-        else if (op == "AND") {
-            for (int j = 0; j < program_list_length; j++) {
-                for (int k = 0; k < program_list_length; k++) {
-                    BaseType* new_expr = growOneExpr(_pList[j], _pList[k], nullptr, op, prog_generation);
+        else if (op == "AND" || op == "LT") {
+            for (int i = 0; i < program_list_length; i++) {
+                for (int j = 0; j < program_list_length; j++) {
+                    BaseType* new_expr = grow_one_expr(_program_list[i], _program_list[j], nullptr, op, program_generation);
                     if (new_expr != nullptr)
-                        _pList.push_back(new_expr);
+                        _program_list.push_back(new_expr);
                 }
             }
         }
-        else if (op == "LT") {
-            for (int j = 0; j < program_list_length; j++) {
-                for (int k = 0; k < program_list_length; k++) {
-                    BaseType* new_expr = growOneExpr(_pList[j], _pList[k], nullptr, op, prog_generation);
-                    if (new_expr != nullptr)
-                        _pList.push_back(new_expr);
-                }
-            }
+        else {
+            throw runtime_error("bottomUpSearch::grow(): UNKNOWN bool op");
         }
+            
     }
     
-    for (int i = program_list_length; i < _pList.size(); i++) {
-        if (_pList[i] && !dynamic_cast<Num*>(_pList[i]))
-            _pList[i]->set_generation(prog_generation);
+    for (int i = program_list_length; i < _program_list.size(); i++) {
+        if (_program_list[i] && !dynamic_cast<Num*>(_program_list[i]))
+            _program_list[i]->set_generation(program_generation);
     }
     
     return;
@@ -662,10 +656,10 @@ void bottomUpSearch::grow(int prog_generation) {
 /******************************************
     Eliminate equvalent programs
 */
-inline int bottomUpSearch::evaluateIntProgram(BaseType* p, int inputOutputId) {
+inline int bottomUpSearch::evaluate_int_program(BaseType* p, int input_output_id) {
     
-    if (_intResultRecord.find(make_pair(p, inputOutputId)) != _intResultRecord.end()) {
-        return _intResultRecord[make_pair(p, inputOutputId)];
+    if (_int_program_to_value_record.find(make_pair(p, input_output_id)) != _int_program_to_value_record.end()) {
+        return _int_program_to_value_record[make_pair(p, input_output_id)];
     }
     
     int pValue;
@@ -673,37 +667,37 @@ inline int bottomUpSearch::evaluateIntProgram(BaseType* p, int inputOutputId) {
         pValue = num->interpret();
     }
     else if (auto var = dynamic_cast<Var*>(p)) {
-        pValue = var->interpret(_inputOutputs[inputOutputId]);
+        pValue = var->interpret(_input_outputs[input_output_id]);
     }
     else if (auto plus = dynamic_cast<Plus*>(p)) {
-        pValue = plus->interpret(_inputOutputs[inputOutputId]);
+        pValue = plus->interpret(_input_outputs[input_output_id]);
     }
     else if (auto times = dynamic_cast<Times*>(p)) {
-        pValue = times->interpret(_inputOutputs[inputOutputId]);
+        pValue = times->interpret(_input_outputs[input_output_id]);
     }
     else if (auto minus = dynamic_cast<Minus*>(p)) {
-        pValue = minus->interpret(_inputOutputs[inputOutputId]);
+        pValue = minus->interpret(_input_outputs[input_output_id]);
     }
     else if (auto leftshift = dynamic_cast<Leftshift*>(p)) {
-        pValue = leftshift->interpret(_inputOutputs[inputOutputId]);
+        pValue = leftshift->interpret(_input_outputs[input_output_id]);
     }
     else if (auto rightshift = dynamic_cast<Rightshift*>(p)) {
-        pValue = rightshift->interpret(_inputOutputs[inputOutputId]);
+        pValue = rightshift->interpret(_input_outputs[input_output_id]);
     }
     else if (auto ite = dynamic_cast<Ite*>(p)) {
-        pValue = ite->interpret(_inputOutputs[inputOutputId]);
+        pValue = ite->interpret(_input_outputs[input_output_id]);
     }
     else {
-        throw runtime_error("bottomUpSearch::evaluateIntProgram() operates on UNKNOWN type!");
+        throw runtime_error("bottomUpSearch::evaluate_int_program() operates on UNKNOWN type!");
     }
     
-    _intResultRecord[make_pair(p, inputOutputId)] = pValue;
+    _int_program_to_value_record[make_pair(p, input_output_id)] = pValue;
     return pValue;
 }
 
-inline bool bottomUpSearch::evaluateBoolProgram(BaseType* p, int inputOutputId) {
-    if (_boolResultRecord.find(make_pair(p, inputOutputId)) != _boolResultRecord.end()) {
-        return _boolResultRecord[make_pair(p, inputOutputId)];
+inline bool bottomUpSearch::evaluate_bool_program(BaseType* p, int input_output_id) {
+    if (_bool_program_to_value_record.find(make_pair(p, input_output_id)) != _bool_program_to_value_record.end()) {
+        return _bool_program_to_value_record[make_pair(p, input_output_id)];
     }
     
     bool pValue;
@@ -711,248 +705,222 @@ inline bool bottomUpSearch::evaluateBoolProgram(BaseType* p, int inputOutputId) 
         pValue = f->interpret();
     }
     else if (auto n = dynamic_cast<Not*>(p)) {
-        pValue = n->interpret(_inputOutputs[inputOutputId]);
+        pValue = n->interpret(_input_outputs[input_output_id]);
     }
     else if (auto a = dynamic_cast<And*>(p)) {
-        pValue = a->interpret(_inputOutputs[inputOutputId]);
+        pValue = a->interpret(_input_outputs[input_output_id]);
     }
     else if (auto lt = dynamic_cast<Lt*>(p)) {
-        pValue = lt->interpret(_inputOutputs[inputOutputId]);
+        pValue = lt->interpret(_input_outputs[input_output_id]);
     }
     else {
-        throw runtime_error("bottomUpSearch::evaluateBoolProgram() operates on UNKNOWN type!");
+        throw runtime_error("bottomUpSearch::evaluate_bool_program() operates on UNKNOWN type!");
     }
     
-    _boolResultRecord[make_pair(p, inputOutputId)] = pValue;
+    _bool_program_to_value_record[make_pair(p, input_output_id)] = pValue;
     return pValue;
 }
 
-inline bool bottomUpSearch::checkTwoProgramsEqual(BaseType* pi, BaseType* pj) {
-    
-    if (dynamic_cast<IntType*>(pi) && dynamic_cast<IntType*>(pj)) {
-        for (int i = 0; i < _inputOutputs.size(); i++) {
-            if (evaluateIntProgram(pi, i) != evaluateIntProgram(pj, i)) {
+inline bool bottomUpSearch::check_two_programs_equivilent(BaseType* program_a, BaseType* program_b) {
+    if (dynamic_cast<IntType*>(program_a) && dynamic_cast<IntType*>(program_b)) {
+        for (int i = 0; i < _input_outputs.size(); i++) {
+            if (evaluate_int_program(program_a, i) != evaluate_int_program(program_b, i)) {
                 return false;
             }
         }
+        return true;
     }
-    else if (dynamic_cast<BoolType*>(pi) && dynamic_cast<BoolType*>(pj)) {
-        for (int i = 0; i < _inputOutputs.size(); i++) {
-            if (evaluateBoolProgram(pi, i) != evaluateBoolProgram(pj, i)) {
+    else if (dynamic_cast<BoolType*>(program_a) && dynamic_cast<BoolType*>(program_b)) {
+        for (int i = 0; i < _input_outputs.size(); i++) {
+            if (evaluate_bool_program(program_a, i) != evaluate_bool_program(program_b, i)) {
                 return false;
             }
         }
-    } else {
-        return false;
+        return true;
     }
-    return true;
+    return false;
 }
 
-inline BaseType* bottomUpSearch::elimOneProgWithRules(BaseType* pi, BaseType* pj) {
+inline BaseType* bottomUpSearch::eliminate_one_program_by_rules(BaseType* program_a, BaseType* program_b) {
     
-    if (pi == nullptr) {
-        return pj;
+    if (program_a == nullptr) {
+        return program_b;
     }
-    if (pj == nullptr) {
-        return pi;
+    if (program_b == nullptr) {
+        return program_a;
     }
     
-    BaseType* progToKeep = pi;
+    BaseType* progToKeep = program_a;
         
     // Apply common rules
-    if (NO_SYM_2(pi, pj) ) {
-        progToKeep = GET_LENGTH_SHOTER(pi, pj);
+    if (NO_SYM_2(program_a, program_b) ) {
+        progToKeep = GET_LENGTH_SHOTER(program_a, program_b);
     }
     
     // Apply different rules for predicts and terms
     if (_isPred) {
-        if (HAS_SYM(pi, "B") > 0 && HAS_SYM(pj, "B") > 0) {
-            if (HAS_SYM(pi, "Isrc") > 0 && HAS_SYM(pj, "Isrc") > 0) {
-                if (HAS_SYM(pi, "Isnk") > 0 && HAS_SYM(pj, "Isnk") > 0) {
-                    progToKeep = GET_LESS_SYM(pi, pj, "ALL");
+        if (HAS_SYM(program_a, "B") > 0 && HAS_SYM(program_b, "B") > 0) {
+            if (HAS_SYM(program_a, "Isrc") > 0 && HAS_SYM(program_b, "Isrc") > 0) {
+                if (HAS_SYM(program_a, "Isnk") > 0 && HAS_SYM(program_b, "Isnk") > 0) {
+                    progToKeep = GET_LESS_SYM(program_a, program_b, "ALL");
                 } else {
-                    if (HAS_SYM(pi, "Isnk") > 0) {
-                        progToKeep = pj;
-                    } else if (HAS_SYM(pj, "Isnk") > 0) {
-                        progToKeep = pi;
+                    if (HAS_SYM(program_a, "Isnk") > 0) {
+                        progToKeep = program_b;
+                    } else if (HAS_SYM(program_b, "Isnk") > 0) {
+                        progToKeep = program_a;
                     } else {
-                        if (GET_EXP(pi, "Isrc") < GET_EXP(pj, "Isrc")) {
-                            progToKeep = pi;
-                        } else if (GET_EXP(pi, "Isrc") > GET_EXP(pj, "Isrc")) {
-                            progToKeep = pj;
+                        if (GET_EXP(program_a, "Isrc") < GET_EXP(program_b, "Isrc")) {
+                            progToKeep = program_a;
+                        } else if (GET_EXP(program_a, "Isrc") > GET_EXP(program_b, "Isrc")) {
+                            progToKeep = program_b;
                         } else {
-                            if (GET_EXP(pi, "B") < GET_EXP(pj, "B")) {
-                                progToKeep = pi;
-                            } else if (GET_EXP(pi, "B") > GET_EXP(pj, "B")) {
-                                progToKeep = pj;
+                            if (GET_EXP(program_a, "B") < GET_EXP(program_b, "B")) {
+                                progToKeep = program_a;
+                            } else if (GET_EXP(program_a, "B") > GET_EXP(program_b, "B")) {
+                                progToKeep = program_b;
                             } else {
-                                progToKeep = GET_LESS_SYM(pi, pj, "ALL");
+                                progToKeep = GET_LESS_SYM(program_a, program_b, "ALL");
                             }
                         }
                     }
                 }
             } else {
-                if (HAS_SYM(pi, "Isrc") > 0) {
-                    progToKeep = pi;
-                } else if (HAS_SYM(pj, "Isrc") > 0) {
-                    progToKeep = pj;
+                if (HAS_SYM(program_a, "Isrc") > 0) {
+                    progToKeep = program_a;
+                } else if (HAS_SYM(program_b, "Isrc") > 0) {
+                    progToKeep = program_b;
                 } else {
-                    if (GET_NUM_OF_SYMS(pi, "B") < GET_NUM_OF_SYMS(pj, "B")) {
-                        progToKeep = pi;
-                    } else if (GET_NUM_OF_SYMS(pi, "B") > GET_NUM_OF_SYMS(pj, "B")) {
-                        progToKeep = pj;
+                    if (GET_NUM_OF_SYMS(program_a, "B") < GET_NUM_OF_SYMS(program_b, "B")) {
+                        progToKeep = program_a;
+                    } else if (GET_NUM_OF_SYMS(program_a, "B") > GET_NUM_OF_SYMS(program_b, "B")) {
+                        progToKeep = program_b;
                     } else {
-                        progToKeep = GET_LENGTH_SHOTER(pi, pj);
+                        progToKeep = GET_LENGTH_SHOTER(program_a, program_b);
                     }
                 }
             }
         } else {
-            if (HAS_SYM(pi, "B") > 0) {
-                progToKeep = pi;
-            } else if (HAS_SYM(pj, "B") > 0) {
-                progToKeep = pj;
+            if (HAS_SYM(program_a, "B") > 0) {
+                progToKeep = program_a;
+            } else if (HAS_SYM(program_b, "B") > 0) {
+                progToKeep = program_b;
             } else {
-                progToKeep = GET_LENGTH_SHOTER(pi, pj);
+                progToKeep = GET_LENGTH_SHOTER(program_a, program_b);
             }
         }
-        
-        /*
-        if (BOTH_SYM_2(pi, pj)) {
-            progToKeep = GET_LESS_SYM(pi, pj, "ALL");
-        } else {
-            if (BOTH_SYM_1(pi)) {
-                progToKeep = pi;
-            } else if (BOTH_SYM_1(pj)) {
-                progToKeep = pj;
-            } else {
-                progToKeep = GET_LESS_SYM(pi, pj, "ALL");
-            }
-        }
-        */
     } else {
         
-        if (HAS_SYM(pi, "B") > 0 && HAS_SYM(pj, "B") > 0) {
-            if (HAS_SYM(pi, "Isrc") > 0 && HAS_SYM(pj, "Isrc") > 0) {
-                if (HAS_SYM(pi, "Isnk") > 0 && HAS_SYM(pj, "Isnk") > 0) {
-                    progToKeep = GET_LESS_SYM(pi, pj, "ALL");;
+        if (HAS_SYM(program_a, "B") > 0 && HAS_SYM(program_b, "B") > 0) {
+            if (HAS_SYM(program_a, "Isrc") > 0 && HAS_SYM(program_b, "Isrc") > 0) {
+                if (HAS_SYM(program_a, "Isnk") > 0 && HAS_SYM(program_b, "Isnk") > 0) {
+                    progToKeep = GET_LESS_SYM(program_a, program_b, "ALL");;
                 } else {
-                    if (HAS_SYM(pi, "Isnk") > 0) {
-                        progToKeep = pi;
-                    } else if (HAS_SYM(pj, "Isnk") > 0) {
-                        progToKeep = pj;
+                    if (HAS_SYM(program_a, "Isnk") > 0) {
+                        progToKeep = program_a;
+                    } else if (HAS_SYM(program_b, "Isnk") > 0) {
+                        progToKeep = program_b;
                     } else {
-                        progToKeep = GET_LESS_SYM(pi, pj, "ALL");
+                        progToKeep = GET_LESS_SYM(program_a, program_b, "ALL");
                     }
                 }
             } else {
-                if (HAS_SYM(pi, "Isrc") > 0) {
-                    progToKeep = pj;
-                } else if (HAS_SYM(pj, "Isrc") > 0) {
-                    progToKeep = pi;
+                if (HAS_SYM(program_a, "Isrc") > 0) {
+                    progToKeep = program_b;
+                } else if (HAS_SYM(program_b, "Isrc") > 0) {
+                    progToKeep = program_a;
                 } else {
-                    progToKeep = GET_LESS_SYM(pi, pj, "ALL");
+                    progToKeep = GET_LESS_SYM(program_a, program_b, "ALL");
                 }
             }
         } else {
-            if (HAS_SYM(pi, "B") > 0) {
-                progToKeep = pi;
-            } else if (HAS_SYM(pj, "B") > 0) {
-                progToKeep = pj;
+            if (HAS_SYM(program_a, "B") > 0) {
+                progToKeep = program_a;
+            } else if (HAS_SYM(program_b, "B") > 0) {
+                progToKeep = program_b;
             } else {
-                progToKeep = GET_LENGTH_SHOTER(pi, pj);
+                progToKeep = GET_LENGTH_SHOTER(program_a, program_b);
             }
         }
         
-        /*
-        if (B_SYM_ONLY_2(pi, pj)) {
-            return GET_LENGTH_SHOTER(pi, pj);
-        } else {
-            if (CHECK_LESS_SYM(pi, pj, "I")) {
-                return pi;
-                
-            } else {
-                return pj;
-            }
-        }
-        */
     }
     
-    if (progToKeep == pi) {
-        for (int inputOutputId = 0; inputOutputId < _inputOutputs.size(); inputOutputId++) {
-            _boolResultRecord.erase(make_pair(pj, inputOutputId));
-            _intResultRecord.erase(make_pair(pj, inputOutputId));
+    if (progToKeep == program_a) {
+        for (int input_output_id = 0; input_output_id < _input_outputs.size(); input_output_id++) {
+            _bool_program_to_value_record.erase(make_pair(program_b, input_output_id));
+            _int_program_to_value_record.erase(make_pair(program_b, input_output_id));
         }
     } else {
-        for (int inputOutputId = 0; inputOutputId < _inputOutputs.size(); inputOutputId++) {
-            _boolResultRecord.erase(make_pair(pi, inputOutputId));
-            _intResultRecord.erase(make_pair(pi, inputOutputId));
+        for (int input_output_id = 0; input_output_id < _input_outputs.size(); input_output_id++) {
+            _bool_program_to_value_record.erase(make_pair(program_a, input_output_id));
+            _int_program_to_value_record.erase(make_pair(program_a, input_output_id));
         }
     }
     
     return progToKeep;
 }
 
-void bottomUpSearch::elimEquvalents() {
-    vector<BaseType*> progToKeepList;
-    vector<bool> eqFlag(_pList.size() ,false);
+void bottomUpSearch::eliminate_equivalents() {
+    vector<BaseType*> programs_to_keep_list;
+    vector<bool> eqFlag(_program_list.size() ,false);
     
-    for (int i = 0; i < _pList.size(); i++) {
+    for (int i = 0; i < _program_list.size(); i++) {
         if (eqFlag[i] == true) {
             continue;
         }
-        BaseType* pi = _pList[i];
+        BaseType* program_a = _program_list[i];
         
         /* reserve all variables */
-        if (dynamic_cast<Var*>(pi)) {
-            progToKeepList.push_back(pi);
+        if (dynamic_cast<Var*>(program_a)) {
+            programs_to_keep_list.push_back(program_a);
             continue;
         }
         
         /* Find all programs that equal */
         vector<BaseType*> eqPList;
-        eqPList.push_back(pi);
-        for (int j = i+1; j < _pList.size(); j++) {
-            BaseType* pj = _pList[j];
+        eqPList.push_back(program_a);
+        for (int j = i+1; j < _program_list.size(); j++) {
+            BaseType* program_b = _program_list[j];
             
-            if (checkTwoProgramsEqual(pi, pj)) {
+            if (check_two_programs_equivilent(program_a, program_b)) {
                 eqFlag[j] = true;
-                eqPList.push_back(pj);
+                eqPList.push_back(program_b);
             }
         }
         
         /* Find the program to keep */
         BaseType* progToKeep = nullptr;
         for (auto prog : eqPList) {
-            //if (eqPList.size() > 1) cout << prog->toString() << " ";
-            progToKeep = elimOneProgWithRules(progToKeep, prog);
+            //if (eqPList.size() > 1) cout << prog->to_string() << " ";
+            progToKeep = eliminate_one_program_by_rules(progToKeep, prog);
         }
         //if (eqPList.size() > 1) cout << endl;
         
-        for (int inputOutputId = 0; inputOutputId < _inputOutputs.size(); inputOutputId++) {
-            _boolResultRecord.erase(make_pair(pi, inputOutputId));
-            _intResultRecord.erase(make_pair(pi, inputOutputId));
+        for (int input_output_id = 0; input_output_id < _input_outputs.size(); input_output_id++) {
+            _bool_program_to_value_record.erase(make_pair(program_a, input_output_id));
+            _int_program_to_value_record.erase(make_pair(program_a, input_output_id));
         }
         
         /* random choose program to keep */
         //srand((unsigned)time(nullptr));
         //programToKeep.push_back(eqPList[rand() % eqPList.size()]);
         /* always keep the first program, which is short in depth */
-        progToKeepList.push_back(progToKeep);
+        programs_to_keep_list.push_back(progToKeep);
     }
     
-    _boolResultRecord.clear();
-    _intResultRecord.clear();
-    _pList = progToKeepList;
+    _bool_program_to_value_record.clear();
+    _int_program_to_value_record.clear();
+    _program_list = programs_to_keep_list;
     return;
 }
 
-void bottomUpSearch::elimMaxEvaluatedValueOutOfBounds() {
-    int number_of_programs = _pList.size();
+void bottomUpSearch::eliminate_program_by_value() {
+    int number_of_programs = _program_list.size();
     vector<bool> keep_flag(number_of_programs, true);
+    
     for (int i = 0; i < number_of_programs; i++) {
-        BaseType* program = _pList[i];
+        BaseType* program = _program_list[i];
         if (auto int_program = dynamic_cast<IntType*>(program)) {
-            for (auto ioe : _inputOutputs) {
+            for (auto ioe : _input_outputs) {
                 int program_value = int_program->interpret(ioe);
                 if (program_value > ioe["_out"] && ioe["_out"] != 0) {
                     keep_flag[i] = false;
@@ -965,42 +933,41 @@ void bottomUpSearch::elimMaxEvaluatedValueOutOfBounds() {
     vector<BaseType*> programs_to_keep;
     for (int i = 0; i < number_of_programs; i++) {
         if (keep_flag[i]) {
-            programs_to_keep.push_back(_pList[i]);
+            programs_to_keep.push_back(_program_list[i]);
         }
     }
-    _pList = programs_to_keep;
+    _program_list = programs_to_keep;
     return;
 }
 
 /******************************************
     Check correct
  */
-bool bottomUpSearch::isCorrect(BaseType* p) {
+bool bottomUpSearch::is_correct(BaseType* program) {
     if (_isPred) {
-        if (dynamic_cast<BoolType*>(p)) {
+        if (auto bool_program = dynamic_cast<BoolType*>(program)) {
                 /* all true or all false are both correct program */
-                bool allFalse = true;
-                bool allTrue = true;
+                bool all_false = true;
+                bool all_true = true;
         
-                for (int i = 0; i < _inputOutputs.size(); i++) {
+                for (int i = 0; i < _input_outputs.size(); i++) {
                     
-                    if (!(_inputOutputs[i]["_out"] == 0 || _inputOutputs[i]["_out"] == 1)) {
+                    if (!(_input_outputs[i]["_out"] == 0 || _input_outputs[i]["_out"] == 1)) {
                         return false;
                     }
                     
-                    if (evaluateBoolProgram(p, i) != _inputOutputs[i]["_out"]) {
-                        allTrue = false;
+                    if (evaluate_bool_program(program, i) != _input_outputs[i]["_out"]) {
+                        all_true = false;
                     } else {
-                        allFalse = false;
+                        all_false = false;
                     }
 
-                    if (!allTrue && !allFalse) {
+                    if (!all_true && !all_false) {
                         return false;
                     }
                 }
-                if (allFalse == true) {
-                    BoolType* booli = dynamic_cast<BoolType*>(p);
-                    p = new Not(booli);
+                if (all_false == true) {
+                    program = new Not(bool_program);
                 }
             }
         else {
@@ -1008,9 +975,9 @@ bool bottomUpSearch::isCorrect(BaseType* p) {
         }
     }
     else {
-        if (dynamic_cast<IntType*>(p)) {
-            for (int i = 0; i < _inputOutputs.size(); i++) {
-                if (evaluateIntProgram(p, i) != _inputOutputs[i]["_out"]) {
+        if (dynamic_cast<IntType*>(program)) {
+            for (int i = 0; i < _input_outputs.size(); i++) {
+                if (evaluate_int_program(program, i) != _input_outputs[i]["_out"]) {
                     return false;
                 }
             }
@@ -1023,13 +990,13 @@ bool bottomUpSearch::isCorrect(BaseType* p) {
     return true;
 }
 
-inline string bottomUpSearch::getCorrect(int prog_generation) {
-    for (auto prog : _pList) {
-        if (prog->depth() == prog_generation && isCorrect(prog)) {
+inline string bottomUpSearch::get_correct(int program_generation) {
+    for (auto program : _program_list) {
+        if (program->depth() == program_generation && is_correct(program)) {
 #ifdef DEBUG
-            cout << "SynProg: " << dumpProgram(prog) << endl;
+            cout << "SynProg: " << dump_program(program) << endl;
 #endif
-            return dumpProgram(prog);
+            return dump_program(program);
         }
     }
     return "";
@@ -1038,33 +1005,33 @@ inline string bottomUpSearch::getCorrect(int prog_generation) {
 string bottomUpSearch::search() {
 
 #ifdef DEBUG
-    cout << "Init pList size " << _pList.size() << ", check correct" << endl;
+    cout << "Init program_list size " << _program_list.size() << ", check correct" << endl;
 #endif
     
-    //elimEquvalents();
-    //dumpPlist();
+    //eliminate_equivalents();
+    //dump_program_list();
     
-    int prog_generation = 1;
-    while (getCorrect(prog_generation) == "") {
+    int program_generation = 1;
+    while (get_correct(program_generation) == "") {
 #ifdef DEBUG
-        cout << "Current generation " << prog_generation << endl;
-        cout << "Current pList size " << _pList.size() << ", grow" << endl;
+        cout << "Current generation " << program_generation << endl;
+        cout << "Current program_list size " << _program_list.size() << ", grow" << endl;
 #endif
-        //dumpPlist();
-        prog_generation++;
-        grow(prog_generation);
-        //dumpPlist();
+        //dump_program_list();
+        program_generation++;
+        grow(program_generation);
+        //dump_program_list();
 #ifdef DEBUG
-        cout << "Current pList size " << _pList.size() << ", eliminate equvalents" << endl;
+        cout << "Current program_list size " << _program_list.size() << ", eliminate equvalents" << endl;
 #endif
-        if (!_isPred) elimMaxEvaluatedValueOutOfBounds();
-        if (_isPred) elimEquvalents();
+        if (!_isPred) eliminate_program_by_value();
+        if (_isPred) eliminate_equivalents();
         
-        //dumpPlist();
+        //dump_program_list();
 #ifdef DEBUG
-        cout << "Current pList size " << _pList.size() << ", check correct" << endl;
+        cout << "Current program_list size " << _program_list.size() << ", check correct" << endl;
 #endif
     }
     
-    return getCorrect(prog_generation);
+    return get_correct(program_generation);
 }

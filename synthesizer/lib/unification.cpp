@@ -2,35 +2,35 @@
 /*
  Constructor
  */
-unification::unification(int depthBoundPred,
-                         vector<string> intOpsPred,
-                         vector<string> boolOpsPred,
-                         vector<string> varsPred,
-                         vector<string> constantsPred,
-                         int depthBoundTerm,
-                         vector<string> intOpsTerm,
-                         vector<string> boolOpsTerm,
-                         vector<string> varsTerm,
-                         vector<string> constantsTerm,
-                         vector<string> rulesToApply,
-                         inputOutputs_t inputOutputs) {
+unification::unification(int depth_bound_for_predicate,
+                         vector<string> int_ops_in_predicate,
+                         vector<string> bool_ops_in_predicate,
+                         vector<string> vars_in_predicate,
+                         vector<string> constants_in_predicate,
+                         int depth_bound_for_term,
+                         vector<string> int_ops_in_term,
+                         vector<string> bool_ops_in_term,
+                         vector<string> vars_in_term,
+                         vector<string> constants_in_term,
+                         vector<string> rules_to_apply,
+                         input_outputs_t input_outputs) {
     
-    this->depthBoundPred = depthBoundPred;
-    this->intOpsPred = intOpsPred;
-    this->boolOpsPred = boolOpsPred;
-    this->varsPred = varsPred;
-    this->constantsPred = constantsPred;
+    this->depth_bound_for_predicate = depth_bound_for_predicate;
+    this->int_ops_in_predicate = int_ops_in_predicate;
+    this->bool_ops_in_predicate = bool_ops_in_predicate;
+    this->vars_in_predicate = vars_in_predicate;
+    this->constants_in_predicate = constants_in_predicate;
     
-    this->depthBoundTerm = depthBoundTerm;
-    this->intOpsTerm = intOpsTerm;
-    this->boolOpsTerm = boolOpsTerm;
-    this->varsTerm = varsTerm;
-    this->constantsTerm = constantsTerm;
+    this->depth_bound_for_term = depth_bound_for_term;
+    this->int_ops_in_term = int_ops_in_term;
+    this->bool_ops_in_term = bool_ops_in_term;
+    this->vars_in_term = vars_in_term;
+    this->constants_in_term = constants_in_term;
     
-    this->rulesToApply = rulesToApply;
+    this->rules_to_apply = rules_to_apply;
     
-    this->inputOutputTree = new inputOutputTreeNode(inputOutputs);
-    for (auto ioe : inputOutputs) {
+    this->input_output_tree = new input_output_tree_node(input_outputs);
+    for (auto ioe : input_outputs) {
         if (ioe["_out"] == 0) {
             this->_has_zero_in_ioes = true;
             break;
@@ -41,7 +41,7 @@ unification::unification(int depthBoundPred,
 /*
  search function
  */
-string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNode* node) {
+string unification::search_node_one_pass(int time_bound_in_seconds, input_output_tree_node* node) {
     if (node == NULL) {
         return "";
     }
@@ -50,44 +50,44 @@ string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNod
     pipe(fd);
     pid_t pid = fork();
     
-    string searchedProg = "";
+    string searched_program = "";
     
 #ifdef DEBUG
-    cerr << "Start child process to run with " << timeBoundInSeconds << " seconds" << endl;
+    cerr << "Start child process to run with " << time_bound_in_seconds << " seconds" << endl;
 #endif
     
     if (pid == 0) {
-        unsigned secsLeft = timeBoundInSeconds;
-        alarm(secsLeft); // no handler (terminate proc)
+        unsigned seconds_left = time_bound_in_seconds;
+        alarm(seconds_left); // no handler (terminate proc)
         
         /* do the search */
         if (node->left != NULL && node->right != NULL) {
-            bottomUpSearch* bus = new bottomUpSearch(depthBoundPred,
-                                                     intOpsPred,
-                                                     boolOpsPred,
-                                                     varsPred,
-                                                     constantsPred,
+            bottomUpSearch* bus = new bottomUpSearch(depth_bound_for_predicate,
+                                                     int_ops_in_predicate,
+                                                     bool_ops_in_predicate,
+                                                     vars_in_predicate,
+                                                     constants_in_predicate,
                                                      true,
-                                                     this->rulesToApply,
-                                                     node->inputOutputs);
-            searchedProg = bus->search();
+                                                     this->rules_to_apply,
+                                                     node->input_outputs);
+            searched_program = bus->search();
         } else {
-            bottomUpSearch* bus = new bottomUpSearch(depthBoundTerm,
-                                                     intOpsTerm,
-                                                     boolOpsTerm,
-                                                     varsTerm,
-                                                     constantsTerm,
+            bottomUpSearch* bus = new bottomUpSearch(depth_bound_for_term,
+                                                     int_ops_in_term,
+                                                     bool_ops_in_term,
+                                                     vars_in_term,
+                                                     constants_in_term,
                                                      false,
-                                                     this->rulesToApply,
-                                                     node->inputOutputs);
-            searchedProg = bus->search();
+                                                     this->rules_to_apply,
+                                                     node->input_outputs);
+            searched_program = bus->search();
         }
         alarm(0);
-        // maybe write (MAX_SECONDS - secsLeft) to a file
+        // maybe write (MAX_SECONDS - seconds_left) to a file
         
         /* write searched program to pipe, to parent process */
         close(fd[0]);
-        write(fd[1], searchedProg.c_str(), searchedProg.size());
+        write(fd[1], searched_program.c_str(), searched_program.size());
         close(fd[1]);
         
         exit(0);
@@ -98,21 +98,11 @@ string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNod
         
         /* read searched program in pipe, to child process */
         close(fd[1]);
-        char readBuffer[1000] = {0};
-        read(fd[0], readBuffer, sizeof(readBuffer));
+        char read_buffer[1000] = {'\0'};
+        read(fd[0], read_buffer, sizeof(read_buffer));
         close(fd[0]);
         
-        
-        stringstream ss(readBuffer);
-        int acturalSize = 0;
-        while(acturalSize < 1000) {
-            if (readBuffer[acturalSize] != 0) {
-                acturalSize++;
-            } else {
-                break;
-            }
-        }
-        searchedProg.assign(readBuffer, acturalSize);
+        searched_program = read_buffer;
         
         /* check child process status */
         if (WIFSIGNALED(status)) {
@@ -133,22 +123,22 @@ string unification::searchNodeOnePass(int timeBoundInSeconds, inputOutputTreeNod
         else {
 #ifdef DEBUG
             // child ran to completion
-            if (searchedProg == "") {
+            if (searched_program == "") {
                 cout << "Complete, failed to find program" << endl;
             }
             else {
-                cout << "Complete, program found " << searchedProg << endl;
+                cout << "Complete, program found " << searched_program << endl;
             }
 #endif
         }
     }
     
-    return searchedProg;
+    return searched_program;
 }
 
-string unification::searchNode(int searchTimeForTermsInSeconds,
-                               int searchTimeForPredsInSeconds,
-                               inputOutputTreeNode* node) {
+string unification::search_node(int search_time_for_terms_in_seconds,
+                               int search_time_for_predicates_in_seconds,
+                               input_output_tree_node* node) {
     if (node == nullptr) return "";
     
 #ifdef DEBUG
@@ -156,35 +146,35 @@ string unification::searchNode(int searchTimeForTermsInSeconds,
 #endif
     
 #ifdef DEBUG
-    dumpInputOutputTreeNode(node, "");
+    dump_input_output_tree_node(node, "");
 #endif
     
-    string searchedProg = "";
-    if (!_has_zero_in_ioes) searchedProg = searchNodeOnePass(searchTimeForTermsInSeconds, node);
+    string searched_program = "";
+    if (!_has_zero_in_ioes) searched_program = search_node_one_pass(search_time_for_terms_in_seconds, node);
     _has_zero_in_ioes = false;
     
     /* search a solution for corrent node */
-    if (searchedProg == "") {
+    if (searched_program == "") {
 #ifdef DEBUG
         cout << "Failed, try to split node: ";
 #endif
         for (int mode = 0; mode < 2; mode++) {
-            bool is_split_succeed = splitInputOutputTreeNode(node, mode);
+            bool is_split_succeed = split_input_output_tree_node(node, mode);
             if (is_split_succeed) {
 #ifdef DEBUG
                 cout << "Split current node, succeed" << endl;
                 cout << "Start search condition, ";
 #endif
-                string cond = searchNodeOnePass(searchTimeForPredsInSeconds, node);
+                string cond = search_node_one_pass(search_time_for_predicates_in_seconds, node);
                 if (cond != "") {
 #ifdef DEBUG
                     cout << "Find condition " << cond << endl;
 #endif
-                    string tcase = searchNode(searchTimeForTermsInSeconds, searchTimeForPredsInSeconds, node->left);
+                    string tcase = search_node(search_time_for_terms_in_seconds, search_time_for_predicates_in_seconds, node->left);
                     if (tcase != "") {
-                        string fcase = searchNode(searchTimeForTermsInSeconds, searchTimeForPredsInSeconds, node->right);
+                        string fcase = search_node(search_time_for_terms_in_seconds, search_time_for_predicates_in_seconds, node->right);
                         if (fcase != "") {
-                            searchedProg = "(if " + cond + " then " + tcase + " else " + fcase + ")";
+                            searched_program = "(if " + cond + " then " + tcase + " else " + fcase + ")";
                         }
                         else {
 #ifdef DEBUG
@@ -208,9 +198,9 @@ string unification::searchNode(int searchTimeForTermsInSeconds,
 #ifdef DEBUG
                 cout << "Split current node, failed" << endl;
 #endif
-                searchedProg = "";
+                searched_program = "";
             }
-            if (searchedProg != "") {
+            if (searched_program != "") {
                 break;
             }
             if (is_split_succeed) {
@@ -219,20 +209,20 @@ string unification::searchNode(int searchTimeForTermsInSeconds,
         }
     }
     
-    node->searchedProg = searchedProg;
+    node->searched_program = searched_program;
     
-    return searchedProg;
+    return searched_program;
 }
 
-string unification::search(int searchTimeForTermsInSeconds, int searchTimeForPredsInSeconds) {
+string unification::search(int search_time_for_terms_in_seconds, int search_time_for_predicates_in_seconds) {
 #ifdef DEBUG
     cout << "--------------------------------------, search start" << endl;
 #endif
     
-    inputOutputs_t leftInputOutputs;
-    inputOutputs_t rightInputOutputs;
+    input_outputs_t left_input_outputs;
+    input_outputs_t rightInputOutputs;
     
-    return searchNode(searchTimeForTermsInSeconds, searchTimeForPredsInSeconds, inputOutputTree);
+    return search_node(search_time_for_terms_in_seconds, search_time_for_predicates_in_seconds, input_output_tree);
 #ifdef DEBUG
     cout << "--------------------------------------" << endl;
 #endif
@@ -241,37 +231,37 @@ string unification::search(int searchTimeForTermsInSeconds, int searchTimeForPre
 /*
     Dump language definition
  */
-void unification::dumpLangDef() {
+void unification::dump_language_defination() {
     cout << "Language used in Unification:" << endl;
     
     cout << "    Predicate language:" << endl;
-    cout << "        program depth bound: " << depthBoundPred << endl;
+    cout << "        program depth bound: " << depth_bound_for_predicate << endl;
     cout << "        intOps: ";
-    for (const auto op : intOpsPred) cout << op << " ";
+    for (const auto op : int_ops_in_predicate) cout << op << " ";
     cout << endl;
     cout << "        boolOps: ";
-    for (const auto op : boolOpsPred) cout << op << " ";
+    for (const auto op : bool_ops_in_predicate) cout << op << " ";
     cout << endl;
     cout << "        constants: ";
-    for (const auto c : constantsPred) cout << c << " ";
+    for (const auto c : constants_in_predicate) cout << c << " ";
     cout << endl;
     cout << "        vars: ";
-    for (const auto v : varsPred) cout << v << " ";
+    for (const auto v : vars_in_predicate) cout << v << " ";
     cout << endl;
     
     cout << "    Term language:" << endl;
-    cout << "        program depth bound: " << depthBoundTerm << endl;
+    cout << "        program depth bound: " << depth_bound_for_term << endl;
     cout << "        intOps: ";
-    for (const auto op : intOpsTerm) cout << op << " ";
+    for (const auto op : int_ops_in_term) cout << op << " ";
     cout << endl;
     cout << "        boolOps: ";
-    for (const auto op : boolOpsTerm) cout << op << " ";
+    for (const auto op : bool_ops_in_term) cout << op << " ";
     cout << endl;
     cout << "        constants: ";
-    for (const auto c : constantsTerm) cout << c << " ";
+    for (const auto c : constants_in_term) cout << c << " ";
     cout << endl;
     cout << "        vars: ";
-    for (const auto v : varsTerm) cout << v << " ";
+    for (const auto v : vars_in_term) cout << v << " ";
     cout << endl;
 }
 
@@ -280,10 +270,10 @@ void unification::dumpLangDef() {
     (1) Split half and half
     (2) Split by freqency
 */
-bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitMode) {
+bool unification::split_input_output_tree_node(input_output_tree_node* node, int split_mode) {
     
     vector<int> outputs;
-    for (auto ioe : node->inputOutputs) {
+    for (auto ioe : node->input_outputs) {
         outputs.push_back(ioe["_out"]);
     }
     
@@ -298,7 +288,7 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitM
     sort(outputs.begin(), outputs.end());
     
     /* half and half split */
-    if (splitMode == 0) {
+    if (split_mode == 0) {
         bool splitFlag = false;
         bool allSameValue = false;
         size_t half_size = outputs.size() / 2;
@@ -355,19 +345,19 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitM
     
         //cout << "splitFlag " << splitFlag << " half_size " << half_size << endl;
         /* found split size, do the split */
-        inputOutputs_t leftInputOutputs;
-        inputOutputs_t rightInputOutputs;
+        input_outputs_t left_input_outputs;
+        input_outputs_t rightInputOutputs;
         if (allSameValue == true) {
             for (int i = 0; i < half_size; i++) {
-                leftInputOutputs.push_back(node->inputOutputs[i]);
+                left_input_outputs.push_back(node->input_outputs[i]);
             }
-            for (int i = half_size; i < node->inputOutputs.size(); i++) {
-                rightInputOutputs.push_back(node->inputOutputs[i]);
+            for (int i = half_size; i < node->input_outputs.size(); i++) {
+                rightInputOutputs.push_back(node->input_outputs[i]);
             }
         } else {
-            for (auto &ioe : node->inputOutputs) {
+            for (auto &ioe : node->input_outputs) {
                 if (ioe["_out"] <= outputs[half_size-1]) {
-                    leftInputOutputs.push_back(ioe);
+                    left_input_outputs.push_back(ioe);
                     ioe["_out"] = true;
                 } else {
                     rightInputOutputs.push_back(ioe);
@@ -376,9 +366,9 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitM
             }
         }
 #ifdef DEBUG
-        cout << "Split to two: left size " << leftInputOutputs.size() << " right size " << rightInputOutputs.size() << endl;
+        cout << "Split to two: left size " << left_input_outputs.size() << " right size " << rightInputOutputs.size() << endl;
         cout << "LeftOut: [";
-        for (auto ioe : leftInputOutputs) {
+        for (auto ioe : left_input_outputs) {
             cout << ioe["_out"] << " ";
         }
         cout << "]" << endl;
@@ -388,12 +378,12 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitM
         }
         cout << "]" << endl;
 #endif
-        node->left = new inputOutputTreeNode(leftInputOutputs);
-        node->right = new inputOutputTreeNode(rightInputOutputs);
+        node->left = new input_output_tree_node(left_input_outputs);
+        node->right = new input_output_tree_node(rightInputOutputs);
         return true;
     }
     /* frequent based spliting */
-    else if (splitMode == 1) {
+    else if (split_mode == 1) {
         /* find the most frequent appearing output */
         int maxCnt = 0;
         int mostFreqOut = -1;
@@ -412,32 +402,32 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitM
         }
         
         /* do the split */
-        inputOutputs_t leftInputOutputs;
-        inputOutputs_t rightInputOutputs;
+        input_outputs_t left;
+        input_outputs_t right;
         if (maxCnt == 1) {
-            leftInputOutputs.push_back(node->inputOutputs.front());
-            for (auto ioe : node->inputOutputs) {
-                if (ioe != node->inputOutputs.front()) {
-                    rightInputOutputs.push_back(ioe);
+            left.push_back(node->input_outputs.front());
+            for (auto ioe : node->input_outputs) {
+                if (ioe != node->input_outputs.front()) {
+                    right.push_back(ioe);
                 }
             }
 #ifdef DEBUG
-            cout << "Split to two: left size " << leftInputOutputs.size() << " right size " << rightInputOutputs.size() << endl;
+            cout << "Split to two: left size " << left.size() << " right size " << right.size() << endl;
 #endif
         } else {
-            for (auto ioe : node->inputOutputs) {
+            for (auto ioe : node->input_outputs) {
                 if (ioe["_out"] == mostFreqOut) {
-                    leftInputOutputs.push_back(ioe);
+                    left.push_back(ioe);
                 } else {
-                    rightInputOutputs.push_back(ioe);
+                    right.push_back(ioe);
                 }
             }
 #ifdef DEBUG
-            cout << "Split to two: left size " << leftInputOutputs.size() << " right size " << rightInputOutputs.size() << endl;
+            cout << "Split to two: left size " << left.size() << " right size " << right.size() << endl;
 #endif
         }
-        node->left = new inputOutputTreeNode(leftInputOutputs);
-        node->right = new inputOutputTreeNode(rightInputOutputs);
+        node->left = new input_output_tree_node(left);
+        node->right = new input_output_tree_node(right);
         
         return true;
     } else {
@@ -448,21 +438,21 @@ bool unification::splitInputOutputTreeNode(inputOutputTreeNode* node, int splitM
 /*
  backtracing, merget split node
  */
-void unification::backtracing(inputOutputTreeNode* node) {
-    node->inputOutputs.clear();
+void unification::backtracing(input_output_tree_node* node) {
+    node->input_outputs.clear();
     
     if (node != nullptr && node->left != nullptr) {
-        for (auto ioe : node->left->inputOutputs) {
-            node->inputOutputs.push_back(ioe);
+        for (auto ioe : node->left->input_outputs) {
+            node->input_outputs.push_back(ioe);
         }
-        node->left->inputOutputs.clear();
+        node->left->input_outputs.clear();
         delete(node->left);
     }
     if (node != nullptr && node->right != nullptr) {
-        for (auto ioe : node->right->inputOutputs) {
-            node->inputOutputs.push_back(ioe);
+        for (auto ioe : node->right->input_outputs) {
+            node->input_outputs.push_back(ioe);
         }
-        node->right->inputOutputs.clear();
+        node->right->input_outputs.clear();
         delete(node->right);
     }
     node->left = nullptr;
@@ -472,35 +462,35 @@ void unification::backtracing(inputOutputTreeNode* node) {
 /*
 Dumping funcions
 */
-void unification::dumpInputOutputTree() {
+void unification::dump_input_output_tree() {
     cout << "--------------------------------------, dump tree after search" << endl;
-    dumpInputOutputTreeNode(inputOutputTree, "");
+    dump_input_output_tree_node(input_output_tree, "");
     cout << "--------------------------------------" << endl;
 }
 
-void unification::dumpInputOutputTreeNode(inputOutputTreeNode* node, string space) {
+void unification::dump_input_output_tree_node(input_output_tree_node* node, string space) {
     if (node != nullptr) {
-        for (auto ioe : node->inputOutputs) {
+        for (auto ioe : node->input_outputs) {
             cout << space;
-            for (auto varValue : ioe) {
-                if (varValue.first != "_out") {
-                    cout << varValue.first << " " << varValue.second << " ";
+            for (auto var_value : ioe) {
+                if (var_value.first != "_out") {
+                    cout << var_value.first << " " << var_value.second << " ";
                 }
             }
             cout << "_out " << ioe["_out"] << endl;
         }
         
-        dumpInputOutputTreeNode(node->left, space + "L---");
-        dumpInputOutputTreeNode(node->right, space + "R---");
+        dump_input_output_tree_node(node->left, space + "L---");
+        dump_input_output_tree_node(node->right, space + "R---");
     }
 }
 
-void unification::dumpSearchedProgram() {
+void unification::dump_searched_program() {
 #ifdef DEBUG
     cout << "--------------------------------------, dump search result start" << endl;
 #endif
-    if (inputOutputTree != nullptr && inputOutputTree->searchedProg != "") {
-        cout << "Searched Program (^0^) : " << inputOutputTree->searchedProg << endl;
+    if (input_output_tree != nullptr && input_output_tree->searched_program != "") {
+        cout << "Searched Program (^0^) : " << input_output_tree->searched_program << endl;
     } else {
         cout << "Not yet found, (T^T)" << endl;
     }
@@ -509,9 +499,9 @@ void unification::dumpSearchedProgram() {
 #endif
 }
 
-string unification::getSearchedProgram() {
-    if (inputOutputTree != nullptr && inputOutputTree->searchedProg != "") {
-        return "Searched Program (^0^) : " + inputOutputTree->searchedProg;
+string unification::get_searched_program() {
+    if (input_output_tree != nullptr && input_output_tree->searched_program != "") {
+        return "Searched Program (^0^) : " + input_output_tree->searched_program;
     }
     return "Not yet founded, (T^T)";
 }

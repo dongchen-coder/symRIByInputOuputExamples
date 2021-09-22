@@ -5,15 +5,15 @@
  */
 BaseType::BaseType() {};
 
-string BaseType::toString() {
+string BaseType::to_string() {
     if (auto intType = dynamic_cast<IntType*>(this)) {
-        return intType->toString();
+        return intType->to_string();
     }
     else if (auto boolType = dynamic_cast<BoolType*>(this)) {
-        return boolType->toString();
+        return boolType->to_string();
     }
     else {
-        throw runtime_error("BaseType::toString() operates on UNKNOWN type!");
+        throw runtime_error("BaseType::to_string() operates on UNKNOWN type!");
     }
 }
 
@@ -30,74 +30,58 @@ int BaseType::depth() {
 }
 
 int BaseType::get_generation() {
-    if (auto intType = dynamic_cast<IntType*>(this)) {
-        return intType->get_generation();
-    }
-    else if (auto boolType = dynamic_cast<BoolType*>(this)) {
-        return boolType->get_generation();
-    }
-    else {
-        throw runtime_error("BaseType::get_generation() operates on UNKNOWN type!");
-    }
+    return _generation;
 }
 
 void BaseType::set_generation(int generation) {
+    _generation = generation;
+}
+
+vector<int> BaseType::get_lexical_order(int num_of_vars, map<string, int>& vars_orders) {
     if (auto intType = dynamic_cast<IntType*>(this)) {
-        return intType->set_generation(generation);
+        return intType->get_lexical_order(num_of_vars, vars_orders);
     }
     else if (auto boolType = dynamic_cast<BoolType*>(this)) {
-        return boolType->set_generation(generation);
+        return boolType->get_lexical_order(num_of_vars, vars_orders);
     }
     else {
-        throw runtime_error("BaseType::set_generation() operates on UNKNOWN type!");
+        throw runtime_error("BaseType::get_lexical_order() operates on UNKNOWN type!");
     }
 }
 
-vector<int> BaseType::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
+int BaseType::get_number_of_ops(string op_name) {
     if (auto intType = dynamic_cast<IntType*>(this)) {
-        return intType->getLexicalOrder(num_of_vars, vars_orders);
+        return intType->get_number_of_ops(op_name);
     }
     else if (auto boolType = dynamic_cast<BoolType*>(this)) {
-        return boolType->getLexicalOrder(num_of_vars, vars_orders);
+        return boolType->get_number_of_ops(op_name);
     }
     else {
-        throw runtime_error("BaseType::getLexicalOrder() operates on UNKNOWN type!");
+        throw runtime_error("BaseType::get_number_of_ops() operates on UNKNOWN type!");
     }
 }
 
-int BaseType::getNumberOfOpsInProg(string opName) {
+int BaseType::get_number_of_vars(string var_name) {
     if (auto intType = dynamic_cast<IntType*>(this)) {
-        return intType->getNumberOfOpsInProg(opName);
+        return intType->get_number_of_vars(var_name);
     }
     else if (auto boolType = dynamic_cast<BoolType*>(this)) {
-        return boolType->getNumberOfOpsInProg(opName);
+        return boolType->get_number_of_vars(var_name);
     }
     else {
-        throw runtime_error("BaseType::getNumberOfOpsInProg() operates on UNKNOWN type!");
+        throw runtime_error("BaseType::get_number_of_vars() operates on UNKNOWN type!");
     }
 }
 
-int BaseType::getNumberOfVarsInProg(string varName) {
+int BaseType::get_exponent_of_var(string var_name) {
     if (auto intType = dynamic_cast<IntType*>(this)) {
-        return intType->getNumberOfVarsInProg(varName);
+        return intType->get_exponent_of_var(var_name);
     }
     else if (auto boolType = dynamic_cast<BoolType*>(this)) {
-        return boolType->getNumberOfVarsInProg(varName);
+        return boolType->get_exponent_of_var(var_name);
     }
     else {
-        throw runtime_error("BaseType::getNumberOfVarsInProg() operates on UNKNOWN type!");
-    }
-}
-
-int BaseType::getExponentOfVarInProg(string varName) {
-    if (auto intType = dynamic_cast<IntType*>(this)) {
-        return intType->getExponentOfVarInProg(varName);
-    }
-    else if (auto boolType = dynamic_cast<BoolType*>(this)) {
-        return boolType->getExponentOfVarInProg(varName);
-    }
-    else {
-        throw runtime_error("BaseType::getExponentOfVarInProg() operates on UNKNOWN type!");
+        throw runtime_error("BaseType::get_exponent_of_var() operates on UNKNOWN type!");
     }
 }
 
@@ -107,43 +91,43 @@ int BaseType::getExponentOfVarInProg(string varName) {
 
 IntType::IntType() {};
 
-string IntType::toString() {
+string IntType::to_string() {
     if (auto num = dynamic_cast<Num*>(this)) {
-        return num->toString();
+        return num->to_string();
     }
     else if (auto var = dynamic_cast<Var*>(this)) {
-        return var->toString();
+        return var->to_string();
     }
     else if (auto plus = dynamic_cast<Plus*>(this)) {
-        return plus->toString();
+        return plus->to_string();
     }
     else if (auto minus = dynamic_cast<Minus*>(this)) {
-        return minus->toString();
+        return minus->to_string();
     }
     else if (auto times = dynamic_cast<Times*>(this)) {
-        return times->toString();
+        return times->to_string();
     }
     else if (auto div = dynamic_cast<Div*>(this)) {
-        return div->toString();
+        return div->to_string();
     }
     else if (auto mn = dynamic_cast<Min*>(this)) {
-        return mn->toString();
+        return mn->to_string();
     }
     else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
-        return leftshift->toString();
+        return leftshift->to_string();
     }
     else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
-        return rightshift->toString();
+        return rightshift->to_string();
     }
     else if (auto ite = dynamic_cast<Ite*>(this)) {
-        return ite->toString();
+        return ite->to_string();
     }
     else {
-        throw runtime_error("IntType::toString() operates on UNKNOWN type!");
+        throw runtime_error("IntType::to_string() operates on UNKNOWN type!");
     }
 }
 
-int IntType::interpret(inputOutput_t env) {
+int IntType::interpret(input_output_t env) {
     if (auto num = dynamic_cast<Num*>(this)) {
         return num->interpret();
     }
@@ -215,222 +199,150 @@ int IntType::depth() {
     }
 }
 
-int IntType::get_generation() {
+vector<int> IntType::get_lexical_order(int num_of_vars, map<string, int>& vars_orders) {
     if (auto num = dynamic_cast<Num*>(this)) {
-        return num->get_generation();
+        return num->get_lexical_order(num_of_vars, vars_orders);
     }
     else if (auto var = dynamic_cast<Var*>(this)) {
-        return var->get_generation();
+        return var->get_lexical_order(num_of_vars, vars_orders);
     }
     else if (auto plus = dynamic_cast<Plus*>(this)) {
-        return plus->get_generation();
-    }
-    else if (auto minus = dynamic_cast<Minus*>(this)) {
-        return minus->get_generation();
+        return plus->get_lexical_order(num_of_vars, vars_orders);
     }
     else if (auto times = dynamic_cast<Times*>(this)) {
-        return times->get_generation();
-    }
-    else if (auto div = dynamic_cast<Div*>(this)) {
-        return div->get_generation();
-    }
-    else if (auto mn = dynamic_cast<Min*>(this)) {
-        return mn->get_generation();
-    }
-    else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
-        return leftshift->get_generation();
-    }
-    else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
-        return rightshift->get_generation();
-    }
-    else if (auto ite = dynamic_cast<Ite*>(this)) {
-        return ite->get_generation();
+        return times->get_lexical_order(num_of_vars, vars_orders);
     }
     else {
-        throw runtime_error("IntType::get_generation() operates on UNKNOWN type!");
+        throw runtime_error("IntType::get_lexical_order() operates on UNKNOWN type!");
     }
 }
 
-void IntType::set_generation(int generation) {
+int IntType::get_number_of_ops(string op_name) {
     if (auto num = dynamic_cast<Num*>(this)) {
-        return num->set_generation(generation);
+        return num->get_number_of_ops(op_name);
     }
     else if (auto var = dynamic_cast<Var*>(this)) {
-        return var->set_generation(generation);
+        return var->get_number_of_ops(op_name);
     }
     else if (auto plus = dynamic_cast<Plus*>(this)) {
-        return plus->set_generation(generation);
+        return plus->get_number_of_ops(op_name);
     }
     else if (auto minus = dynamic_cast<Minus*>(this)) {
-        return minus->set_generation(generation);
+        return minus->get_number_of_ops(op_name);
     }
     else if (auto times = dynamic_cast<Times*>(this)) {
-        return times->set_generation(generation);
+        return times->get_number_of_ops(op_name);
     }
     else if (auto div = dynamic_cast<Div*>(this)) {
-        return div->set_generation(generation);
+        return div->get_number_of_ops(op_name);
     }
     else if (auto mn = dynamic_cast<Min*>(this)) {
-        return mn->set_generation(generation);
+        return mn->get_number_of_ops(op_name);
     }
     else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
-        return leftshift->set_generation(generation);
+        return leftshift->get_number_of_ops(op_name);
     }
     else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
-        return rightshift->set_generation(generation);
+        return rightshift->get_number_of_ops(op_name);
     }
     else if (auto ite = dynamic_cast<Ite*>(this)) {
-        return ite->set_generation(generation);
+        return ite->get_number_of_ops(op_name);
     }
     else {
-        throw runtime_error("IntType::set_generation() operates on UNKNOWN type!");
+        throw runtime_error("IntType::get_number_of_ops() operates on UNKNOWN type!");
     }
 }
 
-vector<int> IntType::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
+int IntType::get_number_of_vars(string var_name) {
     if (auto num = dynamic_cast<Num*>(this)) {
-        return num->getLexicalOrder(num_of_vars, vars_orders);
+        return num->get_number_of_vars(var_name);
     }
     else if (auto var = dynamic_cast<Var*>(this)) {
-        return var->getLexicalOrder(num_of_vars, vars_orders);
+        return var->get_number_of_vars(var_name);
     }
     else if (auto plus = dynamic_cast<Plus*>(this)) {
-        return plus->getLexicalOrder(num_of_vars, vars_orders);
+        return plus->get_number_of_vars(var_name);
+    }
+    else if (auto minus = dynamic_cast<Minus*>(this)) {
+        return minus->get_number_of_vars(var_name);
     }
     else if (auto times = dynamic_cast<Times*>(this)) {
-        return times->getLexicalOrder(num_of_vars, vars_orders);
+        return times->get_number_of_vars(var_name);
+    }
+    else if (auto div = dynamic_cast<Div*>(this)) {
+        return div->get_number_of_vars(var_name);
+    }
+    else if (auto mn = dynamic_cast<Min*>(this)) {
+        return mn->get_number_of_vars(var_name);
+    }
+    else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
+        return leftshift->get_number_of_vars(var_name);
+    }
+    else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
+        return rightshift->get_number_of_vars(var_name);
+    }
+    else if (auto ite = dynamic_cast<Ite*>(this)) {
+        return ite->get_number_of_vars(var_name);
     }
     else {
-        throw runtime_error("IntType::getLexicalOrder() operates on UNKNOWN type!");
+        throw runtime_error("IntType::get_number_of_vars() operates on UNKNOWN type");
     }
 }
 
-int IntType::getNumberOfOpsInProg(string opName) {
+int IntType::get_exponent_of_var(string var_name) {
     if (auto num = dynamic_cast<Num*>(this)) {
-        return num->getNumberOfOpsInProg(opName);
+        return num->get_exponent_of_var(var_name);
     }
     else if (auto var = dynamic_cast<Var*>(this)) {
-        return var->getNumberOfOpsInProg(opName);
+        return var->get_exponent_of_var(var_name);
     }
     else if (auto plus = dynamic_cast<Plus*>(this)) {
-        return plus->getNumberOfOpsInProg(opName);
+        return plus->get_exponent_of_var(var_name);
     }
     else if (auto minus = dynamic_cast<Minus*>(this)) {
-        return minus->getNumberOfOpsInProg(opName);
+        return minus->get_exponent_of_var(var_name);
     }
     else if (auto times = dynamic_cast<Times*>(this)) {
-        return times->getNumberOfOpsInProg(opName);
+        return times->get_exponent_of_var(var_name);
     }
     else if (auto div = dynamic_cast<Div*>(this)) {
-        return div->getNumberOfOpsInProg(opName);
+        return div->get_exponent_of_var(var_name);
     }
     else if (auto mn = dynamic_cast<Min*>(this)) {
-        return mn->getNumberOfOpsInProg(opName);
+        return mn->get_exponent_of_var(var_name);
     }
     else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
-        return leftshift->getNumberOfOpsInProg(opName);
+        return leftshift->get_exponent_of_var(var_name);
     }
     else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
-        return rightshift->getNumberOfOpsInProg(opName);
+        return rightshift->get_exponent_of_var(var_name);
     }
     else if (auto ite = dynamic_cast<Ite*>(this)) {
-        return ite->getNumberOfOpsInProg(opName);
+        return ite->get_exponent_of_var(var_name);
     }
     else {
-        throw runtime_error("IntType::getNumberOfOpsInProg() operates on UNKNOWN type!");
-    }
-}
-
-int IntType::getNumberOfVarsInProg(string varName) {
-    if (auto num = dynamic_cast<Num*>(this)) {
-        return num->getNumberOfVarsInProg(varName);
-    }
-    else if (auto var = dynamic_cast<Var*>(this)) {
-        return var->getNumberOfVarsInProg(varName);
-    }
-    else if (auto plus = dynamic_cast<Plus*>(this)) {
-        return plus->getNumberOfVarsInProg(varName);
-    }
-    else if (auto minus = dynamic_cast<Minus*>(this)) {
-        return minus->getNumberOfVarsInProg(varName);
-    }
-    else if (auto times = dynamic_cast<Times*>(this)) {
-        return times->getNumberOfVarsInProg(varName);
-    }
-    else if (auto div = dynamic_cast<Div*>(this)) {
-        return div->getNumberOfVarsInProg(varName);
-    }
-    else if (auto mn = dynamic_cast<Min*>(this)) {
-        return mn->getNumberOfVarsInProg(varName);
-    }
-    else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
-        return leftshift->getNumberOfVarsInProg(varName);
-    }
-    else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
-        return rightshift->getNumberOfVarsInProg(varName);
-    }
-    else if (auto ite = dynamic_cast<Ite*>(this)) {
-        return ite->getNumberOfVarsInProg(varName);
-    }
-    else {
-        throw runtime_error("IntType::getNumberOfVarsInProg() operates on UNKNOWN type");
-    }
-}
-
-int IntType::getExponentOfVarInProg(string varName) {
-    if (auto num = dynamic_cast<Num*>(this)) {
-        return num->getExponentOfVarInProg(varName);
-    }
-    else if (auto var = dynamic_cast<Var*>(this)) {
-        return var->getExponentOfVarInProg(varName);
-    }
-    else if (auto plus = dynamic_cast<Plus*>(this)) {
-        return plus->getExponentOfVarInProg(varName);
-    }
-    else if (auto minus = dynamic_cast<Minus*>(this)) {
-        return minus->getExponentOfVarInProg(varName);
-    }
-    else if (auto times = dynamic_cast<Times*>(this)) {
-        return times->getExponentOfVarInProg(varName);
-    }
-    else if (auto div = dynamic_cast<Div*>(this)) {
-        return div->getExponentOfVarInProg(varName);
-    }
-    else if (auto mn = dynamic_cast<Min*>(this)) {
-        return mn->getExponentOfVarInProg(varName);
-    }
-    else if (auto leftshift = dynamic_cast<Leftshift*>(this)) {
-        return leftshift->getExponentOfVarInProg(varName);
-    }
-    else if (auto rightshift = dynamic_cast<Rightshift*>(this)) {
-        return rightshift->getExponentOfVarInProg(varName);
-    }
-    else if (auto ite = dynamic_cast<Ite*>(this)) {
-        return ite->getExponentOfVarInProg(varName);
-    }
-    else {
-        throw runtime_error("IntType::getExponentOfVarInProg() operates on UNKOWN type!");
+        throw runtime_error("IntType::get_exponent_of_var() operates on UNKOWN type!");
     }
 }
 
 
 BoolType::BoolType() {};
 
-string BoolType::toString() {
+string BoolType::to_string() {
     if (auto f = dynamic_cast<F*>(this) ) {
-        return f->toString();
+        return f->to_string();
     }
     else if (auto n = dynamic_cast<Not*>(this)) {
-        return n->toString();
+        return n->to_string();
     }
     else if (auto a = dynamic_cast<And*>(this)) {
-        return a->toString();
+        return a->to_string();
     }
     else if (auto lt = dynamic_cast<Lt*>(this)) {
-        return lt->toString();
+        return lt->to_string();
     }
     else {
-        throw runtime_error("BoolType::toString() operates on UNKOWN type!");
+        throw runtime_error("BoolType::to_string() operates on UNKOWN type!");
     }
 }
 
@@ -452,108 +364,72 @@ int BoolType::depth() {
     }
 }
 
-int BoolType::get_generation() {
-    if (auto f = dynamic_cast<F*>(this) ) {
-        return f->get_generation();
-    }
-    else if (auto n = dynamic_cast<Not*>(this)) {
-        return n->get_generation();
-    }
-    else if (auto a = dynamic_cast<And*>(this)) {
-        return a->get_generation();
-    }
-    else if (auto lt = dynamic_cast<Lt*>(this)) {
-        return lt->get_generation();
-    }
-    else {
-        throw runtime_error("BoolType::get_generation() operates on UNKOWN type!");
-    }
-}
-
-void BoolType::set_generation(int generation) {
-    if (auto f = dynamic_cast<F*>(this) ) {
-        return f->set_generation(generation);
-    }
-    else if (auto n = dynamic_cast<Not*>(this)) {
-        return n->set_generation(generation);
-    }
-    else if (auto a = dynamic_cast<And*>(this)) {
-        return a->set_generation(generation);
-    }
-    else if (auto lt = dynamic_cast<Lt*>(this)) {
-        return lt->set_generation(generation);
-    }
-    else {
-        throw runtime_error("BoolType::set_generation() operates on UNKOWN type!");
-    }
-}
-
-vector<int> BoolType::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
+vector<int> BoolType::get_lexical_order(int num_of_vars, map<string, int>& vars_orders) {
     if (auto n = dynamic_cast<Not*>(this)) {
-        return n->getLexicalOrder(num_of_vars, vars_orders);
+        return n->get_lexical_order(num_of_vars, vars_orders);
     }
     else if (auto a = dynamic_cast<And*>(this)) {
-        return a->getLexicalOrder(num_of_vars, vars_orders);
+        return a->get_lexical_order(num_of_vars, vars_orders);
     }
     else if (auto lt = dynamic_cast<Lt*>(this)) {
-        return lt->getLexicalOrder(num_of_vars, vars_orders);
+        return lt->get_lexical_order(num_of_vars, vars_orders);
     }
     else {
-        throw runtime_error("BoolType::getLexicalOrder() operates on UNKOWN type!");
+        throw runtime_error("BoolType::get_lexical_order() operates on UNKOWN type!");
     }
 }
 
-int BoolType::getNumberOfOpsInProg(string opName) {
+int BoolType::get_number_of_ops(string op_name) {
     if (auto f = dynamic_cast<F*>(this) ) {
-        return f->getNumberOfOpsInProg(opName);
+        return f->get_number_of_ops(op_name);
     }
     else if (auto n = dynamic_cast<Not*>(this)) {
-        return n->getNumberOfOpsInProg(opName);
+        return n->get_number_of_ops(op_name);
     }
     else if (auto a = dynamic_cast<And*>(this)) {
-        return a->getNumberOfOpsInProg(opName);
+        return a->get_number_of_ops(op_name);
     }
     else if (auto lt = dynamic_cast<Lt*>(this)) {
-        return lt->getNumberOfOpsInProg(opName);
+        return lt->get_number_of_ops(op_name);
     }
     else {
-        throw runtime_error("BoolType::getNumberOfOpsInProg() operates on UNKOWN type!");
+        throw runtime_error("BoolType::get_number_of_ops() operates on UNKOWN type!");
     }
 }
 
-int BoolType::getNumberOfVarsInProg(string varName) {
+int BoolType::get_number_of_vars(string var_name) {
     if (auto f = dynamic_cast<F*>(this) ) {
-        return f->getNumberOfVarsInProg(varName);
+        return f->get_number_of_vars(var_name);
     }
     else if (auto n = dynamic_cast<Not*>(this)) {
-        return n->getNumberOfVarsInProg(varName);
+        return n->get_number_of_vars(var_name);
     }
     else if (auto a = dynamic_cast<And*>(this)) {
-        return a->getNumberOfVarsInProg(varName);
+        return a->get_number_of_vars(var_name);
     }
     else if (auto lt = dynamic_cast<Lt*>(this)) {
-        return lt->getNumberOfVarsInProg(varName);
+        return lt->get_number_of_vars(var_name);
     }
     else {
-        throw runtime_error("BoolType::getNumberOfVarsInProg() operates on UNKOWN type!");
+        throw runtime_error("BoolType::get_number_of_vars() operates on UNKOWN type!");
     }
 }
 
-int BoolType::getExponentOfVarInProg(string varName) {
+int BoolType::get_exponent_of_var(string var_name) {
     if (auto f = dynamic_cast<F*>(this) ) {
-        return f->getExponentOfVarInProg(varName);
+        return f->get_exponent_of_var(var_name);
     }
     else if (auto n = dynamic_cast<Not*>(this)) {
-        return n->getExponentOfVarInProg(varName);
+        return n->get_exponent_of_var(var_name);
     }
     else if (auto a = dynamic_cast<And*>(this)) {
-        return a->getExponentOfVarInProg(varName);
+        return a->get_exponent_of_var(var_name);
     }
     else if (auto lt = dynamic_cast<Lt*>(this)) {
-        return lt->getExponentOfVarInProg(varName);
+        return lt->get_exponent_of_var(var_name);
     }
     else {
-        throw runtime_error("BoolType::getExponentOfVarInProg() operates on UNKOWN type!");
+        throw runtime_error("BoolType::get_exponent_of_var() operates on UNKOWN type!");
     }
 }
 
@@ -561,10 +437,10 @@ int BoolType::getExponentOfVarInProg(string varName) {
 Constructs: False
 */
 F::F() {
-    _generation = 0;
+    set_generation(0);
 };
 
-string F::toString() {
+string F::to_string() {
     return "false";
 }
     
@@ -576,26 +452,18 @@ int F::depth() {
     return 1;
 }
 
-int F::get_generation() {
-    return _generation;
-}
-
-void F::set_generation(int generation) {
-    _generation = generation;
-}
-
-int F::getNumberOfOpsInProg(string opName) {
+int F::get_number_of_ops(string op_name) {
     return 0;
 }
 
-int F::getNumberOfVarsInProg(string varName) {
-    if (varName == "false" || varName == "ALL") {
+int F::get_number_of_vars(string var_name) {
+    if (var_name == "false" || var_name == "ALL") {
         return 1;
     }
     return 0;
 }
 
-int F::getExponentOfVarInProg(string varName) {
+int F::get_exponent_of_var(string var_name) {
     return 0;
 }
 
@@ -604,14 +472,14 @@ Constructs: Var
 */
 Var::Var(string name) {
     _name = name;
-    _generation = 0;
+    set_generation(0);
 }
     
-string Var::toString() {
+string Var::to_string() {
     return _name;
 }
     
-int Var::interpret(inputOutput_t env) {
+int Var::interpret(input_output_t env) {
     if (env.find(_name) == env.end()) throw runtime_error("Var::interpret(): _name " + _name + " is not found in env");
     return env[_name];
 }
@@ -620,40 +488,32 @@ int Var::depth() {
     return 1;
 }
 
-int Var::get_generation() {
-    return _generation;
-}
-
-void Var::set_generation(int generation) {
-    _generation = generation;
-}
-
-vector<int> Var::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
+vector<int> Var::get_lexical_order(int num_of_vars, map<string, int>& vars_orders) {
     vector<int> lex(num_of_vars, 0);
-    if (vars_orders.find(this->toString()) == vars_orders.end()) throw runtime_error("Var::getLexicalOrder() var not found in keys of vars_orders");
-    if (vars_orders[this->toString()] > lex.size()) throw runtime_error("Var::getLexicalOrder() number of vars is greater than lex vector size");
-    if (vars_orders[this->toString()] == 0) throw runtime_error("Var::getLexicalOrder() var's index is 0");
-    lex[vars_orders[this->toString()]-1]++;
+    if (vars_orders.find(this->to_string()) == vars_orders.end()) throw runtime_error("Var::get_lexical_order() var not found in keys of vars_orders");
+    if (vars_orders[this->to_string()] > lex.size()) throw runtime_error("Var::get_lexical_order() number of vars is greater than lex vector size");
+    if (vars_orders[this->to_string()] == 0) throw runtime_error("Var::get_lexical_order() var's index is 0");
+    lex[vars_orders[this->to_string()]-1]++;
     return lex;
 }
 
-int Var::getNumberOfOpsInProg(string opName) {
+int Var::get_number_of_ops(string op_name) {
     return 0;
 }
 
-int Var::getNumberOfVarsInProg(string varName) {
-    if (varName == "ALL" ||
-        varName == "VAR" ||
-        varName == _name ||
-        (varName.size() < _name.size() && varName == _name.substr(0, varName.size())) ) {
+int Var::get_number_of_vars(string var_name) {
+    if (var_name == "ALL" ||
+        var_name == "VAR" ||
+        var_name == _name ||
+        (var_name.size() < _name.size() && var_name == _name.substr(0, var_name.size())) ) {
         return 1;
     }
     return 0;
 }
 
-int Var::getExponentOfVarInProg(string varName) {
-    if (varName == _name ||
-        (varName.size() < _name.size() && varName == _name.substr(0, varName.size())) ) {
+int Var::get_exponent_of_var(string var_name) {
+    if (var_name == _name ||
+        (var_name.size() < _name.size() && var_name == _name.substr(0, var_name.size())) ) {
         return 1;
     }
     return 0;
@@ -664,7 +524,7 @@ Constructs: Num
 */
 Num::Num(int val) {
     _num = val;
-    _generation = 0;
+    set_generation(0);
 }
 
 Num::Num(Num* a, Num* b, string op) {
@@ -674,11 +534,11 @@ Num::Num(Num* a, Num* b, string op) {
     if (op == "TIMES") _num = a->interpret() * b->interpret();
     else if (op == "PLUS") _num = a->interpret() + b->interpret();
     else throw runtime_error("Num::Num() UNKOWN op type");
-    _generation = max(a->get_generation(), b->get_generation()) + 10;
+    set_generation( max(a->get_generation(), b->get_generation()) + 1);
 }
     
-string Num::toString() {
-    return to_string(_num);
+string Num::to_string() {
+    return std::to_string(_num);
 }
     
 int Num::interpret() {
@@ -689,31 +549,23 @@ int Num::depth() {
     return 1;
 }
 
-int Num::get_generation() {
-    return _generation;
-}
-
-void Num::set_generation(int generation) {
-    _generation = generation;
-}
-
-vector<int> Num::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
+vector<int> Num::get_lexical_order(int num_of_vars, map<string, int>& vars_orders) {
     vector<int> lex(num_of_vars, 0);
     return lex;
 }
 
-int Num::getNumberOfOpsInProg(string opName) {
+int Num::get_number_of_ops(string op_name) {
     return 0;
 }
 
-int Num::getNumberOfVarsInProg(string varName) {
-    if (varName == to_string(_num) || varName == "ALL" || varName == "NUM") {
+int Num::get_number_of_vars(string var_name) {
+    if (var_name == std::to_string(_num) || var_name == "ALL" || var_name == "NUM") {
         return 1;
     }
     return 0;
 }
 
-int Num::getExponentOfVarInProg(string varName) {
+int Num::get_exponent_of_var(string var_name) {
     return 0;
 }
 
@@ -725,81 +577,81 @@ Plus::Plus(IntType* left, IntType* right) {
     if (right == nullptr) throw runtime_error("Plus: right is null");
     _left = left;
     _right = right;
-    _generation = max(left->get_generation(), right->get_generation()) + 1;
+    set_generation(max(left->get_generation(), right->get_generation()) + 1);
 }
 
-string Plus::toString() {
+string Plus::to_string() {
     string output = "(";
     
     if (auto left = dynamic_cast<Var*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Num*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Plus*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Times*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Div*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Min*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Minus*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Leftshift*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else {
-        throw runtime_error("Plus::toString() operates on UNKNOWN type!");
+        throw runtime_error("Plus::to_string() operates on UNKNOWN type!");
     }
     
     output += " + ";
     
     if (auto right = dynamic_cast<Var*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Num*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Plus*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Times*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Div*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Min*>(_right))  {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Minus*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Leftshift*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else {
-        throw runtime_error("Plus::toString() operates on UNKNOWN type!");
+        throw runtime_error("Plus::to_string() operates on UNKNOWN type!");
     }
     
     output += ")";
     return output;
 }
     
-int Plus::interpret(inputOutput_t env) {
+int Plus::interpret(input_output_t env) {
     int output;
     if (auto left = dynamic_cast<Var*>(_left)) {
         output = left->interpret(env);
@@ -934,18 +786,10 @@ int Plus::depth() {
     return depth;
 }
 
-int Plus::get_generation() {
-    return _generation;
-}
-
-void Plus::set_generation(int generation) {
-    _generation = generation;
-}
-
-IntType* Plus::getLeft() {
+IntType* Plus::get_left() {
     return _left;
 }
-IntType* Plus::getRight() {
+IntType* Plus::get_right() {
     return _right;
 }
 
@@ -953,24 +797,24 @@ vector<string> Plus::getTerms() {
     vector<string> terms;
     
     if (dynamic_cast<Var*>(_left)) {
-        terms.push_back(_left->toString());
+        terms.push_back(_left->to_string());
     }
     else if (auto left_times = dynamic_cast<Times*>(_left)) {
-        if (dynamic_cast<Num*>(left_times->getLeft())) {
-            terms.push_back(left_times->getRight()->toString());
+        if (dynamic_cast<Num*>(left_times->get_left())) {
+            terms.push_back(left_times->get_right()->to_string());
         } else {
-            terms.push_back(_left->toString());
+            terms.push_back(_left->to_string());
         }
     }
     
     if (dynamic_cast<Var*>(_right)) {
-        terms.push_back(_right->toString());
+        terms.push_back(_right->to_string());
     }
     else if (auto right_times = dynamic_cast<Times*>(_right)) {
-        if (dynamic_cast<Num*>(right_times->getRight())) {
-            terms.push_back(right_times->getRight()->toString());
+        if (dynamic_cast<Num*>(right_times->get_right())) {
+            terms.push_back(right_times->get_right()->to_string());
         } else {
-            terms.push_back(_right->toString());
+            terms.push_back(_right->to_string());
         }
     }
     else if (auto right_plus = dynamic_cast<Plus*>(_right)) {
@@ -980,24 +824,24 @@ vector<string> Plus::getTerms() {
     return terms;
 }
 
-vector<int> Plus::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
-    if (_right == nullptr) throw runtime_error("Plus::getLexicalOrder() _right is null");
-    return _right->getLexicalOrder(num_of_vars, vars_orders);
+vector<int> Plus::get_lexical_order(int num_of_vars, map<string, int>& vars_orders) {
+    if (_right == nullptr) throw runtime_error("Plus::get_lexical_order() _right is null");
+    return _right->get_lexical_order(num_of_vars, vars_orders);
 }
 
-int Plus::getNumberOfOpsInProg(string opName) {
-    if (opName == "PLUS" || opName == "ALL") {
-        return _left->getNumberOfOpsInProg(opName) + _left->getNumberOfOpsInProg(opName) + 1;
+int Plus::get_number_of_ops(string op_name) {
+    if (op_name == "PLUS" || op_name == "ALL") {
+        return _left->get_number_of_ops(op_name) + _left->get_number_of_ops(op_name) + 1;
     }
-    return _left->getNumberOfOpsInProg(opName) + _left->getNumberOfOpsInProg(opName);
+    return _left->get_number_of_ops(op_name) + _left->get_number_of_ops(op_name);
 }
 
-int Plus::getNumberOfVarsInProg(string varName) {
-    return _left->getNumberOfVarsInProg(varName) + _right->getNumberOfVarsInProg(varName);
+int Plus::get_number_of_vars(string var_name) {
+    return _left->get_number_of_vars(var_name) + _right->get_number_of_vars(var_name);
 }
 
-int Plus::getExponentOfVarInProg(string varName) {
-    return max(_left->getExponentOfVarInProg(varName), _right->getExponentOfVarInProg(varName));
+int Plus::get_exponent_of_var(string var_name) {
+    return max(_left->get_exponent_of_var(var_name), _right->get_exponent_of_var(var_name));
 }
 
 /******************************************
@@ -1008,81 +852,81 @@ Minus::Minus(IntType* left, IntType* right) {
     if (right == nullptr) throw runtime_error("Minus: right is null");
     _left = left;
     _right = right;
-    _generation = max(left->get_generation(), right->get_generation()) + 1;
+    set_generation( max(left->get_generation(), right->get_generation()) + 1 );
 }
     
-string Minus::toString() {
+string Minus::to_string() {
     string output = "(";
     
     if (auto left = dynamic_cast<Var*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Num*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Plus*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Times*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Div*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Min*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Minus*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Leftshift*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else {
-        throw runtime_error("Plus::toString() operates on UNKNOWN type!");
+        throw runtime_error("Plus::to_string() operates on UNKNOWN type!");
     }
     
     output += " - ";
     
     if (auto right = dynamic_cast<Var*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Num*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Plus*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Times*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Div*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Min*>(_right))  {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Minus*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Leftshift*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else {
-        throw runtime_error("Plus::toString() operates on UNKNOWN type!");
+        throw runtime_error("Plus::to_string() operates on UNKNOWN type!");
     }
     
     output += ")";
     return output;
 }
 
-int Minus::interpret(inputOutput_t env) {
+int Minus::interpret(input_output_t env) {
     int output;
     
     if (auto left = dynamic_cast<Var*>(_left)) {
@@ -1218,27 +1062,19 @@ int Minus::depth() {
     return depth;
 }
 
-int Minus::get_generation() {
-    return _generation;
-}
-
-void Minus::set_generation(int generation) {
-    _generation = generation;
-}
-
-int Minus::getNumberOfOpsInProg(string opName) {
-    if (opName == "MINUS" || opName == "ALL") {
-        return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName) + 1;
+int Minus::get_number_of_ops(string op_name) {
+    if (op_name == "MINUS" || op_name == "ALL") {
+        return _left->get_number_of_ops(op_name) + _right->get_number_of_ops(op_name) + 1;
     }
-    return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName);
+    return _left->get_number_of_ops(op_name) + _right->get_number_of_ops(op_name);
 }
 
-int Minus::getNumberOfVarsInProg(string varName) {
-    return _left->getNumberOfVarsInProg(varName) + _right->getNumberOfVarsInProg(varName);
+int Minus::get_number_of_vars(string var_name) {
+    return _left->get_number_of_vars(var_name) + _right->get_number_of_vars(var_name);
 }
 
-int Minus::getExponentOfVarInProg(string varName) {
-    return max(_left->getExponentOfVarInProg(varName), _right->getExponentOfVarInProg(varName));
+int Minus::get_exponent_of_var(string var_name) {
+    return max(_left->get_exponent_of_var(var_name), _right->get_exponent_of_var(var_name));
 }
 
 /******************************************
@@ -1249,85 +1085,81 @@ Times::Times(IntType* left, IntType* right) {
     if (right == nullptr) throw runtime_error("Times: right is null");
     _left = left;
     _right = right;
-    //_left = new IntType;
-    //_right = new IntType;
-    //memcpy(_left, left, sizeof(IntType));
-    //memcpy(_right, right, sizeof(IntType));
-    _generation = max(left->get_generation(), right->get_generation()) + 1;
+    set_generation( max(left->get_generation(), right->get_generation()) + 1);
 }
     
-string Times::toString() {
+string Times::to_string() {
     string output = "(";
     
     if (auto left = dynamic_cast<Var*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Num*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Plus*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Times*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Div*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Min*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Minus*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Leftshift*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else {
-        throw runtime_error("Times::toString() operates on UNKNOWN type!");
+        throw runtime_error("Times::to_string() operates on UNKNOWN type!");
     }
     
     output += " * ";
     
     if (auto right = dynamic_cast<Var*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Num*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Plus*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Times*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Div*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Min*>(_right))  {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Minus*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Leftshift*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else {
-        throw runtime_error("Times::toString() operates on UNKNOWN type!");
+        throw runtime_error("Times::to_string() operates on UNKNOWN type!");
     }
     
     output += ")";
     return output;
 }
     
-int Times::interpret(inputOutput_t env) {
+int Times::interpret(input_output_t env) {
     int output;
     
     if (auto left = dynamic_cast<Var*>(_left)) {
@@ -1463,60 +1295,52 @@ int Times::depth() {
     return depth;
 }
 
-int Times::get_generation() {
-    return _generation;
-}
-
-void Times::set_generation(int generation) {
-    _generation = generation;
-}
-
-IntType* Times::getLeft() {
+IntType* Times::get_left() {
     return _left;
 }
-IntType* Times::getRight() {
+IntType* Times::get_right() {
     return _right;
 }
 
-vector<string> Times::getFactors() {
+vector<string> Times::get_factors() {
     vector<string> factors;
     if (dynamic_cast<Var*>(_left)) {
-        factors.push_back(_left->toString());
+        factors.push_back(_left->to_string());
     }
     if (dynamic_cast<Var*>(_right)) {
-        factors.push_back(_right->toString());
+        factors.push_back(_right->to_string());
     }
     if (auto right_times = dynamic_cast<Times*>(_right)) {
-        vector<string> factors_right = right_times->getFactors();
+        vector<string> factors_right = right_times->get_factors();
         factors.insert(factors.end(), factors_right.begin(), factors_right.end());
     }
     return factors;
 }
 
-vector<int> Times::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
-    if (_left == nullptr) throw runtime_error("Times::getLexicalOrder() left is null");
-    if (_right == nullptr) throw runtime_error("Times::getLexicalOrder() right is null");
+vector<int> Times::get_lexical_order(int num_of_vars, map<string, int>& vars_orders) {
+    if (_left == nullptr) throw runtime_error("Times::get_lexical_order() left is null");
+    if (_right == nullptr) throw runtime_error("Times::get_lexical_order() right is null");
     
     vector<int> lex_left(num_of_vars, 0);
     vector<int> lex_right(num_of_vars, 0);
 
     if (auto left_num = dynamic_cast<Num*>(_left)) {
-        lex_left = left_num->getLexicalOrder(num_of_vars, vars_orders);
+        lex_left = left_num->get_lexical_order(num_of_vars, vars_orders);
     }
     else if (auto left_var = dynamic_cast<Var*>(_left)) {
-        lex_left = left_var->getLexicalOrder(num_of_vars, vars_orders);
+        lex_left = left_var->get_lexical_order(num_of_vars, vars_orders);
     }
     else {
-        throw runtime_error("Times::getLexicalOrder left is not a type of NUM/VAR");
+        throw runtime_error("Times::get_lexical_order left is not a type of NUM/VAR");
     }
     if (auto right_var = dynamic_cast<Var*>(_right)) {
-        lex_right = right_var->getLexicalOrder(num_of_vars, vars_orders);
+        lex_right = right_var->get_lexical_order(num_of_vars, vars_orders);
     }
     else if (auto right_times = dynamic_cast<Times*>(_right)) {
-        lex_right = right_times->getLexicalOrder(num_of_vars, vars_orders);
+        lex_right = right_times->get_lexical_order(num_of_vars, vars_orders);
     }
     else {
-        throw runtime_error("Times::getLexicalOrder right is not a type of NUM/VAR");
+        throw runtime_error("Times::get_lexical_order right is not a type of NUM/VAR");
     }
     for (int i = 0; i < num_of_vars; i++) {
         lex_left[i] += lex_right[i];
@@ -1524,19 +1348,19 @@ vector<int> Times::getLexicalOrder(int num_of_vars, map<string, int>& vars_order
     return lex_left;
 }
 
-int Times::getNumberOfOpsInProg(string opName) {
-    if (opName == "TIMES" || opName == "ALL") {
-        return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName) + 1;
+int Times::get_number_of_ops(string op_name) {
+    if (op_name == "TIMES" || op_name == "ALL") {
+        return _left->get_number_of_ops(op_name) + _right->get_number_of_ops(op_name) + 1;
     }
-    return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName);
+    return _left->get_number_of_ops(op_name) + _right->get_number_of_ops(op_name);
 }
 
-int Times::getNumberOfVarsInProg(string varName) {
-    return _left->getNumberOfVarsInProg(varName) + _right->getNumberOfVarsInProg(varName);
+int Times::get_number_of_vars(string var_name) {
+    return _left->get_number_of_vars(var_name) + _right->get_number_of_vars(var_name);
 }
 
-int Times::getExponentOfVarInProg(string varName) {
-    return _left->getExponentOfVarInProg(varName) + _right->getExponentOfVarInProg(varName);
+int Times::get_exponent_of_var(string var_name) {
+    return _left->get_exponent_of_var(var_name) + _right->get_exponent_of_var(var_name);
 }
 
 /******************************************
@@ -1547,79 +1371,79 @@ Min::Min(IntType* left, IntType* right) {
     if (right == nullptr) throw runtime_error("Min: right is null");
     _left = left;
     _right = right;
-    _generation = max(left->get_generation(), right->get_generation()) + 1;
+    set_generation( max(left->get_generation(), right->get_generation()) + 1 );
 }
-string Min::toString() {
+string Min::to_string() {
     string output = " min( ";
     
     if (auto left = dynamic_cast<Var*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Num*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Plus*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Times*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Div*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Min*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Minus*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Leftshift*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else {
-        throw runtime_error("Min::toString() operates on UNKNOWN type!");
+        throw runtime_error("Min::to_string() operates on UNKNOWN type!");
     }
     
     output += " , ";
     
     if (auto right = dynamic_cast<Var*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Num*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Plus*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Times*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Div*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Min*>(_right))  {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Minus*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Leftshift*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else {
-        throw runtime_error("Min::toString() operates on UNKNOWN type!");
+        throw runtime_error("Min::to_string() operates on UNKNOWN type!");
     }
     
     output += " ) ";
     return output;
 }
-int Min::interpret(inputOutput_t env) {
+int Min::interpret(input_output_t env) {
     int leftValue;
     int rightValue;
     
@@ -1757,27 +1581,19 @@ int Min::depth() {
     return depth;
 }
 
-int Min::get_generation() {
-    return _generation;
-}
-
-void Min::set_generation(int generation) {
-    _generation = generation;
-}
-
-int Min::getNumberOfOpsInProg(string opName) {
-    if (opName == "MIN" || opName == "ALL") {
-        return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName) + 1;
+int Min::get_number_of_ops(string op_name) {
+    if (op_name == "MIN" || op_name == "ALL") {
+        return _left->get_number_of_ops(op_name) + _right->get_number_of_ops(op_name) + 1;
     }
-    return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName);
+    return _left->get_number_of_ops(op_name) + _right->get_number_of_ops(op_name);
 }
 
-int Min::getNumberOfVarsInProg(string varName) {
-    return _left->getNumberOfVarsInProg(varName) + _right->getNumberOfVarsInProg(varName);
+int Min::get_number_of_vars(string var_name) {
+    return _left->get_number_of_vars(var_name) + _right->get_number_of_vars(var_name);
 }
 
-int Min::getExponentOfVarInProg(string varName) {
-    return max(_left->getExponentOfVarInProg(varName), _right->getExponentOfVarInProg(varName));
+int Min::get_exponent_of_var(string var_name) {
+    return max(_left->get_exponent_of_var(var_name), _right->get_exponent_of_var(var_name));
 }
 
 /******************************************
@@ -1789,81 +1605,81 @@ Div::Div(IntType* dividend, IntType* divisor) {
     if (divisor == nullptr) throw runtime_error("Div: divisor is null");
     _dividend = dividend;
     _divisor = divisor;
-    _generation = max(dividend->get_generation(), divisor->get_generation()) + 1;
+    set_generation( max(dividend->get_generation(), divisor->get_generation()) + 1 );
 }
 
-string Div::toString() {
+string Div::to_string() {
     string output = "(";
     
     if (auto dividend = dynamic_cast<Var*>(_dividend)) {
-        output += dividend->toString();
+        output += dividend->to_string();
     }
     else if (auto dividend = dynamic_cast<Num*>(_dividend)) {
-        output += dividend->toString();
+        output += dividend->to_string();
     }
     else if (auto dividend = dynamic_cast<Plus*>(_dividend)) {
-        output += dividend->toString();
+        output += dividend->to_string();
     }
     else if (auto dividend = dynamic_cast<Times*>(_dividend)) {
-        output += dividend->toString();
+        output += dividend->to_string();
     }
     else if (auto dividend = dynamic_cast<Div*>(_dividend)) {
-        output += dividend->toString();
+        output += dividend->to_string();
     }
     else if (auto dividend = dynamic_cast<Min*>(_dividend)) {
-        output += dividend->toString();
+        output += dividend->to_string();
     }
     else if (auto dividend = dynamic_cast<Minus*>(_dividend)) {
-        output += dividend->toString();
+        output += dividend->to_string();
     }
     else if (auto dividend = dynamic_cast<Leftshift*>(_dividend)) {
-        output += dividend->toString();
+        output += dividend->to_string();
     }
     else if (auto dividend = dynamic_cast<Rightshift*>(_dividend)) {
-        output += dividend->toString();
+        output += dividend->to_string();
     }
     else {
-        throw runtime_error("Div::toString() operates on UNKNOWN type!");
+        throw runtime_error("Div::to_string() operates on UNKNOWN type!");
     }
     
     output += " / ";
     
     if (auto divisor = dynamic_cast<Var*>(_divisor)) {
-        output += divisor->toString();
+        output += divisor->to_string();
     }
     else if (auto divisor = dynamic_cast<Num*>(_divisor)) {
-        output += divisor->toString();
+        output += divisor->to_string();
     }
     else if (auto divisor = dynamic_cast<Plus*>(_divisor)) {
-        output += divisor->toString();
+        output += divisor->to_string();
     }
     else if (auto divisor = dynamic_cast<Times*>(_divisor)) {
-        output += divisor->toString();
+        output += divisor->to_string();
     }
     else if (auto divisor = dynamic_cast<Div*>(_divisor)) {
-        output += divisor->toString();
+        output += divisor->to_string();
     }
     else if (auto divisor = dynamic_cast<Min*>(_divisor)) {
-        output += divisor->toString();
+        output += divisor->to_string();
     }
     else if (auto divisor = dynamic_cast<Minus*>(_divisor)) {
-        output += divisor->toString();
+        output += divisor->to_string();
     }
     else if (auto divisor = dynamic_cast<Leftshift*>(_divisor)) {
-        output += divisor->toString();
+        output += divisor->to_string();
     }
     else if (auto divisor = dynamic_cast<Rightshift*>(_divisor)) {
-        output += divisor->toString();
+        output += divisor->to_string();
     }
     else {
-        throw runtime_error("Div::toString() operates on UNKNOWN type!");
+        throw runtime_error("Div::to_string() operates on UNKNOWN type!");
     }
     
     output += ")";
     return output;
 }
 
-int Div::interpret(inputOutput_t env) {
+int Div::interpret(input_output_t env) {
     int dividendValue;
     int divisorValue;
     
@@ -2004,27 +1820,19 @@ int Div::depth() {
     return depth;
 }
 
-int Div::get_generation() {
-    return _generation;
-}
-
-void Div::set_generation(int generation) {
-    _generation = generation;
-}
-
-int Div::getNumberOfOpsInProg(string opName) {
-    if (opName == "DIV" || opName == "ALL") {
-        return _dividend->getNumberOfOpsInProg(opName) + _divisor->getNumberOfOpsInProg(opName) + 1;
+int Div::get_number_of_ops(string op_name) {
+    if (op_name == "DIV" || op_name == "ALL") {
+        return _dividend->get_number_of_ops(op_name) + _divisor->get_number_of_ops(op_name) + 1;
     }
-    return _dividend->getNumberOfOpsInProg(opName) + _divisor->getNumberOfOpsInProg(opName);
+    return _dividend->get_number_of_ops(op_name) + _divisor->get_number_of_ops(op_name);
 }
 
-int Div::getNumberOfVarsInProg(string varName) {
-    return _dividend->getNumberOfVarsInProg(varName) + _divisor->getNumberOfVarsInProg(varName);
+int Div::get_number_of_vars(string var_name) {
+    return _dividend->get_number_of_vars(var_name) + _divisor->get_number_of_vars(var_name);
 }
 
-int Div::getExponentOfVarInProg(string varName) {
-    return _dividend->getExponentOfVarInProg(varName) - _divisor->getExponentOfVarInProg(varName);
+int Div::get_exponent_of_var(string var_name) {
+    return _dividend->get_exponent_of_var(var_name) - _divisor->get_exponent_of_var(var_name);
 }
 
 /******************************************
@@ -2035,99 +1843,99 @@ Leftshift::Leftshift(IntType* value, IntType* offset) {
     if (offset == nullptr) throw runtime_error("Leftshift: offset is null");
     _value = value;
     _offset = offset;
-    _generation = max(value->get_generation(), offset->get_generation()) + 1;
+    set_generation( max(value->get_generation(), offset->get_generation()) + 1 );
 }
 
-string Leftshift::toString() {
+string Leftshift::to_string() {
     string output = "(";
     
     if (dynamic_cast<Var*>(_value) != 0) {
         Var* value = dynamic_cast<Var*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else if (dynamic_cast<Num*>(_value) != 0) {
         Num* value = dynamic_cast<Num*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else if (dynamic_cast<Plus*>(_value) != 0) {
         Plus* value = dynamic_cast<Plus*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else if (dynamic_cast<Times*>(_value) != 0) {
         Times* value = dynamic_cast<Times*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else if (dynamic_cast<Div*>(_value) != 0) {
         Div* value = dynamic_cast<Div*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else if (dynamic_cast<Min*>(_value) != 0) {
         Min* value = dynamic_cast<Min*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else if (dynamic_cast<Minus*>(_value) != 0) {
         Minus* value = dynamic_cast<Minus*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else if (dynamic_cast<Leftshift*>(_value) != 0) {
         Leftshift* value = dynamic_cast<Leftshift*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else if (dynamic_cast<Rightshift*>(_value) != 0) {
         Rightshift* value = dynamic_cast<Rightshift*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else {
-        throw runtime_error("Leftshift::toString() operates on UNKNOWN type!");
+        throw runtime_error("Leftshift::to_string() operates on UNKNOWN type!");
     }
     
     output += " << ";
     
     if (dynamic_cast<Var*>(_offset) != 0) {
         Var* offset = dynamic_cast<Var*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else if (dynamic_cast<Num*>(_offset) != 0) {
         Num* offset = dynamic_cast<Num*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else if (dynamic_cast<Plus*>(_offset) != 0) {
         Plus* offset = dynamic_cast<Plus*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else if (dynamic_cast<Times*>(_offset) != 0) {
         Times* offset = dynamic_cast<Times*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else if (dynamic_cast<Div*>(_offset) != 0) {
         Div* offset = dynamic_cast<Div*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else if (dynamic_cast<Min*>(_offset) != 0) {
         Min* offset = dynamic_cast<Min*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else if (dynamic_cast<Minus*>(_offset) != 0) {
         Minus* offset = dynamic_cast<Minus*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else if (dynamic_cast<Leftshift*>(_offset) != 0) {
         Leftshift* offset = dynamic_cast<Leftshift*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else if (dynamic_cast<Rightshift*>(_offset) != 0) {
         Rightshift* offset = dynamic_cast<Rightshift*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else {
-        throw runtime_error("Leftshift::toString() operates on UNKNOWN type!");
+        throw runtime_error("Leftshift::to_string() operates on UNKNOWN type!");
     }
     
     output += ")";
     return output;
 }
     
-int Leftshift::interpret(inputOutput_t env) {
+int Leftshift::interpret(input_output_t env) {
     int output;
     
     if (dynamic_cast<Var*>(_value) != 0) {
@@ -2299,27 +2107,19 @@ int Leftshift::depth() {
     return depth;
 }
 
-int Leftshift::get_generation() {
-    return _generation;
-}
-
-void Leftshift::set_generation(int generation) {
-    _generation = generation;
-}
-
-int Leftshift::getNumberOfOpsInProg(string opName) {
-    if (opName == "LEFTSHIFT" || opName == "ALL") {
-        return _value->getNumberOfOpsInProg(opName) + _offset->getNumberOfOpsInProg(opName) + 1;
+int Leftshift::get_number_of_ops(string op_name) {
+    if (op_name == "LEFTSHIFT" || op_name == "ALL") {
+        return _value->get_number_of_ops(op_name) + _offset->get_number_of_ops(op_name) + 1;
     }
-    return _value->getNumberOfOpsInProg(opName) + _offset->getNumberOfOpsInProg(opName);
+    return _value->get_number_of_ops(op_name) + _offset->get_number_of_ops(op_name);
 }
 
-int Leftshift::getNumberOfVarsInProg(string varName) {
-    return _value->getNumberOfVarsInProg(varName) + _offset->getNumberOfVarsInProg(varName);
+int Leftshift::get_number_of_vars(string var_name) {
+    return _value->get_number_of_vars(var_name) + _offset->get_number_of_vars(var_name);
 }
 
-int Leftshift::getExponentOfVarInProg(string varName) {
-    return max(_value->getExponentOfVarInProg(varName), _offset->getExponentOfVarInProg(varName));
+int Leftshift::get_exponent_of_var(string var_name) {
+    return max(_value->get_exponent_of_var(var_name), _offset->get_exponent_of_var(var_name));
 }
 
 /******************************************
@@ -2330,99 +2130,99 @@ Rightshift::Rightshift(IntType* value, IntType* offset) {
     if (offset == nullptr) throw runtime_error("Rightshift: offset is null");
     _value = value;
     _offset = offset;
-    _generation = max(value->get_generation(), offset->get_generation()) + 1;
+    set_generation( max(value->get_generation(), offset->get_generation()) + 1 );
 }
     
-string Rightshift::toString() {
+string Rightshift::to_string() {
     string output = "(";
     
     if (dynamic_cast<Var*>(_value) != 0) {
         Var* value = dynamic_cast<Var*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else if (dynamic_cast<Num*>(_value) != 0) {
         Num* value = dynamic_cast<Num*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else if (dynamic_cast<Plus*>(_value) != 0) {
         Plus* value = dynamic_cast<Plus*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else if (dynamic_cast<Times*>(_value) != 0) {
         Times* value = dynamic_cast<Times*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else if (dynamic_cast<Div*>(_value) != 0) {
         Div* value = dynamic_cast<Div*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else if (dynamic_cast<Min*>(_value) != 0) {
         Min* value = dynamic_cast<Min*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else if (dynamic_cast<Minus*>(_value) != 0) {
         Minus* value = dynamic_cast<Minus*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else if (dynamic_cast<Leftshift*>(_value) != 0) {
         Leftshift* value = dynamic_cast<Leftshift*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else if (dynamic_cast<Rightshift*>(_value) != 0) {
         Rightshift* value = dynamic_cast<Rightshift*>(_value);
-        output += value->toString();
+        output += value->to_string();
     }
     else {
-        throw runtime_error("Rightshift::toString() operates on UNKNOWN type!");
+        throw runtime_error("Rightshift::to_string() operates on UNKNOWN type!");
     }
     
     output += " >> ";
     
     if (dynamic_cast<Var*>(_offset) != 0) {
         Var* offset = dynamic_cast<Var*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else if (dynamic_cast<Num*>(_offset) != 0) {
         Num* offset = dynamic_cast<Num*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else if (dynamic_cast<Plus*>(_offset) != 0) {
         Plus* offset = dynamic_cast<Plus*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else if (dynamic_cast<Times*>(_offset) != 0) {
         Times* offset = dynamic_cast<Times*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else if (dynamic_cast<Div*>(_offset) != 0) {
         Div* offset = dynamic_cast<Div*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else if (dynamic_cast<Min*>(_offset) != 0) {
         Min* offset = dynamic_cast<Min*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else if (dynamic_cast<Minus*>(_offset) != 0) {
         Minus* offset = dynamic_cast<Minus*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else if (dynamic_cast<Leftshift*>(_offset) != 0) {
         Leftshift* offset = dynamic_cast<Leftshift*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else if (dynamic_cast<Rightshift*>(_offset) != 0) {
         Rightshift* offset = dynamic_cast<Rightshift*>(_offset);
-        output += offset->toString();
+        output += offset->to_string();
     }
     else {
-        throw runtime_error("Rightshift::toString() operates on UNKNOWN type!");
+        throw runtime_error("Rightshift::to_string() operates on UNKNOWN type!");
     }
     
     output += ")";
     return output;
 }
     
-int Rightshift::interpret(inputOutput_t env) {
+int Rightshift::interpret(input_output_t env) {
     int output;
     
     if (dynamic_cast<Var*>(_value) != 0) {
@@ -2594,27 +2394,19 @@ int Rightshift::depth() {
     return depth;
 }
 
-int Rightshift::get_generation() {
-    return _generation;
-}
-
-void Rightshift::set_generation(int generation) {
-    _generation = generation;
-}
-
-int Rightshift::getNumberOfOpsInProg(string opName) {
-    if (opName == "RIGHTSHIFT" || opName == "ALL") {
-        return _value->getNumberOfOpsInProg(opName) + _offset->getNumberOfOpsInProg(opName) + 1;
+int Rightshift::get_number_of_ops(string op_name) {
+    if (op_name == "RIGHTSHIFT" || op_name == "ALL") {
+        return _value->get_number_of_ops(op_name) + _offset->get_number_of_ops(op_name) + 1;
     }
-    return _value->getNumberOfOpsInProg(opName) + _offset->getNumberOfOpsInProg(opName);
+    return _value->get_number_of_ops(op_name) + _offset->get_number_of_ops(op_name);
 }
 
-int Rightshift::getNumberOfVarsInProg(string varName) {
-    return _value->getNumberOfVarsInProg(varName) + _offset->getNumberOfVarsInProg(varName);
+int Rightshift::get_number_of_vars(string var_name) {
+    return _value->get_number_of_vars(var_name) + _offset->get_number_of_vars(var_name);
 }
 
-int Rightshift::getExponentOfVarInProg(string varName) {
-    return max(_value->getExponentOfVarInProg(varName), _offset->getExponentOfVarInProg(varName));
+int Rightshift::get_exponent_of_var(string var_name) {
+    return max(_value->get_exponent_of_var(var_name), _offset->get_exponent_of_var(var_name));
 }
 
 /******************************************
@@ -2625,81 +2417,81 @@ Lt::Lt(IntType* left, IntType* right) {
     if (right == nullptr) throw runtime_error("Lt: right is null");
     _left = left;
     _right = right;
-    _generation = max(left->get_generation(), right->get_generation()) + 1;
+    set_generation( max(left->get_generation(), right->get_generation()) + 1 );
 }
 
-string Lt::toString() {
+string Lt::to_string() {
     string output = "(";
     
     if (auto left = dynamic_cast<Var*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Num*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Plus*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Times*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Div*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Min*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Minus*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Leftshift*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Rightshift*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else {
-        throw runtime_error("Lt::toString() operates on UNKNOWN type!");
+        throw runtime_error("Lt::to_string() operates on UNKNOWN type!");
     }
     
     output += " < ";
     
     if (auto right = dynamic_cast<Var*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Num*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Plus*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Times*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Div*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Min*>(_right))  {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Minus*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Leftshift*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Rightshift*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else {
-        throw runtime_error("Lt::toString() operates on UNKNOWN type!");
+        throw runtime_error("Lt::to_string() operates on UNKNOWN type!");
     }
     
     output += ")";
     return output;
 }
     
-bool Lt::interpret(inputOutput_t env) {
+bool Lt::interpret(input_output_t env) {
     int leftValue;
     
     if (auto left = dynamic_cast<Var*>(_left)) {
@@ -2836,41 +2628,33 @@ int Lt::depth() {
     return depth;
 }
 
-int Lt::get_generation() {
-    return _generation;
-}
-
-void Lt::set_generation(int generation) {
-    _generation = generation;
-}
-
-IntType* Lt::getLeft() {
+IntType* Lt::get_left() {
     return _left;
 }
-IntType* Lt::getRight() {
+IntType* Lt::get_right() {
     return _right;
 }
 
-vector<int> Lt::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
-    vector<int> left_lex = _left->getLexicalOrder(num_of_vars, vars_orders);
-    vector<int> right_lex = _right->getLexicalOrder(num_of_vars, vars_orders);
+vector<int> Lt::get_lexical_order(int num_of_vars, map<string, int>& vars_orders) {
+    vector<int> left_lex = _left->get_lexical_order(num_of_vars, vars_orders);
+    vector<int> right_lex = _right->get_lexical_order(num_of_vars, vars_orders);
     left_lex.insert(left_lex.end(), right_lex.begin(), right_lex.end());
     return left_lex;
 }
 
-int Lt::getNumberOfOpsInProg(string opName) {
-    if (opName == "LT" || opName == "ALL") {
-        return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName) + 1;
+int Lt::get_number_of_ops(string op_name) {
+    if (op_name == "LT" || op_name == "ALL") {
+        return _left->get_number_of_ops(op_name) + _right->get_number_of_ops(op_name) + 1;
     }
-    return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName);
+    return _left->get_number_of_ops(op_name) + _right->get_number_of_ops(op_name);
 }
 
-int Lt::getNumberOfVarsInProg(string varName) {
-    return _left->getNumberOfVarsInProg(varName) + _right->getNumberOfVarsInProg(varName);
+int Lt::get_number_of_vars(string var_name) {
+    return _left->get_number_of_vars(var_name) + _right->get_number_of_vars(var_name);
 }
 
-int Lt::getExponentOfVarInProg(string varName) {
-    return max(_left->getExponentOfVarInProg(varName), _right->getExponentOfVarInProg(varName));
+int Lt::get_exponent_of_var(string var_name) {
+    return max(_left->get_exponent_of_var(var_name), _right->get_exponent_of_var(var_name));
 }
 
 /******************************************
@@ -2881,51 +2665,51 @@ And::And(BoolType* left, BoolType* right) {
     if (right == nullptr) throw runtime_error("And: offset is null");
     _left = left;
     _right = right;
-    _generation = max(left->get_generation(), right->get_generation()) + 1;
+    set_generation( max(left->get_generation(), right->get_generation()) + 1);
 }
 
-string And::toString() {
+string And::to_string() {
     string output = "(";
     
     if (auto left = dynamic_cast<F*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Lt*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<And*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Not*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else {
-        throw runtime_error("And::toString() operates on UNKNOWN type!");
+        throw runtime_error("And::to_string() operates on UNKNOWN type!");
     }
     
     output += " && ";
     
     if (auto right = dynamic_cast<F*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Lt*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<And*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else if (auto right = dynamic_cast<Not*>(_right)) {
-        output += right->toString();
+        output += right->to_string();
     }
     else {
-        throw runtime_error("And::toString() operates on UNKNOWN type!");
+        throw runtime_error("And::to_string() operates on UNKNOWN type!");
     }
     
     output += ")";
     return output;
 }
     
-bool And::interpret(inputOutput_t env) {
+bool And::interpret(input_output_t env) {
     bool output;
     
     if (auto left = dynamic_cast<F*>(_left)) {
@@ -3001,38 +2785,30 @@ int And::depth() {
     return depth;
 }
 
-int And::get_generation() {
-    return _generation;
-}
-
-void And::set_generation(int generation) {
-    _generation = generation;
-}
-
-BoolType* And::getLeft() {
+BoolType* And::get_left() {
     return _left;
 }
-BoolType* And::getRight() {
+BoolType* And::get_right() {
     return _right;
 }
 
-vector<int> And::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
-    return _right->getLexicalOrder(num_of_vars, vars_orders);
+vector<int> And::get_lexical_order(int num_of_vars, map<string, int>& vars_orders) {
+    return _right->get_lexical_order(num_of_vars, vars_orders);
 }
 
-int And::getNumberOfOpsInProg(string opName) {
-    if (opName == "AND" || opName == "ALL") {
-        return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName) + 1;
+int And::get_number_of_ops(string op_name) {
+    if (op_name == "AND" || op_name == "ALL") {
+        return _left->get_number_of_ops(op_name) + _right->get_number_of_ops(op_name) + 1;
     }
-    return _left->getNumberOfOpsInProg(opName) + _right->getNumberOfOpsInProg(opName);
+    return _left->get_number_of_ops(op_name) + _right->get_number_of_ops(op_name);
 }
 
-int And::getNumberOfVarsInProg(string varName) {
-    return _left->getNumberOfVarsInProg(varName) + _right->getNumberOfVarsInProg(varName);
+int And::get_number_of_vars(string var_name) {
+    return _left->get_number_of_vars(var_name) + _right->get_number_of_vars(var_name);
 }
 
-int And::getExponentOfVarInProg(string varName) {
-    return max(_left->getExponentOfVarInProg(varName), _right->getExponentOfVarInProg(varName));
+int And::get_exponent_of_var(string var_name) {
+    return max(_left->get_exponent_of_var(var_name), _right->get_exponent_of_var(var_name));
 }
 
 /******************************************
@@ -3041,33 +2817,33 @@ Constructs: Not
 Not::Not(BoolType* left) {
     if (left == nullptr) throw runtime_error("Not: value is null");
     _left = left;
-    _generation = left->get_generation() + 1;
+    set_generation( left->get_generation() + 1 );
 }
 
-string Not::toString() {
+string Not::to_string() {
     string output = "(! ";
     
     if (auto left = dynamic_cast<F*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Lt*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<And*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else if (auto left = dynamic_cast<Not*>(_left)) {
-        output += left->toString();
+        output += left->to_string();
     }
     else {
-        throw runtime_error("Not::toString() operates on UNKNOWN type!");
+        throw runtime_error("Not::to_string() operates on UNKNOWN type!");
     }
     
     output += " )";
     return output;
 }
     
-bool Not::interpret(inputOutput_t env) {
+bool Not::interpret(input_output_t env) {
     if (auto left = dynamic_cast<F*>(_left)) {
         return !(left->interpret());
     }
@@ -3102,31 +2878,23 @@ int Not::depth() {
     }
 }
 
-int Not::get_generation() {
-    return _generation;
+vector<int> Not::get_lexical_order(int num_of_vars, map<string, int>& vars_orders) {
+    return _left->get_lexical_order(num_of_vars, vars_orders);
 }
 
-void Not::set_generation(int generation) {
-    _generation = generation;
-}
-
-vector<int> Not::getLexicalOrder(int num_of_vars, map<string, int>& vars_orders) {
-    return _left->getLexicalOrder(num_of_vars, vars_orders);
-}
-
-int Not::getNumberOfOpsInProg(string opName) {
-    if (opName == "NOT" || opName == "ALL") {
-        return _left->getNumberOfOpsInProg(opName) + 1;
+int Not::get_number_of_ops(string op_name) {
+    if (op_name == "NOT" || op_name == "ALL") {
+        return _left->get_number_of_ops(op_name) + 1;
     }
-    return _left->getNumberOfOpsInProg(opName);
+    return _left->get_number_of_ops(op_name);
 }
 
-int Not::getNumberOfVarsInProg(string varName) {
-    return _left->getNumberOfVarsInProg(varName);
+int Not::get_number_of_vars(string var_name) {
+    return _left->get_number_of_vars(var_name);
 }
 
-int Not::getExponentOfVarInProg(string varName) {
-    return _left->getExponentOfVarInProg(varName);
+int Not::get_exponent_of_var(string var_name) {
+    return _left->get_exponent_of_var(var_name);
 }
 
 /******************************************
@@ -3139,182 +2907,182 @@ Ite::Ite(BoolType* cond, IntType* tcase, IntType* fcase) {
     _cond = cond;
     _tcase = tcase;
     _fcase = fcase;
-    _generation = max(cond->get_generation(), max(tcase->get_generation(), fcase->get_generation())) + 1;
+    set_generation( max(cond->get_generation(), max(tcase->get_generation(), fcase->get_generation())) + 1 );
 }
 
-string Ite::toString() {
+string Ite::to_string() {
     string output = "(if ";
     
     if (auto cond = dynamic_cast<F*>(_cond)) {
-        output += cond->toString();
+        output += cond->to_string();
     }
     else if (auto cond = dynamic_cast<Lt*>(_cond)) {
-        output += cond->toString();
+        output += cond->to_string();
     }
     else if (auto cond = dynamic_cast<And*>(_cond)) {
-        output += cond->toString();
+        output += cond->to_string();
     }
     else if (auto cond = dynamic_cast<Not*>(_cond)) {
-        output += cond->toString();
+        output += cond->to_string();
     }
     else {
-        throw runtime_error("Ite::toString() operates on UNKNOWN type!");
+        throw runtime_error("Ite::to_string() operates on UNKNOWN type!");
     }
     
     output += " then ";
     
     if (auto tcase = dynamic_cast<Var*>(_tcase)) {
-        output += tcase->toString();
+        output += tcase->to_string();
     }
     else if (auto tcase = dynamic_cast<Num*>(_tcase)) {
-        output += tcase->toString();
+        output += tcase->to_string();
     }
     else if (auto tcase = dynamic_cast<Plus*>(_tcase)) {
-        output += tcase->toString();
+        output += tcase->to_string();
     }
     else if (auto tcase = dynamic_cast<Times*>(_tcase)) {
-        output += tcase->toString();
+        output += tcase->to_string();
     }
     else if (auto tcase = dynamic_cast<Div*>(_tcase)) {
-        output += tcase->toString();
+        output += tcase->to_string();
     }
     else if (auto tcase = dynamic_cast<Min*>(_tcase)) {
-        output += tcase->toString();
+        output += tcase->to_string();
     }
     else if (auto tcase = dynamic_cast<Minus*>(_tcase)) {
-        output += tcase->toString();
+        output += tcase->to_string();
     }
     else if (auto tcase = dynamic_cast<Leftshift*>(_tcase)) {
-        output += tcase->toString();
+        output += tcase->to_string();
     }
     else if (auto tcase = dynamic_cast<Rightshift*>(_tcase)) {
-        output += tcase->toString();
+        output += tcase->to_string();
     }
     else {
-        throw runtime_error("Ite::toString() operates on UNKNOWN type!");
+        throw runtime_error("Ite::to_string() operates on UNKNOWN type!");
     }
     
     output += " else ";
     
     if (auto fcase = dynamic_cast<Var*>(_fcase)) {
-        output += fcase->toString();
+        output += fcase->to_string();
     }
     else if (auto fcase = dynamic_cast<Num*>(_fcase)) {
-        output += fcase->toString();
+        output += fcase->to_string();
     }
     else if (auto fcase = dynamic_cast<Plus*>(_fcase)) {
-        output += fcase->toString();
+        output += fcase->to_string();
     }
     else if (auto fcase = dynamic_cast<Times*>(_fcase)) {
-        output += fcase->toString();
+        output += fcase->to_string();
     }
     else if (auto fcase = dynamic_cast<Div*>(_fcase)) {
-        output += fcase->toString();
+        output += fcase->to_string();
     }
     else if (auto fcase = dynamic_cast<Min*>(_fcase)) {
-        output += fcase->toString();
+        output += fcase->to_string();
     }
     else if (auto fcase = dynamic_cast<Minus*>(_fcase)) {
-        output += fcase->toString();
+        output += fcase->to_string();
     }
     else if (auto fcase = dynamic_cast<Leftshift*>(_fcase)) {
-        output += fcase->toString();
+        output += fcase->to_string();
     }
     else if (auto fcase = dynamic_cast<Rightshift*>(_fcase)) {
-        output += fcase->toString();
+        output += fcase->to_string();
     }
     else {
-        throw runtime_error("Ite::toString() operates on UNKNOWN type!");
+        throw runtime_error("Ite::to_string() operates on UNKNOWN type!");
     }
     
     output += " )";
     return output;
 }
     
-int Ite::interpret(inputOutput_t env) {
-    bool condValue;
-    int tcaseValue;
-    int fcaseValue;
+int Ite::interpret(input_output_t env) {
+    bool cond_value;
+    int tcase_value;
+    int fcase_value;
     
     if (auto cond = dynamic_cast<F*>(_cond)) {
-        condValue = cond->interpret();
+        cond_value = cond->interpret();
     }
     else if (auto cond = dynamic_cast<Lt*>(_cond)) {
-        condValue = cond->interpret(env);
+        cond_value = cond->interpret(env);
     }
     else if (auto cond = dynamic_cast<And*>(_cond)) {
-        condValue = cond->interpret(env);
+        cond_value = cond->interpret(env);
     }
     else if (auto cond = dynamic_cast<Not*>(_cond)) {
-        condValue = cond->interpret(env);
+        cond_value = cond->interpret(env);
     }
     else {
         throw runtime_error("Ite::interpret() operates on UNKOWN type!");
     }
     
     if (auto tcase = dynamic_cast<Var*>(_tcase)) {
-        tcaseValue = tcase->interpret(env);
+        tcase_value = tcase->interpret(env);
     }
     else if (auto tcase = dynamic_cast<Num*>(_tcase)) {
-        tcaseValue = tcase->interpret();
+        tcase_value = tcase->interpret();
     }
     else if (auto tcase = dynamic_cast<Plus*>(_tcase)) {
-        tcaseValue = tcase->interpret(env);
+        tcase_value = tcase->interpret(env);
     }
     else if (auto tcase = dynamic_cast<Times*>(_tcase)) {
-        tcaseValue = tcase->interpret(env);
+        tcase_value = tcase->interpret(env);
     }
     else if (auto tcase = dynamic_cast<Div*>(_tcase)) {
-        tcaseValue = tcase->interpret(env);
+        tcase_value = tcase->interpret(env);
     }
     else if (auto tcase = dynamic_cast<Min*>(_tcase)) {
-        tcaseValue = tcase->interpret(env);
+        tcase_value = tcase->interpret(env);
     }
     else if (auto tcase = dynamic_cast<Minus*>(_tcase)) {
-        tcaseValue = tcase->interpret(env);
+        tcase_value = tcase->interpret(env);
     }
     else if (auto tcase = dynamic_cast<Leftshift*>(_tcase)) {
-        tcaseValue = tcase->interpret(env);
+        tcase_value = tcase->interpret(env);
     }
     else if (auto tcase = dynamic_cast<Rightshift*>(_tcase)) {
-        tcaseValue = tcase->interpret(env);
+        tcase_value = tcase->interpret(env);
     }
     else {
         throw runtime_error("Ite::interpret() operates on UNKOWN type!");
     }
     
     if (auto fcase = dynamic_cast<Var*>(_fcase)) {
-        fcaseValue = fcase->interpret(env);
+        fcase_value = fcase->interpret(env);
     }
     else if (auto fcase = dynamic_cast<Num*>(_fcase)) {
-        fcaseValue = fcase->interpret();
+        fcase_value = fcase->interpret();
     }
     else if (auto fcase = dynamic_cast<Plus*>(_fcase)) {
-        fcaseValue = fcase->interpret(env);
+        fcase_value = fcase->interpret(env);
     }
     else if (auto fcase = dynamic_cast<Times*>(_fcase)) {
-        fcaseValue = fcase->interpret(env);
+        fcase_value = fcase->interpret(env);
     }
     else if (auto fcase = dynamic_cast<Div*>(_fcase)) {
-        fcaseValue = fcase->interpret(env);
+        fcase_value = fcase->interpret(env);
     }
     else if (auto fcase = dynamic_cast<Min*>(_fcase)) {
-        fcaseValue = fcase->interpret(env);
+        fcase_value = fcase->interpret(env);
     }
     else if (auto fcase = dynamic_cast<Minus*>(_fcase)) {
-        fcaseValue = fcase->interpret(env);
+        fcase_value = fcase->interpret(env);
     }
     else if (auto fcase = dynamic_cast<Leftshift*>(_fcase)) {
-        fcaseValue = fcase->interpret(env);
+        fcase_value = fcase->interpret(env);
     }
     else if (auto fcase = dynamic_cast<Rightshift*>(_fcase)) {
-        fcaseValue = fcase->interpret(env);
+        fcase_value = fcase->interpret(env);
     }
     else {
         throw runtime_error("Ite::interpret() operates on UNKOWN type!");
     }
     
-    return condValue ? tcaseValue : fcaseValue;
+    return cond_value ? tcase_value : fcase_value;
 }
     
 int Ite::depth() {
@@ -3401,25 +3169,17 @@ int Ite::depth() {
     return depth;
 }
 
-int Ite::get_generation() {
-    return _generation;
-}
-
-void Ite::set_generation(int generation) {
-    _generation = generation;
-}
-
-int Ite::getNumberOfOpsInProg(string opName) {
-    if (opName == "ITE" || opName == "ALL") {
-        return _cond->getNumberOfOpsInProg(opName) + _tcase->getNumberOfOpsInProg(opName) + _fcase->getNumberOfOpsInProg(opName) + 1;
+int Ite::get_number_of_ops(string op_name) {
+    if (op_name == "ITE" || op_name == "ALL") {
+        return _cond->get_number_of_ops(op_name) + _tcase->get_number_of_ops(op_name) + _fcase->get_number_of_ops(op_name) + 1;
     }
-    return _cond->getNumberOfOpsInProg(opName) + _tcase->getNumberOfOpsInProg(opName) + _fcase->getNumberOfOpsInProg(opName);
+    return _cond->get_number_of_ops(op_name) + _tcase->get_number_of_ops(op_name) + _fcase->get_number_of_ops(op_name);
 }
 
-int Ite::getNumberOfVarsInProg(string varName) {
-    return _cond->getNumberOfVarsInProg(varName) + _tcase->getNumberOfVarsInProg(varName) + _fcase->getNumberOfVarsInProg(varName);
+int Ite::get_number_of_vars(string var_name) {
+    return _cond->get_number_of_vars(var_name) + _tcase->get_number_of_vars(var_name) + _fcase->get_number_of_vars(var_name);
 }
 
-int Ite::getExponentOfVarInProg(string varName) {
-    return max(_cond->getExponentOfVarInProg(varName), max(_tcase->getExponentOfVarInProg(varName), _fcase->getExponentOfVarInProg(varName)));
+int Ite::get_exponent_of_var(string var_name) {
+    return max(_cond->get_exponent_of_var(var_name), max(_tcase->get_exponent_of_var(var_name), _fcase->get_exponent_of_var(var_name)));
 }
