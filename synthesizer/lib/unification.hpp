@@ -10,7 +10,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-#define DEBUG
+//#define DEBUG
 
 struct input_output_tree_node {
     input_outputs_t input_outputs;

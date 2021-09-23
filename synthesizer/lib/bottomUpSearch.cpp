@@ -1024,6 +1024,7 @@ string bottomUpSearch::search() {
 #ifdef DEBUG
         cout << "Current program_list size " << _program_list.size() << ", eliminate equvalents" << endl;
 #endif
+        
         if (!_isPred) eliminate_program_by_value();
         if (_isPred) eliminate_equivalents();
         
