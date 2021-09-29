@@ -13,23 +13,29 @@ unification::unification(int depth_bound_for_predicate,
                          vector<string> vars_in_term,
                          vector<string> constants_in_term,
                          vector<string> rules_to_apply,
+                         string bench_name,
+                         int ref_id,
                          input_outputs_t input_outputs) {
     
-    this->depth_bound_for_predicate = depth_bound_for_predicate;
-    this->int_ops_in_predicate = int_ops_in_predicate;
-    this->bool_ops_in_predicate = bool_ops_in_predicate;
-    this->vars_in_predicate = vars_in_predicate;
-    this->constants_in_predicate = constants_in_predicate;
+    _depth_bound_for_predicate = depth_bound_for_predicate;
+    _int_ops_in_predicate = int_ops_in_predicate;
+    _bool_ops_in_predicate = bool_ops_in_predicate;
+    _vars_in_predicate = vars_in_predicate;
+    _constants_in_predicate = constants_in_predicate;
     
-    this->depth_bound_for_term = depth_bound_for_term;
-    this->int_ops_in_term = int_ops_in_term;
-    this->bool_ops_in_term = bool_ops_in_term;
-    this->vars_in_term = vars_in_term;
-    this->constants_in_term = constants_in_term;
+    _depth_bound_for_term = depth_bound_for_term;
+    _int_ops_in_term = int_ops_in_term;
+    _bool_ops_in_term = bool_ops_in_term;
+    _vars_in_term = vars_in_term;
+    _constants_in_term = constants_in_term;
     
-    this->rules_to_apply = rules_to_apply;
+    _rules_to_apply = rules_to_apply;
     
-    this->input_output_tree = new input_output_tree_node(input_outputs);
+    _bench_name = bench_name;
+    _ref_id = ref_id;
+    
+    _input_output_tree = new input_output_tree_node(input_outputs);
+    
     for (auto ioe : input_outputs) {
         if (ioe["_out"] == 0) {
             this->_has_zero_in_ioes = true;
@@ -62,23 +68,27 @@ string unification::search_node_one_pass(int time_bound_in_seconds, input_output
         
         /* do the search */
         if (node->left != NULL && node->right != NULL) {
-            bottomUpSearch* bus = new bottomUpSearch(depth_bound_for_predicate,
-                                                     int_ops_in_predicate,
-                                                     bool_ops_in_predicate,
-                                                     vars_in_predicate,
-                                                     constants_in_predicate,
+            bottomUpSearch* bus = new bottomUpSearch(_depth_bound_for_predicate,
+                                                     _int_ops_in_predicate,
+                                                     _bool_ops_in_predicate,
+                                                     _vars_in_predicate,
+                                                     _constants_in_predicate,
                                                      true,
-                                                     this->rules_to_apply,
+                                                     _rules_to_apply,
+                                                     _bench_name,
+                                                     _ref_id,
                                                      node->input_outputs);
             searched_program = bus->search();
         } else {
-            bottomUpSearch* bus = new bottomUpSearch(depth_bound_for_term,
-                                                     int_ops_in_term,
-                                                     bool_ops_in_term,
-                                                     vars_in_term,
-                                                     constants_in_term,
+            bottomUpSearch* bus = new bottomUpSearch(_depth_bound_for_term,
+                                                     _int_ops_in_term,
+                                                     _bool_ops_in_term,
+                                                     _vars_in_term,
+                                                     _constants_in_term,
                                                      false,
-                                                     this->rules_to_apply,
+                                                     _rules_to_apply,
+                                                     _bench_name,
+                                                     _ref_id,
                                                      node->input_outputs);
             searched_program = bus->search();
         }
@@ -222,7 +232,7 @@ string unification::search(int search_time_for_terms_in_seconds, int search_time
     input_outputs_t left_input_outputs;
     input_outputs_t rightInputOutputs;
     
-    return search_node(search_time_for_terms_in_seconds, search_time_for_predicates_in_seconds, input_output_tree);
+    return search_node(search_time_for_terms_in_seconds, search_time_for_predicates_in_seconds, _input_output_tree);
 #ifdef DEBUG
     cout << "--------------------------------------" << endl;
 #endif
@@ -235,33 +245,33 @@ void unification::dump_language_defination() {
     cout << "Language used in Unification:" << endl;
     
     cout << "    Predicate language:" << endl;
-    cout << "        program depth bound: " << depth_bound_for_predicate << endl;
+    cout << "        program depth bound: " << _depth_bound_for_predicate << endl;
     cout << "        intOps: ";
-    for (const auto op : int_ops_in_predicate) cout << op << " ";
+    for (const auto op : _int_ops_in_predicate) cout << op << " ";
     cout << endl;
     cout << "        boolOps: ";
-    for (const auto op : bool_ops_in_predicate) cout << op << " ";
+    for (const auto op : _bool_ops_in_predicate) cout << op << " ";
     cout << endl;
     cout << "        constants: ";
-    for (const auto c : constants_in_predicate) cout << c << " ";
+    for (const auto c : _constants_in_predicate) cout << c << " ";
     cout << endl;
     cout << "        vars: ";
-    for (const auto v : vars_in_predicate) cout << v << " ";
+    for (const auto v : _vars_in_predicate) cout << v << " ";
     cout << endl;
     
     cout << "    Term language:" << endl;
-    cout << "        program depth bound: " << depth_bound_for_term << endl;
+    cout << "        program depth bound: " << _depth_bound_for_term << endl;
     cout << "        intOps: ";
-    for (const auto op : int_ops_in_term) cout << op << " ";
+    for (const auto op : _int_ops_in_term) cout << op << " ";
     cout << endl;
     cout << "        boolOps: ";
-    for (const auto op : bool_ops_in_term) cout << op << " ";
+    for (const auto op : _bool_ops_in_term) cout << op << " ";
     cout << endl;
     cout << "        constants: ";
-    for (const auto c : constants_in_term) cout << c << " ";
+    for (const auto c : _constants_in_term) cout << c << " ";
     cout << endl;
     cout << "        vars: ";
-    for (const auto v : vars_in_term) cout << v << " ";
+    for (const auto v : _vars_in_term) cout << v << " ";
     cout << endl;
 }
 
@@ -464,7 +474,7 @@ Dumping funcions
 */
 void unification::dump_input_output_tree() {
     cout << "--------------------------------------, dump tree after search" << endl;
-    dump_input_output_tree_node(input_output_tree, "");
+    dump_input_output_tree_node(_input_output_tree, "");
     cout << "--------------------------------------" << endl;
 }
 
@@ -489,8 +499,8 @@ void unification::dump_searched_program() {
 #ifdef DEBUG
     cout << "--------------------------------------, dump search result start" << endl;
 #endif
-    if (input_output_tree != nullptr && input_output_tree->searched_program != "") {
-        cout << "Searched Program (^0^) : " << input_output_tree->searched_program << endl;
+    if (_input_output_tree != nullptr && _input_output_tree->searched_program != "") {
+        cout << "Searched Program (^0^) : " << _input_output_tree->searched_program << endl;
     } else {
         cout << "Not yet found, (T^T)" << endl;
     }
@@ -500,8 +510,8 @@ void unification::dump_searched_program() {
 }
 
 string unification::get_searched_program() {
-    if (input_output_tree != nullptr && input_output_tree->searched_program != "") {
-        return "Searched Program (^0^) : " + input_output_tree->searched_program;
+    if (_input_output_tree != nullptr && _input_output_tree->searched_program != "") {
+        return "Searched Program (^0^) : " + _input_output_tree->searched_program;
     }
     return "Not yet founded, (T^T)";
 }

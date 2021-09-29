@@ -15,20 +15,22 @@ using namespace std;
 //#define DEBUG
 
 bool parser(int argc, char* argv[],
-            string* fileName,
-            int* searchTimeForTermsInSeconds,
-            int* searchTimeForPredsInSeconds,
-            int* depthBoundPred,
-            vector<string>* intOpsPred,
-            vector<string>* boolOpsPred,
-            vector<string>* varsPred,
-            vector<string>* constantsPred,
-            int* depthBoundTerm,
-            vector<string>* intOpsTerm,
-            vector<string>* boolOpsTerm,
-            vector<string>* varsTerm,
-            vector<string>* constantsTerm,
-            vector<string>* rulesToApply) {
+            string* file_name,
+            int* search_time_for_terms_in_seconds,
+            int* search_time_for_predicates_in_seconds,
+            int* depth_bound_for_predicate,
+            vector<string>* int_ops_for_predicate,
+            vector<string>* bool_ops_for_predicate,
+            vector<string>* vars_in_predicate,
+            vector<string>* constants_in_predicate,
+            int* depth_bound_for_term,
+            vector<string>* int_ops_for_term,
+            vector<string>* bool_ops_for_term,
+            vector<string>* vars_in_term,
+            vector<string>* constants_in_term,
+            vector<string>* rules_to_apply,
+            string* bench_name,
+            int* ref_id) {
     
     for (int i = 1; i < argc; i++) {
         
@@ -38,24 +40,26 @@ bool parser(int argc, char* argv[],
             i++;
             if (i < argc) {
                 argvi = argv[i];
-                *fileName = argvi;
-            } else {
-                cout << "-FILE: error in providing file name" << endl;
-                return false;
+                *file_name = argvi;
+                string tmp = argvi.substr(argvi.rfind("/") + 1);
+                if (tmp.find("_") == string::npos) throw runtime_error("can not extract bench name from file name");
+                *bench_name = tmp.substr(0, tmp.find("_"));
+                if (tmp.find("refsrc_") == string::npos) throw runtime_error("can not extract ref id from file name");
+                tmp = argvi.substr(argvi.rfind("refsrc_") + 7);
+                *ref_id = stoi(tmp.substr(0, tmp.find("_")));
+                continue;
             }
+            throw runtime_error("-FILE: error in providing file name");
         }
         else if (argvi == "-DEPTHBOUNDPRED") {
             i++;
             if (i < argc) {
                 argvi = argv[i];
                 if (isdigit(argvi[0])) {
-                    *depthBoundPred = stoi(argv[i]);
-                } else {
-                    return false;
+                    *depth_bound_for_predicate = stoi(argv[i]);
+                    continue;
                 }
-            } else {
-                cout << "-DEPTHBOUNDPRED: error in specifying the depth of the predicate program" << endl;
-                return false;
+                throw runtime_error("-DEPTHBOUNDPRED: error in specifying the depth of the predicate program");
             }
         }
         else if (argvi == "-INTOPSPRED") {
@@ -63,7 +67,7 @@ bool parser(int argc, char* argv[],
             if (i < argc) {
                 argvi = argv[i];
                 while(argvi[0] != '-' && !isdigit(argvi[0])) {
-                    intOpsPred->push_back(argvi);
+                    int_ops_for_predicate->push_back(argvi);
                     i++;
                     if (i >= argc) {
                         break;
@@ -72,8 +76,7 @@ bool parser(int argc, char* argv[],
                 }
                 i--;
             } else {
-                cout << "-INTOPSPRED: error in specifying the int ops for predicate language" << endl;
-                return false;
+                throw runtime_error("-INTOPSPRED: error in specifying the int ops for predicate language");
             }
         }
         else if (argvi == "-BOOLOPSPRED") {
@@ -81,7 +84,7 @@ bool parser(int argc, char* argv[],
             if (i < argc) {
                 argvi = argv[i];
                 while(argvi[0] != '-' && !isdigit(argvi[0])) {
-                    boolOpsPred->push_back(argvi);
+                    bool_ops_for_predicate->push_back(argvi);
                     i++;
                     if (i >= argc) {
                         break;
@@ -90,8 +93,7 @@ bool parser(int argc, char* argv[],
                 }
                 i--;
             } else {
-                cout << "-BOOLOPSPRED: error in specifying the bool ops for predicate language" << endl;
-                return false;
+                throw runtime_error("-BOOLOPSPRED: error in specifying the bool ops for predicate language");
             }
         }
         else if (argvi == "-VARSPRED") {
@@ -99,7 +101,7 @@ bool parser(int argc, char* argv[],
             if (i < argc) {
                 argvi = argv[i];
                 while(argvi[0] != '-' && !isdigit(argvi[0])) {
-                    varsPred->push_back(argvi);
+                    vars_in_predicate->push_back(argvi);
                     i++;
                     if (i >= argc) {
                         break;
@@ -108,8 +110,7 @@ bool parser(int argc, char* argv[],
                 }
                 i--;
             } else {
-                cout << "-VARSPRED: error in specifying the variables allowed in predicate language" << endl;
-                return false;
+                throw runtime_error("-VARSPRED: error in specifying the variables allowed in predicate language");
             }
         }
         else if (argvi == "-CONSTANTSPRED") {
@@ -117,7 +118,7 @@ bool parser(int argc, char* argv[],
             if (i < argc) {
                 argvi = argv[i];
                 while(argvi[0] != '-' && isdigit(argvi[0])) {
-                    constantsPred->push_back(argvi);
+                    constants_in_predicate->push_back(argvi);
                     i++;
                     if (i >= argc) {
                         break;
@@ -126,8 +127,7 @@ bool parser(int argc, char* argv[],
                 }
                 i--;
             } else {
-                cout << "-CONSTANTSPRED: error in specifying the constants allowed in predicate language" << endl;
-                return false;
+                throw runtime_error("-CONSTANTSPRED: error in specifying the constants allowed in predicate language");
             }
         }
         else if (argvi == "-DEPTHBOUNDTERM") {
@@ -135,13 +135,12 @@ bool parser(int argc, char* argv[],
             if (i < argc) {
                 argvi = argv[i];
                 if (isdigit(argvi[0])) {
-                    *depthBoundTerm = stoi(argv[i]);
+                    *depth_bound_for_term = stoi(argv[i]);
                 } else {
                     return false;
                 }
             } else {
-                cout << "-DEPTHBOUNDTERM: error in specifying the depth of the term program" << endl;
-                return false;
+                throw runtime_error("-DEPTHBOUNDTERM: error in specifying the depth of the term program");
             }
         }
         else if (argvi == "-INTOPSTERM") {
@@ -149,7 +148,7 @@ bool parser(int argc, char* argv[],
             if (i < argc) {
                 argvi = argv[i];
                 while(argvi[0] != '-' && !isdigit(argvi[0])) {
-                    intOpsTerm->push_back(argvi);
+                    int_ops_for_term->push_back(argvi);
                     i++;
                     if (i >= argc) {
                         break;
@@ -158,8 +157,7 @@ bool parser(int argc, char* argv[],
                 }
                 i--;
             } else {
-                cout << "-INTOPSTERM: error in specifying the int ops in the term language" << endl;
-                return false;
+                throw runtime_error("-INTOPSTERM: error in specifying the int ops in the term language");
             }
         }
         else if (argvi == "-BOOLOPSTERM") {
@@ -167,7 +165,7 @@ bool parser(int argc, char* argv[],
             if (i < argc) {
                 argvi = argv[i];
                 while(argvi[0] != '-' && !isdigit(argvi[0])) {
-                    boolOpsTerm->push_back(argvi);
+                    bool_ops_for_term->push_back(argvi);
                     i++;
                     if (i >= argc) {
                         break;
@@ -176,8 +174,7 @@ bool parser(int argc, char* argv[],
                 }
                 i--;
             } else {
-                cout << "-BOOLOPSTERM: error in specifying the bool ops in the term language" << endl;
-                return false;
+                throw runtime_error("-BOOLOPSTERM: error in specifying the bool ops in the term language");
             }
         }
         else if (argvi == "-VARSTERM") {
@@ -185,7 +182,7 @@ bool parser(int argc, char* argv[],
             if (i < argc) {
                 argvi = argv[i];
                 while(argvi[0] != '-' && !isdigit(argvi[0])) {
-                    varsTerm->push_back(argvi);
+                    vars_in_term->push_back(argvi);
                     i++;
                     if (i >= argc) {
                         break;
@@ -194,8 +191,7 @@ bool parser(int argc, char* argv[],
                 }
                 i--;
             } else {
-                cout << "-VARSTERM: error in specifying the variables allowed in the term language" << endl;
-                return false;
+                throw runtime_error("-VARSTERM: error in specifying the variables allowed in the term language");
             }
         }
         else if (argvi == "-CONSTANTSTERM") {
@@ -203,7 +199,7 @@ bool parser(int argc, char* argv[],
             if (i < argc) {
                 argvi = argv[i];
                 while(argvi[0] != '-' && isdigit(argvi[0])) {
-                    constantsTerm->push_back(argvi);
+                    constants_in_term->push_back(argvi);
                     i++;
                     if (i >= argc) {
                         break;
@@ -212,8 +208,7 @@ bool parser(int argc, char* argv[],
                 }
                 i--;
             } else {
-                cout << "-CONSTANTSTERM: error in specifying the constants in the term language" << endl;
-                return false;
+                throw runtime_error("-CONSTANTSTERM: error in specifying the constants in the term language");
             }
         }
         else if (argvi == "-SEARCHTIMEFORTERMSINSECONDS") {
@@ -221,13 +216,12 @@ bool parser(int argc, char* argv[],
             if (i < argc) {
                 argvi = argv[i];
                 if (isdigit(argvi[0])) {
-                    *searchTimeForTermsInSeconds = stoi(argv[i]);
+                    *search_time_for_terms_in_seconds = stoi(argv[i]);
                 } else {
                     return false;
                 }
             } else {
-                cout << "-SEARCHTIMEFORTERMSINSECONDS: error in specifying the search time" << endl;
-                return false;
+                throw runtime_error("-SEARCHTIMEFORTERMSINSECONDS: error in specifying the search time");
             }
         }
         else if (argvi == "-SEARCHTIMEFORPREDSINSECONDS") {
@@ -235,13 +229,12 @@ bool parser(int argc, char* argv[],
             if (i < argc) {
                 argvi = argv[i];
                 if (isdigit(argvi[0])) {
-                    *searchTimeForPredsInSeconds = stoi(argv[i]);
+                    *search_time_for_predicates_in_seconds = stoi(argv[i]);
                 } else {
                     return false;
                 }
             } else {
-                cout << "-SEARCHTIMEFORPREDSINSECONDS: error in specifying the search time" << endl;
-                return false;
+                throw runtime_error("-SEARCHTIMEFORPREDSINSECONDS: error in specifying the search time");
             }
         }
         else if (argvi == "-RULESTOAPPLY") {
@@ -249,7 +242,7 @@ bool parser(int argc, char* argv[],
             if (i < argc) {
                 argvi = argv[i];
                 while(argvi[0] != '-' && !isdigit(argvi[0])) {
-                    rulesToApply->push_back(argvi);
+                    rules_to_apply->push_back(argvi);
                     i++;
                     if (i >= argc) {
                         break;
@@ -258,13 +251,11 @@ bool parser(int argc, char* argv[],
                 }
                 i--;
             } else {
-                cout << "-RULESTOAPPLY: error in specifying the bool ops in the term language" << endl;
-                return false;
+                throw runtime_error("-RULESTOAPPLY: error in specifying the bool ops in the term language");
             }
         }
         else {
-            cout << "error in providing command line arguments" << endl;
-            return false;
+            throw runtime_error("error in providing command line arguments");
         }
     }
     
@@ -274,90 +265,90 @@ bool parser(int argc, char* argv[],
 /*
 Language configuration
 */
-void langConfiguration(int* depthBoundPred,
-                       vector<string>* intOpsPred,
-                       vector<string>* boolOpsPred,
-                       vector<string>* varsPred,
-                       vector<string>* constantsPred,
-                       int* depthBoundTerm,
-                       vector<string>* intOpsTerm,
-                       vector<string>* boolOpsTerm,
-                       vector<string>* varsTerm,
-                       vector<string>* constantsTerm,
+void language_configuration(int* depth_bound_for_predicate,
+                       vector<string>* int_ops_for_predicate,
+                       vector<string>* bool_ops_for_predicate,
+                       vector<string>* vars_in_predicate,
+                       vector<string>* constants_in_predicate,
+                       int* depth_bound_for_term,
+                       vector<string>* int_ops_for_term,
+                       vector<string>* bool_ops_for_term,
+                       vector<string>* vars_in_term,
+                       vector<string>* constants_in_term,
                        input_outputs_t input_outputs) {
     
-    if (*depthBoundPred == -1) {
-        *depthBoundPred = 6;
+    if (*depth_bound_for_predicate == -1) {
+        *depth_bound_for_predicate = 6;
     }
     /*
      specify the language u use
      */
-    if (intOpsPred->size() == 0) {
-        intOpsPred->push_back("VAR");
-        intOpsPred->push_back("NUM");
-        intOpsPred->push_back("PLUS");
-        //intOpsPred->push_back("MINUS");
-        intOpsPred->push_back("TIMES");
-        //intOpsPred->push_back("ITE");
+    if (int_ops_for_predicate->size() == 0) {
+        int_ops_for_predicate->push_back("VAR");
+        int_ops_for_predicate->push_back("NUM");
+        int_ops_for_predicate->push_back("PLUS");
+        //int_ops_for_predicate->push_back("MINUS");
+        int_ops_for_predicate->push_back("TIMES");
+        //int_ops_for_predicate->push_back("ITE");
     }
       
-    if (boolOpsPred->size() == 0) {
-        boolOpsPred->push_back("F");
-        boolOpsPred->push_back("AND");
-        boolOpsPred->push_back("NOT");
-        boolOpsPred->push_back("LT");
+    if (bool_ops_for_predicate->size() == 0) {
+        bool_ops_for_predicate->push_back("F");
+        bool_ops_for_predicate->push_back("AND");
+        bool_ops_for_predicate->push_back("NOT");
+        bool_ops_for_predicate->push_back("LT");
     }
     
-    if (constantsPred->size() == 0) {
-        constantsPred->push_back("0");
-        constantsPred->push_back("1");
-        constantsPred->push_back("2");
-        constantsPred->push_back("3");
-        constantsPred->push_back("5");
-        constantsPred->push_back("7");
-        constantsPred->push_back("11");
-        constantsPred->push_back("13");
-        constantsPred->push_back("17");
-        constantsPred->push_back("19");
-        constantsPred->push_back("23");
-        constantsPred->push_back("29");
-        constantsPred->push_back("31");
+    if (constants_in_predicate->size() == 0) {
+        constants_in_predicate->push_back("0");
+        constants_in_predicate->push_back("1");
+        constants_in_predicate->push_back("2");
+        constants_in_predicate->push_back("3");
+        constants_in_predicate->push_back("5");
+        constants_in_predicate->push_back("7");
+        constants_in_predicate->push_back("11");
+        constants_in_predicate->push_back("13");
+        constants_in_predicate->push_back("17");
+        constants_in_predicate->push_back("19");
+        constants_in_predicate->push_back("23");
+        constants_in_predicate->push_back("29");
+        constants_in_predicate->push_back("31");
     }
     
-    if (*depthBoundTerm == -1) {
-        *depthBoundTerm = 6;
+    if (*depth_bound_for_term == -1) {
+        *depth_bound_for_term = 6;
     }
     
-    if (intOpsTerm->size() == 0) {
-        intOpsTerm->push_back("VAR");
-        intOpsTerm->push_back("NUM");
-        intOpsTerm->push_back("PLUS");
-        //intOpsTerm->push_back("MINUS");
-        intOpsTerm->push_back("TIMES");
-        //intOpsTerm->push_back("ITE");
+    if (int_ops_for_term->size() == 0) {
+        int_ops_for_term->push_back("VAR");
+        int_ops_for_term->push_back("NUM");
+        int_ops_for_term->push_back("PLUS");
+        //int_ops_for_term->push_back("MINUS");
+        int_ops_for_term->push_back("TIMES");
+        //int_ops_for_term->push_back("ITE");
     }
     
-    if (boolOpsTerm->size() == 0) {
-        //boolOpsTerm->push_back("F");
-        //boolOpsTerm->push_back("AND");
-        //boolOpsTerm->push_back("NOT");
-        //boolOpsTerm->push_back("LT");
+    if (bool_ops_for_term->size() == 0) {
+        //bool_ops_for_term->push_back("F");
+        //bool_ops_for_term->push_back("AND");
+        //bool_ops_for_term->push_back("NOT");
+        //bool_ops_for_term->push_back("LT");
     }
     
-    if (constantsTerm->size() == 0) {
-        constantsTerm->push_back("0");
-        constantsTerm->push_back("1");
-        constantsTerm->push_back("2");
-        constantsTerm->push_back("3");
-        constantsTerm->push_back("5");
-        constantsTerm->push_back("7");
-        constantsTerm->push_back("11");
-        constantsTerm->push_back("13");
-        constantsTerm->push_back("17");
-        constantsPred->push_back("19");
-        constantsPred->push_back("23");
-        constantsPred->push_back("29");
-        constantsPred->push_back("31");
+    if (constants_in_term->size() == 0) {
+        constants_in_term->push_back("0");
+        constants_in_term->push_back("1");
+        constants_in_term->push_back("2");
+        constants_in_term->push_back("3");
+        constants_in_term->push_back("5");
+        constants_in_term->push_back("7");
+        constants_in_term->push_back("11");
+        constants_in_term->push_back("13");
+        constants_in_term->push_back("17");
+        constants_in_predicate->push_back("19");
+        constants_in_predicate->push_back("23");
+        constants_in_predicate->push_back("29");
+        constants_in_predicate->push_back("31");
     }
     
     /*
@@ -366,8 +357,8 @@ void langConfiguration(int* depthBoundPred,
     if (!input_outputs.empty()) {
         for (auto varValue : input_outputs[0]) {
             if (varValue.first != "_out") {
-                varsPred->push_back(varValue.first);
-                varsTerm->push_back(varValue.first);
+                vars_in_predicate->push_back(varValue.first);
+                vars_in_term->push_back(varValue.first);
             }
         }
     }
@@ -476,9 +467,9 @@ void filterNonKeyIOEs(input_outputs_t* input_outputs) {
     
 }
 
-bool readInputOutput(string fileName, input_outputs_t* input_outputs) {
+bool readInputOutput(string file_name, input_outputs_t* input_outputs) {
     ifstream ifs;
-    ifs.open(fileName, ifstream::in);
+    ifs.open(file_name, ifstream::in);
     string line;
     
     while (getline(ifs, line)) {
@@ -507,17 +498,17 @@ bool readInputOutput(string fileName, input_outputs_t* input_outputs) {
     return true;
 }
 
-void writeSearchedProgram(string fileName, string prog) {
+void writeSearchedProgram(string file_name, string prog) {
     ofstream ofs;
-    size_t pos = fileName.find("/ris_per_iter_refsrc/");
+    size_t pos = file_name.find("/ris_per_iter_refsrc/");
     if (pos != string::npos) {
-        pos = fileName.find_last_of("/");
-        string conf = fileName.substr(pos+1, fileName.size());
-        string header = fileName.substr(0, pos);
+        pos = file_name.find_last_of("/");
+        string conf = file_name.substr(pos+1, file_name.size());
+        string header = file_name.substr(0, pos);
         pos = header.find_last_of("/");
-        fileName.replace(0, pos, "./synResult/");
-        fileName.replace(fileName.size() - 4, fileName.size(), "_src.txt");
-        ofs.open(fileName);
+        file_name.replace(0, pos, "./synResult/");
+        file_name.replace(file_name.size() - 4, file_name.size(), "_src.txt");
+        ofs.open(file_name);
         if (ofs.is_open()) {
             ofs << conf << " " << prog;
         }
@@ -555,28 +546,32 @@ int main(int argc, char* argv[]) {
     /*
      parse command line
      */
-    string fileName;
-    int depthBoundPred = -1;
-    vector<string> intOpsPred;
-    vector<string> boolOpsPred;
-    vector<string> varsPred;
-    vector<string> constantsPred;
-    int depthBoundTerm = -1;
-    vector<string> intOpsTerm;
-    vector<string> boolOpsTerm;
-    vector<string> varsTerm;
-    vector<string> constantsTerm;
+    string file_name = "";
+    int depth_bound_for_predicate = -1;
+    vector<string> int_ops_for_predicate;
+    vector<string> bool_ops_for_predicate;
+    vector<string> vars_in_predicate;
+    vector<string> constants_in_predicate;
+    int depth_bound_for_term = -1;
+    vector<string> int_ops_for_term;
+    vector<string> bool_ops_for_term;
+    vector<string> vars_in_term;
+    vector<string> constants_in_term;
     
-    int searchTimeForTermsInSeconds = 20;
-    int searchTimeForPredsInSeconds = 20;
+    int search_time_for_terms_in_seconds = 20;
+    int search_time_for_predicates_in_seconds = 20;
     
-    vector<string> rulesToApply;
+    vector<string> rules_to_apply;
+    
+    string bench_name = "";
+    int ref_id = 0;
     
     if ( parser(argc, argv,
-               &fileName, &searchTimeForTermsInSeconds, &searchTimeForPredsInSeconds,
-               &depthBoundPred, &intOpsPred, &boolOpsPred, &varsPred, &constantsPred,
-               &depthBoundTerm, &intOpsTerm, &boolOpsTerm, &varsTerm, &constantsTerm,
-               &rulesToApply) == false ) {
+               &file_name, &search_time_for_terms_in_seconds, &search_time_for_predicates_in_seconds,
+               &depth_bound_for_predicate, &int_ops_for_predicate, &bool_ops_for_predicate, &vars_in_predicate, &constants_in_predicate,
+               &depth_bound_for_term, &int_ops_for_term, &bool_ops_for_term, &vars_in_term, &constants_in_term,
+               &rules_to_apply,
+               &bench_name, &ref_id) == false ) {
         cout << "Error in parsing command lines" << endl;
         return 0;
     }
@@ -585,7 +580,7 @@ int main(int argc, char* argv[]) {
      read input output files
      */
     input_outputs_t input_outputs;
-    if (!readInputOutput(fileName, &input_outputs)) {
+    if (!readInputOutput(file_name, &input_outputs)) {
         cout << "Error reading files" << endl;
         return 0;
     }
@@ -594,46 +589,44 @@ int main(int argc, char* argv[]) {
     //sampler s(0.1);
     //input_outputs = s.randomSampling(input_outputs);
     
-    /*
-     output search mode
-     */
-    
 #ifdef DEBUG
-    if (rulesToApply.empty()) {
+    if (rules_to_apply.empty()) {
         cout << "No mode specific rules specified" << endl;
     }
     else {
         cout << "Applying rules: " << endl;
-        for (auto rule : rulesToApply) {
+        for (auto rule : rules_to_apply) {
             cout << rule << " ";
         }
         cout << endl;
     }
 #endif
-    
+        
     /*
      language configuration
     */
-    langConfiguration(&depthBoundPred, &intOpsPred, &boolOpsPred, &varsPred, &constantsPred,
-                      &depthBoundTerm, &intOpsTerm, &boolOpsTerm, &varsTerm, &constantsTerm,
+    language_configuration(&depth_bound_for_predicate, &int_ops_for_predicate, &bool_ops_for_predicate, &vars_in_predicate, &constants_in_predicate,
+                      &depth_bound_for_term, &int_ops_for_term, &bool_ops_for_term, &vars_in_term, &constants_in_term,
                       input_outputs);
     
-    unification* uni = new unification(depthBoundPred, intOpsPred, boolOpsPred, varsPred, constantsPred,
-                                       depthBoundTerm, intOpsTerm, boolOpsTerm, varsTerm, constantsTerm,
-                                       rulesToApply,
+    unification* uni = new unification(depth_bound_for_predicate, int_ops_for_predicate, bool_ops_for_predicate, vars_in_predicate, constants_in_predicate,
+                                       depth_bound_for_term, int_ops_for_term, bool_ops_for_term, vars_in_term, constants_in_term,
+                                       rules_to_apply,
+                                       bench_name,
+                                       ref_id,
                                        input_outputs);
 #ifdef DEBUG
-    cout << "Search time: terms " << searchTimeForTermsInSeconds << " predications " << searchTimeForPredsInSeconds << endl;
+    cout << "Search time: terms " << search_time_for_terms_in_seconds << " predications " << search_time_for_predicates_in_seconds << endl;
     uni->dump_language_defination();
 #endif
 
-    uni->search(searchTimeForTermsInSeconds, searchTimeForPredsInSeconds);
+    uni->search(search_time_for_terms_in_seconds, search_time_for_predicates_in_seconds);
 
 #ifdef DEBUG
     uni->dump_searched_program();
 #endif
 
-    //writeSearchedProgram(fileName, uni->getSearchedProgram());
+    //writeSearchedProgram(file_name, uni->getSearchedProgram());
     uni->dump_searched_program();
     
     return 0;

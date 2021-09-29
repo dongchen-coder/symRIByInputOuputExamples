@@ -18,7 +18,7 @@ struct input_output_tree_node {
     input_output_tree_node *left;
     input_output_tree_node *right;
     input_output_tree_node() {
-        input_outputs = input_outputs_t ();
+        input_outputs = input_outputs_t();
         left = nullptr;
         right = nullptr;
         searched_program = "";
@@ -42,6 +42,9 @@ public:
                 vector<string> constants_in_term,
                 
                 vector<string> rules_to_apply,
+                
+                string bench_name,
+                int ref_id,
                 
                 input_outputs_t input_outputs);
     
@@ -68,25 +71,29 @@ private:
     void backtracing(input_output_tree_node* node);
     
     /* Cluster the input-output examples to subsets for divde-and-conqure */
-    input_output_tree_node* input_output_tree;
+    input_output_tree_node* _input_output_tree;
     bool _has_zero_in_ioes = false;
     
     /* Language definition for predicates */
-    int depth_bound_for_predicate;
-    vector<string> int_ops_in_predicate;
-    vector<string> bool_ops_in_predicate;
-    vector<string> vars_in_predicate;
-    vector<string> constants_in_predicate;
+    int _depth_bound_for_predicate;
+    vector<string> _int_ops_in_predicate;
+    vector<string> _bool_ops_in_predicate;
+    vector<string> _vars_in_predicate;
+    vector<string> _constants_in_predicate;
     
     /* Language definition for terms */
-    int depth_bound_for_term;
-    vector<string> int_ops_in_term;
-    vector<string> bool_ops_in_term;
-    vector<string> vars_in_term;
-    vector<string> constants_in_term;
+    int _depth_bound_for_term;
+    vector<string> _int_ops_in_term;
+    vector<string> _bool_ops_in_term;
+    vector<string> _vars_in_term;
+    vector<string> _constants_in_term;
     
     /* Rules to apple */
-    vector<string> rules_to_apply;
+    vector<string> _rules_to_apply;
+    
+    /* program information */
+    string _bench_name;
+    int _ref_id;
 };
 
 

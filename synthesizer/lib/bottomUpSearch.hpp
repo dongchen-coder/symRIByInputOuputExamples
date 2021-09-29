@@ -23,6 +23,8 @@ public:
                    vector<string> constants,
                    bool isPred,
                    vector<string> rules_to_apply,
+                   string bench_name,
+                   int ref_id,
                    input_outputs_t input_outputs);
     
     /* search function */
@@ -89,11 +91,14 @@ private:
     vector<string> _bool_ops;
     vector<string> _vars;
     vector<string> _constants;
-    bool _isPred;
+    bool _is_predicate;
     int _num_of_vars;
     
     map<string, int> _vars_orders;
     
     vector<string> _rules_to_apply;
+    
+    string _bench_name;
+    int _ref_id;
 };
 #endif

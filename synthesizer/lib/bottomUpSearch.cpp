@@ -46,13 +46,15 @@ bottomUpSearch::bottomUpSearch(int depth_bound,
                                vector<string> constants,
                                bool isPred,
                                vector<string> rules_to_apply,
+                               string bench_name,
+                               int ref_id,
                                input_outputs_t input_outputs) {
     _depth_bound = depth_bound;
     _int_ops = int_ops;
     _bool_ops = bool_ops;
     _constants = constants;
     _input_outputs = input_outputs;
-    _isPred = isPred;
+    _is_predicate = isPred;
     
     if (isPred) {
         _vars = vars;
@@ -79,7 +81,7 @@ bottomUpSearch::bottomUpSearch(int depth_bound,
         Num* num = new Num(stoi(num_str));
         BaseType* num_base = dynamic_cast<BaseType*>(num);
         if (num_base == nullptr) throw runtime_error("Init Num list error");
-        num_base->set_generation(10);
+        num_base->set_generation(1);
         _program_list.push_back(num_base);
     }
     
@@ -96,6 +98,9 @@ bottomUpSearch::bottomUpSearch(int depth_bound,
         if (ioe.find("_out") == ioe.end()) throw runtime_error("No _out entry in IOE");
         _max_output = max(_max_output, ioe["_out"]);
     }
+    
+    _bench_name = bench_name;
+    _ref_id = ref_id;
 }
 
 /******************************************
@@ -253,7 +258,6 @@ inline bool bottomUpSearch::elimination_free_rule(BaseType* operand_a, BaseType*
     }
     
     // form rule (No redunant expression rules)
-    
     if (op == "PLUS" || op == "MINUS" || op == "TIMES" || op == "LEFTSHIFT" || op == "RIGHTSHIFT") {
         if (operand_a == nullptr || operand_b == nullptr) return false;
         
@@ -476,7 +480,7 @@ inline bool bottomUpSearch::elimination_free_rule(BaseType* operand_a, BaseType*
 }
 
 inline bool bottomUpSearch::form_bias_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int program_generation) {
-    /*
+    /* limiting the value range for numbers */
     auto a_num = dynamic_cast<Num*>(operand_a);
     auto b_num = dynamic_cast<Num*>(operand_b);
     if (a_num && b_num) {
@@ -485,33 +489,71 @@ inline bool bottomUpSearch::form_bias_rule(BaseType* operand_a, BaseType* operan
         if (op == "PLUS") c = a_num->interpret() + b_num->interpret();
         if (c > 100) return false;
     }
-    */
-    // form rule, prefered forms
-    if (op == "LT") {
-        // enforce "no b < *"
-        if (operand_a && operand_b &&
-            operand_a->get_number_of_vars("b") != 0 && operand_b->get_number_of_vars("b") != 0) return false;
-        if (operand_a && operand_b &&
-            operand_a->get_number_of_vars("b") == 0 && operand_b->get_number_of_vars("b") == 0) return false;
-        // enforce "one isrc < *"
-        if (operand_a && operand_b &&
-            operand_a->get_number_of_vars("isrc") != 0 && operand_b->get_number_of_vars("isrc") != 0) return false;
-        if (operand_a && operand_b &&
-            operand_a->get_number_of_vars("isrc") == 0 && operand_b->get_number_of_vars("isrc") == 0) return false;
-        // enforce "* < no isrc"
-        //if (operand_b->get_number_of_vars("isrc") != 0) return false;
-    }
-    if (op == "TIMES") {
-        // enforce a * Var, a <= 20
-        /*
-        if (auto a_num = dynamic_cast<Num*>(operand_a)) {
-            if (a_num->interpret() > 20) return false;
+    
+    /* bias rules for predicates */
+    if (_is_predicate) {
+        if (op == "LT") {
+            // enforce "no b < *"
+            if (operand_a && operand_b &&
+                operand_a->get_number_of_vars("b") != 0 && operand_b->get_number_of_vars("b") != 0) return false;
+            if (operand_a && operand_b &&
+                operand_a->get_number_of_vars("b") == 0 && operand_b->get_number_of_vars("b") == 0) return false;
+            // enforce "one isrc < *"
+            if (operand_a && operand_b &&
+                operand_a->get_number_of_vars("isrc") != 0 && operand_b->get_number_of_vars("isrc") != 0) return false;
+            if (operand_a && operand_b &&
+                operand_a->get_number_of_vars("isrc") == 0 && operand_b->get_number_of_vars("isrc") == 0) return false;
+            // enforce "* < no isrc"
+            //if (operand_b->get_number_of_vars("isrc") != 0) return false;
+            
         }
-         */
-        if (operand_a && operand_b &&
-            operand_a->get_number_of_vars("VAR") + operand_b->get_number_of_vars("VAR") > 4)
-            return false;
+        if (op == "TIMES") {
+            if (!dynamic_cast<Num*>(operand_a) || !dynamic_cast<Var*>(operand_b)) return false;
+        }
+        if (op == "PLUS") {
+            if (!dynamic_cast<Num*>(operand_a)) return false;
+            if (dynamic_cast<Plus*>(operand_b)) return false;
+            if (dynamic_cast<Times*>(operand_b)) return false;
+        }
+        
     }
+    /* bias rules for terms */
+    else {
+        if (op == "TIMES") {
+            if (operand_a && operand_b &&
+                operand_a->get_number_of_vars("VAR") + operand_b->get_number_of_vars("VAR") > 4)
+                return false;
+        }
+        if (op == "MINUS") {
+            if (operand_a->get_number_of_ops("MINUS") != 0) return false;
+            if (!dynamic_cast<Num*>(operand_b)) return false;
+        }
+    }
+    
+    /* code structure rules */
+    if (_bench_name == "2mm") {
+        if (_ref_id == 0) {
+            if (operand_a && operand_a->get_number_of_vars("b2") != 0) return false;
+            if (operand_b && operand_b->get_number_of_vars("b2") != 0) return false;
+            if (operand_a && operand_a->get_number_of_vars("b3") != 0) return false;
+            if (operand_b && operand_b->get_number_of_vars("b3") != 0) return false;
+        }
+        else if (_ref_id >= 1 && _ref_id <= 4) {
+            if (operand_a && operand_a->get_number_of_vars("b3") != 0) return false;
+            if (operand_b && operand_b->get_number_of_vars("b3") != 0) return false;
+        }
+        else if (_ref_id >= 5 && _ref_id <= 6) {
+            if (operand_a && operand_a->get_number_of_vars("b1") != 0) return false;
+            if (operand_b && operand_b->get_number_of_vars("b1") != 0) return false;
+            if (operand_a && operand_a->get_number_of_vars("b2") != 0) return false;
+            if (operand_b && operand_b->get_number_of_vars("b2") != 0) return false;
+        }
+        else if (_ref_id >= 7 && _ref_id <= 10) {
+            if (operand_a && operand_a->get_number_of_vars("b2") != 0) return false;
+            if (operand_b && operand_b->get_number_of_vars("b2") != 0) return false;
+        }
+    }
+     
     return true;
 }
 
@@ -758,7 +800,7 @@ inline BaseType* bottomUpSearch::eliminate_one_program_by_rules(BaseType* progra
     }
     
     // Apply different rules for predicts and terms
-    if (_isPred) {
+    if (_is_predicate) {
         if (HAS_SYM(program_a, "B") > 0 && HAS_SYM(program_b, "B") > 0) {
             if (HAS_SYM(program_a, "Isrc") > 0 && HAS_SYM(program_b, "Isrc") > 0) {
                 if (HAS_SYM(program_a, "Isnk") > 0 && HAS_SYM(program_b, "Isnk") > 0) {
@@ -944,12 +986,12 @@ void bottomUpSearch::eliminate_program_by_value() {
     Check correct
  */
 bool bottomUpSearch::is_correct(BaseType* program) {
-    if (_isPred) {
+    if (_is_predicate) {
         if (auto bool_program = dynamic_cast<BoolType*>(program)) {
                 /* all true or all false are both correct program */
                 bool all_false = true;
                 bool all_true = true;
-        
+                
                 for (int i = 0; i < _input_outputs.size(); i++) {
                     
                     if (!(_input_outputs[i]["_out"] == 0 || _input_outputs[i]["_out"] == 1)) {
@@ -992,7 +1034,7 @@ bool bottomUpSearch::is_correct(BaseType* program) {
 
 inline string bottomUpSearch::get_correct(int program_generation) {
     for (auto program : _program_list) {
-        if (program->depth() == program_generation && is_correct(program)) {
+        if (program->get_generation() == program_generation && is_correct(program)) {
 #ifdef DEBUG
             cout << "SynProg: " << dump_program(program) << endl;
 #endif
@@ -1025,8 +1067,8 @@ string bottomUpSearch::search() {
         cout << "Current program_list size " << _program_list.size() << ", eliminate equvalents" << endl;
 #endif
         
-        if (!_isPred) eliminate_program_by_value();
-        if (_isPred) eliminate_equivalents();
+        if (!_is_predicate) eliminate_program_by_value();
+        if (_is_predicate) eliminate_equivalents();
         
         //dump_program_list();
 #ifdef DEBUG
