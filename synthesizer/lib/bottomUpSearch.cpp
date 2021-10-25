@@ -39,6 +39,14 @@
 #define GET_LENGTH_SHOTER(program_a, program_b)           ( LENGTH_SHOTER(program_a, program_b) ? program_a : program_b )
 #define GET_LESS_SYM(program_a, program_b, sym)           ( CHECK_EQ_SYM(program_a, program_b, sym) ? program_a : program_b )
 
+
+/* Macros for code structure rules */
+// No symbol
+#define HAS_NO_SYM(operand, sym) if (operand && operand->get_number_of_vars(sym) != 0) return false;
+#define HAS_NO_SYM_BOTH_OPERANDS(sym) HAS_NO_SYM(operand_a, sym) HAS_NO_SYM(operand_b, sym)
+#define VAR_EXPONENT_BOUND(operand, sym, bound) if (operand->get_exponent_of_var(sym) > bound) return false;
+#define VAR_EXPONENT_BOUND_BOTH_OPERANDS(sym, bound) VAR_EXPONENT_BOUND(operand_a, sym, bound) VAR_EXPONENT_BOUND(operand_a, sym, bound)
+
 bottomUpSearch::bottomUpSearch(int depth_bound,
                                vector<string> int_ops,
                                vector<string> bool_ops,
@@ -48,6 +56,8 @@ bottomUpSearch::bottomUpSearch(int depth_bound,
                                vector<string> rules_to_apply,
                                string bench_name,
                                int ref_id,
+                               int num_growing_speed,
+                               int num_growing_upperbound,
                                input_outputs_t input_outputs) {
     _depth_bound = depth_bound;
     _int_ops = int_ops;
@@ -56,6 +66,7 @@ bottomUpSearch::bottomUpSearch(int depth_bound,
     _input_outputs = input_outputs;
     _is_predicate = isPred;
     
+    sort(vars.begin(), vars.end());
     if (isPred) {
         _vars = vars;
     } else {
@@ -78,6 +89,7 @@ bottomUpSearch::bottomUpSearch(int depth_bound,
     _num_of_vars = _vars.size();
     
     for (auto num_str : constants) {
+        if (stoi(num_str) > num_growing_upperbound) continue;
         Num* num = new Num(stoi(num_str));
         BaseType* num_base = dynamic_cast<BaseType*>(num);
         if (num_base == nullptr) throw runtime_error("Init Num list error");
@@ -87,11 +99,7 @@ bottomUpSearch::bottomUpSearch(int depth_bound,
     
     for (auto program : _program_list) {
         if (program == nullptr) throw runtime_error("Nullptr in program list");
-        if (dynamic_cast<Num*>(program)) {
-            program->set_generation(1);
-        } else {
-            program->set_generation(1);
-        }
+        program->set_generation(1);
     }
     
     for (auto ioe : input_outputs) {
@@ -101,6 +109,9 @@ bottomUpSearch::bottomUpSearch(int depth_bound,
     
     _bench_name = bench_name;
     _ref_id = ref_id;
+    
+    _num_growing_speed = num_growing_speed;
+    _num_growing_upperbound = num_growing_upperbound;
 }
 
 /******************************************
@@ -162,8 +173,16 @@ void bottomUpSearch::dump_program_list(vector<BaseType*> program_list) {
 void bottomUpSearch::dump_program_list() {
     cout << "[";
     for (auto program : _program_list) {
-        cout << dump_program(program);
-        if (program != _program_list.back()) cout << ", ";
+        if (dynamic_cast<Num*>(program)) cout << dump_program(program) << ", ";
+    }
+    for (auto program : _program_list) {
+        if (dynamic_cast<Times*>(program)) cout << dump_program(program) << ",";
+    }
+    for (auto program : _program_list) {
+        if (dynamic_cast<Plus*>(program)) cout << dump_program(program) << ",";
+    }
+    for (auto program : _program_list) {
+        if (dynamic_cast<Lt*>(program)) cout << dump_program(program) << ",";
     }
     cout << "]" << endl;
     return;
@@ -244,7 +263,16 @@ inline bool bottomUpSearch::elimination_free_rule(BaseType* operand_a, BaseType*
         int b_value = b_num->interpret();
         int c_value = a_value * b_value;
         if (c_value < 2 || a_value < 2 || b_value < 2) return false;
-        else return true;
+        
+        int a_max_prime_factor = 2;
+        for (auto prime : _prime_numbers) {
+            if (prime <= a_value && prime > a_max_prime_factor && a_value % prime == 0) {
+                a_max_prime_factor = prime;
+            }
+        }
+        if (find(_prime_numbers.begin(), _prime_numbers.end(), b_value) == _prime_numbers.end() || a_max_prime_factor > b_value)
+            return false;
+        return true;
     }
     // no 0/1 TIMES op_b
     if (a_num != nullptr && b_num == nullptr) {
@@ -306,11 +334,18 @@ inline bool bottomUpSearch::elimination_free_rule(BaseType* operand_a, BaseType*
             if ( is_b_plus ) {
                 auto b_plus = dynamic_cast<Plus*>(operand_b);
                 vector<int> a_lex = operand_a->get_lexical_order(_num_of_vars, _vars_orders);
-                vector<int> b_plus_left_lex = operand_b->get_lexical_order(_num_of_vars, _vars_orders);
+                vector<int> b_plus_left_lex = b_plus->get_left()->get_lexical_order(_num_of_vars, _vars_orders);
                 if(a_lex == b_plus_left_lex ||
                    !lexicographical_compare(a_lex.begin(), a_lex.end(),
                                            b_plus_left_lex.begin(), b_plus_left_lex.end()))
                     return false;
+                /*
+                cout << operand_a->to_string() << " + " << operand_b->to_string() << " ";
+                for (auto elm : a_lex) cout << elm << " ";
+                cout << ",";
+                for (auto elm : b_plus_left_lex) cout << elm << " ";
+                cout << endl;
+                 */
             }
         }
     }
@@ -483,11 +518,11 @@ inline bool bottomUpSearch::form_bias_rule(BaseType* operand_a, BaseType* operan
     /* limiting the value range for numbers */
     auto a_num = dynamic_cast<Num*>(operand_a);
     auto b_num = dynamic_cast<Num*>(operand_b);
-    if (a_num && b_num) {
+    if (a_num != nullptr && b_num != nullptr) {
         int c;
         if (op == "TIMES") c = a_num->interpret() * b_num->interpret();
-        if (op == "PLUS") c = a_num->interpret() + b_num->interpret();
-        if (c > 100) return false;
+        if (c > _num_growing_upperbound) return false;
+        return true;
     }
     
     /* bias rules for predicates */
@@ -530,38 +565,563 @@ inline bool bottomUpSearch::form_bias_rule(BaseType* operand_a, BaseType* operan
         }
     }
     
+    return true;
+}
+
+inline bool bottomUpSearch::code_structure_rule_for_predicate(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int program_generation) {
+    if (!_is_predicate) return true;
+    
+    if (_bench_name == "2mm") {
+        if (_ref_id == 0) {
+            HAS_NO_SYM_BOTH_OPERANDS("b2");
+            HAS_NO_SYM_BOTH_OPERANDS("b3");
+        }
+        else if (_ref_id >= 1 && _ref_id <= 4) {
+            HAS_NO_SYM_BOTH_OPERANDS("b3");
+        }
+        else if (_ref_id >= 5 && _ref_id <= 6) {
+            HAS_NO_SYM_BOTH_OPERANDS("b1");
+            HAS_NO_SYM_BOTH_OPERANDS("b2");
+        }
+        else if (_ref_id >= 7 && _ref_id <= 10) {
+            HAS_NO_SYM_BOTH_OPERANDS("b2");
+        }
+    }
+    else if (_bench_name == "3mm") {
+        if (_ref_id == 0) {
+            HAS_NO_SYM_BOTH_OPERANDS("b2");
+            HAS_NO_SYM_BOTH_OPERANDS("b3");
+            HAS_NO_SYM_BOTH_OPERANDS("b4");
+        }
+        else if (_ref_id >= 1 && _ref_id <= 4) {
+            HAS_NO_SYM_BOTH_OPERANDS("b3");
+            HAS_NO_SYM_BOTH_OPERANDS("b4");
+        }
+        else if (_ref_id == 5) {
+            HAS_NO_SYM_BOTH_OPERANDS("b0");
+            HAS_NO_SYM_BOTH_OPERANDS("b2");
+            HAS_NO_SYM_BOTH_OPERANDS("b4");
+        }
+        else if (_ref_id >= 6 && _ref_id <= 9) {
+            HAS_NO_SYM_BOTH_OPERANDS("b0");
+            HAS_NO_SYM_BOTH_OPERANDS("b2");
+        }
+        else if (_ref_id == 10) {
+            HAS_NO_SYM_BOTH_OPERANDS("b1");
+            HAS_NO_SYM_BOTH_OPERANDS("b2");
+            HAS_NO_SYM_BOTH_OPERANDS("b4");
+        }
+        else if (_ref_id >= 11 && _ref_id <= 14) {
+            HAS_NO_SYM_BOTH_OPERANDS("b2");
+            HAS_NO_SYM_BOTH_OPERANDS("b4");
+        }
+    }
+    else if (_bench_name == "adi") {
+        return true; // all references are relavent to all bound symbols
+    }
+    else if (_bench_name == "atax") {
+        if (_ref_id == 0) {
+            HAS_NO_SYM_BOTH_OPERANDS("b0");
+        }
+        else if (_ref_id == 1) {
+            HAS_NO_SYM_BOTH_OPERANDS("b1");
+        }
+        return true;
+    }
+    else if (_bench_name == "bicg") {
+        if (_ref_id == 0) {
+            HAS_NO_SYM_BOTH_OPERANDS("b0");
+        }
+        else if (_ref_id == 1) {
+            HAS_NO_SYM_BOTH_OPERANDS("b1");
+        }
+        return true;
+    }
+    else if (_bench_name == "cholesky") {
+        return true;
+    }
+    else if (_bench_name == "convolution_2d") {
+        return true;
+    }
+    else if (_bench_name == "convolution_3d") {
+        return true;
+    }
+    else if (_bench_name == "correlation") {
+        if (_ref_id == 0 || (_ref_id >= 4 && _ref_id <= 5) || _ref_id == 6 || (_ref_id >= 13 && _ref_id <= 18) || _ref_id == 25 || _ref_id == 26 || _ref_id == 31 || _ref_id == 32) {
+            HAS_NO_SYM_BOTH_OPERANDS("b1");
+        }
+        return true;
+    }
+    else if (_bench_name == "covariance") {
+        if (_ref_id == 0 || (_ref_id >= 4 && _ref_id <= 5) || _ref_id == 9 || (_ref_id >= 14 && _ref_id <= 15)) {
+            HAS_NO_SYM_BOTH_OPERANDS("b1");
+        }
+        return true;
+    }
+    else if (_bench_name == "deriche") {
+        return true;
+    }
+    else if (_bench_name == "doitgen") {
+        return true;
+    }
+    else if (_bench_name == "durbin") {
+        return true;
+    }
+    else if (_bench_name == "fdtd_2d") {
+        if (_ref_id >= 0 && _ref_id <= 1) {
+            HAS_NO_SYM_BOTH_OPERANDS("b1");
+        }
+        return true;
+    }
+    else if (_bench_name == "floyd_warshall") {
+        return true;
+    }
+    else if (_bench_name == "gemm") {
+        if (_ref_id >= 0 && _ref_id <= 1) {
+            HAS_NO_SYM_BOTH_OPERANDS("b2");
+        }
+        return true;
+    }
+    else if (_bench_name == "gemver") {
+        return true;
+    }
+    else if (_bench_name == "gesummv") {
+        return true;
+    }
+    else if (_bench_name == "gramschmidt") {
+        if (_ref_id == 2 || _ref_id == 6) {
+            HAS_NO_SYM_BOTH_OPERANDS("b0");
+        }
+    }
+    else if (_bench_name == "heat_3d") {
+        return true;
+    }
+    else if (_bench_name == "jacobi_1d") {
+        return true;
+    }
+    else if (_bench_name == "jacobi_2d") {
+        return true;
+    }
+    else if (_bench_name == "lu") {
+        return true;
+    }
+    else if (_bench_name == "ludcmp") {
+        return true;
+    }
+    else if (_bench_name == "mvt") {
+        return true;
+    }
+    else if (_bench_name == "nussinov") {
+        return true;
+    }
+    else if (_bench_name == "seidel_2d") {
+        return true;
+    }
+    else if (_bench_name == "symm") {
+        return true;
+    }
+    else if (_bench_name == "syr2d") {
+        if (_ref_id == 0 || _ref_id == 1) {
+            HAS_NO_SYM_BOTH_OPERANDS("b1");
+        }
+        return true;
+    }
+    else if (_bench_name == "syrk") {
+        if (_ref_id == 0 || _ref_id == 1) {
+            HAS_NO_SYM_BOTH_OPERANDS("b1")
+        }
+        return true;
+    }
+    else if (_bench_name == "trisolv") {
+        return true;
+    }
+    else if (_bench_name == "trmm") {
+        return true;
+    }
+    else if (_bench_name == "stencil") {
+        return true;
+    }
+    else if (_bench_name == "stencil_tiled") {
+        return true;
+    }
+    return true;
+}
+
+inline bool bottomUpSearch::code_structure_rule_for_term(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int program_generation) {
+    if (_is_predicate) return true;
+    if (dynamic_cast<Num*>(operand_a) && dynamic_cast<Num*>(operand_b)) return true;
     /* code structure rules */
     if (_bench_name == "2mm") {
         if (_ref_id == 0) {
-            if (operand_a && operand_a->get_number_of_vars("b2") != 0) return false;
-            if (operand_b && operand_b->get_number_of_vars("b2") != 0) return false;
-            if (operand_a && operand_a->get_number_of_vars("b3") != 0) return false;
-            if (operand_b && operand_b->get_number_of_vars("b3") != 0) return false;
+            HAS_NO_SYM_BOTH_OPERANDS("b0");
+            VAR_EXPONENT_BOUND(operand_a, "b1", 1);VAR_EXPONENT_BOUND(operand_b, "b1", 1);
+            VAR_EXPONENT_BOUND(operand_a, "b2", 1);VAR_EXPONENT_BOUND(operand_b, "b2", 1);
+            VAR_EXPONENT_BOUND(operand_a, "b3", 1);VAR_EXPONENT_BOUND(operand_b, "b3", 1);
+            if (op == "TIMES" && !(operand_b->to_string() == "b1" ||
+                                   operand_b->to_string() == "(b1 * b2)" ||
+                                   operand_b->to_string() == "b2" ||
+                                   operand_b->to_string() == "(b1 * b3)" ||
+                                   operand_b->to_string() == "b3")) return false;
         }
         else if (_ref_id >= 1 && _ref_id <= 4) {
-            if (operand_a && operand_a->get_number_of_vars("b3") != 0) return false;
-            if (operand_b && operand_b->get_number_of_vars("b3") != 0) return false;
+            HAS_NO_SYM_BOTH_OPERANDS("b0");
+            VAR_EXPONENT_BOUND(operand_a, "b1", 1);VAR_EXPONENT_BOUND(operand_b, "b1", 1);
+            VAR_EXPONENT_BOUND(operand_a, "b2", 1);VAR_EXPONENT_BOUND(operand_b, "b2", 1);
+            VAR_EXPONENT_BOUND(operand_a, "b3", 1);VAR_EXPONENT_BOUND(operand_b, "b3", 1);
+            if (op == "TIMES" && !(operand_b->to_string() == "b1" ||
+                                   operand_b->to_string() == "(b1 * b2)" ||
+                                   operand_b->to_string() == "b2" ||
+                                   operand_b->to_string() == "(b1 * b3)" ||
+                                   operand_b->to_string() == "b3")) return false;
         }
         else if (_ref_id >= 5 && _ref_id <= 6) {
-            if (operand_a && operand_a->get_number_of_vars("b1") != 0) return false;
-            if (operand_b && operand_b->get_number_of_vars("b1") != 0) return false;
-            if (operand_a && operand_a->get_number_of_vars("b2") != 0) return false;
-            if (operand_b && operand_b->get_number_of_vars("b2") != 0) return false;
+            HAS_NO_SYM_BOTH_OPERANDS("b0");
+            HAS_NO_SYM_BOTH_OPERANDS("b2");
+            VAR_EXPONENT_BOUND(operand_a, "b1", 1);VAR_EXPONENT_BOUND(operand_b, "b1", 1);
+            VAR_EXPONENT_BOUND(operand_a, "b3", 1);VAR_EXPONENT_BOUND(operand_b, "b3", 1);
+            if (op == "TIMES" && !(operand_b->to_string() == "b3" ||
+                                   operand_b->to_string() == "(b1 * b3)" ||
+                                   operand_b->to_string() == "b1")) return false;
         }
         else if (_ref_id >= 7 && _ref_id <= 10) {
-            if (operand_a && operand_a->get_number_of_vars("b2") != 0) return false;
-            if (operand_b && operand_b->get_number_of_vars("b2") != 0) return false;
+            HAS_NO_SYM_BOTH_OPERANDS("b0");
+            VAR_EXPONENT_BOUND(operand_a, "b1", 1);VAR_EXPONENT_BOUND(operand_b, "b1", 1);
+            HAS_NO_SYM_BOTH_OPERANDS("b2");
+            VAR_EXPONENT_BOUND(operand_a, "b3", 1);VAR_EXPONENT_BOUND(operand_b, "b3", 1);
+            if (op == "TIMES" && !(operand_b->to_string() == "b3" ||
+                                   operand_b->to_string() == "(b1 * b3)" ||
+                                   operand_b->to_string() == "b1")) return false;
         }
     }
-     
+    else if (_bench_name == "3mm") {
+        if (_is_predicate) {
+            if (_ref_id == 0) {
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 1)
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b2", 1)
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b3", 1)
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b4", 1)
+                if (op == "TIMES" && !(operand_b->to_string() == "b1" ||
+                                       operand_b->to_string() == "(b1 * b3)" ||
+                                       operand_b->to_string() == "b3" ||
+                                       operand_b->to_string() == "b2" ||
+                                       operand_b->to_string() == "b4" ||
+                                       operand_b->to_string() == "(b3 * b4)" ||
+                                       operand_b->to_string() == "(b1 * b2)" ||
+                                       operand_b->to_string() == "(b1 * (b3 * b4))")) return false;
+            }
+            else if (_ref_id >= 1 && _ref_id <= 4) {
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 1)
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b2", 1)
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b3", 1)
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b4", 1)
+                if (op == "TIMES" && !(operand_b->to_string() == "b1" ||
+                                       operand_b->to_string() == "(b1 * b3)" ||
+                                       operand_b->to_string() == "b3" ||
+                                       operand_b->to_string() == "b2" ||
+                                       operand_b->to_string() == "b4" ||
+                                       operand_b->to_string() == "(b3 * b4)" ||
+                                       operand_b->to_string() == "(b1 * (b3 * b4))")) return false;
+            }
+            else if (_ref_id == 5) {
+                HAS_NO_SYM_BOTH_OPERANDS("b0");
+                HAS_NO_SYM_BOTH_OPERANDS("b2");
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b3", 1)
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b4", 1)
+                if (op == "TIMES" && !(operand_b->to_string() == "b1" ||
+                                       operand_b->to_string() == "(b1 * b3)" ||
+                                       operand_b->to_string() == "b3" ||
+                                       operand_b->to_string() == "b4" ||
+                                       operand_b->to_string() == "(b3 * b4)")) return false;
+            }
+            else if (_ref_id >= 6 && _ref_id <= 9) {
+                HAS_NO_SYM_BOTH_OPERANDS("b0");
+                HAS_NO_SYM_BOTH_OPERANDS("b2");
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b3", 1)
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b4", 1)
+                if (op == "TIMES" && !(operand_b->to_string() == "b1" ||
+                                       operand_b->to_string() == "(b1 * b3)" ||
+                                       operand_b->to_string() == "b3" ||
+                                       operand_b->to_string() == "b4" ||
+                                       operand_b->to_string() == "(b3 * b4)")) return false;
+            }
+            else if (_ref_id == 10) {
+                HAS_NO_SYM_BOTH_OPERANDS("b0");
+                HAS_NO_SYM_BOTH_OPERANDS("b2");
+                HAS_NO_SYM_BOTH_OPERANDS("b4");
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b3", 1)
+                if (op == "TIMES" && !(operand_b->to_string() == "b1" ||
+                                       operand_b->to_string() == "(b1 * b3)" ||
+                                       operand_b->to_string() == "b3")) return false;
+            }
+            else if (_ref_id >= 11 && _ref_id <= 14) {
+                HAS_NO_SYM_BOTH_OPERANDS("b0");
+                HAS_NO_SYM_BOTH_OPERANDS("b2");
+                HAS_NO_SYM_BOTH_OPERANDS("b4");
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+                VAR_EXPONENT_BOUND_BOTH_OPERANDS("b3", 1)
+                if (op == "TIMES" && !(operand_b->to_string() == "b1" ||
+                                       operand_b->to_string() == "(b1 * b3)" ||
+                                       operand_b->to_string() == "b3")) return false;
+            }
+        }
+    }
+    else if (_bench_name == "adi") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 2)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b0)" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "atax") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 1)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "bicg") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 2)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "cholesky") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 3)
+    }
+    else if (_bench_name == "convolution_2d") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 1)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "convolution_3d") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 1)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b2", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "b2" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "(b1 * b2)" ||
+                               operand_b->to_string() == "(b0 * (b1 * b2))" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "correlation") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 2)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "(b0 * (b0 * b1))" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "covariance") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 2)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "(b0 * (b0 * b1))" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "deriche") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 1)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "doitgen") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 1)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b2", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "b2" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "(b1 * b2)" ||
+                               operand_b->to_string() == "(b0 * (b1 * b2))" ||
+                               operand_b->to_string() == "b1")) return false;
+        
+    }
+    else if (_bench_name == "durbin") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 2)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b0)")) return false;
+    }
+    else if (_bench_name == "fdtd_2d") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 1)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b2", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "b2" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "(b1 * b2)" ||
+                               operand_b->to_string() == "(b0 * (b1 * b2))" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "floyd_warshall") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 3)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * (b0 * b0))" ||
+                               operand_b->to_string() == "(b0 * b0)")) return false;
+        
+    }
+    else if (_bench_name == "gemm") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 1)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b2", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "b2" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "(b1 * b2)" ||
+                               operand_b->to_string() == "(b0 * (b1 * b2))" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "gemver") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 2)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b0)")) return false;
+    }
+    else if (_bench_name == "gesummv") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 2)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b0)")) return false;
+    }
+    else if (_bench_name == "gramschmidt") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 1)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 2)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "(b1 * b1)" ||
+                               operand_b->to_string() == "(b0 * (b1 * b1))" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "heat_3d") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 3)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b0)" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "(b0 * (b0 * b1))" ||
+                               operand_b->to_string() == "(b0 * (b0 * b0))" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "jacobi_1d") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 1)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "jacobi_2d") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 2)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b0)" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "lu") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 3)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * (b0 * b0))" ||
+                               operand_b->to_string() == "(b0 * b0)")) return false;
+    }
+    else if (_bench_name == "ludcmp") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 3)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * (b0 * b0))" ||
+                               operand_b->to_string() == "(b0 * b0)")) return false;
+    }
+    else if (_bench_name == "mvt") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 2)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b0)")) return false;
+    }
+    else if (_bench_name == "nussinov") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 3)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * (b0 * b0))" ||
+                               operand_b->to_string() == "(b0 * b0)")) return false;
+    }
+    else if (_bench_name == "seidel_2d") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 2)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b0)" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "symm") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 1)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 2)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "(b1 * b1)" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "syr2d") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 2)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b0)" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "syrk") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 2)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b0)" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "trisolv") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 2)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b0)")) return false;
+    }
+    else if (_bench_name == "trmm") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 2)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 1)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b0)" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
+    else if (_bench_name == "stencil") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 2)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b0)")) return false;
+    }
+    else if (_bench_name == "stencil_tiled") {
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b0", 2)
+        VAR_EXPONENT_BOUND_BOTH_OPERANDS("b1", 2)
+        if (op == "TIMES" && !(operand_b->to_string() == "b0" ||
+                               operand_b->to_string() == "(b0 * b0)" ||
+                               operand_b->to_string() == "(b1 * b1)" ||
+                               operand_b->to_string() == "(b0 * b1)" ||
+                               operand_b->to_string() == "(b0 * (b1 * b1))" ||
+                               operand_b->to_string() == "b1")) return false;
+    }
     return true;
 }
 
 bool bottomUpSearch::is_grow_rule_satisfied(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int program_generation) {
+    //if (dynamic_cast<Num*>(operand_a) && dynamic_cast<Num*>(operand_b) && op == "TIMES")
+    //    cout << depth_rule(operand_a, operand_b, operand_c, op, program_generation) << " " << type_rule(operand_a, operand_b, operand_c, op, program_generation) << " " << generation_rule(operand_a, operand_b, operand_c, op, program_generation) << " " << elimination_free_rule(operand_a, operand_b, operand_c, op, program_generation) << " "<< form_bias_rule(operand_a, operand_b, operand_c, op, program_generation) << endl;
     if (depth_rule(operand_a, operand_b, operand_c, op, program_generation) == false) return false;
     if (type_rule(operand_a, operand_b, operand_c, op, program_generation) == false) return false;
     if (generation_rule(operand_a, operand_b, operand_c, op, program_generation) == false) return false;
     if (elimination_free_rule(operand_a, operand_b, operand_c, op, program_generation) == false) return false;
+    if (code_structure_rule_for_predicate(operand_a, operand_b, operand_c, op, program_generation) == false) return false;
+    if (code_structure_rule_for_term(operand_a, operand_b, operand_c, op, program_generation) == false) return false;
+    
     if (form_bias_rule(operand_a, operand_b, operand_c, op, program_generation) == false) return false;
     return true;
 }
@@ -578,7 +1138,9 @@ inline BaseType* bottomUpSearch::grow_one_expr(BaseType* operand_a, BaseType* op
     // constant expression, only grow constant expression by times
     if (auto a = dynamic_cast<Num*>(operand_a)) {
         if (auto b = dynamic_cast<Num*>(operand_b)) {
-            return dynamic_cast<BaseType*>(new Num(a, b, "TIMES"));
+            Num* new_num = new Num(a, b, "TIMES");
+            new_num->set_generation(program_generation + _num_growing_speed - 1);
+            return  dynamic_cast<BaseType*>(new_num);
         }
     }
     
@@ -1044,6 +1606,14 @@ inline string bottomUpSearch::get_correct(int program_generation) {
     return "";
 }
 
+bool bottomUpSearch::has_new_program(int program_generation) {
+    for (auto program : _program_list) {
+        if (program->get_generation() == program_generation)
+            return true;
+    }
+    return false;
+}
+
 string bottomUpSearch::search() {
 
 #ifdef DEBUG
@@ -1070,7 +1640,11 @@ string bottomUpSearch::search() {
         if (!_is_predicate) eliminate_program_by_value();
         if (_is_predicate) eliminate_equivalents();
         
-        //dump_program_list();
+        if (!has_new_program(program_generation)) {
+            break;
+        }
+        
+        //if (!_is_predicate) dump_program_list();
 #ifdef DEBUG
         cout << "Current program_list size " << _program_list.size() << ", check correct" << endl;
 #endif

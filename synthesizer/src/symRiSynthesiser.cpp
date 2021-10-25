@@ -30,7 +30,9 @@ bool parser(int argc, char* argv[],
             vector<string>* constants_in_term,
             vector<string>* rules_to_apply,
             string* bench_name,
-            int* ref_id) {
+            int* ref_id,
+            int* num_growing_speed,
+            int* num_growing_upperbound) {
     
     for (int i = 1; i < argc; i++) {
         
@@ -254,6 +256,28 @@ bool parser(int argc, char* argv[],
                 throw runtime_error("-RULESTOAPPLY: error in specifying the bool ops in the term language");
             }
         }
+        else if (argvi == "-NUMGROWSPEED") {
+            i++;
+            if (i < argc) {
+                argvi = argv[i];
+                if (isdigit(argvi[0])) {
+                    *num_growing_speed = stoi(argvi);
+                    continue;
+                }
+            }
+            throw runtime_error("-NUMGROWSPEED: error in specifying the growing speed of the number");
+        }
+        else if (argvi == "-NUMGROWUPPERBOUND") {
+            i++;
+            if (i < argc) {
+                argvi = argv[i];
+                if (isdigit(argvi[0])) {
+                    *num_growing_upperbound = stoi(argvi);
+                    continue;
+                }
+            }
+            throw runtime_error("-NUMGROWUPPERBOUND: error in specifying the upper bound of the constant number");
+        }
         else {
             throw runtime_error("error in providing command line arguments");
         }
@@ -313,6 +337,10 @@ void language_configuration(int* depth_bound_for_predicate,
         constants_in_predicate->push_back("23");
         constants_in_predicate->push_back("29");
         constants_in_predicate->push_back("31");
+        constants_in_predicate->push_back("41");
+        constants_in_predicate->push_back("43");
+        constants_in_predicate->push_back("47");
+        constants_in_predicate->push_back("53");
     }
     
     if (*depth_bound_for_term == -1) {
@@ -323,16 +351,10 @@ void language_configuration(int* depth_bound_for_predicate,
         int_ops_for_term->push_back("VAR");
         int_ops_for_term->push_back("NUM");
         int_ops_for_term->push_back("PLUS");
-        //int_ops_for_term->push_back("MINUS");
         int_ops_for_term->push_back("TIMES");
+        
+        //int_ops_for_term->push_back("MINUS");
         //int_ops_for_term->push_back("ITE");
-    }
-    
-    if (bool_ops_for_term->size() == 0) {
-        //bool_ops_for_term->push_back("F");
-        //bool_ops_for_term->push_back("AND");
-        //bool_ops_for_term->push_back("NOT");
-        //bool_ops_for_term->push_back("LT");
     }
     
     if (constants_in_term->size() == 0) {
@@ -349,6 +371,10 @@ void language_configuration(int* depth_bound_for_predicate,
         constants_in_predicate->push_back("23");
         constants_in_predicate->push_back("29");
         constants_in_predicate->push_back("31");
+        constants_in_predicate->push_back("41");
+        constants_in_predicate->push_back("43");
+        constants_in_predicate->push_back("47");
+        constants_in_predicate->push_back("53");
     }
     
     /*
@@ -566,12 +592,16 @@ int main(int argc, char* argv[]) {
     string bench_name = "";
     int ref_id = 0;
     
+    int num_growing_speed = 1;
+    int num_growing_upperbound = 100;
+    
     if ( parser(argc, argv,
                &file_name, &search_time_for_terms_in_seconds, &search_time_for_predicates_in_seconds,
                &depth_bound_for_predicate, &int_ops_for_predicate, &bool_ops_for_predicate, &vars_in_predicate, &constants_in_predicate,
                &depth_bound_for_term, &int_ops_for_term, &bool_ops_for_term, &vars_in_term, &constants_in_term,
                &rules_to_apply,
-               &bench_name, &ref_id) == false ) {
+               &bench_name, &ref_id,
+               &num_growing_speed, &num_growing_upperbound) == false ) {
         cout << "Error in parsing command lines" << endl;
         return 0;
     }
@@ -612,8 +642,8 @@ int main(int argc, char* argv[]) {
     unification* uni = new unification(depth_bound_for_predicate, int_ops_for_predicate, bool_ops_for_predicate, vars_in_predicate, constants_in_predicate,
                                        depth_bound_for_term, int_ops_for_term, bool_ops_for_term, vars_in_term, constants_in_term,
                                        rules_to_apply,
-                                       bench_name,
-                                       ref_id,
+                                       bench_name, ref_id,
+                                       num_growing_speed, num_growing_upperbound,
                                        input_outputs);
 #ifdef DEBUG
     cout << "Search time: terms " << search_time_for_terms_in_seconds << " predications " << search_time_for_predicates_in_seconds << endl;

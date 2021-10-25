@@ -15,6 +15,8 @@ unification::unification(int depth_bound_for_predicate,
                          vector<string> rules_to_apply,
                          string bench_name,
                          int ref_id,
+                         int num_growing_speed,
+                         int num_growing_upperbound,
                          input_outputs_t input_outputs) {
     
     _depth_bound_for_predicate = depth_bound_for_predicate;
@@ -33,6 +35,9 @@ unification::unification(int depth_bound_for_predicate,
     
     _bench_name = bench_name;
     _ref_id = ref_id;
+    
+    _num_growing_speed = num_growing_speed;
+    _num_growing_upperbound = num_growing_upperbound;
     
     _input_output_tree = new input_output_tree_node(input_outputs);
     
@@ -77,6 +82,8 @@ string unification::search_node_one_pass(int time_bound_in_seconds, input_output
                                                      _rules_to_apply,
                                                      _bench_name,
                                                      _ref_id,
+                                                     _num_growing_speed,
+                                                     _num_growing_upperbound,
                                                      node->input_outputs);
             searched_program = bus->search();
         } else {
@@ -89,6 +96,8 @@ string unification::search_node_one_pass(int time_bound_in_seconds, input_output
                                                      _rules_to_apply,
                                                      _bench_name,
                                                      _ref_id,
+                                                     _num_growing_speed,
+                                                     _num_growing_upperbound,
                                                      node->input_outputs);
             searched_program = bus->search();
         }

@@ -46,6 +46,9 @@ public:
                 string bench_name,
                 int ref_id,
                 
+                int num_growing_speed,
+                int num_growing_upperbound,
+                
                 input_outputs_t input_outputs);
     
     string search(int search_time_for_terms_in_seconds, int search_time_for_predicates_in_seconds);
@@ -94,6 +97,10 @@ private:
     /* program information */
     string _bench_name;
     int _ref_id;
+    
+    /* num growing configuration */
+    int _num_growing_speed;
+    int _num_growing_upperbound;
 };
 
 
