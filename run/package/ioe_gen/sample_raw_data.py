@@ -29,8 +29,10 @@ def sample_raw_data(bench, n_paras, train_sizes, target, n_samples):
                 src_idxs.add(src_info)
             f.close()
     
-    sampled_src_idxs = random.sample(src_idxs, n_samples)
-    
+    sampled_src_idxs = src_idxs
+    if (n_samples < len(src_idxs)):
+        sampled_src_idxs = random.sample(src_idxs, n_samples)    
+
     for p in paras:
         p_str = map(str, p)
         p_underscore = '_'.join(p_str)

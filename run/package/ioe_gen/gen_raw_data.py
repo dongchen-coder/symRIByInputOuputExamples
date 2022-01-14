@@ -10,19 +10,24 @@ def init_raw_data_paths(path, bench):
 
     return
 
-def gen_raw_data(bench, n_paras, train_sizes, target):
+def gen_raw_data(bench, n_paras, train_sizes, target, file_format):
     print bench
     paras = [p for p in itertools.product(train_sizes, repeat = n_paras)]
     for p in paras:
         p_str = map(str, p)
         p_space = ' '.join(p_str)
         p_underscore = '_'.join(p_str)
-        cmd = "../input-output_example_gen/bin/bench_bin/" + bench + "_" + target + " " + p_space +  " > " + "./data/raw_data/" + target + "/" + bench + "/" + bench + "_" + p_underscore + ".txt"
-        #print cmd
+        
+        exe_surfix = " "
+        if (file_format == "csv"):
+            exe_surfix = "_csv "
+
+        cmd = "../bench/bench_bin/" + bench + "_" + target + exe_surfix + " " + p_space +  " > " + "./data/raw_data/" + target + "/" + bench + "/" + bench + "_" + p_underscore + "." + file_format
         os.system(cmd)
-        cmd = "../input-output_example_gen/bin/bench_bin/" + bench + "_ibound " + p_space +  " > " + "./data/raw_data/ibound/" + bench + "/" + bench + "_" + p_underscore + ".txt"        
-        #print cmd
+        
+        cmd = "../bench/bench_bin/" + bench + "_ibound" + exe_surfix + p_space +  " > " + "./data/raw_data/ibound/" + bench + "/" + bench + "_" + p_underscore + "." + file_format
         os.system(cmd)
+    
     return
 
 
