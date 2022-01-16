@@ -22,10 +22,10 @@ def gen_raw_data(bench, n_paras, train_sizes, target, file_format):
         if (file_format == "csv"):
             exe_surfix = "_csv "
 
-        cmd = "../bench/bench_bin/" + bench + "_" + target + exe_surfix + " " + p_space +  " > " + "./data/raw_data/" + target + "/" + bench + "/" + bench + "_" + p_underscore + "." + file_format
+        cmd = "../bench/bench_bin/" + bench + "_" + target + exe_surfix + " " + p_space +  " > " + "../data/raw_data/" + target + "/" + bench + "/" + bench + "_" + p_underscore + "." + file_format
         os.system(cmd)
         
-        cmd = "../bench/bench_bin/" + bench + "_ibound" + exe_surfix + p_space +  " > " + "./data/raw_data/ibound/" + bench + "/" + bench + "_" + p_underscore + "." + file_format
+        cmd = "../bench/bench_bin/" + bench + "_ibound" + exe_surfix + p_space +  " > " + "../data/raw_data/ibound/" + bench + "/" + bench + "_" + p_underscore + "." + file_format
         os.system(cmd)
     
     return

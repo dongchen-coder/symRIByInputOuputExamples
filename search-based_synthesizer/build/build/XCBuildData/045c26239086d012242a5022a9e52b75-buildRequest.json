@@ -1,0 +1,60 @@
+{
+  "buildCommand" : "prepareForIndexing",
+  "configuredTargets" : [
+    {
+      "guid" : "18cb6f5824c9d2594526e76b566baf8ce66c2d250420f13d7b4c166faf0b9821"
+    },
+    {
+      "guid" : "18cb6f5824c9d2594526e76b566baf8cc9684df658ac3d9f1b23032ff594e62b"
+    },
+    {
+      "guid" : "18cb6f5824c9d2594526e76b566baf8c5429c803bfcd04478d2e1f8ecec36b76"
+    },
+    {
+      "guid" : "18cb6f5824c9d2594526e76b566baf8c65b301523b9068e3ef43f116011d0795"
+    }
+  ],
+  "continueBuildingAfterErrors" : true,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "x86_64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx11.3",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "x86_64h",
+        "x86_64"
+      ],
+      "targetArchitecture" : "x86_64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "",
+      "buildProductsPath" : "",
+      "derivedDataPath" : "/Users/dchen/Library/Developer/Xcode/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/dchen/Library/Developer/Xcode/DerivedData/synthesizer-assugdqwmqisfpcafqbnyveggvke/Index/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/dchen/Library/Developer/Xcode/DerivedData/synthesizer-assugdqwmqisfpcafqbnyveggvke/Index/PrecompiledHeaders",
+      "pchPath" : ""
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "qos" : "default",
+  "schemeCommand" : "launch",
+  "shouldCollectMetrics" : false,
+  "showNonLoggedProgress" : true,
+  "useDryRun" : true,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

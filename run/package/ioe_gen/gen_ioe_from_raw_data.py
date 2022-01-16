@@ -16,23 +16,13 @@ def init_ioe_paths(path, bench):
     os.system("mkdir -p " + path + "/" + bench + "/ibound")
     return
 
-def gen_ioe_from_raw_data(bench, n_paras, train_size, cacheconfig):
-    
-    train_size_str = ' '.join(map(str, train_size))
-   
-    for mode in ['-FORMATSRCITERPOS', '-FORMATSRCITERPOSSNK', '-FORMATSRCITERPOSSNKITERPOS', '-FORMATSRCSHAPE']:
-        cmd = "../input-output_example_gen/bin/inputOutputGen -NAME " + bench + " -SIZES " + train_size_str + " -NUMOFLOOPBOUNDS " + str(n_paras)  + " " + mode + " -CACHECONFIG " + cacheconfig
-        os.system(cmd)
-
-    return
-
 def dataframe_to_input_output_examples(bench, cache_config, df, bound_values, spec):
     if (spec == 'src_only'):
         src_id = str(df.iloc[0]['source reference ID'])
         snk_id = str(df.iloc[0]['sink reference ID'])
         src_iv = df.iloc[0]['source iteration vector'].split()
         src_iv_ = df.iloc[0]['source iteration vector'].replace(' ', '_')
-        f = open('./data/input-output_examples/'+bench+'/'+spec+'/'+bench+'_refsrc_'+src_id+'_isrc_'+src_iv_+'.ri.'+cache_config,'w')
+        f = open('../data/input-output_examples/'+bench+'/'+spec+'/'+bench+'_refsrc_'+src_id+'_isrc_'+src_iv_+'.ri.'+cache_config,'w')
         for bound_value in bound_values:
             row = df.loc[df['bound values'] == bound_value]
             bound_value = bound_value.split()
@@ -53,7 +43,7 @@ def dataframe_to_input_output_examples(bench, cache_config, df, bound_values, sp
         snk_id = str(df.iloc[0]['sink reference ID'])
         src_iv = df.iloc[0]['source iteration vector'].split()
         src_iv_ = df.iloc[0]['source iteration vector'].replace(' ', '_')
-        f = open('./data/input-output_examples/'+bench+'/'+spec+'/'+bench+'_refsrc_'+src_id+'_isrc_'+src_iv_+'_refsnk_'+snk_id+'.ri.'+cache_config,'w')
+        f = open('../data/input-output_examples/'+bench+'/'+spec+'/'+bench+'_refsrc_'+src_id+'_isrc_'+src_iv_+'_refsnk_'+snk_id+'.ri.'+cache_config,'w')
         for bound_value in bound_values:
             row = df.loc[df['bound values'] == bound_value]
             bound_value = bound_value.split()
@@ -74,7 +64,7 @@ def dataframe_to_input_output_examples(bench, cache_config, df, bound_values, sp
         snk_id = str(df.iloc[0]['sink reference ID'])
         src_iv = df.iloc[0]['source iteration vector'].split()
         src_iv_ = df.iloc[0]['source iteration vector'].replace(' ', '_')
-        f = open('./data/input-output_examples/'+bench+'/'+spec+'/'+bench+'_refsrc_'+src_id+'_isrc_'+src_iv_+'_refsnk_'+snk_id+'.ri.'+cache_config,'w')
+        f = open('../data/input-output_examples/'+bench+'/'+spec+'/'+bench+'_refsrc_'+src_id+'_isrc_'+src_iv_+'_refsnk_'+snk_id+'.ri.'+cache_config,'w')
         for bound_value in bound_values:
             row = df.loc[df['bound values'] == bound_value]
             bound_value = bound_value.split()
@@ -98,7 +88,7 @@ def dataframe_to_input_output_examples(bench, cache_config, df, bound_values, sp
         
         snk_iv_len = len(df.iloc[0]['sink iteration vector'].split())
         for snk_iv_idx in range(snk_iv_len):
-            f = open('./data/input-output_examples/'+bench+'/'+spec+'/'+bench+'_refsrc_'+src_id+'_isrc_'+src_iv_+'_refsnk_'+snk_id+'.isnk'+str(snk_iv_idx)+'.'+cache_config,'w')
+            f = open('../data/input-output_examples/'+bench+'/'+spec+'/'+bench+'_refsrc_'+src_id+'_isrc_'+src_iv_+'_refsnk_'+snk_id+'.isnk'+str(snk_iv_idx)+'.'+cache_config,'w')
             entry = ''
             for idx in range(len(src_iv)):
                 entry += 'isrc'+str(idx)+' '+src_iv[idx]+' '
@@ -120,8 +110,8 @@ def dataframe_to_input_output_examples(bench, cache_config, df, bound_values, sp
             df['loop ' + str(i)] = df['loop ' + str(i)].astype(int)
         
         for i in range(num_of_nested_loops):
-            fmin = open('./data/input-output_examples/'+bench+'/'+spec+'/'+bench+'_refsrc_'+str(src_ref_id)+'.imin'+str(i)+'.ibound', 'w')
-            fmax = open('./data/input-output_examples/'+bench+'/'+spec+'/'+bench+'_refsrc_'+str(src_ref_id)+'.imax'+str(i)+'.ibound', 'w')
+            fmin = open('../data/input-output_examples/'+bench+'/'+spec+'/'+bench+'_refsrc_'+str(src_ref_id)+'.imin'+str(i)+'.ibound', 'w')
+            fmax = open('../data/input-output_examples/'+bench+'/'+spec+'/'+bench+'_refsrc_'+str(src_ref_id)+'.imax'+str(i)+'.ibound', 'w')
             for bound_value in bound_values:
                 df_bound = df.loc[df['bound values'] == bound_value]
                 bound_value = bound_value.split()
@@ -138,14 +128,11 @@ def gen_ioe_from_raw_csv_data(bench, n_paras, train_size, cache_config, sampling
     bound_values = [p for p in itertools.product(map(str, train_size), repeat = n_paras)]
     bound_values_ = ['_'.join(p) for p in bound_values]
     bound_values = [' '.join(p) for p in bound_values]
-    
-    #print bound_values_
-    #print bound_values
 
     print "Reading raw data *",
     li = []
     for bound_value in bound_values_:
-        file_name = "./data/raw_data/"+cache_config+"/"+bench+"/"+bench+"_"+bound_value+".csv"
+        file_name = "../data/raw_data/"+cache_config+"/"+bench+"/"+bench+"_"+bound_value+".csv"
         df = pd.read_csv(file_name, index_col=False, header = 0, lineterminator='\n', sep=',', error_bad_lines=False)
         df['bound values'] = bound_value.replace('_', ' ')
         li.append(df)
@@ -186,7 +173,7 @@ def gen_ioe_from_raw_csv_data(bench, n_paras, train_size, cache_config, sampling
     print "Gen IOE for Bounds *",
     li = []
     for bound_value in bound_values_:
-        file_name = "./data/raw_data/ibound/"+bench+"/"+bench+"_"+bound_value+".csv"
+        file_name = "../data/raw_data/ibound/"+bench+"/"+bench+"_"+bound_value+".csv"
         df = pd.read_csv(file_name, index_col = None, header = 0)
         df['bound values'] = bound_value.replace('_', ' ')
         li.append(df)

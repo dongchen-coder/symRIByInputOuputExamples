@@ -1,0 +1,931 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		7DF246C0FAB3494695FE9EF4 /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 295E64CFCACE42FDA1F1C876 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				DE006A123A885EB25AAEEE16 /* Generate CMakeFiles/ZERO_CHECK */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+		9C18BEC48B4A414AA030BF42 /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = E260401C6B4C4AF78508D444 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				B94DA2B53307107F7DA64566 /* Generate CMakeFiles/ALL_BUILD */,
+			);
+			dependencies = (
+				A3FF0605F87A464B882FD7EF /* PBXTargetDependency */,
+				267BAB8DA1F047AFBB773DFC /* PBXTargetDependency */,
+				0946E2857F7E453990555698 /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		223C000D9AFF4177949B5E16 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/sampler.hpp */ = {isa = PBXBuildFile; fileRef = 8917F2A5995B4252A4F82570 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/sampler.hpp */; };
+		3B34A36E0E6C443E810BC117 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/langDef.cpp */ = {isa = PBXBuildFile; fileRef = 871D9AC227544B2298FB9FE4 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/langDef.cpp */; };
+		416370FBEBD543DBB7768509 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/unification.hpp */ = {isa = PBXBuildFile; fileRef = 74B5EDE5298245409D36756B /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/unification.hpp */; };
+		5DC54BD522E44B80A6B2061A /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/unification.cpp */ = {isa = PBXBuildFile; fileRef = 562F78E0A19D4F3FBEA9A4A0 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/unification.cpp */; };
+		5E5EED194EAC418A8577D28C /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/typeDef.hpp */ = {isa = PBXBuildFile; fileRef = 50F66099656746DBB8B8DBFB /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/typeDef.hpp */; };
+		64DFFF9ED8CC49B383F8601E /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/langDef.hpp */ = {isa = PBXBuildFile; fileRef = 8A53899E60B14DB8A94964FF /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/langDef.hpp */; };
+		6C70F4310FA8470988A9AD56 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = F5BBA0E2F864465EBD52E5EA /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/CMakeLists.txt */; };
+		71B1D50066F045DE99AC8092 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/src/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 81712A3948954FF78DD4082D /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/src/CMakeLists.txt */; };
+		8D5E92541C3144BB92827719 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/src/symRiSynthesiser.cpp */ = {isa = PBXBuildFile; fileRef = 8E13496D0A9B4EEDBBB6FE0B /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/src/symRiSynthesiser.cpp */; };
+		A3B8E7CB651645F784DFFC34 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/bottomUpSearch.cpp */ = {isa = PBXBuildFile; fileRef = BF53BC17E7B74956B7025CE8 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/bottomUpSearch.cpp */; };
+		AB024867EF28465CB0E4D9AF /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/bottomUpSearch.hpp */ = {isa = PBXBuildFile; fileRef = A98C54AAEA9847BCA25BA348 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/bottomUpSearch.hpp */; };
+		C6B8C5CA38A649D3B2E8BC17 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/sampler.cpp */ = {isa = PBXBuildFile; fileRef = ADE0E89EDB374806AC904A26 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/sampler.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		0D4516333B0149BE9B7D8418 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+		60461397EE8B492894783549 /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+		AF646D25681B448FA5EF9CE5 /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		E5F96BEA567D4E20BD1FA4B0 /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		083E31F2ABCC4033BD09A784 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76D715F7FF974308BB24E83C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8AF09831EB74BBA991EE9EA;
+			remoteInfo = LIB;
+		};
+		27AA35ABEBF04E4583C75126 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76D715F7FF974308BB24E83C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1CD352C8B074E90BE9808DA;
+			remoteInfo = symRiSynthesiser;
+		};
+		5D57CC53C88049A5B1BAABE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76D715F7FF974308BB24E83C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7DF246C0FAB3494695FE9EF4;
+			remoteInfo = ZERO_CHECK;
+		};
+		68199C1A4F724967AD23CD4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76D715F7FF974308BB24E83C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7DF246C0FAB3494695FE9EF4;
+			remoteInfo = ZERO_CHECK;
+		};
+		9AAF010F86F74E2E9BBA1E76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76D715F7FF974308BB24E83C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8AF09831EB74BBA991EE9EA;
+			remoteInfo = LIB;
+		};
+		9D425E02532F42ADB1219E26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76D715F7FF974308BB24E83C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7DF246C0FAB3494695FE9EF4;
+			remoteInfo = ZERO_CHECK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4EDF371A822A44C799263E7E /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		50F66099656746DBB8B8DBFB /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/typeDef.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = typeDef.hpp; path = lib/typeDef.hpp; sourceTree = SOURCE_ROOT; };
+		562F78E0A19D4F3FBEA9A4A0 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/unification.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = unification.cpp; path = lib/unification.cpp; sourceTree = SOURCE_ROOT; };
+		74B5EDE5298245409D36756B /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/unification.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = unification.hpp; path = lib/unification.hpp; sourceTree = SOURCE_ROOT; };
+		7F4F366CB38349AC9258D0E9 /* symRiSynthesiser */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = symRiSynthesiser; sourceTree = BUILT_PRODUCTS_DIR; };
+		81712A3948954FF78DD4082D /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/src/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = src/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		871D9AC227544B2298FB9FE4 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/langDef.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = langDef.cpp; path = lib/langDef.cpp; sourceTree = SOURCE_ROOT; };
+		8917F2A5995B4252A4F82570 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/sampler.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = sampler.hpp; path = lib/sampler.hpp; sourceTree = SOURCE_ROOT; };
+		8A53899E60B14DB8A94964FF /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/langDef.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = langDef.hpp; path = lib/langDef.hpp; sourceTree = SOURCE_ROOT; };
+		8E13496D0A9B4EEDBBB6FE0B /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/src/symRiSynthesiser.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = symRiSynthesiser.cpp; path = src/symRiSynthesiser.cpp; sourceTree = SOURCE_ROOT; };
+		A98C54AAEA9847BCA25BA348 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/bottomUpSearch.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = bottomUpSearch.hpp; path = lib/bottomUpSearch.hpp; sourceTree = SOURCE_ROOT; };
+		ADE0E89EDB374806AC904A26 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/sampler.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = sampler.cpp; path = lib/sampler.cpp; sourceTree = SOURCE_ROOT; };
+		BA9067260A554629848BD929 /* LIB */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLIB.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF53BC17E7B74956B7025CE8 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/bottomUpSearch.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = bottomUpSearch.cpp; path = lib/bottomUpSearch.cpp; sourceTree = SOURCE_ROOT; };
+		F5BBA0E2F864465EBD52E5EA /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = lib/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E8C4684D768940D09855E821 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE41B23A71204313A3CA4ADE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07B29D10AE054DFFBDE4AFC5 /* symRiSynthesiser */ = {
+			isa = PBXGroup;
+			children = (
+				800DED4D8AF449C49C842D10 /* Source Files */,
+				81712A3948954FF78DD4082D /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/src/CMakeLists.txt */,
+			);
+			name = symRiSynthesiser;
+			sourceTree = "<group>";
+		};
+		256E006BE37E40A4863C055C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		292A4251DBB44E93AE38AE43 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BA9067260A554629848BD929 /* LIB */,
+				7F4F366CB38349AC9258D0E9 /* symRiSynthesiser */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29A9072022FB4950B80389D8 /* LIB */ = {
+			isa = PBXGroup;
+			children = (
+				4D3F90592AD44ADEA2C05F4E /* Source Files */,
+				C8EB2E75FD38416E995D3F8E /* Header Files */,
+				F5BBA0E2F864465EBD52E5EA /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/CMakeLists.txt */,
+			);
+			name = LIB;
+			sourceTree = "<group>";
+		};
+		4D3F90592AD44ADEA2C05F4E /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				BF53BC17E7B74956B7025CE8 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/bottomUpSearch.cpp */,
+				871D9AC227544B2298FB9FE4 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/langDef.cpp */,
+				ADE0E89EDB374806AC904A26 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/sampler.cpp */,
+				562F78E0A19D4F3FBEA9A4A0 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/unification.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		6A285217AC984D50BF67E865 = {
+			isa = PBXGroup;
+			children = (
+				BC275958D9C746F287E31622 /* ALL_BUILD */,
+				07B29D10AE054DFFBDE4AFC5 /* symRiSynthesiser */,
+				29A9072022FB4950B80389D8 /* LIB */,
+				292A4251DBB44E93AE38AE43 /* Products */,
+				256E006BE37E40A4863C055C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		800DED4D8AF449C49C842D10 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				8E13496D0A9B4EEDBBB6FE0B /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/src/symRiSynthesiser.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		BC275958D9C746F287E31622 /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				D93E24E98301410F807EE369 /* CMake Rules */,
+				4EDF371A822A44C799263E7E /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		C8EB2E75FD38416E995D3F8E /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				A98C54AAEA9847BCA25BA348 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/bottomUpSearch.hpp */,
+				8A53899E60B14DB8A94964FF /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/langDef.hpp */,
+				8917F2A5995B4252A4F82570 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/sampler.hpp */,
+				50F66099656746DBB8B8DBFB /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/typeDef.hpp */,
+				74B5EDE5298245409D36756B /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/unification.hpp */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		D93E24E98301410F807EE369 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A1CD352C8B074E90BE9808DA /* symRiSynthesiser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1AA60607DDF49AE8D6B7CF9 /* Build configuration list for PBXNativeTarget "symRiSynthesiser" */;
+			buildPhases = (
+				93CB152B678F4FF78D6CC453 /* Sources */,
+				E8C4684D768940D09855E821 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				710049015BA54B14AAC58880 /* PBXTargetDependency */,
+				F372125A814F4DADBAABCDE3 /* PBXTargetDependency */,
+			);
+			name = symRiSynthesiser;
+			productName = symRiSynthesiser;
+			productReference = 7F4F366CB38349AC9258D0E9 /* symRiSynthesiser */;
+			productType = "com.apple.product-type.tool";
+		};
+		F8AF09831EB74BBA991EE9EA /* LIB */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 361097CA7A21473ABC84C56E /* Build configuration list for PBXNativeTarget "LIB" */;
+			buildPhases = (
+				F02FBB31C5104CCB97C5DC4A /* Sources */,
+				FE41B23A71204313A3CA4ADE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BF880C9A554F498EA2E9F6A1 /* PBXTargetDependency */,
+			);
+			name = LIB;
+			productName = LIB;
+			productReference = BA9067260A554629848BD929 /* LIB */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		76D715F7FF974308BB24E83C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1250;
+			};
+			buildConfigurationList = CF284F64C9784AFFA6E5B675 /* Build configuration list for PBXProject "synthesizer" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				AF646D25681B448FA5EF9CE5 /* Debug */,
+				0D4516333B0149BE9B7D8418 /* Release */,
+				E5F96BEA567D4E20BD1FA4B0 /* MinSizeRel */,
+				60461397EE8B492894783549 /* RelWithDebInfo */,
+			);
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			mainGroup = 6A285217AC984D50BF67E865;
+			projectDirPath = ../;
+			projectRoot = "";
+			targets = (
+				9C18BEC48B4A414AA030BF42 /* ALL_BUILD */,
+				F8AF09831EB74BBA991EE9EA /* LIB */,
+				7DF246C0FAB3494695FE9EF4 /* ZERO_CHECK */,
+				A1CD352C8B074E90BE9808DA /* symRiSynthesiser */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3C0110FC8322DE7E50886E21 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		9B50530E35CC49C82C2FACCF = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		B94DA2B53307107F7DA64566 /* Generate CMakeFiles/ALL_BUILD */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate CMakeFiles/ALL_BUILD";
+			outputPaths = (
+/Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/CMakeFiles/ALL_BUILD			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e
+if test \"$CONFIGURATION\" = \"Debug\"; then :
+  cd /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build
+  echo Build\\ all\\ projects
+fi
+if test \"$CONFIGURATION\" = \"Release\"; then :
+  cd /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build
+  echo Build\\ all\\ projects
+fi
+if test \"$CONFIGURATION\" = \"MinSizeRel\"; then :
+  cd /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build
+  echo Build\\ all\\ projects
+fi
+if test \"$CONFIGURATION\" = \"RelWithDebInfo\"; then :
+  cd /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build
+  echo Build\\ all\\ projects
+fi
+";
+			showEnvVarsInLog = 0;
+		};
+		DE006A123A885EB25AAEEE16 /* Generate CMakeFiles/ZERO_CHECK */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate CMakeFiles/ZERO_CHECK";
+			outputPaths = (
+/Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/CMakeFiles/ZERO_CHECK			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e
+if test \"$CONFIGURATION\" = \"Debug\"; then :
+  cd /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build
+  make -f /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/CMakeScripts/ReRunCMake.make
+fi
+if test \"$CONFIGURATION\" = \"Release\"; then :
+  cd /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build
+  make -f /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/CMakeScripts/ReRunCMake.make
+fi
+if test \"$CONFIGURATION\" = \"MinSizeRel\"; then :
+  cd /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build
+  make -f /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/CMakeScripts/ReRunCMake.make
+fi
+if test \"$CONFIGURATION\" = \"RelWithDebInfo\"; then :
+  cd /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build
+  make -f /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/CMakeScripts/ReRunCMake.make
+fi
+";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		93CB152B678F4FF78D6CC453 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D5E92541C3144BB92827719 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/src/symRiSynthesiser.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F02FBB31C5104CCB97C5DC4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3B8E7CB651645F784DFFC34 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/bottomUpSearch.cpp */,
+				3B34A36E0E6C443E810BC117 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/langDef.cpp */,
+				C6B8C5CA38A649D3B2E8BC17 /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/sampler.cpp */,
+				5DC54BD522E44B80A6B2061A /* /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/lib/unification.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0946E2857F7E453990555698 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7DF246C0FAB3494695FE9EF4 /* ZERO_CHECK */;
+			targetProxy = 5D57CC53C88049A5B1BAABE7 /* PBXContainerItemProxy */;
+		};
+		267BAB8DA1F047AFBB773DFC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8AF09831EB74BBA991EE9EA /* LIB */;
+			targetProxy = 9AAF010F86F74E2E9BBA1E76 /* PBXContainerItemProxy */;
+		};
+		710049015BA54B14AAC58880 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8AF09831EB74BBA991EE9EA /* LIB */;
+			targetProxy = 083E31F2ABCC4033BD09A784 /* PBXContainerItemProxy */;
+		};
+		A3FF0605F87A464B882FD7EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1CD352C8B074E90BE9808DA /* symRiSynthesiser */;
+			targetProxy = 27AA35ABEBF04E4583C75126 /* PBXContainerItemProxy */;
+		};
+		BF880C9A554F498EA2E9F6A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7DF246C0FAB3494695FE9EF4 /* ZERO_CHECK */;
+			targetProxy = 9D425E02532F42ADB1219E26 /* PBXContainerItemProxy */;
+		};
+		F372125A814F4DADBAABCDE3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7DF246C0FAB3494695FE9EF4 /* ZERO_CHECK */;
+			targetProxy = 68199C1A4F724967AD23CD4B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		053CECA4CCB440B8AA8B87AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk;
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/build;
+			};
+			name = Release;
+		};
+		0C345D3CACF94C05804043D2 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		243AED0B9D574F4C8388EC01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		2AC8FECF16C8493FB7939E2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_CPLUSPLUSFLAGS = "-std=c++17     -pipe    ";
+				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names",/Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/lib/Debug/libLIB.a);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = symRiSynthesiser;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/src;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		3796ED9A395A4E5A981983F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "-std=c++17     -pipe    ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = LIB;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/lib;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		441042277F0B4471AF5B85AD /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_CPLUSPLUSFLAGS = "-std=c++17     -pipe     -DNDEBUG ";
+				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names",/Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/lib/MinSizeRel/libLIB.a);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = symRiSynthesiser;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/src;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		47D411403D4A4F47A121C290 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_CPLUSPLUSFLAGS = "-std=c++17     -pipe     -DNDEBUG ";
+				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names",/Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/lib/Release/libLIB.a);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = symRiSynthesiser;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/src;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		49B95F5C663D4D48987CB42E /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk;
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/build;
+			};
+			name = RelWithDebInfo;
+		};
+		5789039F71494AFFB4ACB1C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		5FBFEACE515449FE8C20ED0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk;
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/build;
+			};
+			name = Debug;
+		};
+		6CC4FAB4EE4C43FBA27D1C7B /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "-std=c++17     -pipe     -DNDEBUG ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = LIB;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/lib;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		750B17E217E34CAC8CF1B0D5 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		A92B9059EAED4EA0A5C15B7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		BCCE0E194E874217898A240F /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_CPLUSPLUSFLAGS = "-std=c++17     -pipe        -DNDEBUG ";
+				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names",/Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/lib/RelWithDebInfo/libLIB.a);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = symRiSynthesiser;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/src;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		CA027F77652C47A98EEB2B0C /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk;
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/build;
+			};
+			name = MinSizeRel;
+		};
+		D3EED3F42C8B4258836BF223 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "-std=c++17     -pipe     -DNDEBUG ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = LIB;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/lib;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		D5ECF7A0ED1645CAB5F09420 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "-std=c++17     -pipe        -DNDEBUG ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = LIB;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/lib;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		E0A3C510073247968FDEEFE4 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		E68AB62ACF48408BA811103D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		FAB179FE14ED400C95E88098 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		295E64CFCACE42FDA1F1C876 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A92B9059EAED4EA0A5C15B7F /* Debug */,
+				243AED0B9D574F4C8388EC01 /* Release */,
+				FAB179FE14ED400C95E88098 /* MinSizeRel */,
+				E0A3C510073247968FDEEFE4 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		361097CA7A21473ABC84C56E /* Build configuration list for PBXNativeTarget "LIB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3796ED9A395A4E5A981983F5 /* Debug */,
+				D3EED3F42C8B4258836BF223 /* Release */,
+				6CC4FAB4EE4C43FBA27D1C7B /* MinSizeRel */,
+				D5ECF7A0ED1645CAB5F09420 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CF284F64C9784AFFA6E5B675 /* Build configuration list for PBXProject "synthesizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5FBFEACE515449FE8C20ED0D /* Debug */,
+				053CECA4CCB440B8AA8B87AC /* Release */,
+				CA027F77652C47A98EEB2B0C /* MinSizeRel */,
+				49B95F5C663D4D48987CB42E /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E1AA60607DDF49AE8D6B7CF9 /* Build configuration list for PBXNativeTarget "symRiSynthesiser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2AC8FECF16C8493FB7939E2E /* Debug */,
+				47D411403D4A4F47A121C290 /* Release */,
+				441042277F0B4471AF5B85AD /* MinSizeRel */,
+				BCCE0E194E874217898A240F /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E260401C6B4C4AF78508D444 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E68AB62ACF48408BA811103D /* Debug */,
+				5789039F71494AFFB4ACB1C0 /* Release */,
+				0C345D3CACF94C05804043D2 /* MinSizeRel */,
+				750B17E217E34CAC8CF1B0D5 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 76D715F7FF974308BB24E83C /* Project object */;
+}
