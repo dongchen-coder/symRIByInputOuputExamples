@@ -1,3 +1,0 @@
-add_executable (symRiSynthesiser symRiSynthesiser.cpp)
-
-target_link_libraries (symRiSynthesiser LINK_PUBLIC LIB)
