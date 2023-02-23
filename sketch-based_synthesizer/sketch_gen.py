@@ -1,4 +1,6 @@
 import os
+from random import sample
+
 f = open('failed.txt','r')
 ioes = []
 for line in f:
@@ -19,9 +21,13 @@ f.write(sym_ri_prog)
 
 main_prog = "harness void main(int x) {\nint["+str(n_inputs)+"]["+str(n_ioes)+"] inputs = {";
 
+ioes.sort(key = lambda x : x[-1])
+
 inputs = []
 outputs = []
 for ioe in ioes:
+    if (ioe[-1] == '0'):
+        continue
     inputs.append(ioe[0:-1])
     outputs.append(ioe[-1])
 

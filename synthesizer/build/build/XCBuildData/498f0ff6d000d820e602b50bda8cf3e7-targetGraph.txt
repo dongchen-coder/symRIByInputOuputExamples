@@ -1,0 +1,7 @@
+Target dependency graph (3 targets)
+ZERO_CHECK in synthesizer, no dependencies
+LIB in synthesizer, depends on:
+ZERO_CHECK in synthesizer (explicit)
+symRiSynthesiser in synthesizer, depends on:
+LIB in synthesizer (explicit)
+ZERO_CHECK in synthesizer (explicit)

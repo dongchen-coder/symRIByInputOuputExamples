@@ -3,19 +3,9 @@ import pandas as pd
 import math
 import itertools
 from random import sample
+from paths import *
 
-def init_ioe_paths(path, bench):
-    os.system("mkdir -p " + path + "/" + bench)   
-    os.system("rm -rf " + path + "/" + bench + "/src_only")
-    os.system("rm -rf " + path + "/" + bench + "/src_snk")
-    os.system("rm -rf " + path + "/" + bench + "/src_snk_plus")
-    os.system("rm -rf " + path + "/" + bench + "/ibound")
-    os.system("mkdir -p " + path + "/" + bench + "/src_only")
-    os.system("mkdir -p " + path + "/" + bench + "/src_snk")
-    os.system("mkdir -p " + path + "/" + bench + "/src_snk_plus")
-    os.system("mkdir -p " + path + "/" + bench + "/ibound")
-    return
-
+'''
 def dataframe_to_input_output_examples(bench, cache_config, df, bound_values, spec):
     if (spec == 'src_only'):
         src_id = str(df.iloc[0]['source reference ID'])
@@ -122,7 +112,7 @@ def dataframe_to_input_output_examples(bench, cache_config, df, bound_values, sp
                 fmax.write(entry+'_out '+str(df_bound['loop '+str(i)].max())+'\n')
             fmin.close()
             fmax.close()
-                
+
 def gen_ioe_from_raw_csv_data(bench, n_paras, train_size, cache_config, sampling_rate = 0.2, max_sampling_number = 20):
     # merge all reuse interval csv files with different train sizes
     bound_values = [p for p in itertools.product(map(str, train_size), repeat = n_paras)]
@@ -185,4 +175,4 @@ def gen_ioe_from_raw_csv_data(bench, n_paras, train_size, cache_config, sampling
 
     print "Finished"
     return
-
+'''
