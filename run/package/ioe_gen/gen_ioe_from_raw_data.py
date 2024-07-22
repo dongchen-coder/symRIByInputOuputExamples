@@ -104,7 +104,7 @@ def dataframe_to_input_output_examples(bench, cache_config, df, bound_values, sp
         if (num_of_nested_loops <= 1):
             df['loop 0'] = df['iteration vector']
         else:
-            df[loop_name] = df['iteration vector'].str.split(' ', num_of_nested_loops-1, expand=True)
+            df[loop_name] = df['iteration vector'].str.split(' ', n=num_of_nested_loops-1, expand=True)
         
         for i in range(num_of_nested_loops):
             df['loop ' + str(i)] = df['loop ' + str(i)].astype(int)
@@ -122,29 +122,30 @@ def dataframe_to_input_output_examples(bench, cache_config, df, bound_values, sp
                 fmax.write(entry+'_out '+str(df_bound['loop '+str(i)].max())+'\n')
             fmin.close()
             fmax.close()
-                
+        
 def gen_ioe_from_raw_csv_data(bench, n_paras, train_size, cache_config, sampling_rate = 0.2, max_sampling_number = 20):
     # merge all reuse interval csv files with different train sizes
     bound_values = [p for p in itertools.product(map(str, train_size), repeat = n_paras)]
     bound_values_ = ['_'.join(p) for p in bound_values]
     bound_values = [' '.join(p) for p in bound_values]
 
-    print "Reading raw data *",
+    print("Reading raw data *",)
     li = []
     for bound_value in bound_values_:
         file_name = "../data/raw_data/"+cache_config+"/"+bench+"/"+bench+"_"+bound_value+".csv"
-        df = pd.read_csv(file_name, index_col=False, header = 0, lineterminator='\n', sep=',', error_bad_lines=False)
+        print("Dong", file_name)
+        df = pd.read_csv(file_name, index_col=False, header = 0, lineterminator='\n', sep=',', on_bad_lines='error')
         df['bound values'] = bound_value.replace('_', ' ')
         li.append(df)
     df = pd.concat(li, axis=0, ignore_index=True)
 
     # sample source iteration vectors
-    print "Sampling *",
+    print("Sampling *",)
     number_of_unique_src_ivs = len(df.groupby(['source reference ID', 'source iteration vector']).size().reset_index().rename(columns={0:"count"}))
     sampling_rate = min(sampling_rate, float(max_sampling_number) / number_of_unique_src_ivs)
     
     # generate inpout-output examples
-    print "Gen IOE for RI *",
+    print("Gen IOE for RI *",)
     src_ref_ids = df['source reference ID'].unique().tolist()
     for src_ref_id in src_ref_ids:
         df_src = df.loc[df['source reference ID'] == src_ref_id]   
@@ -154,7 +155,7 @@ def gen_ioe_from_raw_csv_data(bench, n_paras, train_size, cache_config, sampling
         src_ivs_sampled = sample(src_ivs, int(math.ceil(len(src_ivs) * sampling_rate)))
         for src_iv in src_ivs_sampled:
             df_src_ivs = df_src.loc[df['source iteration vector'] == src_iv]
-            #print df_src_ivs
+            #print(df_src_ivs)
             dataframe_to_input_output_examples(bench, cache_config, df_src_ivs, bound_values, 'src_only')
         
         # input-output examples for source sink (+)
@@ -164,13 +165,13 @@ def gen_ioe_from_raw_csv_data(bench, n_paras, train_size, cache_config, sampling
             src_ivs = df_src_snk['source iteration vector'].unique().tolist()
             for src_iv in set(src_ivs) & set(src_ivs_sampled):
                 df_src_snk_ivs = df_src_snk.loc[df['source iteration vector'] == src_iv]
-                #print df_src_snk_ivs
+                #print(df_src_snk_ivs)
                 dataframe_to_input_output_examples(bench, cache_config, df_src_snk_ivs, bound_values, 'src_snk')
                 dataframe_to_input_output_examples(bench, cache_config, df_src_snk_ivs, bound_values, 'src_snk_plus')
         
 
     # merge all loop induction variable csv files with different train sizes
-    print "Gen IOE for Bounds *",
+    print("Gen IOE for Bounds *",)
     li = []
     for bound_value in bound_values_:
         file_name = "../data/raw_data/ibound/"+bench+"/"+bench+"_"+bound_value+".csv"
@@ -183,6 +184,6 @@ def gen_ioe_from_raw_csv_data(bench, n_paras, train_size, cache_config, sampling
         df_src = df.loc[df['source reference ID'] == src_ref_id].copy().reset_index()
         dataframe_to_input_output_examples(bench, cache_config, df_src, bound_values, 'ibound')
 
-    print "Finished"
+    print("Finished")
     return
 

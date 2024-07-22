@@ -11,13 +11,13 @@ def init_raw_data_paths(path, bench):
     return
 
 def gen_raw_data(bench, n_paras, train_sizes, target, file_format):
-    print bench
+    print(bench)
     paras = [p for p in itertools.product(train_sizes, repeat = n_paras)]
     for p in paras:
-        p_str = map(str, p)
+        p_str = tuple(map(str, p))
         p_space = ' '.join(p_str)
         p_underscore = '_'.join(p_str)
-        
+
         exe_surfix = " "
         if (file_format == "csv"):
             exe_surfix = "_csv "

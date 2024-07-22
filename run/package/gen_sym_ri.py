@@ -43,7 +43,7 @@ def processIOEFile(example):
         suffix = "." + folder
    
     cmd = syn_bin + " -FILE " + data_path + bench + "/" + folder + "/" + f + cmd_option + " > " + result_path + bench + "/" + f + suffix
-    print cmd
+    print(cmd)
     os.system(cmd)    
 
 def init_files_to_process(bench):

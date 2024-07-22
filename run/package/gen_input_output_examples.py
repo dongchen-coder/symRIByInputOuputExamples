@@ -7,7 +7,7 @@ from sample_raw_data import *
 # gen input-output examples for [bench, number of parameters] with train sizes
 def gen_input_output_examples(bench_parms, train_sizes):
     
-    print bench_parms
+    print(bench_parms)
     [bench, n_paras] = bench_parms
         
     # init path to raw data

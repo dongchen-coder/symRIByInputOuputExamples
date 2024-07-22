@@ -20,7 +20,7 @@ def summerize_for_bench_with_format(bench, inOutFormat):
     outputFile.close()
 
 def summerize_sym_ri(bench, cache_config):
-    print "Start to summerize " + bench, cache_config
+    print("Start to summerize " + bench, cache_config)
     if (not os.path.isdir("../data/sym_ri/" + bench)):
         return
     files = os.listdir("../data/sym_ri/" + bench)
