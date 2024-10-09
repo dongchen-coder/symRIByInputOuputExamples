@@ -1,4 +1,0 @@
-/Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/CMakeFiles/ALL_BUILD.dir
-/Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/CMakeFiles/ZERO_CHECK.dir
-/Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/src/CMakeFiles/symRiSynthesiser.dir
-/Users/dchen/tools/symRiSynthesizer/symRIByInputOuputExamples/synthesizer/build/lib/CMakeFiles/LIB.dir
