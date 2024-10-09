@@ -226,7 +226,7 @@ inline bool bottomUpSearch::generation_rule(BaseType* operand_a, BaseType* opera
 }
 
 inline bool bottomUpSearch::type_rule(BaseType* operand_a, BaseType* operand_b, BaseType* operand_c, string op, int program_generation) {
-    if (op == "PLUS" || op == "MINUS" || op == "TIMES" || op == "LT" || op == "LEFTSHIFT" || op == "RIGHTSHIFT") {
+    if (op == "PLUS" || op == "MINUS" || op == "TIMES" || op == "LT" || op == "LEFTSHIFT" || op == "RIGHTSHIFT" || op == "DIV") {
         if (!(dynamic_cast<IntType*>(operand_a) && dynamic_cast<IntType*>(operand_b))) {
             return false;
         }
@@ -1185,6 +1185,10 @@ inline BaseType* bottomUpSearch::grow_one_expr(BaseType* operand_a, BaseType* op
         Lt* lt = new Lt(dynamic_cast<IntType*>(operand_a), dynamic_cast<IntType*>(operand_b));
         return dynamic_cast<BaseType*>(lt);
     }
+    else if (op == "DIV") {
+        Div* div = new Div(dynamic_cast<IntType*>(operand_a), dynamic_cast<IntType*>(operand_b));
+        return dynamic_cast<BaseType*>(div);
+    }
     else {
         throw runtime_error("bottomUpSearch::grow_one_expr() operates on UNKNOWN type!");
     }
@@ -1197,7 +1201,7 @@ void bottomUpSearch::grow(int program_generation) {
     int program_list_length = _program_list.size();
     
     for (auto op : _int_ops) {
-        if (op == "PLUS" || op == "TIMES" || op == "MINUS" || op == "LEFTSHIFT" || op == "RIGHTSHIFT") {
+        if (op == "PLUS" || op == "TIMES" || op == "MINUS" || op == "LEFTSHIFT" || op == "RIGHTSHIFT" || op == "DIV") {
             int cnt = 0;
             for (int i = 0; i < program_list_length; i++) {
                 for (int j = 0; j < program_list_length; j++) {
@@ -1282,6 +1286,9 @@ inline int bottomUpSearch::evaluate_int_program(BaseType* p, int input_output_id
     }
     else if (auto minus = dynamic_cast<Minus*>(p)) {
         pValue = minus->interpret(_input_outputs[input_output_id]);
+    }
+    else if (auto div = dynamic_cast<Div*>(p)) {
+        pValue = div->interpret(_input_outputs[input_output_id]);
     }
     else if (auto leftshift = dynamic_cast<Leftshift*>(p)) {
         pValue = leftshift->interpret(_input_outputs[input_output_id]);

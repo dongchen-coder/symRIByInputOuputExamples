@@ -39,6 +39,7 @@ class BoolType : public BaseType {
 public:
     BoolType();
     string to_string();
+    bool interpret(input_output_t env);
     int depth();
     vector<int> get_lexical_order(int num_of_vars, map<string, int>& vars_orders);
     int get_number_of_ops(string op_name);
