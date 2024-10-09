@@ -2,6 +2,8 @@ import os
 
 def summerize_for_bench_with_format(bench, inOutFormat):
     files = os.listdir("../data/sym_ri/" + bench)
+    if not os.path.exists("../data/sym_ri/all"):
+        os.makedirs("../data/sym_ri/all")
     outputFile = open("../data/sym_ri/all/" + bench + inOutFormat, "w")
     
     for f in files:
