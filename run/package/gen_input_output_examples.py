@@ -5,7 +5,7 @@ from gen_ioe_from_raw_data import *
 from sample_raw_data import *
 
 # gen input-output examples for [bench, number of parameters] with train sizes
-def gen_input_output_examples(bench_parms, train_sizes):
+def gen_input_output_examples(bench_parms, train_sizes, num_of_samples):
     
     print(bench_parms)
     [bench, n_paras] = bench_parms
@@ -18,7 +18,7 @@ def gen_input_output_examples(bench_parms, train_sizes):
     # init path to sampled raw data
     init_sampled_raw_data_paths("../data/sampled_raw_data/", bench)
     # sample raw data
-    sample_raw_data(bench, n_paras, train_sizes, "cls32_ds8", 500)
+    sample_raw_data(bench, n_paras, train_sizes, "cls32_ds8", num_of_samples)
 
     # init path to input-output examples
     init_ioe_paths("../data/input-output_examples/", bench)
