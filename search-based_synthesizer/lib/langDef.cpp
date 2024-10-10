@@ -885,6 +885,42 @@ int Div::get_exponent_of_var(string var_name) {
 }
 
 /******************************************
+Constructs: Div8
+*/
+Div8::Div8(IntType* dividend) {
+    if (dividend == nullptr) throw runtime_error("Div8: dividend is null");
+    _dividend = dividend;
+    set_generation( dividend->get_generation() + 1 );
+}
+
+string Div8::to_string() {
+    return "(" + _dividend->to_string() + " / 8)";
+}
+
+int Div8::interpret(input_output_t env) {
+    return _dividend->interpret(env) / 8;
+}
+
+int Div8::depth() {
+    return _dividend->depth() + 1;
+}
+
+int Div8::get_number_of_ops(string op_name) {
+    if (op_name == "DIV8" || op_name == "ALL") {
+        return _dividend->get_number_of_ops(op_name) + 1;
+    }
+    return _dividend->get_number_of_ops(op_name);
+}
+
+int Div8::get_number_of_vars(string var_name) {
+    return _dividend->get_number_of_vars(var_name);
+}
+
+int Div8::get_exponent_of_var(string var_name) {
+    return _dividend->get_exponent_of_var(var_name);
+}
+
+/******************************************
 Constructs: Leftshift
 */
 Leftshift::Leftshift(IntType* value, IntType* offset) {

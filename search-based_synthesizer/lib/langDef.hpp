@@ -152,6 +152,20 @@ public:
     int get_exponent_of_var(string var_name);
 };
 
+class Div8 : public IntType {
+private:
+    IntType* _dividend;
+
+public:
+    Div8(IntType* dividend);
+    string to_string();
+    int interpret(input_output_t env);
+    int depth();
+    int get_number_of_ops(string op_name);
+    int get_number_of_vars(string var_name);
+    int get_exponent_of_var(string var_name);
+};
+
 class Leftshift : public IntType {
 private:
     IntType* _value;
