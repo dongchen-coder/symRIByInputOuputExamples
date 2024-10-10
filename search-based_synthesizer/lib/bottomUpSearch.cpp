@@ -231,6 +231,11 @@ inline bool bottomUpSearch::type_rule(BaseType* operand_a, BaseType* operand_b, 
             return false;
         }
     }
+    else if (op == "DIV8") {
+        if (!(dynamic_cast<IntType*>(operand_a))) {
+            return false;
+        }
+    }
     else if (op == "NOT") {
         if (!dynamic_cast<BoolType*>(operand_a)) {
             return false;
@@ -1189,6 +1194,10 @@ inline BaseType* bottomUpSearch::grow_one_expr(BaseType* operand_a, BaseType* op
         Div* div = new Div(dynamic_cast<IntType*>(operand_a), dynamic_cast<IntType*>(operand_b));
         return dynamic_cast<BaseType*>(div);
     }
+    else if (op == "DIV8") {
+        Div8* div8 = new Div8(dynamic_cast<IntType*>(operand_a));
+        return dynamic_cast<BaseType*>(div8);
+    }
     else {
         throw runtime_error("bottomUpSearch::grow_one_expr() operates on UNKNOWN type!");
     }
@@ -1208,6 +1217,12 @@ void bottomUpSearch::grow(int program_generation) {
                     BaseType* new_expr = grow_one_expr(_program_list[i], _program_list[j], nullptr, op, program_generation);
                     if (new_expr != nullptr) _program_list.push_back(new_expr);
                 }
+            }
+        }
+        else if (op == "DIV8") {
+            for (int i = 0; i < program_list_length; i++) {
+                BaseType* new_expr = grow_one_expr(_program_list[i], nullptr, nullptr, "DIV8", program_generation);
+                if (new_expr != nullptr) _program_list.push_back(new_expr);
             }
         }
         else if (op == "ITE") {
@@ -1289,6 +1304,9 @@ inline int bottomUpSearch::evaluate_int_program(BaseType* p, int input_output_id
     }
     else if (auto div = dynamic_cast<Div*>(p)) {
         pValue = div->interpret(_input_outputs[input_output_id]);
+    }
+    else if (auto div8 = dynamic_cast<Div8*>(p)) {
+        pValue = div8->interpret(_input_outputs[input_output_id]);
     }
     else if (auto leftshift = dynamic_cast<Leftshift*>(p)) {
         pValue = leftshift->interpret(_input_outputs[input_output_id]);

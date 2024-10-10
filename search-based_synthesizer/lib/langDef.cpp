@@ -120,6 +120,9 @@ string IntType::to_string() {
     else if (auto div = dynamic_cast<Div*>(this)) {
         return div->to_string();
     }
+    else if (auto div8 = dynamic_cast<Div8*>(this)) {
+        return div8->to_string();
+    }
     else if (auto mn = dynamic_cast<Min*>(this)) {
         return mn->to_string();
     }
@@ -156,6 +159,9 @@ int IntType::interpret(input_output_t env) {
     else if (auto div = dynamic_cast<Div*>(this)) {
         return div->interpret(env);
     }
+    else if (auto div8 = dynamic_cast<Div8*>(this)) {
+        return div8->interpret(env);
+    }
     else if (auto mn = dynamic_cast<Min*>(this)) {
         return mn->interpret(env);
     }
@@ -191,6 +197,9 @@ int IntType::depth() {
     }
     else if (auto div = dynamic_cast<Div*>(this)) {
         return div->depth();
+    }
+    else if (auto div8 = dynamic_cast<Div8*>(this)) {
+        return div8->depth();
     }
     else if (auto mn = dynamic_cast<Min*>(this)) {
         return mn->depth();
@@ -246,6 +255,9 @@ int IntType::get_number_of_ops(string op_name) {
     else if (auto div = dynamic_cast<Div*>(this)) {
         return div->get_number_of_ops(op_name);
     }
+    else if (auto div8 = dynamic_cast<Div8*>(this)) {
+        return div8->get_number_of_ops(op_name);
+    }
     else if (auto mn = dynamic_cast<Min*>(this)) {
         return mn->get_number_of_ops(op_name);
     }
@@ -282,6 +294,9 @@ int IntType::get_number_of_vars(string var_name) {
     else if (auto div = dynamic_cast<Div*>(this)) {
         return div->get_number_of_vars(var_name);
     }
+    else if (auto div8 = dynamic_cast<Div8*>(this)) {
+        return div8->get_number_of_vars(var_name);
+    }
     else if (auto mn = dynamic_cast<Min*>(this)) {
         return mn->get_number_of_vars(var_name);
     }
@@ -317,6 +332,9 @@ int IntType::get_exponent_of_var(string var_name) {
     }
     else if (auto div = dynamic_cast<Div*>(this)) {
         return div->get_exponent_of_var(var_name);
+    }
+    else if (auto div8 = dynamic_cast<Div8*>(this)) {
+        return div8->get_exponent_of_var(var_name);
     }
     else if (auto mn = dynamic_cast<Min*>(this)) {
         return mn->get_exponent_of_var(var_name);
