@@ -46,12 +46,12 @@ def init_files_to_process(bench):
         files_to_process += [[folder, bench, f] for f in filesCLS]
     return files_to_process   
 
-def gen_sym_ri(bench, syn_config):
+def gen_sym_ri(bench, syn_config, num_of_cpus):
     
     clearSymRI(bench)
     files = init_files_to_process(bench)
     
-    p = Pool(4)
+    p = Pool(num_of_cpus)
     examples = [f+[syn_config] for f in files]
     p.map(processIOEFile, examples)
     p.close()
