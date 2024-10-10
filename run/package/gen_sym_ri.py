@@ -11,19 +11,6 @@ syn_bin = "../search-based_synthesizer/build/src/symRiSynthesizer"
 data_path = "../data/input-output_examples/"
 result_path = "../data/sym_ri/"
 
-# benches to process
-benches = ["stencil", "2mm", "3mm", "adi", "atax", "bicg", "cholesky", "correlation", "covariance", "deriche", "doitgen", "durbin", "fdtd_2d", "floyd_warshall", "gemm", "gemver", "gesummv", "gramschmidt", "heat_3d", "jacobi_1d", "jacobi_2d", "lu", "ludcmp", "mvt", "nussinov", "seidel_2d", "symm", "syr2d", "syrk", "trisolv", "trmm", "convolution_2d", "convolution_3d", "trangle"]
-#benches = ["bit_reversal"]
-
-# synthesizer configuration
-class syn_config:
-    constantsForPredicate = " -CONSTANTSPRED 1 2"
-    constantsForTerm = " -CONSTANTSTERM 0 1 2 3 4 5 6"
-    intOpsForTerm = " -INTOPSTERM VAR NUM PLUS TIMES MINUS DIV"
-    searchTimeForTermsInSeconds = " -SEARCHTIMEFORTERMSINSECONDS 20"
-    searchTimeForPredsInSeconds = " -SEARCHTIMEFORPREDSINSECONDS 40"
-    rulesToApply = " -RULESTOAPPLY SrcOnly"
-
 # clear all generated sym RI
 def clearSymRI(bench):
     os.system("rm -rf " + result_path + bench)
@@ -31,12 +18,14 @@ def clearSymRI(bench):
 
 # process each input-output file
 def processIOEFile(example):
-    [folder, bench, f] = example
-    cmd_option = syn_config.constantsForPredicate + syn_config.constantsForTerm + syn_config.intOpsForTerm + syn_config.searchTimeForTermsInSeconds + syn_config.searchTimeForPredsInSeconds
+    print(example)
+    [folder, bench, f, syn_config] = example
+    
+    cmd_option = syn_config["constants_for_predicate"] + syn_config["constants_for_term"] + syn_config["int_ops_for_term"] + syn_config["search_time_for_terms_in_seconds"] + syn_config["search_time_for_preds_in_seconds"]
 
     if (f[0] == "src_snk_plus"):
-        syn_config.rulesToApply = " -RULESTOAPPLY SrcSnk"
-    cmd_option += syn_config.rulesToApply
+        syn_config["rules_to_apply"] = " -RULESTOAPPLY SrcSnk"
+    cmd_option += syn_config["rules_to_apply"]
 
     suffix = ''
     if (folder != "ibound"):
@@ -57,14 +46,13 @@ def init_files_to_process(bench):
         files_to_process += [[folder, bench, f] for f in filesCLS]
     return files_to_process   
 
-def gen_sym_ri(bench, syn_config_user=None):
-    if (syn_config_user):
-        syn_config = syn_config_user
+def gen_sym_ri(bench, syn_config):
     
     clearSymRI(bench)
     files = init_files_to_process(bench)
     
     p = Pool(4)
-    p.map(processIOEFile, files)
+    examples = [f+[syn_config] for f in files]
+    p.map(processIOEFile, examples)
     p.close()
     p.join()

@@ -6,13 +6,14 @@ from gen_sym_ri import gen_sym_ri
 from gen_traced_data import gen_trace
 from summarize_sym_ri import summerize_sym_ri
 
-class SynConfig:
-    CONSTANTS_FOR_PREDICATE = " -CONSTANTSPRED 1 2"
-    CONSTANTS_FOR_TERM = " -CONSTANTSTERM 0 1 2 3 4 5 6"
-    INT_OPS_FOR_TERM = " -INTOPSTERM VAR NUM PLUS TIMES MINUS DIV"
-    SEARCH_TIME_FOR_TERMS_IN_SECONDS = " -SEARCHTIMEFORTERMSINSECONDS 20"
-    SEARCH_TIME_FOR_PREDS_IN_SECONDS = " -SEARCHTIMEFORPREDSINSECONDS 40"
-    RULES_TO_APPLY = " -RULESTOAPPLY SrcOnly"
+syn_config = {
+    "constants_for_predicate" : " -CONSTANTSPRED 1 2",
+    "constants_for_term" : " -CONSTANTSTERM 0 1 2 3 4 5 6",
+    "int_ops_for_term" : " -INTOPSTERM VAR NUM PLUS TIMES MINUS DIV8",
+    "search_time_for_terms_in_seconds" : " -SEARCHTIMEFORTERMSINSECONDS 20",
+    "search_time_for_preds_in_seconds" : " -SEARCHTIMEFORPREDSINSECONDS 40",
+    "rules_to_apply" : " -RULESTOAPPLY SrcOnly"
+}
 
 if __name__ == "__main__":
     '''
@@ -28,10 +29,9 @@ if __name__ == "__main__":
     '''
     all_bench_n_parms = {"stencil": 1}
     train_sizes = [8, 12, 16, 20]
-    config = SynConfig()
 
     for bench, n_parms in all_bench_n_parms.items():
         gen_trace([bench, n_parms], train_sizes, "cls32_ds8")
         gen_input_output_examples([bench, n_parms], train_sizes)
-        gen_sym_ri(bench, config)
+        gen_sym_ri(bench, syn_config)
         summerize_sym_ri(bench, "cls32_ds8")
