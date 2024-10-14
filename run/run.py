@@ -15,7 +15,7 @@ syn_config = {
     "rules_to_apply" : " -RULESTOAPPLY SrcOnly"
 }
 
-num_of_cpus = 2
+num_of_cpus = 4
 num_of_samples = 200
 
 if __name__ == "__main__":

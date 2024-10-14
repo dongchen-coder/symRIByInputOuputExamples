@@ -1,6 +1,5 @@
 import os
 import random
-#from multiprocessing import Pool
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from queue import Queue
 import threading
@@ -9,6 +8,9 @@ import threading
 syn_bin = "../search-based_synthesizer/build/src/symRiSynthesizer"
 data_path = "../data/input-output_examples/"
 result_path = "../data/sym_ri/"
+
+finished_jobs_counter = 0
+counter_lock = threading.Lock()
 
 # clear all generated sym RI
 def clearSymRI(bench):
@@ -44,6 +46,7 @@ def init_files_to_process(bench):
     return files_to_process   
 
 def process_task_queue(task_queue, syn_config):
+    global finished_jobs_counter
     while not task_queue.empty():
         task = task_queue.get()
         if task is None:
@@ -53,12 +56,15 @@ def process_task_queue(task_queue, syn_config):
         print(f"Worker {worker_id} processing task: {task}")
         processIOEFile(task + [syn_config])
         print(f"Worker {worker_id} finished task: {task}")
+        with counter_lock:
+            finished_jobs_counter += 1
         task_queue.task_done()
 
 def gen_sym_ri(bench, syn_config, num_of_cpus):
     clearSymRI(bench)
     files = init_files_to_process(bench)
-    
+    print(f"Total number of jobs to process: {len(files)}")
+
     task_queue = Queue()
     for f in files:
         task_queue.put(f)
@@ -72,21 +78,4 @@ def gen_sym_ri(bench, syn_config, num_of_cpus):
             future.result()  # Process the result if needed
 
     task_queue.join()
-
-'''
-def gen_sym_ri(bench, syn_config, num_of_cpus):
-    
-    clearSymRI(bench)
-    files = init_files_to_process(bench)
-    
-    examples = [f + [syn_config] for f in files]
-
-    p = Pool(num_of_cpus)
-    examples = [f+[syn_config] for f in files]
-    #p.map(processIOEFile, examples)
-    for _ in p.imap_unordered(processIOEFile, examples):
-        pass
-    
-    p.close()
-    p.join()
-'''
+    print(f"Total number of finished jobs: {finished_jobs_counter}")
