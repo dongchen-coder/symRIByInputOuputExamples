@@ -15,8 +15,8 @@ syn_config = {
     "rules_to_apply" : " -RULESTOAPPLY SrcOnly"
 }
 
-num_of_cpus = 8
-num_of_samples = 500
+num_of_cpus = 2
+num_of_samples = 200
 
 if __name__ == "__main__":
     '''
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     }
     '''
     all_bench_n_parms = {"stencil": 1}
-    train_sizes = [8, 12, 16, 20]
+    train_sizes = [8, 12, 16, 20, 32]
 
     for bench, n_parms in all_bench_n_parms.items():
         gen_trace([bench, n_parms], train_sizes, "cls32_ds8")
