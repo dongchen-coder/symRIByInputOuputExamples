@@ -18,12 +18,16 @@ def evaluate(symbolicHistToUse, symBoundsToUse, boundValueForPred, method):
             for idx in symbolicHistToUse[ref_src_id].keys():
                 
                 scaled_idx = scaleIter(idx, trainIBound, predIBound)
-                #print idx, scaled_idx
+                #print(idx, scaled_idx)
                 ri = evaluateSingleCode(scaled_idx, boundValueForPred, symbolicHistToUse[ref_src_id][idx])
 
-                if (ri == None):
+                if ri is None:
                     continue
-                ri = int(ri)
+                try:
+                    ri = int(float(ri))
+                except ValueError as e:
+                    raise ValueError(f"Cannot convert ri to int: {ri}") from e
+                
                 if (ri in histogram.keys()):
                     histogram[ri] += 1 * scaleSampleNumber(len(idx))
                 else:
@@ -38,9 +42,12 @@ def evaluate(symbolicHistToUse, symBoundsToUse, boundValueForPred, method):
                     scaled_idx = scaleIter(idx, trainIBound, predIBound)
                     ri = evaluateSingleCode(scaled_idx, boundValueForPred, symbolicHistToUse[ref_src_id][ref_snk_id][idx])
                 
-                    if (ri == None):
+                    if ri is None:
                         continue
-                    ri = int(ri)
+                    try:
+                        ri = int(float(ri))
+                    except ValueError as e:
+                        raise ValueError(f"Cannot convert ri to int: {ri}") from e
                 
                     if (ri in histogram.keys()):
                         histogram[ri] += 1 * scaleSampleNumber(len(idx))
@@ -58,13 +65,13 @@ def evaluate(symbolicHistToUse, symBoundsToUse, boundValueForPred, method):
                     
                     prog = symbolicHistSrcSnk[ref_src_id][ref_snk_id][idx]
                     
-                    #print prog
+                    #print(prog)
                     
                     scaled_idx = scaleIter(idx, trainIBound, predIBound)
                     
                     if ("isnk" in prog):
                         if (ref_snk_id not in symbolicIsnk[ref_src_id].keys() or idx not in symbolicIsnk[ref_src_id][ref_snk_id].keys()):
-                            print "No key", idx
+                            print("No key", idx)
                             continue
                         else:
                             Isnkv = symbolicIsnk[ref_src_id][ref_snk_id][idx]
@@ -81,9 +88,12 @@ def evaluate(symbolicHistToUse, symBoundsToUse, boundValueForPred, method):
                     
                     ri = evaluateSingleCode(scaled_idx, boundValueForPred, prog)
                     
-                    if (ri == None):
+                    if ri is None:
                         continue
-                    ri = int(ri)
+                    try:
+                        ri = int(float(ri))
+                    except ValueError as e:
+                        raise ValueError(f"Cannot convert ri to int: {ri}") from e
                     
                     if (ri in histogram.keys()):
                         histogram[ri] += 1 * scaleSampleNumber(len(idx))
@@ -100,7 +110,7 @@ def filterRIHisto(histogram):
             filteredHistogram[key] = histogram[key]
         if (key < 0):
             negCnt += 1
-    print "Filtered", negCnt
+    print("Filtered", negCnt)
     return filteredHistogram
 
 def checkSingleBench(bench_name, num_of_sym_bound, value_assigned_for_prediction, cache_config):
@@ -113,14 +123,14 @@ def checkSingleBench(bench_name, num_of_sym_bound, value_assigned_for_prediction
     sym_isnk               = read_sym_isnk(bench_name, cache_config + ".src_snk")
     sym_ibound_src_only    = readSymbolicIBounds(sym_ri_path + bench_name + ".ibound")
     
-    #print len(sym_ri_src_only)
-    #print len(sym_ri_src_enhanced)
-    #print len(sym_ri_src_snk)
-    #print len(sym_isnk)
-    #print len(sym_ibound_src_only)
+    print(sym_ri_src_only, len(sym_ri_src_only))
+    print(sym_ri_src_enhanced, len(sym_ri_src_enhanced))
+    print(sym_ri_src_snk, len(sym_ri_src_snk))
+    print(sym_isnk, len(sym_isnk))
+    print(sym_ibound_src_only, len(sym_ibound_src_only))
     
     # generate confs to predict
-    #confs = value_assigned_for_prediction
+    # confs = value_assigned_for_prediction
     value_assigned_for_prediction_str = "_".join(map(str, value_assigned_for_prediction))
     
     predicted_mr_src_only = {}
@@ -129,23 +139,23 @@ def checkSingleBench(bench_name, num_of_sym_bound, value_assigned_for_prediction
     traced_mr = {}
     
     # predict for each conf
-    print "start to predict the RI distribution for ", value_assigned_for_prediction
+    print("start to predict the RI distribution for ", value_assigned_for_prediction)
     
     predicted_histogram_src_only = evaluate(sym_ri_src_only, sym_ibound_src_only, value_assigned_for_prediction, "src_only")
     predicted_histogram_src_only = filterRIHisto(predicted_histogram_src_only)
-    print "predicted_histogram_src_only", predicted_histogram_src_only
+    print("predicted_histogram_src_only", predicted_histogram_src_only)
     
     predicted_histogram_src_enhanced = evaluate(sym_ri_src_enhanced, sym_ibound_src_only, value_assigned_for_prediction, "src_enhanced")
     predicted_histogram_src_enhanced = filterRIHisto(predicted_histogram_src_enhanced)
-    print "predicted_histogram_src_enhanced", predicted_histogram_src_enhanced
+    print("predicted_histogram_src_enhanced", predicted_histogram_src_enhanced)
                 
     predicted_histogram_src_snk = evaluate([sym_ri_src_snk, sym_isnk], sym_ibound_src_only, value_assigned_for_prediction, "src_snk")
     predicted_histogram_src_snk = filterRIHisto(predicted_histogram_src_snk)
-    print "predicted_histogram_src_snk", predicted_histogram_src_snk
+    print("predicted_histogram_src_snk", predicted_histogram_src_snk)
     
     traced_histogram = readTraceFile(bench_name, value_assigned_for_prediction, cache_config)
     traced_histogram = filterRIHisto(traced_histogram)
-    print "traced_histogram", traced_histogram
+    print("traced_histogram", traced_histogram)
     
     plotHistoToCompare(predicted_histogram_src_only, predicted_histogram_src_enhanced, predicted_histogram_src_snk, traced_histogram, bench_name, cache_config, value_assigned_for_prediction_str)
     
@@ -159,22 +169,27 @@ if __name__ == "__main__":
 
     #num_of_symbolic_bounds = {"cholesky" : 1, "durbin" : 1, "floyd_warshall" : 1, "gemver" : 1, "gesummv" : 1, "lu" : 1, "ludcmp" : 1, "mvt" : 1, "nussinov" : 1, "stencil" : 1, "trisolv" : 1, "trangle" : 2, "adi" : 2, "atax" : 2, "bicg" : 2, "convolution_2d" : 2, "correlation" : 2, "covariance" : 2, "deriche" : 2, "gramschmidt" : 2, "heat_3d" : 2, "jacobi_1d" : 2, "jacobi_2d" : 2, "seidel_2d" : 2, "symm" : 2, "syr2d" : 2, "syrk" : 2, "trmm" : 2, "convolution_3d" : 3, "doitgen" : 3, "fdtd_2d" : 3, "gemm" : 3, "2mm" : 4, "3mm" : 5, "stencil_tiled" : 2}
 
-    num_of_symbolic_bounds = {"stencil_tiled" : 2}
+    #num_of_symbolic_bounds = {"stencil_tiled" : 2}
+    
+    poly_bench_n_parms = {
+        "2mm": 4, "3mm": 5, "adi": 2, "atax": 2, "bicg": 2, "cholesky": 1, "correlation": 2,
+        "covariance": 2, "deriche": 2, "doitgen": 3, "durbin": 1, "fdtd_2d": 3, "floyd_warshall": 1,
+        "gemm": 3, "gemver": 1, "gesummv": 1, "gramschmidt": 2, "heat_3d": 2, "jacobi_1d": 2,
+        "jacobi_2d": 2, "lu": 1, "ludcmp": 1, "mvt": 1, "nussinov": 1, "seidel_2d": 2, "symm": 2,
+        "syr2d": 2, "syrk": 2, "trisolv": 1, "trmm": 2
+    }
 
     all_predicted_mr_src_only = {}
     all_predicted_mr_src_enhanced = {}
     all_predicted_mr_src_snk = {}
     all_traced_mr = {}
 
-    for bench_name in num_of_symbolic_bounds.keys():
-        #if (bench_name != "stencil" and bench_name != "stencil_tiled"):
-        #    continue
+    for bench_name in poly_bench_n_parms.keys():
         
         # assign 32 to all symbolic bounds
-        # value_assigned_for_prediction = [32] * num_of_symbolic_bounds[bench_name]
-        value_assigned_for_prediction = [32, 16]
+        value_assigned_for_prediction = [32] * poly_bench_n_parms[bench_name]
 
-        predicted_mr_src_only, predicted_mr_src_enhanced, predicted_mr_src_snk, traced_mr = checkSingleBench(bench_name, num_of_symbolic_bounds[bench_name], value_assigned_for_prediction, "cls32_ds8")
+        predicted_mr_src_only, predicted_mr_src_enhanced, predicted_mr_src_snk, traced_mr = checkSingleBench(bench_name, poly_bench_n_parms[bench_name], value_assigned_for_prediction, "cls32_ds8")
         
         all_predicted_mr_src_only[bench_name] = predicted_mr_src_only
         all_predicted_mr_src_enhanced[bench_name] = predicted_mr_src_enhanced

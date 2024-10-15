@@ -1,7 +1,7 @@
 def scaleIter(idx, trainIBound, predIBound):
     scaled_idx = {}
     
-    #print idx, trainIBound, predIBound
+    #print(idx, trainIBound, predIBound)
     
     if (len(trainIBound) != len(predIBound) or len(trainIBound) != len(idx)):
         for i in range(len(idx)):

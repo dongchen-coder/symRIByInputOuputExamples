@@ -36,7 +36,7 @@ def reconstructIterSpace(symBounds, boundValueForPred):
 
 def getRangeForEachDimension(symBounds, boundValue):
 
-    #print symBounds, boundValue
+    #print(symBounds, boundValue)
     iterSpaceMinMax = []
     for key in symBounds.keys():
         minMax = []

@@ -102,7 +102,8 @@ def plotHistoAllBars(histogram_src_predicted, histogram_srcEnhance_predicted, hi
     ri_srcsnk = histogram_srcEnhance_predicted.keys()
     ri_srcsnkplus = histogram_srcsnk_predicted.keys()
     ri_trace = histogram_trace.keys()
-    all_ri = set(ri_src + ri_srcsnk + ri_srcsnkplus + ri_trace)
+    
+    all_ri = set(list(ri_src) + list(ri_srcsnk) + list(ri_srcsnkplus) + list(ri_trace))
     if (-1 in all_ri): all_ri.remove(-1)
     if (0 in all_ri): all_ri.remove(0)
     all_ri = sorted(all_ri)
@@ -180,10 +181,10 @@ def plotMRToCompare(histogram_src_predicted, histogram_srcEnhance_predicted, his
     
     mr_trace = RItoMR(histogram_trace)
 
-    #print "mr src", mr_src_predicted
-    #print "mr srcsnk", mr_srcEnhanced_predicted
-    #print "mr srcsnk+ ", mr_srcsnk_predicted
-    #print "mr trace ", mr_trace
+    #print("mr src", mr_src_predicted)
+    #print("mr srcsnk", mr_srcEnhanced_predicted)
+    #print("mr srcsnk+ ", mr_srcsnk_predicted)
+    #print("mr trace ", mr_trace)
     
     plt.figure(figsize = (4, 1.5))
     

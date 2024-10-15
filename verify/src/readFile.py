@@ -50,7 +50,7 @@ def read_sym_ri(sym_ri_file):
     
     if (os.path.exists(sym_ri_file)):
         f = open(sym_ri_file, "r")
-        print "reading", sym_ri_file
+        print("reading", sym_ri_file)
         
         for line in f:
             if ("Prog" not in line):
@@ -68,7 +68,7 @@ def read_sym_ri(sym_ri_file):
                 symbolicHist[refSrc][refSnk][Isrc] = prog
         f.close()
     else:
-        print "file: ", sym_ri_file, "does not exsits"
+        print("file: ", sym_ri_file, "does not exsits")
     
     return symbolicHist
 
@@ -97,7 +97,7 @@ def readSymbolicIBounds(sym_ibound_file):
     symbolicIBound = {}
     
     if (os.path.exists(sym_ibound_file)):
-        print "reading", sym_ibound_file
+        print("reading", sym_ibound_file)
         
         f = open(sym_ibound_file, "r")
         for line in f:
@@ -108,9 +108,9 @@ def readSymbolicIBounds(sym_ibound_file):
             #if (mode == "src_snk" and "_refsnk_" not in line):
             #    continue
             
-            #print line,
+            #print(line,)
             [refSrc, refSnk, I, prog] = decodeLineIbound(line)
-            #print [refSrc, refSnk, I, prog]
+            #print([refSrc, refSnk, I, prog])
             
             
             if (refSrc not in symbolicIBound.keys()):
@@ -129,7 +129,7 @@ def readSymbolicIBounds(sym_ibound_file):
                     symbolicIBound[refSrc][I_idx][1] = prog
             
     else:
-        print "file:", sym_ibound_file, "does not exsit"
+        print("file:", sym_ibound_file, "does not exsit")
         
     return symbolicIBound
 
@@ -161,7 +161,7 @@ def read_sym_isnk(benchName, surfix):
     while(os.path.exists(path + benchName + ".isnk" + str(IsnkIdx) + "." + surfix)):
         f = open(path + benchName + ".isnk" + str(IsnkIdx) + "." + surfix, "r")
         
-        print "reading", path + benchName + ".isnk" + str(IsnkIdx) + "." + surfix
+        print("reading", path + benchName + ".isnk" + str(IsnkIdx) + "." + surfix)
         
         for line in f:
             if ("Prog" not in line):
@@ -192,7 +192,7 @@ def readTraceFile(name, symBoundValueForPred, cacheConfig):
     file_name += "_trace.txt"
         
     if (os.path.exists(file_name)):
-        print "reading", file_name
+        print("reading", file_name)
         f = open(file_name, 'r')
         for line in f:
             lineList = line.split()
@@ -201,7 +201,7 @@ def readTraceFile(name, symBoundValueForPred, cacheConfig):
             histogram[ri] = cnt
         f.close()
     else:
-        print "file:", file_name, "does not exist"
+        print("file:", file_name, "does not exist")
     
     return histogram
 

@@ -60,7 +60,7 @@ def evaluateIfStatement(dslCode):
                     pCnt -= 1
                 value += dslCode[i]
                 i += 1
-            #print "eval true", value
+            #print("eval true", value)
             return evaluateIfStatement(value)
     if (dslCode[4] == 'F'):
         i = 15
@@ -81,12 +81,12 @@ def evaluateIfStatement(dslCode):
         while(i+1 < len(dslCode)):
             value += dslCode[i]
             i += 1
-        #print "eval false", value
+        #print("eval false", value)
         return evaluateIfStatement(value)
 
 def evaluateSingleCode(idx, symBoundForPred, dslCode):
     
-    #print idx, symBoundForPred, dslCode
+    #print(idx, symBoundForPred, dslCode)
  
     dslCode = dslCode.replace("\n", "")
     for i in range(len(symBoundForPred)):
@@ -97,26 +97,26 @@ def evaluateSingleCode(idx, symBoundForPred, dslCode):
     dslCode = dslCode.replace("&&", "and")
     dslCodeList = re.split('if | then | else ', dslCode)
 
-    #print dslCode
-    #print dslCodeList
+    #print(dslCode)
+    #print(dslCodeList)
 
     #if (len(dslCodeList) > 4): 
-    #    print dslCode
-    #    print dslCodeList
+    #    print(dslCode)
+    #    print(dslCodeList)
     
     dslCodeList = [removeUnbalancedParenthesis(x) for x in dslCodeList]
     dslCodeListValue = []
 
-    #print dslCodeList
+    #print(dslCodeList)
 
     for term in dslCodeList:
         if term == "" or term == " " or term == "    ":
             dslCodeListValue.append("")
             continue
-        exec("result = " + term)
+        result = eval(term)
         dslCodeListValue.append(result)
     
-    #print dslCodeListValue
+    #print(dslCodeListValue)
 
     for i in range(len(dslCodeList)):
         for j in range(len(dslCodeList)):
@@ -134,12 +134,12 @@ def evaluateSingleCode(idx, symBoundForPred, dslCode):
         if (dslCodeListValue[i] != ""):
             dslCode = dslCode.replace(dslCodeList[i], str(dslCodeListValue[i]))
 
-    #print dslCode
+    #print(dslCode)
 
     #if (evaluateIfStatement(dslCode) == None):
-    #    print dslCode
-    #    print dslCodeList
-    #    print dslCodeListValue
-    #    print evaluateIfStatement(dslCode)
+    #    print(dslCode)
+    #    print(dslCodeList)
+    #    print(dslCodeListValue)
+    #    print(evaluateIfStatement(dslCode))
 
     return evaluateIfStatement(dslCode)
