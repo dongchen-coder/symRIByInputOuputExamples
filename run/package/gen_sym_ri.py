@@ -1,16 +1,13 @@
 import os
 import random
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from queue import Queue
-import threading
+from multiprocessing import Manager
 
 # paths to exec and result files
 syn_bin = "../search-based_synthesizer/build/src/symRiSynthesizer"
 data_path = "../data/input-output_examples/"
 result_path = "../data/sym_ri/"
-
-finished_jobs_counter = 0
-counter_lock = threading.Lock()
 
 # clear all generated sym RI
 def clearSymRI(bench):
@@ -46,18 +43,15 @@ def init_files_to_process(bench):
     return files_to_process   
 
 def process_task_queue(task_queue, syn_config):
-    global finished_jobs_counter
     while not task_queue.empty():
         task = task_queue.get()
         if task is None:
             task_queue.task_done()
             break
-        worker_id = threading.get_ident()
+        worker_id = os.getpid()
         print(f"Worker {worker_id} processing task: {task}")
         processIOEFile(task + [syn_config])
         print(f"Worker {worker_id} finished task: {task}")
-        with counter_lock:
-            finished_jobs_counter += 1
         task_queue.task_done()
 
 def gen_sym_ri(bench, syn_config, num_of_cpus):
@@ -65,17 +59,17 @@ def gen_sym_ri(bench, syn_config, num_of_cpus):
     files = init_files_to_process(bench)
     print(f"Total number of jobs to process: {len(files)}")
 
-    task_queue = Queue()
-    for f in files:
-        task_queue.put(f)
+    with Manager() as manager:
+        task_queue = manager.Queue()
+        for f in files:
+            task_queue.put(f)
 
-    with ThreadPoolExecutor(max_workers=num_of_cpus) as executor:
-        futures = [executor.submit(process_task_queue, task_queue, syn_config) for _ in range(num_of_cpus)]
-        for _ in range(num_of_cpus):
-            task_queue.put(None)
-        
-        for future in as_completed(futures):
-            future.result()  # Process the result if needed
+        with ProcessPoolExecutor(max_workers=num_of_cpus) as executor:
+            futures = [executor.submit(process_task_queue, task_queue, syn_config) for _ in range(num_of_cpus)]
+            for _ in range(num_of_cpus):
+                task_queue.put(None)
+            
+            for future in as_completed(futures):
+                future.result()  # To raise exceptions if any
 
-    task_queue.join()
-    print(f"Total number of finished jobs: {finished_jobs_counter}")
+        task_queue.join()
