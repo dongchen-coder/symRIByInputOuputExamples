@@ -4,6 +4,15 @@ This project is trying to explore synthesizing symbolic reuse interval expressio
 
 # How to run this code
 
+## Build synthesisizer
+```sh
+cd search-based_synthesizer
+mkdir build
+cd build
+cmake ..
+make
+```
+
 ## Generate executables to produce the data from PolyBench
 ```sh
 cd bench
