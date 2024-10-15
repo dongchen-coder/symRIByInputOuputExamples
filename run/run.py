@@ -8,15 +8,15 @@ from summarize_sym_ri import summerize_sym_ri
 
 syn_config = {
     "constants_for_predicate" : " -CONSTANTSPRED 1 2",
-    "constants_for_term" : " -CONSTANTSTERM 0 1 2 3 4 5 6",
+    "constants_for_term" : " -CONSTANTSTERM 0 1 2 3 4 5 6 7",
     "int_ops_for_term" : " -INTOPSTERM VAR NUM PLUS TIMES MINUS DIV8",
-    "search_time_for_terms_in_seconds" : " -SEARCHTIMEFORTERMSINSECONDS 20",
-    "search_time_for_preds_in_seconds" : " -SEARCHTIMEFORPREDSINSECONDS 40",
+    "search_time_for_terms_in_seconds" : " -SEARCHTIMEFORTERMSINSECONDS 120",
+    "search_time_for_preds_in_seconds" : " -SEARCHTIMEFORPREDSINSECONDS 60",
     "rules_to_apply" : " -RULESTOAPPLY SrcOnly"
 }
 
-num_of_cpus = 4
-num_of_samples = 200
+num_of_cpus = 64
+num_of_samples = 500
 
 if __name__ == "__main__":
     '''
@@ -29,17 +29,17 @@ if __name__ == "__main__":
         "syr2d": 2, "syrk": 2, "trmm": 2, "doitgen": 3, "convolution_3d": 3,
         "fdtd_2d": 3, "gemm": 3, "2mm": 4, "3mm": 5
     }
-
+    '''
     poly_bench_n_parms = {
         "2mm": 4, "3mm": 5, "adi": 2, "atax": 2, "bicg": 2, "cholesky": 1, "correlation": 2,
         "covariance": 2, "deriche": 2, "doitgen": 3, "durbin": 1, "fdtd_2d": 3, "floyd_warshall": 1,
         "gemm": 3, "gemver": 1, "gesummv": 1, "gramschmidt": 2, "heat_3d": 2, "jacobi_1d": 2,
         "jacobi_2d": 2, "lu": 1, "ludcmp": 1, "mvt": 1, "nussinov": 1, "seidel_2d": 2, "symm": 2,
-        "syr2d": 2, "syrk": 2, trisolv": 1, "trmm": 2
+        "syr2d": 2, "syrk": 2, "trisolv": 1, "trmm": 2
     }
-    '''
-    all_bench_n_parms = {"stencil": 1}
-    #all_bench_n_parms = poly_bench_n_parms
+    
+    #all_bench_n_parms = {"stencil": 1}
+    all_bench_n_parms = poly_bench_n_parms
     train_sizes = [8, 12, 16, 20, 32]
 
     for bench, n_parms in all_bench_n_parms.items():
