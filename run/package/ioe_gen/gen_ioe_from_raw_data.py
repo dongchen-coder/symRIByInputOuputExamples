@@ -123,26 +123,29 @@ def dataframe_to_input_output_examples(bench, cache_config, df, bound_values, sp
             fmin.close()
             fmax.close()
         
-def gen_ioe_from_raw_csv_data(bench, n_paras, train_size, cache_config, sampling_rate = 0.2, max_sampling_number = 20):
+def gen_ioe_from_raw_csv_data(bench, paras, cache_config, sampling_rate = 0.2, max_sampling_number = 20):
     # merge all reuse interval csv files with different train sizes
-    bound_values = [p for p in itertools.product(map(str, train_size), repeat = n_paras)]
+    '''
+    bound_values = [p for p in paras]
     bound_values_ = ['_'.join(p) for p in bound_values]
     bound_values = [' '.join(p) for p in bound_values]
+    '''
 
     print("Reading raw data *",)
+    raw_data_path = "../data/raw_data/"+cache_config+"/"+bench
+    fileList = os.listdir(raw_data_path)
     li = []
-    for bound_value in bound_values_:
-        file_name = "../data/raw_data/"+cache_config+"/"+bench+"/"+bench+"_"+bound_value+".csv"
-        print("Dong", file_name)
-        df = pd.read_csv(file_name, index_col=False, header = 0, lineterminator='\n', sep=',', on_bad_lines='error')
-        df['bound values'] = bound_value.replace('_', ' ')
+    for file_name in fileList:
+        file_name_with_path = raw_data_path + "/" + file_name
+        df = pd.read_csv(file_name_with_path, index_col=False, header = 0, lineterminator='\n', sep=',', on_bad_lines='error')
+        df['bound values'] = " ".join(file_name.replace('.csv','').split('_')[1:])
         li.append(df)
     df = pd.concat(li, axis=0, ignore_index=True)
 
     # sample source iteration vectors
     number_of_unique_src_ivs = len(df.groupby(['source reference ID', 'source iteration vector']).size().reset_index().rename(columns={0:"count"}))
     sampling_rate = min(sampling_rate, float(max_sampling_number) / number_of_unique_src_ivs)
-    
+
     # generate inpout-output examples
     print(f"Sample source I {number_of_unique_src_ivs} with rate {sampling_rate}. Gen IOE for RI *",)
     src_ref_ids = df['source reference ID'].unique().tolist()
@@ -154,6 +157,7 @@ def gen_ioe_from_raw_csv_data(bench, n_paras, train_size, cache_config, sampling
         src_ivs_sampled = sample(src_ivs, int(math.ceil(len(src_ivs) * sampling_rate)))
         for src_iv in src_ivs_sampled:
             df_src_ivs = df_src.loc[df['source iteration vector'] == src_iv]
+            bound_values = df_src_ivs['bound values']
             #print(df_src_ivs)
             dataframe_to_input_output_examples(bench, cache_config, df_src_ivs, bound_values, 'src_only')
         
@@ -164,18 +168,20 @@ def gen_ioe_from_raw_csv_data(bench, n_paras, train_size, cache_config, sampling
             src_ivs = df_src_snk['source iteration vector'].unique().tolist()
             for src_iv in set(src_ivs) & set(src_ivs_sampled):
                 df_src_snk_ivs = df_src_snk.loc[df['source iteration vector'] == src_iv]
+                bound_values = df_src_snk_ivs['bound values']
                 #print(df_src_snk_ivs)
+
                 dataframe_to_input_output_examples(bench, cache_config, df_src_snk_ivs, bound_values, 'src_snk')
                 dataframe_to_input_output_examples(bench, cache_config, df_src_snk_ivs, bound_values, 'src_snk_plus')
-        
 
     # merge all loop induction variable csv files with different train sizes
     print("Gen IOE for Bounds *",)
+    raw_data_path = "../data/raw_data/ibound/"+bench
     li = []
-    for bound_value in bound_values_:
-        file_name = "../data/raw_data/ibound/"+bench+"/"+bench+"_"+bound_value+".csv"
-        df = pd.read_csv(file_name, index_col = None, header = 0)
-        df['bound values'] = bound_value.replace('_', ' ')
+    for file_name in os.listdir(raw_data_path):
+        file_name_with_path = raw_data_path + "/" + file_name
+        df = pd.read_csv(file_name_with_path, index_col = None, header = 0)
+        df['bound values'] = " ".join(file_name.replace('.csv','').split('_')[1:])
         li.append(df)
     df = pd.concat(li, axis=0, ignore_index=True)
     
@@ -184,5 +190,3 @@ def gen_ioe_from_raw_csv_data(bench, n_paras, train_size, cache_config, sampling
         dataframe_to_input_output_examples(bench, cache_config, df_src, bound_values, 'ibound')
 
     print("Finished")
-    return
-

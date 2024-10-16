@@ -17,7 +17,7 @@ syn_config = {
 
 num_of_cpus = 64
 num_of_samples = 500
-regenerate_data = False
+regenerate_data = True
 
 if __name__ == "__main__":
     '''

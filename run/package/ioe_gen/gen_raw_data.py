@@ -8,11 +8,8 @@ def init_raw_data_paths(path, bench):
         os.system("rm -rf " + path + target + "/" + bench)
         os.system("mkdir -p " + path + target + "/" + bench)
 
-    return
-
-def gen_raw_data(bench, n_paras, train_sizes, target, file_format):
-    print(bench)
-    paras = [p for p in itertools.product(train_sizes, repeat = n_paras)]
+def gen_raw_data(bench, paras, target, file_format):
+    
     for p in paras:
         p_str = tuple(map(str, p))
         p_space = ' '.join(p_str)
@@ -27,7 +24,5 @@ def gen_raw_data(bench, n_paras, train_sizes, target, file_format):
         
         cmd = "../bench/bench_bin/" + bench + "_ibound" + exe_surfix + p_space +  " > " + "../data/raw_data/ibound/" + bench + "/" + bench + "_" + p_underscore + "." + file_format
         os.system(cmd)
-    
-    return
 
 

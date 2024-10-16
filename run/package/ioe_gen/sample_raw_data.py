@@ -13,9 +13,8 @@ def init_sampled_raw_data_paths(path, bench):
     return
 
 
-def sample_raw_data(bench, n_paras, train_sizes, target, n_samples):
+def sample_raw_data(bench, paras, target, n_samples):
 
-    paras = [p for p in itertools.product(train_sizes, repeat = n_paras)]
     src_idxs = set()
     for p in paras:
         p_str = map(str, p)
