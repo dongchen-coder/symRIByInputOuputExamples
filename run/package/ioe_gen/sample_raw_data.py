@@ -28,7 +28,7 @@ def sample_raw_data(bench, n_paras, train_sizes, target, n_samples):
                 src_info = line_list[1]
                 src_idxs.add(src_info)
             f.close()
-    
+
     sampled_src_idxs = src_idxs
     if (n_samples < len(src_idxs)):
         sampled_src_idxs = random.sample(src_idxs, n_samples)    

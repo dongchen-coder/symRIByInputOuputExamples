@@ -140,12 +140,11 @@ def gen_ioe_from_raw_csv_data(bench, n_paras, train_size, cache_config, sampling
     df = pd.concat(li, axis=0, ignore_index=True)
 
     # sample source iteration vectors
-    print("Sampling *",)
     number_of_unique_src_ivs = len(df.groupby(['source reference ID', 'source iteration vector']).size().reset_index().rename(columns={0:"count"}))
     sampling_rate = min(sampling_rate, float(max_sampling_number) / number_of_unique_src_ivs)
     
     # generate inpout-output examples
-    print("Gen IOE for RI *",)
+    print(f"Sample source I {number_of_unique_src_ivs} with rate {sampling_rate}. Gen IOE for RI *",)
     src_ref_ids = df['source reference ID'].unique().tolist()
     for src_ref_id in src_ref_ids:
         df_src = df.loc[df['source reference ID'] == src_ref_id]   

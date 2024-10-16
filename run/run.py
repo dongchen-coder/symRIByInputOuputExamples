@@ -17,6 +17,7 @@ syn_config = {
 
 num_of_cpus = 64
 num_of_samples = 500
+regenerate_data = False
 
 if __name__ == "__main__":
     '''
@@ -43,7 +44,8 @@ if __name__ == "__main__":
     train_sizes = [8, 12, 16, 20, 32]
 
     for bench, n_parms in all_bench_n_parms.items():
-        gen_trace([bench, n_parms], train_sizes, "cls32_ds8")
-        gen_input_output_examples([bench, n_parms], train_sizes, num_of_samples)
+        if (regenerate_data):
+            gen_trace([bench, n_parms], train_sizes, "cls32_ds8")
+            gen_input_output_examples([bench, n_parms], train_sizes, num_of_samples)
         gen_sym_ri(bench, syn_config, num_of_cpus)
         summerize_sym_ri(bench, "cls32_ds8")
