@@ -75,24 +75,21 @@ int BaseType::get_number_of_vars(string var_name) {
     if (auto intType = dynamic_cast<IntType*>(this)) {
         return intType->get_number_of_vars(var_name);
     }
-    else if (auto boolType = dynamic_cast<BoolType*>(this)) {
+    if (auto boolType = dynamic_cast<BoolType*>(this)) {
         return boolType->get_number_of_vars(var_name);
     }
-    else {
-        throw runtime_error("BaseType::get_number_of_vars() operates on UNKNOWN type!");
-    }
+    throw runtime_error("BaseType::get_number_of_vars() operates on UNKNOWN type!");
 }
 
 int BaseType::get_exponent_of_var(string var_name) {
     if (auto intType = dynamic_cast<IntType*>(this)) {
         return intType->get_exponent_of_var(var_name);
     }
-    else if (auto boolType = dynamic_cast<BoolType*>(this)) {
+    if (auto boolType = dynamic_cast<BoolType*>(this)) {
         return boolType->get_exponent_of_var(var_name);
     }
-    else {
-        throw runtime_error("BaseType::get_exponent_of_var() operates on UNKNOWN type!");
-    }
+    return 0;
+    //throw runtime_error("BaseType::get_exponent_of_var() operates on UNKNOWN type: " + this->to_string());
 }
 
 /*

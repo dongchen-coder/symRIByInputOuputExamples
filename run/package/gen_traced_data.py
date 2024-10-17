@@ -15,7 +15,6 @@ def gen_trace(bench_n_paras, train_sizes, cache_config):
         trace_file = "../data/traced_data/" + cache_config + "/" + bench + "/" + bench + "_" + cache_config + "_" + sizes_str + "_trace.txt"
         if (os.path.exists(trace_file)):
             continue
-        print("Need to generate trace file: " + trace_file)
         tracing_cmd = "../bench/bench_bin/" + bench +  "_" + cache_config + "_trace " + sizes_str_space
         cmd = tracing_cmd + " > " + trace_file
         os.system(cmd)

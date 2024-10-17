@@ -49,6 +49,11 @@ unification::unification(int depth_bound_for_predicate,
     }
 }
 
+// Signal handler for SIGALRM
+void handle_alarm(int sig) {
+    _exit(1); // Exit the child process immediately
+}
+
 /*
  search function
  */
@@ -68,8 +73,9 @@ string unification::search_node_one_pass(int time_bound_in_seconds, input_output
 #endif
     
     if (pid == 0) {
-        unsigned seconds_left = time_bound_in_seconds;
-        alarm(seconds_left); // no handler (terminate proc)
+        // Child process
+        signal(SIGALRM, handle_alarm); // Set the signal handler for SIGALRM
+        alarm(time_bound_in_seconds);  // Set the alarm
         
         /* do the search */
         if (node->left != NULL && node->right != NULL) {
@@ -101,29 +107,33 @@ string unification::search_node_one_pass(int time_bound_in_seconds, input_output
                                                      node->input_outputs);
             searched_program = bus->search();
         }
-        alarm(0);
         // maybe write (MAX_SECONDS - seconds_left) to a file
         
-        /* write searched program to pipe, to parent process */
-        close(fd[0]);
         write(fd[1], searched_program.c_str(), searched_program.size());
         close(fd[1]);
-        
-        exit(0);
+        exit(0); // Child process exits after completing the search
     } else {
     
-        int status;
-        wait(&status);
+        // Parent process
+        close(fd[1]); // Close the write end of the pipe in the parent
+        waitpid(pid, NULL, 0); // Wait for the child process to finish
         
-        /* read searched program in pipe, to child process */
-        close(fd[1]);
+        char buffer[1024];
+        ssize_t count = read(fd[0], buffer, sizeof(buffer) - 1);
+        if (count > 0) {
+            buffer[count] = '\0';
+            searched_program = buffer;
+        }
+        close(fd[0]);
+        /*
+        // read searched program in pipe, to child process 
         char read_buffer[1000] = {'\0'};
         read(fd[0], read_buffer, sizeof(read_buffer));
         close(fd[0]);
         
         searched_program = read_buffer;
         
-        /* check child process status */
+        // check child process status
         if (WIFSIGNALED(status)) {
             // child was interrupted
             if (WTERMSIG(status) == SIGALRM) {
@@ -150,6 +160,7 @@ string unification::search_node_one_pass(int time_bound_in_seconds, input_output
             }
 #endif
         }
+        */
     }
     
     return searched_program;

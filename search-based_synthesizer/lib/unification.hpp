@@ -103,5 +103,4 @@ private:
     int _num_growing_upperbound;
 };
 
-
 #endif

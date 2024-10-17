@@ -136,6 +136,15 @@ inline string bottomUpSearch::dump_program(BaseType* program) {
     else if (auto times = dynamic_cast<Times*>(program)) {
         return times->to_string();
     }
+    else if (auto div = dynamic_cast<Div*>(program)) {
+        return div->to_string();
+    }
+    else if (auto div8 = dynamic_cast<Div8*>(program)) {
+        return div8->to_string();
+    }
+    else if (auto mn = dynamic_cast<Min*>(program)) {
+        return mn->to_string();
+    }
     else if (auto leftshift = dynamic_cast<Leftshift*>(program)) {
         return leftshift->to_string();
     }
@@ -173,16 +182,8 @@ void bottomUpSearch::dump_program_list(vector<BaseType*> program_list) {
 void bottomUpSearch::dump_program_list() {
     cout << "[";
     for (auto program : _program_list) {
-        if (dynamic_cast<Num*>(program)) cout << dump_program(program) << ", ";
-    }
-    for (auto program : _program_list) {
-        if (dynamic_cast<Times*>(program)) cout << dump_program(program) << ",";
-    }
-    for (auto program : _program_list) {
-        if (dynamic_cast<Plus*>(program)) cout << dump_program(program) << ",";
-    }
-    for (auto program : _program_list) {
-        if (dynamic_cast<Lt*>(program)) cout << dump_program(program) << ",";
+        cout << dump_program(program);
+        if (program != _program_list.back()) cout << ", ";
     }
     cout << "]" << endl;
     return;
@@ -1211,7 +1212,6 @@ void bottomUpSearch::grow(int program_generation) {
     
     for (auto op : _int_ops) {
         if (op == "PLUS" || op == "TIMES" || op == "MINUS" || op == "LEFTSHIFT" || op == "RIGHTSHIFT" || op == "DIV") {
-            int cnt = 0;
             for (int i = 0; i < program_list_length; i++) {
                 for (int j = 0; j < program_list_length; j++) {
                     BaseType* new_expr = grow_one_expr(_program_list[i], _program_list[j], nullptr, op, program_generation);
@@ -1221,7 +1221,7 @@ void bottomUpSearch::grow(int program_generation) {
         }
         else if (op == "DIV8") {
             for (int i = 0; i < program_list_length; i++) {
-                BaseType* new_expr = grow_one_expr(_program_list[i], nullptr, nullptr, "DIV8", program_generation);
+                BaseType* new_expr = grow_one_expr(_program_list[i], nullptr, nullptr, op, program_generation);
                 if (new_expr != nullptr) _program_list.push_back(new_expr);
             }
         }

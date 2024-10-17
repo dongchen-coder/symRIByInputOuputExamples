@@ -476,7 +476,6 @@ void filterNonKeyIOEs(input_outputs_t* input_outputs) {
     
     //cout << bound_space.size() << " ";
     //cout << non_key_ioes.size() << endl;
-    
     it = input_outputs->begin();
     while(it != input_outputs->end()) {
         auto ioe = *it;
@@ -518,7 +517,7 @@ bool readInputOutput(string file_name, input_outputs_t* input_outputs) {
     ifs.close();
     
     //cout << "Resize IOE " << input_outputs->size() << " to ";
-    filterNonKeyIOEs(input_outputs);
+    //filterNonKeyIOEs(input_outputs);
     //cout << input_outputs->size() << endl;
     
     return true;

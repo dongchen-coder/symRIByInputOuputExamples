@@ -27,7 +27,7 @@ def processIOEFile(example):
     suffix = ''
     if (folder != "ibound"):
         suffix = "." + folder
-   
+
     cmd = syn_bin + " -FILE " + data_path + bench + "/" + folder + "/" + f + cmd_option + " > " + result_path + bench + "/" + f + suffix
     os.system(cmd)
 

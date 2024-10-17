@@ -11,13 +11,12 @@ syn_config = {
     "constants_for_term" : " -CONSTANTSTERM 0 1 2 3 4 5 6 7",
     "int_ops_for_term" : " -INTOPSTERM VAR NUM PLUS TIMES MINUS DIV8",
     "search_time_for_terms_in_seconds" : " -SEARCHTIMEFORTERMSINSECONDS 120",
-    "search_time_for_preds_in_seconds" : " -SEARCHTIMEFORPREDSINSECONDS 60",
+    "search_time_for_preds_in_seconds" : " -SEARCHTIMEFORPREDSINSECONDS 120",
     "rules_to_apply" : " -RULESTOAPPLY SrcOnly"
 }
 
 num_of_cpus = 64
 num_of_samples = 500
-regenerate_data = True
 
 if __name__ == "__main__":
     '''
@@ -39,13 +38,11 @@ if __name__ == "__main__":
         "syr2d": 2, "syrk": 2, "trisolv": 1, "trmm": 2
     }
     
-    #all_bench_n_parms = {"stencil": 1}
     all_bench_n_parms = poly_bench_n_parms
     train_sizes = [8, 12, 16, 20, 32]
 
     for bench, n_parms in all_bench_n_parms.items():
-        if (regenerate_data):
-            gen_trace([bench, n_parms], train_sizes, "cls32_ds8")
-            gen_input_output_examples([bench, n_parms], train_sizes, num_of_samples)
+        gen_trace([bench, n_parms], train_sizes, "cls32_ds8")
+        gen_input_output_examples([bench, n_parms], train_sizes, num_of_samples)
         gen_sym_ri(bench, syn_config, num_of_cpus)
         summerize_sym_ri(bench, "cls32_ds8")

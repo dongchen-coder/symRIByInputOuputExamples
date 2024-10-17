@@ -125,12 +125,6 @@ def dataframe_to_input_output_examples(bench, cache_config, df, bound_values, sp
         
 def gen_ioe_from_raw_csv_data(bench, paras, cache_config, sampling_rate = 0.2, max_sampling_number = 20):
     # merge all reuse interval csv files with different train sizes
-    '''
-    bound_values = [p for p in paras]
-    bound_values_ = ['_'.join(p) for p in bound_values]
-    bound_values = [' '.join(p) for p in bound_values]
-    '''
-
     print("Reading raw data *",)
     raw_data_path = "../data/raw_data/"+cache_config+"/"+bench
     fileList = os.listdir(raw_data_path)
@@ -170,7 +164,6 @@ def gen_ioe_from_raw_csv_data(bench, paras, cache_config, sampling_rate = 0.2, m
                 df_src_snk_ivs = df_src_snk.loc[df['source iteration vector'] == src_iv]
                 bound_values = df_src_snk_ivs['bound values']
                 #print(df_src_snk_ivs)
-
                 dataframe_to_input_output_examples(bench, cache_config, df_src_snk_ivs, bound_values, 'src_snk')
                 dataframe_to_input_output_examples(bench, cache_config, df_src_snk_ivs, bound_values, 'src_snk_plus')
 
