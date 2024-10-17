@@ -1,23 +1,23 @@
-durbin_refsrc_0_isrc_31_15_refsnk_0.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc0) then 0 else 2)
-durbin_refsrc_1_isrc_8_2_refsnk_1.ri.cls32_ds8.src_snk Prog: (if (isrc0 < b0) then 0 else 2)
-durbin_refsrc_0_isrc_29_25_refsnk_0.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc1) then 0 else 2)
-durbin_refsrc_3_isrc_23_11_refsnk_4.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc0) then 0 else 1)
-durbin_refsrc_3_isrc_19_8_refsnk_4.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc0) then 0 else 1)
-durbin_refsrc_5_isrc_15_12_refsnk_5.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc0) then 0 else 3)
-durbin_refsrc_4_isrc_10_8_refsnk_4.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc0) then 0 else 3)
-durbin_refsrc_3_isrc_31_7_refsnk_4.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc0) then 0 else (20 - (3 - b0)))
-durbin_refsrc_0_isrc_29_23_refsnk_0.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc1) then 0 else 2)
-durbin_refsrc_6_isrc_10_9_refsnk_5.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc1) then 0 else (4 + (4 * b0)))
-durbin_refsrc_4_isrc_23_10_refsnk_3.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc0) then 0 else 5)
-durbin_refsrc_5_isrc_29_8_refsnk_5.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc0) then 0 else 3)
-durbin_refsrc_1_isrc_10_0_refsnk_1.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc0) then 0 else 2)
-durbin_refsrc_1_isrc_13_8_refsnk_1.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc0) then 0 else 2)
-durbin_refsrc_2_isrc_18_refsnk_0.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc0) then 0 else ((2 * b0) - (4 - b0)))
-durbin_refsrc_8_isrc_8_refsnk_1.ri.cls32_ds8.src_snk Prog: (if (isrc0 < b0) then 0 else (6 + b0))
-durbin_refsrc_4_isrc_31_24_refsnk_4.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc1) then 0 else 3)
-durbin_refsrc_7_isrc_22_1_refsnk_7.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc0) then 0 else 2)
-durbin_refsrc_5_isrc_30_4_refsnk_5.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc0) then 0 else 3)
-durbin_refsrc_7_isrc_26_23_refsnk_1.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc1) then 0 else (15 + b0))
-durbin_refsrc_6_isrc_20_13_refsnk_6.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc0) then 0 else 2)
-durbin_refsrc_6_isrc_16_2_refsnk_6.ri.cls32_ds8.src_snk Prog: (if (isrc0 < b0) then 0 else 2)
-durbin_refsrc_7_isrc_26_8_refsnk_7.ri.cls32_ds8.src_snk Prog: (if (b0 < isrc0) then 0 else 2)
+durbin_refsrc_1_isrc_6_1_refsnk_1.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_0_isrc_23_3_refsnk_0.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_0_isrc_25_0_refsnk_2.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_1_isrc_22_18_refsnk_1.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_5_isrc_27_2_refsnk_5.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_3_isrc_30_17_refsnk_3.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_4_isrc_16_7_refsnk_3.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_4_isrc_21_11_refsnk_4.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_8_isrc_22_refsnk_1.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_7_isrc_5_2_refsnk_7.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_3_isrc_26_5_refsnk_3.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_7_isrc_30_22_refsnk_7.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_2_isrc_26_refsnk_0.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_5_isrc_11_7_refsnk_6.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_4_isrc_15_13_refsnk_4.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_1_isrc_27_4_refsnk_1.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_0_isrc_17_10_refsnk_0.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_6_isrc_29_17_refsnk_6.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_7_isrc_26_15_refsnk_1.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_6_isrc_9_4_refsnk_6.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_6_isrc_28_19_refsnk_5.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_3_isrc_13_1_refsnk_3.ri.cls32_ds8.src_snk Prog: 0
+durbin_refsrc_5_isrc_31_29_refsnk_5.ri.cls32_ds8.src_snk Prog: 0

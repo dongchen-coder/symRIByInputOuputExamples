@@ -1,23 +1,25 @@
-bicg_refsrc_1_isrc_15.ri.cls32_ds8.src_only Prog: (if (b0 < isrc0) then 0 else 5)
-bicg_refsrc_2_isrc_10_21.ri.cls32_ds8.src_only Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else 3)
-bicg_refsrc_0_isrc_14.ri.cls32_ds8.src_only Prog: (if (b1 < isrc0) then 0 else 1)
-bicg_refsrc_6_isrc_23_6.ri.cls32_ds8.src_only Prog: (if (b0 < isrc0) then 0 else 3)
-bicg_refsrc_2_isrc_6_13.ri.cls32_ds8.src_only Prog: (if (b1 < isrc1) then 0 else 3)
-bicg_refsrc_6_isrc_9_26.ri.cls32_ds8.src_only Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else 3)
-bicg_refsrc_6_isrc_8_24.ri.cls32_ds8.src_only Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else 3)
-bicg_refsrc_4_isrc_5_26.ri.cls32_ds8.src_only Prog: (if (b1 < isrc1) then 0 else 3)
-bicg_refsrc_5_isrc_6_18.ri.cls32_ds8.src_only Prog: (if (b1 < isrc1) then 0 else 5)
-bicg_refsrc_4_isrc_12_13.ri.cls32_ds8.src_only Prog: (if ((isrc1 < b1) && (isrc1 < b0)) then 0 else 3)
-bicg_refsrc_3_isrc_10_31.ri.cls32_ds8.src_only Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else 9)
-bicg_refsrc_2_isrc_31_0.ri.cls32_ds8.src_only Prog: (if (b0 < isrc0) then 0 else 3)
-bicg_refsrc_3_isrc_13_25.ri.cls32_ds8.src_only Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else 8)
-bicg_refsrc_7_isrc_2_2.ri.cls32_ds8.src_only Prog: 0
-bicg_refsrc_7_isrc_6_10.ri.cls32_ds8.src_only Prog: (if (b1 < isrc1) then 0 else 5)
-bicg_refsrc_4_isrc_0_29.ri.cls32_ds8.src_only Prog: (if (b1 < isrc1) then 0 else 3)
-bicg_refsrc_9_isrc_30_12.ri.cls32_ds8.src_only Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else 5)
-bicg_refsrc_9_isrc_24_7.ri.cls32_ds8.src_only Prog: (if (b0 < isrc0) then 0 else (if ((2 * b1) < isrc0) then 1 else 5))
-bicg_refsrc_5_isrc_6_29.ri.cls32_ds8.src_only Prog: (if (b1 < isrc1) then 0 else 5)
-bicg_refsrc_9_isrc_13_11.ri.cls32_ds8.src_only Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else (if (b1 < isrc0) then 1 else 5))
-bicg_refsrc_3_isrc_5_11.ri.cls32_ds8.src_only Prog: (if (b1 < isrc1) then 0 else (2 - ((b1 / 8) - 8)))
-bicg_refsrc_8_isrc_15_16.ri.cls32_ds8.src_only Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else 8)
-bicg_refsrc_8_isrc_10_22.ri.cls32_ds8.src_only Prog: (if ((isrc1 < b1) && (isrc0 < b0)) then 0 else 8)
+bicg_refsrc_2_isrc_22_17.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_2_isrc_0_9.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_1_isrc_31.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_0_isrc_10.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_4_isrc_14_28.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_4_isrc_29_6.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_6_isrc_30_6.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_5_isrc_2_20.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_5_isrc_15_14.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_3_isrc_25_27.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_2_isrc_21_12.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_7_isrc_29_28.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_8_isrc_21_24.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_8_isrc_15_30.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_6_isrc_27_3.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_3_isrc_23_28.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_9_isrc_11_8.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_4_isrc_17_0.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_9_isrc_10_12.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_7_isrc_27_13.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_5_isrc_22_24.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_3_isrc_14_16.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_8_isrc_3_23.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_6_isrc_0_17.ri.cls32_ds8.src_only Prog: 0
+bicg_refsrc_9_isrc_27_27.ri.cls32_ds8.src_only Prog: 0
