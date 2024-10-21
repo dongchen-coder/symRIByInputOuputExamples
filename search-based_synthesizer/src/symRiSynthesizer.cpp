@@ -503,13 +503,12 @@ bool readInputOutput(string file_name, input_outputs_t* input_outputs) {
         stringstream ss(line);
         string var;
         int value;
-        while (ss >> var) {
-            ss >> value;
+        while (ss >> var >> value) {
             input_output[var] = value;
+            cout << "var: " << var << " value: " << value << endl;
         }
         
         if (!input_output.empty()) {
-            //input_output["_out"] /= 10;
             input_outputs->push_back(input_output);
         }
     }

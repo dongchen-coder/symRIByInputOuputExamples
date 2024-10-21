@@ -535,4 +535,3 @@ string unification::get_searched_program() {
     }
     return "Not yet founded, (T^T)";
 }
-

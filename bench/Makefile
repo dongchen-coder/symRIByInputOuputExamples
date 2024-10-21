@@ -1,7 +1,7 @@
 POLY_BENCH_DIR=./poly_bench
 BENCH_BIN_DIR=./bench_bin
 
-bench=stencil stencil_tiled 2mm 3mm adi atax bicg cholesky correlation covariance deriche doitgen durbin fdtd_2d floyd_warshall gemm gemver gesummv gramschmidt heat_3d jacobi_1d jacobi_2d lu ludcmp mvt nussinov seidel_2d symm syr2d syrk trisolv trmm convolution_2d convolution_3d trangle
+bench=stencil stencil-tiled 2mm 3mm adi atax bicg cholesky correlation covariance deriche doitgen durbin fdtd-2d floyd-warshall gemm gemver gesummv gramschmidt heat-3d jacobi-1d jacobi-2d lu ludcmp mvt nussinov seidel-2d symm syr2d syrk trisolv trmm convolution-2d convolution-3d trangle
 
 CC=g++
 CCFLAG= -std=c++11 -O2 -pipe #-save-temps=obj

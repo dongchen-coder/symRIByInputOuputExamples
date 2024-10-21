@@ -97,6 +97,7 @@ def dataframe_to_input_output_examples(bench, cache_config, df, bound_values, sp
             entry+= '_out ' + snk_iv[snk_iv_idx] + '\n'           
             f.close()
 
+
     if (spec == 'ibound'):
         src_ref_id = df['source reference ID'][0]
         num_of_nested_loops = len(df['iteration vector'][0].strip().split(' '))
@@ -152,7 +153,6 @@ def gen_ioe_from_raw_csv_data(bench, paras, cache_config, sampling_rate = 0.2, m
         for src_iv in src_ivs_sampled:
             df_src_ivs = df_src.loc[df['source iteration vector'] == src_iv]
             bound_values = df_src_ivs['bound values']
-            #print(df_src_ivs)
             dataframe_to_input_output_examples(bench, cache_config, df_src_ivs, bound_values, 'src_only')
         
         # input-output examples for source sink (+)
