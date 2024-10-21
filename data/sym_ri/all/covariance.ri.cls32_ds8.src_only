@@ -1,29 +1,27 @@
-covariance_refsrc_2_isrc_25_22.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_0_isrc_14.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_3_isrc_9_5.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_4_isrc_14.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_1_isrc_29_29.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_8_isrc_30_5.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_9_isrc_8_12.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_7_isrc_9_20.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_10_isrc_26_26_28.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_13_isrc_8_31_15.ri.cls32_ds8.src_only Prog: (if (b1 < (2 + isrc2)) then 1 else 3)
-covariance_refsrc_11_isrc_25_29_9.ri.cls32_ds8.src_only Prog: (3 + (4 * b1))
-covariance_refsrc_12_isrc_28_31_4.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_5_isrc_0.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_11_isrc_13_29_0.ri.cls32_ds8.src_only Prog: (3 + (4 * b1))
-covariance_refsrc_13_isrc_25_25_20.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_13_isrc_8_19_22.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_12_isrc_3_7_12.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_12_isrc_21_26_27.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_10_isrc_17_22_15.ri.cls32_ds8.src_only Prog: (3 + (4 * b1))
-covariance_refsrc_12_isrc_23_26_22.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_10_isrc_13_18_5.ri.cls32_ds8.src_only Prog: (3 + (4 * b1))
-covariance_refsrc_14_isrc_10_25.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_10_isrc_4_29_17.ri.cls32_ds8.src_only Prog: (3 + (4 * b1))
-covariance_refsrc_10_isrc_4_26_8.ri.cls32_ds8.src_only Prog: (3 + (4 * b1))
-covariance_refsrc_11_isrc_0_18_13.ri.cls32_ds8.src_only Prog: (3 + (4 * b1))
-covariance_refsrc_13_isrc_5_6_19.ri.cls32_ds8.src_only Prog: (0 - ((5 - b1) / 8))
-covariance_refsrc_13_isrc_8_14_30.ri.cls32_ds8.src_only Prog: 0
-covariance_refsrc_11_isrc_20_20_9.ri.cls32_ds8.src_only Prog: (2 + (4 * b1))
-covariance_refsrc_12_isrc_7_8_5.ri.cls32_ds8.src_only Prog: 0
+covariance_refsrc_4_isrc_10.ri.cls32_ds8.src_only Prog: 1
+covariance_refsrc_5_isrc_1.ri.cls32_ds8.src_only Prog: 1
+covariance_refsrc_2_isrc_9_31.ri.cls32_ds8.src_only Prog: 1
+covariance_refsrc_10_isrc_1_25_1.ri.cls32_ds8.src_only Prog: (3 + (4 * b1))
+covariance_refsrc_9_isrc_6_30.ri.cls32_ds8.src_only Prog: 3
+covariance_refsrc_10_isrc_7_10_3.ri.cls32_ds8.src_only Prog: (3 + (4 * b1))
+covariance_refsrc_1_isrc_1_29.ri.cls32_ds8.src_only Prog: (3 + (3 * b1))
+covariance_refsrc_12_isrc_18_23_25.ri.cls32_ds8.src_only Prog: 1
+covariance_refsrc_12_isrc_2_13_17.ri.cls32_ds8.src_only Prog: 1
+covariance_refsrc_10_isrc_17_26_8.ri.cls32_ds8.src_only Prog: (3 + (4 * b1))
+covariance_refsrc_0_isrc_6.ri.cls32_ds8.src_only Prog: 2
+covariance_refsrc_3_isrc_5_12.ri.cls32_ds8.src_only Prog: 2
+covariance_refsrc_10_isrc_9_22_16.ri.cls32_ds8.src_only Prog: (3 + (4 * b1))
+covariance_refsrc_10_isrc_8_31_18.ri.cls32_ds8.src_only Prog: (3 + (4 * b1))
+covariance_refsrc_7_isrc_15_19.ri.cls32_ds8.src_only Prog: 1
+covariance_refsrc_8_isrc_30_30.ri.cls32_ds8.src_only Prog: 2
+covariance_refsrc_6_isrc_18_14.ri.cls32_ds8.src_only Prog: 3
+covariance_refsrc_12_isrc_3_17_10.ri.cls32_ds8.src_only Prog: 1
+covariance_refsrc_13_isrc_25_28_5.ri.cls32_ds8.src_only Prog: 3
+covariance_refsrc_12_isrc_6_9_2.ri.cls32_ds8.src_only Prog: 1
+covariance_refsrc_12_isrc_11_24_14.ri.cls32_ds8.src_only Prog: 1
+covariance_refsrc_13_isrc_25_26_3.ri.cls32_ds8.src_only Prog: 3
+covariance_refsrc_13_isrc_6_17_22.ri.cls32_ds8.src_only Prog: 3
+covariance_refsrc_14_isrc_6_20.ri.cls32_ds8.src_only Prog: 2
+covariance_refsrc_13_isrc_5_9_6.ri.cls32_ds8.src_only Prog: 3
+covariance_refsrc_13_isrc_3_18_21.ri.cls32_ds8.src_only Prog: 3
+covariance_refsrc_11_isrc_6_20_19.ri.cls32_ds8.src_only Prog: (3 + (4 * b1))
