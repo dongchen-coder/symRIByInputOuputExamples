@@ -16,7 +16,7 @@ syn_config = {
 }
 
 num_of_cpus = 64
-num_of_samples = 500g
+num_of_samples = 500
 
 if __name__ == "__main__":
     '''
