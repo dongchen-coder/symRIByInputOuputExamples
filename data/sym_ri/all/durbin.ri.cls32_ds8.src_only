@@ -1,23 +1,18 @@
-durbin_refsrc_4_isrc_26_1.ri.cls32_ds8.src_only Prog: (4 + (2 * b0))
-durbin_refsrc_4_isrc_25_24.ri.cls32_ds8.src_only Prog: 3
-durbin_refsrc_3_isrc_27_7.ri.cls32_ds8.src_only Prog: (5 + b0)
-durbin_refsrc_4_isrc_30_2.ri.cls32_ds8.src_only Prog: 3
-durbin_refsrc_0_isrc_21_3.ri.cls32_ds8.src_only Prog: 2
-durbin_refsrc_0_isrc_13_10.ri.cls32_ds8.src_only Prog: 2
-durbin_refsrc_1_isrc_24_12.ri.cls32_ds8.src_only Prog: 2
-durbin_refsrc_6_isrc_16_7.ri.cls32_ds8.src_only Prog: ((14 + b0) - ((b0 - 5) - 49))
-durbin_refsrc_3_isrc_23_9.ri.cls32_ds8.src_only Prog: 3
-durbin_refsrc_3_isrc_29_6.ri.cls32_ds8.src_only Prog: 3
-durbin_refsrc_1_isrc_23_5.ri.cls32_ds8.src_only Prog: 2
-durbin_refsrc_0_isrc_7_2.ri.cls32_ds8.src_only Prog: 10
-durbin_refsrc_1_isrc_8_7.ri.cls32_ds8.src_only Prog: 3
-durbin_refsrc_5_isrc_14_10.ri.cls32_ds8.src_only Prog: 3
-durbin_refsrc_5_isrc_26_4.ri.cls32_ds8.src_only Prog: 3
-durbin_refsrc_5_isrc_22_7.ri.cls32_ds8.src_only Prog: (21 - (2 - b0))
-durbin_refsrc_6_isrc_22_13.ri.cls32_ds8.src_only Prog: 2
-durbin_refsrc_7_isrc_16_13.ri.cls32_ds8.src_only Prog: 2
-durbin_refsrc_7_isrc_27_16.ri.cls32_ds8.src_only Prog: 2
-durbin_refsrc_6_isrc_11_2.ri.cls32_ds8.src_only Prog: 2
-durbin_refsrc_8_isrc_17.ri.cls32_ds8.src_only Prog: (b0 - ((b0 - 4) - 30))
-durbin_refsrc_7_isrc_31_24.ri.cls32_ds8.src_only Prog: 2
-durbin_refsrc_2_isrc_17.ri.cls32_ds8.src_only Prog: ((35 + b0) - ((b0 - 3) - 49))
+durbin_refsrc_1_isrc_14_9.ri.cls32_ds8.src_only Prog: 2
+durbin_refsrc_0_isrc_20_4.ri.cls32_ds8.src_only Prog: 2
+durbin_refsrc_3_isrc_31_0.ri.cls32_ds8.src_only Prog: 3
+durbin_refsrc_5_isrc_15_0.ri.cls32_ds8.src_only Prog: 3
+durbin_refsrc_1_isrc_13_9.ri.cls32_ds8.src_only Prog: 2
+durbin_refsrc_3_isrc_10_2.ri.cls32_ds8.src_only Prog: 3
+durbin_refsrc_7_isrc_21_17.ri.cls32_ds8.src_only Prog: 2
+durbin_refsrc_7_isrc_22_21.ri.cls32_ds8.src_only Prog: 1
+durbin_refsrc_4_isrc_27_1.ri.cls32_ds8.src_only Prog: 3
+durbin_refsrc_7_isrc_22_12.ri.cls32_ds8.src_only Prog: 2
+durbin_refsrc_5_isrc_20_13.ri.cls32_ds8.src_only Prog: 3
+durbin_refsrc_6_isrc_11_5.ri.cls32_ds8.src_only Prog: 2
+durbin_refsrc_6_isrc_27_6.ri.cls32_ds8.src_only Prog: 2
+durbin_refsrc_4_isrc_5_3.ri.cls32_ds8.src_only Prog: 3
+durbin_refsrc_4_isrc_23_12.ri.cls32_ds8.src_only Prog: 3
+durbin_refsrc_6_isrc_24_4.ri.cls32_ds8.src_only Prog: 2
+durbin_refsrc_5_isrc_20_16.ri.cls32_ds8.src_only Prog: 3
+durbin_refsrc_1_isrc_26_18.ri.cls32_ds8.src_only Prog: 2
