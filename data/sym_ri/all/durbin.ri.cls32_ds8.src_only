@@ -1,18 +1,19 @@
-durbin_refsrc_1_isrc_14_9.ri.cls32_ds8.src_only Prog: 2
-durbin_refsrc_0_isrc_20_4.ri.cls32_ds8.src_only Prog: 2
-durbin_refsrc_3_isrc_31_0.ri.cls32_ds8.src_only Prog: 3
-durbin_refsrc_5_isrc_15_0.ri.cls32_ds8.src_only Prog: 3
-durbin_refsrc_1_isrc_13_9.ri.cls32_ds8.src_only Prog: 2
-durbin_refsrc_3_isrc_10_2.ri.cls32_ds8.src_only Prog: 3
-durbin_refsrc_7_isrc_21_17.ri.cls32_ds8.src_only Prog: 2
-durbin_refsrc_7_isrc_22_21.ri.cls32_ds8.src_only Prog: 1
-durbin_refsrc_4_isrc_27_1.ri.cls32_ds8.src_only Prog: 3
-durbin_refsrc_7_isrc_22_12.ri.cls32_ds8.src_only Prog: 2
-durbin_refsrc_5_isrc_20_13.ri.cls32_ds8.src_only Prog: 3
-durbin_refsrc_6_isrc_11_5.ri.cls32_ds8.src_only Prog: 2
-durbin_refsrc_6_isrc_27_6.ri.cls32_ds8.src_only Prog: 2
-durbin_refsrc_4_isrc_5_3.ri.cls32_ds8.src_only Prog: 3
-durbin_refsrc_4_isrc_23_12.ri.cls32_ds8.src_only Prog: 3
-durbin_refsrc_6_isrc_24_4.ri.cls32_ds8.src_only Prog: 2
-durbin_refsrc_5_isrc_20_16.ri.cls32_ds8.src_only Prog: 3
-durbin_refsrc_1_isrc_26_18.ri.cls32_ds8.src_only Prog: 2
+durbin_refsrc_1_isrc_13_7.ri.cls32_ds8.src_only Prog: 24
+durbin_refsrc_5_isrc_9_4.ri.cls32_ds8.src_only Prog: 3
+durbin_refsrc_3_isrc_25_18.ri.cls32_ds8.src_only Prog: 3
+durbin_refsrc_0_isrc_23_6.ri.cls32_ds8.src_only Prog: ((4 * b0) - (1 - b0))
+durbin_refsrc_1_isrc_21_4.ri.cls32_ds8.src_only Prog: 2
+durbin_refsrc_5_isrc_17_2.ri.cls32_ds8.src_only Prog: 3
+durbin_refsrc_3_isrc_24_12.ri.cls32_ds8.src_only Prog: 3
+durbin_refsrc_0_isrc_24_9.ri.cls32_ds8.src_only Prog: 2
+durbin_refsrc_1_isrc_25_16.ri.cls32_ds8.src_only Prog: 2
+durbin_refsrc_6_isrc_26_14.ri.cls32_ds8.src_only Prog: 2
+durbin_refsrc_3_isrc_16_3.ri.cls32_ds8.src_only Prog: 28
+durbin_refsrc_4_isrc_21_15.ri.cls32_ds8.src_only Prog: 3
+durbin_refsrc_4_isrc_22_19.ri.cls32_ds8.src_only Prog: 3
+durbin_refsrc_4_isrc_26_11.ri.cls32_ds8.src_only Prog: 2
+durbin_refsrc_7_isrc_27_2.ri.cls32_ds8.src_only Prog: 2
+durbin_refsrc_7_isrc_1_0.ri.cls32_ds8.src_only Prog: 1
+durbin_refsrc_7_isrc_31_1.ri.cls32_ds8.src_only Prog: 2
+durbin_refsrc_6_isrc_26_23.ri.cls32_ds8.src_only Prog: (28 + (3 * b0))
+durbin_refsrc_6_isrc_31_16.ri.cls32_ds8.src_only Prog: 2

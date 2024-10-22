@@ -1,28 +1,32 @@
-nussinov_refsrc_2_isrc_7_23.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_0_isrc_16_28.ri.cls32_ds8.src_only Prog: 2
-nussinov_refsrc_3_isrc_7_12.ri.cls32_ds8.src_only Prog: 2
-nussinov_refsrc_1_isrc_6_8.ri.cls32_ds8.src_only Prog: (1 - ((b0 - b0) - 10))
-nussinov_refsrc_0_isrc_12_17.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_4_isrc_24_29.ri.cls32_ds8.src_only Prog: 3
-nussinov_refsrc_5_isrc_2_22.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_1_isrc_5_26.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_2_isrc_6_24.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_5_isrc_25_30.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_4_isrc_1_15.ri.cls32_ds8.src_only Prog: 3
-nussinov_refsrc_10_isrc_8_18.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_14_isrc_3_11.ri.cls32_ds8.src_only Prog: 3
-nussinov_refsrc_8_isrc_7_28.ri.cls32_ds8.src_only Prog: ((2 * b0) - (5 - b0))
-nussinov_refsrc_13_isrc_22_23.ri.cls32_ds8.src_only Prog: 2
-nussinov_refsrc_8_isrc_5_7.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_15_isrc_22_27.ri.cls32_ds8.src_only Prog: 2
-nussinov_refsrc_12_isrc_6_7.ri.cls32_ds8.src_only Prog: (if (b0 < (2 * isrc0)) then 9 else (3 * b0))
-nussinov_refsrc_11_isrc_15_16.ri.cls32_ds8.src_only Prog: 2
-nussinov_refsrc_17_isrc_28_30.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_3_isrc_12_18.ri.cls32_ds8.src_only Prog: 2
-nussinov_refsrc_6_isrc_12_20.ri.cls32_ds8.src_only Prog: 4
-nussinov_refsrc_14_isrc_2_18.ri.cls32_ds8.src_only Prog: 3
-nussinov_refsrc_6_isrc_2_14.ri.cls32_ds8.src_only Prog: 4
-nussinov_refsrc_15_isrc_16_21.ri.cls32_ds8.src_only Prog: 4
-nussinov_refsrc_10_isrc_4_8.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_16_isrc_27_29.ri.cls32_ds8.src_only Prog: 15
-nussinov_refsrc_17_isrc_1_27.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_1_isrc_4_21.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_0_isrc_5_15.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_1_isrc_24_28.ri.cls32_ds8.src_only Prog: (1 - (0 - (b0 / 3)))
+nussinov_refsrc_5_isrc_12_24.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_6_isrc_0_25.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_3_isrc_7_17.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_8_isrc_24_28.ri.cls32_ds8.src_only Prog: (2 - ((b0 - b0) - 21))
+nussinov_refsrc_11_isrc_5_6.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_13_isrc_18_19.ri.cls32_ds8.src_only Prog: (if (b0 < (2 + isrc1)) then 2 else 5)
+nussinov_refsrc_0_isrc_5_28.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_2_isrc_14_19.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_6_isrc_23_28.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_5_isrc_8_12.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_4_isrc_6_9.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_4_isrc_15_25.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_8_isrc_16_24.ri.cls32_ds8.src_only Prog: (7 + b0)
+nussinov_refsrc_10_isrc_13_18.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_3_isrc_17_30.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_2_isrc_25_30.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_10_isrc_0_18.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_17_isrc_5_10.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_9_isrc_0_5.ri.cls32_ds8.src_only Prog: 27
+nussinov_refsrc_16_isrc_15_25.ri.cls32_ds8.src_only Prog: (15 + b0)
+nussinov_refsrc_15_isrc_21_27.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_7_isrc_16_28.ri.cls32_ds8.src_only Prog: (14 * b0)
+nussinov_refsrc_14_isrc_3_13.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_15_isrc_3_18.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_14_isrc_9_11.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_12_isrc_16_17.ri.cls32_ds8.src_only Prog: 6
+nussinov_refsrc_16_isrc_3_21.ri.cls32_ds8.src_only Prog: (15 + (2 * b0))
+nussinov_refsrc_9_isrc_21_26.ri.cls32_ds8.src_only Prog: (b0 - 5)
+nussinov_refsrc_17_isrc_2_28.ri.cls32_ds8.src_only Prog: 1
