@@ -31,14 +31,14 @@ def processIOEFile(example):
     cmd = syn_bin + " -FILE " + data_path + bench + "/" + folder + "/" + f + cmd_option + " > " + result_path + bench + "/" + f + suffix
     os.system(cmd)
 
-def init_files_to_process(bench):
+def init_files_to_process(bench, cache_config, num_of_ri_examples_in_total):
     files_to_process = []
     for folder in ["ibound", "src_only", "src_snk", "src_snk_plus"]:
         filesInFolder = os.listdir(data_path + bench + "/" + folder)
-        filesCLS = list(filter(lambda x : "cls32_ds8" in x or "ibound" in x, filesInFolder))
-        if (len(filesCLS) > 200 and folder != "ibound"):
+        filesCLS = list(filter(lambda x : cache_config in x or "ibound" in x, filesInFolder))
+        if (len(filesCLS) > num_of_ri_examples_in_total and folder != "ibound"):
             random.shuffle(filesCLS)
-            filesCLS = filesCLS[0:200]
+            filesCLS = filesCLS[0:num_of_ri_examples_in_total]
         files_to_process += [[folder, bench, f] for f in filesCLS]
     return files_to_process   
 
@@ -54,9 +54,9 @@ def process_task_queue(task_queue, syn_config):
         print(f"Worker {worker_id} finished task: {task}")
         task_queue.task_done()
 
-def gen_sym_ri(bench, syn_config, num_of_cpus):
+def gen_sym_ri(bench, cache_config, syn_config, num_of_cpus, num_of_ri_examples_in_total):
     clearSymRI(bench)
-    files = init_files_to_process(bench)
+    files = init_files_to_process(bench, cache_config, num_of_ri_examples_in_total)
     print(f"Total number of jobs to process: {len(files)}")
 
     with Manager() as manager:

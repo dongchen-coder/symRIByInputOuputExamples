@@ -23,7 +23,10 @@ bench_gen:
 
 trace_gen:
 	echo "#define TRACE"  >  ./utility/rt_conf.h
+	echo "#define CLS 1"  >> ./utility/rt_conf.h
+	echo "#define DS 1"   >> ./utility/rt_conf.h
+	$(foreach name, $(bench), $(CC) -std=c++11 -O -o $(BENCH_BIN_DIR)/$(name)_elm_trace $(POLY_BENCH_DIR)/$(name).cpp ;)
+	echo "#define TRACE"  >  ./utility/rt_conf.h
 	echo "#define CLS 32" >> ./utility/rt_conf.h
 	echo "#define DS 8"   >> ./utility/rt_conf.h	
 	$(foreach name, $(bench), $(CC) -std=c++11 -O -o $(BENCH_BIN_DIR)/$(name)_cls32_ds8_trace $(POLY_BENCH_DIR)/$(name).cpp ;)
-	

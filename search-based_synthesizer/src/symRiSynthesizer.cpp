@@ -505,7 +505,7 @@ bool readInputOutput(string file_name, input_outputs_t* input_outputs) {
         int value;
         while (ss >> var >> value) {
             input_output[var] = value;
-            cout << "var: " << var << " value: " << value << endl;
+            //cout << "var: " << var << " value: " << value << endl;
         }
         
         if (!input_output.empty()) {

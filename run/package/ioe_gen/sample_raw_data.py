@@ -30,6 +30,7 @@ def sample_raw_data(bench, paras, target, n_samples):
 
     sampled_src_idxs = src_idxs
     if (n_samples < len(src_idxs)):
+        print("the number of source indices in larger than the number of samples", len(src_idxs), "reduce to", n_samples)
         sampled_src_idxs = random.sample(src_idxs, n_samples)    
 
     for p in paras:

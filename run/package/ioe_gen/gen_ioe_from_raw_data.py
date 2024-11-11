@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import math
-import itertools
+import random
 from random import sample
 
 def init_ioe_paths(path, bench):
@@ -124,7 +124,7 @@ def dataframe_to_input_output_examples(bench, cache_config, df, bound_values, sp
             fmin.close()
             fmax.close()
         
-def gen_ioe_from_raw_csv_data(bench, paras, cache_config, sampling_rate = 0.2, max_sampling_number = 20):
+def gen_ioe_from_raw_csv_data(bench, cache_config, sample_rate_for_src_iteration, max_sampled_iterations):
     # merge all reuse interval csv files with different train sizes
     print("Reading raw data *",)
     raw_data_path = "../data/raw_data/"+cache_config+"/"+bench
@@ -137,19 +137,19 @@ def gen_ioe_from_raw_csv_data(bench, paras, cache_config, sampling_rate = 0.2, m
         li.append(df)
     df = pd.concat(li, axis=0, ignore_index=True)
 
-    # sample source iteration vectors
-    number_of_unique_src_ivs = len(df.groupby(['source reference ID', 'source iteration vector']).size().reset_index().rename(columns={0:"count"}))
-    sampling_rate = min(sampling_rate, float(max_sampling_number) / number_of_unique_src_ivs)
-
     # generate inpout-output examples
-    print(f"Sample source I {number_of_unique_src_ivs} with rate {sampling_rate}. Gen IOE for RI *",)
     src_ref_ids = df['source reference ID'].unique().tolist()
     for src_ref_id in src_ref_ids:
         df_src = df.loc[df['source reference ID'] == src_ref_id]   
-        
+
         # input-output examples for source only
         src_ivs = df_src['source iteration vector'].unique().tolist()
-        src_ivs_sampled = sample(src_ivs, int(math.ceil(len(src_ivs) * sampling_rate)))
+        src_ivs_sampled = sample(src_ivs, int(math.ceil(len(src_ivs) * sample_rate_for_src_iteration)))
+        if (len(src_ivs_sampled) > max_sampled_iterations):
+            random.shuffle(src_ivs_sampled)
+            src_ivs_sampled = src_ivs_sampled[:max_sampled_iterations]
+        print("Sampling source iteration vectors", len(src_ivs), len(src_ivs_sampled))
+
         for src_iv in src_ivs_sampled:
             df_src_ivs = df_src.loc[df['source iteration vector'] == src_iv]
             bound_values = df_src_ivs['bound values']
