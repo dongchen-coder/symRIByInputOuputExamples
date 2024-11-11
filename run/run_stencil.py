@@ -19,7 +19,8 @@ num_of_cpus = 8
 num_of_samples_for_bounds = 10**18
 sample_rate_for_src_iteration = 0.1
 max_sampled_iterations = 200
-num_of_ri_examples_in_total = 500
+num_of_ri_examples_in_total = 200
+cache_config = "cls32_ds8"
 
 if __name__ == "__main__":
     
@@ -28,7 +29,7 @@ if __name__ == "__main__":
     verify_sizes = {"stencil": [64], "stencil_tiled": [64, 16]}
 
     for bench, n_parms in all_bench_n_parms.items():
-        gen_trace(bench, verify_sizes[bench], "elm")
-        gen_input_output_examples([bench, n_parms, "elm"], train_sizes, num_of_samples_for_bounds, sample_rate_for_src_iteration, max_sampled_iterations)
-        gen_sym_ri(bench, "elm", syn_config, num_of_cpus, num_of_ri_examples_in_total)
-        summerize_sym_ri(bench, "elm")
+        gen_trace(bench, verify_sizes[bench], cache_config)
+        gen_input_output_examples([bench, n_parms, cache_config], train_sizes, num_of_samples_for_bounds, sample_rate_for_src_iteration, max_sampled_iterations)
+        gen_sym_ri(bench, cache_config, syn_config, num_of_cpus, num_of_ri_examples_in_total)
+        summerize_sym_ri(bench, cache_config)

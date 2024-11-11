@@ -15,21 +15,15 @@ syn_config = {
     "rules_to_apply" : " -RULESTOAPPLY SrcOnly"
 }
 
-num_of_cpus = 64
-num_of_samples = 500
+num_of_cpus = 8
+num_of_samples_for_bounds = 10**18
+sample_rate_for_src_iteration = 0.1
+max_sampled_iterations = 200
+num_of_ri_examples_in_total = 200
+cache_config = "cls32_ds8"
 
 if __name__ == "__main__":
-    '''
-    all_bench_n_parms = {
-        "stencil": 1, "stencil_tiled": 2, "cholesky": 1, "durbin": 1, "floyd_warshall": 1,
-        "gemver": 1, "gesummv": 1, "lu": 1, "ludcmp": 1, "mvt": 1, "nussinov": 1,
-        "trisolv": 1, "heat_3d": 2, "triangle": 2, "adi": 2, "atax": 2, "bicg": 2,
-        "convolution_2d": 2, "correlation": 2, "covariance": 2, "deriche": 2,
-        "gramschmidt": 2, "jacobi_1d": 2, "jacobi_2d": 2, "seidel_2d": 2, "symm": 2,
-        "syr2d": 2, "syrk": 2, "trmm": 2, "doitgen": 3, "convolution_3d": 3,
-        "fdtd_2d": 3, "gemm": 3, "2mm": 4, "3mm": 5
-    }
-    '''
+
     poly_bench_n_parms = {
         "2mm": 4, "3mm": 5, "adi": 2, "atax": 2, "bicg": 2, "cholesky": 1, "correlation": 2,
         "covariance": 2, "deriche": 2, "doitgen": 3, "durbin": 1, "fdtd-2d": 3, "floyd-warshall": 1,
@@ -39,11 +33,23 @@ if __name__ == "__main__":
     }
     
     all_bench_n_parms = poly_bench_n_parms
-    train_sizes = [8, 12, 16, 20, 32]
-    verify_sizes = [32, 64]
 
+    train_sizes = [8, 12, 16, 20, 32]
+    poly_bench_small = {}
+    for bench_name in poly_bench_n_parms.keys():
+        poly_bench_small[bench_name] = [40+i*10  for i in range(poly_bench_n_parms[bench_name])]
+    poly_bench_medium = {}
+    for bench_name in poly_bench_n_parms.keys():
+        poly_bench_medium[bench_name] = [180+i*10  for i in range(poly_bench_n_parms[bench_name])]
+    poly_bench_large = {}
+    for bench_name in poly_bench_n_parms.keys():
+        poly_bench_large[bench_name] = [800+i*100  for i in range(poly_bench_n_parms[bench_name])]   
+    
+    #verify_sizes = poly_bench_small
+    verify_sizes = poly_bench_medium
+    #verify_sizes = poly_bench_large
     for bench, n_parms in all_bench_n_parms.items():
-        gen_trace([bench, n_parms], verify_sizes, "cls32_ds8")
-        gen_input_output_examples([bench, n_parms], train_sizes, num_of_samples)
-        gen_sym_ri(bench, syn_config, num_of_cpus)
-        summerize_sym_ri(bench, "cls32_ds8")
+        gen_trace(bench, verify_sizes[bench], cache_config)
+        gen_input_output_examples([bench, n_parms, cache_config], train_sizes, num_of_samples_for_bounds, sample_rate_for_src_iteration, max_sampled_iterations)
+        gen_sym_ri(bench, cache_config, syn_config, num_of_cpus, num_of_ri_examples_in_total)
+        summerize_sym_ri(bench, cache_config)

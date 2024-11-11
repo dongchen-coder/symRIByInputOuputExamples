@@ -1,8 +1,8 @@
 import os
 import random
 from concurrent.futures import ProcessPoolExecutor, as_completed
-from queue import Queue
 from multiprocessing import Manager
+from datetime import datetime
 
 # paths to exec and result files
 syn_bin = "../search-based_synthesizer/build/src/symRiSynthesizer"
@@ -40,7 +40,7 @@ def init_files_to_process(bench, cache_config, num_of_ri_examples_in_total):
             random.shuffle(filesCLS)
             filesCLS = filesCLS[0:num_of_ri_examples_in_total]
         files_to_process += [[folder, bench, f] for f in filesCLS]
-    return files_to_process   
+    return files_to_process
 
 def process_task_queue(task_queue, syn_config):
     while not task_queue.empty():
@@ -50,14 +50,18 @@ def process_task_queue(task_queue, syn_config):
             break
         worker_id = os.getpid()
         print(f"Worker {worker_id} processing task: {task}")
+        start_time = datetime.now()
         processIOEFile(task + [syn_config])
+        end_time = datetime.now()
         print(f"Worker {worker_id} finished task: {task}")
+        print(f"Task {task} started at {start_time} and ended at {end_time}")
         task_queue.task_done()
 
 def gen_sym_ri(bench, cache_config, syn_config, num_of_cpus, num_of_ri_examples_in_total):
     clearSymRI(bench)
     files = init_files_to_process(bench, cache_config, num_of_ri_examples_in_total)
-    print(f"Total number of jobs to process: {len(files)}")
+    total_tasks = len(files)
+    print(f"Total number of jobs to process: {total_tasks}")
 
     with Manager() as manager:
         task_queue = manager.Queue()
@@ -68,7 +72,7 @@ def gen_sym_ri(bench, cache_config, syn_config, num_of_cpus, num_of_ri_examples_
             futures = [executor.submit(process_task_queue, task_queue, syn_config) for _ in range(num_of_cpus)]
             for _ in range(num_of_cpus):
                 task_queue.put(None)
-            
+        
             for future in as_completed(futures):
                 future.result()  # To raise exceptions if any
 
