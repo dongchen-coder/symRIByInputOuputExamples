@@ -59,6 +59,7 @@ def dataframe_to_input_output_examples(bench, cache_config, df, bound_values, sp
             entry+= '_out ' + output + '\n'
             f.write(entry)
         f.close()
+    
     if (spec == 'src_snk_plus'):
         src_id = str(df.iloc[0]['source reference ID'])
         snk_id = str(df.iloc[0]['sink reference ID'])
@@ -89,12 +90,14 @@ def dataframe_to_input_output_examples(bench, cache_config, df, bound_values, sp
         snk_iv_len = len(df.iloc[0]['sink iteration vector'].split())
         for snk_iv_idx in range(snk_iv_len):
             f = open('../data/input-output_examples/'+bench+'/'+spec+'/'+bench+'_refsrc_'+src_id+'_isrc_'+src_iv_+'_refsnk_'+snk_id+'.isnk'+str(snk_iv_idx)+'.'+cache_config,'w')
-            entry = ''
-            for idx in range(len(src_iv)):
-                entry += 'isrc'+str(idx)+' '+src_iv[idx]+' '
-            for idx in range(len(bound_value)):
-                entry += 'b'+str(idx)+' '+bound_value[idx]+' '
-            entry+= '_out ' + snk_iv[snk_iv_idx] + '\n'           
+            for bound_value in bound_values:
+                entry = ''
+                for idx in range(len(src_iv)):
+                    entry += 'isrc'+str(idx)+' '+src_iv[idx]+' '
+                for idx in range(len(bound_value)):
+                    entry += 'b'+str(idx)+' '+bound_value[idx]+' '
+                entry+= '_out ' + snk_iv[snk_iv_idx] + '\n' 
+                f.write(entry)          
             f.close()
 
 
