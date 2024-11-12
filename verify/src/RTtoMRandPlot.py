@@ -43,53 +43,51 @@ def RItoMR(riHisto):
     
     return MR
 
-def plotHistoToCompare(histogram_src_predicted, histogram_srcEnhance_predicted, histogram_srcsnk_predicted, histogram_trace, benchName, cacheConfig, conf):
+def plotHistoToCompare(histogram_src_predicted, histogram_src_snk_predicted, histogram_src_snk_plus_predicted, histogram_trace, benchName, cacheConfig, conf):
 
-    plt.figure(figsize = (4, 3))    
+    plt.figure(figsize = (4, 2))    
+    mergedRi = sorted(list(histogram_src_predicted.keys()) + list(histogram_src_snk_predicted.keys()) + list(histogram_src_snk_plus_predicted.keys()) + list(histogram_trace.keys()))
+    mergedRi = list(set(mergedRi))
+    if (-1 in mergedRi): mergedRi.remove(-1)
+    if (0 in mergedRi): mergedRi.remove(0)
+    sortedMergedRi = sorted(mergedRi)
 
-    sortedRi = sorted(histogram_src_predicted.keys())
-    if (len(sortedRi) != 0):
-        if (-1 in sortedRi): sortedRi.remove(-1)
-        if (0 in sortedRi): sortedRi.remove(0)
-        cnt = 0
-        for x in sortedRi:
+    cnt = 0
+    for x in sortedMergedRi:
+        if (x in histogram_src_predicted.keys()):
             cnt += histogram_src_predicted[x]
-        plt.bar([x + 0.2 for x in sortedRi], [float(histogram_src_predicted[x]) / cnt for x in sortedRi], color = '#e66101', width = 0.2, alpha=0.3, label = "src")
+    histogram_src_predicted_merged = [(float(histogram_src_predicted[x]) / cnt if x in histogram_src_predicted else 0) for x in sortedMergedRi]
 
-    sortedRi = sorted(histogram_srcEnhance_predicted.keys())
-    if (len(sortedRi) != 0):
-        if (-1 in sortedRi): sortedRi.remove(-1)
-        if (0 in sortedRi): sortedRi.remove(0)
-        cnt = 0
-        for x in sortedRi:
-            cnt += histogram_srcEnhance_predicted[x]
-        plt.bar([x + 0.4 for x in sortedRi], [float(histogram_srcEnhance_predicted[x]) / cnt for x in sortedRi], color = '#fdb863', width = 0.2, alpha=0.3, label = "src-snk")
+    cnt = 0
+    for x in sortedMergedRi:
+        if (x in histogram_src_snk_predicted.keys()):
+            cnt += histogram_src_snk_predicted[x]
+    histogram_src_snk_predicted_merged = [(float(histogram_src_snk_predicted[x]) / cnt if x in histogram_src_snk_predicted else 0) for x in sortedMergedRi]
 
-    sortedRi = sorted(histogram_srcsnk_predicted.keys())
-    if (len(sortedRi) != 0):
-        if (-1 in sortedRi): sortedRi.remove(-1)
-        if (0 in sortedRi): sortedRi.remove(0)
-        cnt = 0
-        for x in sortedRi:
-            cnt += histogram_srcsnk_predicted[x]
-        plt.bar([x + 0.6 for x in sortedRi], [float(histogram_srcsnk_predicted[x]) / cnt for x in sortedRi], color = '#b2abd2', width = 0.2, alpha=0.3, label = "src-snk+")
+    cnt = 0
+    for x in sortedMergedRi:
+        if (x in histogram_src_snk_plus_predicted.keys()):
+            cnt += histogram_src_snk_plus_predicted[x]
+    histogram_src_snk_plus_predicted_merged = [(float(histogram_src_snk_plus_predicted[x]) / cnt if x in histogram_src_snk_plus_predicted else 0) for x in sortedMergedRi]
 
-    sortedRi = sorted(histogram_trace.keys())
-    if (len(sortedRi) != 0):
-        if (-1 in sortedRi): sortedRi.remove(-1)
-        if (0 in sortedRi): sortedRi.remove(0)
-        cnt = 0
-        for x in sortedRi:
+    cnt = 0
+    for x in sortedMergedRi:
+        if (x in histogram_trace.keys()):
             cnt += histogram_trace[x]
-        plt.bar(sortedRi, [float(histogram_trace[x]) / cnt for x in sortedRi], color = '#5e3c99', width = 0.2, alpha=0.3, label = "trace")
+    histogram_trace_merged = [(float(histogram_trace[x]) / cnt if x in histogram_trace else 0) for x in sortedMergedRi]
+
+    if (len(sortedMergedRi) != 0):
+        plt.bar([x + 0.2 for x in range(len(sortedMergedRi))], histogram_src_predicted_merged, color = '#e66101', width = 0.2, alpha=0.3, label = "src")
+        plt.bar([x + 0.4 for x in range(len(sortedMergedRi))], histogram_src_snk_predicted_merged, color = '#fdb863', width = 0.2, alpha=0.3, label = "src-snk")
+        plt.bar([x + 0.6 for x in range(len(sortedMergedRi))], histogram_src_snk_plus_predicted_merged, color = '#b2abd2', width = 0.2, alpha=0.3, label = "src-snk+")
+        plt.bar([x + 0.8 for x in range(len(sortedMergedRi))], histogram_trace_merged, color = '#5e3c99', width = 0.2, alpha=0.3, label = "trace")
     
+    plt.xticks([x + 0.5 for x in range(len(sortedMergedRi))], sortedMergedRi, rotation=45, fontsize=9)
     plt.ylabel("Percentage", fontsize = 9)
     plt.xlabel("Reuse Intervals", fontsize = 9)
-    plt.xscale('log')
-    plt.yscale('log')
     plt.legend(fontsize = 9)
     plt.title(benchName + conf, fontsize = 9)
-    plt.subplots_adjust(left=0.3, right = 0.99, top = 0.9, bottom = 0.3)
+    plt.subplots_adjust(left=0.13, right = 0.99, top = 0.99, bottom = 0.3)
     plt.savefig("../figures/" + benchName + "_" + cacheConfig + "_RIHisto" + conf + ".pdf")
     plt.clf()
     return
@@ -163,10 +161,10 @@ def plotHistoAllBars(histogram_src_predicted, histogram_srcEnhance_predicted, hi
     ax.set_xticks(X)    
     ax.set_xticklabels(all_ri, rotation = 60, fontsize = 10)
 
-    ax.set_ylabel("Percentage", fontsize = 10)
-    ax.set_xlabel("Reuse Intervals", fontsize = 10)
+    ax.set_ylabel("Percentage", fontsize = 9)
+    ax.set_xlabel("Reuse Intervals", fontsize = 9)
     #ax.set_yscale('log')
-    ax.legend(fontsize = 10)
+    ax.legend(fontsize = 9)
     #ax.set_title(benchName + conf, fontsize = 10)
     plt.subplots_adjust(left=0.13, right = 0.99, top = 0.99, bottom = 0.3)
     plt.savefig("../figures/" + benchName + "_" + cacheConfig + "_RIH_" + conf + ".pdf")
@@ -186,25 +184,25 @@ def plotMRToCompare(histogram_src_predicted, histogram_srcEnhance_predicted, his
     #print("mr srcsnk+ ", mr_srcsnk_predicted)
     #print("mr trace ", mr_trace)
     
-    plt.figure(figsize = (4, 1.5))
+    plt.figure(figsize = (4, 2))
     
-    plt.plot(mr_src_predicted.keys(), [mr_src_predicted[x] for x in mr_src_predicted.keys()], color = '#e66101', label = "src", alpha=0.3, linestyle = "--")
-    plt.plot(mr_srcEnhanced_predicted.keys(), [mr_srcEnhanced_predicted[x] for x in mr_srcEnhanced_predicted.keys()], color = '#fdb863', label = "src-snk", alpha=0.3, linestyle = "-.")
-    plt.plot(mr_srcsnk_predicted.keys(), [mr_srcsnk_predicted[x] for x in mr_srcsnk_predicted.keys()], color = '#b2abd2', label = "src-snk+", alpha=0.3, linestyle = ":")
-    plt.plot(mr_trace.keys(), [mr_trace[x] for x in mr_trace.keys()], color = '#5e3c99', label = "trace", alpha=0.3, linestyle = "-")
+    plt.plot(mr_src_predicted.keys(), [mr_src_predicted[x] for x in mr_src_predicted.keys()], color = '#e66101', label = "src", alpha=0.3, linestyle = "--", linewidth=1)
+    plt.plot(mr_srcEnhanced_predicted.keys(), [mr_srcEnhanced_predicted[x] for x in mr_srcEnhanced_predicted.keys()], color = '#fdb863', label = "src-snk", alpha=0.3, linestyle = "-.", linewidth=1)
+    plt.plot(mr_srcsnk_predicted.keys(), [mr_srcsnk_predicted[x] for x in mr_srcsnk_predicted.keys()], color = '#b2abd2', label = "src-snk+", alpha=0.3, linestyle = ":", linewidth=1)
+    plt.plot(mr_trace.keys(), [mr_trace[x] for x in mr_trace.keys()], color = '#5e3c99', label = "trace", alpha=0.3, linestyle = "-", linewidth=1)
 
-    plt.xlabel("Cache Size", fontsize = 10)
-    plt.ylabel("Miss Ratio", fontsize = 10)
+    plt.xlabel("Cache Size", fontsize = 9)
+    plt.ylabel("Miss Ratio", fontsize = 9)
     plt.xscale("log")
-    plt.legend()
+    plt.legend(fontsize = 9)
     #plt.title(benchName + conf, fontsize = 9)
-    plt.subplots_adjust(left=0.13, right = 0.98, top = 0.93, bottom = 0.15)
+    plt.subplots_adjust(left=0.13, right = 0.99, top = 0.99, bottom = 0.3)
     plt.savefig("../figures/" + benchName + "_" + cacheConfig + "_MR" + conf + ".pdf")
     plt.clf()
     
     return mr_src_predicted, mr_srcEnhanced_predicted, mr_srcsnk_predicted, mr_trace
 
-def plotFigAll(all_mr_src, all_mr_srcEnhanced, all_mr_srcsnk, all_mr_trace, skipped_benches):
+def plotFigAll(all_mr_src, all_mr_srcEnhanced, all_mr_srcsnk, all_mr_trace, all_predicted_mr_falcon, skipped_benches):
     fig = plt.figure(figsize=(6,8))
     fig_cnt = 1
     
@@ -219,22 +217,22 @@ def plotFigAll(all_mr_src, all_mr_srcEnhanced, all_mr_srcsnk, all_mr_trace, skip
         l2 = ax.plot(all_mr_srcEnhanced[benchName].keys(), [all_mr_srcEnhanced[benchName][x] for x in all_mr_srcEnhanced[benchName].keys()], color = '#fdb863', alpha=0.3, linestyle = '-.')[0]
         l3 = ax.plot(all_mr_srcsnk[benchName].keys(), [all_mr_srcsnk[benchName][x] for x in all_mr_srcsnk[benchName].keys()], color = '#b2abd2', alpha=0.3, linestyle = ':')[0]
         l4 = ax.plot(all_mr_trace[benchName].keys(), [all_mr_trace[benchName][x] for x in all_mr_trace[benchName].keys()], color = '#5e3c99', alpha=0.3, linestyle = '-')[0]
-        #ax.set_yscale('log')
-        ax.set_xscale('log')
-        
+        x_values = list(all_predicted_mr_falcon[benchName].keys())
+        y_values = [all_predicted_mr_falcon[benchName][x] for x in x_values]
+        l5 = ax.plot(x_values, y_values, 'o', color='#d73027', markersize=2)[0]
+
+        plt.xscale("log")
         if (fig_cnt == 16):
-            ax.set_ylabel('Miss Ratio', fontsize = 9, labelpad = 1)
+            ax.set_ylabel('Miss Ratio', fontsize=9, labelpad=1)
         if (fig_cnt == 29):
-            ax.set_xlabel('Cache Size (KB)', fontsize = 9, labelpad = 1)
-        
+            ax.set_xlabel('Cache Size (KB)', fontsize=9, labelpad=1)
+
         if (fig_cnt == 1):
-            fig.legend([l1, l2, l3, l4], ["src", "src-snk", "src-snk+", "trace"], ncol = 4, mode="expand", loc = "upper center")
+            fig.legend([l1, l2, l3, l4, l5], ["src", "src-snk", "src-snk+", "trace", "falcon"], ncol=5, mode="expand", loc="upper center")
         fig_cnt += 1
-    
-    
-    plt.tight_layout(pad=0.4, w_pad=0.4, h_pad=-0.9)
-    plt.subplots_adjust(left=0.09, right = 0.98, top = 0.95, bottom = 0.07)
-    #plt.show()
+
+    plt.tight_layout(pad=0.4, w_pad=0.4, h_pad=0.5)
+    plt.subplots_adjust(left=0.09, right=0.98, top=0.95, bottom=0.07, hspace=0.5)
     plt.savefig("../figures/allMR.pdf")
     return
 
