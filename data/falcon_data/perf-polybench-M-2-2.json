@@ -1,0 +1,452 @@
+{
+  "2mm": {
+    "lazystack-96": {
+      "accesses": 58937400,
+      "misses": 44136540,
+      "misses_L1": 44136540,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 39684,
+      "stack_t": 180.965,
+      "symbolic_t": 114.039,
+      "thresh_t": 23.9609,
+      "time": 82.7205,
+      "varheur_t": 0
+    }
+  },
+  "3mm": {
+    "lazystack-96": {
+      "accesses": 91311900,
+      "misses": 68428250,
+      "misses_L1": 68428250,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 39996,
+      "stack_t": 223.344,
+      "symbolic_t": 160.155,
+      "thresh_t": 47.8348,
+      "time": 94.6911,
+      "varheur_t": 0
+    }
+  },
+  "adi": {
+    "lazystack-96": {
+      "accesses": 86446800,
+      "misses": 57915000,
+      "misses_L1": 57915000,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 41900,
+      "stack_t": 1380.95,
+      "symbolic_t": 1166.14,
+      "thresh_t": 2028.75,
+      "time": 327.157,
+      "varheur_t": 0
+    }
+  },
+  "atax": {
+    "lazystack-96": {
+      "accesses": 1280000,
+      "misses": 999771,
+      "misses_L1": 999771,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 39996,
+      "stack_t": 62.3299,
+      "symbolic_t": 39.8412,
+      "thresh_t": 11.6815,
+      "time": 31.5423,
+      "varheur_t": 0
+    }
+  },
+  "bicg": {
+    "lazystack-96": {
+      "accesses": 1280000,
+      "misses": 1279401,
+      "misses_L1": 1279401,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 39996,
+      "stack_t": 104.208,
+      "symbolic_t": 78.1756,
+      "thresh_t": 12.665,
+      "time": 76.7216,
+      "varheur_t": 0
+    }
+  },
+  "cholesky": {
+    "lazystack-96": {
+      "accesses": 42826800,
+      "misses": 31502501,
+      "misses_L1": 31502501,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 39996,
+      "stack_t": 286.914,
+      "symbolic_t": 183.39,
+      "thresh_t": 1483.75,
+      "time": 1194.48,
+      "varheur_t": 0
+    }
+  },
+  "correlation": {
+    "lazystack-96": {
+      "accesses": 30663720,
+      "misses": 22609319,
+      "misses_L1": 22609319,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 39996,
+      "stack_t": 413.339,
+      "symbolic_t": 505.409,
+      "thresh_t": 220.485,
+      "time": 271.746,
+      "varheur_t": 0
+    }
+  },
+  "covariance": {
+    "lazystack-96": {
+      "accesses": 30567600,
+      "misses": 22375259,
+      "misses_L1": 22375259,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 39996,
+      "stack_t": 407.163,
+      "symbolic_t": 373.414,
+      "thresh_t": 175.081,
+      "time": 255.496,
+      "varheur_t": 0
+    }
+  },
+  "deriche": {
+    "lazystack-96": {
+      "accesses": 6912000,
+      "misses": 3628800,
+      "misses_L1": 3628800,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 39996,
+      "stack_t": 288.382,
+      "symbolic_t": 246.862,
+      "thresh_t": 605.792,
+      "time": 241.908,
+      "varheur_t": 0
+    }
+  },
+  "doitgen": {
+    "lazystack-96": {
+      "accesses": 29160000,
+      "misses": 21690000,
+      "misses_L1": 21690000,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 39996,
+      "stack_t": 218.95,
+      "symbolic_t": 149.644,
+      "thresh_t": 24.5553,
+      "time": 157.92,
+      "varheur_t": 0
+    }
+  },
+  "durbin": {
+    "lazystack-96": {
+      "accesses": 559401,
+      "misses": 318087,
+      "misses_L1": 318087,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 39996,
+      "stack_t": 184.048,
+      "symbolic_t": 321.182,
+      "thresh_t": 58.2865,
+      "time": 247.77,
+      "varheur_t": 0
+    }
+  },
+  "fdtd-2d": {
+    "lazystack-96": {
+      "accesses": 66808600,
+      "misses": 42860600,
+      "misses_L1": 42860600,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 39996,
+      "stack_t": 651.573,
+      "symbolic_t": 371.522,
+      "thresh_t": 39.3633,
+      "time": 167.294,
+      "varheur_t": 0
+    }
+  },
+  "floyd-warshall": {
+    "lazystack-96": {
+      "accesses": 500000000,
+      "misses": 384067960,
+      "misses_L1": 384067960,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 39996,
+      "stack_t": 542.051,
+      "symbolic_t": 986.991,
+      "thresh_t": 275.448,
+      "time": 919.807,
+      "varheur_t": 0
+    }
+  },
+  "gemm": {
+    "lazystack-96": {
+      "accesses": 42328000,
+      "misses": 31691000,
+      "misses_L1": 31691000,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 40088,
+      "stack_t": 57.6177,
+      "symbolic_t": 41.3839,
+      "thresh_t": 15.1225,
+      "time": 44.1526,
+      "varheur_t": 0
+    }
+  },
+  "gemver": {
+    "lazystack-96": {
+      "accesses": 2241200,
+      "misses": 1800400,
+      "misses_L1": 1800400,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 40088,
+      "stack_t": 145.794,
+      "symbolic_t": 120.744,
+      "thresh_t": 76.312,
+      "time": 64.5922,
+      "varheur_t": 0
+    }
+  },
+  "gesummv": {
+    "lazystack-96": {
+      "accesses": 501250,
+      "misses": 375376,
+      "misses_L1": 375376,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 40088,
+      "stack_t": 79.4564,
+      "symbolic_t": 35.9579,
+      "thresh_t": 8.01179,
+      "time": 42.2352,
+      "varheur_t": 0
+    }
+  },
+  "gramschmidt": {
+    "lazystack-96": {
+      "accesses": 46108920,
+      "misses": 40351080,
+      "misses_L1": 40351080,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 40088,
+      "stack_t": 241.531,
+      "symbolic_t": 189.302,
+      "thresh_t": 82.4422,
+      "time": 225.859,
+      "varheur_t": 0
+    }
+  },
+  "heat-3d": {
+    "lazystack-96": {
+      "accesses": 87795200,
+      "misses": 82019200,
+      "misses_L1": 82019200,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 82912,
+      "stack_t": 2284.48,
+      "symbolic_t": 3217.7,
+      "thresh_t": 138.147,
+      "time": 729.925,
+      "varheur_t": 0
+    }
+  },
+  "jacobi-1d": {
+    "lazystack-96": {
+      "accesses": 318400,
+      "misses": 99400,
+      "misses_L1": 99400,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 40088,
+      "stack_t": 128.485,
+      "symbolic_t": 32.1085,
+      "thresh_t": 4.24422,
+      "time": 46.1167,
+      "varheur_t": 0
+    }
+  },
+  "jacobi-2d": {
+    "lazystack-96": {
+      "accesses": 73804800,
+      "misses": 55353600,
+      "misses_L1": 55353600,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 40088,
+      "stack_t": 935.672,
+      "symbolic_t": 430.723,
+      "thresh_t": 23.3611,
+      "time": 238.263,
+      "varheur_t": 0
+    }
+  },
+  "lu": {
+    "lazystack-96": {
+      "accesses": 85253000,
+      "misses": 63599199,
+      "misses_L1": 63599199,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 40088,
+      "stack_t": 1082.13,
+      "symbolic_t": 1422.2,
+      "thresh_t": 5566.49,
+      "time": 2116.5,
+      "varheur_t": 0
+    }
+  },
+  "ludcmp": {
+    "lazystack-96": {
+      "accesses": 43227800,
+      "misses": 26985195,
+      "misses_L1": 26985195,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 40088,
+      "stack_t": 872.204,
+      "symbolic_t": 1982.62,
+      "thresh_t": 4103.41,
+      "time": 2184.79,
+      "varheur_t": 0
+    }
+  },
+  "mvt": {
+    "lazystack-96": {
+      "accesses": 1280000,
+      "misses": 960200,
+      "misses_L1": 960200,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 40088,
+      "stack_t": 85.6497,
+      "symbolic_t": 74.7205,
+      "thresh_t": 83.3705,
+      "time": 103.341,
+      "varheur_t": 0
+    }
+  },
+  "nussinov": {
+    "lazystack-96": {
+      "accesses": 84081501,
+      "misses": 61670552,
+      "misses_L1": 61670552,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 40088,
+      "stack_t": 1351.62,
+      "symbolic_t": 1094.07,
+      "thresh_t": 2574.29,
+      "time": 3111.34,
+      "varheur_t": 0
+    }
+  },
+  "seidel-2d": {
+    "lazystack-96": {
+      "accesses": 158404000,
+      "misses": 71122600,
+      "misses_L1": 71122600,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 40088,
+      "stack_t": 920.518,
+      "symbolic_t": 142.092,
+      "thresh_t": 11.2655,
+      "time": 239.68,
+      "varheur_t": 0
+    }
+  },
+  "symm": {
+    "lazystack-96": {
+      "accesses": 28848000,
+      "misses": 20507820,
+      "misses_L1": 20507820,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 40088,
+      "stack_t": 251.22,
+      "symbolic_t": 313.776,
+      "thresh_t": 218.894,
+      "time": 257.421,
+      "varheur_t": 0
+    }
+  },
+  "syr2k": {
+    "lazystack-96": {
+      "accesses": 34761840,
+      "misses": 28783370,
+      "misses_L1": 28783370,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 40088,
+      "stack_t": 208.391,
+      "symbolic_t": 201.357,
+      "thresh_t": 158.141,
+      "time": 186.509,
+      "varheur_t": 0
+    }
+  },
+  "syrk": {
+    "lazystack-96": {
+      "accesses": 23193840,
+      "misses": 17239120,
+      "misses_L1": 17239120,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 40088,
+      "stack_t": 74.5832,
+      "symbolic_t": 48.1221,
+      "thresh_t": 53.0284,
+      "time": 83.0215,
+      "varheur_t": 0
+    }
+  },
+  "trisolv": {
+    "lazystack-96": {
+      "accesses": 321200,
+      "misses": 238500,
+      "misses_L1": 238500,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 40088,
+      "stack_t": 67.0656,
+      "symbolic_t": 52.8974,
+      "thresh_t": 14.8321,
+      "time": 66.8914,
+      "varheur_t": 0
+    }
+  },
+  "trmm": {
+    "lazystack-96": {
+      "accesses": 19200000,
+      "misses": 14328060,
+      "misses_L1": 14328060,
+      "misses_L2": 0,
+      "ops": 0,
+      "peak_mem": 40088,
+      "stack_t": 129.893,
+      "symbolic_t": 81.3885,
+      "thresh_t": 44.9071,
+      "time": 91.8629,
+      "varheur_t": 0
+    }
+  }
+}
