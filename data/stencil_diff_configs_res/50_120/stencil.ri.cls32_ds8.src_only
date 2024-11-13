@@ -1,0 +1,49 @@
+stencil_refsrc_4_isrc_23_18.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_1_isrc_29_3.ri.cls32_ds8.src_only Prog: 1
+stencil_refsrc_1_isrc_25_18.ri.cls32_ds8.src_only Prog: 5
+stencil_refsrc_4_isrc_12_12.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_4_isrc_1_9.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_1_isrc_31_7.ri.cls32_ds8.src_only Prog: 1
+stencil_refsrc_5_isrc_16_16.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_2_isrc_2_4.ri.cls32_ds8.src_only Prog: (if (b0 < (4 * isrc1)) then (if ((2 * isrc1) < b0) then (7 + (3 * b0)) else (7 + (4 * b0))) else (if ((4 * isrc1) < b0) then (15 + (4 * b0)) else (if (b0 < (8 * isrc1)) then (3 + (5 * b0)) else (15 + (5 * b0)))))
+stencil_refsrc_4_isrc_6_22.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_0_isrc_25_24.ri.cls32_ds8.src_only Prog: 1
+stencil_refsrc_3_isrc_7_12.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_1_isrc_12_20.ri.cls32_ds8.src_only Prog: 5
+stencil_refsrc_1_isrc_12_7.ri.cls32_ds8.src_only Prog: 5
+stencil_refsrc_0_isrc_10_16.ri.cls32_ds8.src_only Prog: 1
+stencil_refsrc_1_isrc_19_20.ri.cls32_ds8.src_only Prog: 1
+stencil_refsrc_1_isrc_12_12.ri.cls32_ds8.src_only Prog: 5
+stencil_refsrc_3_isrc_2_18.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_0_isrc_15_7.ri.cls32_ds8.src_only Prog: 1
+stencil_refsrc_5_isrc_23_31.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_4_isrc_18_12.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_5_isrc_25_20.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_4_isrc_9_14.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_4_isrc_21_27.ri.cls32_ds8.src_only Prog: (5 + (5 * b0))
+stencil_refsrc_5_isrc_23_4.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_3_isrc_32_27.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_0_isrc_25_26.ri.cls32_ds8.src_only Prog: 1
+stencil_refsrc_2_isrc_31_32.ri.cls32_ds8.src_only Prog: (21 + (5 * b0))
+stencil_refsrc_4_isrc_1_15.ri.cls32_ds8.src_only Prog: (if (b0 < (2 + isrc1)) then (5 + (4 * b0)) else (if (b0 < (2 * isrc1)) then ((4 * b0) - (7 - b0)) else (5 + (5 * b0))))
+stencil_refsrc_1_isrc_1_28.ri.cls32_ds8.src_only Prog: 1
+stencil_refsrc_5_isrc_13_18.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_1_isrc_27_26.ri.cls32_ds8.src_only Prog: 5
+stencil_refsrc_0_isrc_30_31.ri.cls32_ds8.src_only Prog: 2
+stencil_refsrc_5_isrc_12_21.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_1_isrc_5_19.ri.cls32_ds8.src_only Prog: 1
+stencil_refsrc_0_isrc_11_9.ri.cls32_ds8.src_only Prog: 2
+stencil_refsrc_4_isrc_10_16.ri.cls32_ds8.src_only Prog: (if (isrc1 < b0) then 6 else 75)
+stencil_refsrc_4_isrc_31_17.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_3_isrc_26_19.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_5_isrc_19_24.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_2_isrc_20_2.ri.cls32_ds8.src_only Prog: 4
+stencil_refsrc_5_isrc_4_16.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_0_isrc_8_23.ri.cls32_ds8.src_only Prog: 2
+stencil_refsrc_3_isrc_24_20.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_1_isrc_11_13.ri.cls32_ds8.src_only Prog: 5
+stencil_refsrc_0_isrc_23_12.ri.cls32_ds8.src_only Prog: 1
+stencil_refsrc_4_isrc_15_17.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_5_isrc_4_5.ri.cls32_ds8.src_only Prog: 6
+stencil_refsrc_0_isrc_19_28.ri.cls32_ds8.src_only Prog: 1
+stencil_refsrc_0_isrc_21_10.ri.cls32_ds8.src_only Prog: 1
