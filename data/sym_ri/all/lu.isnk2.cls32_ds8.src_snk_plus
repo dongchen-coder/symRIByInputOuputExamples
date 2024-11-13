@@ -1,25 +1,36 @@
-lu_refsrc_6_isrc_12_4_refsnk_2.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_4_isrc_22_16_refsnk_1.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_7_isrc_17_28_7_refsnk_7.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_7_isrc_12_26_2_refsnk_7.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_7_isrc_16_27_3_refsnk_7.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_9_isrc_28_29_9_refsnk_10.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_9_isrc_4_30_3_refsnk_10.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_10_isrc_24_26_21_refsnk_9.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_10_isrc_18_27_0_refsnk_9.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_10_isrc_22_25_21_refsnk_9.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_8_isrc_16_21_11_refsnk_8.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_9_isrc_17_27_9_refsnk_10.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_8_isrc_6_24_3_refsnk_8.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_8_isrc_6_25_4_refsnk_8.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_0_isrc_31_18_17_refsnk_2.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_0_isrc_20_17_14_refsnk_0.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_0_isrc_12_5_0_refsnk_0.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_2_isrc_15_7_0_refsnk_3.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_2_isrc_18_15_2_refsnk_3.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_3_isrc_23_19_7_refsnk_2.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_1_isrc_27_21_20_refsnk_1.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_2_isrc_28_20_5_refsnk_3.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_3_isrc_26_19_2_refsnk_2.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_3_isrc_31_17_3_refsnk_2.isnk2.cls32_ds8.src_snk_plus Prog: 0
-lu_refsrc_1_isrc_27_16_1_refsnk_1.isnk2.cls32_ds8.src_snk_plus Prog: 0
+lu_refsrc_1_isrc_29_16_6_refsnk_1.isnk2.cls32_ds8.src_snk_plus Prog: 6
+lu_refsrc_3_isrc_28_17_1_refsnk_2.isnk2.cls32_ds8.src_snk_plus Prog: b1
+lu_refsrc_8_isrc_28_28_23_refsnk_8.isnk2.cls32_ds8.src_snk_plus Prog: (b1 + (7 * b0))
+lu_refsrc_7_isrc_6_28_2_refsnk_7.isnk2.cls32_ds8.src_snk_plus Prog: b0
+lu_refsrc_8_isrc_9_14_3_refsnk_8.isnk2.cls32_ds8.src_snk_plus Prog: 3
+lu_refsrc_1_isrc_29_10_2_refsnk_1.isnk2.cls32_ds8.src_snk_plus Prog: b1
+lu_refsrc_8_isrc_22_24_6_refsnk_8.isnk2.cls32_ds8.src_snk_plus Prog: 6
+lu_refsrc_1_isrc_20_17_15_refsnk_1.isnk2.cls32_ds8.src_snk_plus Prog: 15
+lu_refsrc_10_isrc_23_31_7_refsnk_9.isnk2.cls32_ds8.src_snk_plus Prog: (5 + b0)
+lu_refsrc_3_isrc_19_17_12_refsnk_2.isnk2.cls32_ds8.src_snk_plus Prog: ((6 + b0) - (b0 - 7))
+lu_refsrc_0_isrc_26_11_7_refsnk_0.isnk2.cls32_ds8.src_snk_plus Prog: 4
+lu_refsrc_2_isrc_16_8_4_refsnk_3.isnk2.cls32_ds8.src_snk_plus Prog: 4
+lu_refsrc_3_isrc_29_26_9_refsnk_2.isnk2.cls32_ds8.src_snk_plus Prog: (7 + b0)
+lu_refsrc_7_isrc_14_24_6_refsnk_7.isnk2.cls32_ds8.src_snk_plus Prog: 7
+lu_refsrc_2_isrc_28_24_18_refsnk_3.isnk2.cls32_ds8.src_snk_plus Prog: (6 * b0)
+lu_refsrc_1_isrc_29_16_2_refsnk_1.isnk2.cls32_ds8.src_snk_plus Prog: b1
+lu_refsrc_10_isrc_29_31_22_refsnk_9.isnk2.cls32_ds8.src_snk_plus Prog: (b1 + (7 * b0))
+lu_refsrc_9_isrc_16_22_4_refsnk_10.isnk2.cls32_ds8.src_snk_plus Prog: 4
+lu_refsrc_3_isrc_14_6_4_refsnk_0.isnk2.cls32_ds8.src_snk_plus Prog: 5
+lu_refsrc_10_isrc_27_27_14_refsnk_9.isnk2.cls32_ds8.src_snk_plus Prog: 15
+lu_refsrc_2_isrc_29_24_19_refsnk_3.isnk2.cls32_ds8.src_snk_plus Prog: (1 + (6 * b0))
+lu_refsrc_9_isrc_6_25_2_refsnk_10.isnk2.cls32_ds8.src_snk_plus Prog: b1
+lu_refsrc_8_isrc_13_23_3_refsnk_8.isnk2.cls32_ds8.src_snk_plus Prog: b0
+lu_refsrc_10_isrc_12_28_0_refsnk_9.isnk2.cls32_ds8.src_snk_plus Prog: 1
+lu_refsrc_10_isrc_14_28_11_refsnk_9.isnk2.cls32_ds8.src_snk_plus Prog: (4 * b0)
+lu_refsrc_3_isrc_16_9_0_refsnk_2.isnk2.cls32_ds8.src_snk_plus Prog: 1
+lu_refsrc_2_isrc_30_23_13_refsnk_3.isnk2.cls32_ds8.src_snk_plus Prog: (1 + (4 * b0))
+lu_refsrc_9_isrc_10_25_4_refsnk_10.isnk2.cls32_ds8.src_snk_plus Prog: 4
+lu_refsrc_7_isrc_6_18_3_refsnk_7.isnk2.cls32_ds8.src_snk_plus Prog: (if (b1 < isrc2) then b1 else 0)
+lu_refsrc_2_isrc_28_6_4_refsnk_3.isnk2.cls32_ds8.src_snk_plus Prog: 4
+lu_refsrc_10_isrc_19_31_13_refsnk_9.isnk2.cls32_ds8.src_snk_plus Prog: 14
+lu_refsrc_8_isrc_29_29_7_refsnk_8.isnk2.cls32_ds8.src_snk_plus Prog: 7
+lu_refsrc_10_isrc_10_27_6_refsnk_9.isnk2.cls32_ds8.src_snk_plus Prog: 7
+lu_refsrc_1_isrc_30_28_19_refsnk_1.isnk2.cls32_ds8.src_snk_plus Prog: (1 + (6 * b0))
+lu_refsrc_10_isrc_16_29_1_refsnk_9.isnk2.cls32_ds8.src_snk_plus Prog: b1
+lu_refsrc_7_isrc_22_27_19_refsnk_7.isnk2.cls32_ds8.src_snk_plus Prog: (1 + (5 * b0))

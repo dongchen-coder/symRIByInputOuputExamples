@@ -1,0 +1,731 @@
+llm_nussinov_refsrc_0_isrc_3_16.ri.cls32_ds8.src_only Prog: 2*isrc0
+llm_nussinov_refsrc_0_isrc_10_19.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_2_27.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_13_27.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_16_26.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_8_15.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_0_isrc_3_29.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_17_20.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_0_isrc_27_30.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_2_7.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_0_isrc_24_28.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_0_5.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_0_isrc_0_8.ri.cls32_ds8.src_only Prog: 2
+llm_nussinov_refsrc_0_isrc_1_23.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_0_isrc_10_25.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_17_26.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_0_isrc_6_19.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_0_isrc_4_17.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_0_isrc_9_13.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_0_isrc_16_28.ri.cls32_ds8.src_only Prog: isrc0/b0
+llm_nussinov_refsrc_0_isrc_20_28.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_10_21.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_5_6.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_0_isrc_2_15.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_0_isrc_13_23.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_16_29.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_1_19.ri.cls32_ds8.src_only Prog: isrc0**4
+llm_nussinov_refsrc_0_isrc_21_22.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_0_isrc_8_16.ri.cls32_ds8.src_only Prog: isrc1/isrc0
+llm_nussinov_refsrc_0_isrc_2_10.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_0_isrc_14_21.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_17_23.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_0_isrc_4_22.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_1_8.ri.cls32_ds8.src_only Prog: b0*isrc0/(39*isrc1) + 2
+llm_nussinov_refsrc_0_isrc_3_26.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_11_30.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_0_21.ri.cls32_ds8.src_only Prog: (isrc1 + (b0 + isrc0)**4)/(isrc1*(b0 + isrc0)**3)
+llm_nussinov_refsrc_0_isrc_0_19.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_0_isrc_1_17.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_0_isrc_19_28.ri.cls32_ds8.src_only Prog: b0 - isrc0
+llm_nussinov_refsrc_0_isrc_4_6.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_0_isrc_22_24.ri.cls32_ds8.src_only Prog: isrc1/b0
+llm_nussinov_refsrc_0_isrc_7_29.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_10_23.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_11_24.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_0_isrc_6_9.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_0_isrc_11_15.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_0_isrc_28_30.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_0_isrc_0_4.ri.cls32_ds8.src_only Prog: 2
+llm_nussinov_refsrc_0_isrc_1_22.ri.cls32_ds8.src_only Prog: nan
+llm_nussinov_refsrc_1_isrc_5_12.ri.cls32_ds8.src_only Prog: 19
+llm_nussinov_refsrc_1_isrc_3_11.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_1_isrc_14_29.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_1_isrc_4_6.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_1_isrc_6_31.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_1_isrc_13_21.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_1_isrc_11_31.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_1_isrc_12_28.ri.cls32_ds8.src_only Prog: b0 + isrc0
+llm_nussinov_refsrc_1_isrc_4_8.ri.cls32_ds8.src_only Prog: 11
+llm_nussinov_refsrc_1_isrc_2_16.ri.cls32_ds8.src_only Prog: b0/isrc1**2 + 47
+llm_nussinov_refsrc_1_isrc_11_30.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_1_isrc_0_8.ri.cls32_ds8.src_only Prog: 23
+llm_nussinov_refsrc_1_isrc_21_22.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_1_isrc_3_5.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_1_isrc_20_31.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_1_isrc_19_22.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_1_isrc_2_7.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_1_isrc_25_31.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_1_isrc_24_26.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_1_isrc_9_13.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_1_isrc_15_25.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_1_isrc_10_14.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_1_isrc_17_25.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_1_isrc_11_21.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_1_isrc_7_21.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_1_isrc_25_26.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_1_isrc_1_16.ri.cls32_ds8.src_only Prog: 51*isrc0
+llm_nussinov_refsrc_1_isrc_8_12.ri.cls32_ds8.src_only Prog: 11
+llm_nussinov_refsrc_1_isrc_16_23.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_1_isrc_5_10.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_1_isrc_1_14.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_1_isrc_12_21.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_1_isrc_13_24.ri.cls32_ds8.src_only Prog: b0 + isrc0 + isrc1
+llm_nussinov_refsrc_1_isrc_10_17.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_1_isrc_22_31.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_1_isrc_9_24.ri.cls32_ds8.src_only Prog: b0 + isrc1
+llm_nussinov_refsrc_1_isrc_9_18.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_1_isrc_25_28.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_1_isrc_9_28.ri.cls32_ds8.src_only Prog: b0 + 35
+llm_nussinov_refsrc_1_isrc_12_22.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_1_isrc_4_7.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_1_isrc_2_21.ri.cls32_ds8.src_only Prog: isrc0*isrc1/b0
+llm_nussinov_refsrc_1_isrc_22_25.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_1_isrc_8_14.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_1_isrc_0_15.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_1_isrc_23_24.ri.cls32_ds8.src_only Prog: (31*b0*isrc0 - 39*isrc1 - 62)/isrc1
+llm_nussinov_refsrc_1_isrc_4_27.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_1_isrc_8_11.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_1_isrc_17_27.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_1_isrc_4_24.ri.cls32_ds8.src_only Prog: 2*b0 + 39
+llm_nussinov_refsrc_2_isrc_22_27.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_2_isrc_3_11.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_2_isrc_2_14.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_2_isrc_7_10.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_2_isrc_4_8.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_2_isrc_4_30.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_1_22.ri.cls32_ds8.src_only Prog: nan
+llm_nussinov_refsrc_2_isrc_20_31.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_10_27.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_15_26.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_17_25.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_2_isrc_6_31.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_3_30.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_3_26.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_6_13.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_2_isrc_1_8.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_2_isrc_2_22.ri.cls32_ds8.src_only Prog: isrc1
+llm_nussinov_refsrc_2_isrc_1_27.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_2_isrc_0_16.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_2_isrc_1_12.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_2_isrc_12_15.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_2_isrc_15_24.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_6_26.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_8_12.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_2_isrc_12_28.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_19_21.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_2_isrc_19_26.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_14_30.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_3_5.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_2_isrc_11_18.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_1_14.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_2_isrc_0_14.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_2_isrc_3_10.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_2_isrc_10_17.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_6_27.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_3_28.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_30_31.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_14_26.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_13_22.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_15_18.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_5_30.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_10_18.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_2_31.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_2_isrc_12_29.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_21_30.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_20_21.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_2_isrc_3_31.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_15_30.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_19_27.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_2_isrc_15_20.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_3_isrc_4_27.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_3_isrc_7_14.ri.cls32_ds8.src_only Prog: 2
+llm_nussinov_refsrc_3_isrc_16_29.ri.cls32_ds8.src_only Prog: isrc0/b0
+llm_nussinov_refsrc_3_isrc_9_17.ri.cls32_ds8.src_only Prog: 2
+llm_nussinov_refsrc_3_isrc_1_26.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_3_isrc_26_30.ri.cls32_ds8.src_only Prog: b0 - isrc1
+llm_nussinov_refsrc_3_isrc_10_27.ri.cls32_ds8.src_only Prog: isrc0/isrc1
+llm_nussinov_refsrc_3_isrc_7_27.ri.cls32_ds8.src_only Prog: isrc1/isrc0
+llm_nussinov_refsrc_3_isrc_9_20.ri.cls32_ds8.src_only Prog: b0 - isrc1
+llm_nussinov_refsrc_3_isrc_3_5.ri.cls32_ds8.src_only Prog: 2
+llm_nussinov_refsrc_3_isrc_22_24.ri.cls32_ds8.src_only Prog: isrc1/b0
+llm_nussinov_refsrc_3_isrc_8_22.ri.cls32_ds8.src_only Prog: isrc1/isrc0
+llm_nussinov_refsrc_3_isrc_1_20.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_3_isrc_0_3.ri.cls32_ds8.src_only Prog: 2
+llm_nussinov_refsrc_3_isrc_1_21.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_3_isrc_1_28.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_3_isrc_0_12.ri.cls32_ds8.src_only Prog: 2
+llm_nussinov_refsrc_3_isrc_10_14.ri.cls32_ds8.src_only Prog: 2*isrc0/isrc1
+llm_nussinov_refsrc_3_isrc_6_12.ri.cls32_ds8.src_only Prog: 2*isrc1/isrc0
+llm_nussinov_refsrc_3_isrc_22_30.ri.cls32_ds8.src_only Prog: b0 - isrc1
+llm_nussinov_refsrc_3_isrc_3_20.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_3_isrc_4_23.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_3_isrc_6_10.ri.cls32_ds8.src_only Prog: 2
+llm_nussinov_refsrc_3_isrc_0_19.ri.cls32_ds8.src_only Prog: 2
+llm_nussinov_refsrc_3_isrc_27_31.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_3_isrc_13_30.ri.cls32_ds8.src_only Prog: b0 - isrc1
+llm_nussinov_refsrc_3_isrc_12_17.ri.cls32_ds8.src_only Prog: b0 - isrc0
+llm_nussinov_refsrc_3_isrc_18_30.ri.cls32_ds8.src_only Prog: b0 - isrc1
+llm_nussinov_refsrc_3_isrc_0_25.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_3_isrc_5_20.ri.cls32_ds8.src_only Prog: isrc1/b0
+llm_nussinov_refsrc_3_isrc_9_21.ri.cls32_ds8.src_only Prog: b0 - isrc1
+llm_nussinov_refsrc_3_isrc_2_17.ri.cls32_ds8.src_only Prog: nan
+llm_nussinov_refsrc_3_isrc_9_28.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_3_isrc_25_29.ri.cls32_ds8.src_only Prog: b0 - isrc0
+llm_nussinov_refsrc_3_isrc_8_26.ri.cls32_ds8.src_only Prog: isrc0/isrc1
+llm_nussinov_refsrc_3_isrc_8_29.ri.cls32_ds8.src_only Prog: isrc0/isrc1
+llm_nussinov_refsrc_3_isrc_0_31.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_3_isrc_2_13.ri.cls32_ds8.src_only Prog: 2
+llm_nussinov_refsrc_3_isrc_10_19.ri.cls32_ds8.src_only Prog: isrc1/isrc0
+llm_nussinov_refsrc_3_isrc_16_24.ri.cls32_ds8.src_only Prog: b0 - isrc0
+llm_nussinov_refsrc_3_isrc_19_26.ri.cls32_ds8.src_only Prog: b0 - isrc0
+llm_nussinov_refsrc_3_isrc_1_22.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_3_isrc_1_9.ri.cls32_ds8.src_only Prog: b0*isrc0/(39*isrc1) + 2
+llm_nussinov_refsrc_3_isrc_12_30.ri.cls32_ds8.src_only Prog: b0 - isrc1
+llm_nussinov_refsrc_3_isrc_21_31.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_3_isrc_16_20.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_3_isrc_10_23.ri.cls32_ds8.src_only Prog: isrc0/isrc1
+llm_nussinov_refsrc_3_isrc_7_21.ri.cls32_ds8.src_only Prog: isrc1/isrc0
+llm_nussinov_refsrc_3_isrc_2_14.ri.cls32_ds8.src_only Prog: 2
+llm_nussinov_refsrc_3_isrc_0_30.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_5_isrc_2_11.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_11_15.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_3_24.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_12_17.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_1_21.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_5_isrc_4_11.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_23_28.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_1_17.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_0_23.ri.cls32_ds8.src_only Prog: isrc1/b0
+llm_nussinov_refsrc_5_isrc_18_26.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_18_28.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_10_16.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_1_8.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_4_5.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_3_11.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_1_10.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_1_25.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_5_isrc_25_28.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_5_16.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_10_19.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_1_18.ri.cls32_ds8.src_only Prog: isrc0**4
+llm_nussinov_refsrc_5_isrc_6_22.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_15_26.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_14_25.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_11_14.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_6_7.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_2_26.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_21_31.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_1_28.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_5_isrc_7_18.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_8_16.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_2_15.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_13_25.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_16_23.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_2_8.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_13_15.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_24_27.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_5_isrc_0_25.ri.cls32_ds8.src_only Prog: isrc1/b0
+llm_nussinov_refsrc_5_isrc_7_21.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_18_20.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_5_isrc_1_13.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_0_26.ri.cls32_ds8.src_only Prog: isrc1/b0
+llm_nussinov_refsrc_5_isrc_3_7.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_8_18.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_5_isrc_22_25.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_5_isrc_14_31.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_15_21.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_11_17.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_12_26.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_5_isrc_12_13.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_4_isrc_28_31.ri.cls32_ds8.src_only Prog: -b0 + isrc0
+llm_nussinov_refsrc_4_isrc_11_12.ri.cls32_ds8.src_only Prog: 9
+llm_nussinov_refsrc_4_isrc_21_24.ri.cls32_ds8.src_only Prog: b0 + isrc0 - isrc1
+llm_nussinov_refsrc_4_isrc_6_29.ri.cls32_ds8.src_only Prog: isrc0/b0
+llm_nussinov_refsrc_4_isrc_17_25.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_4_isrc_9_19.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_4_isrc_0_23.ri.cls32_ds8.src_only Prog: (31*b0 - 31*isrc0 - 2*isrc1)/isrc1
+llm_nussinov_refsrc_4_isrc_13_27.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_4_isrc_4_14.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_4_isrc_15_31.ri.cls32_ds8.src_only Prog: -b0 + isrc0
+llm_nussinov_refsrc_4_isrc_9_26.ri.cls32_ds8.src_only Prog: isrc0/b0
+llm_nussinov_refsrc_4_isrc_11_13.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_4_isrc_16_29.ri.cls32_ds8.src_only Prog: b0 - isrc1
+llm_nussinov_refsrc_4_isrc_3_20.ri.cls32_ds8.src_only Prog: 25*b0*isrc0/isrc1 + 74
+llm_nussinov_refsrc_4_isrc_8_27.ri.cls32_ds8.src_only Prog: isrc0/b0
+llm_nussinov_refsrc_4_isrc_15_21.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_4_isrc_8_29.ri.cls32_ds8.src_only Prog: isrc0/b0
+llm_nussinov_refsrc_4_isrc_21_28.ri.cls32_ds8.src_only Prog: b0 - isrc0 + isrc1
+llm_nussinov_refsrc_4_isrc_0_28.ri.cls32_ds8.src_only Prog: 39*b0/2 + 39*isrc0/2 + 39*isrc1/2 + 74
+llm_nussinov_refsrc_4_isrc_1_26.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_4_isrc_15_16.ri.cls32_ds8.src_only Prog: 9
+llm_nussinov_refsrc_4_isrc_19_22.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_4_isrc_10_17.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_4_isrc_16_21.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_4_isrc_3_12.ri.cls32_ds8.src_only Prog: 43
+llm_nussinov_refsrc_4_isrc_1_9.ri.cls32_ds8.src_only Prog: 3*isrc0
+llm_nussinov_refsrc_4_isrc_3_5.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_4_isrc_18_27.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_4_isrc_4_23.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_4_isrc_19_29.ri.cls32_ds8.src_only Prog: b0 - isrc1
+llm_nussinov_refsrc_4_isrc_0_27.ri.cls32_ds8.src_only Prog: (78*b0 - isrc1*(isrc0 + isrc1))/(isrc0 + isrc1)
+llm_nussinov_refsrc_4_isrc_21_30.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_4_isrc_7_21.ri.cls32_ds8.src_only Prog: isrc0/b0
+llm_nussinov_refsrc_4_isrc_0_21.ri.cls32_ds8.src_only Prog: (31*b0 - 31*isrc0 - 2*isrc1)/isrc1
+llm_nussinov_refsrc_4_isrc_5_26.ri.cls32_ds8.src_only Prog: isrc0/b0
+llm_nussinov_refsrc_4_isrc_1_29.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_4_isrc_12_29.ri.cls32_ds8.src_only Prog: b0 - isrc1
+llm_nussinov_refsrc_4_isrc_3_9.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_4_isrc_5_24.ri.cls32_ds8.src_only Prog: 51*b0*isrc0/isrc1 + 39
+llm_nussinov_refsrc_4_isrc_1_16.ri.cls32_ds8.src_only Prog: 34*b0*isrc1/isrc0 + 35
+llm_nussinov_refsrc_4_isrc_20_24.ri.cls32_ds8.src_only Prog: b0 - isrc0 + isrc1
+llm_nussinov_refsrc_4_isrc_3_18.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_4_isrc_10_25.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_4_isrc_25_26.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_4_isrc_17_31.ri.cls32_ds8.src_only Prog: -b0 + isrc0
+llm_nussinov_refsrc_4_isrc_0_11.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_4_isrc_21_29.ri.cls32_ds8.src_only Prog: b0 - isrc1
+llm_nussinov_refsrc_4_isrc_4_31.ri.cls32_ds8.src_only Prog: isrc1/b0
+llm_nussinov_refsrc_4_isrc_8_13.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_4_isrc_1_28.ri.cls32_ds8.src_only Prog: 39*b0*(isrc0 + isrc1)/2 + 35
+llm_nussinov_refsrc_11_isrc_17_18.ri.cls32_ds8.src_only Prog: b0 - isrc1
+llm_nussinov_refsrc_11_isrc_27_28.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_11_isrc_4_5.ri.cls32_ds8.src_only Prog: 2
+llm_nussinov_refsrc_11_isrc_28_29.ri.cls32_ds8.src_only Prog: isrc1/b0
+llm_nussinov_refsrc_13_isrc_2_3.ri.cls32_ds8.src_only Prog: 2
+llm_nussinov_refsrc_13_isrc_7_8.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_13_isrc_8_9.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_13_isrc_19_20.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_12_isrc_25_26.ri.cls32_ds8.src_only Prog: b0 - isrc1
+llm_nussinov_refsrc_12_isrc_18_19.ri.cls32_ds8.src_only Prog: b0 + isrc0 - isrc1
+llm_nussinov_refsrc_12_isrc_6_7.ri.cls32_ds8.src_only Prog: b0/isrc0 + 9
+llm_nussinov_refsrc_8_isrc_7_14.ri.cls32_ds8.src_only Prog: 35
+llm_nussinov_refsrc_8_isrc_11_23.ri.cls32_ds8.src_only Prog: b0 + isrc1
+llm_nussinov_refsrc_8_isrc_5_20.ri.cls32_ds8.src_only Prog: b0 + 35
+llm_nussinov_refsrc_8_isrc_8_13.ri.cls32_ds8.src_only Prog: 27
+llm_nussinov_refsrc_8_isrc_20_25.ri.cls32_ds8.src_only Prog: b0 - isrc0 + isrc1
+llm_nussinov_refsrc_8_isrc_12_22.ri.cls32_ds8.src_only Prog: isrc0 + isrc1
+llm_nussinov_refsrc_8_isrc_6_18.ri.cls32_ds8.src_only Prog: 55
+llm_nussinov_refsrc_8_isrc_4_10.ri.cls32_ds8.src_only Prog: 31
+llm_nussinov_refsrc_8_isrc_13_24.ri.cls32_ds8.src_only Prog: b0 + isrc1
+llm_nussinov_refsrc_8_isrc_16_21.ri.cls32_ds8.src_only Prog: b0 + isrc0 - isrc1
+llm_nussinov_refsrc_8_isrc_12_19.ri.cls32_ds8.src_only Prog: isrc0 + isrc1
+llm_nussinov_refsrc_8_isrc_4_11.ri.cls32_ds8.src_only Prog: -b0/isrc0 + 36
+llm_nussinov_refsrc_8_isrc_0_29.ri.cls32_ds8.src_only Prog: 41*b0/2 + 41*isrc0/2 + 41*isrc1/2 + 123
+llm_nussinov_refsrc_8_isrc_1_16.ri.cls32_ds8.src_only Prog: 34*b0*isrc1/isrc0 + 35
+llm_nussinov_refsrc_8_isrc_11_30.ri.cls32_ds8.src_only Prog: 2*b0 + 53
+llm_nussinov_refsrc_8_isrc_9_19.ri.cls32_ds8.src_only Prog: b0 + 34
+llm_nussinov_refsrc_8_isrc_21_28.ri.cls32_ds8.src_only Prog: b0 - isrc0 + isrc1
+llm_nussinov_refsrc_8_isrc_22_24.ri.cls32_ds8.src_only Prog: b0 - isrc0 + isrc1
+llm_nussinov_refsrc_8_isrc_2_7.ri.cls32_ds8.src_only Prog: b0/isrc0 + 27
+llm_nussinov_refsrc_8_isrc_0_28.ri.cls32_ds8.src_only Prog: 39*b0/2 + 39*isrc0/2 + 39*isrc1/2 + 74
+llm_nussinov_refsrc_8_isrc_6_14.ri.cls32_ds8.src_only Prog: 39
+llm_nussinov_refsrc_8_isrc_13_23.ri.cls32_ds8.src_only Prog: isrc0 + isrc1
+llm_nussinov_refsrc_8_isrc_19_28.ri.cls32_ds8.src_only Prog: 43*isrc0/isrc1
+llm_nussinov_refsrc_8_isrc_1_19.ri.cls32_ds8.src_only Prog: 39*b0*isrc1/isrc0 + 51
+llm_nussinov_refsrc_8_isrc_15_25.ri.cls32_ds8.src_only Prog: b0 + isrc0
+llm_nussinov_refsrc_8_isrc_2_6.ri.cls32_ds8.src_only Prog: 23
+llm_nussinov_refsrc_8_isrc_3_8.ri.cls32_ds8.src_only Prog: 27
+llm_nussinov_refsrc_8_isrc_3_12.ri.cls32_ds8.src_only Prog: 43
+llm_nussinov_refsrc_8_isrc_0_16.ri.cls32_ds8.src_only Prog: (90*b0 + 31*isrc0 + 31*isrc1)/b0
+llm_nussinov_refsrc_8_isrc_14_30.ri.cls32_ds8.src_only Prog: b0 + 39
+llm_nussinov_refsrc_8_isrc_15_18.ri.cls32_ds8.src_only Prog: 19
+llm_nussinov_refsrc_8_isrc_15_30.ri.cls32_ds8.src_only Prog: b0 + 35
+llm_nussinov_refsrc_8_isrc_3_22.ri.cls32_ds8.src_only Prog: 51*b0*isrc0/isrc1 + 39
+llm_nussinov_refsrc_8_isrc_4_13.ri.cls32_ds8.src_only Prog: 43
+llm_nussinov_refsrc_8_isrc_25_28.ri.cls32_ds8.src_only Prog: -b0 + isrc0 + isrc1
+llm_nussinov_refsrc_8_isrc_24_27.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_8_isrc_3_16.ri.cls32_ds8.src_only Prog: 59
+llm_nussinov_refsrc_8_isrc_0_5.ri.cls32_ds8.src_only Prog: 27
+llm_nussinov_refsrc_8_isrc_4_7.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_8_isrc_5_19.ri.cls32_ds8.src_only Prog: b0 + 57
+llm_nussinov_refsrc_8_isrc_19_21.ri.cls32_ds8.src_only Prog: -b0 + isrc0
+llm_nussinov_refsrc_8_isrc_4_6.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_8_isrc_9_11.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_8_isrc_6_27.ri.cls32_ds8.src_only Prog: b0 + 59
+llm_nussinov_refsrc_8_isrc_8_27.ri.cls32_ds8.src_only Prog: 2*b0 + 53
+llm_nussinov_refsrc_8_isrc_5_16.ri.cls32_ds8.src_only Prog: 51
+llm_nussinov_refsrc_8_isrc_6_25.ri.cls32_ds8.src_only Prog: 51*b0*isrc0/isrc1 + 39
+llm_nussinov_refsrc_6_isrc_12_31.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_6_isrc_0_27.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_6_isrc_0_28.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_6_isrc_24_29.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_6_isrc_3_13.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_6_isrc_18_30.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_6_isrc_14_21.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_6_isrc_7_10.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_6_isrc_10_15.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_6_isrc_18_23.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_6_isrc_7_29.ri.cls32_ds8.src_only Prog: isrc0/b0
+llm_nussinov_refsrc_6_isrc_12_17.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_6_isrc_13_25.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_6_isrc_1_31.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_6_isrc_1_7.ri.cls32_ds8.src_only Prog: 2*isrc1/isrc0
+llm_nussinov_refsrc_6_isrc_15_27.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_6_isrc_13_31.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_6_isrc_8_26.ri.cls32_ds8.src_only Prog: -b0 + isrc1
+llm_nussinov_refsrc_6_isrc_25_27.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_6_isrc_6_26.ri.cls32_ds8.src_only Prog: isrc0/b0
+llm_nussinov_refsrc_6_isrc_10_18.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_6_isrc_0_12.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_6_isrc_4_10.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_6_isrc_15_20.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_6_isrc_6_22.ri.cls32_ds8.src_only Prog: isrc1/isrc0
+llm_nussinov_refsrc_6_isrc_17_19.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_6_isrc_15_19.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_6_isrc_2_6.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_6_isrc_16_18.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_6_isrc_2_7.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_6_isrc_1_19.ri.cls32_ds8.src_only Prog: b0*isrc0
+llm_nussinov_refsrc_6_isrc_15_30.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_6_isrc_4_21.ri.cls32_ds8.src_only Prog: isrc0
+llm_nussinov_refsrc_6_isrc_23_25.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_6_isrc_11_25.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_6_isrc_16_29.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_6_isrc_4_13.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_6_isrc_1_3.ri.cls32_ds8.src_only Prog: 2*b0**2*isrc0**2/isrc1**2
+llm_nussinov_refsrc_6_isrc_17_30.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_6_isrc_1_14.ri.cls32_ds8.src_only Prog: 4*isrc0
+llm_nussinov_refsrc_6_isrc_8_24.ri.cls32_ds8.src_only Prog: -b0 + isrc1
+llm_nussinov_refsrc_6_isrc_14_23.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_6_isrc_3_20.ri.cls32_ds8.src_only Prog: isrc0
+llm_nussinov_refsrc_6_isrc_16_20.ri.cls32_ds8.src_only Prog: isrc0 - isrc1
+llm_nussinov_refsrc_6_isrc_3_21.ri.cls32_ds8.src_only Prog: isrc0
+llm_nussinov_refsrc_6_isrc_5_16.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_6_isrc_5_28.ri.cls32_ds8.src_only Prog: isrc0/b0
+llm_nussinov_refsrc_10_isrc_12_26.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_19_25.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_5_25.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_9_23.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_17_24.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_10_isrc_16_30.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_6_8.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_10_isrc_10_28.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_2_24.ri.cls32_ds8.src_only Prog: isrc0**2*isrc1/b0
+llm_nussinov_refsrc_10_isrc_1_4.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_10_isrc_10_20.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_5_7.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_10_isrc_11_30.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_6_17.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_10_isrc_3_26.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_21_30.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_24_26.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_10_isrc_12_23.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_5_11.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_10_isrc_14_19.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_1_23.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_10_isrc_15_29.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_9_14.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_10_isrc_19_22.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_10_isrc_18_24.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_10_isrc_5_16.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_10_isrc_21_31.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_20_26.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_1_21.ri.cls32_ds8.src_only Prog: 0
+llm_nussinov_refsrc_10_isrc_3_6.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_10_isrc_15_25.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_23_27.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_10_isrc_11_22.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_11_19.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_1_19.ri.cls32_ds8.src_only Prog: isrc0**4
+llm_nussinov_refsrc_10_isrc_7_27.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_1_10.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_10_isrc_5_31.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_21_27.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_10_isrc_17_29.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_10_17.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_9_13.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_10_isrc_10_26.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_5_23.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_7_25.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_10_isrc_1_9.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_10_isrc_12_25.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_14_isrc_12_19.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_21_26.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_3_20.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_6_29.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_7_20.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_16_26.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_26_29.ri.cls32_ds8.src_only Prog: 3*isrc0
+llm_nussinov_refsrc_14_isrc_6_16.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_0_13.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_6_12.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_9_18.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_14_16.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_8_30.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_23_25.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_14_isrc_23_31.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_1_19.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_27_30.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_14_isrc_12_18.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_2_7.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_1_21.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_6_27.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_12_24.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_19_26.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_5_9.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_15_28.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_3_29.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_7_31.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_8_26.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_0_18.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_11_13.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_14_isrc_22_30.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_18_30.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_4_13.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_0_20.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_16_25.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_16_18.ri.cls32_ds8.src_only Prog: b0/isrc1
+llm_nussinov_refsrc_14_isrc_6_23.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_24_27.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_14_isrc_15_23.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_20_22.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_14_isrc_0_7.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_7_16.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_17_21.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_2_30.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_9_17.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_10_15.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_14_isrc_9_20.ri.cls32_ds8.src_only Prog: 3
+llm_nussinov_refsrc_15_isrc_8_21.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_9_26.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_1_16.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_19_29.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_13_16.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_13_30.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_18_28.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_9_31.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_8_28.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_23_30.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_22_28.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_3_24.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_2_10.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_8_16.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_6_12.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_14_25.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_2_12.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_19_30.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_26_31.ri.cls32_ds8.src_only Prog: 2
+llm_nussinov_refsrc_15_isrc_2_19.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_0_22.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_20_24.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_6_31.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_2_18.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_4_31.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_24_30.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_7_21.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_4_27.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_7_20.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_10_17.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_1_21.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_13_29.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_12_22.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_17_27.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_11_22.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_15_23.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_15_22.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_3_12.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_0_11.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_4_24.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_7_26.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_2_30.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_1_29.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_4_14.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_7_24.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_0_28.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_15_isrc_15_31.ri.cls32_ds8.src_only Prog: 4
+llm_nussinov_refsrc_17_isrc_4_7.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_15_25.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_4_29.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_4_9.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_7_10.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_22_29.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_9_11.ri.cls32_ds8.src_only Prog: (b0 + isrc1)/isrc0
+llm_nussinov_refsrc_17_isrc_13_15.ri.cls32_ds8.src_only Prog: (isrc0 + isrc1)/b0
+llm_nussinov_refsrc_17_isrc_6_8.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_12_27.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_6_11.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_10_23.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_24_29.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_7_16.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_14_18.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_1_15.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_0_23.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_11_13.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_25_30.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_3_20.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_2_28.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_9_24.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_4_20.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_2_31.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_17_28.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_24_31.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_23_31.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_0_31.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_1_7.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_6_13.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_7_27.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_0_10.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_10_18.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_7_12.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_9_13.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_25_29.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_14_16.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_0_30.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_0_19.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_5_28.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_8_24.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_3_5.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_13_30.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_13_26.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_19_22.ri.cls32_ds8.src_only Prog: b0/isrc0
+llm_nussinov_refsrc_17_isrc_0_18.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_17_isrc_17_22.ri.cls32_ds8.src_only Prog: 1
+llm_nussinov_refsrc_9_isrc_4_12.ri.cls32_ds8.src_only Prog: 39
+llm_nussinov_refsrc_9_isrc_0_8.ri.cls32_ds8.src_only Prog: 39
+llm_nussinov_refsrc_9_isrc_3_15.ri.cls32_ds8.src_only Prog: 74*b0
+llm_nussinov_refsrc_9_isrc_6_22.ri.cls32_ds8.src_only Prog: b0 + 39
+llm_nussinov_refsrc_9_isrc_18_24.ri.cls32_ds8.src_only Prog: b0 + isrc1
+llm_nussinov_refsrc_9_isrc_7_18.ri.cls32_ds8.src_only Prog: 51
+llm_nussinov_refsrc_9_isrc_13_20.ri.cls32_ds8.src_only Prog: b0 + isrc0 + isrc1
+llm_nussinov_refsrc_9_isrc_7_27.ri.cls32_ds8.src_only Prog: 44*b0 - 21 + 44*isrc1/isrc0
+llm_nussinov_refsrc_9_isrc_7_22.ri.cls32_ds8.src_only Prog: b0 + 35
+llm_nussinov_refsrc_9_isrc_2_30.ri.cls32_ds8.src_only Prog: 31*b0*isrc0/isrc1 + 68
+llm_nussinov_refsrc_9_isrc_1_15.ri.cls32_ds8.src_only Prog: 1209*b0*(isrc0 + isrc1)/2 + isrc1
+llm_nussinov_refsrc_9_isrc_18_21.ri.cls32_ds8.src_only Prog: b0 - isrc0 + isrc1
+llm_nussinov_refsrc_9_isrc_9_15.ri.cls32_ds8.src_only Prog: 34*b0 + isrc0
+llm_nussinov_refsrc_9_isrc_7_12.ri.cls32_ds8.src_only Prog: 27
+llm_nussinov_refsrc_9_isrc_15_28.ri.cls32_ds8.src_only Prog: 59*isrc1/b0
+llm_nussinov_refsrc_9_isrc_13_25.ri.cls32_ds8.src_only Prog: b0 + isrc0
+llm_nussinov_refsrc_9_isrc_3_14.ri.cls32_ds8.src_only Prog: 51
+llm_nussinov_refsrc_9_isrc_2_28.ri.cls32_ds8.src_only Prog: 36*b0*isrc0/isrc1 + isrc1 + 37
+llm_nussinov_refsrc_9_isrc_6_15.ri.cls32_ds8.src_only Prog: 48*b0 - 41 + 48*isrc1/isrc0
+llm_nussinov_refsrc_9_isrc_6_8.ri.cls32_ds8.src_only Prog: 15
+llm_nussinov_refsrc_9_isrc_18_27.ri.cls32_ds8.src_only Prog: -b0 + isrc0*isrc1
+llm_nussinov_refsrc_9_isrc_14_28.ri.cls32_ds8.src_only Prog: 63*isrc0/b0
+llm_nussinov_refsrc_9_isrc_1_22.ri.cls32_ds8.src_only Prog: 31*b0*isrc0/isrc1 + 59
+llm_nussinov_refsrc_9_isrc_21_25.ri.cls32_ds8.src_only Prog: b0 - isrc0 + isrc1
+llm_nussinov_refsrc_9_isrc_20_30.ri.cls32_ds8.src_only Prog: isrc0 + isrc1
+llm_nussinov_refsrc_9_isrc_11_30.ri.cls32_ds8.src_only Prog: 2*b0 + 53
+llm_nussinov_refsrc_9_isrc_10_20.ri.cls32_ds8.src_only Prog: b0 + isrc0 + isrc1
+llm_nussinov_refsrc_9_isrc_20_28.ri.cls32_ds8.src_only Prog: isrc0 + isrc1
+llm_nussinov_refsrc_9_isrc_7_26.ri.cls32_ds8.src_only Prog: 2*b0 + 53
+llm_nussinov_refsrc_9_isrc_17_20.ri.cls32_ds8.src_only Prog: -b0 + isrc0 + isrc1
+llm_nussinov_refsrc_9_isrc_6_20.ri.cls32_ds8.src_only Prog: 63*isrc0/isrc1 + isrc1/isrc0
+llm_nussinov_refsrc_9_isrc_15_31.ri.cls32_ds8.src_only Prog: b0*isrc0 + isrc1
+llm_nussinov_refsrc_9_isrc_1_9.ri.cls32_ds8.src_only Prog: 39 - isrc0/39
+llm_nussinov_refsrc_9_isrc_5_21.ri.cls32_ds8.src_only Prog: b0 + 39
+llm_nussinov_refsrc_9_isrc_8_23.ri.cls32_ds8.src_only Prog: 41*b0 - 41
+llm_nussinov_refsrc_9_isrc_13_22.ri.cls32_ds8.src_only Prog: b0 + isrc0
+llm_nussinov_refsrc_9_isrc_9_23.ri.cls32_ds8.src_only Prog: 42*b0 + 42*isrc0
+llm_nussinov_refsrc_9_isrc_7_28.ri.cls32_ds8.src_only Prog: b0 + 59
+llm_nussinov_refsrc_9_isrc_12_31.ri.cls32_ds8.src_only Prog: b0*isrc0 + isrc1
+llm_nussinov_refsrc_9_isrc_1_23.ri.cls32_ds8.src_only Prog: 2646*b0*isrc1/isrc0
+llm_nussinov_refsrc_9_isrc_17_31.ri.cls32_ds8.src_only Prog: b0 + isrc0*isrc1
+llm_nussinov_refsrc_9_isrc_5_10.ri.cls32_ds8.src_only Prog: 27
+llm_nussinov_refsrc_9_isrc_24_31.ri.cls32_ds8.src_only Prog: b0*isrc1/isrc0 + 88
+llm_nussinov_refsrc_9_isrc_13_27.ri.cls32_ds8.src_only Prog: b0 + isrc0*isrc1
+llm_nussinov_refsrc_9_isrc_18_25.ri.cls32_ds8.src_only Prog: b0 + isrc0 + isrc1
+llm_nussinov_refsrc_9_isrc_6_26.ri.cls32_ds8.src_only Prog: 2*b0 + 57
+llm_nussinov_refsrc_7_isrc_3_6.ri.cls32_ds8.src_only Prog: 16
+llm_nussinov_refsrc_7_isrc_21_27.ri.cls32_ds8.src_only Prog: isrc1 + isrc0/b0
+llm_nussinov_refsrc_7_isrc_4_28.ri.cls32_ds8.src_only Prog: 840*b0*isrc0/isrc1
+llm_nussinov_refsrc_7_isrc_2_15.ri.cls32_ds8.src_only Prog: 59*isrc1 + 59
+llm_nussinov_refsrc_7_isrc_15_22.ri.cls32_ds8.src_only Prog: b0
+llm_nussinov_refsrc_7_isrc_5_20.ri.cls32_ds8.src_only Prog: b0 + 39*isrc0 + 39*isrc1 + 21
+llm_nussinov_refsrc_7_isrc_15_23.ri.cls32_ds8.src_only Prog: isrc0 + isrc1
+llm_nussinov_refsrc_7_isrc_20_22.ri.cls32_ds8.src_only Prog: -b0 + isrc0
+llm_nussinov_refsrc_7_isrc_20_28.ri.cls32_ds8.src_only Prog: isrc0*isrc1
+llm_nussinov_refsrc_7_isrc_2_21.ri.cls32_ds8.src_only Prog: 2*b0 + 48
+llm_nussinov_refsrc_7_isrc_3_12.ri.cls32_ds8.src_only Prog: b0 + 59*isrc1
+llm_nussinov_refsrc_7_isrc_12_15.ri.cls32_ds8.src_only Prog: b0 + isrc0
+llm_nussinov_refsrc_7_isrc_7_10.ri.cls32_ds8.src_only Prog: 16
+llm_nussinov_refsrc_7_isrc_7_15.ri.cls32_ds8.src_only Prog: 39*b0/isrc1 + 39
+llm_nussinov_refsrc_7_isrc_23_31.ri.cls32_ds8.src_only Prog: 4*isrc0 + 46
+llm_nussinov_refsrc_7_isrc_9_16.ri.cls32_ds8.src_only Prog: b0*(isrc0 + isrc1) - isrc1
+llm_nussinov_refsrc_7_isrc_19_29.ri.cls32_ds8.src_only Prog: isrc0 + isrc1
+llm_nussinov_refsrc_7_isrc_2_8.ri.cls32_ds8.src_only Prog: b0*(isrc0 + isrc1) + 41
+llm_nussinov_refsrc_7_isrc_13_31.ri.cls32_ds8.src_only Prog: b0 + isrc0*isrc1
+llm_nussinov_refsrc_7_isrc_1_8.ri.cls32_ds8.src_only Prog: 2*b0*(isrc0 + isrc1) + 39
+llm_nussinov_refsrc_7_isrc_10_21.ri.cls32_ds8.src_only Prog: b0*isrc0
+llm_nussinov_refsrc_7_isrc_23_27.ri.cls32_ds8.src_only Prog: isrc0
+llm_nussinov_refsrc_7_isrc_11_17.ri.cls32_ds8.src_only Prog: 28
+llm_nussinov_refsrc_7_isrc_9_18.ri.cls32_ds8.src_only Prog: 40
+llm_nussinov_refsrc_7_isrc_6_15.ri.cls32_ds8.src_only Prog: isrc0**2/isrc1 + 43
+llm_nussinov_refsrc_7_isrc_11_25.ri.cls32_ds8.src_only Prog: 60
+llm_nussinov_refsrc_7_isrc_4_11.ri.cls32_ds8.src_only Prog: 35*b0/isrc0 + 35
+llm_nussinov_refsrc_7_isrc_8_13.ri.cls32_ds8.src_only Prog: 24
+llm_nussinov_refsrc_7_isrc_9_26.ri.cls32_ds8.src_only Prog: 2*b0 + 2*isrc0 + isrc1
+llm_nussinov_refsrc_7_isrc_10_27.ri.cls32_ds8.src_only Prog: 3*b0 + isrc1
+llm_nussinov_refsrc_7_isrc_2_11.ri.cls32_ds8.src_only Prog: 43 + 43*isrc1/isrc0
+llm_nussinov_refsrc_7_isrc_17_23.ri.cls32_ds8.src_only Prog: b0 - isrc0/isrc1
+llm_nussinov_refsrc_7_isrc_4_30.ri.cls32_ds8.src_only Prog: 36*b0*isrc1/isrc0 + 54
+llm_nussinov_refsrc_7_isrc_9_31.ri.cls32_ds8.src_only Prog: b0*isrc1
+llm_nussinov_refsrc_7_isrc_13_24.ri.cls32_ds8.src_only Prog: 35*isrc1 + isrc0/(31*b0)
+llm_nussinov_refsrc_7_isrc_17_31.ri.cls32_ds8.src_only Prog: 34*isrc0
+llm_nussinov_refsrc_7_isrc_5_11.ri.cls32_ds8.src_only Prog: 31 + isrc1**2/isrc0
+llm_nussinov_refsrc_7_isrc_12_23.ri.cls32_ds8.src_only Prog: b0 + isrc1
+llm_nussinov_refsrc_7_isrc_20_30.ri.cls32_ds8.src_only Prog: isrc0 + isrc1
+llm_nussinov_refsrc_7_isrc_2_10.ri.cls32_ds8.src_only Prog: 36
+llm_nussinov_refsrc_7_isrc_9_23.ri.cls32_ds8.src_only Prog: 63*isrc1/isrc0
+llm_nussinov_refsrc_7_isrc_14_17.ri.cls32_ds8.src_only Prog: 16
+llm_nussinov_refsrc_7_isrc_9_29.ri.cls32_ds8.src_only Prog: 5*b0/isrc0 + 84*isrc0/b0
+llm_nussinov_refsrc_7_isrc_1_18.ri.cls32_ds8.src_only Prog: 18 + 78*isrc1/(b0*isrc0)
+llm_nussinov_refsrc_7_isrc_7_14.ri.cls32_ds8.src_only Prog: 32
+llm_nussinov_refsrc_7_isrc_19_21.ri.cls32_ds8.src_only Prog: b0 + isrc0 - isrc1
+llm_nussinov_refsrc_16_isrc_2_25.ri.cls32_ds8.src_only Prog: 102 + isrc1/(48*b0*isrc0)
+llm_nussinov_refsrc_16_isrc_21_27.ri.cls32_ds8.src_only Prog: 242 - 11*isrc1/(b0*isrc0)
+llm_nussinov_refsrc_16_isrc_11_17.ri.cls32_ds8.src_only Prog: 31
+llm_nussinov_refsrc_16_isrc_11_19.ri.cls32_ds8.src_only Prog: 34*b0
+llm_nussinov_refsrc_16_isrc_11_15.ri.cls32_ds8.src_only Prog: 51*b0**2/isrc0 + 51
+llm_nussinov_refsrc_16_isrc_5_31.ri.cls32_ds8.src_only Prog: 1734 + 34*isrc1/(39*b0*isrc0)
+llm_nussinov_refsrc_16_isrc_20_23.ri.cls32_ds8.src_only Prog: 2401/isrc1
+llm_nussinov_refsrc_16_isrc_6_10.ri.cls32_ds8.src_only Prog: 23
+llm_nussinov_refsrc_16_isrc_10_15.ri.cls32_ds8.src_only Prog: b0**2*isrc0/isrc1 + 55
+llm_nussinov_refsrc_16_isrc_18_20.ri.cls32_ds8.src_only Prog: b0 - isrc0 + isrc1
+llm_nussinov_refsrc_16_isrc_0_8.ri.cls32_ds8.src_only Prog: 39
+llm_nussinov_refsrc_16_isrc_0_22.ri.cls32_ds8.src_only Prog: 87
+llm_nussinov_refsrc_16_isrc_7_30.ri.cls32_ds8.src_only Prog: 102 + isrc1/(48*b0*isrc0)
+llm_nussinov_refsrc_16_isrc_19_24.ri.cls32_ds8.src_only Prog: 27
+llm_nussinov_refsrc_16_isrc_1_16.ri.cls32_ds8.src_only Prog: 70 - isrc0/(63*b0*isrc1)
+llm_nussinov_refsrc_16_isrc_6_27.ri.cls32_ds8.src_only Prog: 1860 + isrc1/(b0*isrc0)
+llm_nussinov_refsrc_16_isrc_7_20.ri.cls32_ds8.src_only Prog: 59
+llm_nussinov_refsrc_16_isrc_12_18.ri.cls32_ds8.src_only Prog: 31
+llm_nussinov_refsrc_16_isrc_1_23.ri.cls32_ds8.src_only Prog: 2268 - 42*isrc1/(61*b0*isrc0)
+llm_nussinov_refsrc_16_isrc_3_19.ri.cls32_ds8.src_only Prog: 868 + 28*isrc0/(b0*isrc1)
+llm_nussinov_refsrc_16_isrc_0_21.ri.cls32_ds8.src_only Prog: 90
+llm_nussinov_refsrc_16_isrc_5_24.ri.cls32_ds8.src_only Prog: 100 + isrc1/(39*b0*isrc0)
+llm_nussinov_refsrc_16_isrc_7_29.ri.cls32_ds8.src_only Prog: 102 - isrc1/(48*b0*isrc0)
+llm_nussinov_refsrc_16_isrc_4_25.ri.cls32_ds8.src_only Prog: 108 + isrc1/(39*b0*isrc0)
+llm_nussinov_refsrc_16_isrc_14_23.ri.cls32_ds8.src_only Prog: 490 + 17*isrc1/(b0*isrc0)
+llm_nussinov_refsrc_16_isrc_22_25.ri.cls32_ds8.src_only Prog: 19
+llm_nussinov_refsrc_16_isrc_11_24.ri.cls32_ds8.src_only Prog: 59
+llm_nussinov_refsrc_16_isrc_6_9.ri.cls32_ds8.src_only Prog: 19
+llm_nussinov_refsrc_16_isrc_24_27.ri.cls32_ds8.src_only Prog: 139 + isrc1/(b0*isrc0)
+llm_nussinov_refsrc_16_isrc_17_30.ri.cls32_ds8.src_only Prog: 59
+llm_nussinov_refsrc_16_isrc_5_14.ri.cls32_ds8.src_only Prog: 43
+llm_nussinov_refsrc_16_isrc_13_17.ri.cls32_ds8.src_only Prog: 23
+llm_nussinov_refsrc_16_isrc_8_14.ri.cls32_ds8.src_only Prog: 31
+llm_nussinov_refsrc_16_isrc_9_11.ri.cls32_ds8.src_only Prog: b0*isrc1 - isrc0
+llm_nussinov_refsrc_16_isrc_4_16.ri.cls32_ds8.src_only Prog: 55
+llm_nussinov_refsrc_16_isrc_9_17.ri.cls32_ds8.src_only Prog: 39
+llm_nussinov_refsrc_16_isrc_0_26.ri.cls32_ds8.src_only Prog: 159
+llm_nussinov_refsrc_16_isrc_19_27.ri.cls32_ds8.src_only Prog: 400 + 40*isrc1/(b0*isrc0)
+llm_nussinov_refsrc_16_isrc_8_17.ri.cls32_ds8.src_only Prog: 43
+llm_nussinov_refsrc_16_isrc_2_15.ri.cls32_ds8.src_only Prog: 1092
+llm_nussinov_refsrc_16_isrc_3_15.ri.cls32_ds8.src_only Prog: 84*b0
+llm_nussinov_refsrc_16_isrc_4_26.ri.cls32_ds8.src_only Prog: 102 - isrc1/(48*b0*isrc0)
+llm_nussinov_refsrc_16_isrc_14_21.ri.cls32_ds8.src_only Prog: 35
+llm_nussinov_refsrc_16_isrc_7_11.ri.cls32_ds8.src_only Prog: 52*b0/isrc0 + 51
+llm_nussinov_refsrc_16_isrc_2_14.ri.cls32_ds8.src_only Prog: 55
+llm_nussinov_refsrc_16_isrc_7_9.ri.cls32_ds8.src_only Prog: 15

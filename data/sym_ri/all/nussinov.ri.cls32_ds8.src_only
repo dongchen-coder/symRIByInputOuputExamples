@@ -1,32 +1,170 @@
-nussinov_refsrc_1_isrc_4_21.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_0_isrc_5_15.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_1_isrc_24_28.ri.cls32_ds8.src_only Prog: (1 - (0 - (b0 / 3)))
-nussinov_refsrc_5_isrc_12_24.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_6_isrc_0_25.ri.cls32_ds8.src_only Prog: 4
-nussinov_refsrc_3_isrc_7_17.ri.cls32_ds8.src_only Prog: 2
-nussinov_refsrc_8_isrc_24_28.ri.cls32_ds8.src_only Prog: (2 - ((b0 - b0) - 21))
-nussinov_refsrc_11_isrc_5_6.ri.cls32_ds8.src_only Prog: 2
-nussinov_refsrc_13_isrc_18_19.ri.cls32_ds8.src_only Prog: (if (b0 < (2 + isrc1)) then 2 else 5)
-nussinov_refsrc_0_isrc_5_28.ri.cls32_ds8.src_only Prog: 2
-nussinov_refsrc_2_isrc_14_19.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_5_isrc_14_23.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_14_isrc_2_5.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_15_isrc_3_10.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_5_isrc_14_30.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_1_isrc_10_23.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_15_isrc_4_20.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_9_isrc_7_20.ri.cls32_ds8.src_only Prog: (b0 - (5 - b0))
+nussinov_refsrc_15_isrc_2_8.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_3_isrc_6_10.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_10_isrc_3_31.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_6_isrc_24_26.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_8_isrc_6_11.ri.cls32_ds8.src_only Prog: (if (b0 < (2 + isrc1)) then 27 else (3 * b0))
+nussinov_refsrc_0_isrc_15_28.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_8_isrc_10_31.ri.cls32_ds8.src_only Prog: (4 + (3 * b0))
+nussinov_refsrc_1_isrc_26_27.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_15_isrc_12_17.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_10_isrc_2_4.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_4_isrc_13_23.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_17_isrc_6_17.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_10_isrc_15_21.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_16_isrc_9_30.ri.cls32_ds8.src_only Prog: ((2 * b0) - (5 - b0))
+nussinov_refsrc_2_isrc_10_24.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_15_isrc_12_24.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_4_isrc_20_31.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_6_isrc_1_27.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_0_isrc_0_1.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_9_isrc_18_25.ri.cls32_ds8.src_only Prog: (3 + b0)
+nussinov_refsrc_0_isrc_12_13.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_6_isrc_2_10.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_8_isrc_22_29.ri.cls32_ds8.src_only Prog: (3 + b0)
+nussinov_refsrc_8_isrc_11_18.ri.cls32_ds8.src_only Prog: 35
+nussinov_refsrc_8_isrc_21_26.ri.cls32_ds8.src_only Prog: (b0 - 5)
+nussinov_refsrc_15_isrc_13_31.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_4_isrc_1_5.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_17_isrc_3_22.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_15_isrc_15_30.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_6_isrc_5_9.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_14_isrc_0_30.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_3_isrc_11_27.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_2_isrc_24_29.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_4_isrc_19_22.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_3_isrc_22_27.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_3_isrc_17_29.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_0_isrc_22_28.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_7_isrc_14_30.ri.cls32_ds8.src_only Prog: (4 + (2 * b0))
+nussinov_refsrc_10_isrc_20_22.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_3_isrc_3_16.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_3_isrc_0_24.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_1_isrc_14_31.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_5_isrc_5_7.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_15_isrc_0_6.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_7_isrc_22_29.ri.cls32_ds8.src_only Prog: b0
+nussinov_refsrc_6_isrc_11_16.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_4_isrc_9_27.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_3_isrc_4_30.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_1_isrc_9_30.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_11_isrc_4_5.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_4_isrc_4_15.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_0_isrc_11_23.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_2_isrc_6_14.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_17_isrc_10_28.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_2_isrc_9_21.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_5_isrc_2_12.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_15_isrc_19_21.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_5_isrc_5_16.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_8_isrc_7_22.ri.cls32_ds8.src_only Prog: (3 + (2 * b0))
+nussinov_refsrc_1_isrc_10_24.ri.cls32_ds8.src_only Prog: (15 + b0)
+nussinov_refsrc_5_isrc_9_25.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_2_isrc_16_18.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_14_isrc_6_17.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_17_isrc_5_16.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_15_isrc_0_13.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_3_isrc_12_28.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_4_isrc_14_23.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_15_isrc_7_12.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_3_isrc_15_21.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_6_isrc_15_31.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_8_isrc_7_11.ri.cls32_ds8.src_only Prog: (if (b0 < (2 * isrc0)) then (2 - ((b0 - b0) - 21)) else (8 + (2 * b0)))
+nussinov_refsrc_6_isrc_19_21.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_10_isrc_2_7.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_14_isrc_15_26.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_10_isrc_15_29.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_3_isrc_5_8.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_4_isrc_11_14.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_0_isrc_24_26.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_15_isrc_28_31.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_5_isrc_12_17.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_4_isrc_28_31.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_14_isrc_0_3.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_4_isrc_5_9.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_8_isrc_19_24.ri.cls32_ds8.src_only Prog: (b0 - 5)
+nussinov_refsrc_0_isrc_20_26.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_3_isrc_4_14.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_8_isrc_21_27.ri.cls32_ds8.src_only Prog: (b0 - 1)
+nussinov_refsrc_16_isrc_0_21.ri.cls32_ds8.src_only Prog: ((2 * b0) - (5 - b0))
+nussinov_refsrc_17_isrc_12_19.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_9_isrc_3_24.ri.cls32_ds8.src_only Prog: ((2 * b0) - (5 - b0))
+nussinov_refsrc_8_isrc_12_24.ri.cls32_ds8.src_only Prog: (28 - (5 - b0))
+nussinov_refsrc_4_isrc_22_29.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_0_isrc_23_31.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_15_isrc_13_20.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_14_isrc_4_27.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_2_isrc_14_21.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_10_isrc_18_23.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_15_isrc_13_21.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_3_isrc_14_15.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_2_isrc_3_26.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_0_isrc_1_18.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_17_isrc_20_27.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_14_isrc_9_15.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_6_isrc_18_23.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_15_isrc_17_24.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_9_isrc_23_30.ri.cls32_ds8.src_only Prog: (3 + b0)
+nussinov_refsrc_7_isrc_8_11.ri.cls32_ds8.src_only Prog: (if (b0 < (2 * isrc0)) then (1 - ((b0 - b0) - 18)) else (10 + (2 * b0)))
+nussinov_refsrc_6_isrc_18_25.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_3_isrc_1_15.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_16_isrc_21_30.ri.cls32_ds8.src_only Prog: (14 - (3 - b0))
+nussinov_refsrc_1_isrc_7_28.ri.cls32_ds8.src_only Prog: 75
+nussinov_refsrc_8_isrc_22_28.ri.cls32_ds8.src_only Prog: (b0 - 1)
+nussinov_refsrc_5_isrc_5_29.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_17_isrc_0_29.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_10_isrc_2_10.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_1_isrc_11_19.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_0_isrc_17_26.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_17_isrc_28_30.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_2_isrc_4_22.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_3_isrc_13_19.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_6_isrc_1_26.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_10_isrc_3_15.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_7_isrc_23_29.ri.cls32_ds8.src_only Prog: 28
+nussinov_refsrc_4_isrc_3_11.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_8_isrc_21_30.ri.cls32_ds8.src_only Prog: (14 - (3 - b0))
+nussinov_refsrc_6_isrc_0_27.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_14_isrc_19_21.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_10_isrc_16_28.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_4_isrc_16_23.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_3_isrc_9_30.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_16_isrc_21_28.ri.cls32_ds8.src_only Prog: (3 + b0)
+nussinov_refsrc_6_isrc_17_23.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_0_isrc_12_23.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_14_isrc_20_28.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_10_isrc_8_17.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_7_isrc_17_21.ri.cls32_ds8.src_only Prog: 20
+nussinov_refsrc_3_isrc_2_25.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_15_isrc_7_22.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_2_isrc_18_30.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_1_isrc_16_25.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_5_isrc_11_24.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_7_isrc_17_29.ri.cls32_ds8.src_only Prog: (20 + b0)
+nussinov_refsrc_1_isrc_13_22.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_6_isrc_9_19.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_8_isrc_11_14.ri.cls32_ds8.src_only Prog: (1 - ((b0 - b0) - 18))
+nussinov_refsrc_0_isrc_4_5.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_2_isrc_4_20.ri.cls32_ds8.src_only Prog: 1
 nussinov_refsrc_6_isrc_23_28.ri.cls32_ds8.src_only Prog: 4
-nussinov_refsrc_5_isrc_8_12.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_4_isrc_6_9.ri.cls32_ds8.src_only Prog: 3
-nussinov_refsrc_4_isrc_15_25.ri.cls32_ds8.src_only Prog: 3
-nussinov_refsrc_8_isrc_16_24.ri.cls32_ds8.src_only Prog: (7 + b0)
-nussinov_refsrc_10_isrc_13_18.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_3_isrc_17_30.ri.cls32_ds8.src_only Prog: 2
-nussinov_refsrc_2_isrc_25_30.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_10_isrc_0_18.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_17_isrc_5_10.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_9_isrc_0_5.ri.cls32_ds8.src_only Prog: 27
-nussinov_refsrc_16_isrc_15_25.ri.cls32_ds8.src_only Prog: (15 + b0)
-nussinov_refsrc_15_isrc_21_27.ri.cls32_ds8.src_only Prog: 4
-nussinov_refsrc_7_isrc_16_28.ri.cls32_ds8.src_only Prog: (14 * b0)
-nussinov_refsrc_14_isrc_3_13.ri.cls32_ds8.src_only Prog: 3
-nussinov_refsrc_15_isrc_3_18.ri.cls32_ds8.src_only Prog: 4
-nussinov_refsrc_14_isrc_9_11.ri.cls32_ds8.src_only Prog: 1
-nussinov_refsrc_12_isrc_16_17.ri.cls32_ds8.src_only Prog: 6
-nussinov_refsrc_16_isrc_3_21.ri.cls32_ds8.src_only Prog: (15 + (2 * b0))
-nussinov_refsrc_9_isrc_21_26.ri.cls32_ds8.src_only Prog: (b0 - 5)
-nussinov_refsrc_17_isrc_2_28.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_15_isrc_4_25.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_14_isrc_19_28.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_5_isrc_6_13.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_1_isrc_12_31.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_9_isrc_14_18.ri.cls32_ds8.src_only Prog: (2 - ((b0 - b0) - 21))
+nussinov_refsrc_7_isrc_1_3.ri.cls32_ds8.src_only Prog: 15
+nussinov_refsrc_7_isrc_4_22.ri.cls32_ds8.src_only Prog: (12 + (2 * b0))
+nussinov_refsrc_6_isrc_11_24.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_17_isrc_1_18.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_0_isrc_11_18.ri.cls32_ds8.src_only Prog: 1
+nussinov_refsrc_15_isrc_14_19.ri.cls32_ds8.src_only Prog: 2
+nussinov_refsrc_4_isrc_14_30.ri.cls32_ds8.src_only Prog: 3
+nussinov_refsrc_7_isrc_9_21.ri.cls32_ds8.src_only Prog: (20 + b0)
+nussinov_refsrc_15_isrc_6_15.ri.cls32_ds8.src_only Prog: 4
+nussinov_refsrc_17_isrc_19_27.ri.cls32_ds8.src_only Prog: 1
